@@ -1,0 +1,1467 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AFM Local 12 — American Federation of Musicians</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --primary: #00b0bf;
+        --primary-light: #4dd2df;
+        --primary-pale: #ccf3f6;
+        --dark: #0d0b0f;
+        --dark2: #1a1720;
+        --dark3: #24202e;
+        --mid: #3a3545;
+        --text: #f0ebe3;
+        --text-muted: #9e97a8;
+        --white: #ffffff;
+        --nav-h: 72px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--dark);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        background: rgba(13, 11, 15, 0.88);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(0, 176, 191, 0.15);
+        transition: background 0.3s;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+
+      .nav-logo-mark {
+        width: 40px;
+        height: 40px;
+        background: var(--primary);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .nav-logo-mark svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--dark);
+      }
+
+      .nav-logo-text {
+        line-height: 1.1;
+      }
+      .nav-logo-text .afm {
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .nav-logo-text .local {
+        font-size: 11px;
+        color: var(--text-muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 8px 14px;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-decoration: none;
+        border-radius: 8px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+        white-space: nowrap;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .nav-cta {
+        background: var(--primary) !important;
+        color: var(--dark) !important;
+        font-weight: 600 !important;
+        padding: 9px 20px !important;
+        border-radius: 50px !important;
+        transition:
+          background 0.2s,
+          transform 0.15s !important;
+      }
+
+      .nav-cta:hover {
+        background: var(--primary-light) !important;
+        transform: translateY(-1px);
+      }
+
+      /* hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(13, 11, 15, 0.97);
+        z-index: 99;
+        padding: 2rem 5%;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+      }
+
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        display: block;
+        padding: 16px 0;
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .mobile-menu a:last-child {
+        border: none;
+      }
+      .mobile-menu .m-cta {
+        margin-top: 1.5rem;
+        background: var(--primary);
+        color: var(--dark);
+        font-weight: 700;
+        padding: 16px 24px;
+        border-radius: 50px;
+        text-align: center;
+        border: none;
+        font-size: 16px;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding: var(--nav-h) 5% 0;
+        background: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 70% 60% at 80% 50%,
+            rgba(0, 176, 191, 0.4) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 80% at 10% 80%,
+            rgba(100, 60, 200, 0.2) 0%,
+            transparent 60%
+          ),
+          linear-gradient(160deg, rgba(13, 11, 15, 0.85) 0%, rgba(26, 21, 32, 0.85) 50%, rgba(13, 11, 15, 0.95) 100%);
+        backdrop-filter: blur(8px);
+      }
+
+      /* Animated sound waves */
+      .sound-waves {
+        position: absolute;
+        right: -5%;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        opacity: 0.08;
+      }
+
+      .wave-bar {
+        width: 4px;
+        border-radius: 4px;
+        background: var(--primary);
+        animation: wavePulse 1.4s ease-in-out infinite;
+      }
+
+      @keyframes wavePulse {
+        0%,
+        100% {
+          transform: scaleY(0.3);
+        }
+        50% {
+          transform: scaleY(1);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+        padding: 80px 0 100px;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 28px;
+      }
+
+      .hero-tag::before {
+        content: "";
+        display: block;
+        width: 28px;
+        height: 1px;
+        background: var(--primary);
+      }
+
+      .hero-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(44px, 7vw, 88px);
+        font-weight: 900;
+        line-height: 1;
+        color: var(--white);
+        margin-bottom: 28px;
+      }
+
+      .hero-title em {
+        font-style: italic;
+        color: var(--primary);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(15px, 2vw, 18px);
+        font-weight: 300;
+        line-height: 1.7;
+        color: var(--text-muted);
+        max-width: 520px;
+        margin-bottom: 44px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        padding: 15px 34px;
+        background: var(--primary);
+        color: var(--dark);
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 50px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-light);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        display: inline-block;
+        padding: 14px 32px;
+        background: transparent;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        border: 1.5px solid rgba(240, 235, 227, 0.25);
+        border-radius: 50px;
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          transform 0.15s;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      /* ── STATS BAR ── */
+      .stats-bar {
+        background: var(--dark2);
+        border-top: 1px solid rgba(0, 176, 191, 0.2);
+        border-bottom: 1px solid rgba(0, 176, 191, 0.2);
+        padding: 32px 5%;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-num {
+        font-family: "Montserrat", sans-serif;
+        font-size: 38px;
+        font-weight: 700;
+        color: var(--primary);
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 6px;
+      }
+
+      /* ── SECTION WRAPPER ── */
+      .section {
+        padding: 96px 5%;
+      }
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 16px;
+      }
+
+      .section-label::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 1px;
+        background: var(--primary);
+      }
+
+      .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(30px, 4vw, 50px);
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.15;
+        margin-bottom: 20px;
+      }
+
+      .section-body {
+        font-size: 16px;
+        font-weight: 300;
+        color: var(--text-muted);
+        line-height: 1.8;
+        max-width: 640px;
+        margin-bottom: 48px;
+      }
+
+      /* ── ABOUT ── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .about-visual {
+        position: relative;
+      }
+
+      .about-img-placeholder {
+        width: 100%;
+        aspect-ratio: 4/3;
+        background: var(--dark3);
+        border-radius: 16px;
+        border: 1px solid rgba(0, 176, 191, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .about-img-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 30% 40%,
+          rgba(0, 176, 191, 0.15) 0%,
+          transparent 60%
+        );
+      }
+
+      .about-img-placeholder svg {
+        width: 80px;
+        height: 80px;
+        opacity: 0.15;
+        fill: var(--primary);
+      }
+
+      .about-badge {
+        position: absolute;
+        bottom: -16px;
+        right: -16px;
+        background: var(--primary);
+        color: var(--dark);
+        padding: 16px 20px;
+        border-radius: 12px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.1;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0, 176, 191, 0.35);
+      }
+
+      .about-badge small {
+        display: block;
+        font-family: "DM Sans", sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+
+      /* ── FEATURES / BENEFITS ── */
+      .features-bg {
+        background: var(--dark2);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2px;
+        border: 1px solid rgba(0, 176, 191, 0.12);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .feature-card {
+        background: var(--dark3);
+        padding: 36px 32px;
+        transition: background 0.2s;
+        text-decoration: none;
+        display: block;
+      }
+
+      .feature-card:hover {
+        background: #2c2838;
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 176, 191, 0.12);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .feature-icon svg {
+        width: 24px;
+        height: 24px;
+        stroke: var(--primary);
+        fill: none;
+        stroke-width: 1.8;
+      }
+
+      .feature-title {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 10px;
+      }
+      .feature-text {
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+
+      /* ── MEMBERS ── */
+      .members-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+      }
+
+      .member-tag {
+        padding: 8px 18px;
+        background: rgba(0, 176, 191, 0.08);
+        border: 1px solid rgba(0, 176, 191, 0.2);
+        border-radius: 50px;
+        font-size: 14px;
+        color: var(--primary-pale);
+      }
+
+      /* ── NOTME ── */
+      .notme-card {
+        background: linear-gradient(135deg, #1e1824 0%, #261f30 100%);
+        border: 1px solid rgba(0, 176, 191, 0.25);
+        border-radius: 20px;
+        padding: 56px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .notme-tag {
+        display: inline-block;
+        padding: 5px 14px;
+        background: rgba(0, 176, 191, 0.12);
+        border: 1px solid rgba(0, 176, 191, 0.3);
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--primary);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      /* ── CTA SECTION ── */
+      .cta-section {
+        text-align: center;
+        padding: 96px 5%;
+        background: var(--dark);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(
+          circle,
+          rgba(0, 176, 191, 0.1) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+
+      .cta-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .cta-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(32px, 5vw, 60px);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.1;
+        margin-bottom: 20px;
+      }
+
+      .cta-subtitle {
+        font-size: 17px;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+        line-height: 1.7;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--dark2);
+        border-top: 1px solid rgba(0, 176, 191, 0.15);
+        padding: 64px 5% 32px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .footer-brand p {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin-top: 14px;
+        max-width: 300px;
+      }
+
+      .footer-col h4 {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 16px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 10px;
+      }
+      .footer-col a {
+        font-size: 14px;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-col a:hover {
+        color: var(--text);
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-top: 28px;
+      }
+
+      .footer-bottom p {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .about-visual {
+          order: -1;
+        }
+        .about-badge {
+          bottom: -12px;
+          right: 12px;
+        }
+        .notme-card {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-brand {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .hero-content {
+          padding: 60px 0 80px;
+        }
+        .section {
+          padding: 64px 5%;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .notme-card {
+          padding: 36px 24px;
+        }
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Animation on scroll */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    
+      /* ── ADDED OVERRIDES ── */
+      .wages-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .nav-logo, .nav-logo-text {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+      @media (max-width: 900px) {
+        .wages-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+      @media (max-width: 1024px) {
+        .hero-title {
+          font-size: clamp(36px, 6vw, 72px);
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- ── NAV ── -->
+    <nav id="navbar">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M9 18V5l12-2v13M9 18c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-2c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"
+            />
+          </svg>
+        </div>
+        <div class="nav-logo-text">
+          <div class="afm">AFM Local 12</div>
+          <div class="local">Musicians Union · California</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#wages">Wage Scales</a></li>
+        <li><a href="#notme">#NotMe</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <a href="https://afmlocal12.com/members/" class="nav-cta"
+            >Member Login</a
+          >
+        </li>
+      </ul>
+
+      <button class="hamburger" id="menuBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" class="mob-link">About</a>
+      <a href="#benefits" class="mob-link">Benefits</a>
+      <a href="#wages" class="mob-link">Wage Scales</a>
+      <a href="#notme" class="mob-link">#NotMe</a>
+      <a href="#contact" class="mob-link">Contact</a>
+      <a href="https://afmlocal12.com/join/" class="m-cta"
+        >Join Now — Become a Member</a
+      >
+    </div>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+
+      <!-- Decorative sound wave bars -->
+      <div class="sound-waves" aria-hidden="true">
+        <div class="wave-bar" style="height: 40px; animation-delay: 0s"></div>
+        <div class="wave-bar" style="height: 80px; animation-delay: 0.1s"></div>
+        <div
+          class="wave-bar"
+          style="height: 120px; animation-delay: 0.2s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 200px; animation-delay: 0.3s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 280px; animation-delay: 0.4s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 350px; animation-delay: 0.5s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 420px; animation-delay: 0.35s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 360px; animation-delay: 0.45s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 260px; animation-delay: 0.25s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 180px; animation-delay: 0.15s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 100px; animation-delay: 0.05s"
+        ></div>
+        <div
+          class="wave-bar"
+          style="height: 60px; animation-delay: 0.55s"
+        ></div>
+      </div>
+
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Your Music.<br />
+          <em>Your Rights.</em><br />
+          Your Union.
+        </h1>
+        <p class="hero-subtitle">
+          Local 12 has championed professional musicians across Central and
+          Northern California since 1904. From the stage to the studio — we
+          protect your work and amplify your career.
+        </p>
+        <div class="hero-actions">
+          <a href="https://afmlocal12.com/join/" class="btn-primary"
+            >Join Local 12</a
+          >
+          <a href="#about" class="btn-outline">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS BAR ── -->
+    <div class="stats-bar">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <div class="stat-num">1904</div>
+          <div class="stat-label">Founded in California</div>
+        </div>
+        <div class="stat-item fade-up" style="transition-delay: 0.1s">
+          <div class="stat-num">90K+</div>
+          <div class="stat-label">AFM Members Worldwide</div>
+        </div>
+        <div class="stat-item fade-up" style="transition-delay: 0.2s">
+          <div class="stat-num">120+</div>
+          <div class="stat-label">Years of Advocacy</div>
+        </div>
+        <div class="stat-item fade-up" style="transition-delay: 0.3s">
+          <div class="stat-num">All</div>
+          <div class="stat-label">Genres Represented</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ABOUT ── -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div>
+            <h2 class="section-title fade-up">
+              The Voice of Professional Musicians
+            </h2>
+            <p class="section-body fade-up">
+              The AFM is the largest organization in the world dedicated to
+              representing the interests of professional musicians. Local 12
+              represents many of the finest professional musicians from
+              Bakersfield to Sacramento — performing every style imaginable.
+            </p>
+            <p class="section-body fade-up" style="margin-top: -28px">
+              Our members include household names like Bruce Springsteen,
+              Roberta Flack, Santana, Yo-Yo Ma, Sheila E, Willie Nelson, and
+              Branford Marsalis — proof that Local 12 stands alongside the best
+              in the business.
+            </p>
+            <div class="hero-actions fade-up">
+              <a href="https://afmlocal12.com/join/" class="btn-primary"
+                >Become a Member</a
+              >
+              <a href="https://afmlocal12.com/members/" class="btn-outline"
+                >Member Portal</a
+              >
+            </div>
+          </div>
+          <div class="about-visual fade-up">
+            <div class="about-img-placeholder" style="background: url('https://images.unsplash.com/photo-1598387082322-a9fb15d6542d?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat; border: none;"></div>
+            <div class="about-badge">
+              120+
+              <small>Years Serving Musicians</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="members-list fade-up" style="margin-top: 64px">
+          <span class="member-tag">Rock</span>
+          <span class="member-tag">Classical</span>
+          <span class="member-tag">Jazz</span>
+          <span class="member-tag">Country</span>
+          <span class="member-tag">Pop</span>
+          <span class="member-tag">Gospel</span>
+          <span class="member-tag">Folk</span>
+          <span class="member-tag">Big Band</span>
+          <span class="member-tag">Reggae</span>
+          <span class="member-tag">Contemporary Christian</span>
+          <span class="member-tag">Alternative</span>
+          <span class="member-tag">R&amp;B</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BENEFITS ── -->
+    <section class="section features-bg" id="benefits">
+      <div class="section-inner">
+        <h2 class="section-title fade-up">
+          Everything You Need to Build Your Career
+        </h2>
+        <p class="section-body fade-up">
+          From contract negotiation to legal protection, Local 12 gives you the
+          tools and backing to thrive as a professional musician.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-card fade-up">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">Contract Protection</div>
+            <p class="feature-text">
+              Negotiated agreements with the recording industry, motion picture
+              studios, jingle producers, TV networks, and more.
+            </p>
+          </div>
+          <div class="feature-card fade-up" style="transition-delay: 0.1s">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">Royalty Defense</div>
+            <p class="feature-text">
+              We protect your recorded works and live performances from
+              exploitation, ensuring you're fairly compensated.
+            </p>
+          </div>
+          <div class="feature-card fade-up" style="transition-delay: 0.2s">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">Fair Wage Scales</div>
+            <p class="feature-text">
+              Access established wage scales for every gig type — nightclubs,
+              symphony stages, recording sessions, and touring.
+            </p>
+          </div>
+          <div class="feature-card fade-up" style="transition-delay: 0.3s">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">Legislative Advocacy</div>
+            <p class="feature-text">
+              Active lobbying for legislation protecting musicians' rights
+              nationally and in California.
+            </p>
+          </div>
+          <div class="feature-card fade-up" style="transition-delay: 0.1s">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">Benefit Programs</div>
+            <p class="feature-text">
+              Multiple benefit programs designed to support your career at every
+              stage — from emerging artists to seasoned professionals.
+            </p>
+          </div>
+          <div class="feature-card fade-up" style="transition-delay: 0.2s">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="feature-title">Member Newsletter</div>
+            <p class="feature-text">
+              Stay informed with our quarterly newsletter covering union news,
+              industry updates, and member spotlights.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WAGE SCALES ── -->
+    <section class="section" id="wages">
+      <div class="section-inner">
+        <div class="wages-grid">
+          <div>
+            <h2 class="section-title fade-up">Know Your Worth</h2>
+            <p class="section-body fade-up">
+              Local 12 maintains clear, fair wage scales across every
+              performance context — whether you're performing at a venue,
+              recording in a studio, or on tour. Our scales ensure you're always
+              compensated professionally.
+            </p>
+            <a
+              href="https://afmlocal12.com/local-12-wage-scales/"
+              class="btn-primary fade-up"
+              >View Wage Scales</a
+            >
+          </div>
+          <div>
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <div
+                class="fade-up"
+                style="
+                  background: var(--dark3);
+                  border: 1px solid rgba(0, 176, 191, 0.15);
+                  border-radius: 12px;
+                  padding: 20px 24px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <span style="font-size: 15px; color: var(--text)"
+                  >Live Performance</span
+                >
+                <span
+                  style="font-size: 13px; color: var(--primary); font-weight: 600"
+                  >Nightclub &amp; Stage</span
+                >
+              </div>
+              <div
+                class="fade-up"
+                style="
+                  transition-delay: 0.1s;
+                  background: var(--dark3);
+                  border: 1px solid rgba(0, 176, 191, 0.15);
+                  border-radius: 12px;
+                  padding: 20px 24px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <span style="font-size: 15px; color: var(--text)"
+                  >Recording Sessions</span
+                >
+                <span
+                  style="font-size: 13px; color: var(--primary); font-weight: 600"
+                  >Studio Work</span
+                >
+              </div>
+              <div
+                class="fade-up"
+                style="
+                  transition-delay: 0.2s;
+                  background: var(--dark3);
+                  border: 1px solid rgba(0, 176, 191, 0.15);
+                  border-radius: 12px;
+                  padding: 20px 24px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <span style="font-size: 15px; color: var(--text)"
+                  >Film &amp; TV</span
+                >
+                <span
+                  style="font-size: 13px; color: var(--primary); font-weight: 600"
+                  >Motion Picture</span
+                >
+              </div>
+              <div
+                class="fade-up"
+                style="
+                  transition-delay: 0.3s;
+                  background: var(--dark3);
+                  border: 1px solid rgba(0, 176, 191, 0.15);
+                  border-radius: 12px;
+                  padding: 20px 24px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <span style="font-size: 15px; color: var(--text)">Touring</span>
+                <span
+                  style="font-size: 13px; color: var(--primary); font-weight: 600"
+                  >On the Road</span
+                >
+              </div>
+              <div
+                class="fade-up"
+                style="
+                  transition-delay: 0.4s;
+                  background: var(--dark3);
+                  border: 1px solid rgba(0, 176, 191, 0.15);
+                  border-radius: 12px;
+                  padding: 20px 24px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <span style="font-size: 15px; color: var(--text)"
+                  >Symphony &amp; Orchestra</span
+                >
+                <span
+                  style="font-size: 13px; color: var(--primary); font-weight: 600"
+                  >Classical</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── #NOTME ── -->
+    <section class="section features-bg" id="notme">
+      <div class="section-inner">
+        <div class="notme-card fade-up">
+          <div>
+            <h2
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                font-size: clamp(26px, 3vw, 40px);
+                font-weight: 700;
+                color: var(--white);
+                line-height: 1.2;
+                margin-bottom: 18px;
+              "
+            >
+              A Safe, Secure Space to Report Concerns
+            </h2>
+            <p
+              style="
+                font-size: 15px;
+                color: var(--text-muted);
+                line-height: 1.8;
+                max-width: 560px;
+                margin-bottom: 28px;
+              "
+            >
+              The AFM has partnered with NotMe Solutions to provide members with
+              an encrypted, confidential platform to report harassment, contract
+              violations, payroll discrepancies, or any unsafe situation. An
+              injury to one is an injury to all.
+            </p>
+            <a href="https://afmlocal12.com/notme/" class="btn-primary"
+              >Learn About #NotMe</a
+            >
+          </div>
+          <div style="text-align: center">
+            <div
+              style="
+                width: 120px;
+                height: 120px;
+                background: rgba(0, 176, 191, 0.1);
+                border: 1px solid rgba(0, 176, 191, 0.3);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;
+              "
+            >
+              <svg
+                width="52"
+                height="52"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--primary)"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <p
+              style="
+                font-size: 12px;
+                color: var(--text-muted);
+                margin-top: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+              "
+            >
+              Encrypted &amp; Confidential
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-section" id="join">
+      <div class="cta-inner">
+        <h2 class="cta-title fade-up">
+          Your Career Deserves a Union Behind It
+        </h2>
+        <p class="cta-subtitle fade-up">
+          Join over 90,000 professional musicians who trust the AFM to protect
+          their craft, secure fair pay, and amplify their voice.
+        </p>
+        <div class="hero-actions fade-up" style="justify-content: center">
+          <a href="https://afmlocal12.com/join/" class="btn-primary"
+            >Join Local 12 Today</a
+          >
+          <a
+            href="https://afmlocal12.com/membership-payments/"
+            class="btn-outline"
+            >Membership Payments</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" style="display: inline-flex">
+            <div class="nav-logo-mark">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M9 18V5l12-2v13M9 18c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-2c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"
+                />
+              </svg>
+            </div>
+            <div class="nav-logo-text">
+              <div class="afm">AFM Local 12</div>
+              <div class="local">Musicians Union · California</div>
+            </div>
+          </a>
+          <p>
+            Serving professional musicians across Central and Northern
+            California since 1904. Part of the American Federation of Musicians
+            of the United States and Canada.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="https://afmlocal12.com/members/">Members Only</a></li>
+            <li>
+              <a href="https://afmlocal12.com/membership-payments/"
+                >Membership Payments</a
+              >
+            </li>
+            <li>
+              <a href="https://afmlocal12.com/local-12-wage-scales/"
+                >Wage Scales</a
+              >
+            </li>
+            <li><a href="https://afmlocal12.com/benefits/">Benefits</a></li>
+            <li><a href="https://afmlocal12.com/notme/">#NotMe</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="https://afmlocal12.com/join/">Join Now</a></li>
+            <li><a href="https://afmlocal12.com/contact/">Contact Us</a></li>
+            <li>
+              <a href="https://afmlocal12.com/september-24-newsletter/"
+                >Newsletter</a
+              >
+            </li>
+            <li><a href="https://afmlocal12.com/checkout/">Checkout</a></li>
+            <li><a href="https://afmlocal12.com/cart/">Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 AFM Local 12 — American Federation of Musicians. All rights
+          reserved.
+        </p>
+        <p style="color: var(--primary); font-size: 13px">
+          Central &amp; Northern California
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const btn = document.getElementById("menuBtn");
+      const menu = document.getElementById("mobileMenu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("open");
+      });
+
+      document.querySelectorAll(".mob-link, .m-cta").forEach((link) => {
+        link.addEventListener("click", () => menu.classList.remove("open"));
+      });
+
+      // Scroll-based fade-in
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document
+        .querySelectorAll(".fade-up")
+        .forEach((el) => observer.observe(el));
+
+      // Sound wave animation
+      const bars = document.querySelectorAll(".wave-bar");
+      bars.forEach((bar, i) => {
+        bar.style.animationDelay = i * 0.08 + "s";
+        bar.style.animationDuration = 1.2 + Math.random() * 0.6 + "s";
+      });
+    </script>
+  </body>
+</html>
