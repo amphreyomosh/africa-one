@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>American River Water Polo Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a2342;
+      --navy-mid: #0e2e57;
+      --navy-light: #1a4a7a;
+      --blue: #1d6fbf;
+      --blue-bright: #2589e0;
+      --gold: #f5a623;
+      --gold-light: #fbbf47;
+      --white: #ffffff;
+      --off-white: #f4f7fb;
+      --light-gray: #e8edf5;
+      --text: #1a2c47;
+      --text-muted: #5a6e8a;
+      --border: #d4dce9;
+      --glad-h: 58px;
+      --nav-h: 70px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: "Barlow", sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+    /* ── GLAD HEADER ── */
+    #glad-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      height: var(--glad-h);
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 5%;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+    #glad-header.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+    .glad-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 32px; width: 100%; max-width: 1200px; position: relative;
+    }
+    .glad-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .glad-logo img { height: 42px; width: auto; display: block; object-fit: contain; }
+    .glad-back-btn {
+      position: absolute; right: 0;
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--blue); color: #fff;
+      font-family: "Barlow", sans-serif; font-size: 13px; font-weight: 600;
+      text-decoration: none; padding: 9px 20px;
+      border-radius: 6px; letter-spacing: 0.03em; white-space: nowrap;
+    }
+    .glad-back-btn svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2.2; flex-shrink: 0; }
+    @media (max-width: 520px) { .glad-back-btn .btn-label { display: none; } .glad-back-btn { padding: 9px 12px; } }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: var(--glad-h); left: 0; right: 0; z-index: 200;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--light-gray);
+      transition: top 0.35s ease, box-shadow 0.3s;
+      box-shadow: 0 2px 20px rgba(10,35,66,0.07);
+    }
+    nav.glad-hidden { top: 0; }
+
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 50px; width: auto; }
+    .nav-logo-text .club-name { font-family: "Barlow Condensed", sans-serif; font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.1; text-transform: uppercase; letter-spacing: 0.04em; }
+    .nav-logo-text .club-sub { font-size: 11px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a {
+      display: block; padding: 8px 14px;
+      font-family: "Barlow", sans-serif; font-size: 14px; font-weight: 600;
+      color: var(--text-muted); text-decoration: none;
+      border-radius: 8px; letter-spacing: 0.03em;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap; text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--navy); background: var(--off-white); }
+    .nav-cta {
+      background: var(--gold) !important; color: var(--navy) !important;
+      font-weight: 700 !important; border-radius: 8px !important;
+      padding: 9px 22px !important; transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed;
+      top: calc(var(--glad-h) + var(--nav-h)); left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.99); z-index: 199;
+      padding: 2rem 5%; flex-direction: column; gap: 0; overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { display: block; padding: 16px 0; font-size: 20px; font-weight: 600; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.05em; font-family: "Barlow Condensed", sans-serif; }
+    .mobile-menu a:last-child { border: none; }
+    .mobile-menu .m-cta { margin-top: 1.5rem; background: var(--gold); color: var(--navy); font-weight: 700; padding: 16px 24px; border-radius: 10px; text-align: center; font-size: 18px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: calc(var(--glad-h) + var(--nav-h)) 5% 0;
+      background: url("https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=2000&auto=format&fit=crop") center 60%/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(10,35,66,0.88) 0%, rgba(10,35,66,0.75) 45%, rgba(29,111,191,0.35) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; padding: 80px 0 100px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(245,166,35,0.2); border: 1px solid rgba(245,166,35,0.5);
+      padding: 7px 18px; border-radius: 50px; margin-bottom: 24px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-light);
+    }
+    .hero-eyebrow span { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+
+    .hero-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(56px, 9vw, 110px);
+      font-weight: 400; line-height: 0.95;
+      color: var(--white); margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; }
+    .hero-subtitle { font-size: clamp(15px, 2vw, 18px); font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 540px; margin-bottom: 44px; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .btn-gold {
+      display: inline-block; padding: 16px 38px;
+      background: var(--gold); color: var(--navy);
+      font-family: "Barlow Condensed", sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.08em;
+      text-decoration: none; border-radius: 8px; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 6px 24px rgba(245,166,35,0.4);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block; padding: 15px 34px;
+      background: transparent; color: var(--white);
+      font-family: "Barlow Condensed", sans-serif; font-size: 17px; font-weight: 600; letter-spacing: 0.08em;
+      text-decoration: none; border: 2px solid rgba(255,255,255,0.4); border-radius: 8px; text-transform: uppercase;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+    /* Water ripple decoration */
+    .hero-ripple {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      background: linear-gradient(to top, var(--off-white), transparent);
+      pointer-events: none;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar { background: var(--navy); padding: 40px 5%; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .stat-item { text-align: center; padding: 8px 0; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat-item:last-child { border: none; }
+    .stat-num { font-family: "Bebas Neue", sans-serif; font-size: 48px; font-weight: 400; color: var(--gold); line-height: 1; letter-spacing: 0.03em; }
+    .stat-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.14em; margin-top: 4px; }
+
+    /* ── SECTION ── */
+    .section { padding: 96px 5%; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--blue); margin-bottom: 12px; }
+    .section-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(40px, 5vw, 64px); font-weight: 400; color: var(--navy); line-height: 1; letter-spacing: 0.03em; margin-bottom: 20px; }
+    .section-body { font-size: 16px; font-weight: 300; color: var(--text-muted); line-height: 1.8; max-width: 640px; margin-bottom: 40px; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--off-white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+
+    .about-img-wrap { position: relative; }
+    .about-img {
+      width: 100%; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden;
+      border: 4px solid var(--white); box-shadow: 0 20px 60px rgba(10,35,66,0.18);
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--gold); color: var(--navy);
+      padding: 18px 22px; border-radius: 12px;
+      font-family: "Bebas Neue", sans-serif; font-size: 28px; font-weight: 400; line-height: 1.1; text-align: center;
+      box-shadow: 0 10px 36px rgba(245,166,35,0.35); letter-spacing: 0.04em;
+    }
+    .about-badge small { display: block; font-family: "Barlow", sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2px; }
+
+    .btn-navy {
+      display: inline-block; padding: 14px 34px;
+      background: var(--navy); color: var(--white);
+      font-family: "Barlow Condensed", sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.08em;
+      text-decoration: none; border-radius: 8px; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-navy:hover { background: var(--navy-mid); transform: translateY(-2px); }
+
+    .btn-outline-navy {
+      display: inline-block; padding: 13px 30px;
+      background: transparent; color: var(--navy);
+      font-family: "Barlow Condensed", sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.08em;
+      text-decoration: none; border: 2px solid var(--navy); border-radius: 8px; text-transform: uppercase;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-outline-navy:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); }
+
+    /* ── GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 60px; }
+    .gallery-img { width: 100%; aspect-ratio: 3/2; border-radius: 12px; overflow: hidden; position: relative; }
+    .gallery-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .gallery-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,35,66,0.3), transparent 60%); opacity: 0; transition: opacity 0.3s; }
+    .gallery-img:hover img { transform: scale(1.06); }
+    .gallery-img:hover::after { opacity: 1; }
+
+    /* ── PROGRAMS ── */
+    #programs { background: var(--white); }
+    .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .program-card {
+      background: var(--off-white); border: 1.5px solid var(--border);
+      border-radius: 16px; padding: 36px 28px;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+      text-decoration: none; display: block; position: relative; overflow: hidden;
+    }
+    .program-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); border-radius: 16px 0 0 16px; opacity: 0; transition: opacity 0.2s; }
+    .program-card:hover { box-shadow: 0 12px 40px rgba(10,35,66,0.1); border-color: var(--blue); transform: translateY(-4px); }
+    .program-card:hover::before { opacity: 1; }
+    .program-icon { width: 52px; height: 52px; background: var(--navy); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .program-icon svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+    .program-title { font-family: "Barlow Condensed", sans-serif; font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 10px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .program-text { font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.75; }
+
+    /* ── SCHEDULE ── */
+    #schedule { background: var(--off-white); }
+    .schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .schedule-list { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+    .schedule-row {
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 22px; display: flex; align-items: center; gap: 20px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .schedule-row:hover { border-color: var(--blue); box-shadow: 0 4px 18px rgba(10,35,66,0.07); }
+    .schedule-day {
+      min-width: 52px; height: 52px; background: var(--navy); color: var(--white);
+      border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: "Barlow Condensed", sans-serif;
+    }
+    .schedule-day .day { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); }
+    .schedule-day .num { font-size: 22px; font-weight: 700; line-height: 1; color: var(--gold); }
+    .schedule-info { flex: 1; }
+    .schedule-info .event-name { font-weight: 600; font-size: 15px; color: var(--navy); }
+    .schedule-info .event-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; font-weight: 400; }
+    .schedule-badge { padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; flex-shrink: 0; }
+    .badge-home { background: rgba(29,111,191,0.1); color: var(--blue); }
+    .badge-away { background: rgba(245,166,35,0.15); color: #b07410; }
+
+    .schedule-visual { position: relative; }
+    .schedule-img { width: 100%; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; }
+    .schedule-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── TEAMS ── */
+    #teams { background: var(--white); }
+    .teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .team-card {
+      background: var(--navy); border-radius: 14px; padding: 32px 20px;
+      text-align: center; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .team-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%); }
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(10,35,66,0.2); }
+    .team-card .team-level { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 8px; }
+    .team-card .team-name { font-family: "Bebas Neue", sans-serif; font-size: 32px; color: var(--white); line-height: 1; letter-spacing: 0.04em; }
+    .team-card .team-age { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 8px; font-weight: 500; }
+
+    /* ── GALLERY SECTION ── */
+    #gallery { background: var(--off-white); }
+    .big-gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 240px 240px; gap: 14px; }
+    .big-gallery .g-main { grid-row: 1 / 3; border-radius: 16px; overflow: hidden; }
+    .big-gallery .g-sm { border-radius: 16px; overflow: hidden; }
+    .big-gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .big-gallery .g-main:hover img, .big-gallery .g-sm:hover img { transform: scale(1.04); }
+
+    /* ── JOIN CTA ── */
+    .cta-section {
+      background: var(--navy); padding: 96px 5%;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ""; position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-section::after {
+      content: ""; position: absolute; bottom: -150px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(29,111,191,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 64px; align-items: center; }
+    .cta-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(40px, 6vw, 76px); font-weight: 400; color: var(--white); line-height: 1; letter-spacing: 0.03em; margin-bottom: 16px; }
+    .cta-title span { color: var(--gold); }
+    .cta-subtitle { font-size: 16px; color: rgba(255,255,255,0.72); line-height: 1.8; max-width: 500px; }
+    .cta-actions { display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--off-white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; }
+    .contact-icon { width: 44px; height: 44px; background: var(--navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .contact-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+    .contact-item h4 { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 12px; }
+    .contact-item p, .contact-item a { font-size: 15px; color: var(--text-muted); text-decoration: none; line-height: 1.6; }
+    .contact-item a:hover { color: var(--blue); }
+
+    .contact-form { background: var(--white); border-radius: 16px; padding: 36px; border: 1px solid var(--border); }
+    .contact-form h3 { font-family: "Barlow Condensed", sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 7px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-family: "Barlow", sans-serif; font-size: 14px; color: var(--text);
+      background: var(--off-white); transition: border-color 0.2s, background 0.2s; outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); background: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: 64px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; max-width: 1100px; margin: 0 auto; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-top: 16px; max-width: 280px; }
+    .footer-logo-row { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo-row img { height: 46px; width: auto; }
+    .footer-logo-text .club-name { font-family: "Barlow Condensed", sans-serif; font-size: 18px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
+    .footer-logo-text .club-sub { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; font-weight: 400; }
+    .footer-col a:hover { color: rgba(255,255,255,0.9); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 1100px; margin: 0 auto; padding-top: 28px; }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.35); }
+
+    .social-links { display: flex; gap: 12px; margin-top: 20px; }
+    .social-link { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+    .social-link:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); }
+    .social-link svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.6); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-wrap { order: -1; max-width: 480px; }
+      .about-badge { bottom: -12px; right: 12px; }
+      .schedule-grid { grid-template-columns: 1fr; }
+      .schedule-visual { display: none; }
+      .cta-inner { grid-template-columns: 1fr; }
+      .cta-actions { flex-direction: row; flex-wrap: wrap; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .big-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .big-gallery .g-main { grid-row: auto; grid-column: 1 / 3; aspect-ratio: 16/7; }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-content { padding: 60px 0 80px; }
+      .section { padding: 64px 5%; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid .gallery-img:last-child { display: none; }
+      .stat-item { border-right: none; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .big-gallery { grid-template-columns: 1fr; }
+      .big-gallery .g-main { grid-column: auto; aspect-ratio: 4/3; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 60px; }
+      .stat-num { font-size: 40px; }
+      .about-badge { padding: 14px 18px; font-size: 22px; right: 8px; bottom: -10px; }
+      .programs-grid { grid-template-columns: 1fr; }
+      .teams-grid { grid-template-columns: 1fr 1fr; }
+      .cta-section { padding: 64px 5%; }
+      .contact-form { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GLAD HEADER -->
+  <header id="glad-header">
+    <div class="glad-inner">
+      <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
+        <img src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w" alt="GLAD Technology Digital Services" />
+      </a>
+      <a href="https://www.gladtech.io/" class="glad-back-btn">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>
+        <span class="btn-label">Back to Main Site</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <img src="https://s3.amazonaws.com/thapos.member/org/6650/logo/458444/111-ar-logo-good.png" alt="ARWPC Logo" onerror="this.style.display='none'" />
+      <div class="nav-logo-text">
+        <div class="club-name">American River WPC</div>
+        <div class="club-sub">Sacramento, California</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#teams">Teams</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://www.arwpc.com/registration" class="nav-cta">Register Now</a></li>
+    </ul>
+
+    <button class="hamburger" id="menuBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mob-link">About</a>
+    <a href="#programs" class="mob-link">Programs</a>
+    <a href="#teams" class="mob-link">Teams</a>
+    <a href="#schedule" class="mob-link">Schedule</a>
+    <a href="#gallery" class="mob-link">Gallery</a>
+    <a href="#contact" class="mob-link">Contact</a>
+    <a href="https://www.arwpc.com/registration" class="m-cta mob-link">Register Now →</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span></span>Carmichael, California</div>
+      <h1 class="hero-title">PLAY.<br /><em>COMPETE.</em><br />EXCEL.</h1>
+      <p class="hero-subtitle">American River Water Polo Club develops athletes of all ages through elite coaching, team spirit, and a love of the sport. From beginners to champions — we build champions in and out of the pool.</p>
+      <div class="hero-actions">
+        <a href="https://www.arwpc.com/registration" class="btn-gold">Register Online</a>
+        <a href="#about" class="btn-ghost">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-ripple"></div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item fade-up">
+        <div class="stat-num">All</div>
+        <div class="stat-label">Ages Welcome</div>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:0.1s">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Competitive Teams</div>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:0.2s">
+        <div class="stat-num">12Mo</div>
+        <div class="stat-label">Year-Round Program</div>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:0.3s">
+        <div class="stat-num">Sac</div>
+        <div class="stat-label">Sacramento Region</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="section-label fade-up">Who We Are</p>
+          <h2 class="section-title fade-up">Become Part of a Great Community</h2>
+          <p class="section-body fade-up">The American River Water Polo Club is a competitive youth water polo organization serving the greater Sacramento area. We welcome athletes of all skill levels — whether you're just discovering the sport or pushing for a college scholarship, ARWPC is your team.</p>
+          <p class="section-body fade-up" style="margin-top:-18px">Our coaches are passionate about player development, sportsmanship, and building confidence both in and out of the water. We foster a culture of respect, hard work, and growth that lasts far beyond the pool.</p>
+          <div class="hero-actions fade-up">
+            <a href="https://www.arwpc.com/registration" class="btn-navy">Join the Club</a>
+            <a href="#programs" class="btn-outline-navy">View Programs</a>
+          </div>
+        </div>
+        <div class="about-img-wrap fade-up">
+          <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=900&auto=format&fit=crop" alt="Water polo in action" loading="lazy" />
+          </div>
+          <div class="about-badge">Improve<br /><small>Daily — No Matter Your Age</small></div>
+        </div>
+      </div>
+
+      <!-- Gallery Row -->
+      <div class="gallery-grid fade-up" style="transition-delay:0.15s">
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?q=80&w=800&auto=format&fit=crop" alt="Water polo match" loading="lazy" />
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop" alt="Team practice" loading="lazy" />
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop" alt="Pool training" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section" id="programs">
+    <div class="section-inner">
+      <p class="section-label fade-up">What We Offer</p>
+      <h2 class="section-title fade-up">Programs for Every Level</h2>
+      <p class="section-body fade-up">From first-timers to seasoned competitors, our programs are designed to meet athletes where they are and take them further than they imagined.</p>
+
+      <div class="programs-grid">
+        <div class="program-card fade-up">
+          <div class="program-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="program-title">Youth Development</div>
+          <p class="program-text">Introductory program for young athletes ages 8–12 to learn fundamentals, water safety, and the love of the game in a fun, supportive environment.</p>
+        </div>
+        <div class="program-card fade-up" style="transition-delay:0.1s">
+          <div class="program-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="program-title">Competitive Teams</div>
+          <p class="program-text">Structured team competition across multiple age groups. Our teams compete regionally and statewide, pushing athletes to reach new levels of performance.</p>
+        </div>
+        <div class="program-card fade-up" style="transition-delay:0.2s">
+          <div class="program-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div class="program-title">Elite Training</div>
+          <p class="program-text">Advanced coaching and conditioning for high school athletes aspiring to play at the collegiate level. Skill development, film study, and recruiting guidance.</p>
+        </div>
+        <div class="program-card fade-up" style="transition-delay:0.3s">
+          <div class="program-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+          </div>
+          <div class="program-title">Open Registration</div>
+          <p class="program-text">Register online year-round. New seasons open throughout the year for all programs. Payment plans available — no athlete should sit out due to financial hardship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAMS -->
+  <section class="section" id="teams">
+    <div class="section-inner">
+      <p class="section-label fade-up">Our Roster</p>
+      <h2 class="section-title fade-up">Find Your Team</h2>
+      <p class="section-body fade-up">We field competitive teams across all age groups. Each team receives dedicated coaching, a full schedule, and team gear.</p>
+      <div class="teams-grid fade-up" style="transition-delay:0.1s">
+        <a href="https://www.arwpc.com/team-list" class="team-card">
+          <div class="team-level">Youth</div>
+          <div class="team-name">12 & Under</div>
+          <div class="team-age">Ages 10–12</div>
+        </a>
+        <a href="https://www.arwpc.com/team-list" class="team-card">
+          <div class="team-level">Junior</div>
+          <div class="team-name">14 & Under</div>
+          <div class="team-age">Ages 12–14</div>
+        </a>
+        <a href="https://www.arwpc.com/team-list" class="team-card">
+          <div class="team-level">Junior</div>
+          <div class="team-name">16 & Under</div>
+          <div class="team-age">Ages 14–16</div>
+        </a>
+        <a href="https://www.arwpc.com/team-list" class="team-card">
+          <div class="team-level">Senior</div>
+          <div class="team-name">18 & Under</div>
+          <div class="team-age">Ages 16–18</div>
+        </a>
+        <a href="https://www.arwpc.com/team-list" class="team-card">
+          <div class="team-level">High School</div>
+          <div class="team-name">Varsity</div>
+          <div class="team-age">HS Level</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="section" id="schedule">
+    <div class="section-inner">
+      <div class="schedule-grid">
+        <div>
+          <p class="section-label fade-up">Upcoming Events</p>
+          <h2 class="section-title fade-up">Season Schedule</h2>
+          <p class="section-body fade-up">Stay on top of practices, games, and tournaments. Full schedule available on the member portal.</p>
+          <div class="schedule-list fade-up" style="transition-delay:0.1s">
+            <div class="schedule-row">
+              <div class="schedule-day"><span class="day">May</span><span class="num">03</span></div>
+              <div class="schedule-info"><div class="event-name">Spring League — Game Day</div><div class="event-meta">10:00 AM · Carmichael Aquatic Center</div></div>
+              <span class="schedule-badge badge-home">Home</span>
+            </div>
+            <div class="schedule-row">
+              <div class="schedule-day"><span class="day">May</span><span class="num">10</span></div>
+              <div class="schedule-info"><div class="event-name">14U Regional Tournament</div><div class="event-meta">8:00 AM · Sacramento State Aquatic Center</div></div>
+              <span class="schedule-badge badge-away">Away</span>
+            </div>
+            <div class="schedule-row">
+              <div class="schedule-day"><span class="day">May</span><span class="num">17</span></div>
+              <div class="schedule-info"><div class="event-name">18U Saturday Practice</div><div class="event-meta">9:00 AM · American River College</div></div>
+              <span class="schedule-badge badge-home">Training</span>
+            </div>
+            <div class="schedule-row">
+              <div class="schedule-day"><span class="day">Jun</span><span class="num">07</span></div>
+              <div class="schedule-info"><div class="event-name">Junior Championship Series</div><div class="event-meta">All Day · UC Davis Aquatic Center</div></div>
+              <span class="schedule-badge badge-away">Away</span>
+            </div>
+          </div>
+          <div style="margin-top:24px" class="fade-up">
+            <a href="https://www.arwpc.com/calendar" class="btn-navy">Full Calendar</a>
+          </div>
+        </div>
+        <div class="schedule-visual fade-up">
+          <div class="schedule-img">
+            <img src="https://images.unsplash.com/photo-1519861155730-0b5fbf0dd889?q=80&w=900&auto=format&fit=crop" alt="Game action" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="gallery">
+    <div class="section-inner">
+      <p class="section-label fade-up">Photo Gallery</p>
+      <h2 class="section-title fade-up">Life at ARWPC</h2>
+      <p class="section-body fade-up">From tournaments to pool decks — a glimpse into the ARWPC community.</p>
+      <div class="big-gallery fade-up" style="transition-delay:0.1s">
+        <div class="g-main">
+          <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1200&auto=format&fit=crop" alt="Water polo" loading="lazy" />
+        </div>
+        <div class="g-sm">
+          <img src="https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?q=80&w=600&auto=format&fit=crop" alt="Team" loading="lazy" />
+        </div>
+        <div class="g-sm">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=600&auto=format&fit=crop" alt="Practice" loading="lazy" />
+        </div>
+        <div class="g-sm">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=600&auto=format&fit=crop" alt="Pool" loading="lazy" />
+        </div>
+        <div class="g-sm">
+          <img src="https://images.unsplash.com/photo-1519861155730-0b5fbf0dd889?q=80&w=600&auto=format&fit=crop" alt="Game" loading="lazy" />
+        </div>
+      </div>
+      <div style="margin-top:28px;text-align:center" class="fade-up">
+        <a href="https://www.arwpc.com/gallery-list" class="btn-outline-navy">View All Photos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="fade-up">
+        <h2 class="cta-title">Ready to<br /><span>Dive In?</span></h2>
+        <p class="cta-subtitle">Registration is open now. Join hundreds of young athletes across the Sacramento region who call ARWPC home. Spaces fill fast — secure your spot today.</p>
+      </div>
+      <div class="cta-actions fade-up" style="transition-delay:0.15s">
+        <a href="https://www.arwpc.com/registration" class="btn-gold">Register Online</a>
+        <a href="#contact" class="btn-ghost">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <p class="section-label fade-up">Get In Touch</p>
+      <h2 class="section-title fade-up">We'd Love to Hear From You</h2>
+      <div class="contact-grid">
+        <div class="contact-info fade-up" style="transition-delay:0.1s">
+          <p style="font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:20px;font-weight:300">Questions about registration, team placement, or programs? Reach out and our staff will get back to you promptly.</p>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+            <div><h4>Address</h4><p>4005 Manzanita Ave, Ste 6 PMB 240<br />Carmichael, CA 95608</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+            <div><h4>Phone</h4><a href="tel:5303919463">(530) 391-9463</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+            <div><h4>Email</h4><a href="mailto:calebrobertsonarwpc@gmail.com">calebrobertsonarwpc@gmail.com</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <div><h4>Social Media</h4>
+              <a href="https://www.instagram.com/american_river_water_polo/" target="_blank" style="color:var(--blue);">@american_river_water_polo</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form fade-up" style="transition-delay:0.2s">
+          <h3>Send Us a Message</h3>
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" /></div>
+          </div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="jane@example.com" /></div>
+          <div class="form-group">
+            <label>Topic</label>
+            <select>
+              <option value="">Select a topic...</option>
+              <option>Registration</option>
+              <option>Team Placement</option>
+              <option>Scheduling</option>
+              <option>Payments</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea placeholder="How can we help?"></textarea></div>
+          <button type="submit" class="btn-navy" style="width:100%;border:none;cursor:pointer;font-size:16px;padding:15px">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo-row">
+          <img src="https://s3.amazonaws.com/thapos.member/org/6650/logo/458444/111-ar-logo-good.png" alt="ARWPC Logo" onerror="this.style.display='none'" />
+          <div class="footer-logo-text">
+            <div class="club-name">American River WPC</div>
+            <div class="club-sub">Sacramento, California</div>
+          </div>
+        </a>
+        <p>Developing competitive water polo athletes across Central California. Building champions in and out of the pool.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/p/American-River-Water-Polo-Club-100063782404181/" class="social-link" target="_blank" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/american_river_water_polo/" class="social-link" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="rgba(255,255,255,0.6)" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="https://www.arwpc.com/">Home</a></li>
+          <li><a href="https://www.arwpc.com/registration">Online Registration</a></li>
+          <li><a href="https://www.arwpc.com/calendar">Schedule</a></li>
+          <li><a href="https://www.arwpc.com/team-list">Teams</a></li>
+          <li><a href="https://www.arwpc.com/gallery-list">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="#programs">Youth Development</a></li>
+          <li><a href="#teams">Competitive Teams</a></li>
+          <li><a href="#programs">Elite Training</a></li>
+          <li><a href="https://www.arwpc.com/registration">Register Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://www.arwpc.com/page/contact-us">Contact Us</a></li>
+          <li><a href="https://www.arwpc.com/sponsors">Sponsors</a></li>
+          <li><a href="https://www.arwpc.com/sitemap">Sitemap</a></li>
+          <li><a href="https://www.arwpc.com/signin">Member Login</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 American River Water Polo Club. All rights reserved.</p>
+      <p>Carmichael, California · (530) 391-9463</p>
+    </div>
+  </footer>
+
+  <script>
+    // GLAD hide on scroll
+    const gladHeader = document.getElementById("glad-header");
+    const afmNav = document.getElementById("navbar");
+    let lastScrollY = window.scrollY, gladVisible = true;
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) { gladHeader.classList.add("hidden"); afmNav.classList.add("glad-hidden"); gladVisible = false; }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) { gladHeader.classList.remove("hidden"); afmNav.classList.remove("glad-hidden"); gladVisible = true; }
+      }
+      lastScrollY = y;
+    }, { passive: true });
+
+    // Mobile menu
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    btn.addEventListener("click", () => { menu.classList.toggle("open"); btn.classList.toggle("open"); });
+    document.querySelectorAll(".mob-link").forEach(l => l.addEventListener("click", () => { menu.classList.remove("open"); btn.classList.remove("open"); }));
+
+    // Fade in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

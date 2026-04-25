@@ -1,0 +1,1821 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Animal Rescue Squad International — Rescuing Hearts, One Paw at a Time
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --yellow: #ffd700;
+        --yellow-bright: #ffec00;
+        --yellow-dark: #e6b800;
+        --yellow-pale: #fff9cc;
+        --yellow-mid: #fff3a0;
+        --black: #111111;
+        --dark: #1a1a1a;
+        --dark2: #2d2d2d;
+        --white: #ffffff;
+        --gray: #555555;
+        --gray-light: #888888;
+        --gray-pale: #f5f5f5;
+        --border: #e8e8e8;
+        --glad-h: 60px;
+        --nav-h: 72px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Quicksand", sans-serif;
+        background: var(--white);
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      /* ── GLAD HEADER ── */
+      #glad-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: var(--glad-h);
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+        transition:
+          transform 0.35s ease,
+          opacity 0.35s ease;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .glad-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+        max-width: 1200px;
+        position: relative;
+      }
+      .glad-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .glad-logo img {
+        height: 46px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .glad-back-btn {
+        position: absolute;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--black);
+        color: #fff;
+        font-family: "Quicksand", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 9px 20px;
+        border-radius: 6px;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+      }
+      .glad-back-btn svg {
+        width: 14px;
+        height: 14px;
+        stroke: #fff;
+        fill: none;
+        stroke-width: 2.2;
+        flex-shrink: 0;
+      }
+      @media (max-width: 520px) {
+        .glad-back-btn .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 9px 12px;
+        }
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: var(--glad-h);
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(14px);
+        border-bottom: 2px solid var(--yellow);
+        transition:
+          top 0.35s ease,
+          box-shadow 0.3s;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      }
+      nav.glad-hidden {
+        top: 0;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .nav-logo-paw {
+        width: 42px;
+        height: 42px;
+        background: var(--yellow);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+      }
+      .nav-logo-text .org-name {
+        font-family: "Nunito", sans-serif;
+        font-size: 16px;
+        font-weight: 900;
+        color: var(--black);
+        line-height: 1.1;
+      }
+      .nav-logo-text .org-sub {
+        font-size: 10px;
+        color: var(--gray-light);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+      }
+      .nav-links a {
+        display: block;
+        padding: 8px 14px;
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--dark2);
+        text-decoration: none;
+        border-radius: 30px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+        white-space: nowrap;
+      }
+      .nav-links a:hover {
+        color: var(--black);
+        background: var(--yellow-pale);
+      }
+
+      .nav-cta {
+        color: var(--black) !important;
+        background: var(--yellow) !important;
+        font-weight: 800 !important;
+        padding: 9px 22px !important;
+        border-radius: 30px !important;
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4) !important;
+        transition:
+          background 0.2s,
+          transform 0.15s !important;
+      }
+      .nav-cta:hover {
+        background: var(--yellow-dark) !important;
+        transform: translateY(-1px);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2.5px;
+        background: var(--black);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: calc(var(--glad-h) + var(--nav-h));
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.99);
+        z-index: 99;
+        padding: 2rem 5%;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        display: block;
+        padding: 16px 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--dark);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .mobile-menu a:last-child {
+        border: none;
+      }
+      .mobile-menu .m-cta {
+        margin-top: 1.5rem;
+        background: var(--yellow);
+        color: var(--black);
+        font-weight: 900;
+        padding: 16px 24px;
+        border-radius: 50px;
+        text-align: center;
+        border: none;
+        font-size: 16px;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding: calc(var(--glad-h) + var(--nav-h)) 5% 0;
+        background: #111;
+      }
+      .hero-bg-img {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.squarespace-cdn.com/content/v1/582927f68419c24bb269604d/1590176033646-DYMT242ETXE6EC2M7XRC/200407_SIP_2020+551.jpg")
+          center/cover no-repeat;
+        opacity: 0.45;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          110deg,
+          rgba(17, 17, 17, 0.88) 0%,
+          rgba(17, 17, 17, 0.5) 60%,
+          rgba(255, 215, 0, 0.18) 100%
+        );
+      }
+
+      /* Paw prints decoration */
+      .paw-deco {
+        position: absolute;
+        right: 6%;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        opacity: 0.12;
+      }
+      .paw-deco span {
+        font-size: 52px;
+        display: block;
+        transform: rotate(-20deg);
+      }
+      .paw-deco span:nth-child(2) {
+        transform: rotate(15deg) translateX(20px);
+      }
+      .paw-deco span:nth-child(3) {
+        transform: rotate(-10deg) translateX(-10px);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 720px;
+        padding: 80px 0 100px;
+      }
+      .hero-eyecatch {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--yellow);
+        color: var(--black);
+        font-family: "Nunito", sans-serif;
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 6px 16px;
+        border-radius: 30px;
+        margin-bottom: 24px;
+      }
+      .hero-title {
+        font-family: "Nunito", sans-serif;
+        font-size: clamp(42px, 7vw, 80px);
+        font-weight: 900;
+        line-height: 1.05;
+        color: var(--white);
+        margin-bottom: 24px;
+      }
+      .hero-title em {
+        font-style: normal;
+        color: var(--yellow);
+      }
+      .hero-subtitle {
+        font-size: clamp(15px, 2vw, 18px);
+        font-weight: 600;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 520px;
+        margin-bottom: 40px;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .btn-yellow {
+        display: inline-block;
+        padding: 15px 34px;
+        background: var(--yellow);
+        color: var(--black);
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        font-weight: 900;
+        text-decoration: none;
+        border-radius: 50px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+      }
+      .btn-yellow:hover {
+        background: var(--yellow-dark);
+        transform: translateY(-2px);
+      }
+      .btn-outline-white {
+        display: inline-block;
+        padding: 14px 32px;
+        background: transparent;
+        color: var(--white);
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-outline-white:hover {
+        border-color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* ── STATS BAR ── */
+      .stats-bar {
+        background: var(--yellow);
+        padding: 36px 5%;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Nunito", sans-serif;
+        font-size: 38px;
+        font-weight: 900;
+        color: var(--black);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 6px;
+      }
+
+      /* ── SECTIONS ── */
+      .section {
+        padding: 96px 5%;
+      }
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--black);
+        background: var(--yellow-mid);
+        padding: 5px 14px;
+        border-radius: 30px;
+        margin-bottom: 18px;
+      }
+      .section-title {
+        font-family: "Nunito", sans-serif;
+        font-size: clamp(30px, 4vw, 52px);
+        font-weight: 900;
+        color: var(--black);
+        line-height: 1.15;
+        margin-bottom: 20px;
+      }
+      .section-body {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--gray);
+        line-height: 1.8;
+        max-width: 640px;
+        margin-bottom: 40px;
+      }
+
+      /* ── ABOUT ── */
+      #about {
+        background: var(--white);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .about-img-wrap {
+        position: relative;
+        border-radius: 24px;
+        overflow: visible;
+      }
+      .about-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      }
+      .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .about-badge {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        background: var(--yellow);
+        color: var(--black);
+        padding: 18px 22px;
+        border-radius: 16px;
+        font-family: "Nunito", sans-serif;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 1.1;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4);
+      }
+      .about-badge small {
+        display: block;
+        font-family: "Quicksand", sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 2px;
+        opacity: 0.7;
+      }
+
+      .founder-card {
+        background: var(--yellow-pale);
+        border: 2px solid var(--yellow);
+        border-radius: 16px;
+        padding: 24px;
+        margin-top: 32px;
+      }
+      .founder-card .fc-name {
+        font-family: "Nunito", sans-serif;
+        font-size: 17px;
+        font-weight: 900;
+        color: var(--black);
+        margin-bottom: 6px;
+      }
+      .founder-card .fc-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--gray);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 10px;
+      }
+      .founder-card p {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--gray);
+        line-height: 1.7;
+      }
+
+      /* ── MISSION STRIPS ── */
+      .mission-strip {
+        background: var(--black);
+        padding: 64px 5%;
+        overflow: hidden;
+        position: relative;
+      }
+      .marquee-wrap {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .marquee-track {
+        display: inline-flex;
+        gap: 32px;
+        align-items: center;
+        animation: marquee 20s linear infinite;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Nunito", sans-serif;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--white);
+        white-space: nowrap;
+      }
+      .marquee-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--yellow);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      /* ── HOW IT WORKS ── */
+      #how {
+        background: var(--yellow-pale);
+      }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .step-card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 36px 28px;
+        text-align: center;
+        border: 2px solid transparent;
+        transition:
+          border-color 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .step-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--yellow);
+      }
+      .step-card:hover {
+        border-color: var(--yellow);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      }
+      .step-num {
+        font-family: "Nunito", sans-serif;
+        font-size: 48px;
+        font-weight: 900;
+        color: var(--yellow);
+        line-height: 1;
+        margin-bottom: 12px;
+        opacity: 0.8;
+      }
+      .step-icon {
+        font-size: 36px;
+        margin-bottom: 14px;
+        display: block;
+      }
+      .step-title {
+        font-family: "Nunito", sans-serif;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--black);
+        margin-bottom: 10px;
+      }
+      .step-text {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--gray);
+        line-height: 1.7;
+      }
+
+      /* ── ADOPT SECTION ── */
+      #adopt {
+        background: var(--white);
+      }
+      .adopt-banner {
+        border-radius: 24px;
+        overflow: hidden;
+        aspect-ratio: 16/6;
+        margin-bottom: 56px;
+        position: relative;
+      }
+      .adopt-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .adopt-banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(17, 17, 17, 0.7) 0%,
+          transparent 60%
+        );
+        display: flex;
+        align-items: center;
+        padding: 5%;
+      }
+      .adopt-banner-text h3 {
+        font-family: "Nunito", sans-serif;
+        font-size: clamp(24px, 4vw, 44px);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.2;
+        margin-bottom: 12px;
+      }
+      .adopt-banner-text p {
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 360px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+      }
+      .info-card {
+        background: var(--gray-pale);
+        border-radius: 20px;
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        border: 2px solid var(--border);
+      }
+      .info-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      }
+      .info-card-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+      }
+      .info-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s;
+      }
+      .info-card:hover .info-card-img img {
+        transform: scale(1.04);
+      }
+      .info-card-body {
+        padding: 24px;
+      }
+      .info-card-tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        background: var(--yellow);
+        color: var(--black);
+        padding: 3px 12px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+      }
+      .info-card-title {
+        font-family: "Nunito", sans-serif;
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--black);
+        margin-bottom: 8px;
+      }
+      .info-card-text {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gray);
+        line-height: 1.7;
+      }
+
+      /* ── IMPACT / HEALTH ── */
+      #health {
+        background: var(--black);
+      }
+      #health .section-title {
+        color: var(--white);
+      }
+      #health .section-body {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .health-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 48px;
+      }
+      .health-item {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 32px 24px;
+        text-align: center;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .health-item:hover {
+        background: rgba(255, 215, 0, 0.1);
+        transform: translateY(-3px);
+      }
+      .health-icon {
+        font-size: 40px;
+        margin-bottom: 16px;
+        display: block;
+      }
+      .health-title {
+        font-family: "Nunito", sans-serif;
+        font-size: 16px;
+        font-weight: 900;
+        color: var(--yellow);
+        margin-bottom: 8px;
+      }
+      .health-text {
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+      }
+
+      /* ── LOCATIONS ── */
+      #locations {
+        background: var(--yellow-pale);
+      }
+      .location-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+        margin-top: 40px;
+      }
+      .location-pill {
+        background: var(--white);
+        border: 2px solid var(--yellow);
+        border-radius: 50px;
+        padding: 14px 20px;
+        text-align: center;
+        font-family: "Nunito", sans-serif;
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .location-pill:hover {
+        background: var(--yellow);
+        transform: translateY(-2px);
+      }
+      .location-pill span:first-child {
+        font-size: 18px;
+      }
+
+      /* ── TESTIMONIALS ── */
+      #testimonials {
+        background: var(--white);
+      }
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .testimonial-card {
+        background: var(--gray-pale);
+        border-radius: 20px;
+        padding: 32px 28px;
+        border-left: 4px solid var(--yellow);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+      }
+      .testimonial-stars {
+        color: var(--yellow);
+        font-size: 18px;
+        margin-bottom: 14px;
+        letter-spacing: 2px;
+      }
+      .testimonial-text {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--dark2);
+        line-height: 1.75;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .testimonial-author {
+        font-family: "Nunito", sans-serif;
+        font-size: 14px;
+        font-weight: 900;
+        color: var(--black);
+      }
+      .testimonial-pet {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--gray-light);
+        margin-top: 2px;
+      }
+
+      /* ── VOLUNTEER/CTA ── */
+      .cta-section {
+        background: var(--yellow);
+        padding: 96px 5%;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-paws {
+        position: absolute;
+        font-size: 120px;
+        opacity: 0.08;
+        user-select: none;
+      }
+      .cta-paws.left {
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .cta-paws.right {
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%) scaleX(-1);
+      }
+      .cta-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .cta-title {
+        font-family: "Nunito", sans-serif;
+        font-size: clamp(32px, 5vw, 60px);
+        font-weight: 900;
+        color: var(--black);
+        line-height: 1.1;
+        margin-bottom: 20px;
+      }
+      .cta-subtitle {
+        font-size: 17px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.65);
+        margin-bottom: 40px;
+        line-height: 1.7;
+      }
+      .btn-black {
+        display: inline-block;
+        padding: 15px 36px;
+        background: var(--black);
+        color: var(--white);
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        font-weight: 900;
+        text-decoration: none;
+        border-radius: 50px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+      .btn-black:hover {
+        background: var(--dark2);
+        transform: translateY(-2px);
+      }
+      .btn-outline-black {
+        display: inline-block;
+        padding: 14px 32px;
+        background: transparent;
+        color: var(--black);
+        font-family: "Nunito", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 2px solid rgba(0, 0, 0, 0.35);
+        border-radius: 50px;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-outline-black:hover {
+        border-color: var(--black);
+        background: rgba(0, 0, 0, 0.06);
+        transform: translateY(-2px);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--black);
+        padding: 64px 5% 32px;
+        border-top: 4px solid var(--yellow);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .footer-brand p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.7;
+        margin-top: 14px;
+        max-width: 300px;
+        font-weight: 600;
+      }
+      .footer-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+      .footer-paw {
+        width: 44px;
+        height: 44px;
+        background: var(--yellow);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+      }
+      .footer-logo-text .org-name {
+        font-family: "Nunito", sans-serif;
+        font-size: 16px;
+        font-weight: 900;
+        color: var(--white);
+      }
+      .footer-logo-text .org-sub {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .footer-col h4 {
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 16px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 10px;
+      }
+      .footer-col a {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        transition: color 0.2s;
+        font-weight: 600;
+      }
+      .footer-col a:hover {
+        color: var(--yellow);
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-top: 28px;
+      }
+      .footer-bottom p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.35);
+        font-weight: 600;
+      }
+
+      /* ── FADE IN ── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .about-img-wrap {
+          order: -1;
+        }
+        .about-badge {
+          bottom: -12px;
+          right: 12px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-brand {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (max-width: 680px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .hero-content {
+          padding: 60px 0 80px;
+        }
+        .section {
+          padding: 64px 5%;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .adopt-banner {
+          aspect-ratio: 16/9;
+        }
+      }
+      @media (max-width: 480px) {
+        .about-badge {
+          right: 8px;
+          bottom: -10px;
+          padding: 12px 16px;
+          font-size: 16px;
+        }
+        .stats-bar {
+          padding: 28px 5%;
+        }
+        .stat-num {
+          font-size: 30px;
+        }
+        .cta-section {
+          padding: 64px 5%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GLAD HEADER -->
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- NAV -->
+    <nav id="navbar">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-paw">🐾</div>
+        <div class="nav-logo-text">
+          <div class="org-name">ARSI</div>
+          <div class="org-sub">Animal Rescue Squad International</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#adopt">Adopt</a></li>
+        <li><a href="#health">Care</a></li>
+        <li><a href="#locations">Locations</a></li>
+        <li><a href="#testimonials">Stories</a></li>
+        <li>
+          <a href="https://www.adoptarsi.org/donation" class="nav-cta"
+            >Donate Now</a
+          >
+        </li>
+      </ul>
+      <button class="hamburger" id="menuBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" class="mob-link">About Us</a>
+      <a href="#how" class="mob-link">How It Works</a>
+      <a href="#adopt" class="mob-link">Adopt a Pet</a>
+      <a href="#health" class="mob-link">Animal Care</a>
+      <a href="#locations" class="mob-link">Locations</a>
+      <a href="#testimonials" class="mob-link">Success Stories</a>
+      <a href="https://www.adoptarsi.org/application" class="m-cta"
+        >🐾 Start Adoption Application</a
+      >
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg-img"></div>
+      <div class="hero-overlay"></div>
+      <div class="paw-deco" aria-hidden="true">
+        <span></span><span>🐾</span><span>🐾</span>
+      </div>
+      <div class="hero-content">
+        <div class="hero-eyecatch">501(c)(3) Nonprofit · Davis, California</div>
+        <h1 class="hero-title">
+          Rescuing Hearts,<br /><em>One Paw</em><br />at a Time
+        </h1>
+        <p class="hero-subtitle">
+          Animal Rescue Squad International finds loving homes for neglected
+          dogs — locally and internationally. Every dog deserves a second chance
+          and a family to call their own.
+        </p>
+        <div class="hero-actions">
+          <a href="https://www.adoptarsi.org/adoptapet" class="btn-yellow"
+            >🐾 Adopt a Dog</a
+          >
+          <a href="#about" class="btn-outline-white">Learn Our Story</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Volunteer Powered</div>
+        </div>
+        <div class="stat-item fade-up" style="transition-delay: 0.1s">
+          <div class="stat-num">501(c)3</div>
+          <div class="stat-label">Certified Nonprofit</div>
+        </div>
+        <div class="stat-item fade-up" style="transition-delay: 0.2s">
+          <div class="stat-num">All</div>
+          <div class="stat-label">Breeds Welcome</div>
+        </div>
+        <div class="stat-item fade-up" style="transition-delay: 0.3s">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Dogs Left Behind</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div>
+            <div class="section-label fade-up">Our Story</div>
+            <h2 class="section-title fade-up">
+              Veterinarians & Volunteers United for Dogs
+            </h2>
+            <p class="section-body fade-up">
+              Animal Rescue Squad International is a 100% volunteer-run,
+              donation-funded nonprofit founded by a passionate group of
+              veterinarians and animal lovers. We rescue neglected dogs locally
+              and internationally, then find them loving homes in the United
+              States through extensive social training and careful placement.
+            </p>
+            <p class="section-body fade-up" style="margin-top: -20px">
+              All our adoptable dogs are fostered in Davis, California. They
+              receive the very best care before joining their forever families
+              up and down the West Coast.
+            </p>
+            <div class="hero-actions fade-up">
+              <a href="https://www.adoptarsi.org/application" class="btn-yellow"
+                >Start Adoption Application</a
+              >
+              <a
+                href="https://www.adoptarsi.org/fosterapplication"
+                class="btn-outline-black"
+                >Become a Foster</a
+              >
+            </div>
+
+            <div class="founder-card fade-up" style="transition-delay: 0.1s">
+              <div class="fc-name">Dr. Nikki Yang, DVM, PhD</div>
+              <div class="fc-title">Founder & Veterinarian · UC Davis</div>
+              <p>
+                A licensed veterinarian with her DVM from Taiwan and a PhD in
+                epidemiology from UC Davis, Dr. Yang has been dedicated to her
+                rescue mission in Davis since 2007. Her expertise ensures every
+                dog receives exceptional medical care before adoption.
+              </p>
+            </div>
+          </div>
+          <div class="about-img-wrap fade-up">
+            <div class="about-img">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/582927f68419c24bb269604d/1590176033646-DYMT242ETXE6EC2M7XRC/200407_SIP_2020+551.jpg"
+                alt="Dog being cared for at ARSI"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-badge">Davis, CA<small>Fostering Hub</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="mission-strip">
+      <div class="marquee-wrap">
+        <div class="marquee-track">
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Every Dog Deserves Love
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> 100% Volunteer Powered
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Rescue. Rehabilitate. Rehome.
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Spayed &amp; Neutered
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Microchipped &amp; Vaccinated
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Social Training Included
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Every Dog Deserves Love
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> 100% Volunteer Powered
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Rescue. Rehabilitate. Rehome.
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Spayed &amp; Neutered
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Microchipped &amp; Vaccinated
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-dot"></span> Social Training Included
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <div class="section-inner">
+        <div class="section-label fade-up">The Process</div>
+        <h2 class="section-title fade-up">
+          How We Find Dogs Their Forever Homes
+        </h2>
+        <p class="section-body fade-up">
+          Our thorough process ensures every dog and every family is perfectly
+          matched — creating bonds that last a lifetime.
+        </p>
+        <div class="steps-grid">
+          <div class="step-card fade-up">
+            <div class="step-icon"></div>
+            <div class="step-num">01</div>
+            <div class="step-title">Rescue</div>
+            <p class="step-text">
+              We rescue neglected and abandoned dogs locally in California and
+              internationally, giving them a safe haven to begin their recovery.
+            </p>
+          </div>
+          <div class="step-card fade-up" style="transition-delay: 0.1s">
+            <div class="step-icon"></div>
+            <div class="step-num">02</div>
+            <div class="step-title">Vet Care</div>
+            <p class="step-text">
+              Every dog receives comprehensive veterinary care — health checks,
+              vaccinations, spaying/neutering, deworming, and microchipping.
+            </p>
+          </div>
+          <div class="step-card fade-up" style="transition-delay: 0.2s">
+            <div class="step-icon"></div>
+            <div class="step-num">03</div>
+            <div class="step-title">Foster Home</div>
+            <p class="step-text">
+              Dogs are placed with loving foster families in Davis, CA where
+              they receive social training to prepare for their new life.
+            </p>
+          </div>
+          <div class="step-card fade-up" style="transition-delay: 0.3s">
+            <div class="step-icon"></div>
+            <div class="step-num">04</div>
+            <div class="step-title">Perfect Match</div>
+            <p class="step-text">
+              We carefully match each dog with the ideal family, ensuring
+              personality, lifestyle, and needs align for a lifelong bond.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADOPT SECTION -->
+    <section class="section" id="adopt">
+      <div class="section-inner">
+        <div class="adopt-banner fade-up">
+          <img
+            src="https://images.unsplash.com/photo-1753917595885-7d93d29db020?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmVzY3VlZCUyMGRvZ3N8ZW58MHx8MHx8fDA%3D"
+            alt="Happy dogs available for adoption"
+            loading="lazy"
+          />
+          <div class="adopt-banner-overlay">
+            <div class="adopt-banner-text">
+              <h3>Meet Your<br />New Best Friend</h3>
+              <p>
+                All our dogs are healthy, trained, and ready for their forever
+                family.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="section-label fade-up">🐾 Get Involved</div>
+        <h2 class="section-title fade-up">Ways to Help & Connect</h2>
+        <p class="section-body fade-up">
+          Whether you're ready to adopt, foster, or donate — there's a role for
+          everyone in our rescue community.
+        </p>
+        <div class="cards-grid">
+          <div class="info-card fade-up">
+            <div class="info-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1660535254205-b9f03a7b84dc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlc2N1ZWQlMjBkb2dzfGVufDB8fDB8fHww"
+                alt="Dog adoption story"
+                loading="lazy"
+              />
+            </div>
+            <div class="info-card-body">
+              <span class="info-card-tag">Adopt</span>
+              <div class="info-card-title">Adopt a Dog</div>
+              <p class="info-card-text">
+                Browse our available dogs and start your application. Our team
+                will guide you through every step of the adoption process.
+              </p>
+            </div>
+          </div>
+          <div class="info-card fade-up" style="transition-delay: 0.1s">
+            <div class="info-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1661591439251-b5a7bee84f3b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHJlc2N1ZWQlMjBkb2dzfGVufDB8fDB8fHww"
+                alt="Foster a dog"
+                loading="lazy"
+              />
+            </div>
+            <div class="info-card-body">
+              <span class="info-card-tag">Foster</span>
+              <div class="info-card-title">Become a Foster</div>
+              <p class="info-card-text">
+                Open your home temporarily to a dog in need. Foster families are
+                the heart of our rescue program and the bridge to forever homes.
+              </p>
+            </div>
+          </div>
+          <div class="info-card fade-up" style="transition-delay: 0.2s">
+            <div class="info-card-img">
+              <img
+                src="https://media.istockphoto.com/id/1000301206/photo/litter-of-puppies-in-animal-shelter-australian-shepherds.webp?a=1&b=1&s=612x612&w=0&k=20&c=L3oRBL6m45_NL3EdnwQhVA5wX5ViZBPBKiJHbZxiHGQ="
+                alt="Donate to animal rescue"
+                loading="lazy"
+              />
+            </div>
+            <div class="info-card-body">
+              <span class="info-card-tag">Donate</span>
+              <div class="info-card-title">Fund the Mission</div>
+              <p class="info-card-text">
+                We run 100% on donations. Every dollar goes directly to
+                rescuing, rehabilitating, and rehoming dogs in need.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEALTH & CARE -->
+    <section class="section" id="health">
+      <div class="section-inner">
+        <div
+          class="section-label fade-up"
+          style="background: rgba(255, 215, 0, 0.15); color: var(--yellow)"
+        >
+          🏥 Our Commitment
+        </div>
+        <h2 class="section-title fade-up">Every Dog Arrives Healthy & Ready</h2>
+        <p class="section-body fade-up">
+          Before any dog goes to their new home, they receive comprehensive
+          veterinary care from our expert team of specialists and surgeons.
+        </p>
+        <div class="health-grid">
+          <div class="health-item fade-up">
+            <div class="health-title">Fully Vaccinated</div>
+            <p class="health-text">
+              Up-to-date with all necessary vaccines and preventative treatments
+              before adoption.
+            </p>
+          </div>
+          <div class="health-item fade-up" style="transition-delay: 0.1s">
+            <div class="health-title">Spayed / Neutered</div>
+            <p class="health-text">
+              All dogs are spayed or neutered before placement, contributing to
+              responsible pet ownership.
+            </p>
+          </div>
+          <div class="health-item fade-up" style="transition-delay: 0.2s">
+            <div class="health-title">Dewormed</div>
+            <p class="health-text">
+              Fully dewormed and treated for parasites so your new companion
+              starts fresh.
+            </p>
+          </div>
+          <div class="health-item fade-up" style="transition-delay: 0.3s">
+            <div class="health-title">Microchipped</div>
+            <p class="health-text">
+              Every dog is microchipped for permanent identification and peace
+              of mind.
+            </p>
+          </div>
+          <div class="health-item fade-up" style="transition-delay: 0.4s">
+            <div class="health-title">Social Training</div>
+            <p class="health-text">
+              Each dog receives individualized social training to ensure they're
+              the perfect fit for their new family.
+            </p>
+          </div>
+          <div class="health-item fade-up" style="transition-delay: 0.5s">
+            <div class="health-title">Vet Specialist Team</div>
+            <p class="health-text">
+              Founded by internal medicine specialists and surgeons — your dog's
+              health is in expert hands.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATIONS -->
+    <section class="section" id="locations">
+      <div class="section-inner">
+        <div class="section-label fade-up">Where We Serve</div>
+        <h2 class="section-title fade-up">We Bring Dogs to You</h2>
+        <p class="section-body fade-up">
+          Our dogs are fostered in Davis, CA but can be adopted across
+          California and the West Coast. We coordinate transport to make sure
+          distance is never a barrier to finding your perfect companion.
+        </p>
+        <div class="location-grid fade-up">
+          <div class="location-pill">San Francisco Bay Area</div>
+          <div class="location-pill">Los Angeles</div>
+          <div class="location-pill">Davis, CA</div>
+          <div class="location-pill">Sacramento</div>
+          <div class="location-pill">Seattle</div>
+          <div class="location-pill">All of California</div>
+          <div class="location-pill">West Coast</div>
+          <div class="location-pill">Contact Us</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" id="testimonials">
+      <div class="section-inner">
+        <div class="section-label fade-up">Success Stories</div>
+        <h2 class="section-title fade-up">Happy Tails from Happy Families</h2>
+        <p class="section-body fade-up">
+          The greatest reward is seeing our dogs thrive in their forever homes.
+          Here are some of the stories that keep us going.
+        </p>
+        <div class="testimonials-grid">
+          <div class="testimonial-card fade-up">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "The ARSI team was incredible throughout the entire process. They
+              truly cared about finding the right match — not just placing a
+              dog. Our pup has transformed our lives."
+            </p>
+            <div class="testimonial-author">The Martinez Family</div>
+            <div class="testimonial-pet">Adopted Biscuit from Davis, CA</div>
+          </div>
+          <div class="testimonial-card fade-up" style="transition-delay: 0.1s">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "Dr. Yang's team went above and beyond. Our dog arrived healthy,
+              trained, and so ready to be loved. The care they put into every
+              rescue is extraordinary."
+            </p>
+            <div class="testimonial-author">Sarah K.</div>
+            <div class="testimonial-pet">Adopted Mango · San Francisco</div>
+          </div>
+          <div class="testimonial-card fade-up" style="transition-delay: 0.2s">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "We fostered first and then knew we couldn't let go. ARSI made the
+              transition seamless. They're not just a rescue — they're a
+              community."
+            </p>
+            <div class="testimonial-author">The Chen-Williams Family</div>
+            <div class="testimonial-pet">Foster-to-Adopt · Los Angeles</div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px">
+          <a
+            href="https://www.adoptarsi.org/testimonial"
+            class="btn-yellow fade-up"
+            >Read More Stories →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="join">
+      <div class="cta-paws left" aria-hidden="true">🐾</div>
+      <div class="cta-paws right" aria-hidden="true">🐾</div>
+      <div class="cta-inner">
+        <h2 class="cta-title fade-up">
+          A Dog Is Waiting<br />For You Right Now
+        </h2>
+        <p class="cta-subtitle fade-up">
+          Whether you adopt, foster, volunteer, or donate — you become part of a
+          mission that changes lives. Both theirs and yours.
+        </p>
+        <div
+          class="hero-actions fade-up"
+          style="justify-content: center; gap: 16px"
+        >
+          <a href="https://www.adoptarsi.org/application" class="btn-black"
+            >🐾 Start Adoption</a
+          >
+          <a
+            href="https://www.adoptarsi.org/donation"
+            class="btn-outline-black"
+          >
+            Donate Today</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo-row">
+            <div class="footer-paw">🐾</div>
+            <div class="footer-logo-text">
+              <div class="org-name">Animal Rescue Squad International</div>
+              <div class="org-sub">501(c)(3) Nonprofit · Davis, California</div>
+            </div>
+          </a>
+          <p>
+            Rescuing neglected dogs locally and internationally since our
+            founding. Run 100% on donations and volunteers. Every dollar and
+            every hour makes a life-changing difference.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li>
+              <a href="https://www.adoptarsi.org/adoptapet">Adopt a Pet</a>
+            </li>
+            <li>
+              <a href="https://www.adoptarsi.org/pending-adoptions"
+                >Pending Adoptions</a
+              >
+            </li>
+            <li>
+              <a href="https://www.adoptarsi.org/rescueprogram"
+                >Rescue Program</a
+              >
+            </li>
+            <li>
+              <a href="https://www.adoptarsi.org/testimonial">Testimonials</a>
+            </li>
+            <li>
+              <a href="https://www.adoptarsi.org/contact-us">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <ul>
+            <li>
+              <a href="https://www.adoptarsi.org/application"
+                >Adoption Application</a
+              >
+            </li>
+            <li>
+              <a href="https://www.adoptarsi.org/fosterapplication"
+                >Foster Application</a
+              >
+            </li>
+            <li><a href="https://www.adoptarsi.org/donation">Donate</a></li>
+            <li>
+              <a href="https://www.adoptarsi.org/contact-us">Volunteer</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2026 Animal Rescue Squad International. All rights reserved.
+          501(c)(3) Nonprofit Organization.
+        </p>
+        <p style="color: rgba(255, 215, 0, 0.5); font-size: 13px">
+          Built with Love for the dogs
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // GLAD header hide-on-scroll
+      const gladHeader = document.getElementById("glad-header");
+      const afmNav = document.getElementById("navbar");
+      let lastScrollY = window.scrollY;
+      let gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const currentY = window.scrollY;
+          if (currentY > 80 && currentY > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              afmNav.classList.add("glad-hidden");
+              gladVisible = false;
+            }
+          } else if (currentY < lastScrollY && currentY < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              afmNav.classList.remove("glad-hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = currentY;
+        },
+        { passive: true },
+      );
+
+      // Mobile menu
+      const btn = document.getElementById("menuBtn");
+      const menu = document.getElementById("mobileMenu");
+      btn.addEventListener("click", () => menu.classList.toggle("open"));
+      document
+        .querySelectorAll(".mob-link, .m-cta")
+        .forEach((l) =>
+          l.addEventListener("click", () => menu.classList.remove("open")),
+        );
+
+      // Fade in on scroll
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".fade-up")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

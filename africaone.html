@@ -20,17 +20,23 @@
       }
 
       :root {
-        --primary: #00b0bf;
-        --primary-light: #4dd2df;
-        --primary-pale: #ccf3f6;
-        --dark: #0d0b0f;
-        --dark2: #1a1720;
-        --dark3: #24202e;
-        --mid: #3a3545;
-        --text: #f0ebe3;
-        --text-muted: #9e97a8;
+        --primary: #1a56db;
+        --primary-light: #3b82f6;
+        --primary-pale: #dbeafe;
+        --primary-dark: #1e40af;
+        --accent: #0ea5e9;
+        --dark: #0f172a;
+        --dark2: #1e293b;
+        --dark3: #334155;
+        --mid: #64748b;
+        --text: #1e293b;
+        --text-muted: #64748b;
         --white: #ffffff;
+        --bg: #f8fafc;
+        --bg2: #f1f5f9;
+        --border: #e2e8f0;
         --nav-h: 72px;
+        --glad-h: 60px;
       }
 
       html {
@@ -39,15 +45,100 @@
 
       body {
         font-family: "DM Sans", sans-serif;
-        background: var(--dark);
+        background: var(--white);
         color: var(--text);
         overflow-x: hidden;
+      }
+
+      /* ── GLAD HEADER ── */
+      #glad-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: var(--glad-h);
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+        transition:
+          transform 0.35s ease,
+          opacity 0.35s ease;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+      }
+
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .glad-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+        max-width: 1200px;
+        position: relative;
+      }
+
+      .glad-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .glad-logo img {
+        height: 46px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+
+      .glad-back-btn {
+        position: absolute;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--primary);
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 9px 20px;
+        border-radius: 6px;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+      }
+
+      .glad-back-btn svg {
+        width: 14px;
+        height: 14px;
+        stroke: #fff;
+        fill: none;
+        stroke-width: 2.2;
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 520px) {
+        .glad-back-btn .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 9px 12px;
+        }
       }
 
       /* ── NAV ── */
       nav {
         position: fixed;
-        top: 0;
+        top: var(--glad-h);
         left: 0;
         right: 0;
         z-index: 100;
@@ -56,10 +147,17 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 5%;
-        background: rgba(13, 11, 15, 0.88);
+        background: rgba(255, 255, 255, 0.96);
         backdrop-filter: blur(14px);
-        border-bottom: 1px solid rgba(0, 176, 191, 0.15);
-        transition: background 0.3s;
+        border-bottom: 1px solid var(--border);
+        transition:
+          top 0.35s ease,
+          box-shadow 0.3s;
+        box-shadow: 0 2px 12px rgba(26, 86, 219, 0.06);
+      }
+
+      nav.glad-hidden {
+        top: 0;
       }
 
       .nav-logo {
@@ -67,6 +165,7 @@
         align-items: center;
         gap: 12px;
         text-decoration: none;
+        flex-shrink: 0;
       }
 
       .nav-logo-mark {
@@ -83,17 +182,15 @@
       .nav-logo-mark svg {
         width: 22px;
         height: 22px;
-        fill: var(--dark);
+        fill: #fff;
       }
 
-      .nav-logo-text {
-        line-height: 1.1;
-      }
       .nav-logo-text .afm {
         font-family: "Montserrat", sans-serif;
         font-size: 18px;
         font-weight: 700;
         color: var(--primary);
+        line-height: 1.1;
       }
       .nav-logo-text .local {
         font-size: 11px;
@@ -124,27 +221,26 @@
       }
 
       .nav-links a:hover {
-        color: var(--text);
-        background: rgba(255, 255, 255, 0.06);
+        color: var(--primary);
+        background: var(--primary-pale);
       }
 
       .nav-cta {
+        color: var(--white) !important;
         background: var(--primary) !important;
-        color: var(--dark) !important;
         font-weight: 600 !important;
-        padding: 9px 20px !important;
-        border-radius: 50px !important;
+        padding: 9px 22px !important;
+        border-radius: 8px !important;
         transition:
           background 0.2s,
           transform 0.15s !important;
       }
 
       .nav-cta:hover {
-        background: var(--primary-light) !important;
+        background: var(--primary-dark) !important;
         transform: translateY(-1px);
       }
 
-      /* hamburger */
       .hamburger {
         display: none;
         flex-direction: column;
@@ -169,11 +265,11 @@
       .mobile-menu {
         display: none;
         position: fixed;
-        top: var(--nav-h);
+        top: calc(var(--glad-h) + var(--nav-h));
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(13, 11, 15, 0.97);
+        background: rgba(255, 255, 255, 0.99);
         z-index: 99;
         padding: 2rem 5%;
         flex-direction: column;
@@ -191,16 +287,15 @@
         font-weight: 500;
         color: var(--text);
         text-decoration: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: 1px solid var(--border);
       }
-
       .mobile-menu a:last-child {
         border: none;
       }
       .mobile-menu .m-cta {
         margin-top: 1.5rem;
         background: var(--primary);
-        color: var(--dark);
+        color: var(--white);
         font-weight: 700;
         padding: 16px 24px;
         border-radius: 50px;
@@ -216,29 +311,22 @@
         align-items: center;
         position: relative;
         overflow: hidden;
-        padding: var(--nav-h) 5% 0;
-        background: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+        padding: calc(var(--glad-h) + var(--nav-h)) 5% 0;
+        background: url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2000&auto=format&fit=crop")
+          center/cover no-repeat;
       }
 
       .hero-bg {
         position: absolute;
         inset: 0;
-        background:
-          radial-gradient(
-            ellipse 70% 60% at 80% 50%,
-            rgba(0, 176, 191, 0.4) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse 50% 80% at 10% 80%,
-            rgba(100, 60, 200, 0.2) 0%,
-            transparent 60%
-          ),
-          linear-gradient(160deg, rgba(13, 11, 15, 0.85) 0%, rgba(26, 21, 32, 0.85) 50%, rgba(13, 11, 15, 0.95) 100%);
-        backdrop-filter: blur(8px);
+        background: linear-gradient(
+          100deg,
+          rgba(15, 23, 42, 0.92) 0%,
+          rgba(26, 86, 219, 0.55) 55%,
+          rgba(14, 165, 233, 0.3) 100%
+        );
       }
 
-      /* Animated sound waves */
       .sound-waves {
         position: absolute;
         right: -5%;
@@ -253,7 +341,7 @@
       .wave-bar {
         width: 4px;
         border-radius: 4px;
-        background: var(--primary);
+        background: var(--white);
         animation: wavePulse 1.4s ease-in-out infinite;
       }
 
@@ -274,26 +362,6 @@
         padding: 80px 0 100px;
       }
 
-      .hero-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--primary);
-        margin-bottom: 28px;
-      }
-
-      .hero-tag::before {
-        content: "";
-        display: block;
-        width: 28px;
-        height: 1px;
-        background: var(--primary);
-      }
-
       .hero-title {
         font-family: "Montserrat", sans-serif;
         font-size: clamp(44px, 7vw, 88px);
@@ -305,14 +373,14 @@
 
       .hero-title em {
         font-style: italic;
-        color: var(--primary);
+        color: #60a5fa;
       }
 
       .hero-subtitle {
         font-size: clamp(15px, 2vw, 18px);
         font-weight: 300;
         line-height: 1.7;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.75);
         max-width: 520px;
         margin-bottom: 44px;
       }
@@ -328,7 +396,7 @@
         display: inline-block;
         padding: 15px 34px;
         background: var(--primary);
-        color: var(--dark);
+        color: var(--white);
         font-family: "DM Sans", sans-serif;
         font-size: 15px;
         font-weight: 700;
@@ -337,10 +405,11 @@
         transition:
           background 0.2s,
           transform 0.15s;
+        box-shadow: 0 4px 20px rgba(26, 86, 219, 0.35);
       }
 
       .btn-primary:hover {
-        background: var(--primary-light);
+        background: var(--primary-dark);
         transform: translateY(-2px);
       }
 
@@ -348,31 +417,52 @@
         display: inline-block;
         padding: 14px 32px;
         background: transparent;
-        color: var(--text);
+        color: var(--white);
         font-family: "DM Sans", sans-serif;
         font-size: 15px;
         font-weight: 500;
         text-decoration: none;
-        border: 1.5px solid rgba(240, 235, 227, 0.25);
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
         border-radius: 50px;
         transition:
           border-color 0.2s,
-          color 0.2s,
+          background 0.2s,
           transform 0.15s;
       }
 
       .btn-outline:hover {
-        border-color: var(--primary);
+        border-color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline-blue {
+        display: inline-block;
+        padding: 14px 32px;
+        background: transparent;
         color: var(--primary);
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1.5px solid var(--primary);
+        border-radius: 50px;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          transform 0.15s;
+      }
+
+      .btn-outline-blue:hover {
+        background: var(--primary);
+        color: var(--white);
         transform: translateY(-2px);
       }
 
       /* ── STATS BAR ── */
       .stats-bar {
-        background: var(--dark2);
-        border-top: 1px solid rgba(0, 176, 191, 0.2);
-        border-bottom: 1px solid rgba(0, 176, 191, 0.2);
-        padding: 32px 5%;
+        background: var(--primary);
+        padding: 36px 5%;
       }
 
       .stats-grid {
@@ -391,14 +481,13 @@
         font-family: "Montserrat", sans-serif;
         font-size: 38px;
         font-weight: 700;
-        color: var(--primary);
+        color: var(--white);
         line-height: 1;
       }
-
       .stat-label {
         font-size: 12px;
         font-weight: 500;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.7);
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-top: 6px;
@@ -413,31 +502,11 @@
         margin: 0 auto;
       }
 
-      .section-label {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--primary);
-        margin-bottom: 16px;
-      }
-
-      .section-label::before {
-        content: "";
-        display: block;
-        width: 20px;
-        height: 1px;
-        background: var(--primary);
-      }
-
       .section-title {
         font-family: "Montserrat", sans-serif;
         font-size: clamp(30px, 4vw, 50px);
         font-weight: 700;
-        color: var(--white);
+        color: var(--dark);
         line-height: 1.15;
         margin-bottom: 20px;
       }
@@ -458,40 +527,27 @@
         gap: 64px;
         align-items: center;
       }
+      #about {
+        background: var(--bg);
+      }
 
       .about-visual {
         position: relative;
       }
 
-      .about-img-placeholder {
+      .about-img {
         width: 100%;
         aspect-ratio: 4/3;
-        background: var(--dark3);
         border-radius: 16px;
-        border: 1px solid rgba(0, 176, 191, 0.2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
         overflow: hidden;
         position: relative;
       }
 
-      .about-img-placeholder::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          ellipse at 30% 40%,
-          rgba(0, 176, 191, 0.15) 0%,
-          transparent 60%
-        );
-      }
-
-      .about-img-placeholder svg {
-        width: 80px;
-        height: 80px;
-        opacity: 0.15;
-        fill: var(--primary);
+      .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
       }
 
       .about-badge {
@@ -499,7 +555,7 @@
         bottom: -16px;
         right: -16px;
         background: var(--primary);
-        color: var(--dark);
+        color: var(--white);
         padding: 16px 20px;
         border-radius: 12px;
         font-family: "Montserrat", sans-serif;
@@ -507,7 +563,7 @@
         font-weight: 700;
         line-height: 1.1;
         text-align: center;
-        box-shadow: 0 8px 32px rgba(0, 176, 191, 0.35);
+        box-shadow: 0 8px 32px rgba(26, 86, 219, 0.3);
       }
 
       .about-badge small {
@@ -518,38 +574,68 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
         margin-top: 2px;
+        opacity: 0.85;
       }
 
-      /* ── FEATURES / BENEFITS ── */
+      /* ── GALLERY ── */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 64px;
+      }
+
+      .gallery-img {
+        width: 100%;
+        aspect-ratio: 3/2;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .gallery-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+      .gallery-img:hover img {
+        transform: scale(1.04);
+      }
+
+      /* ── FEATURES ── */
       .features-bg {
-        background: var(--dark2);
+        background: var(--white);
       }
 
       .features-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 2px;
-        border: 1px solid rgba(0, 176, 191, 0.12);
-        border-radius: 16px;
-        overflow: hidden;
+        gap: 20px;
       }
 
       .feature-card {
-        background: var(--dark3);
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
         padding: 36px 32px;
-        transition: background 0.2s;
+        transition:
+          box-shadow 0.2s,
+          border-color 0.2s,
+          transform 0.2s;
         text-decoration: none;
         display: block;
       }
 
       .feature-card:hover {
-        background: #2c2838;
+        box-shadow: 0 8px 32px rgba(26, 86, 219, 0.1);
+        border-color: var(--primary-light);
+        transform: translateY(-3px);
       }
 
       .feature-icon {
         width: 48px;
         height: 48px;
-        background: rgba(0, 176, 191, 0.12);
+        background: var(--primary-pale);
         border-radius: 12px;
         display: flex;
         align-items: center;
@@ -568,7 +654,7 @@
       .feature-title {
         font-size: 17px;
         font-weight: 600;
-        color: var(--white);
+        color: var(--dark);
         margin-bottom: 10px;
       }
       .feature-text {
@@ -578,54 +664,139 @@
         line-height: 1.7;
       }
 
+      /* Benefits banner image */
+      .benefits-banner {
+        width: 100%;
+        aspect-ratio: 16/7;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 48px;
+      }
+      .benefits-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
       /* ── MEMBERS ── */
       .members-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 32px;
+        gap: 10px;
+        margin-top: 48px;
       }
 
       .member-tag {
-        padding: 8px 18px;
-        background: rgba(0, 176, 191, 0.08);
-        border: 1px solid rgba(0, 176, 191, 0.2);
+        padding: 7px 16px;
+        background: var(--primary-pale);
+        border: 1px solid rgba(26, 86, 219, 0.2);
         border-radius: 50px;
-        font-size: 14px;
-        color: var(--primary-pale);
+        font-size: 13px;
+        color: var(--primary-dark);
+        font-weight: 500;
       }
 
       /* ── NOTME ── */
       .notme-card {
-        background: linear-gradient(135deg, #1e1824 0%, #261f30 100%);
-        border: 1px solid rgba(0, 176, 191, 0.25);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
         border-radius: 20px;
         padding: 56px;
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 48px;
         align-items: center;
+        box-shadow: 0 20px 60px rgba(26, 86, 219, 0.25);
       }
 
-      .notme-tag {
+      .notme-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(26px, 3vw, 40px);
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.2;
+        margin-bottom: 18px;
+      }
+      .notme-text {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.8;
+        max-width: 560px;
+        margin-bottom: 28px;
+      }
+
+      .btn-white {
         display: inline-block;
-        padding: 5px 14px;
-        background: rgba(0, 176, 191, 0.12);
-        border: 1px solid rgba(0, 176, 191, 0.3);
-        border-radius: 50px;
-        font-size: 12px;
-        font-weight: 600;
+        padding: 15px 34px;
+        background: var(--white);
         color: var(--primary);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        margin-bottom: 20px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 50px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
       }
 
-      /* ── CTA SECTION ── */
+      .btn-white:hover {
+        background: var(--primary-pale);
+        transform: translateY(-2px);
+      }
+
+      /* ── WAGES ── */
+      #wages {
+        background: var(--bg);
+      }
+
+      .wages-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .wage-row {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .wage-row:hover {
+        border-color: var(--primary);
+        box-shadow: 0 4px 16px rgba(26, 86, 219, 0.08);
+      }
+      .wage-row span:first-child {
+        font-size: 15px;
+        color: var(--text);
+        font-weight: 500;
+      }
+      .wage-row span:last-child {
+        font-size: 13px;
+        color: var(--primary);
+        font-weight: 600;
+        background: var(--primary-pale);
+        padding: 4px 12px;
+        border-radius: 50px;
+      }
+
+      /* ── CTA ── */
       .cta-section {
         text-align: center;
         padding: 96px 5%;
-        background: var(--dark);
+        background: var(--primary);
         position: relative;
         overflow: hidden;
       }
@@ -633,14 +804,14 @@
       .cta-section::before {
         content: "";
         position: absolute;
-        width: 600px;
-        height: 600px;
+        width: 700px;
+        height: 700px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         background: radial-gradient(
           circle,
-          rgba(0, 176, 191, 0.1) 0%,
+          rgba(255, 255, 255, 0.08) 0%,
           transparent 65%
         );
         pointer-events: none;
@@ -652,6 +823,7 @@
         max-width: 640px;
         margin: 0 auto;
       }
+
       .cta-title {
         font-family: "Montserrat", sans-serif;
         font-size: clamp(32px, 5vw, 60px);
@@ -660,18 +832,17 @@
         line-height: 1.1;
         margin-bottom: 20px;
       }
-
       .cta-subtitle {
         font-size: 17px;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.8);
         margin-bottom: 40px;
         line-height: 1.7;
       }
 
       /* ── FOOTER ── */
       footer {
-        background: var(--dark2);
-        border-top: 1px solid rgba(0, 176, 191, 0.15);
+        background: var(--dark);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
         padding: 64px 5% 32px;
       }
 
@@ -682,15 +853,31 @@
         max-width: 1100px;
         margin: 0 auto;
         padding-bottom: 48px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       .footer-brand p {
         font-size: 14px;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.5);
         line-height: 1.7;
         margin-top: 14px;
         max-width: 300px;
+      }
+
+      .footer-nav-logo-mark {
+        width: 40px;
+        height: 40px;
+        background: var(--primary);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .footer-nav-logo-mark svg {
+        width: 22px;
+        height: 22px;
+        fill: #fff;
       }
 
       .footer-col h4 {
@@ -698,7 +885,7 @@
         font-weight: 600;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--primary);
+        color: rgba(255, 255, 255, 0.4);
         margin-bottom: 16px;
       }
       .footer-col ul {
@@ -709,12 +896,12 @@
       }
       .footer-col a {
         font-size: 14px;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.55);
         text-decoration: none;
         transition: color 0.2s;
       }
       .footer-col a:hover {
-        color: var(--text);
+        color: rgba(255, 255, 255, 0.9);
       }
 
       .footer-bottom {
@@ -727,10 +914,29 @@
         margin: 0 auto;
         padding-top: 28px;
       }
-
       .footer-bottom p {
         font-size: 13px;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      .footer-brand-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+
+      .footer-logo-text .afm {
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--white);
+      }
+      .footer-logo-text .local {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
       }
 
       /* ── RESPONSIVE ── */
@@ -753,6 +959,16 @@
         }
         .footer-brand {
           grid-column: 1 / -1;
+        }
+        .wages-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gallery-img:last-child {
+          display: none;
         }
       }
 
@@ -778,9 +994,39 @@
         .features-grid {
           grid-template-columns: 1fr;
         }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery-img:last-child {
+          display: block;
+        }
+        .section-title {
+          font-size: clamp(26px, 7vw, 40px);
+        }
       }
 
-      /* Animation on scroll */
+      @media (max-width: 480px) {
+        .notme-card {
+          padding: 28px 20px;
+        }
+        .about-badge {
+          right: 8px;
+          bottom: -10px;
+          padding: 12px 16px;
+          font-size: 18px;
+        }
+        .stats-bar {
+          padding: 28px 5%;
+        }
+        .stat-num {
+          font-size: 30px;
+        }
+        .cta-section {
+          padding: 64px 5%;
+        }
+      }
+
+      /* ── FADE IN ── */
       .fade-up {
         opacity: 0;
         transform: translateY(28px);
@@ -788,43 +1034,44 @@
           opacity 0.7s ease,
           transform 0.7s ease;
       }
-
       .fade-up.visible {
         opacity: 1;
         transform: translateY(0);
       }
-    
-      /* ── ADDED OVERRIDES ── */
-      .wages-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 64px;
-        align-items: center;
-      }
-      .nav-logo, .nav-logo-text {
-        flex-shrink: 0;
-        white-space: nowrap;
-      }
-      @media (max-width: 900px) {
-        .wages-grid {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-      }
-      @media (max-width: 1024px) {
-        .hero-title {
-          font-size: clamp(36px, 6vw, 72px);
-        }
-      }
-
     </style>
   </head>
   <body>
-    <!-- ── NAV ── -->
+    <!-- GLAD HEADER -->
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- NAV -->
     <nav id="navbar">
       <a href="#" class="nav-logo">
         <div class="nav-logo-mark">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 24 24">
             <path
               d="M9 18V5l12-2v13M9 18c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-2c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"
             />
@@ -866,61 +1113,26 @@
       >
     </div>
 
-    <!-- ── HERO ── -->
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-bg"></div>
-
-      <!-- Decorative sound wave bars -->
       <div class="sound-waves" aria-hidden="true">
-        <div class="wave-bar" style="height: 40px; animation-delay: 0s"></div>
-        <div class="wave-bar" style="height: 80px; animation-delay: 0.1s"></div>
-        <div
-          class="wave-bar"
-          style="height: 120px; animation-delay: 0.2s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 200px; animation-delay: 0.3s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 280px; animation-delay: 0.4s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 350px; animation-delay: 0.5s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 420px; animation-delay: 0.35s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 360px; animation-delay: 0.45s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 260px; animation-delay: 0.25s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 180px; animation-delay: 0.15s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 100px; animation-delay: 0.05s"
-        ></div>
-        <div
-          class="wave-bar"
-          style="height: 60px; animation-delay: 0.55s"
-        ></div>
+        <div class="wave-bar" style="height: 40px"></div>
+        <div class="wave-bar" style="height: 80px"></div>
+        <div class="wave-bar" style="height: 120px"></div>
+        <div class="wave-bar" style="height: 200px"></div>
+        <div class="wave-bar" style="height: 280px"></div>
+        <div class="wave-bar" style="height: 350px"></div>
+        <div class="wave-bar" style="height: 420px"></div>
+        <div class="wave-bar" style="height: 360px"></div>
+        <div class="wave-bar" style="height: 260px"></div>
+        <div class="wave-bar" style="height: 180px"></div>
+        <div class="wave-bar" style="height: 100px"></div>
+        <div class="wave-bar" style="height: 60px"></div>
       </div>
-
       <div class="hero-content">
         <h1 class="hero-title">
-          Your Music.<br />
-          <em>Your Rights.</em><br />
-          Your Union.
+          Your Music.<br /><em>Your Rights.</em><br />Your Union.
         </h1>
         <p class="hero-subtitle">
           Local 12 has championed professional musicians across Central and
@@ -936,7 +1148,7 @@
       </div>
     </section>
 
-    <!-- ── STATS BAR ── -->
+    <!-- STATS BAR -->
     <div class="stats-bar">
       <div class="stats-grid">
         <div class="stat-item fade-up">
@@ -958,7 +1170,7 @@
       </div>
     </div>
 
-    <!-- ── ABOUT ── -->
+    <!-- ABOUT -->
     <section class="section" id="about">
       <div class="section-inner">
         <div class="about-grid">
@@ -982,21 +1194,51 @@
               <a href="https://afmlocal12.com/join/" class="btn-primary"
                 >Become a Member</a
               >
-              <a href="https://afmlocal12.com/members/" class="btn-outline"
+              <a href="https://afmlocal12.com/members/" class="btn-outline-blue"
                 >Member Portal</a
               >
             </div>
           </div>
           <div class="about-visual fade-up">
-            <div class="about-img-placeholder" style="background: url('https://images.unsplash.com/photo-1598387082322-a9fb15d6542d?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat; border: none;"></div>
+            <div class="about-img">
+              <img
+                src="https://images.unsplash.com/photo-1501612780327-45045538702b?q=80&w=1000&auto=format&fit=crop"
+                alt="Live music performance"
+                loading="lazy"
+              />
+            </div>
             <div class="about-badge">
-              120+
-              <small>Years Serving Musicians</small>
+              120+<small>Years Serving Musicians</small>
             </div>
           </div>
         </div>
 
-        <div class="members-list fade-up" style="margin-top: 64px">
+        <!-- Gallery -->
+        <div class="gallery-grid fade-up" style="transition-delay: 0.15s">
+          <div class="gallery-img">
+            <img
+              src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=800&auto=format&fit=crop"
+              alt="Live concert event"
+              loading="lazy"
+            />
+          </div>
+          <div class="gallery-img">
+            <img
+              src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop"
+              alt="Recording studio session"
+              loading="lazy"
+            />
+          </div>
+          <div class="gallery-img">
+            <img
+              src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800&auto=format&fit=crop"
+              alt="Orchestra rehearsal"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="members-list fade-up">
           <span class="member-tag">Rock</span>
           <span class="member-tag">Classical</span>
           <span class="member-tag">Jazz</span>
@@ -1013,7 +1255,7 @@
       </div>
     </section>
 
-    <!-- ── BENEFITS ── -->
+    <!-- BENEFITS -->
     <section class="section features-bg" id="benefits">
       <div class="section-inner">
         <h2 class="section-title fade-up">
@@ -1023,6 +1265,14 @@
           From contract negotiation to legal protection, Local 12 gives you the
           tools and backing to thrive as a professional musician.
         </p>
+
+        <div class="benefits-banner fade-up">
+          <img
+            src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1600&auto=format&fit=crop"
+            alt="Concert hall performance"
+            loading="lazy"
+          />
+        </div>
 
         <div class="features-grid">
           <div class="feature-card fade-up">
@@ -1077,7 +1327,7 @@
             <div class="feature-icon">
               <svg viewBox="0 0 24 24">
                 <path
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
@@ -1125,7 +1375,7 @@
       </div>
     </section>
 
-    <!-- ── WAGE SCALES ── -->
+    <!-- WAGE SCALES -->
     <section class="section" id="wages">
       <div class="section-inner">
         <div class="wages-grid">
@@ -1140,161 +1390,53 @@
             <a
               href="https://afmlocal12.com/local-12-wage-scales/"
               class="btn-primary fade-up"
-              >View Wage Scales</a
+              >View Full Wage Scales</a
             >
           </div>
-          <div>
-            <div style="display: flex; flex-direction: column; gap: 16px">
-              <div
-                class="fade-up"
-                style="
-                  background: var(--dark3);
-                  border: 1px solid rgba(0, 176, 191, 0.15);
-                  border-radius: 12px;
-                  padding: 20px 24px;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <span style="font-size: 15px; color: var(--text)"
-                  >Live Performance</span
-                >
-                <span
-                  style="font-size: 13px; color: var(--primary); font-weight: 600"
-                  >Nightclub &amp; Stage</span
-                >
-              </div>
-              <div
-                class="fade-up"
-                style="
-                  transition-delay: 0.1s;
-                  background: var(--dark3);
-                  border: 1px solid rgba(0, 176, 191, 0.15);
-                  border-radius: 12px;
-                  padding: 20px 24px;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <span style="font-size: 15px; color: var(--text)"
-                  >Recording Sessions</span
-                >
-                <span
-                  style="font-size: 13px; color: var(--primary); font-weight: 600"
-                  >Studio Work</span
-                >
-              </div>
-              <div
-                class="fade-up"
-                style="
-                  transition-delay: 0.2s;
-                  background: var(--dark3);
-                  border: 1px solid rgba(0, 176, 191, 0.15);
-                  border-radius: 12px;
-                  padding: 20px 24px;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <span style="font-size: 15px; color: var(--text)"
-                  >Film &amp; TV</span
-                >
-                <span
-                  style="font-size: 13px; color: var(--primary); font-weight: 600"
-                  >Motion Picture</span
-                >
-              </div>
-              <div
-                class="fade-up"
-                style="
-                  transition-delay: 0.3s;
-                  background: var(--dark3);
-                  border: 1px solid rgba(0, 176, 191, 0.15);
-                  border-radius: 12px;
-                  padding: 20px 24px;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <span style="font-size: 15px; color: var(--text)">Touring</span>
-                <span
-                  style="font-size: 13px; color: var(--primary); font-weight: 600"
-                  >On the Road</span
-                >
-              </div>
-              <div
-                class="fade-up"
-                style="
-                  transition-delay: 0.4s;
-                  background: var(--dark3);
-                  border: 1px solid rgba(0, 176, 191, 0.15);
-                  border-radius: 12px;
-                  padding: 20px 24px;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <span style="font-size: 15px; color: var(--text)"
-                  >Symphony &amp; Orchestra</span
-                >
-                <span
-                  style="font-size: 13px; color: var(--primary); font-weight: 600"
-                  >Classical</span
-                >
-              </div>
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <div class="wage-row fade-up">
+              <span>Live Performance</span><span>Nightclub &amp; Stage</span>
+            </div>
+            <div class="wage-row fade-up" style="transition-delay: 0.1s">
+              <span>Recording Sessions</span><span>Studio Work</span>
+            </div>
+            <div class="wage-row fade-up" style="transition-delay: 0.2s">
+              <span>Film &amp; TV</span><span>Motion Picture</span>
+            </div>
+            <div class="wage-row fade-up" style="transition-delay: 0.3s">
+              <span>Touring</span><span>On the Road</span>
+            </div>
+            <div class="wage-row fade-up" style="transition-delay: 0.4s">
+              <span>Symphony &amp; Orchestra</span><span>Classical</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── #NOTME ── -->
-    <section class="section features-bg" id="notme">
+    <!-- #NOTME -->
+    <section class="section" id="notme" style="background: var(--bg)">
       <div class="section-inner">
         <div class="notme-card fade-up">
           <div>
-            <h2
-              style="
-                font-family: &quot;Playfair Display&quot;, serif;
-                font-size: clamp(26px, 3vw, 40px);
-                font-weight: 700;
-                color: var(--white);
-                line-height: 1.2;
-                margin-bottom: 18px;
-              "
-            >
-              A Safe, Secure Space to Report Concerns
-            </h2>
-            <p
-              style="
-                font-size: 15px;
-                color: var(--text-muted);
-                line-height: 1.8;
-                max-width: 560px;
-                margin-bottom: 28px;
-              "
-            >
+            <h2 class="notme-title">A Safe, Secure Space to Report Concerns</h2>
+            <p class="notme-text">
               The AFM has partnered with NotMe Solutions to provide members with
               an encrypted, confidential platform to report harassment, contract
               violations, payroll discrepancies, or any unsafe situation. An
               injury to one is an injury to all.
             </p>
-            <a href="https://afmlocal12.com/notme/" class="btn-primary"
+            <a href="https://afmlocal12.com/notme/" class="btn-white"
               >Learn About #NotMe</a
             >
           </div>
-          <div style="text-align: center">
+          <div style="text-align: center; flex-shrink: 0">
             <div
               style="
                 width: 120px;
                 height: 120px;
-                background: rgba(0, 176, 191, 0.1);
-                border: 1px solid rgba(0, 176, 191, 0.3);
+                background: rgba(255, 255, 255, 0.12);
+                border: 1px solid rgba(255, 255, 255, 0.3);
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -1307,7 +1449,7 @@
                 height="52"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--primary)"
+                stroke="white"
                 stroke-width="1.5"
               >
                 <path
@@ -1320,7 +1462,7 @@
             <p
               style="
                 font-size: 12px;
-                color: var(--text-muted);
+                color: rgba(255, 255, 255, 0.7);
                 margin-top: 14px;
                 text-transform: uppercase;
                 letter-spacing: 0.1em;
@@ -1333,7 +1475,7 @@
       </div>
     </section>
 
-    <!-- ── CTA ── -->
+    <!-- CTA -->
     <section class="cta-section" id="join">
       <div class="cta-inner">
         <h2 class="cta-title fade-up">
@@ -1344,7 +1486,7 @@
           their craft, secure fair pay, and amplify their voice.
         </p>
         <div class="hero-actions fade-up" style="justify-content: center">
-          <a href="https://afmlocal12.com/join/" class="btn-primary"
+          <a href="https://afmlocal12.com/join/" class="btn-white"
             >Join Local 12 Today</a
           >
           <a
@@ -1356,19 +1498,19 @@
       </div>
     </section>
 
-    <!-- ── FOOTER ── -->
+    <!-- FOOTER -->
     <footer id="contact">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="nav-logo" style="display: inline-flex">
-            <div class="nav-logo-mark">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <a href="#" class="footer-brand-row">
+            <div class="footer-nav-logo-mark">
+              <svg viewBox="0 0 24 24">
                 <path
                   d="M9 18V5l12-2v13M9 18c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-2c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"
                 />
               </svg>
             </div>
-            <div class="nav-logo-text">
+            <div class="footer-logo-text">
               <div class="afm">AFM Local 12</div>
               <div class="local">Musicians Union · California</div>
             </div>
@@ -1379,7 +1521,6 @@
             of the United States and Canada.
           </p>
         </div>
-
         <div class="footer-col">
           <h4>Navigation</h4>
           <ul>
@@ -1398,7 +1539,6 @@
             <li><a href="https://afmlocal12.com/notme/">#NotMe</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h4>Get Involved</h4>
           <ul>
@@ -1414,32 +1554,57 @@
           </ul>
         </div>
       </div>
-
       <div class="footer-bottom">
         <p>
           © 2026 AFM Local 12 — American Federation of Musicians. All rights
           reserved.
         </p>
-        <p style="color: var(--primary); font-size: 13px">
+        <p style="color: rgba(255, 255, 255, 0.4); font-size: 13px">
           Central &amp; Northern California
         </p>
       </div>
     </footer>
 
     <script>
-      // Mobile menu toggle
+      // GLAD header hide-on-scroll
+      const gladHeader = document.getElementById("glad-header");
+      const afmNav = document.getElementById("navbar");
+      let lastScrollY = window.scrollY;
+      let gladVisible = true;
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          const currentY = window.scrollY;
+          if (currentY > 80 && currentY > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              afmNav.classList.add("glad-hidden");
+              gladVisible = false;
+            }
+          } else if (currentY < lastScrollY && currentY < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              afmNav.classList.remove("glad-hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = currentY;
+        },
+        { passive: true },
+      );
+
+      // Mobile menu
       const btn = document.getElementById("menuBtn");
       const menu = document.getElementById("mobileMenu");
+      btn.addEventListener("click", () => menu.classList.toggle("open"));
+      document
+        .querySelectorAll(".mob-link, .m-cta")
+        .forEach((l) =>
+          l.addEventListener("click", () => menu.classList.remove("open")),
+        );
 
-      btn.addEventListener("click", () => {
-        menu.classList.toggle("open");
-      });
-
-      document.querySelectorAll(".mob-link, .m-cta").forEach((link) => {
-        link.addEventListener("click", () => menu.classList.remove("open"));
-      });
-
-      // Scroll-based fade-in
+      // Fade-in on scroll
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
@@ -1451,14 +1616,12 @@
         },
         { threshold: 0.12 },
       );
-
       document
         .querySelectorAll(".fade-up")
         .forEach((el) => observer.observe(el));
 
-      // Sound wave animation
-      const bars = document.querySelectorAll(".wave-bar");
-      bars.forEach((bar, i) => {
+      // Wave animation
+      document.querySelectorAll(".wave-bar").forEach((bar, i) => {
         bar.style.animationDelay = i * 0.08 + "s";
         bar.style.animationDuration = 1.2 + Math.random() * 0.6 + "s";
       });

@@ -1,0 +1,2960 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ancil Hoffman Golf Club — Carmichael, CA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --navy: #0f2240;
+        --navy-mid: #163260;
+        --navy-light: #1e4680;
+        --navy-pale: #e8edf6;
+        --white: #ffffff;
+        --off-white: #f5f7fa;
+        --light-gray: #e4e9f2;
+        --text: #0f2240;
+        --text-mid: #3a4f6e;
+        --text-muted: #6a7f9a;
+        --border: #d2dae8;
+        --glad-h: 56px;
+        --nav-h: 72px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--white);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      /* ── GLAD HEADER ── */
+      #glad-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+        height: var(--glad-h);
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.35s ease,
+          opacity 0.35s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .glad-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+        max-width: 1200px;
+        position: relative;
+      }
+      .glad-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .glad-logo img {
+        height: 38px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .glad-back-btn {
+        position: absolute;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--navy);
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 8px 18px;
+        border-radius: 6px;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+        transition: background 0.2s;
+      }
+      .glad-back-btn:hover {
+        background: var(--navy-mid);
+      }
+      .glad-back-btn svg {
+        width: 13px;
+        height: 13px;
+        stroke: #fff;
+        fill: none;
+        stroke-width: 2.2;
+        flex-shrink: 0;
+      }
+      @media (max-width: 520px) {
+        .glad-back-btn .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 8px 12px;
+        }
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: var(--glad-h);
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition:
+          top 0.35s ease,
+          box-shadow 0.3s;
+        box-shadow: 0 2px 24px rgba(15, 34, 64, 0.07);
+      }
+      nav.glad-hidden {
+        top: 0;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .nav-logo-text .club-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1.1;
+        letter-spacing: 0.04em;
+      }
+      .nav-logo-text .club-sub {
+        font-size: 10px;
+        color: var(--text-muted);
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-top: 1px;
+      }
+      .nav-divider {
+        width: 1px;
+        height: 28px;
+        background: var(--border);
+        margin: 0 8px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+      }
+      .nav-links > li {
+        position: relative;
+      }
+      .nav-links > li > a {
+        display: block;
+        padding: 8px 13px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-mid);
+        text-decoration: none;
+        border-radius: 7px;
+        letter-spacing: 0.01em;
+        transition:
+          color 0.2s,
+          background 0.2s;
+        white-space: nowrap;
+      }
+      .nav-links > li > a:hover {
+        color: var(--navy);
+        background: var(--navy-pale);
+      }
+      .nav-links > li > a.has-drop::after {
+        content: "▾";
+        font-size: 9px;
+        margin-left: 4px;
+        opacity: 0.5;
+      }
+
+      /* Dropdown */
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        min-width: 220px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px;
+        box-shadow: 0 8px 32px rgba(15, 34, 64, 0.12);
+        z-index: 500;
+      }
+      .nav-links > li:hover .dropdown {
+        display: block;
+      }
+      .dropdown a {
+        display: block;
+        padding: 9px 12px;
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--text-mid);
+        text-decoration: none;
+        border-radius: 6px;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .dropdown a:hover {
+        background: var(--navy-pale);
+        color: var(--navy);
+      }
+
+      .nav-cta {
+        display: inline-block;
+        padding: 10px 22px;
+        background: var(--navy);
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 8px;
+        letter-spacing: 0.03em;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        white-space: nowrap;
+        margin-left: 8px;
+      }
+      .nav-cta:hover {
+        background: var(--navy-mid);
+        transform: translateY(-1px);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--navy);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: calc(var(--glad-h) + var(--nav-h));
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.99);
+        z-index: 199;
+        padding: 2rem 5%;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        display: block;
+        padding: 15px 0;
+        font-size: 19px;
+        font-weight: 500;
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border);
+        font-family: "Cormorant Garamond", serif;
+        letter-spacing: 0.03em;
+      }
+      .mobile-menu a:last-child {
+        border: none;
+      }
+      .mobile-menu .m-cta {
+        margin-top: 1.5rem;
+        background: var(--navy);
+        color: #fff;
+        font-weight: 600;
+        padding: 14px 20px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 16px;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        overflow: hidden;
+        padding: calc(var(--glad-h) + var(--nav-h)) 5% 0;
+        background: url("https://images.unsplash.com/photo-1593282153762-a41e3cceb06c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Z29sZnxlbnwwfHwwfHx8MA%3D%3D")
+          center 40% / cover no-repeat;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 34, 64, 0.55) 0%,
+          rgba(15, 34, 64, 0.3) 40%,
+          rgba(15, 34, 64, 0.82) 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 0 80px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: flex-end;
+      }
+      .hero-left {
+      }
+      .hero-tag {
+        display: inline-block;
+        font-family: "DM Sans", sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 18px;
+        border-left: 2px solid rgba(255, 255, 255, 0.5);
+        padding-left: 14px;
+      }
+      .hero-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(52px, 8vw, 106px);
+        font-weight: 400;
+        line-height: 0.92;
+        color: var(--white);
+        margin-bottom: 24px;
+        letter-spacing: -0.01em;
+      }
+      .hero-title em {
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .hero-subtitle {
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.78);
+        max-width: 480px;
+        margin-bottom: 40px;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        padding: 14px 34px;
+        background: var(--white);
+        color: var(--navy);
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        border-radius: 8px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+      .btn-primary:hover {
+        background: var(--off-white);
+        transform: translateY(-2px);
+      }
+      .btn-ghost-hero {
+        display: inline-block;
+        padding: 13px 30px;
+        background: transparent;
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        border: 1.5px solid rgba(255, 255, 255, 0.45);
+        border-radius: 8px;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-ghost-hero:hover {
+        border-color: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .hero-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+        padding: 28px 24px;
+        min-width: 220px;
+        flex-shrink: 0;
+        text-align: center;
+      }
+      .hero-card .hc-label {
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 16px;
+      }
+      .hero-card .hc-stat {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 42px;
+        color: var(--white);
+        line-height: 1;
+        font-weight: 400;
+      }
+      .hero-card .hc-sub {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 6px;
+      }
+      .hero-card .hc-divider {
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.15);
+        margin: 16px 0;
+      }
+
+      /* ── DUAL SITE STRIP ── */
+      .site-strip {
+        background: var(--navy);
+        padding: 20px 5%;
+      }
+      .site-strip-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .site-strip p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        font-weight: 400;
+      }
+      .site-strip strong {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+      }
+      .strip-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .strip-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 18px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .strip-link.main {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .strip-link.main:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-1px);
+      }
+      .strip-link.book {
+        background: var(--white);
+        color: var(--navy);
+      }
+      .strip-link.book:hover {
+        background: var(--off-white);
+        transform: translateY(-1px);
+      }
+      .strip-link svg {
+        width: 13px;
+        height: 13px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+      }
+
+      /* ── SECTION ── */
+      .section {
+        padding: 96px 5%;
+      }
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .section-kicker {
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(38px, 5vw, 62px);
+        font-weight: 500;
+        color: var(--navy);
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+        margin-bottom: 18px;
+      }
+      .section-body {
+        font-size: 15px;
+        font-weight: 300;
+        color: var(--text-muted);
+        line-height: 1.85;
+        max-width: 600px;
+        margin-bottom: 40px;
+      }
+
+      /* ── MEMBERSHIP ── */
+      #membership {
+        background: var(--off-white);
+      }
+      .membership-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .membership-img {
+        position: relative;
+      }
+      .membership-img-wrap {
+        width: 100%;
+        aspect-ratio: 3/4;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(15, 34, 64, 0.16);
+      }
+      .membership-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .membership-badge {
+        position: absolute;
+        top: -18px;
+        right: -18px;
+        background: var(--navy);
+        color: var(--white);
+        padding: 20px;
+        border-radius: 14px;
+        text-align: center;
+        box-shadow: 0 12px 36px rgba(15, 34, 64, 0.3);
+      }
+      .membership-badge .mb-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 1;
+      }
+      .membership-badge .mb-text {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 4px;
+      }
+
+      .includes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+      .include-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 14px 18px;
+        background: var(--white);
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+      .include-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--navy-pale);
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .include-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: var(--navy);
+        fill: none;
+        stroke-width: 1.8;
+      }
+      .include-item p {
+        font-size: 14px;
+        color: var(--text-mid);
+        line-height: 1.5;
+        padding-top: 2px;
+      }
+
+      .btn-navy {
+        display: inline-block;
+        padding: 14px 32px;
+        background: var(--navy);
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        border-radius: 8px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-navy:hover {
+        background: var(--navy-mid);
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        display: inline-block;
+        padding: 13px 28px;
+        background: transparent;
+        color: var(--navy);
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        border: 1.5px solid var(--navy);
+        border-radius: 8px;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          transform 0.15s;
+      }
+      .btn-outline:hover {
+        background: var(--navy);
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      /* ── QUICK LINKS ── */
+      #links {
+        background: var(--white);
+        padding: 64px 5%;
+      }
+      .links-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .link-card {
+        position: relative;
+        border-radius: 14px;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        text-decoration: none;
+        display: block;
+        transition: transform 0.3s;
+      }
+      .link-card:hover {
+        transform: translateY(-5px);
+      }
+      .link-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .link-card:hover img {
+        transform: scale(1.06);
+      }
+      .link-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(15, 34, 64, 0.85) 0%,
+          rgba(15, 34, 64, 0.3) 50%,
+          transparent 100%
+        );
+      }
+      .link-card-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px 20px;
+      }
+      .link-card-body .lc-tag {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 6px;
+      }
+      .link-card-body .lc-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--white);
+        line-height: 1.15;
+      }
+      .link-card-body .lc-arrow {
+        margin-top: 10px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+      .link-card:hover .lc-arrow {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .link-card-body .lc-arrow svg {
+        width: 13px;
+        height: 13px;
+        fill: none;
+        stroke: white;
+        stroke-width: 2;
+      }
+
+      /* ── TOURNAMENTS ── */
+      #tournaments {
+        background: var(--off-white);
+      }
+      .tournament-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+      }
+      .tournament-col {
+        background: var(--white);
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+      .t-col-head {
+        padding: 20px 22px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .t-col-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--navy);
+        flex-shrink: 0;
+      }
+      .t-col-head h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .t-col-head span {
+        font-size: 11px;
+        color: var(--text-muted);
+        font-weight: 400;
+        margin-left: auto;
+      }
+      .t-entries {
+        display: flex;
+        flex-direction: column;
+      }
+      .t-entry {
+        padding: 14px 22px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .t-entry:last-child {
+        border-bottom: none;
+      }
+      .t-date {
+        min-width: 44px;
+        text-align: center;
+      }
+      .t-date .day {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1;
+      }
+      .t-date .mon {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+      .t-info {
+        flex: 1;
+      }
+      .t-info .t-name {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--navy);
+      }
+      .t-info .t-links {
+        display: flex;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      .t-info .t-links a {
+        font-size: 11px;
+        color: var(--navy-light);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s;
+      }
+      .t-info .t-links a:hover {
+        color: var(--navy);
+        text-decoration: underline;
+      }
+
+      /* ── CHAMPIONS ── */
+      #champions {
+        background: var(--navy);
+        padding: 96px 5%;
+      }
+      .champions-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .champ-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 48px;
+      }
+      .champ-header .section-kicker {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .champ-header .section-title {
+        color: var(--white);
+        margin-bottom: 0;
+      }
+      .champ-header a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 2px;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+      .champ-header a:hover {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .champions-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .champ-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 28px 20px;
+        text-align: center;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .champ-card:hover {
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .champ-trophy {
+        font-size: 28px;
+        margin-bottom: 14px;
+      }
+      .champ-title {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 8px;
+      }
+      .champ-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--white);
+        line-height: 1.2;
+      }
+
+      /* ── EVENTS ── */
+      #events {
+        background: var(--white);
+      }
+      .events-two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .events-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .event-item {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 16px 20px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .event-item:hover {
+        border-color: var(--navy);
+        box-shadow: 0 4px 18px rgba(15, 34, 64, 0.08);
+        transform: translateX(4px);
+      }
+      .event-date-box {
+        min-width: 50px;
+        height: 50px;
+        background: var(--navy-pale);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .event-date-box .em {
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+      }
+      .event-date-box .ed {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1;
+      }
+      .event-info .en {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--navy);
+      }
+      .event-info .et {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+      .event-arrow {
+        margin-left: auto;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .event-item:hover .event-arrow {
+        background: var(--navy);
+        border-color: var(--navy);
+      }
+      .event-item:hover .event-arrow svg {
+        stroke: white;
+      }
+      .event-arrow svg {
+        width: 12px;
+        height: 12px;
+        fill: none;
+        stroke: var(--text-muted);
+        stroke-width: 2;
+      }
+
+      .events-aside {
+      }
+      .events-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+      .events-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .events-aside h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        font-weight: 500;
+        color: var(--navy);
+        margin-bottom: 12px;
+      }
+      .events-aside p {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.75;
+        margin-bottom: 20px;
+        font-weight: 300;
+      }
+
+      /* ── NEWSLETTER ── */
+      #newsletter {
+        background: var(--off-white);
+      }
+      .newsletter-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .newsletter-archive {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .nl-year {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        padding: 10px 0 4px;
+        border-top: 1px solid var(--border);
+        margin-top: 8px;
+      }
+      .nl-year:first-child {
+        border-top: none;
+        margin-top: 0;
+      }
+      .nl-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .nl-link {
+        display: inline-block;
+        padding: 5px 12px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 12px;
+        color: var(--text-mid);
+        text-decoration: none;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .nl-link:hover {
+        background: var(--navy);
+        color: var(--white);
+        border-color: var(--navy);
+      }
+
+      /* ── CONTACT ── */
+      #contact {
+        background: var(--white);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .contact-items {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .ci {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .ci-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: var(--navy-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .ci-icon svg {
+        width: 19px;
+        height: 19px;
+        stroke: var(--navy);
+        fill: none;
+        stroke-width: 1.8;
+      }
+      .ci h4 {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+      }
+      .ci p,
+      .ci a {
+        font-size: 15px;
+        color: var(--text-mid);
+        text-decoration: none;
+        line-height: 1.5;
+      }
+      .ci a:hover {
+        color: var(--navy);
+      }
+
+      .contact-form {
+        background: var(--off-white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 36px;
+      }
+      .contact-form h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        font-weight: 500;
+        color: var(--navy);
+        margin-bottom: 24px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .fg {
+        margin-bottom: 14px;
+      }
+      .fg label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-bottom: 7px;
+      }
+      .fg input,
+      .fg select,
+      .fg textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        color: var(--text);
+        background: var(--white);
+        transition: border-color 0.2s;
+        outline: none;
+      }
+      .fg input:focus,
+      .fg select:focus,
+      .fg textarea:focus {
+        border-color: var(--navy);
+      }
+      .fg textarea {
+        resize: vertical;
+        min-height: 90px;
+      }
+
+      /* ── CTA BAND ── */
+      .cta-band {
+        background: url("https://images.squarespace-cdn.com/content/v1/5e9d8c6d3308455c77e53afe/1587394067000-MAWWBFNQJSTIRW3HG3M8/golf-fairway-aerial.jpg?format=2500w")
+          center/cover no-repeat;
+        position: relative;
+        padding: 96px 5%;
+      }
+      .cta-band::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 34, 64, 0.82);
+      }
+      .cta-band-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 64px;
+        align-items: center;
+      }
+      .cta-band h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 400;
+        color: var(--white);
+        line-height: 1.05;
+        margin-bottom: 14px;
+      }
+      .cta-band p {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.8;
+        max-width: 480px;
+        font-weight: 300;
+      }
+      .cta-band-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--navy);
+        padding: 72px 5% 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 48px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .footer-brand .fb-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--white);
+        letter-spacing: 0.04em;
+        margin-bottom: 14px;
+      }
+      .footer-brand p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.48);
+        line-height: 1.75;
+        max-width: 260px;
+        margin-bottom: 20px;
+      }
+      .footer-col h4 {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 16px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 9px;
+      }
+      .footer-col a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.58);
+        text-decoration: none;
+        transition: color 0.2s;
+        font-weight: 400;
+      }
+      .footer-col a:hover {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-top: 28px;
+      }
+      .footer-bottom p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 10px;
+      }
+      .social-link {
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .social-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+      .social-link svg {
+        width: 15px;
+        height: 15px;
+        fill: rgba(255, 255, 255, 0.6);
+      }
+
+      /* ── ANIMATIONS ── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1100px) {
+        .links-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .champions-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .tournament-cols {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-brand {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (max-width: 900px) {
+        .membership-grid,
+        .events-two-col,
+        .newsletter-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .membership-badge {
+          top: auto;
+          right: 12px;
+          bottom: -16px;
+        }
+        .cta-band-inner {
+          grid-template-columns: 1fr;
+        }
+        .cta-band-actions {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .hero-content {
+          grid-template-columns: 1fr;
+        }
+        .hero-card {
+          display: none;
+        }
+        .champ-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+      }
+      @media (max-width: 700px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .section {
+          padding: 64px 5%;
+        }
+        .links-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .champions-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .site-strip-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      @media (max-width: 480px) {
+        .links-grid {
+          grid-template-columns: 1fr;
+        }
+        .champions-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .hero-title {
+          font-size: 54px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GLAD HEADER -->
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- NAV -->
+    <nav id="navbar">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-text">
+          <div class="club-name">Ancil Hoffman Golf Club</div>
+          <div class="club-sub">Carmichael, California · Est. 1965</div>
+        </div>
+      </a>
+      <div class="nav-divider"></div>
+      <ul class="nav-links">
+        <li>
+          <a href="#membership" class="has-drop">Membership</a>
+          <div class="dropdown">
+            <a href="https://www.ancilhoffman.com/membersignup2026.html"
+              >2026 Registration</a
+            >
+            <a
+              href="https://www.ancilhoffman.com/News/Frequently Asked Questions 03202025.pdf"
+              >FAQ</a
+            >
+            <a href="https://www.ancilhoffman.com/board/2026/index.html"
+              >Board of Directors</a
+            >
+            <a
+              href="https://www.ancilhoffman.com/bylaws/2025/2025-AHGC-ByLaws.pdf"
+              >Bylaws</a
+            >
+          </div>
+        </li>
+        <li>
+          <a href="#tournaments" class="has-drop">Tournaments</a>
+          <div class="dropdown">
+            <a
+              href="https://www.ancilhoffman.com/schedules/weekend/2026/2026weekends.html"
+              >Weekend Schedule</a
+            >
+            <a
+              href="https://www.ancilhoffman.com/schedules/midweek/2026/2026midweek.html"
+              >Thursday Midweek</a
+            >
+            <a
+              href="https://www.ancilhoffman.com/schedules/wednesday/2026/2026wednesday.html"
+              >Wednesday</a
+            >
+            <a href="https://www.ancilhoffman.com/TournamentIndex-FAQ.html"
+              >Tournament Index</a
+            >
+          </div>
+        </li>
+        <li>
+          <a href="#champions">Champions</a>
+        </li>
+        <li>
+          <a href="#events">Events</a>
+        </li>
+        <li>
+          <a href="#newsletter" class="has-drop">Newsletter</a>
+          <div class="dropdown">
+            <a
+              href="https://www.ancilhoffman.com/flagstick/2026/Flagstick 3_1_Final.pdf"
+              >March 2026</a
+            >
+          </div>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+        <li>
+          <a href="https://www.golfancilhoffman.com/" class="has-drop"
+            >Golf Course</a
+          >
+          <div class="dropdown">
+            <a href="https://ancilhoffman.totaleintegrated.net/web/tee-times"
+              >Book Tee Time</a
+            >
+            <a
+              href="https://www.golfancilhoffman.com/about-this-course/scorecard"
+              >Scorecard</a
+            >
+            <a href="https://www.golfancilhoffman.com/bar-grill"
+              >Bar &amp; Grill</a
+            >
+            <a href="https://www.golfancilhoffman.com/instruction"
+              >Instruction</a
+            >
+            <a href="https://www.golfancilhoffman.com/course-conditions"
+              >Course Conditions</a
+            >
+          </div>
+        </li>
+      </ul>
+      <a
+        href="https://www.ancilhoffman.com/membersignup2026.html"
+        class="nav-cta"
+        >Join the Club</a
+      >
+      <button class="hamburger" id="menuBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#membership" class="mob-link">Membership</a>
+      <a href="#tournaments" class="mob-link">Tournaments</a>
+      <a href="#champions" class="mob-link">Champions</a>
+      <a href="#events" class="mob-link">Events</a>
+      <a href="#newsletter" class="mob-link">Newsletter</a>
+      <a href="#contact" class="mob-link">Contact</a>
+      <a href="https://www.golfancilhoffman.com/" class="mob-link"
+        >Golf Course Site</a
+      >
+      <a
+        href="https://ancilhoffman.totaleintegrated.net/web/tee-times"
+        class="mob-link"
+        >Book Tee Time</a
+      >
+      <a
+        href="https://www.ancilhoffman.com/membersignup2026.html"
+        class="m-cta mob-link"
+        >Join the Club →</a
+      >
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-tag">Carmichael, California · Est. 1965</div>
+          <h1 class="hero-title">Ancil<br /><em>Hoffman</em><br />Golf Club</h1>
+          <p class="hero-subtitle">
+            A private-feel club experience at Carmichael's premier public golf
+            course. 31 annual tournaments, a vibrant member community, and
+            year-round competition for every level.
+          </p>
+          <div class="hero-actions">
+            <a
+              href="https://www.ancilhoffman.com/membersignup2026.html"
+              class="btn-primary"
+              >Become a Member</a
+            >
+            <a
+              href="https://ancilhoffman.totaleintegrated.net/web/tee-times"
+              class="btn-ghost-hero"
+              >Book a Tee Time</a
+            >
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-label">2026 Season</div>
+          <div class="hc-stat">31</div>
+          <div class="hc-sub">Tournaments Per Year</div>
+          <div class="hc-divider"></div>
+          <div class="hc-stat">100+</div>
+          <div class="hc-sub">Players Per Tournament</div>
+          <div class="hc-divider"></div>
+          <div class="hc-stat">3</div>
+          <div class="hc-sub">Weekly Formats</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DUAL SITE STRIP -->
+    <div class="site-strip">
+      <div class="site-strip-inner">
+        <p>
+          Two websites. One great club. <strong>Ancilhoffman.com</strong> is for
+          club membership &amp; tournaments.
+          <strong>Golfancilhoffman.com</strong> is for tee times, the course
+          &amp; dining.
+        </p>
+        <div class="strip-links">
+          <a href="https://www.golfancilhoffman.com/" class="strip-link main">
+            <svg
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            </svg>
+            Golf Course Site
+          </a>
+          <a
+            href="https://ancilhoffman.totaleintegrated.net/web/tee-times"
+            class="strip-link book"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            Book Tee Time
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div id="links">
+      <div class="section-inner">
+        <div class="links-grid fade-up">
+          <a
+            href="https://ancilhoffman.totaleintegrated.net/web/tee-times"
+            class="link-card"
+          >
+            <img
+              src="https://plus.unsplash.com/premium_photo-1679757670562-0e00c3863bd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGdvbGZ8ZW58MHx8MHx8fDA%3D"
+              alt="Play Today"
+              loading="lazy"
+            />
+            <div class="link-card-overlay"></div>
+            <div class="link-card-body">
+              <div class="lc-tag">Golf Course</div>
+              <div class="lc-title">Play Today</div>
+              <div class="lc-arrow">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </a>
+          <a
+            href="https://www.ancilhoffman.com/membersignup2026.html"
+            class="link-card"
+          >
+            <img
+              src="https://plus.unsplash.com/premium_photo-1679757670562-0e00c3863bd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGdvbGZ8ZW58MHx8MHx8fDA%3D"
+              alt="Membership"
+              loading="lazy"
+            />
+            <div class="link-card-overlay"></div>
+            <div class="link-card-body">
+              <div class="lc-tag">2026 Season</div>
+              <div class="lc-title">Club Membership</div>
+              <div class="lc-arrow">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </a>
+          <a
+            href="https://www.golfancilhoffman.com/tournaments-events/golf-tournament-packages"
+            class="link-card"
+          >
+            <img
+              src="https://media.istockphoto.com/id/2236313586/photo/happy-couple-of-golfers-using-smart-phone-on-the-course.webp?a=1&b=1&s=612x612&w=0&k=20&c=fmQTOboDCdWMhdgGOAQVzxQQXi57hxov1T-qZaaYKwc="
+              alt="Tournaments"
+              loading="lazy"
+            />
+            <div class="link-card-overlay"></div>
+            <div class="link-card-body">
+              <div class="lc-tag">Competition</div>
+              <div class="lc-title">Tournaments &amp; Events</div>
+              <div class="lc-arrow">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </a>
+          <a
+            href="https://www.golfancilhoffman.com/bar-grill"
+            class="link-card"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1591491640784-3232eb748d4b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGdvbGZ8ZW58MHx8MHx8fDA%3D"
+              alt="Bar and Grill"
+              loading="lazy"
+            />
+            <div class="link-card-overlay"></div>
+            <div class="link-card-body">
+              <div class="lc-tag">Dining</div>
+              <div class="lc-title">The Main Event Bar &amp; Grill</div>
+              <div class="lc-arrow">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEMBERSHIP -->
+    <section class="section" id="membership">
+      <div class="section-inner">
+        <div class="membership-grid">
+          <div class="membership-img fade-up">
+            <div class="membership-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1627307887011-8a5029b6adcb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGdvbGZ8ZW58MHx8MHx8fDA%3D"
+                alt="Golf course"
+                loading="lazy"
+              />
+            </div>
+            <div class="membership-badge">
+              <div class="mb-num">2026</div>
+              <div class="mb-text">Membership Open</div>
+            </div>
+          </div>
+          <div class="fade-up" style="transition-delay: 0.1s">
+            <p class="section-kicker">Why Join AHGC</p>
+            <h2 class="section-title">A Private Club<br />Experience</h2>
+            <p class="section-body">
+              The Ancil Hoffman Golf Club offers membership that makes you feel
+              like you are at a private club, with a packed calendar of
+              competitions, a transparent Tournament Index system, and a
+              genuinely welcoming community.
+            </p>
+            <div class="includes-list">
+              <div class="include-item">
+                <div class="include-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"
+                    />
+                  </svg>
+                </div>
+                <p>
+                  <strong>31 tournaments</strong> per year with both Gross and
+                  Net flights
+                </p>
+              </div>
+              <div class="include-item">
+                <div class="include-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"
+                    />
+                  </svg>
+                </div>
+                <p>
+                  Large fields of <strong>100+ players</strong> — active,
+                  competitive membership
+                </p>
+              </div>
+              <div class="include-item">
+                <div class="include-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                    />
+                  </svg>
+                </div>
+                <p>
+                  Tournament Index system —
+                  <strong>no handicap manipulation</strong> ("bagging")
+                </p>
+              </div>
+              <div class="include-item">
+                <div class="include-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"
+                    />
+                  </svg>
+                </div>
+                <p>
+                  4 quarterly member meetings with
+                  <strong>full dinner and drinks</strong>
+                </p>
+              </div>
+              <div class="include-item">
+                <div class="include-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                    />
+                  </svg>
+                </div>
+                <p>
+                  NCGA discounts, special offers, and
+                  <strong>host course for the Memorial Amateur</strong>
+                </p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap">
+              <a
+                href="https://www.ancilhoffman.com/membersignup2026.html"
+                class="btn-navy"
+                >Register for 2026</a
+              >
+              <a
+                href="https://www.ancilhoffman.com/News/Frequently%20Asked%20Questions%2003202025.pdf"
+                class="btn-outline"
+                >Read FAQ</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOURNAMENTS -->
+    <section class="section" id="tournaments">
+      <div class="section-inner">
+        <p class="section-kicker fade-up">Competition</p>
+        <h2 class="section-title fade-up">2026 Tournament Schedule</h2>
+        <p class="section-body fade-up">
+          Three tournament tracks run throughout the year. Find your format and
+          enter online. Full schedules with tee times and results available
+          below.
+        </p>
+        <div class="tournament-cols fade-up" style="transition-delay: 0.1s">
+          <!-- Weekend -->
+          <div class="tournament-col">
+            <div class="t-col-head">
+              <div class="t-col-dot"></div>
+              <h3>Weekend Tournaments</h3>
+              <span>Blue Tees</span>
+            </div>
+            <div class="t-entries">
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">25</div>
+                  <div class="mon">Apr</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">Individual Stroke — Spring Skins</div>
+                  <div class="t-links">
+                    <a
+                      href="https://golfhub.golfgenius.com/events/68821e14-5bf8-403a-8724-82fbf02779fe"
+                      >Entry</a
+                    >
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/1d2GIRgc3l9736VcpFlpvRVHbzK7KmEnfbNArUnMKMjI/edit"
+                      >Tee Times</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">21</div>
+                  <div class="mon">Mar</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">4-Ball (2 Man) Qualifier</div>
+                  <div class="t-links">
+                    <a
+                      href="https://golfhub.golfgenius.com/events/b4847e97-ee64-49e6-a49e-776624536a92"
+                      >Entry</a
+                    >
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/17tu-MgzDycFynELUVSSafOuivctkDmW5CRedUe6b2Us/edit"
+                      >Results</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">14-15</div>
+                  <div class="mon">Feb</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">NCGA 4-Man Zone Qualifier</div>
+                  <div class="t-links">
+                    <a
+                      href="https://golfhub.golfgenius.com/events/0924f377-5cde-41eb-8ee9-a83ad8128770"
+                      >Entry</a
+                    >
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/1HcY7_WzO1qWNPBdA7-41v-EgyAjvXliXp_qBWlEEM74/edit"
+                      >Results</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Thursday Midweek -->
+          <div class="tournament-col">
+            <div class="t-col-head">
+              <div class="t-col-dot"></div>
+              <h3>Thursday Midweek</h3>
+              <span>Combo Tees</span>
+            </div>
+            <div class="t-entries">
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">7</div>
+                  <div class="mon">May</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">Individual Stroke</div>
+                  <div class="t-links">
+                    <a
+                      href="https://golfhub.golfgenius.com/events/f025c16f-2c60-45bc-8933-ba9df501b243"
+                      >Entry</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">9</div>
+                  <div class="mon">Apr</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">Individual Stroke</div>
+                  <div class="t-links">
+                    <a
+                      href="https://golfhub.golfgenius.com/events/e165304f-ff65-4337-810a-c3144c68cdc0"
+                      >Entry</a
+                    >
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/1_sLLesOBQkiI1iDxduLxJ2kkVrK_A1mQM39D9ArFSlU/edit"
+                      >Results</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">12</div>
+                  <div class="mon">Mar</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">Two-Person Best Ball</div>
+                  <div class="t-links">
+                    <a
+                      href="https://golfhub.golfgenius.com/events/5aefb912-c3f7-46ae-a069-216dfa7e5e08"
+                      >Entry</a
+                    >
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/14M9QaXAEW3Paf1klubNyp1-aeD47CzPRHCg_eg7tJuo/edit"
+                      >Results</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Wednesday -->
+          <div class="tournament-col">
+            <div class="t-col-head">
+              <div class="t-col-dot"></div>
+              <h3>Wednesday Midweek</h3>
+              <span>White Tees</span>
+            </div>
+            <div class="t-entries">
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">22</div>
+                  <div class="mon">Apr</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">Individual Stroke Stableford</div>
+                  <div class="t-links">
+                    <a
+                      href="https://golfhub.golfgenius.com/events/9e64cd7a-4f89-46aa-8f94-88a48da84483"
+                      >Entry</a
+                    >
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/1blHnmkqPU8Pdwqa1xuVC1rOsD4vvyxPx6UgcPAfg1FA/edit"
+                      >Sign-Ups</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">25</div>
+                  <div class="mon">Mar</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">Individual Stroke</div>
+                  <div class="t-links">
+                    <a
+                      href="https://www.golfgenius.com/register?league_id=12522240695043378463"
+                      >Entry</a
+                    >
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/1bQWLsm4CBse_sncn0Nl288gGfsAfjtNr5qRApBjvf50/edit"
+                      >Results</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="t-entry">
+                <div class="t-date">
+                  <div class="day">25</div>
+                  <div class="mon">Feb</div>
+                </div>
+                <div class="t-info">
+                  <div class="t-name">Individual Stroke</div>
+                  <div class="t-links">
+                    <a
+                      href="https://golfhub.golfgenius.com/events/02f1fead-895a-437d-8729-e4402968b66e"
+                      >Entry</a
+                    >
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/1tiy4zvBKgGdsDfExSJ7tqDzZm1mpd-CKCA0uP4Wkj6I/edit"
+                      >Results</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap"
+          class="fade-up"
+        >
+          <a
+            href="https://www.ancilhoffman.com/schedules/weekend/2026/2026weekends.html"
+            class="btn-navy"
+            >Full Weekend Schedule</a
+          >
+          <a
+            href="https://docs.google.com/spreadsheets/d/1-r-N4VM9KNyPbhGaqTdx7pNB6dBZFGqo8fnnynlLBLI/edit"
+            class="btn-outline"
+            >Ancil Points Standings</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAMPIONS -->
+    <section id="champions">
+      <div class="champions-inner">
+        <div class="champ-header fade-up">
+          <div>
+            <p class="section-kicker">Hall of Winners</p>
+            <h2 class="section-title">2026 Club Champions</h2>
+          </div>
+          <a href="https://www.ancilhoffman.com/images/2026clubchamps.html"
+            >View All Champions →</a
+          >
+        </div>
+        <div class="champions-grid fade-up" style="transition-delay: 0.1s">
+          <div class="champ-card">
+            <div class="champ-title">Club Champion</div>
+            <div class="champ-name">Juan Gonzalez</div>
+          </div>
+          <div class="champ-card">
+            <div class="champ-title">Presidents Cup</div>
+            <div class="champ-name">Rosa Halvorsen</div>
+          </div>
+          <div class="champ-card">
+            <div class="champ-title">Putting Champion</div>
+            <div class="champ-name">Sean McFaul</div>
+          </div>
+          <div class="champ-card">
+            <div class="champ-title">Wayne Parcells Award</div>
+            <div class="champ-name">Robert Schultz</div>
+          </div>
+        </div>
+        <div
+          style="
+            margin-top: 14px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+          "
+        >
+          2025 Ancil Points Champion:
+          <span style="color: rgba(255, 255, 255, 0.7); font-weight: 500"
+            >Chris Aldridge</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section" id="events">
+      <div class="section-inner">
+        <div class="events-two-col">
+          <div>
+            <p class="section-kicker fade-up">Live Music & Entertainment</p>
+            <h2 class="section-title fade-up">Upcoming Events</h2>
+            <p class="section-body fade-up">
+              Friday nights on the patio at The Main Event Bar &amp; Grill come
+              alive with live music and entertainment. Open to members and the
+              public.
+            </p>
+            <div class="events-list fade-up" style="transition-delay: 0.1s">
+              <a
+                href="https://www.golfancilhoffman.com/entertainment/events-calendar/eventdetail/450//breaking-lead-led-zeppelin-tribute-band"
+                class="event-item"
+              >
+                <div class="event-date-box">
+                  <div class="em">May</div>
+                  <div class="ed">8</div>
+                </div>
+                <div class="event-info">
+                  <div class="en">Breaking Lead — Led Zeppelin Tribute</div>
+                  <div class="et">
+                    Friday · 6:00 PM – 8:00 PM · Main Event Patio
+                  </div>
+                </div>
+                <div class="event-arrow">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.golfancilhoffman.com/entertainment/events-calendar/eventdetail/445//tom-petty-tribute-band"
+                class="event-item"
+              >
+                <div class="event-date-box">
+                  <div class="em">Jun</div>
+                  <div class="ed">12</div>
+                </div>
+                <div class="event-info">
+                  <div class="en">Tom Petty Tribute Band</div>
+                  <div class="et">
+                    Friday · 6:00 PM – 8:00 PM · Main Event Patio
+                  </div>
+                </div>
+                <div class="event-arrow">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.golfancilhoffman.com/entertainment/events-calendar/eventdetail/453//hoffstock"
+                class="event-item"
+              >
+                <div class="event-date-box">
+                  <div class="em">Jul</div>
+                  <div class="ed">24</div>
+                </div>
+                <div class="event-info">
+                  <div class="en">HOFFSTOCK</div>
+                  <div class="et">
+                    Friday · 5:30 PM – 8:00 PM · Main Event Patio
+                  </div>
+                </div>
+                <div class="event-arrow">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.golfancilhoffman.com/entertainment/events-calendar/eventdetail/446//hipper-than-hip"
+                class="event-item"
+              >
+                <div class="event-date-box">
+                  <div class="em">Sep</div>
+                  <div class="ed">25</div>
+                </div>
+                <div class="event-info">
+                  <div class="en">Hipper Than Hip</div>
+                  <div class="et">
+                    Friday · 6:00 PM – 8:00 PM · Main Event Patio
+                  </div>
+                </div>
+                <div class="event-arrow">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.golfancilhoffman.com/entertainment/events-calendar/eventdetail/452//concert-bread-n-butter-band"
+                class="event-item"
+              >
+                <div class="event-date-box">
+                  <div class="em">Oct</div>
+                  <div class="ed">2</div>
+                </div>
+                <div class="event-info">
+                  <div class="en">Bread n Butter Band</div>
+                  <div class="et">
+                    Friday · 6:00 PM – 8:00 PM · Main Event Patio
+                  </div>
+                </div>
+                <div class="event-arrow">
+                  <svg
+                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
+            </div>
+            <div style="margin-top: 20px" class="fade-up">
+              <a
+                href="https://www.golfancilhoffman.com/entertainment/events-calendar"
+                class="btn-navy"
+                >Full Events Calendar</a
+              >
+            </div>
+          </div>
+          <div class="events-aside fade-up" style="transition-delay: 0.15s">
+            <div class="events-img">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/5e9d8c6d3308455c77e53afe/1587392814578-TZ79MKQHBP5H8A9QXZ3L/bar-grill.jpg?format=1500w"
+                alt="Main Event Bar and Grill"
+                loading="lazy"
+              />
+            </div>
+            <h3>The Main Event Bar &amp; Grill</h3>
+            <p>
+              Enjoy great food, cold drinks, and live music on the patio
+              overlooking the course. Open to the public — no membership
+              required to dine and enjoy the entertainment.
+            </p>
+            <a
+              href="https://www.golfancilhoffman.com/bar-grill/menus"
+              class="btn-outline"
+              >View Menus</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="section" id="newsletter">
+      <div class="section-inner">
+        <div class="newsletter-grid">
+          <div class="fade-up">
+            <p class="section-kicker">Stay Informed</p>
+            <h2 class="section-title">The Flagstick<br />Newsletter</h2>
+            <p class="section-body">
+              Read the latest news, tournament results, club updates, and member
+              spotlights in AHGC's official newsletter, published throughout the
+              year.
+            </p>
+            <a
+              href="https://www.ancilhoffman.com/flagstick/2026/Flagstick 3_1_Final.pdf"
+              class="btn-navy"
+              style="margin-bottom: 16px; display: inline-block"
+              >March 2026 Issue</a
+            >
+          </div>
+          <div class="fade-up" style="transition-delay: 0.1s">
+            <p
+              style="
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.2em;
+                color: var(--text-muted);
+                margin-bottom: 16px;
+              "
+            >
+              Archive
+            </p>
+            <div class="newsletter-archive">
+              <div class="nl-year">2026</div>
+              <div class="nl-row">
+                <a
+                  href="https://www.ancilhoffman.com/flagstick/2026/Flagstick 3_1_Final.pdf"
+                  class="nl-link"
+                  >March</a
+                >
+              </div>
+              <div class="nl-year">2025</div>
+              <div class="nl-row">
+                <a href="#" class="nl-link">September</a>
+                <a href="#" class="nl-link">December</a>
+                <a href="#" class="nl-link">June</a>
+                <a href="#" class="nl-link">March</a>
+              </div>
+              <div class="nl-year">2024</div>
+              <div class="nl-row">
+                <a href="#" class="nl-link">September</a>
+                <a href="#" class="nl-link">Extra Edition</a>
+                <a href="#" class="nl-link">May</a>
+                <a href="#" class="nl-link">February</a>
+              </div>
+              <div class="nl-year">2023</div>
+              <div class="nl-row">
+                <a href="#" class="nl-link">October</a>
+                <a href="#" class="nl-link">August</a>
+                <a href="#" class="nl-link">June</a>
+                <a href="#" class="nl-link">Valentine's</a>
+              </div>
+              <div class="nl-year">Older Issues (2008–2022)</div>
+              <div class="nl-row">
+                <a href="https://www.ancilhoffman.com/" class="nl-link"
+                  >View Full Archive</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div class="cta-band">
+      <div class="cta-band-inner">
+        <div class="fade-up">
+          <h2>
+            Ready to Join<br /><em style="font-style: italic; opacity: 0.8"
+              >the Club?</em
+            >
+          </h2>
+          <p>
+            Secure your 2026 membership and get access to 31 tournaments,
+            competitive match play, quarterly member dinners, and a community
+            that loves the game as much as you do.
+          </p>
+        </div>
+        <div class="cta-band-actions fade-up" style="transition-delay: 0.15s">
+          <a
+            href="https://www.ancilhoffman.com/membersignup2026.html"
+            class="btn-primary"
+            >Register for 2026</a
+          >
+          <a
+            href="https://ancilhoffman.totaleintegrated.net/web/tee-times"
+            class="btn-ghost-hero"
+            >Book Tee Time</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-inner">
+        <p class="section-kicker fade-up">Get In Touch</p>
+        <h2 class="section-title fade-up">We'd Love to Hear<br />From You</h2>
+        <div class="contact-grid">
+          <div class="contact-items fade-up" style="transition-delay: 0.1s">
+            <p
+              style="
+                font-size: 15px;
+                color: var(--text-muted);
+                line-height: 1.85;
+                margin-bottom: 8px;
+                font-weight: 300;
+              "
+            >
+              Questions about membership, tournament entry, or club activities?
+              Our staff will respond promptly.
+            </p>
+            <div class="ci">
+              <div class="ci-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <h4>Address</h4>
+                <p>6700 Tarshes Dr., Carmichael, CA 95608</p>
+              </div>
+            </div>
+            <div class="ci">
+              <div class="ci-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498A1 1 0 0121 19v1a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4>Pro Shop (Tee Times)</h4>
+                <a href="tel:9164823813">(916) 482-3813</a>
+              </div>
+            </div>
+            <div class="ci">
+              <div class="ci-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <h4>Directions</h4>
+                <a
+                  href="https://www.google.com/maps/place/Ancil+Hoffman+Golf+Course/@38.610771,-121.3101304,15z"
+                  target="_blank"
+                  >Get Directions on Google Maps</a
+                >
+              </div>
+            </div>
+            <div class="ci">
+              <div class="ci-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4>Mailing</h4>
+                <p>
+                  4005 Manzanita Ave, Ste 6 PMB 240<br />Carmichael, CA 95608
+                </p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 8px">
+              <a
+                href="https://www.facebook.com/p/American-River-Water-Polo-Club-100063782404181/"
+                target="_blank"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 7px;
+                  padding: 9px 16px;
+                  background: var(--navy-pale);
+                  border-radius: 8px;
+                  text-decoration: none;
+                  font-size: 12px;
+                  font-weight: 600;
+                  color: var(--navy);
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="var(--navy)"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                  />
+                </svg>
+                Facebook
+              </a>
+              <a
+                href="https://www.instagram.com/ancilhoffmangolfcourse/"
+                target="_blank"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 7px;
+                  padding: 9px 16px;
+                  background: var(--navy-pale);
+                  border-radius: 8px;
+                  text-decoration: none;
+                  font-size: 12px;
+                  font-weight: 600;
+                  color: var(--navy);
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--navy)"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="0.8"
+                    fill="var(--navy)"
+                    stroke="none"
+                  />
+                </svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+          <div class="contact-form fade-up" style="transition-delay: 0.2s">
+            <h3>Send Us a Message</h3>
+            <div class="form-row">
+              <div class="fg">
+                <label>First Name</label
+                ><input type="text" placeholder="Jane" />
+              </div>
+              <div class="fg">
+                <label>Last Name</label
+                ><input type="text" placeholder="Smith" />
+              </div>
+            </div>
+            <div class="fg">
+              <label>Email</label
+              ><input type="email" placeholder="jane@example.com" />
+            </div>
+            <div class="fg">
+              <label>Topic</label>
+              <select>
+                <option>Select a topic...</option>
+                <option>Membership Registration</option>
+                <option>Tournament Entry</option>
+                <option>Tee Times</option>
+                <option>Payments</option>
+                <option>General Enquiry</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>Message</label
+              ><textarea placeholder="How can we help?"></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn-navy"
+              style="
+                width: 100%;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+                padding: 14px;
+              "
+            >
+              Send Message
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="fb-name">Ancil Hoffman Golf Club</div>
+          <p>
+            Carmichael's premier golf club experience since 1965. Competitive
+            tournaments, a warm member community, and the sport we love.
+          </p>
+          <div class="social-links">
+            <a
+              href="https://www.facebook.com/pages/Ancil-Hoffman-Golf-Course/147078711998488"
+              class="social-link"
+              target="_blank"
+              aria-label="Facebook"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/ancilhoffmangolfcourse/"
+              class="social-link"
+              target="_blank"
+              aria-label="Instagram"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.6)"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="0.8"
+                  fill="rgba(255,255,255,0.6)"
+                  stroke="none"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Membership</h4>
+          <ul>
+            <li>
+              <a href="https://www.ancilhoffman.com/membersignup2026.html"
+                >Register for 2026</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.ancilhoffman.com/News/Frequently%20Asked%20Questions%2003202025.pdf"
+                >FAQ</a
+              >
+            </li>
+            <li>
+              <a href="https://www.ancilhoffman.com/board/2026/index.html"
+                >Board of Directors</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.ancilhoffman.com/bylaws/2025/2025-AHGC-ByLaws.pdf"
+                >Bylaws</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tournaments</h4>
+          <ul>
+            <li>
+              <a
+                href="https://www.ancilhoffman.com/schedules/weekend/2026/2026weekends.html"
+                >Weekend Schedule</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.ancilhoffman.com/schedules/midweek/2026/2026midweek.html"
+                >Thursday Midweek</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.ancilhoffman.com/schedules/wednesday/2026/2026wednesday.html"
+                >Wednesday</a
+              >
+            </li>
+            <li>
+              <a href="https://www.ancilhoffman.com/TournamentIndex-FAQ.html"
+                >Tournament Index</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.google.com/spreadsheets/d/1-r-N4VM9KNyPbhGaqTdx7pNB6dBZFGqo8fnnynlLBLI/edit"
+                >Points Standings</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Golf Course</h4>
+          <ul>
+            <li>
+              <a href="https://ancilhoffman.totaleintegrated.net/web/tee-times"
+                >Book Tee Time</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.golfancilhoffman.com/about-this-course/scorecard"
+                >Scorecard</a
+              >
+            </li>
+            <li>
+              <a href="https://www.golfancilhoffman.com/bar-grill"
+                >Bar &amp; Grill</a
+              >
+            </li>
+            <li>
+              <a href="https://www.golfancilhoffman.com/instruction"
+                >Instruction</a
+              >
+            </li>
+            <li>
+              <a href="https://www.golfancilhoffman.com/course-conditions"
+                >Course Conditions</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2026 Ancil Hoffman Golf Club · 6700 Tarshes Dr., Carmichael, CA
+          95608
+        </p>
+        <p>
+          <a
+            href="https://www.ancilhoffman.com/privacy.html"
+            style="color: rgba(255, 255, 255, 0.3); text-decoration: none"
+            >Privacy Policy</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // GLAD hide on scroll
+      const gladHeader = document.getElementById("glad-header");
+      const navbar = document.getElementById("navbar");
+      let lastY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              navbar.classList.add("glad-hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              navbar.classList.remove("glad-hidden");
+              gladVisible = true;
+            }
+          }
+          lastY = y;
+        },
+        { passive: true },
+      );
+
+      // Mobile menu
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+        menuBtn.classList.toggle("open");
+      });
+      document.querySelectorAll(".mob-link").forEach((l) =>
+        l.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          menuBtn.classList.remove("open");
+        }),
+      );
+
+      // Fade in
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".fade-up")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
