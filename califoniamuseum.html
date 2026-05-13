@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>California Agriculture Museum — Home of the Heidrick Tractor Collection</title>
+<meta name="description" content="The California Agriculture Museum is home to the nation's most unique collection of tractors and artifacts. Collecting since 1930. Founded in 1995." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ==========================================================
+     CALIFORNIA AGRICULTURE MUSEUM — Squarespace-safe styles
+     All classes prefixed with cam- to avoid Squarespace collisions.
+     All declarations use !important + #cam-root scope for specificity.
+     ========================================================== */
+
+  /* ---------- Tokens ---------- */
+  #cam-root {
+    --cam-blue-900: #1a3d5e;
+    --cam-blue-800: #225079;
+    --cam-blue-700: #2c6491;
+    --cam-blue-600: #3a78a8;
+    --cam-blue-100: #e3eef7;
+    --cam-blue-50:  #f1f7fc;
+    --cam-ink:    #1c2733;
+    --cam-ink-2:  #44525f;
+    --cam-paper:  #fbf8f2;
+    --cam-paper-2: #f3ede0;
+    --cam-line:   #d9c8a3;
+    --cam-shadow-sm: 0 1px 2px rgba(20,40,70,.06), 0 2px 6px rgba(20,40,70,.04);
+    --cam-shadow-md: 0 8px 24px rgba(20,40,70,.10);
+    --cam-shadow-lg: 0 24px 60px rgba(20,40,70,.18);
+    --cam-radius: 4px;
+    --cam-radius-lg: 12px;
+    --cam-font-display: 'Fraunces', 'Times New Roman', serif;
+    --cam-font-body: 'Manrope', system-ui, -apple-system, sans-serif;
+    --cam-glad-h: 56px;
+    --cam-nav-h: 74px;
+  }
+
+  /* ---------- Reset scoped to #cam-root ---------- */
+  #cam-root,
+  #cam-root *,
+  #cam-root *::before,
+  #cam-root *::after {
+    box-sizing: border-box !important;
+  }
+  #cam-root, #cam-topnav, #cam-glad-bar {
+    font-family: var(--cam-font-body) !important;
+    color: var(--cam-ink) !important;
+    line-height: 1.6 !important;
+    -webkit-font-smoothing: antialiased !important;
+  }
+  #cam-root img { max-width: 100% !important; display: block !important; }
+  #cam-root a { color: inherit !important; text-decoration: none !important; }
+  #cam-root button {
+    font-family: inherit !important;
+    cursor: pointer !important;
+    border: none !important;
+    background: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+  #cam-root h1, #cam-root h2, #cam-root h3, #cam-root h4, #cam-root h5, #cam-root h6,
+  #cam-root p, #cam-root ul, #cam-root ol, #cam-root li {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #cam-root ul { list-style: none !important; }
+  #cam-root .cam-section { margin: 0 !important; }
+
+  /* ---------- Buttons ---------- */
+  #cam-root .cam-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 14px 24px !important;
+    font-weight: 600 !important;
+    border-radius: var(--cam-radius) !important;
+    transition: all 0.25s ease !important;
+    text-transform: uppercase !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.08em !important;
+    font-family: var(--cam-font-body) !important;
+    border: none !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+  }
+  #cam-root .cam-btn-primary {
+    background: white !important;
+    color: var(--cam-blue-900) !important;
+    box-shadow: var(--cam-shadow-sm) !important;
+  }
+  #cam-root .cam-btn-primary:hover {
+    background: var(--cam-blue-100) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--cam-shadow-md) !important;
+  }
+  #cam-root .cam-btn-dark {
+    background: var(--cam-blue-700) !important;
+    color: white !important;
+  }
+  #cam-root .cam-btn-dark:hover {
+    background: var(--cam-blue-800) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--cam-shadow-md) !important;
+  }
+  #cam-root .cam-btn-arrow::after {
+    content: "→" !important;
+    font-size: 1.1em !important;
+    transition: transform 0.25s ease !important;
+  }
+  #cam-root .cam-btn-arrow:hover::after { transform: translateX(4px) !important; }
+
+  /* ---------- Per-section wrappers ---------- */
+  #cam-root .cam-hero-wrap     { max-width: 1200px !important; margin: 0 auto !important; padding: 0 24px !important; }
+  #cam-root .cam-alert-wrap    { max-width: 1080px !important; margin: 0 auto !important; padding: 20px 24px !important; }
+  #cam-root .cam-about-wrap    { max-width: 1100px !important; margin: 0 auto !important; padding: 0 24px !important; }
+  #cam-root .cam-features-wrap { max-width: 1180px !important; margin: 0 auto !important; padding: 0 24px !important; }
+  #cam-root .cam-donate-wrap   { max-width: 1080px !important; margin: 0 auto !important; padding: 0 24px !important; }
+  #cam-root .cam-contact-wrap  { max-width: 1080px !important; margin: 0 auto !important; padding: 0 24px !important; }
+  #cam-root .cam-partners-wrap { max-width: 960px  !important; margin: 0 auto !important; padding: 0 24px !important; }
+  #cam-root .cam-footer-wrap   { max-width: 1200px !important; margin: 0 auto !important; padding: 0 24px !important; }
+
+  /* ---------- GLAD top bar (positioned outside #cam-root scope but styled by ID) ---------- */
+  body #cam-glad-bar, html body #cam-glad-bar {
+    position: fixed !important;
+    top: 0 !important; left: 0 !important; right: 0 !important;
+    z-index: 9999 !important;
+    height: var(--cam-glad-h, 56px) !important;
+    background: white !important;
+    border-bottom: 1px solid #d9c8a3 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 24px !important;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05) !important;
+    transition: transform 0.35s ease, opacity 0.35s ease !important;
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    font-family: 'Manrope', system-ui, sans-serif !important;
+  }
+  body #cam-glad-bar.cam-hidden, html body #cam-glad-bar.cam-hidden {
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  #cam-glad-bar .cam-glad-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 32px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    position: relative !important;
+  }
+  #cam-glad-bar .cam-glad-logo {
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    flex-shrink: 0 !important;
+  }
+  #cam-glad-bar .cam-glad-logo img {
+    height: 34px !important;
+    width: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+  }
+  #cam-glad-bar .cam-glad-back {
+    position: absolute !important;
+    right: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    background: #1a3d5e !important;
+    color: white !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    padding: 8px 18px !important;
+    border-radius: 6px !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    transition: background 0.2s ease !important;
+  }
+  #cam-glad-bar .cam-glad-back:hover { background: #2c6491 !important; }
+  #cam-glad-bar .cam-glad-back svg {
+    width: 13px !important;
+    height: 13px !important;
+    stroke: white !important;
+    fill: none !important;
+    stroke-width: 2.2 !important;
+    flex-shrink: 0 !important;
+  }
+  @media (max-width: 520px) {
+    #cam-glad-bar .cam-glad-back .cam-btn-label { display: none !important; }
+    #cam-glad-bar .cam-glad-back { padding: 8px 12px !important; }
+    #cam-glad-bar .cam-glad-logo img { height: 28px !important; }
+  }
+
+  /* ---------- Top navigation ---------- */
+  body #cam-topnav, html body #cam-topnav {
+    position: fixed !important;
+    top: 56px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9998 !important;
+    background: rgba(44, 100, 145, 0.97) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    transition: top 0.35s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+    width: 100% !important;
+    height: 74px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    font-family: 'Manrope', system-ui, sans-serif !important;
+  }
+  body #cam-topnav.cam-glad-hidden, html body #cam-topnav.cam-glad-hidden { top: 0 !important; }
+  body #cam-topnav.cam-scrolled, html body #cam-topnav.cam-scrolled {
+    background: rgba(26, 61, 94, 0.98) !important;
+    box-shadow: 0 8px 24px rgba(20,40,70,.10) !important;
+  }
+
+  #cam-topnav .cam-topnav-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 18px 24px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    height: 74px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  #cam-topnav .cam-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    color: white !important;
+    font-family: 'Fraunces', serif !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+    letter-spacing: 0.01em !important;
+    text-decoration: none !important;
+  }
+  #cam-topnav .cam-brand-mark {
+    width: 38px !important;
+    height: 38px !important;
+    flex-shrink: 0 !important;
+  }
+  #cam-topnav .cam-brand-text {
+    line-height: 1.15 !important;
+    color: white !important;
+    font-family: 'Fraunces', serif !important;
+  }
+  #cam-topnav .cam-brand-text small {
+    display: block !important;
+    font-family: 'Manrope', sans-serif !important;
+    font-size: 0.7rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    opacity: 0.8 !important;
+    margin-top: 2px !important;
+    color: white !important;
+  }
+  #cam-topnav .cam-topnav-links {
+    display: flex !important;
+    align-items: center !important;
+    gap: 36px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #cam-topnav .cam-topnav-links li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #cam-topnav .cam-topnav-links li::before,
+  #cam-topnav .cam-topnav-links li::marker {
+    display: none !important;
+    content: none !important;
+  }
+  #cam-topnav .cam-topnav-links a {
+    color: rgba(255,255,255,0.85) !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em !important;
+    transition: color 0.2s ease !important;
+    position: relative !important;
+    text-decoration: none !important;
+    padding: 8px 0 !important;
+    display: inline-block !important;
+    font-family: 'Manrope', sans-serif !important;
+  }
+  #cam-topnav .cam-topnav-links a:hover { color: white !important; }
+  #cam-topnav .cam-topnav-links a:not(.cam-topnav-cta)::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: 2px !important;
+    left: 0 !important;
+    width: 0 !important;
+    height: 1.5px !important;
+    background: white !important;
+    transition: width 0.3s ease !important;
+  }
+  #cam-topnav .cam-topnav-links a:not(.cam-topnav-cta):hover::after { width: 100% !important; }
+  #cam-topnav .cam-topnav-links a.cam-topnav-cta {
+    background: white !important;
+    color: #1a3d5e !important;
+    padding: 10px 22px !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.1em !important;
+  }
+  #cam-topnav .cam-topnav-links a.cam-topnav-cta:hover {
+    background: #e3eef7 !important;
+    color: #1a3d5e !important;
+  }
+
+  /* ---------- Hamburger ---------- */
+  body #cam-menu-btn, html body #cam-menu-btn {
+    display: none !important;
+    width: 44px !important;
+    height: 44px !important;
+    color: white !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    text-transform: none !important;
+    font: inherit !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 105 !important;
+    position: relative !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+  #cam-menu-btn span {
+    display: block !important;
+    width: 24px !important;
+    height: 2px !important;
+    background: white !important;
+    margin: 3px auto !important;
+    border-radius: 2px !important;
+    transition: all 0.3s ease !important;
+    pointer-events: none !important;
+  }
+  #cam-menu-btn.cam-open span:nth-child(1) { transform: translateY(8px) rotate(45deg) !important; }
+  #cam-menu-btn.cam-open span:nth-child(2) { opacity: 0 !important; }
+  #cam-menu-btn.cam-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg) !important; }
+
+  /* ---------- Hero ---------- */
+  #cam-root .cam-hero {
+    position: relative !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    background: var(--cam-blue-700) !important;
+    color: white !important;
+    overflow: hidden !important;
+    padding: 196px 0 100px !important;
+    margin: 0 !important;
+  }
+  #cam-root .cam-hero-content {
+    position: relative !important;
+    z-index: 2 !important;
+    display: grid !important;
+    grid-template-columns: 1.3fr 1fr !important;
+    gap: 60px !important;
+    align-items: center !important;
+  }
+  #cam-root .cam-hero-title {
+    font-family: var(--cam-font-display) !important;
+    font-weight: 500 !important;
+    font-size: clamp(2.5rem, 6vw, 5rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 0 28px 0 !important;
+    color: white !important;
+    background: none !important;
+  }
+  #cam-root .cam-hero-title em {
+    font-style: italic !important;
+    color: white !important;
+    font-weight: 400 !important;
+    opacity: 0.7 !important;
+    background: none !important;
+  }
+  #cam-root .cam-hero-lede {
+    font-size: 1.15rem !important;
+    line-height: 1.65 !important;
+    color: rgba(255,255,255,0.85) !important;
+    max-width: 560px !important;
+    margin: 0 0 44px !important;
+  }
+  #cam-root .cam-hero-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+  #cam-root .cam-hero-visual {
+    position: relative !important;
+    aspect-ratio: 4/5 !important;
+    border-radius: var(--cam-radius-lg) !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 40px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+  #cam-root .cam-hero-tractor {
+    width: 100% !important;
+    color: white !important;
+    opacity: 0.9 !important;
+  }
+  #cam-root .cam-hero-meta {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: end !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: rgba(255,255,255,0.7) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding-top: 18px !important;
+  }
+  #cam-root .cam-hero-meta strong {
+    display: block !important;
+    font-family: var(--cam-font-display) !important;
+    font-size: 1.4rem !important;
+    font-weight: 500 !important;
+    color: white !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+    margin-top: 4px !important;
+  }
+
+  /* ---------- Alert banner ---------- */
+  #cam-root .cam-alert {
+    background: white !important;
+    border-top: 3px solid var(--cam-blue-700) !important;
+    border-bottom: 1px solid var(--cam-blue-100) !important;
+  }
+  #cam-root .cam-alert-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+  }
+  #cam-root .cam-alert-icon {
+    width: 44px !important;
+    height: 44px !important;
+    flex-shrink: 0 !important;
+    border-radius: 50% !important;
+    background: var(--cam-blue-700) !important;
+    color: white !important;
+    display: grid !important;
+    place-items: center !important;
+    font-family: var(--cam-font-display) !important;
+    font-style: italic !important;
+    font-weight: 600 !important;
+    font-size: 1.3rem !important;
+  }
+  #cam-root .cam-alert-text {
+    flex: 1 !important;
+    min-width: 280px !important;
+  }
+  #cam-root .cam-alert-text strong {
+    display: block !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: var(--cam-blue-700) !important;
+    margin-bottom: 4px !important;
+  }
+  #cam-root .cam-alert-text p {
+    color: var(--cam-ink) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+  }
+  #cam-root .cam-alert-text a {
+    color: var(--cam-blue-700) !important;
+    text-decoration: underline !important;
+  }
+
+  /* ---------- Section base ---------- */
+  #cam-root .cam-section { padding: 110px 0 !important; position: relative !important; }
+  #cam-root .cam-section-title {
+    font-family: var(--cam-font-display) !important;
+    font-weight: 500 !important;
+    font-size: clamp(2rem, 4vw, 3.4rem) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+    color: var(--cam-blue-900) !important;
+    margin: 0 0 24px 0 !important;
+  }
+  #cam-root .cam-section-title em {
+    font-style: italic !important;
+    color: var(--cam-blue-600) !important;
+    background: none !important;
+  }
+  #cam-root .cam-section-lede {
+    font-size: 1.08rem !important;
+    color: var(--cam-ink-2) !important;
+    line-height: 1.7 !important;
+    max-width: 640px !important;
+  }
+
+  /* ---------- About ---------- */
+  #cam-root .cam-about { background: var(--cam-paper) !important; }
+  #cam-root .cam-about-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 80px !important;
+    align-items: center !important;
+  }
+  #cam-root .cam-about-text p + p { margin-top: 18px !important; }
+  #cam-root .cam-about-text p {
+    color: var(--cam-ink-2) !important;
+    font-size: 1.05rem !important;
+    line-height: 1.75 !important;
+  }
+  #cam-root .cam-about-text .cam-first-line {
+    font-family: var(--cam-font-display) !important;
+    font-size: 1.5rem !important;
+    line-height: 1.4 !important;
+    color: var(--cam-blue-900) !important;
+    font-weight: 400 !important;
+    margin-bottom: 28px !important;
+    letter-spacing: -0.005em !important;
+  }
+  #cam-root .cam-about-card {
+    aspect-ratio: 4/5 !important;
+    border-radius: var(--cam-radius-lg) !important;
+    background: var(--cam-blue-800) !important;
+    color: white !important;
+    padding: 50px 44px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: var(--cam-shadow-lg) !important;
+  }
+  #cam-root .cam-about-quote {
+    font-family: var(--cam-font-display) !important;
+    font-style: italic !important;
+    font-size: 1.55rem !important;
+    line-height: 1.4 !important;
+    font-weight: 400 !important;
+    color: white !important;
+    margin: 0 !important;
+  }
+  #cam-root .cam-about-quote::before {
+    content: "\201C" !important;
+    font-size: 5rem !important;
+    line-height: 0.5 !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    display: block !important;
+    margin-bottom: 24px !important;
+  }
+  #cam-root .cam-about-byline {
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding-top: 22px !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  #cam-root .cam-about-byline strong {
+    display: block !important;
+    color: white !important;
+    font-family: var(--cam-font-display) !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+    margin-top: 6px !important;
+  }
+
+  /* ---------- Features ---------- */
+  #cam-root .cam-features {
+    background: var(--cam-blue-50) !important;
+    border-top: 1px solid var(--cam-blue-100) !important;
+    border-bottom: 1px solid var(--cam-blue-100) !important;
+  }
+  #cam-root .cam-features-header {
+    text-align: center !important;
+    margin-bottom: 70px !important;
+    padding: 0 20px !important;
+  }
+  #cam-root .cam-features-header .cam-section-lede { margin: 16px auto 0 !important; }
+  #cam-root .cam-features-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 28px !important;
+  }
+  #cam-root .cam-feature {
+    background: white !important;
+    border-radius: var(--cam-radius-lg) !important;
+    padding: 40px 36px !important;
+    border: 1px solid var(--cam-blue-100) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    position: relative !important;
+  }
+  #cam-root .cam-feature:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: var(--cam-shadow-lg) !important;
+    border-color: var(--cam-blue-600) !important;
+  }
+  #cam-root .cam-feature-icon {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50% !important;
+    background: var(--cam-blue-50) !important;
+    color: var(--cam-blue-700) !important;
+    display: grid !important;
+    place-items: center !important;
+    margin-bottom: 24px !important;
+    transition: background 0.3s ease, color 0.3s ease !important;
+  }
+  #cam-root .cam-feature:hover .cam-feature-icon {
+    background: var(--cam-blue-700) !important;
+    color: white !important;
+  }
+  #cam-root .cam-feature h3 {
+    font-family: var(--cam-font-display) !important;
+    font-weight: 500 !important;
+    font-size: 1.4rem !important;
+    color: var(--cam-blue-900) !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.01em !important;
+  }
+  #cam-root .cam-feature p {
+    color: var(--cam-ink-2) !important;
+    line-height: 1.65 !important;
+    font-size: 0.97rem !important;
+  }
+
+  /* ---------- Donate ---------- */
+  #cam-root .cam-donate { background: var(--cam-paper) !important; }
+  #cam-root .cam-donate-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1.1fr !important;
+    gap: 70px !important;
+    align-items: start !important;
+  }
+  #cam-root .cam-donate-info p {
+    color: var(--cam-ink-2) !important;
+    line-height: 1.75 !important;
+    margin-bottom: 16px !important;
+    font-size: 1.02rem !important;
+  }
+  #cam-root .cam-donate-perks {
+    list-style: none !important;
+    margin-top: 32px !important;
+    border-top: 1px solid var(--cam-line) !important;
+    padding-top: 24px !important;
+  }
+  #cam-root .cam-donate-perks li {
+    display: flex !important;
+    gap: 16px !important;
+    padding: 14px 0 !important;
+    border-bottom: 1px solid var(--cam-line) !important;
+    align-items: center !important;
+  }
+  #cam-root .cam-donate-perks li::before {
+    content: "→" !important;
+    color: var(--cam-blue-700) !important;
+    font-size: 1.1rem !important;
+    flex-shrink: 0 !important;
+  }
+  #cam-root .cam-donate-perks li span {
+    font-size: 0.96rem !important;
+    color: var(--cam-ink) !important;
+  }
+  #cam-root .cam-donate-card {
+    background: white !important;
+    border-radius: var(--cam-radius-lg) !important;
+    padding: 44px 40px !important;
+    box-shadow: var(--cam-shadow-lg) !important;
+    border: 1px solid var(--cam-line) !important;
+    position: relative !important;
+  }
+  #cam-root .cam-donate-tag {
+    position: absolute !important;
+    top: -12px !important;
+    left: 40px !important;
+    background: var(--cam-blue-700) !important;
+    color: white !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    padding: 6px 14px !important;
+    border-radius: 3px !important;
+  }
+  #cam-root .cam-donate-card h3 {
+    font-family: var(--cam-font-display) !important;
+    font-weight: 500 !important;
+    font-size: 1.8rem !important;
+    color: var(--cam-blue-900) !important;
+    margin-bottom: 8px !important;
+    letter-spacing: -0.01em !important;
+  }
+  #cam-root .cam-donate-subtitle {
+    color: var(--cam-ink-2) !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 28px !important;
+  }
+  #cam-root .cam-amount-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+    margin-bottom: 18px !important;
+  }
+  #cam-root .cam-amount-btn {
+    padding: 14px 8px !important;
+    border: 1.5px solid var(--cam-line) !important;
+    background: var(--cam-paper) !important;
+    color: var(--cam-ink) !important;
+    border-radius: var(--cam-radius) !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    transition: all 0.2s ease !important;
+    font-family: var(--cam-font-display) !important;
+    cursor: pointer !important;
+  }
+  #cam-root .cam-amount-btn:hover {
+    border-color: var(--cam-blue-700) !important;
+    color: var(--cam-blue-700) !important;
+  }
+  #cam-root .cam-amount-btn.cam-active {
+    background: var(--cam-blue-700) !important;
+    color: white !important;
+    border-color: var(--cam-blue-700) !important;
+  }
+  #cam-root .cam-form-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    margin-bottom: 12px !important;
+  }
+  #cam-root .cam-form-field { margin-bottom: 12px !important; }
+  #cam-root .cam-form-field label {
+    display: block !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--cam-ink-2) !important;
+    margin-bottom: 6px !important;
+    font-weight: 600 !important;
+  }
+  #cam-root .cam-form-field input,
+  #cam-root .cam-form-field textarea,
+  #cam-root .cam-form-field select {
+    width: 100% !important;
+    padding: 12px 14px !important;
+    border: 1.5px solid var(--cam-line) !important;
+    border-radius: var(--cam-radius) !important;
+    background: var(--cam-paper) !important;
+    font-family: inherit !important;
+    font-size: 0.97rem !important;
+    color: var(--cam-ink) !important;
+    transition: border-color 0.2s ease !important;
+  }
+  #cam-root .cam-form-field input:focus,
+  #cam-root .cam-form-field textarea:focus,
+  #cam-root .cam-form-field select:focus {
+    outline: none !important;
+    border-color: var(--cam-blue-700) !important;
+    background: white !important;
+  }
+  #cam-root .cam-input-amount { position: relative !important; }
+  #cam-root .cam-input-amount::before {
+    content: "$" !important;
+    position: absolute !important;
+    left: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: var(--cam-ink-2) !important;
+    font-weight: 600 !important;
+    pointer-events: none !important;
+  }
+  #cam-root .cam-input-amount input { padding-left: 28px !important; }
+  #cam-root .cam-submit {
+    width: 100% !important;
+    padding: 16px !important;
+    margin-top: 8px !important;
+    background: var(--cam-blue-700) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    border-radius: var(--cam-radius) !important;
+    transition: all 0.25s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-family: var(--cam-font-body) !important;
+  }
+  #cam-root .cam-submit:hover {
+    background: var(--cam-blue-900) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--cam-shadow-md) !important;
+  }
+  #cam-root .cam-secure-note {
+    text-align: center !important;
+    margin-top: 14px !important;
+    font-size: 0.78rem !important;
+    color: var(--cam-ink-2) !important;
+  }
+
+  /* ---------- Contact ---------- */
+  #cam-root .cam-contact {
+    background: var(--cam-blue-900) !important;
+    color: white !important;
+  }
+  #cam-root .cam-contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 80px !important;
+    align-items: start !important;
+  }
+  #cam-root .cam-contact h2.cam-section-title { color: white !important; }
+  #cam-root .cam-contact h2.cam-section-title em { color: white !important; opacity: 0.65 !important; }
+  #cam-root .cam-contact-lede {
+    color: rgba(255,255,255,0.8) !important;
+    font-size: 1.08rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 36px !important;
+  }
+  #cam-root .cam-contact-methods { list-style: none !important; }
+  #cam-root .cam-contact-method {
+    display: flex !important;
+    gap: 22px !important;
+    padding: 24px 0 !important;
+    border-top: 1px solid rgba(255,255,255,0.12) !important;
+    align-items: flex-start !important;
+  }
+  #cam-root .cam-contact-method:last-child { border-bottom: 1px solid rgba(255,255,255,0.12) !important; }
+  #cam-root .cam-contact-icon {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: white !important;
+    display: grid !important;
+    place-items: center !important;
+    flex-shrink: 0 !important;
+  }
+  #cam-root .cam-contact-text strong {
+    display: block !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin-bottom: 6px !important;
+    font-weight: 600 !important;
+  }
+  #cam-root .cam-contact-text a,
+  #cam-root .cam-contact-text p {
+    color: white !important;
+    font-family: var(--cam-font-display) !important;
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    transition: color 0.2s ease !important;
+  }
+  #cam-root .cam-contact-text a:hover { color: rgba(255, 255, 255, 0.7) !important; }
+  #cam-root .cam-contact-text small {
+    display: block !important;
+    font-family: var(--cam-font-body) !important;
+    color: rgba(255,255,255,0.6) !important;
+    font-size: 0.88rem !important;
+    margin-top: 4px !important;
+    font-weight: 400 !important;
+  }
+  #cam-root .cam-contact-form {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: var(--cam-radius-lg) !important;
+    padding: 40px !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+  #cam-root .cam-contact-form h3 {
+    font-family: var(--cam-font-display) !important;
+    font-weight: 500 !important;
+    font-size: 1.4rem !important;
+    margin-bottom: 8px !important;
+    color: white !important;
+  }
+  #cam-root .cam-contact-form > p {
+    color: rgba(255,255,255,0.7) !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 28px !important;
+  }
+  #cam-root .cam-contact-form .cam-form-field label { color: rgba(255,255,255,0.6) !important; }
+  #cam-root .cam-contact-form input,
+  #cam-root .cam-contact-form textarea,
+  #cam-root .cam-contact-form select {
+    border: 1.5px solid rgba(255,255,255,0.15) !important;
+    background: rgba(255,255,255,0.04) !important;
+    color: white !important;
+  }
+  #cam-root .cam-contact-form input::placeholder,
+  #cam-root .cam-contact-form textarea::placeholder { color: rgba(255,255,255,0.4) !important; }
+  #cam-root .cam-contact-form input:focus,
+  #cam-root .cam-contact-form textarea:focus,
+  #cam-root .cam-contact-form select:focus {
+    border-color: white !important;
+    background: rgba(255,255,255,0.08) !important;
+  }
+  #cam-root .cam-contact-form textarea {
+    resize: vertical !important;
+    min-height: 110px !important;
+    font-family: inherit !important;
+  }
+  #cam-root .cam-contact-form .cam-submit {
+    background: white !important;
+    color: var(--cam-blue-900) !important;
+  }
+  #cam-root .cam-contact-form .cam-submit:hover {
+    background: var(--cam-blue-100) !important;
+    color: var(--cam-blue-900) !important;
+  }
+
+  /* ---------- Partners ---------- */
+  #cam-root .cam-partners {
+    background: var(--cam-paper-2) !important;
+    padding: 70px 0 !important;
+    border-top: 1px solid var(--cam-line) !important;
+  }
+  #cam-root .cam-partners-label {
+    text-align: center !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.18em !important;
+    color: var(--cam-ink-2) !important;
+    margin-bottom: 32px !important;
+    font-weight: 600 !important;
+  }
+  #cam-root .cam-partners-row {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 60px !important;
+  }
+  #cam-root .cam-partner {
+    font-family: var(--cam-font-display) !important;
+    font-weight: 500 !important;
+    font-size: 1.05rem !important;
+    color: var(--cam-blue-900) !important;
+    letter-spacing: 0.02em !important;
+    opacity: 0.7 !important;
+    transition: opacity 0.25s ease !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+  }
+  #cam-root .cam-partner:hover { opacity: 1 !important; }
+  #cam-root .cam-partner small {
+    display: block !important;
+    font-family: var(--cam-font-body) !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: var(--cam-ink-2) !important;
+    margin-top: 4px !important;
+    font-weight: 500 !important;
+  }
+
+  /* ---------- Footer ---------- */
+  #cam-root .cam-footer {
+    background: #0e2538 !important;
+    color: rgba(255,255,255,0.7) !important;
+    padding: 70px 0 30px !important;
+    font-size: 0.93rem !important;
+  }
+  #cam-root .cam-footer-grid {
+    display: grid !important;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr !important;
+    gap: 50px !important;
+    padding-bottom: 50px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  }
+  #cam-root .cam-footer-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    margin-bottom: 18px !important;
+  }
+  #cam-root .cam-footer-brand .cam-brand-text {
+    color: white !important;
+    font-family: var(--cam-font-display) !important;
+    font-weight: 500 !important;
+    font-size: 1.15rem !important;
+  }
+  #cam-root .cam-footer-col p {
+    line-height: 1.7 !important;
+    max-width: 340px !important;
+    color: rgba(255,255,255,0.7) !important;
+  }
+  #cam-root .cam-footer-col h4 {
+    font-family: var(--cam-font-display) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    color: white !important;
+    margin-bottom: 16px !important;
+  }
+  #cam-root .cam-footer-col ul { list-style: none !important; }
+  #cam-root .cam-footer-col li { padding: 6px 0 !important; }
+  #cam-root .cam-footer-col a {
+    color: rgba(255,255,255,0.7) !important;
+    text-decoration: none !important;
+  }
+  #cam-root .cam-footer-col a:hover { color: white !important; }
+  #cam-root .cam-socials {
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 20px !important;
+  }
+  #cam-root .cam-social {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    display: grid !important;
+    place-items: center !important;
+    color: rgba(255,255,255,0.7) !important;
+    transition: all 0.25s ease !important;
+  }
+  #cam-root .cam-social:hover {
+    background: white !important;
+    color: var(--cam-blue-900) !important;
+    border-color: white !important;
+  }
+  #cam-root .cam-footer-bottom {
+    padding-top: 28px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+    font-size: 0.85rem !important;
+    color: rgba(255,255,255,0.5) !important;
+  }
+  #cam-root .cam-footer-bottom span { color: rgba(255,255,255,0.5) !important; }
+
+  /* ---------- Reveal animation ---------- */
+  #cam-root .cam-reveal {
+    opacity: 0 !important;
+    transform: translateY(24px) !important;
+    transition: opacity 0.9s ease, transform 0.9s ease !important;
+  }
+  #cam-root .cam-reveal.cam-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1100px) {
+    #cam-root .cam-hero-content { grid-template-columns: 1fr !important; gap: 50px !important; }
+    #cam-root .cam-hero { padding: 186px 0 80px !important; min-height: auto !important; }
+    #cam-root .cam-about-grid,
+    #cam-root .cam-donate-grid,
+    #cam-root .cam-contact-grid { grid-template-columns: 1fr !important; gap: 50px !important; }
+    #cam-root .cam-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    #cam-root .cam-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
+    #cam-root .cam-section { padding: 80px 0 !important; }
+
+    body #cam-menu-btn,
+    html body #cam-menu-btn { display: flex !important; }
+
+    #cam-topnav .cam-topnav-links {
+      position: fixed !important;
+      top: calc(56px + 74px) !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      background: #1a3d5e !important;
+      padding: 48px 36px 40px !important;
+      gap: 0 !important;
+      transform: translateX(100%) !important;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      height: calc(100vh - 56px - 74px) !important;
+      overflow-y: auto !important;
+      box-shadow: -20px 0 60px rgba(0,0,0,0.3) !important;
+    }
+    #cam-topnav.cam-glad-hidden .cam-topnav-links {
+      top: 74px !important;
+      height: calc(100vh - 74px) !important;
+    }
+    #cam-topnav .cam-topnav-links.cam-open { transform: translateX(0) !important; }
+
+    #cam-topnav .cam-topnav-links::before {
+      content: "Menu" !important;
+      display: block !important;
+      font-family: 'Manrope', sans-serif !important;
+      font-size: 0.7rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.22em !important;
+      text-transform: uppercase !important;
+      color: rgba(255,255,255,0.4) !important;
+      margin-bottom: 20px !important;
+      padding-bottom: 18px !important;
+      border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    #cam-topnav .cam-topnav-links li { width: 100% !important; }
+    #cam-topnav .cam-topnav-links a:not(.cam-topnav-cta) {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 18px 0 !important;
+      width: 100% !important;
+      border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+      font-family: 'Fraunces', serif !important;
+      font-size: 1.5rem !important;
+      font-weight: 500 !important;
+      color: white !important;
+      letter-spacing: -0.005em !important;
+      transition: color 0.2s ease, padding-left 0.25s ease !important;
+    }
+    #cam-topnav .cam-topnav-links a:not(.cam-topnav-cta)::after {
+      content: "→" !important;
+      position: static !important;
+      font-family: 'Manrope', sans-serif !important;
+      font-size: 1rem !important;
+      color: rgba(255,255,255,0.3) !important;
+      transition: color 0.2s ease, transform 0.2s ease !important;
+      background: none !important;
+      width: auto !important;
+      height: auto !important;
+    }
+    #cam-topnav .cam-topnav-links a:not(.cam-topnav-cta):hover {
+      color: white !important;
+      padding-left: 12px !important;
+    }
+    #cam-topnav .cam-topnav-links a:not(.cam-topnav-cta):hover::after {
+      color: white !important;
+      transform: translateX(4px) !important;
+      width: auto !important;
+    }
+    #cam-topnav .cam-topnav-links a.cam-topnav-cta {
+      margin-top: 32px !important;
+      padding: 16px 24px !important;
+      background: white !important;
+      color: #1a3d5e !important;
+      border-radius: 4px !important;
+      text-align: center !important;
+      justify-content: center !important;
+      font-family: 'Manrope', sans-serif !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.1em !important;
+      text-transform: uppercase !important;
+      display: block !important;
+    }
+    #cam-topnav .cam-topnav-links a.cam-topnav-cta:hover {
+      background: #e3eef7 !important;
+      color: #1a3d5e !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #cam-root .cam-hero-wrap,
+    #cam-root .cam-alert-wrap,
+    #cam-root .cam-about-wrap,
+    #cam-root .cam-features-wrap,
+    #cam-root .cam-donate-wrap,
+    #cam-root .cam-contact-wrap,
+    #cam-root .cam-partners-wrap,
+    #cam-root .cam-footer-wrap {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    #cam-root .cam-features-grid { grid-template-columns: 1fr !important; }
+    #cam-root .cam-footer-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+    #cam-root .cam-form-row { grid-template-columns: 1fr !important; }
+    #cam-root .cam-amount-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    #cam-root .cam-donate-card,
+    #cam-root .cam-contact-form { padding: 32px 24px !important; }
+    #cam-root .cam-hero-visual { padding: 30px !important; }
+    #cam-topnav .cam-topnav-inner { padding: 16px 20px !important; }
+    #cam-topnav .cam-brand-text { font-size: 0.95rem !important; }
+    #cam-topnav .cam-brand-text small { font-size: 0.62rem !important; }
+  }
+
+  /* ---------- Squarespace defensive overrides ---------- */
+  .sqs-block-html, .sqs-block-content, .sqs-html-content,
+  .sqs-block-code, .code-block { overflow: visible !important; }
+</style>
+</head>
+<body>
+
+<!-- ============ GLAD TOP BAR ============ -->
+<div id="cam-glad-bar">
+  <div class="cam-glad-inner">
+    <a href="https://www.gladtech.io/" class="cam-glad-logo" aria-label="GLAD Technology">
+      <img src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w" alt="GLAD Technology Digital Services" />
+    </a>
+    <a href="https://www.gladtech.io/" class="cam-glad-back">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="cam-btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</div>
+
+<!-- ============ TOP NAVIGATION ============ -->
+<div id="cam-topnav">
+  <div class="cam-topnav-inner">
+    <a href="#cam-top" class="cam-brand">
+      <svg class="cam-brand-mark" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="22" y="14" width="20" height="14" rx="1.5" stroke="white" stroke-width="2"/>
+        <path d="M22 22 H42" stroke="white" stroke-width="2"/>
+        <path d="M14 36 H46" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="20" cy="42" r="7" stroke="white" stroke-width="2"/>
+        <circle cx="42" cy="42" r="5" stroke="white" stroke-width="2"/>
+        <path d="M22 14 V10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="cam-brand-text">
+        California Agriculture Museum
+        <small>Heidrick Tractor Collection</small>
+      </span>
+    </a>
+    <button id="cam-menu-btn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="cam-topnav-links" id="cam-topnav-links">
+      <li><a href="#cam-about">About</a></li>
+      <li><a href="#cam-collection">Collection</a></li>
+      <li><a href="#cam-donate">Donate</a></li>
+      <li><a href="#cam-contact">Visit &amp; Contact</a></li>
+      <li><a href="#cam-donate" class="cam-topnav-cta">Support Us</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="cam-root">
+
+<!-- ============ HERO ============ -->
+<div class="cam-hero" id="cam-top">
+  <div class="cam-hero-wrap cam-hero-content">
+    <div class="cam-reveal">
+      <h1 class="cam-hero-title">The story of California, told through <em>iron and earth.</em></h1>
+      <p class="cam-hero-lede">Home to the nation's most unique collection of tractors, harvesters and agricultural artifacts — tracing the journey from horse-drawn beginnings to modern fuel-powered machines.</p>
+      <div class="cam-hero-actions">
+        <a href="#cam-donate" class="cam-btn cam-btn-primary cam-btn-arrow">Donate to the Museum</a>
+      </div>
+    </div>
+    <div class="cam-hero-visual cam-reveal" style="transition-delay: 0.15s;">
+      <svg class="cam-hero-tractor" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M90 50 L90 95 L150 95 L150 65 L130 50 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+        <line x1="100" y1="60" x2="125" y2="60" stroke="currentColor" stroke-width="2"/>
+        <line x1="100" y1="75" x2="140" y2="75" stroke="currentColor" stroke-width="2"/>
+        <path d="M50 95 L190 95 L190 130 L50 130 Z" stroke="currentColor" stroke-width="2.5"/>
+        <line x1="60" y1="105" x2="80" y2="105" stroke="currentColor" stroke-width="2"/>
+        <line x1="60" y1="115" x2="80" y2="115" stroke="currentColor" stroke-width="2"/>
+        <line x1="105" y1="50" x2="105" y2="30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="60" cy="150" r="20" stroke="currentColor" stroke-width="2.5"/>
+        <circle cx="60" cy="150" r="8" stroke="currentColor" stroke-width="2"/>
+        <circle cx="170" cy="150" r="32" stroke="currentColor" stroke-width="2.5"/>
+        <circle cx="170" cy="150" r="14" stroke="currentColor" stroke-width="2"/>
+        <line x1="170" y1="118" x2="170" y2="182" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="138" y1="150" x2="202" y2="150" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="148" y1="128" x2="192" y2="172" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="148" y1="172" x2="192" y2="128" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <div class="cam-hero-meta">
+        <div>Featured Specimen<strong>Caterpillar Sixty</strong></div>
+        <div style="text-align: right;">Est.<strong>1925</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RELOCATION ALERT ============ -->
+<div class="cam-alert" role="status">
+  <div class="cam-alert-wrap">
+    <div class="cam-alert-icon">i</div>
+    <div class="cam-alert-text">
+      <strong>Relocation Notice</strong>
+      <p>The Museum is currently closed to the public while preparing a new permanent home. Private appointment-based showings are available — <a href="#cam-contact">contact us</a> to arrange a viewing.</p>
+    </div>
+    <a href="#cam-contact" class="cam-btn cam-btn-dark cam-btn-arrow">Book Appointment</a>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="cam-section cam-about" id="cam-about">
+  <div class="cam-about-wrap">
+    <div class="cam-about-grid">
+      <div class="cam-about-text cam-reveal">
+        <h2 class="cam-section-title">Preserving the machines that <em>built California.</em></h2>
+        <p class="cam-first-line">From horse-drawn ploughs to steam-driven giants and the fuel-powered workhorses of modern agriculture — every gallery winds visitors through a chapter of the state's story.</p>
+        <p>The California Agriculture Museum is home to the nation's most unique collection of tractors and artifacts. Interactive exhibits and special events tell the history of farm to fork, dating back to the Gold Rush era.</p>
+        <p>Hear local storytellers boast of how California food producers did things bigger and better — through harvesters, wheel and crawler track-type tractors, combines, trucks, and a sweeping art and photo gallery.</p>
+        <a href="#cam-donate" class="cam-btn cam-btn-dark cam-btn-arrow" style="margin-top: 32px;">Help Us Continue</a>
+      </div>
+      <div class="cam-about-card cam-reveal" style="transition-delay: 0.15s;">
+        <p class="cam-about-quote">We house the rarest collection of tractors in the world — and we're determined to share it with the community and future generations.</p>
+        <div class="cam-about-byline">From the<strong>Board of Directors</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FEATURES ============ -->
+<div class="cam-section cam-features" id="cam-collection">
+  <div class="cam-features-wrap">
+    <div class="cam-features-header cam-reveal">
+      <h2 class="cam-section-title">Three threads, one <em>extraordinary</em> story.</h2>
+      <p class="cam-section-lede">From rare iron giants to interactive farm-to-fork exhibits, the museum offers something for every visitor — whether you're a school group, a researcher, or a curious traveler.</p>
+    </div>
+    <div class="cam-features-grid">
+      <div class="cam-feature cam-reveal">
+        <div class="cam-feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="6" width="12" height="9" rx="1"/>
+            <circle cx="9" cy="18" r="3"/>
+            <circle cx="17" cy="18" r="2"/>
+            <path d="M3 18h3"/><path d="M12 18h3"/>
+          </svg>
+        </div>
+        <h3>The Tractor Collection</h3>
+        <p>The rarest assembly of tractors in the world — wheel and crawler track-type machines, combines, harvesters, and historic trucks lining the museum's signature corridors.</p>
+      </div>
+      <div class="cam-feature cam-reveal" style="transition-delay: 0.1s;">
+        <div class="cam-feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3>Interactive Exhibits</h3>
+        <p>Step through the farm-to-fork timeline from the Gold Rush era forward. Hear local storytellers share how California food producers did things bigger, bolder, and better.</p>
+      </div>
+      <div class="cam-feature cam-reveal" style="transition-delay: 0.2s;">
+        <div class="cam-feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21v-9a9 9 0 0 1 18 0v9"/>
+            <path d="M3 21h18"/><path d="M9 21v-5"/><path d="M15 21v-5"/>
+          </svg>
+        </div>
+        <h3>Tours &amp; Field Trips</h3>
+        <p>Volunteer-led guided tours for groups and schools, designed to protect, preserve, and educate about early California agriculture and the artifacts that shaped a state.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DONATE ============ -->
+<div class="cam-section cam-donate" id="cam-donate">
+  <div class="cam-donate-wrap">
+    <div class="cam-donate-grid">
+      <div class="cam-donate-info cam-reveal">
+        <h2 class="cam-section-title">Help us write the <em>next chapter.</em></h2>
+        <p>The California Agriculture Museum is a privately funded 501(c)(3) non-profit. Your support keeps the doors open, the collection preserved, and the educational programming alive.</p>
+        <p>Every year, thousands of visitors — some traveling from as far as New Zealand and Germany — leave with a new perspective on California's agricultural heritage. That doesn't happen without you.</p>
+        <ul class="cam-donate-perks">
+          <li><span>Preserve and protect the rarest tractor collection in the world</span></li>
+          <li><span>Fund educational programming and school field trips</span></li>
+          <li><span>Support the Museum's relocation to its new permanent home</span></li>
+          <li><span>Help us welcome thousands of visitors each year</span></li>
+        </ul>
+      </div>
+      <form class="cam-donate-card cam-reveal" style="transition-delay: 0.15s;" onsubmit="event.preventDefault(); alert('Thank you for your donation! This is a demo form.');">
+        <span class="cam-donate-tag">Donate Now</span>
+        <h3>Make a Difference</h3>
+        <p class="cam-donate-subtitle">Every contribution, large or small, helps preserve California's agricultural legacy.</p>
+        <label style="display:block; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--cam-ink-2); margin-bottom:8px; font-weight:600;">Choose an amount</label>
+        <div class="cam-amount-grid">
+          <button type="button" class="cam-amount-btn" data-amount="25">$25</button>
+          <button type="button" class="cam-amount-btn cam-active" data-amount="50">$50</button>
+          <button type="button" class="cam-amount-btn" data-amount="100">$100</button>
+          <button type="button" class="cam-amount-btn" data-amount="250">$250</button>
+        </div>
+        <div class="cam-form-field cam-input-amount">
+          <label for="cam-custom-amount">Or enter custom amount</label>
+          <input type="number" id="cam-custom-amount" placeholder="Other amount" min="1" />
+        </div>
+        <div class="cam-form-row">
+          <div class="cam-form-field">
+            <label for="cam-first-name">First Name</label>
+            <input type="text" id="cam-first-name" required />
+          </div>
+          <div class="cam-form-field">
+            <label for="cam-last-name">Last Name</label>
+            <input type="text" id="cam-last-name" required />
+          </div>
+        </div>
+        <div class="cam-form-field">
+          <label for="cam-email">Email Address</label>
+          <input type="email" id="cam-email" required />
+        </div>
+        <div class="cam-form-field">
+          <label for="cam-dedication">Donate in the Name Of <small style="text-transform:none; letter-spacing:0; opacity:0.6;">(Optional)</small></label>
+          <input type="text" id="cam-dedication" />
+        </div>
+        <button type="submit" class="cam-submit" id="cam-donate-submit">Donate $50 Now →</button>
+        <p class="cam-secure-note">🔒 Secure donation · Tax-deductible · 501(c)(3)</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="cam-section cam-contact" id="cam-contact">
+  <div class="cam-contact-wrap">
+    <div class="cam-contact-grid">
+      <div class="cam-reveal">
+        <h2 class="cam-section-title">Visit the Museum, <em>by appointment.</em></h2>
+        <p class="cam-contact-lede">During our relocation, the collection is available for private viewings. We'd love to host you, your school group, or your family for a personal tour.</p>
+        <ul class="cam-contact-methods">
+          <li class="cam-contact-method">
+            <div class="cam-contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="cam-contact-text">
+              <strong>Email Us</strong>
+              <a href="mailto:development@aghistory.org">development@aghistory.org</a>
+              <small>For donations, tours, and general inquiries</small>
+            </div>
+          </li>
+          <li class="cam-contact-method">
+            <div class="cam-contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="cam-contact-text">
+              <strong>Find Us</strong>
+              <p>Woodland, California</p>
+              <small>The collection is currently in storage on Heidrick Family land while a new permanent location is selected.</small>
+            </div>
+          </li>
+          <li class="cam-contact-method">
+            <div class="cam-contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div class="cam-contact-text">
+              <strong>Group Tours &amp; Field Trips</strong>
+              <a href="mailto:development@aghistory.org?subject=Tour%20Request">Request a Private Showing</a>
+              <small>Schools and groups are warmly welcomed by appointment.</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <form class="cam-contact-form cam-reveal" style="transition-delay: 0.15s;" onsubmit="event.preventDefault(); alert('Thanks for reaching out! This is a demo form.');">
+        <h3>Send a Message</h3>
+        <p>We'll get back to you within 2 business days.</p>
+        <div class="cam-form-row">
+          <div class="cam-form-field">
+            <label for="cam-cf-name">Your Name</label>
+            <input type="text" id="cam-cf-name" placeholder="Jane Doe" required />
+          </div>
+          <div class="cam-form-field">
+            <label for="cam-cf-email">Email</label>
+            <input type="email" id="cam-cf-email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="cam-form-field">
+          <label for="cam-cf-subject">I'm interested in</label>
+          <select id="cam-cf-subject">
+            <option>Booking a private tour</option>
+            <option>Group or school field trip</option>
+            <option>Donating an artifact or tractor</option>
+            <option>Volunteering with the Museum</option>
+            <option>Press or partnership inquiry</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="cam-form-field">
+          <label for="cam-cf-message">Message</label>
+          <textarea id="cam-cf-message" placeholder="Tell us a bit about your inquiry..." required></textarea>
+        </div>
+        <button type="submit" class="cam-submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PARTNERS ============ -->
+<div class="cam-partners">
+  <div class="cam-partners-wrap">
+    <p class="cam-partners-label">Accredited &amp; Partnered With</p>
+    <div class="cam-partners-row">
+      <div class="cam-partner">American Alliance of Museums<small>Accredited Museum</small></div>
+      <div class="cam-partner">Sacramento Area Museums<small>Member</small></div>
+      <div class="cam-partner">Let's Roam<small>Partner</small></div>
+      <div class="cam-partner">Woodland Chamber of Commerce<small>Member</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div class="cam-footer">
+  <div class="cam-footer-wrap">
+    <div class="cam-footer-grid">
+      <div class="cam-footer-col">
+        <div class="cam-footer-brand">
+          <svg class="cam-brand-mark" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="22" y="14" width="20" height="14" rx="1.5" stroke="white" stroke-width="2"/>
+            <path d="M22 22 H42" stroke="white" stroke-width="2"/>
+            <path d="M14 36 H46" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="42" r="7" stroke="white" stroke-width="2"/>
+            <circle cx="42" cy="42" r="5" stroke="white" stroke-width="2"/>
+            <path d="M22 14 V10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="cam-brand-text">California Agriculture Museum</span>
+        </div>
+        <p>Home of the Heidrick Tractor Collection. Collecting since 1930. Founded 1995. Preserving the iron and earth that built California.</p>
+        <div class="cam-socials">
+          <a href="https://www.instagram.com/calagmuseum/" class="cam-social" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/Heidrick.Ag/" class="cam-social" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/heidrick-ag-history-center" class="cam-social" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="cam-footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#cam-about">About the Museum</a></li>
+          <li><a href="#cam-collection">The Collection</a></li>
+          <li><a href="#cam-contact">Tours &amp; Field Trips</a></li>
+          <li><a href="#cam-contact">Visit by Appointment</a></li>
+        </ul>
+      </div>
+      <div class="cam-footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#cam-donate">Donate</a></li>
+          <li><a href="#cam-donate">Why Give</a></li>
+          <li><a href="mailto:development@aghistory.org">Volunteer</a></li>
+          <li><a href="mailto:development@aghistory.org">Donate an Artifact</a></li>
+        </ul>
+      </div>
+      <div class="cam-footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:development@aghistory.org">development@aghistory.org</a></li>
+          <li>Woodland, California</li>
+          <li>By appointment only</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cam-footer-bottom">
+      <span>© <span id="cam-year"></span> California Agriculture Museum · A 501(c)(3) Non-Profit Organization</span>
+      <span>Home of the Heidrick Tractor Collection</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /#cam-root -->
+
+<script>
+  (function() {
+    var menuBtn = document.getElementById('cam-menu-btn');
+    var navLinks = document.getElementById('cam-topnav-links');
+    var topnav = document.getElementById('cam-topnav');
+    var gladBar = document.getElementById('cam-glad-bar');
+    var root = document.getElementById('cam-root');
+
+    // Year
+    var yearEl = document.getElementById('cam-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', function() {
+        var open = navLinks.classList.toggle('cam-open');
+        menuBtn.classList.toggle('cam-open', open);
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      navLinks.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          navLinks.classList.remove('cam-open');
+          menuBtn.classList.remove('cam-open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // Sticky / GLAD-hide
+    var lastY = window.scrollY, gladVisible = true;
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (topnav) topnav.classList.toggle('cam-scrolled', y > 30);
+      if (y > 80 && y > lastY) {
+        if (gladVisible) {
+          if (gladBar) gladBar.classList.add('cam-hidden');
+          if (topnav) topnav.classList.add('cam-glad-hidden');
+          gladVisible = false;
+        }
+      } else if (y < lastY && y < 40) {
+        if (!gladVisible) {
+          if (gladBar) gladBar.classList.remove('cam-hidden');
+          if (topnav) topnav.classList.remove('cam-glad-hidden');
+          gladVisible = true;
+        }
+      }
+      lastY = y;
+    }, { passive: true });
+
+    // Donation amount selector
+    if (root) {
+      var amountBtns = root.querySelectorAll('.cam-amount-btn');
+      var customAmount = document.getElementById('cam-custom-amount');
+      var donateSubmit = document.getElementById('cam-donate-submit');
+
+      function updateSubmitText(amount) {
+        if (donateSubmit) donateSubmit.textContent = 'Donate $' + amount + ' Now →';
+      }
+      amountBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          amountBtns.forEach(function(b) { b.classList.remove('cam-active'); });
+          btn.classList.add('cam-active');
+          if (customAmount) customAmount.value = '';
+          updateSubmitText(btn.dataset.amount);
+        });
+      });
+      if (customAmount) {
+        customAmount.addEventListener('input', function() {
+          if (customAmount.value) {
+            amountBtns.forEach(function(b) { b.classList.remove('cam-active'); });
+            updateSubmitText(customAmount.value);
+          }
+        });
+      }
+
+      // Reveal on scroll
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('cam-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        root.querySelectorAll('.cam-reveal').forEach(function(el) { observer.observe(el); });
+      } else {
+        root.querySelectorAll('.cam-reveal').forEach(function(el) { el.classList.add('cam-visible'); });
+      }
+    }
+  })();
+</script>
+
+</body>
+</html>

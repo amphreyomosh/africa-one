@@ -1,0 +1,1751 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ACBO – Association of Chief Business Officials</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --green-deep: #1a5c2e;
+        --green-mid: #2e7d4f;
+        --green-bright: #3a9e60;
+        --green-light: #e8f5ed;
+        --blue-sky: #4a90b8;
+        --blue-light: #deeef7;
+        --accent: #5aac72;
+        --text-dark: #1c2b1f;
+        --text-body: #3a4a3e;
+        --text-muted: #6b7f71;
+        --white: #ffffff;
+        --off-white: #f7faf8;
+        --border: #d0e4d8;
+        --shadow-sm: 0 2px 12px rgba(26, 92, 46, 0.08);
+        --shadow-md: 0 8px 32px rgba(26, 92, 46, 0.12);
+        --shadow-lg: 0 20px 60px rgba(26, 92, 46, 0.15);
+        --radius: 12px;
+        --radius-lg: 20px;
+        --glad-h: 52px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        color: var(--text-body);
+        background: var(--white);
+        line-height: 1.6;
+        overflow-x: hidden;
+        padding-top: var(--glad-h);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* ── UTILITY BAR ── */
+      .util-bar {
+        background: var(--green-deep);
+        padding: 9px 0;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .util-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .util-contact {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .util-contact a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.78rem;
+        transition: color 0.2s;
+      }
+      .util-contact a:hover {
+        color: #fff;
+      }
+
+      /* ── MODERN AUTH BUTTONS ── */
+      .util-auth {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Sign In — ghost/outline style */
+      .btn-signin {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 16px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        letter-spacing: 0.01em;
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          color 0.2s;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .btn-signin:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.65);
+        color: #fff;
+      }
+      .btn-signin svg {
+        opacity: 0.75;
+        flex-shrink: 0;
+      }
+
+      /* Sign Up — filled/solid pill */
+      .btn-signup {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 18px;
+        background: #fff;
+        color: var(--green-deep);
+        border: 1px solid transparent;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        letter-spacing: 0.01em;
+        transition:
+          background 0.2s,
+          box-shadow 0.2s,
+          transform 0.15s;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .btn-signup:hover {
+        background: #e8f5ed;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-1px);
+      }
+      .btn-signup svg {
+        flex-shrink: 0;
+      }
+
+      /* Thin separator between the two buttons */
+      .auth-sep {
+        width: 1px;
+        height: 16px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 0 2px;
+      }
+
+      /* ── GLAD HEADER ── */
+      #glad-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+        height: var(--glad-h);
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+        transition:
+          transform 0.35s ease,
+          opacity 0.35s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .glad-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+        max-width: 1200px;
+        position: relative;
+      }
+      .glad-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .glad-logo img {
+        height: 42px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .glad-back-btn {
+        position: absolute;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--blue);
+        color: #fff;
+        font-family: "Barlow", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 9px 20px;
+        border-radius: 6px;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+      }
+      .glad-back-btn svg {
+        width: 14px;
+        height: 14px;
+        stroke: #fff;
+        fill: none;
+        stroke-width: 2.2;
+        flex-shrink: 0;
+      }
+      @media (max-width: 520px) {
+        .glad-back-btn .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 9px 12px;
+        }
+      }
+
+      .main-nav.glad-hidden {
+        top: 0;
+      }
+
+      /* ── MAIN NAV ── */
+      .main-nav {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+
+        z-index: 100;
+        box-shadow: var(--shadow-sm);
+        top: var(--glad-h);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-img {
+        height: 50px;
+        width: auto;
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 4px;
+        align-items: center;
+      }
+      .nav-links li {
+        position: relative;
+      }
+      .nav-links > li > a {
+        display: block;
+        padding: 8px 14px;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 500;
+        border-radius: 8px;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        white-space: nowrap;
+      }
+      .nav-links > li > a:hover,
+      .nav-links > li:hover > a {
+        background: var(--green-light);
+        color: var(--green-deep);
+      }
+      .dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-md);
+        min-width: 220px;
+        padding: 8px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-6px);
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        z-index: 200;
+      }
+      .nav-links li:hover .dropdown {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+      .dropdown a {
+        display: block;
+        padding: 8px 12px;
+        color: var(--text-body);
+        text-decoration: none;
+        font-size: 0.84rem;
+        border-radius: 6px;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .dropdown a:hover {
+        background: var(--green-light);
+        color: var(--green-deep);
+      }
+      .nav-cta {
+        background: var(--green-deep);
+        color: var(--white) !important;
+        padding: 9px 20px !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+      }
+      .nav-cta:hover {
+        background: var(--green-mid) !important;
+        color: var(--white) !important;
+      }
+
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text-dark);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        position: relative;
+        height: 580px;
+        overflow: hidden;
+        background: var(--green-deep);
+      }
+      .hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.55;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 92, 46, 0.82) 0%,
+          rgba(26, 92, 46, 0.4) 60%,
+          transparent 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #fff;
+        padding: 6px 16px;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-bottom: 20px;
+        width: fit-content;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .hero-badge-dot {
+        width: 6px;
+        height: 6px;
+        background: #7fe8a0;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.4);
+        }
+      }
+      .hero h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        font-weight: 600;
+        color: var(--white);
+        line-height: 1.15;
+        max-width: 640px;
+        margin-bottom: 20px;
+      }
+      .hero p {
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 1.05rem;
+        max-width: 520px;
+        margin-bottom: 32px;
+        line-height: 1.7;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        background: var(--white);
+        color: var(--green-deep);
+        padding: 13px 28px;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+      .btn-outline-white {
+        background: transparent;
+        color: var(--white);
+        padding: 13px 28px;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .btn-outline-white:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.8);
+      }
+      .hero-stats {
+        position: absolute;
+        bottom: 32px;
+        right: 24px;
+        display: flex;
+        gap: 0;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+      }
+      .hero-stat {
+        padding: 16px 28px;
+        text-align: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .hero-stat:last-child {
+        border-right: none;
+      }
+      .hero-stat strong {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #fff;
+        font-family: "Fraunces", serif;
+      }
+      .hero-stat span {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      /* ── ALERT BANNER ── */
+      .alert-banner {
+        background: var(--blue-light);
+        border-bottom: 1px solid #bbd8ec;
+        padding: 14px 24px;
+      }
+      .alert-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .alert-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--blue-sky);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+      .alert-text {
+        font-size: 0.9rem;
+        color: #1e4a6e;
+        flex: 1;
+      }
+      .alert-text strong {
+        color: #1a3a58;
+      }
+      .alert-text a {
+        color: var(--blue-sky);
+        font-weight: 600;
+      }
+
+      /* ── QUICK LINKS ── */
+      .quick-links {
+        background: var(--white);
+        padding: 56px 24px;
+      }
+      .section-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .section-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green-mid);
+        margin-bottom: 10px;
+      }
+      .section-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.7rem, 3vw, 2.4rem);
+        font-weight: 600;
+        color: var(--text-dark);
+        line-height: 1.2;
+        margin-bottom: 40px;
+      }
+      .ql-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .ql-card {
+        background: var(--off-white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 32px 24px;
+        text-align: center;
+        text-decoration: none;
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s,
+          border-color 0.25s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .ql-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--green-bright);
+      }
+      .ql-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--green-deep);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        margin-bottom: 4px;
+        transition: background 0.25s;
+      }
+      .ql-card:hover .ql-icon {
+        background: var(--green-mid);
+      }
+      .ql-label {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        letter-spacing: 0.02em;
+      }
+      .ql-desc {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      /* ── MISSION ── */
+      .mission {
+        background: linear-gradient(135deg, #f0f9f4 0%, var(--white) 100%);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 60px 24px;
+      }
+      .mission-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .mission-text .section-title {
+        margin-bottom: 16px;
+      }
+      .mission-text p {
+        font-size: 1rem;
+        color: var(--text-body);
+        line-height: 1.75;
+        margin-bottom: 24px;
+      }
+      .mission-img-wrap {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        height: 360px;
+      }
+      .mission-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .mission-tag {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: var(--green-deep);
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      /* ── EVENT ── */
+      .event-section {
+        background: var(--white);
+        padding: 60px 24px;
+      }
+      .event-card {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--green-deep);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        box-shadow: var(--shadow-lg);
+      }
+      .event-img {
+        height: 340px;
+        object-fit: cover;
+        width: 100%;
+        display: block;
+      }
+      .event-info {
+        padding: 48px 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+      }
+      .event-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.85);
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        width: fit-content;
+      }
+      .event-info h2 {
+        font-family: "Fraunces", serif;
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--white);
+        line-height: 1.2;
+      }
+      .event-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .event-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.92rem;
+      }
+      .event-row span.ic {
+        width: 28px;
+        height: 28px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+      .btn-event {
+        background: var(--white);
+        color: var(--green-deep);
+        padding: 12px 26px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.92rem;
+        text-decoration: none;
+        width: fit-content;
+        margin-top: 8px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-event:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      /* ── LISTSERV ── */
+      .listserv {
+        background: var(--off-white);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 48px 24px;
+      }
+      .listserv-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      .listserv-icon-wrap {
+        width: 64px;
+        height: 64px;
+        background: var(--green-light);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        flex-shrink: 0;
+      }
+      .listserv-text {
+        flex: 1;
+      }
+      .listserv-text h3 {
+        font-family: "Fraunces", serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 6px;
+      }
+      .listserv-text p {
+        font-size: 0.9rem;
+        color: var(--text-body);
+        line-height: 1.65;
+      }
+      .listserv-text p strong {
+        color: var(--green-deep);
+      }
+      .listserv-text a {
+        color: var(--green-mid);
+        font-weight: 600;
+      }
+      .btn-listserv {
+        background: var(--green-deep);
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .btn-listserv:hover {
+        background: var(--green-mid);
+        transform: translateY(-1px);
+      }
+
+      /* ── ADDRESSES ── */
+      .addresses {
+        background: var(--white);
+        padding: 48px 24px;
+      }
+      .addr-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .addr-card {
+        background: var(--off-white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px 32px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .addr-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--green-deep);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .addr-content h4 {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+      }
+      .addr-content p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--text-dark);
+        color: rgba(255, 255, 255, 0.75);
+        padding: 52px 24px 28px;
+      }
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .footer-brand img {
+        filter: brightness(0) invert(1);
+        height: 40px;
+        margin-bottom: 14px;
+        opacity: 0.9;
+      }
+      .footer-brand p {
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+      .footer-col h4 {
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 14px;
+      }
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .footer-col ul li a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.88rem;
+        transition: color 0.2s;
+      }
+      .footer-col ul li a:hover {
+        color: #fff;
+      }
+      .footer-bottom {
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer-contact {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .footer-contact a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-contact a:hover {
+        color: #fff;
+      }
+
+      /* ── MOBILE NAV OVERLAY ── */
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--white);
+        z-index: 300;
+        padding: 24px;
+        flex-direction: column;
+        gap: 8px;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s;
+      }
+      .mobile-nav.open {
+        transform: translateX(0);
+      }
+      .mobile-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .mobile-nav-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-dark);
+      }
+      .mobile-nav a {
+        display: block;
+        padding: 12px 16px;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: background 0.15s;
+      }
+      .mobile-nav a:hover {
+        background: var(--green-light);
+        color: var(--green-deep);
+      }
+
+      /* Mobile auth actions — modern version */
+      .mobile-auth-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+      .mobile-btn-signin {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 20px;
+        background: transparent;
+        color: var(--green-deep);
+        border: 1.5px solid var(--green-deep);
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .mobile-btn-signin:hover {
+        background: var(--green-light);
+      }
+      .mobile-btn-signup {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 20px;
+        background: var(--green-deep);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .mobile-btn-signup:hover {
+        background: var(--green-mid);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .mobile-nav {
+          display: flex;
+        }
+        .ql-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .mission-grid {
+          grid-template-columns: 1fr;
+        }
+        .mission-img-wrap {
+          height: 260px;
+        }
+        .event-card {
+          grid-template-columns: 1fr;
+        }
+        .event-img {
+          height: 220px;
+        }
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+        }
+        .hero-stats {
+          display: none;
+        }
+        .addr-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .ql-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 14px;
+        }
+        .util-auth {
+          display: none;
+        }
+        .util-contact {
+          gap: 12px;
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .hero {
+          height: 480px;
+        }
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+        .event-info {
+          padding: 28px 24px;
+        }
+        .listserv-inner {
+          flex-direction: column;
+        }
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GLAD HEADER -->
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+    <!-- UTILITY BAR -->
+    <div class="util-bar">
+      <div class="util-inner">
+        <div class="util-contact">
+          <a href="tel:9164432226"> 916.443.2226</a>
+          <a href="mailto:communications@acbo.org">✉ communications@acbo.org</a>
+        </div>
+
+        <!-- Modern Sign In / Sign Up buttons (no input fields) -->
+        <div class="util-auth">
+          <a href="#" class="btn-signin">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="5.5"
+                r="3"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M2 13.5c0-2.5 2.686-4.5 6-4.5s6 2 6 4.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            Sign In
+          </a>
+          <div class="auth-sep"></div>
+          <a href="#" class="btn-signup">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="7"
+                cy="5.5"
+                r="3"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M1.5 13.5c0-2.5 2.462-4.5 5.5-4.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M12 10v4M10 12h4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            Sign Up
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN NAV -->
+    <nav class="main-nav" id="navbar">
+      <div class="nav-inner">
+        <a href="#" class="logo">
+          <img
+            src="https://www.acbo.org/templates/1007/images/ACBO-WEB-Logo.png"
+            alt="ACBO – Association of Chief Business Officials"
+            class="logo-img"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <span
+            style="
+              display: none;
+              align-items: center;
+              gap: 8px;
+              font-family: &quot;Fraunces&quot;, serif;
+              font-weight: 600;
+              font-size: 1.4rem;
+              color: var(--green-deep);
+            "
+            >ACBO</span
+          >
+        </a>
+        <ul class="nav-links">
+          <li>
+            <a href="#">About ACBO ▾</a>
+            <div class="dropdown">
+              <a href="#">Code of Ethics</a>
+              <a href="#">Constitution</a>
+              <a href="#">By-Laws</a>
+              <a href="#">Strategic Plan</a>
+              <a href="#">Regions</a>
+              <a href="#">CBO Listing</a>
+              <a href="#">Officers and Directors</a>
+              <a href="#">Achievement of Excellence Award</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">CBO Login ▾</a>
+            <div class="dropdown">
+              <a href="#">General Login</a>
+              <a href="#">Edit Your Profile</a>
+              <a href="#">Add Your Profile</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">Committees ▾</a>
+            <div class="dropdown">
+              <a href="#">Chancellor's Office Advisory Workgroup</a>
+              <a href="#">FUSION Task Force</a>
+              <a href="#">Facilities Advisory Committee</a>
+              <a href="#">Fiscal Standards & Accountability</a>
+              <a href="#">ACBO Reps to Other Committees</a>
+            </div>
+          </li>
+          <li><a href="#">Job Postings</a></li>
+          <li>
+            <a href="#">Events & Programs ▾</a>
+            <div class="dropdown">
+              <a href="#">2026 Spring Conference</a>
+              <a href="#">2025 Fall Conference</a>
+              <a href="#">2025 Spring Conference</a>
+              <a href="#">Institute I</a>
+              <a href="#">Institute II</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">Meetings ▾</a>
+            <div class="dropdown">
+              <a href="#">Meeting Materials / Documents</a>
+              <a href="#">Approved Board Meeting Minutes</a>
+            </div>
+          </li>
+          <li><a href="#" class="nav-cta">Contact Us</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE NAV OVERLAY -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-header">
+        <span
+          style="
+            font-family: &quot;Fraunces&quot;, serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--green-deep);
+          "
+          >ACBO</span
+        >
+        <button class="mobile-nav-close" id="mobileClose">✕</button>
+      </div>
+      <a href="#">About ACBO</a>
+      <a href="#">CBO Login</a>
+      <a href="#">Committees</a>
+      <a href="#">Job Postings</a>
+      <a href="#">Events &amp; Programs</a>
+      <a href="#">Meetings</a>
+      <a href="#">Contact Us</a>
+
+      <!-- Modern mobile auth buttons -->
+      <div class="mobile-auth-actions">
+        <a href="#" class="mobile-btn-signin">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="8"
+              cy="5.5"
+              r="3"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M2 13.5c0-2.5 2.686-4.5 6-4.5s6 2 6 4.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+          Sign In
+        </a>
+        <a href="#" class="mobile-btn-signup">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="7"
+              cy="5.5"
+              r="3"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M1.5 13.5c0-2.5 2.462-4.5 5.5-4.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M12 10v4M10 12h4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+          Create Account
+        </a>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/54e5f036e4b030c1bb98ea2e/1468946690892-DQMICVMB9V6DXALFZAEN/Government+center.jpg"
+        alt="Professional conference center"
+        class="hero-img"
+        onerror="
+          this.src =
+            'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600&q=80'
+        "
+      />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Empowering Chief Business Officials Across California</h1>
+        <p>
+          Professional development, shared expertise, and community for business
+          officers at California's 116 community colleges and 73 districts.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn-primary">View Upcoming Events →</a>
+          <a href="#" class="btn-outline-white">Learn About ACBO</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>73</strong><span>Districts</span></div>
+        <div class="hero-stat"><strong>116</strong><span>Colleges</span></div>
+        <div class="hero-stat"><strong>1.8M</strong><span>Students</span></div>
+      </div>
+    </section>
+
+    <!-- ALERT BANNER -->
+    <div class="alert-banner">
+      <div class="alert-inner">
+        <p class="alert-text">
+          <strong>CBO-all Listserv:</strong> ACBO uses the Chancellor's Office
+          listserv to communicate with CBO colleagues. To be added,
+          <a
+            href="https://www.cccco.edu/About-Us/Chancellors-Office/Divisions/Information-Security-Technology-Innovation/ListServ-Services"
+            target="_blank"
+            >follow the instructions here</a
+          >. Note: ACBO is not able to add users to the listserv directly.
+        </p>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <section class="quick-links">
+      <div class="section-inner">
+        <p class="section-label">Member Resources</p>
+        <h2 class="section-title">Everything You Need, One Click Away</h2>
+        <div class="ql-grid">
+          <a href="#" class="ql-card reveal">
+            <span class="ql-label">Institutes</span>
+            <span class="ql-desc"
+              >Professional development programs designed for California
+              community college business officers.</span
+            >
+          </a>
+          <a href="#" class="ql-card reveal" style="transition-delay: 0.1s">
+            <span class="ql-label">Board</span>
+            <span class="ql-desc"
+              >Meet the ACBO officers and directors who lead and guide the
+              association.</span
+            >
+          </a>
+          <a href="#" class="ql-card reveal" style="transition-delay: 0.2s">
+            <span class="ql-label">Events</span>
+            <span class="ql-desc"
+              >Conferences, meetings and programs to connect you with peers and
+              key topics.</span
+            >
+          </a>
+          <a href="#" class="ql-card reveal" style="transition-delay: 0.3s">
+            <span class="ql-label">Job List</span>
+            <span class="ql-desc"
+              >Explore current CBO and business officer openings across
+              California's community colleges.</span
+            >
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="mission">
+      <div class="mission-grid">
+        <div class="mission-text reveal">
+          <p class="section-label">Our Mission</p>
+          <h2 class="section-title">
+            Serving California's Community College Business Officers
+          </h2>
+          <p>
+            The <strong>Association of Chief Business Officials</strong> offers
+            business officers in California opportunities to develop
+            professionally, to identify issues affecting community colleges, and
+            to share their expertise with their colleagues.
+          </p>
+          <p>
+            Our membership spans 73 districts and 116 California community
+            colleges, collectively enrolling 1.8 million students — making ACBO
+            one of the most impactful professional associations in California
+            public higher education.
+          </p>
+          <a
+            href="#"
+            class="btn-primary"
+            style="
+              background: var(--green-deep);
+              color: #fff;
+              display: inline-flex;
+              width: fit-content;
+            "
+            >Learn More About ACBO →</a
+          >
+        </div>
+        <div class="mission-img-wrap reveal" style="transition-delay: 0.2s">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/56c5bda122482e03da80a51c/1566849060879-IIFQ1NJPKQHGMM3XU4IQ/sacramento-capitol.jpg"
+            alt="California State Capitol Sacramento"
+            onerror="
+              this.src =
+                'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
+            "
+          />
+          <div class="mission-tag">Sacramento, CA — Since 1970s</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPCOMING EVENT -->
+    <section class="event-section">
+      <div class="section-inner">
+        <p class="section-label">Featured Event</p>
+        <h2 class="section-title" style="margin-bottom: 28px">
+          Upcoming Conference
+        </h2>
+      </div>
+      <div class="event-card reveal" style="max-width: 1200px; margin: 0 auto">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/58086d5e414fb5e5a0f1efb2/1619636014613-ZE68EVPQVMK0WX6SFW1B/Hyatt+Regency+Sonoma+Wine+Country.jpg"
+          alt="Hyatt Regency Sonoma Wine Country"
+          class="event-img"
+          onerror="
+            this.src =
+              'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80'
+          "
+        />
+        <div class="event-info">
+          <span class="event-badge">Upcoming Conference</span>
+          <h2>ACBO 2026 Spring Conference</h2>
+          <div class="event-detail">
+            <div class="event-row">
+              <span class="ic"></span><span>April 22–24, 2026</span>
+            </div>
+            <div class="event-row">
+              ><span>Hyatt Regency Sonoma Wine Country, Santa Rosa, CA</span>
+            </div>
+            <div class="event-row">
+              ><span
+                >Open to all ACBO members and district business officers</span
+              >
+            </div>
+          </div>
+          <a href="#" class="btn-event">Register Now →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LISTSERV NOTICE -->
+    <section class="listserv">
+      <div class="listserv-inner">
+        <div class="listserv-text">
+          <h3>Stay Connected via the CBO-all Listserv</h3>
+          <p>
+            ACBO uses the <strong>Chancellor's Office listserv</strong> to
+            communicate with CBO colleagues statewide. If you'd like to be
+            added, please follow the instructions on the Chancellor's Office
+            website.
+            <strong
+              >ACBO is not able to add users to the listserv directly.</strong
+            >
+          </p>
+        </div>
+        <a
+          href="https://www.cccco.edu/About-Us/Chancellors-Office/Divisions/Information-Security-Technology-Innovation/ListServ-Services"
+          target="_blank"
+          class="btn-listserv"
+          >View Instructions →</a
+        >
+      </div>
+    </section>
+
+    <!-- ADDRESSES -->
+    <section class="addresses">
+      <div class="section-inner">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title" style="margin-bottom: 28px">Get In Touch</h2>
+        <div class="addr-grid">
+          <div class="addr-card reveal">
+            <div class="addr-content">
+              <h4>Mailing Address</h4>
+              <p>PO Box 1017<br />Sacramento, CA 95812-1017</p>
+            </div>
+          </div>
+          <div class="addr-card reveal" style="transition-delay: 0.1s">
+            <div class="addr-content">
+              <h4>FedEx / Physical Address</h4>
+              <p>
+                1102 Q Street, 4th Floor, Suite 431<br />Sacramento, CA 95811
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <img
+              src="https://www.acbo.org/templates/1007/images/ACBO-WEB-Logo.png"
+              alt="ACBO Logo"
+            />
+            <p>
+              The Association of Chief Business Officials serves California's
+              community college business officers through professional
+              development, advocacy, and peer connection.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>About</h4>
+            <ul>
+              <li><a href="#">About ACBO</a></li>
+              <li><a href="#">Code of Ethics</a></li>
+              <li><a href="#">Constitution</a></li>
+              <li><a href="#">By-Laws</a></li>
+              <li><a href="#">Strategic Plan</a></li>
+              <li><a href="#">Regions</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Programs</h4>
+            <ul>
+              <li><a href="#">Events &amp; Conferences</a></li>
+              <li><a href="#">Institute I</a></li>
+              <li><a href="#">Institute II</a></li>
+              <li><a href="#">Committees</a></li>
+              <li><a href="#">Meetings</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Member Tools</h4>
+            <ul>
+              <li><a href="#">CBO Login</a></li>
+              <li><a href="#">Job Postings</a></li>
+              <li><a href="#">CBO Listing</a></li>
+              <li><a href="#">Meeting Documents</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>
+            2026 Association of Chief Business Officials. All Rights
+            Reserved.</span
+          >
+          <div class="footer-contact">
+            <a href="tel:9164432226"> 916.443.2226</a>
+            <a href="mailto:communications@acbo.org">
+              communications@acbo.org</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // GLAD hide on scroll
+      const gladHeader = document.getElementById("glad-header");
+      const afmNav = document.querySelector(".main-nav");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              afmNav.classList.add("glad-hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              afmNav.classList.remove("glad-hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+
+      // Mobile nav toggle
+      const hamburger = document.getElementById("hamburger");
+      const mobileNav = document.getElementById("mobileNav");
+      const mobileClose = document.getElementById("mobileClose");
+      hamburger.addEventListener("click", () =>
+        mobileNav.classList.add("open"),
+      );
+      mobileClose.addEventListener("click", () =>
+        mobileNav.classList.remove("open"),
+      );
+
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.12 },
+      );
+      reveals.forEach((r) => observer.observe(r));
+    </script>
+  </body>
+</html>

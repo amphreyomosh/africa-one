@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>California Ambulance Association — Dedicated. For Life.</title>
+<meta name="description" content="Founded in 1948, the California Ambulance Association is the unified voice for ambulance service providers across California." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ TOKENS (scoped to .caa-page) ============ */
+  .caa-page {
+    --brand: #0054A6;
+    --brand-deep: #003E7A;
+    --brand-soft: #E8F0FB;
+    --brand-mist: #F5F8FC;
+    --accent: #E63946;
+    --accent-warm: #F4A261;
+
+    --ink: #0F1B2D;
+    --ink-soft: #3B4A60;
+    --ink-mute: #6B7A90;
+    --line: #E2E8F0;
+    --bg: #FFFFFF;
+    --bg-alt: #FAFBFD;
+
+    --radius-sm: 6px;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 32px;
+
+    --shadow-sm: 0 1px 2px rgba(15,27,45,.06), 0 1px 1px rgba(15,27,45,.04);
+    --shadow-md: 0 8px 24px rgba(15,27,45,.08);
+    --shadow-lg: 0 24px 60px rgba(15,27,45,.12);
+
+    --caa-container: 1240px;
+    --ease: cubic-bezier(.2,.8,.2,1);
+    --ease-out: cubic-bezier(.16,1,.3,1);
+
+    --glad-h: 58px;
+
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    color: var(--ink) !important;
+    background: var(--bg) !important;
+    line-height: 1.6 !important;
+    font-size: 16px !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+  }
+
+  /* ============ RESET (scoped) ============ */
+  .caa-page,
+  .caa-page *,
+  .caa-page *::before,
+  .caa-page *::after { box-sizing: border-box !important; }
+
+  .caa-page img { max-width: 100% !important; display: block !important; }
+  .caa-page a { color: inherit !important; text-decoration: none !important; }
+  .caa-page button { font-family: inherit !important; cursor: pointer !important; border: none !important; background: none !important; }
+  .caa-page h1,
+  .caa-page h2,
+  .caa-page h3,
+  .caa-page h4 {
+    font-family: 'Sora', sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+    color: var(--ink) !important;
+  }
+  .caa-page p { margin: 0 !important; }
+  .caa-page ul { list-style: none !important; margin: 0 !important; padding: 0 !important; }
+
+  .caa-page .caa-container {
+    max-width: var(--caa-container) !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+  }
+
+  /* ============ GLAD HEADER ============ */
+  .caa-page #glad-header {
+    position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; z-index: 300 !important;
+    height: var(--glad-h) !important;
+    background: #fff !important;
+    border-bottom: 1px solid var(--line) !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    padding: 0 5% !important;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06) !important;
+    transition: transform 0.35s ease, opacity 0.35s ease !important;
+  }
+  .caa-page #glad-header.hidden { transform: translateY(-100%) !important; opacity: 0 !important; pointer-events: none !important; }
+  .caa-page .glad-inner {
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    gap: 32px !important; width: 100% !important; max-width: 1200px !important; position: relative !important;
+  }
+  .caa-page .glad-logo { display: flex !important; align-items: center !important; text-decoration: none !important; flex-shrink: 0 !important; }
+  .caa-page .glad-logo img { height: 42px !important; width: auto !important; display: block !important; object-fit: contain !important; }
+  .caa-page .glad-back-btn {
+    position: absolute !important; right: 0 !important;
+    display: inline-flex !important; align-items: center !important; gap: 7px !important;
+    background: var(--brand) !important; color: #fff !important;
+    font-family: 'Outfit', sans-serif !important; font-size: 13px !important; font-weight: 600 !important;
+    text-decoration: none !important; padding: 9px 20px !important;
+    border-radius: 6px !important; letter-spacing: 0.03em !important; white-space: nowrap !important;
+    transition: background 0.25s var(--ease) !important;
+  }
+  .caa-page .glad-back-btn:hover { background: var(--brand-deep) !important; }
+  .caa-page .glad-back-btn svg { width: 14px !important; height: 14px !important; stroke: #fff !important; fill: none !important; stroke-width: 2.2 !important; flex-shrink: 0 !important; }
+  @media (max-width: 520px) {
+    .caa-page .glad-back-btn .btn-label { display: none !important; }
+    .caa-page .glad-back-btn { padding: 9px 12px !important; }
+  }
+
+  /* ============ TOP UTILITY BAR ============ */
+  .caa-page .topbar {
+    position: relative !important;
+    margin-top: var(--glad-h) !important;
+    background: var(--brand) !important;
+    color: #fff !important;
+    font-size: 13px !important;
+    border-bottom: 1px solid rgba(255,255,255,.1) !important;
+    transition: margin-top 0.35s ease !important;
+  }
+  .caa-page .topbar.glad-hidden { margin-top: 0 !important; }
+  .caa-page .topbar-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 38px !important;
+    gap: 16px !important;
+  }
+  .caa-page .topbar-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    color: rgba(255,255,255,.85) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.01em !important;
+    min-width: 0 !important;
+  }
+  .caa-page .topbar-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+  }
+  .caa-page .topbar a,
+  .caa-page .topbar button {
+    color: #fff !important;
+    font-size: 13px !important;
+    padding: 5px 12px !important;
+    border-radius: 999px !important;
+    transition: background .25s var(--ease) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-weight: 500 !important;
+  }
+  .caa-page .topbar a:hover,
+  .caa-page .topbar button:hover { background: rgba(255,255,255,.15) !important; }
+  .caa-page .topbar .btn-login {
+    background: rgba(255,255,255,.12) !important;
+    border: 1px solid rgba(255,255,255,.2) !important;
+  }
+  .caa-page .topbar .btn-login:hover { background: rgba(255,255,255,.22) !important; }
+
+  /* ============ MAIN NAV ============ */
+  .caa-page .caa-nav {
+    position: sticky !important;
+    top: var(--glad-h) !important;
+    z-index: 100 !important;
+    background: rgba(255,255,255,.88) !important;
+    backdrop-filter: saturate(180%) blur(14px) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(14px) !important;
+    border-bottom: 1px solid var(--line) !important;
+    transition: top 0.35s ease, box-shadow .3s var(--ease) !important;
+  }
+  .caa-page .caa-nav.glad-hidden { top: 0 !important; }
+  .caa-page .caa-nav.scrolled { box-shadow: var(--shadow-sm) !important; }
+  .caa-page .nav-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 80px !important;
+    gap: 24px !important;
+  }
+  .caa-page .caa-logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-shrink: 0 !important;
+  }
+  .caa-page .caa-logo img { height: 52px !important; width: auto !important; }
+
+  .caa-page .nav-links {
+    display: flex !important;
+    align-items: center !important;
+    gap: 2px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .caa-page .nav-links > li { position: relative !important; }
+  .caa-page .nav-links a,
+  .caa-page .nav-links > li > button {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    padding: 9px 13px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--ink-soft) !important;
+    border-radius: 8px !important;
+    transition: color .2s var(--ease), background .2s var(--ease) !important;
+    letter-spacing: -0.005em !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-family: inherit !important;
+  }
+  .caa-page .nav-links a:hover,
+  .caa-page .nav-links > li > button:hover {
+    color: var(--brand) !important;
+    background: var(--brand-soft) !important;
+  }
+
+  .caa-page .nav-links .has-drop > button::after,
+  .caa-page .nav-links .has-drop > a::after {
+    content: '' !important;
+    width: 6px !important; height: 6px !important;
+    border-right: 1.5px solid currentColor !important;
+    border-bottom: 1.5px solid currentColor !important;
+    transform: rotate(45deg) translateY(-1px) !important;
+    transition: transform .25s var(--ease) !important;
+    flex-shrink: 0 !important;
+  }
+  .caa-page .nav-links .has-drop:hover > button::after,
+  .caa-page .nav-links .has-drop:hover > a::after {
+    transform: rotate(225deg) translateY(-1px) !important;
+  }
+
+  .caa-page .dropdown {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 0 !important;
+    min-width: 220px !important;
+    background: #fff !important;
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-lg) !important;
+    padding: 8px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-6px) !important;
+    transition: opacity .22s var(--ease), transform .22s var(--ease), visibility .22s !important;
+    pointer-events: none !important;
+  }
+  .caa-page .nav-links .has-drop:hover .dropdown,
+  .caa-page .nav-links .has-drop:focus-within .dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+  .caa-page .dropdown a {
+    display: block !important;
+    padding: 10px 14px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    color: var(--ink-soft) !important;
+    font-weight: 500 !important;
+    transition: color .18s, background .18s !important;
+  }
+  .caa-page .dropdown a::after { display: none !important; }
+  .caa-page .dropdown a:hover { background: var(--brand-soft) !important; color: var(--brand) !important; }
+
+  .caa-page .nav-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 11px 22px !important;
+    background: var(--brand) !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: transform .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease) !important;
+    box-shadow: 0 4px 14px rgba(0,84,166,.25) !important;
+    margin-left: 6px !important;
+    white-space: nowrap !important;
+  }
+  .caa-page .nav-cta:hover {
+    background: var(--brand-deep) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 8px 22px rgba(0,84,166,.35) !important;
+    color: #fff !important;
+  }
+  .caa-page .nav-cta::after { display: none !important; }
+
+  .caa-page .burger {
+    display: none !important;
+    width: 44px !important; height: 44px !important;
+    border-radius: 10px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--brand-soft) !important;
+  }
+  .caa-page .burger-icon {
+    width: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+  }
+  .caa-page .burger-icon span {
+    display: block !important;
+    height: 2px !important;
+    background: var(--brand) !important;
+    border-radius: 2px !important;
+    transition: transform .3s var(--ease), opacity .3s var(--ease) !important;
+    transform-origin: center !important;
+  }
+  .caa-page .burger.open .burger-icon span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
+  .caa-page .burger.open .burger-icon span:nth-child(2) { opacity: 0 !important; transform: scaleX(0) !important; }
+  .caa-page .burger.open .burger-icon span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
+
+  .caa-page .mobile-panel {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(15,27,45,.5) !important;
+    backdrop-filter: blur(6px) !important;
+    z-index: 200 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity .35s var(--ease), visibility .35s !important;
+  }
+  .caa-page .mobile-panel.open { opacity: 1 !important; visibility: visible !important; }
+  .caa-page .mobile-panel-inner {
+    position: absolute !important;
+    top: 0 !important; right: 0 !important;
+    width: min(420px, 88vw) !important;
+    height: 100% !important;
+    background: #fff !important;
+    padding: 28px 24px !important;
+    overflow-y: auto !important;
+    transform: translateX(100%) !important;
+    transition: transform .45s var(--ease-out) !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .caa-page .mobile-panel.open .mobile-panel-inner { transform: translateX(0) !important; }
+  .caa-page .mp-head {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 24px !important;
+  }
+  .caa-page .mp-close {
+    width: 40px !important; height: 40px !important;
+    border-radius: 50% !important;
+    background: var(--brand-soft) !important;
+    color: var(--brand) !important;
+    display: inline-flex !important;
+    align-items: center !important; justify-content: center !important;
+    font-size: 22px !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-family: inherit !important;
+    flex-shrink: 0 !important;
+  }
+  .caa-page .mp-links { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+  .caa-page .mp-links li { border-bottom: 1px solid var(--line) !important; }
+  .caa-page .mp-links a {
+    display: block !important;
+    padding: 16px 4px !important;
+    font-family: 'Sora', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    color: var(--ink) !important;
+    transition: color .2s !important;
+  }
+  .caa-page .mp-links a:hover { color: var(--brand) !important; }
+  .caa-page .mp-cta {
+    margin-top: 28px !important;
+    display: block !important;
+    text-align: center !important;
+    padding: 16px !important;
+    background: var(--brand) !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    transition: background .25s !important;
+  }
+  .caa-page .mp-cta:hover { background: var(--brand-deep) !important; }
+
+  /* ============ HERO ============ */
+  .caa-page .caa-hero {
+    position: relative !important;
+    height: 620px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .caa-page .hero-slideshow {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+  }
+  .caa-page .slide {
+    position: absolute !important;
+    inset: 0 !important;
+    opacity: 0 !important;
+    transition: opacity 1s ease !important;
+    pointer-events: none !important;
+  }
+  .caa-page .slide.active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  .caa-page .slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+  .caa-page .hero-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    background:
+      linear-gradient(
+        to right,
+        rgba(5, 18, 40, 0.82) 0%,
+        rgba(5, 18, 40, 0.68) 40%,
+        rgba(5, 18, 40, 0.25) 70%,
+        rgba(5, 18, 40, 0.05) 100%
+      ) !important;
+    pointer-events: none !important;
+  }
+  .caa-page .hero-content-wrap {
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+  }
+  .caa-page .hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    max-width: 620px !important;
+  }
+  .caa-page .hero-eyebrow {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    background: rgba(255,255,255,.15) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255,255,255,.2) !important;
+    padding: 8px 16px !important;
+    border-radius: 999px !important;
+    margin-bottom: 28px !important;
+    letter-spacing: 0.02em !important;
+  }
+  .caa-page .hero-eyebrow .dot {
+    width: 6px !important; height: 6px !important;
+    background: #6FE7B7 !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    animation: caaPulse 2s infinite !important;
+  }
+  .caa-page .caa-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.035em !important;
+    margin-bottom: 22px !important;
+    color: #fff !important;
+  }
+  .caa-page .caa-hero h1 .accent-text {
+    background: linear-gradient(120deg, #7EC8F8 0%, #A8D8FF 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    font-style: italic !important;
+  }
+  .caa-page .caa-hero p.lead {
+    font-size: clamp(.95rem, 1.2vw, 1.1rem) !important;
+    color: rgba(255,255,255,.82) !important;
+    max-width: 480px !important;
+    margin-bottom: 38px !important;
+    line-height: 1.72 !important;
+  }
+  .caa-page .btn-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 17px 30px !important;
+    background: var(--brand) !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    font-size: 15.5px !important;
+    transition: transform .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease) !important;
+    box-shadow: 0 8px 30px rgba(0,84,166,.45) !important;
+    font-family: 'Outfit', sans-serif !important;
+    letter-spacing: -0.005em !important;
+  }
+  .caa-page .btn-primary:hover {
+    background: var(--brand-deep) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 14px 36px rgba(0,84,166,.55) !important;
+  }
+  .caa-page .btn-primary svg { transition: transform .3s var(--ease) !important; flex-shrink: 0 !important; }
+  .caa-page .btn-primary:hover svg { transform: translateX(4px) !important; }
+
+  .caa-page .slideshow-dots {
+    position: absolute !important;
+    bottom: 28px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    gap: 10px !important;
+    z-index: 10 !important;
+  }
+  .caa-page .slideshow-dots button {
+    width: 28px !important; height: 3px !important;
+    border-radius: 2px !important;
+    background: rgba(255,255,255,.35) !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    transition: background .3s, width .3s !important;
+  }
+  .caa-page .slideshow-dots button.active {
+    background: #fff !important;
+    width: 48px !important;
+  }
+  .caa-page .slide-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+    width: 44px !important; height: 44px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.12) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255,255,255,.22) !important;
+    color: #fff !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: background .25s !important;
+  }
+  .caa-page .slide-arrow:hover { background: rgba(255,255,255,.26) !important; }
+  .caa-page .slide-arrow.prev { left: 24px !important; }
+  .caa-page .slide-arrow.next { right: 24px !important; }
+
+  /* ============ MISSION ============ */
+  .caa-page .mission {
+    padding: 108px 0 !important;
+    background: #fff !important;
+  }
+  .caa-page .mission-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1.4fr !important;
+    gap: 80px !important;
+    align-items: start !important;
+  }
+  .caa-page .mission-sticky {
+    position: sticky !important;
+    top: 108px !important;
+  }
+  .caa-page .mission-label {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: var(--brand) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+  }
+  .caa-page .mission-label::before {
+    content: '' !important;
+    width: 28px !important; height: 2px !important;
+    background: var(--brand) !important;
+    flex-shrink: 0 !important;
+  }
+  .caa-page .mission h2 {
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem) !important;
+    line-height: 1.12 !important;
+  }
+  .caa-page .mission-stats {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 36px !important;
+  }
+  .caa-page .mstat {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    padding: 14px 18px !important;
+    background: var(--brand-soft) !important;
+    border-radius: var(--radius) !important;
+    border: 1px solid rgba(0,84,166,.1) !important;
+  }
+  .caa-page .mstat-num {
+    font-family: 'Sora', sans-serif !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: var(--brand) !important;
+    letter-spacing: -0.03em !important;
+    flex-shrink: 0 !important;
+    min-width: 56px !important;
+  }
+  .caa-page .mstat-desc {
+    font-size: 14px !important;
+    color: var(--ink-soft) !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+  }
+  .caa-page .mission-body p {
+    font-size: 17.5px !important;
+    color: var(--ink-soft) !important;
+    margin-bottom: 22px !important;
+    line-height: 1.72 !important;
+  }
+  .caa-page .mission-body p:last-of-type { margin-bottom: 32px !important; }
+  .caa-page .text-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    color: var(--brand) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    border-bottom: 2px solid var(--brand-soft) !important;
+    padding-bottom: 4px !important;
+    transition: border-color .25s var(--ease), gap .25s var(--ease) !important;
+  }
+  .caa-page .text-link:hover { border-color: var(--brand) !important; gap: 12px !important; }
+  .caa-page .text-link svg { flex-shrink: 0 !important; }
+
+  /* ============ FEATURES ============ */
+  .caa-page .features {
+    padding: 108px 0 !important;
+    background: var(--brand-mist) !important;
+  }
+  .caa-page .features-head {
+    max-width: 680px !important;
+    margin: 0 auto 64px !important;
+    text-align: center !important;
+  }
+  .caa-page .section-label {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: var(--brand) !important;
+    margin-bottom: 16px !important;
+  }
+  .caa-page .features-head h2 {
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem) !important;
+    margin-bottom: 16px !important;
+  }
+  .caa-page .features-head p {
+    color: var(--ink-soft) !important;
+    font-size: 17px !important;
+    line-height: 1.65 !important;
+  }
+  .caa-page .features-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+  }
+  .caa-page .feature {
+    background: #fff !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 36px 32px !important;
+    border: 1px solid var(--line) !important;
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .caa-page .feature::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important; left: 0 !important; right: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, var(--brand), #2D7BC4) !important;
+    transform: scaleX(0) !important;
+    transform-origin: left !important;
+    transition: transform .4s var(--ease) !important;
+  }
+  .caa-page .feature:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: var(--shadow-md) !important;
+    border-color: transparent !important;
+  }
+  .caa-page .feature:hover::before { transform: scaleX(1) !important; }
+  .caa-page .feature-icon {
+    width: 52px !important; height: 52px !important;
+    border-radius: 14px !important;
+    background: var(--brand-soft) !important;
+    color: var(--brand) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 22px !important;
+    transition: background .3s var(--ease) !important;
+  }
+  .caa-page .feature:hover .feature-icon {
+    background: var(--brand) !important;
+    color: #fff !important;
+  }
+  .caa-page .feature h3 {
+    font-size: 19px !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.015em !important;
+  }
+  .caa-page .feature p {
+    color: var(--ink-soft) !important;
+    font-size: 15px !important;
+    line-height: 1.67 !important;
+  }
+
+  /* ============ PROMO STRIP ============ */
+  .caa-page .promo {
+    padding: 108px 0 !important;
+    background: #fff !important;
+  }
+  .caa-page .promo-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+  }
+  .caa-page .promo-card {
+    border-radius: var(--radius-xl) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    min-height: 400px !important;
+    padding: 52px 48px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    color: #fff !important;
+    transition: transform .4s var(--ease) !important;
+    cursor: pointer !important;
+  }
+  .caa-page .promo-card:hover { transform: translateY(-5px) !important; }
+  .caa-page .promo-card.dark {
+    background: linear-gradient(135deg, var(--brand-deep) 0%, var(--brand) 60%, #2D7BC4 100%) !important;
+  }
+  .caa-page .promo-card.dark::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background:
+      radial-gradient(circle at 90% 15%, rgba(255,255,255,.18), transparent 50%),
+      radial-gradient(circle at 10% 90%, rgba(0,0,0,.15), transparent 50%) !important;
+    pointer-events: none !important;
+  }
+  .caa-page .promo-card.light {
+    background: linear-gradient(135deg, #FFFAF5 0%, #FDEBD8 60%, #FCD9BF 100%) !important;
+    color: var(--ink) !important;
+  }
+  .caa-page .promo-card .pc-tag {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    opacity: .85 !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  .caa-page .promo-card.light .pc-tag { color: var(--accent) !important; opacity: 1 !important; }
+  .caa-page .promo-card-body { position: relative !important; z-index: 1 !important; }
+  .caa-page .promo-card h3 {
+    font-size: clamp(1.55rem, 2.2vw, 1.9rem) !important;
+    color: inherit !important;
+    margin: 14px 0 14px !important;
+    line-height: 1.15 !important;
+  }
+  .caa-page .promo-card.dark h3 { color: #fff !important; }
+  .caa-page .promo-card p {
+    color: inherit !important;
+    opacity: .88 !important;
+    font-size: 15px !important;
+    max-width: 400px !important;
+    line-height: 1.65 !important;
+    margin-bottom: 0 !important;
+  }
+  .caa-page .promo-card.light p { opacity: .75 !important; }
+  .caa-page .promo-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 14px 26px !important;
+    background: rgba(255,255,255,.15) !important;
+    border: 1px solid rgba(255,255,255,.3) !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    font-size: 14.5px !important;
+    align-self: flex-start !important;
+    backdrop-filter: blur(10px) !important;
+    transition: background .25s var(--ease), border-color .25s var(--ease) !important;
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 28px !important;
+  }
+  .caa-page .promo-card.light .promo-cta {
+    background: var(--ink) !important;
+    color: #fff !important;
+    border-color: var(--ink) !important;
+  }
+  .caa-page .promo-card.dark .promo-cta:hover { background: rgba(255,255,255,.28) !important; }
+  .caa-page .promo-card.light .promo-cta:hover { background: var(--brand) !important; border-color: var(--brand) !important; }
+  .caa-page .pc-num {
+    position: absolute !important;
+    bottom: -24px !important; right: -16px !important;
+    font-family: 'Sora', sans-serif !important;
+    font-size: 200px !important;
+    font-weight: 800 !important;
+    color: rgba(255,255,255,.06) !important;
+    letter-spacing: -0.05em !important;
+    line-height: 1 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    z-index: 0 !important;
+  }
+  .caa-page .promo-card.light .pc-num { color: rgba(230,57,70,.09) !important; }
+
+  /* ============ EVENTS ============ */
+  .caa-page .events {
+    padding: 108px 0 !important;
+    background: var(--bg-alt) !important;
+  }
+  .caa-page .events-head {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    margin-bottom: 48px !important;
+    gap: 32px !important;
+    flex-wrap: wrap !important;
+  }
+  .caa-page .events-head h2 {
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem) !important;
+  }
+  .caa-page .events-head .subtle {
+    color: var(--ink-mute) !important;
+    margin-top: 10px !important;
+    font-size: 15.5px !important;
+  }
+  .caa-page .events-list {
+    display: grid !important;
+    gap: 14px !important;
+  }
+  .caa-page .event {
+    display: grid !important;
+    grid-template-columns: 130px 1fr auto !important;
+    gap: 32px !important;
+    align-items: center !important;
+    padding: 26px 30px !important;
+    background: #fff !important;
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--line) !important;
+    transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease) !important;
+    text-decoration: none !important;
+    color: var(--ink) !important;
+  }
+  .caa-page .event:hover {
+    border-color: var(--brand) !important;
+    transform: translateX(6px) !important;
+    box-shadow: -4px 0 0 var(--brand), var(--shadow-sm) !important;
+  }
+  .caa-page .event-date {
+    text-align: center !important;
+    border-right: 1px solid var(--line) !important;
+    padding-right: 24px !important;
+  }
+  .caa-page .event-date .day {
+    font-family: 'Sora', sans-serif !important;
+    font-size: 34px !important;
+    font-weight: 700 !important;
+    color: var(--brand) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.03em !important;
+  }
+  .caa-page .event-date .mo {
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    color: var(--ink-mute) !important;
+    margin-top: 6px !important;
+    font-weight: 700 !important;
+  }
+  .caa-page .event-date .dow {
+    font-size: 12px !important;
+    color: var(--ink-mute) !important;
+    margin-top: 3px !important;
+    font-weight: 500 !important;
+  }
+  .caa-page .event-info h4 {
+    font-size: 18px !important;
+    margin-bottom: 8px !important;
+    letter-spacing: -0.012em !important;
+    line-height: 1.3 !important;
+  }
+  .caa-page .event-cat {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 13px !important;
+    color: var(--ink-mute) !important;
+    font-weight: 500 !important;
+  }
+  .caa-page .event-cat::before {
+    content: '' !important;
+    width: 6px !important; height: 6px !important;
+    border-radius: 50% !important;
+    background: var(--accent) !important;
+    flex-shrink: 0 !important;
+  }
+  .caa-page .event-arrow {
+    width: 44px !important; height: 44px !important;
+    border-radius: 50% !important;
+    background: var(--brand-soft) !important;
+    color: var(--brand) !important;
+    display: inline-flex !important;
+    align-items: center !important; justify-content: center !important;
+    flex-shrink: 0 !important;
+    transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease) !important;
+  }
+  .caa-page .event:hover .event-arrow {
+    background: var(--brand) !important;
+    color: #fff !important;
+    transform: translateX(3px) !important;
+  }
+
+  /* ============ CTA BAND ============ */
+  .caa-page .ctaband {
+    padding: 88px 0 !important;
+    background: var(--ink) !important;
+    color: #fff !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .caa-page .ctaband::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0,84,166,.45), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(230,57,70,.2), transparent 50%) !important;
+    pointer-events: none !important;
+  }
+  .caa-page .ctaband::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px) !important;
+    background-size: 60px 60px !important;
+    pointer-events: none !important;
+  }
+  .caa-page .ctaband-inner {
+    position: relative !important;
+    z-index: 1 !important;
+    display: grid !important;
+    grid-template-columns: 1.5fr 1fr !important;
+    gap: 48px !important;
+    align-items: center !important;
+  }
+  .caa-page .ctaband h2 {
+    color: #fff !important;
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem) !important;
+    margin-bottom: 16px !important;
+    line-height: 1.12 !important;
+  }
+  .caa-page .ctaband p {
+    color: rgba(255,255,255,.72) !important;
+    font-size: 17px !important;
+    max-width: 520px !important;
+    line-height: 1.65 !important;
+  }
+  .caa-page .cta-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 12px !important;
+  }
+  .caa-page .btn-light {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 17px 30px !important;
+    background: #fff !important;
+    color: var(--ink) !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    font-size: 15.5px !important;
+    transition: transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease) !important;
+    font-family: 'Outfit', sans-serif !important;
+    box-shadow: 0 8px 28px rgba(0,0,0,.25) !important;
+    white-space: nowrap !important;
+  }
+  .caa-page .btn-light:hover {
+    background: var(--accent) !important;
+    color: #fff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 32px rgba(230,57,70,.35) !important;
+  }
+  .caa-page .btn-light svg { flex-shrink: 0 !important; transition: transform .3s var(--ease) !important; }
+  .caa-page .btn-light:hover svg { transform: translateX(3px) !important; }
+  .caa-page .cta-note {
+    font-size: 13px !important;
+    color: rgba(255,255,255,.45) !important;
+    text-align: center !important;
+  }
+
+  /* ============ FOOTER ============ */
+  .caa-page .caa-footer {
+    background: var(--brand-deep) !important;
+    color: rgba(255,255,255,.72) !important;
+  }
+  .caa-page .footer-main-caa {
+    padding: 72px 0 56px !important;
+  }
+  .caa-page .footer-grid {
+    display: grid !important;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr !important;
+    gap: 56px !important;
+    margin-bottom: 52px !important;
+  }
+  .caa-page .footer-brand-logo {
+    display: inline-block !important;
+    background: #fff !important;
+    padding: 12px 18px !important;
+    border-radius: 12px !important;
+    margin-bottom: 20px !important;
+  }
+  .caa-page .footer-brand-logo img {
+    height: 56px !important;
+    width: auto !important;
+  }
+  .caa-page .footer-brand p {
+    font-size: 14.5px !important;
+    line-height: 1.72 !important;
+    max-width: 300px !important;
+    color: rgba(255,255,255,.62) !important;
+  }
+  .caa-page .footer-col h5 {
+    font-family: 'Sora', sans-serif !important;
+    color: rgba(255,255,255,.5) !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.14em !important;
+    margin-bottom: 18px !important;
+    font-weight: 700 !important;
+  }
+  .caa-page .footer-col ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+  .caa-page .footer-col li { margin-bottom: 10px !important; }
+  .caa-page .footer-col a {
+    font-size: 14.5px !important;
+    color: rgba(255,255,255,.72) !important;
+    transition: color .2s var(--ease) !important;
+  }
+  .caa-page .footer-col a:hover { color: #fff !important; }
+  .caa-page .footer-divider {
+    height: 1px !important;
+    background: rgba(255,255,255,.1) !important;
+    margin: 0 0 28px !important;
+  }
+  .caa-page .footer-bottom {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: 13.5px !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+    color: rgba(255,255,255,.45) !important;
+    padding-bottom: 32px !important;
+  }
+  .caa-page .footer-bottom a {
+    color: rgba(255,255,255,.55) !important;
+    transition: color .2s !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+  }
+  .caa-page .footer-bottom a:hover { color: #fff !important; }
+  .caa-page .socials {
+    display: flex !important;
+    gap: 8px !important;
+  }
+  .caa-page .socials a {
+    width: 36px !important; height: 36px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.08) !important;
+    display: inline-flex !important;
+    align-items: center !important; justify-content: center !important;
+    color: rgba(255,255,255,.7) !important;
+    transition: background .25s var(--ease), transform .25s var(--ease), color .25s !important;
+  }
+  .caa-page .socials a:hover { background: var(--accent) !important; color: #fff !important; transform: translateY(-2px) !important; }
+
+  /* ============ ENTRANCE ANIMATIONS ============ */
+  .caa-page .reveal {
+    opacity: 0 !important;
+    transform: translateY(28px) !important;
+    transition: opacity .9s var(--ease-out), transform .9s var(--ease-out) !important;
+  }
+  .caa-page .reveal.in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  .caa-page .reveal.delay-1 { transition-delay: .12s !important; }
+  .caa-page .reveal.delay-2 { transition-delay: .24s !important; }
+  .caa-page .reveal.delay-3 { transition-delay: .36s !important; }
+  .caa-page .reveal.delay-4 { transition-delay: .48s !important; }
+
+  @keyframes caaFadeUp {
+    from { opacity: 0 !important; transform: translateY(24px) !important; }
+    to   { opacity: 1 !important; transform: translateY(0) !important; }
+  }
+  @keyframes caaPulse {
+    0%, 100% { opacity: 1 !important; transform: scale(1) !important; }
+    50% { opacity: .6 !important; transform: scale(1.3) !important; }
+  }
+  .caa-page .hero-content > * {
+    opacity: 1 !important;
+  }
+
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .caa-page .features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .caa-page .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
+    .caa-page .footer-brand { grid-column: 1 / -1 !important; }
+    .caa-page .footer-brand p { max-width: 480px !important; }
+  }
+
+  @media (max-width: 980px) {
+    .caa-page .nav-links { display: none !important; }
+    .caa-page .burger { display: flex !important; }
+    .caa-page .nav-inner { height: 70px !important; }
+    .caa-page .caa-logo img { height: 46px !important; }
+
+    .caa-page .caa-hero { height: 520px !important; }
+
+    .caa-page .mission-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .caa-page .mission-sticky { position: static !important; top: auto !important; }
+    .caa-page .mission-stats { flex-direction: row !important; flex-wrap: wrap !important; }
+
+    .caa-page .promo-grid { grid-template-columns: 1fr !important; }
+    .caa-page .promo-card { min-height: 340px !important; padding: 40px 36px !important; }
+
+    .caa-page .ctaband-inner { grid-template-columns: 1fr !important; gap: 36px !important; }
+    .caa-page .cta-actions { align-items: flex-start !important; }
+    .caa-page .cta-note { text-align: left !important; }
+
+    .caa-page .event { grid-template-columns: 110px 1fr auto !important; gap: 20px !important; padding: 22px 24px !important; }
+    .caa-page .event-date .day { font-size: 30px !important; }
+  }
+
+  @media (max-width: 720px) {
+    .caa-page .features-grid { grid-template-columns: 1fr !important; }
+  }
+
+  @media (max-width: 600px) {
+    .caa-page .caa-container { padding: 0 18px !important; }
+    .caa-page .topbar-left .hide-sm { display: none !important; }
+    .caa-page .caa-hero { height: 460px !important; }
+    .caa-page .caa-hero h1 { font-size: 2.1rem !important; }
+
+    .caa-page .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .caa-page .footer-bottom { flex-direction: column !important; align-items: flex-start !important; }
+
+    .caa-page .event {
+      grid-template-columns: 1fr auto !important;
+      grid-template-rows: auto auto !important;
+    }
+    .caa-page .event-date {
+      grid-column: 1 / -1 !important;
+      display: flex !important;
+      align-items: baseline !important;
+      gap: 10px !important;
+      border-right: none !important;
+      border-bottom: 1px solid var(--line) !important;
+      padding: 0 0 14px !important;
+      text-align: left !important;
+    }
+    .caa-page .event-date .day { font-size: 22px !important; }
+    .caa-page .event-date .mo { margin-top: 0 !important; }
+    .caa-page .event-info { grid-column: 1 !important; }
+    .caa-page .event-arrow { grid-column: 2 !important; grid-row: 2 !important; align-self: center !important; }
+
+    .caa-page .promo-card { padding: 32px 28px !important; min-height: 280px !important; }
+    .caa-page .pc-num { font-size: 140px !important; bottom: -16px !important; right: -12px !important; }
+
+    .caa-page .mission-stats { flex-direction: column !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="caa-page">
+
+<!-- ============ GLAD HEADER ============ -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
+      <img src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w" alt="GLAD Technology Digital Services" />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar" id="topbar">
+  <div class="caa-container topbar-inner">
+    <div class="topbar-left">
+      <span class="pulse"></span>
+      <span><strong>Serving California</strong><span class="hide-sm">&nbsp;·&nbsp; Founded 1948 &nbsp;·&nbsp; The unified voice for ambulance service providers</span></span>
+    </div>
+    <div class="topbar-right">
+      <a href="#" aria-label="Search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span class="hide-sm">Search</span>
+      </a>
+      <a href="#" class="btn-login">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Member Login
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="caa-nav" id="nav">
+  <div class="caa-container nav-inner">
+    <a href="#" class="caa-logo" aria-label="California Ambulance Association home">
+      <img src="https://www.the-caa.org/assets/site/logo.png" alt="California Ambulance Association" />
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li class="has-drop">
+          <button type="button">About</button>
+          <div class="dropdown">
+            <a href="#">About CAA</a>
+            <a href="#">Leadership &amp; Staff</a>
+            <a href="#">Contact</a>
+          </div>
+        </li>
+        <li class="has-drop">
+          <button type="button">Membership</button>
+          <div class="dropdown">
+            <a href="#">Join CAA</a>
+            <a href="#">Levels &amp; Benefits</a>
+            <a href="#">Member Directory</a>
+          </div>
+        </li>
+        <li class="has-drop">
+          <button type="button">Events</button>
+          <div class="dropdown">
+            <a href="#">Calendar</a>
+            <a href="#">Annual Convention</a>
+            <a href="#">Stars of Life</a>
+            <a href="#">CAA @ The Capitol</a>
+          </div>
+        </li>
+        <li><a href="#">Advocacy</a></li>
+        <li><a href="#">Siren Magazine</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#" class="nav-cta">Join CAA</a></li>
+      </ul>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <div class="burger-icon">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile panel -->
+<div class="mobile-panel" id="mobilePanel" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+  <div class="mobile-panel-inner">
+    <div class="mp-head">
+      <a href="#" class="caa-logo">
+        <img src="https://www.the-caa.org/assets/site/logo.png" alt="CAA" style="height:42px" />
+      </a>
+      <button class="mp-close" id="mpClose" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="mp-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Membership</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Advocacy</a></li>
+      <li><a href="#">Siren Magazine</a></li>
+      <li><a href="#">Awards</a></li>
+      <li><a href="#">Resources</a></li>
+      <li><a href="#">Member Login</a></li>
+    </ul>
+    <a href="#" class="mp-cta">Join CAA Today</a>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="caa-hero">
+  <div class="hero-slideshow" id="heroSlideshow">
+    <div class="slide active">
+      <img src="https://caa.memberclicks.net/assets/slideshow-images/CAA%20Web%20Banner-1.png" alt="CAA Banner 1" />
+    </div>
+    <div class="slide">
+      <img src="https://caa.memberclicks.net/assets/slideshow-images/CAA%20Web%20Banner-3.png" alt="CAA Banner 3" />
+    </div>
+    <div class="slide">
+      <img src="https://caa.memberclicks.net/assets/slideshow-images/CAA%20Web%20Banner-4.png" alt="CAA Banner 4" />
+    </div>
+
+    <button class="slide-arrow prev" id="slidePrev" aria-label="Previous slide">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="slide-arrow next" id="slideNext" aria-label="Next slide">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <div class="slideshow-dots" id="slideDots">
+      <button class="active" aria-label="Slide 1"></button>
+      <button aria-label="Slide 2"></button>
+      <button aria-label="Slide 3"></button>
+    </div>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content-wrap caa-container">
+    <div class="hero-content">
+      <span class="hero-eyebrow">
+        <span class="dot"></span>
+        California's Emergency Medical Services Voice
+      </span>
+      <h1>Dedicated to <span class="accent-text">life</span>,<br>committed to California.</h1>
+      <p class="lead">
+        The California Ambulance Association is the unified voice for ambulance service providers across the state — advancing pre-hospital care, supporting our first responders, and shaping policy that protects every Californian.
+      </p>
+      <a href="#" class="btn-primary">
+        Become a Member
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISSION ============ -->
+<section class="mission">
+  <div class="caa-container mission-grid">
+    <div class="mission-sticky reveal">
+      <div class="mission-label">About CAA</div>
+      <h2>Healthcare's first responders, working together since 1948.</h2>
+      <div class="mission-stats">
+        <div class="mstat">
+          <div class="mstat-num">75+</div>
+          <div class="mstat-desc">Years serving California EMS providers</div>
+        </div>
+        <div class="mstat">
+          <div class="mstat-num">100%</div>
+          <div class="mstat-desc">Dedicated to pre-hospital care excellence</div>
+        </div>
+      </div>
+    </div>
+    <div class="mission-body reveal delay-1">
+      <p>
+        The California Ambulance Association represents private emergency medical services across the state of California. As healthcare's first responders, our members play a critical role in California's healthcare system every single day.
+      </p>
+      <p>
+        We recognize best practices, support sound legislative policy, and promote the highest standards of emergency medical services — so that every community we serve receives the quality of care it deserves.
+      </p>
+      <p>
+        From the Capitol to county EMS agencies, CAA is the leading voice ensuring ambulance providers have the representation, resources, and recognition they need to keep California communities safe.
+      </p>
+      <a href="#" class="text-link">
+        Learn more about our mission
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="features">
+  <div class="caa-container">
+    <div class="features-head reveal">
+      <div class="section-label">What We Do</div>
+      <h2>Built around what providers need</h2>
+      <p>From advocacy at the state Capitol to industry-leading education, CAA delivers the resources, recognition, and representation that move ambulance services forward.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature reveal delay-1">
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Advocacy &amp; Public Policy</h3>
+        <p>Shaping California legislation, agency relations, and public policy that protects the future of ambulance services and the patients they serve.</p>
+      </div>
+      <div class="feature reveal delay-2">
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Education &amp; Resources</h3>
+        <p>The Ready, Next leadership series, the AB 716 Toolkit, Siren Magazine, and ongoing professional development for the people who run EMS.</p>
+      </div>
+      <div class="feature reveal delay-3">
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <h3>Awards &amp; Recognition</h3>
+        <p>Stars of Life and CAASE Awards honor the EMTs, paramedics, and ambulance services raising the standard of pre-hospital care across California.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMO STRIP ============ -->
+<section class="promo">
+  <div class="caa-container">
+    <div class="promo-grid">
+      <div class="promo-card dark reveal">
+        <span class="pc-tag">Toolkit</span>
+        <div class="promo-card-body">
+          <h3>The AB 716 Toolkit</h3>
+          <p>Scale up your business with the official CAA toolkit — authored by Page, Wolfberg &amp; Wirth, LLC. Free for CAA members.</p>
+          <a href="#" class="promo-cta">
+            Download the Toolkit
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="pc-num" aria-hidden="true">716</div>
+      </div>
+
+      <div class="promo-card light reveal delay-1">
+        <span class="pc-tag">Save the Date</span>
+        <div class="promo-card-body">
+          <h3>2026 CAA Annual Convention</h3>
+          <p>September 23–24, 2026. Join the largest gathering of ambulance service leaders in California for two days of learning, leadership, and connection.</p>
+          <a href="#" class="promo-cta">
+            View Event Details
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="pc-num" aria-hidden="true">26</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section class="events">
+  <div class="caa-container">
+    <div class="events-head reveal">
+      <div>
+        <h2>Upcoming events</h2>
+        <p class="subtle">Committee meetings, conferences, and EMS gatherings across California.</p>
+      </div>
+      <a href="#" class="text-link">
+        View full calendar
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="events-list">
+      <a href="#" class="event reveal delay-1">
+        <div class="event-date">
+          <div class="day">14</div>
+          <div class="mo">May</div>
+          <div class="dow">Thu · 2026</div>
+        </div>
+        <div class="event-info">
+          <h4>CAA Legislative &amp; Agency Relations Committee</h4>
+          <span class="event-cat">Committee Meeting</span>
+        </div>
+        <div class="event-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a href="#" class="event reveal delay-2">
+        <div class="event-date">
+          <div class="day">27</div>
+          <div class="mo">May</div>
+          <div class="dow">Wed · 2026</div>
+        </div>
+        <div class="event-info">
+          <h4>EMSAAC Conference</h4>
+          <span class="event-cat">Conference</span>
+        </div>
+        <div class="event-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a href="#" class="event reveal delay-3">
+        <div class="event-date">
+          <div class="day">02</div>
+          <div class="mo">Jun</div>
+          <div class="dow">Tue · 2026</div>
+        </div>
+        <div class="event-info">
+          <h4>California EMS Awards</h4>
+          <span class="event-cat">Awards Ceremony</span>
+        </div>
+        <div class="event-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a href="#" class="event reveal delay-4">
+        <div class="event-date">
+          <div class="day">23</div>
+          <div class="mo">Sep</div>
+          <div class="dow">Wed · 2026</div>
+        </div>
+        <div class="event-info">
+          <h4>2026 CAA Annual Convention</h4>
+          <span class="event-cat">Convention</span>
+        </div>
+        <div class="event-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="ctaband">
+  <div class="caa-container ctaband-inner">
+    <div class="reveal">
+      <h2>Add your voice to California's EMS leadership.</h2>
+      <p>Join the association advancing pre-hospital care, advocating for providers, and elevating the standard of emergency medical services across the state.</p>
+    </div>
+    <div class="cta-actions reveal delay-1">
+      <a href="#" class="btn-light">
+        Become a Member
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <span class="cta-note">No commitment · Cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="caa-footer">
+  <div class="footer-main-caa">
+    <div class="caa-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <img src="https://www.the-caa.org/assets/site/logo.png" alt="California Ambulance Association" />
+          </div>
+          <p>The unified voice for ambulance service providers across California — advancing pre-hospital care since 1948.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Association</h5>
+          <ul>
+            <li><a href="#">About CAA</a></li>
+            <li><a href="#">Leadership &amp; Staff</a></li>
+            <li><a href="#">Committees</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Members</h5>
+          <ul>
+            <li><a href="#">Join CAA</a></li>
+            <li><a href="#">Levels &amp; Benefits</a></li>
+            <li><a href="#">Member Directory</a></li>
+            <li><a href="#">Member Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#">Siren Magazine</a></li>
+            <li><a href="#">Advocacy</a></li>
+            <li><a href="#">Awards</a></li>
+            <li><a href="#">Calendar</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <div>© 2026 California Ambulance Association &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a></div>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8a4 4 0 0 1 3.4 3.4z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
+          <a href="#" aria-label="X / Twitter">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.caa-page -->
+
+<script>
+(function() {
+  const root = document.querySelector('.caa-page');
+  if (!root) return;
+
+  const nav = root.querySelector('#nav');
+  const gladHeader = root.querySelector('#glad-header');
+  const topbar = root.querySelector('#topbar');
+  const burger = root.querySelector('#burger');
+  const panel = root.querySelector('#mobilePanel');
+  const mpClose = root.querySelector('#mpClose');
+
+  // Sticky nav shadow
+  window.addEventListener('scroll', () => {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // GLAD header hide on scroll down / show on scroll up
+  let lastScrollY = window.scrollY;
+  let gladVisible = true;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 80 && y > lastScrollY) {
+      if (gladVisible && gladHeader) {
+        gladHeader.classList.add('hidden');
+        if (topbar) topbar.classList.add('glad-hidden');
+        if (nav) nav.classList.add('glad-hidden');
+        gladVisible = false;
+      }
+    } else if (y < lastScrollY && y < 40) {
+      if (!gladVisible && gladHeader) {
+        gladHeader.classList.remove('hidden');
+        if (topbar) topbar.classList.remove('glad-hidden');
+        if (nav) nav.classList.remove('glad-hidden');
+        gladVisible = true;
+      }
+    }
+    lastScrollY = y;
+  }, { passive: true });
+
+  // Mobile panel
+  function togglePanel(open) {
+    if (!panel || !burger) return;
+    panel.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  if (burger) burger.addEventListener('click', () => togglePanel(!panel.classList.contains('open')));
+  if (mpClose) mpClose.addEventListener('click', () => togglePanel(false));
+  if (panel) {
+    panel.addEventListener('click', (e) => { if (e.target === panel) togglePanel(false); });
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => togglePanel(false)));
+  }
+
+  // Close dropdowns on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.caa-page .has-drop')) {
+      root.querySelectorAll('.dropdown').forEach(d => {
+        d.style.opacity = '';
+        d.style.visibility = '';
+      });
+    }
+  });
+
+  // Escape closes mobile panel
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') togglePanel(false);
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+  root.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Slideshow
+  const slides = root.querySelectorAll('#heroSlideshow .slide');
+  const dots = root.querySelectorAll('#slideDots button');
+  if (slides.length && dots.length) {
+    let current = 0;
+    let timer;
+
+    function goTo(n) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function startAuto() { timer = setInterval(() => goTo(current + 1), 5000); }
+    function resetAuto() { clearInterval(timer); startAuto(); }
+
+    const next = root.querySelector('#slideNext');
+    const prev = root.querySelector('#slidePrev');
+    if (next) next.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+    if (prev) prev.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); resetAuto(); }));
+
+    startAuto();
+  }
+})();
+</script>
+</body>
+</html>

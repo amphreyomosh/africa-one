@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>California Academic Decathlon</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =========================================================
+       BRAND TOKENS
+       ========================================================= */
+    :root {
+      --brand: #13112f;
+      --brand-2: #1f1d4a;
+      --brand-3: #2a2860;
+      --brand-soft: #f5f4fb;
+      --brand-tint: #ebeaf4;
+      --ink: #1a1830;
+      --ink-2: #3a3850;
+      --ink-muted: #6b6885;
+      --line: #e7e5f0;
+      --white: #ffffff;
+      --bg: #fbfaf7;
+      --testimonial-bg: #1a1838;
+
+      --glad-h: 60px;
+      --nav-h: 80px;
+      --container: 1280px;
+
+      --shadow-sm: 0 2px 8px rgba(19, 17, 47, 0.06);
+      --shadow: 0 14px 40px rgba(19, 17, 47, 0.10);
+      --shadow-lg: 0 30px 70px rgba(19, 17, 47, 0.18);
+    }
+
+    *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.menu-open { overflow: hidden; }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+
+    h1, h2, h3, h4 {
+      font-family: "Fraunces", Georgia, serif;
+      color: var(--brand);
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      margin: 0 0 0.5em;
+      font-weight: 600;
+      font-variation-settings: "opsz" 80;
+    }
+    p { margin: 0 0 1em; color: var(--ink-2); }
+
+    /* FIX: was padding: 0 0px — now has proper horizontal padding */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    /* =========================================================
+       HERRINGBONE PATTERN
+       ========================================================= */
+    .herringbone {
+      background-color: var(--bg);
+      background-image:
+        repeating-linear-gradient(45deg, rgba(19,17,47,0.025) 0, rgba(19,17,47,0.025) 1px, transparent 1px, transparent 22px),
+        repeating-linear-gradient(-45deg, rgba(19,17,47,0.025) 0, rgba(19,17,47,0.025) 1px, transparent 1px, transparent 22px);
+    }
+    .herringbone-soft {
+      background-color: var(--white);
+      background-image:
+        repeating-linear-gradient(45deg, rgba(19,17,47,0.018) 0, rgba(19,17,47,0.018) 1px, transparent 1px, transparent 22px),
+        repeating-linear-gradient(-45deg, rgba(19,17,47,0.018) 0, rgba(19,17,47,0.018) 1px, transparent 1px, transparent 22px);
+    }
+
+    /* =========================================================
+       GLAD TOP HEADER
+       ========================================================= */
+    #glad-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: var(--glad-h);
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5%;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    }
+    #glad-header.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .glad-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      width: 100%;
+      max-width: 1200px;
+      position: relative;
+    }
+    .glad-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .glad-logo img {
+      height: 46px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+    .glad-back-btn {
+      position: absolute;
+      right: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--brand);
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .glad-back-btn:hover { background: var(--brand-2); }
+    .glad-back-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.2;
+      flex-shrink: 0;
+    }
+    @media (max-width: 520px) {
+      .glad-back-btn .btn-label { display: none; }
+      .glad-back-btn { padding: 9px 12px; }
+    }
+
+    /* =========================================================
+       MAIN NAV
+       ========================================================= */
+    nav.main-nav {
+      position: fixed;
+      top: var(--glad-h);
+      left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--line);
+      transition: top 0.35s ease, box-shadow 0.3s;
+      box-shadow: 0 2px 12px rgba(19,17,47,0.05);
+    }
+    nav.main-nav.glad-hidden { top: 0; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+    .brand img {
+      height: 50px; width: auto;
+      border-radius: 6px;
+    }
+    .brand-text {
+      font-family: "Fraunces", serif;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.1;
+      color: var(--brand);
+      letter-spacing: -0.01em;
+    }
+    .brand-text small {
+      display: block;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      color: var(--ink-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* =========================================================
+       MENU TRIGGER
+       ========================================================= */
+    .menu-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--brand);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      padding: 14px 22px 14px 18px;
+      border-radius: 4px;
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: background .25s, transform .15s;
+      box-shadow: 0 8px 20px rgba(19,17,47,0.18);
+    }
+    .menu-trigger:hover {
+      background: var(--brand-2);
+      transform: translateY(-1px);
+    }
+    .menu-trigger .menu-icon {
+      width: 22px;
+      height: 14px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .menu-trigger .menu-icon span {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--white);
+      transition: transform .35s cubic-bezier(.7,0,.3,1), top .35s, opacity .25s, width .35s;
+    }
+    .menu-trigger .menu-icon span:nth-child(1) { top: 0; }
+    .menu-trigger .menu-icon span:nth-child(2) { top: 6px; width: 70%; }
+    .menu-trigger .menu-icon span:nth-child(3) { top: 12px; }
+
+    body.menu-open .menu-trigger .menu-icon span:nth-child(1) {
+      top: 6px; transform: rotate(45deg);
+    }
+    body.menu-open .menu-trigger .menu-icon span:nth-child(2) {
+      opacity: 0; width: 100%;
+    }
+    body.menu-open .menu-trigger .menu-icon span:nth-child(3) {
+      top: 6px; transform: rotate(-45deg);
+    }
+
+    /* =========================================================
+       OFF-CANVAS MENU
+       ========================================================= */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(19,17,47,0);
+      z-index: 250;
+      pointer-events: none;
+      transition: background .5s ease;
+    }
+    .menu-overlay.open {
+      background: rgba(19,17,47,0.55);
+      pointer-events: auto;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .menu-panel {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(560px, 92vw);
+      height: 100vh;
+      background: var(--brand);
+      color: var(--white);
+      z-index: 260;
+      transform: translateX(100%);
+      transition: transform .6s cubic-bezier(.77, 0, .175, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .menu-panel.open { transform: translateX(0); }
+
+    .menu-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 22px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.025) 0, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 22px);
+      pointer-events: none;
+    }
+
+    .menu-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 44px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 2;
+    }
+    .menu-panel-head .label {
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      font-weight: 600;
+    }
+    .menu-close {
+      width: 44px; height: 44px;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .menu-close:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.4);
+      transform: rotate(90deg);
+    }
+
+    .menu-panel-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 50px 44px 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .menu-list li {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .menu-panel.open .menu-list li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .menu-panel.open .menu-list li:nth-child(1) { transition-delay: .25s; }
+    .menu-panel.open .menu-list li:nth-child(2) { transition-delay: .32s; }
+    .menu-panel.open .menu-list li:nth-child(3) { transition-delay: .39s; }
+    .menu-panel.open .menu-list li:nth-child(4) { transition-delay: .46s; }
+    .menu-panel.open .menu-list li:nth-child(5) { transition-delay: .53s; }
+    .menu-panel.open .menu-list li:nth-child(6) { transition-delay: .60s; }
+    .menu-panel.open .menu-list li:nth-child(7) { transition-delay: .67s; }
+
+    .menu-list a {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 4px;
+      font-family: "Fraunces", serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      transition: color .3s, gap .3s, padding-left .3s;
+      position: relative;
+    }
+    .menu-list a .link-num {
+      font-family: "Inter", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.4);
+      width: 30px;
+      transition: color .3s;
+    }
+    .menu-list a .link-icon {
+      width: 22px; height: 22px;
+      color: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+      transition: color .3s, transform .3s;
+    }
+    .menu-list a .link-text {
+      flex: 1;
+      transition: transform .3s;
+    }
+    .menu-list a .link-arrow {
+      width: 22px; height: 22px;
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity .3s, transform .3s;
+      color: rgba(255,255,255,0.7);
+    }
+    .menu-list a:hover {
+      color: var(--white);
+      padding-left: 14px;
+    }
+    .menu-list a:hover .link-num,
+    .menu-list a:hover .link-icon { color: var(--white); }
+    .menu-list a:hover .link-icon { transform: scale(1.1); }
+    .menu-list a:hover .link-arrow { opacity: 1; transform: translateX(0); }
+
+    .menu-panel-foot {
+      padding: 30px 44px 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .menu-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--white);
+      color: var(--brand);
+      padding: 18px 32px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: background .2s, transform .15s;
+    }
+    .menu-cta:hover {
+      background: var(--brand-soft);
+      transform: translateY(-2px);
+    }
+    .menu-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.5);
+    }
+    .menu-meta a {
+      color: rgba(255,255,255,0.7);
+      transition: color .2s;
+    }
+    .menu-meta a:hover { color: var(--white); }
+    .menu-socials {
+      display: flex;
+      gap: 8px;
+    }
+    .menu-socials a {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+    .menu-socials a:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform .15s, background .2s, box-shadow .2s;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-primary { background: var(--brand); color: var(--white); }
+    .btn-primary:hover {
+      background: var(--brand-2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(19,17,47,0.25);
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+      margin-top: calc(var(--glad-h) + var(--nav-h));
+    }
+    .hero-left {
+      padding: 100px 60px 130px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-left h1 {
+      font-size: clamp(44px, 5.6vw, 76px);
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 22px;
+      color: var(--brand);
+      max-width: 560px;
+    }
+    .hero-tagline {
+      font-family: "Fraunces", serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--brand);
+      font-weight: 400;
+      max-width: 540px;
+      opacity: 0.85;
+    }
+
+    .hero-right {
+      position: relative;
+      background: var(--brand);
+      overflow: hidden;
+    }
+    .hero-right::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(19,17,47,0.55), rgba(19,17,47,0.30));
+      z-index: 1;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(35%) contrast(1.05);
+    }
+
+    .hero-action {
+      position: absolute;
+      left: 60px;
+      bottom: -38px;
+      z-index: 5;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+      max-width: 740px;
+    }
+    .hero-action a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 22px 30px;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brand);
+      border-right: 1px solid var(--line);
+      transition: background .2s;
+    }
+    .hero-action a:last-child {
+      background: var(--brand);
+      color: var(--white);
+      border-right: 0;
+      padding: 22px 26px;
+    }
+    .hero-action a:not(:last-child):hover { background: var(--brand-soft); }
+    .hero-action a:last-child:hover { background: var(--brand-2); }
+    .hero-action svg { flex-shrink: 0; }
+
+    /* =========================================================
+       FIND YOUR WAY
+       ========================================================= */
+    .find-way { padding: 140px 0 110px; position: relative; }
+    .find-way-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .find-way-image {
+      position: relative;
+      padding-top: 28px;
+      padding-left: 28px;
+    }
+    .find-way-image::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 240px; height: 28px;
+      background: var(--brand);
+    }
+    .find-way-image::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 28px; height: 100%;
+      background: var(--brand);
+    }
+    .find-way-image img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      box-shadow: var(--shadow);
+    }
+    .find-way-content h2 {
+      font-size: clamp(38px, 4.2vw, 60px);
+      margin-bottom: 28px;
+      font-weight: 600;
+    }
+    .find-way-content > p {
+      font-size: 17px;
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 50px;
+      color: var(--ink-2);
+    }
+    .find-way-content strong { color: var(--brand); font-weight: 600; }
+
+    .pathways {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+    .pathway {
+      background: var(--brand-soft);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .25s, box-shadow .25s;
+      display: block;
+    }
+    .pathway:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
+    }
+    .pathway-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      filter: grayscale(20%);
+    }
+    .pathway-body { padding: 22px 24px 26px; }
+    .pathway-body h4 {
+      font-family: "Fraunces", serif;
+      font-size: 20px;
+      color: var(--brand);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .pathway-body span {
+      font-size: 14px;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+    .pathway:nth-child(2),
+    .pathway:nth-child(3) { background: var(--brand-tint); }
+
+    /* =========================================================
+       WHAT MAKES US DIFFERENT
+       ========================================================= */
+    .different { padding: 130px 0; }
+    .different-head {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 80px;
+      position: relative;
+    }
+    .different-head::before {
+      content: "";
+      display: block;
+      width: 1px; height: 48px;
+      background: var(--brand);
+      margin: 0 auto 36px;
+      opacity: 0.4;
+    }
+    .different-head h2 {
+      font-size: clamp(36px, 4.2vw, 58px);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .different-head p { font-size: 17px; color: var(--ink-2); }
+    .different-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      position: relative;
+    }
+    .different-grid::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -28px;
+      border-top: 1.5px dashed rgba(19,17,47,0.18);
+    }
+    .diff-card {
+      text-align: center;
+      padding: 34px 22px 30px;
+      border-radius: 4px;
+      transition: transform .25s, background .25s;
+      position: relative;
+      cursor: default;
+    }
+    .diff-card.filled {
+      background: var(--brand);
+      box-shadow: 0 18px 40px rgba(19,17,47,0.22);
+    }
+    .diff-card.filled .diff-icon { color: var(--white); }
+    .diff-card.filled h4 { color: var(--white); }
+    .diff-card:not(.filled):hover {
+      background: var(--brand);
+      transform: translateY(-6px);
+    }
+    .diff-card:not(.filled):hover .diff-icon,
+    .diff-card:not(.filled):hover h4 { color: var(--white); }
+    .diff-icon {
+      width: 60px; height: 60px;
+      margin: 0 auto 22px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--brand);
+      transition: color .25s;
+    }
+    .diff-card h4 {
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin: 0;
+      transition: color .25s;
+      line-height: 1.4;
+    }
+
+    /* =========================================================
+       THEME SPOTLIGHT
+       ========================================================= */
+    .theme {
+      padding: 120px 0;
+      background: var(--brand);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .theme::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 22px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.025) 0, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 22px);
+      pointer-events: none;
+    }
+    .theme-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+    }
+    .theme-eyebrow-bar {
+      width: 60px; height: 3px;
+      background: var(--white);
+      margin-bottom: 28px;
+      opacity: 0.6;
+    }
+    .theme h2 {
+      color: var(--white);
+      font-size: clamp(34px, 4vw, 52px);
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+    .theme h2 em { font-style: italic; font-weight: 500; }
+    .theme p {
+      color: rgba(255,255,255,0.82);
+      font-size: 16.5px;
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+    .theme .btn-primary { background: var(--white); color: var(--brand); }
+    .theme .btn-primary:hover {
+      background: var(--brand-soft);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+    .theme-image-wrap {
+      position: relative;
+      padding: 24px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 4px;
+    }
+    .theme-image-wrap img {
+      width: 100%;
+      border-radius: 2px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+
+    /* =========================================================
+       OUR STORIES
+       ========================================================= */
+    .stories { padding: 130px 0; background: var(--white); }
+    .stories-head { text-align: center; margin-bottom: 70px; }
+    .stories-head h2 {
+      font-size: clamp(38px, 4.2vw, 58px);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .stories-head p { font-size: 17px; color: var(--ink-2); }
+    .stories-rail {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .testimonial {
+      background: var(--testimonial-bg);
+      border-radius: 4px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 280px;
+      position: relative;
+    }
+    .testimonial-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.1);
+    }
+    .testimonial-body {
+      padding: 38px 36px 60px;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .testimonial-body blockquote {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 19px;
+      line-height: 1.5;
+      margin: 0 0 24px;
+      color: var(--white);
+    }
+    .testimonial-meta {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      font-weight: 600;
+    }
+    .testimonial-arrow {
+      position: absolute;
+      bottom: 22px; right: 22px;
+      width: 44px; height: 44px;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .testimonial-arrow:hover {
+      background: var(--white);
+      color: var(--brand);
+      border-color: var(--white);
+    }
+
+    /* =========================================================
+       CTA STRIP
+       ========================================================= */
+    .cta { padding: 110px 0; position: relative; }
+    .cta-inner { text-align: center; max-width: 720px; margin: 0 auto; }
+    .cta h2 {
+      font-size: clamp(36px, 4.2vw, 56px);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+    .cta p { font-size: 17.5px; color: var(--ink-2); margin-bottom: 36px; }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer {
+      background: var(--brand);
+      color: rgba(255,255,255,0.75);
+      padding: 80px 0 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 22px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 22px);
+      pointer-events: none;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+      position: relative;
+    }
+    footer h4 {
+      color: var(--white);
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer li {
+      margin-bottom: 12px;
+      color: rgba(255,255,255,0.7);
+      font-size: 14.5px;
+    }
+    footer a {
+      color: rgba(255,255,255,0.7);
+      font-size: 14.5px;
+      transition: color .2s;
+    }
+    footer a:hover { color: var(--white); }
+    .footer-brand p {
+      color: rgba(255,255,255,0.65);
+      font-size: 14.5px;
+      max-width: 320px;
+      line-height: 1.7;
+      margin: 16px 0 22px;
+    }
+    .socials { display: flex; gap: 10px; }
+    .socials a {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .socials a:hover { background: rgba(255,255,255,0.16); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.5);
+      position: relative;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 70px 40px 110px; }
+      .hero-right { min-height: 420px; }
+      .hero-action { left: 40px; right: 40px; max-width: none; }
+      .find-way-grid { grid-template-columns: 1fr; gap: 60px; }
+      .find-way-image { max-width: 540px; }
+      .theme-grid { grid-template-columns: 1fr; gap: 50px; }
+      .different-grid { grid-template-columns: repeat(2, 1fr); }
+      .stories-rail { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 72px; }
+      nav.main-nav { padding: 0 5%; }
+      .brand-text { display: none; }
+      .menu-trigger {
+        padding: 12px 18px 12px 14px;
+        font-size: 12px;
+      }
+      .menu-trigger .btn-text { display: none; }
+      .menu-panel-head { padding: 22px 28px; }
+      .menu-panel-body { padding: 36px 28px 24px; }
+      .menu-panel-foot { padding: 24px 28px 32px; }
+      .menu-list a { font-size: 26px; padding: 20px 4px; gap: 18px; }
+      .menu-list a .link-num { width: 26px; }
+      .hero-left { padding: 56px 24px 100px; }
+      .hero-action {
+        left: 16px; right: 16px;
+        flex-wrap: wrap;
+      }
+      .hero-action a {
+        flex: 1 1 50%;
+        padding: 18px 14px;
+        font-size: 11.5px;
+        justify-content: center;
+        gap: 8px;
+      }
+      .hero-action a:last-child { flex: 1 1 100%; }
+      .find-way { padding: 90px 0 80px; }
+      .pathways { grid-template-columns: 1fr; }
+      .different { padding: 90px 0; }
+      .different-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .theme { padding: 80px 0; }
+      .stories { padding: 80px 0; }
+      .testimonial { grid-template-columns: 1fr; }
+      .testimonial-img { aspect-ratio: 16/10; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .container { padding: 0 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .different-grid { grid-template-columns: 1fr; }
+      .menu-list a { font-size: 22px; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== GLAD HEADER ===== -->
+  <header id="glad-header">
+    <div class="glad-inner">
+      <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+          alt="GLAD Technology Digital Services"
+        />
+      </a>
+      <a href="https://www.gladtech.io/" class="glad-back-btn">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 5l-7 7 7 7" />
+        </svg>
+        <span class="btn-label">Back to Main Site</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ===== MAIN NAV ===== -->
+  <nav class="main-nav" id="navbar">
+    <a href="#" class="brand">
+      <img src="https://academicdecathlon.org/wp-content/uploads/2023/07/c37de5e9-96c5-4e14-a15a-4442d3a87589.jpg" alt="California Academic Decathlon" />
+    </a>
+
+    <button class="menu-trigger" id="menuTrigger" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+      <span class="btn-text">Menu</span>
+    </button>
+  </nav>
+
+  <!-- ===== OFF-CANVAS MENU ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <aside class="menu-panel" id="menuPanel" aria-hidden="true">
+    <div class="menu-panel-head">
+      <div class="label">Navigation</div>
+      <button class="menu-close" id="menuClose" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="menu-panel-body">
+      <ul class="menu-list">
+        <li>
+          <a href="#">
+            <span class="link-num">01</span>
+            <span class="link-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </span>
+            <span class="link-text">Home</span>
+            <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="link-num">02</span>
+            <span class="link-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </span>
+            <span class="link-text">About</span>
+            <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="link-num">03</span>
+            <span class="link-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="6"/>
+                <path d="M9 13.5L7 22l5-3 5 3-2-8.5"/>
+              </svg>
+            </span>
+            <span class="link-text">Competitions</span>
+            <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="link-num">04</span>
+            <span class="link-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="link-text">Get Involved</span>
+            <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="link-num">05</span>
+            <span class="link-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </span>
+            <span class="link-text">Events</span>
+            <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="link-num">06</span>
+            <span class="link-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5.882V19.24a1.76 1.76 0 0 1-3.417.592l-2.147-6.15M18 13a3 3 0 1 0 0-6M5.436 13.683A4.002 4.002 0 0 1 7 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 0 1-1.564-.317z"/>
+              </svg>
+            </span>
+            <span class="link-text">Announcements</span>
+            <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="link-num">07</span>
+            <span class="link-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </span>
+            <span class="link-text">Contact</span>
+            <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="menu-panel-foot">
+      <a href="#" class="menu-cta">
+        Donate Now
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <div class="menu-meta">
+        <div>
+          <a href="tel:7073303276">(707) 330-3276</a><br/>
+          <a href="mailto:info@academicdecathlon.org">info@academicdecathlon.org</a>
+        </div>
+        <div class="menu-socials">
+          <a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-left herringbone">
+      <h1>Welcome to the Decathlon</h1>
+      <p class="hero-tagline">Where curious minds become champions.</p>
+    </div>
+    <div class="hero-right">
+      <img src="https://academicdecathlon.org/wp-content/uploads/2024/11/DSC001992-scaled.jpg" alt="Students competing in the California Academic Decathlon" />
+    </div>
+
+    <div class="hero-action">
+      <a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Inquire
+      </a>
+      <a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
+        Compete
+      </a>
+      <a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Start a Team
+      </a>
+      <a href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FIND YOUR WAY ===== -->
+  <section class="find-way herringbone-soft">
+    <div class="container find-way-grid">
+      <div class="find-way-image">
+        <img src="https://academicdecathlon.org/wp-content/uploads/2024/11/DSC001992-scaled.jpg" alt="Decathlon student in focus" />
+      </div>
+
+      <div class="find-way-content">
+        <h2>Find Your Way</h2>
+        <p>
+          Begin your Decathlon journey through one of three competition formats — the
+          <strong>Decathlon</strong> for ten-event teams, the
+          <strong>Heptathlon</strong> for a focused seven-event challenge, or the
+          <strong>Octathlon</strong> built for middle schools stepping into competition.
+        </p>
+
+        <div class="pathways">
+          <a href="#" class="pathway">
+            <img class="pathway-img" src="https://academicdecathlon.org/wp-content/uploads/2024/11/DSC001992-scaled.jpg" alt="" />
+            <div class="pathway-body">
+              <h4>The Decathlon</h4>
+              <span>Ten Subjects · Grades 9–12</span>
+            </div>
+          </a>
+          <a href="#" class="pathway">
+            <img class="pathway-img" src="https://academicdecathlon.org/wp-content/uploads/2026/02/Roaring-Twenties-AcaDec-1-1.png" alt="" />
+            <div class="pathway-body">
+              <h4>The Heptathlon</h4>
+              <span>Seven Subjects · Grades 9–12</span>
+            </div>
+          </a>
+          <a href="#" class="pathway">
+            <img class="pathway-img" src="https://academicdecathlon.org/wp-content/uploads/2024/11/DSC001992-scaled.jpg" alt="" />
+            <div class="pathway-body">
+              <h4>The Octathlon</h4>
+              <span>Eight Subjects · Middle School</span>
+            </div>
+          </a>
+          <a href="#" class="pathway">
+            <img class="pathway-img" src="https://academicdecathlon.org/wp-content/uploads/2026/02/Roaring-Twenties-AcaDec-1-1.png" alt="" />
+            <div class="pathway-body">
+              <h4>State Competition</h4>
+              <span>March 19–22, 2026 · Santa Clara</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT MAKES US DIFFERENT ===== -->
+  <section class="different">
+    <div class="container">
+      <div class="different-head">
+        <h2>What makes the Decathlon different?</h2>
+        <p>A program designed to challenge every student — not just the top of the class.</p>
+      </div>
+
+      <div class="different-grid">
+        <div class="diff-card filled">
+          <div class="diff-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></svg>
+          </div>
+          <h4>Distinctive<br/>Curriculum</h4>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 16v6"/><path d="M2 12h6"/><path d="M16 12h6"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h4>Ten<br/>Disciplines</h4>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>Inclusive<br/>Team Format</h4>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>Statewide<br/>Reach</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THEME SPOTLIGHT ===== -->
+  <section class="theme">
+    <div class="container theme-grid">
+      <div>
+        <div class="theme-eyebrow-bar"></div>
+        <h2>This year's theme: <em>The Roaring Twenties</em></h2>
+        <p>
+          A dynamic exploration of one of the most transformative decades in modern history. Students dive
+          into the Jazz Age through art, music, and literature — with The Great Gatsby as the featured long
+          work — alongside algebra and trigonometry, electricity and magnetism, and the economics and
+          culture that shaped the era.
+        </p>
+        <a href="#" class="btn btn-primary">
+          Explore the Theme
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="theme-image-wrap">
+        <img src="https://academicdecathlon.org/wp-content/uploads/2026/02/Roaring-Twenties-AcaDec-1-1.png" alt="The Roaring Twenties — 2025–2026 Academic Decathlon theme" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OUR STORIES ===== -->
+  <section class="stories">
+    <div class="container">
+      <div class="stories-head">
+        <h2>Our Stories</h2>
+        <p>Hear from students who've found their way through the Decathlon.</p>
+      </div>
+
+      <div class="stories-rail">
+        <div class="testimonial">
+          <img class="testimonial-img" src="https://academicdecathlon.org/wp-content/uploads/2024/11/DSC001992-scaled.jpg" alt="Decathlete portrait" />
+          <div class="testimonial-body">
+            <blockquote>
+              "Decathlon taught me how to study what I didn't already love — and that's where the real growth happened. I came in for the medals; I stayed for the team."
+            </blockquote>
+            <div class="testimonial-meta">Honor Student · Decathlon</div>
+            <a href="#" class="testimonial-arrow" aria-label="Read story">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <img class="testimonial-img" src="https://academicdecathlon.org/wp-content/uploads/2024/11/DSC001992-scaled.jpg" alt="Decathlete portrait" />
+          <div class="testimonial-body">
+            <blockquote>
+              "I was a C student who got placed on the Varsity team. By the end of the year I'd given a speech in front of three hundred people. The program changed how I see myself."
+            </blockquote>
+            <div class="testimonial-meta">Varsity Student · Heptathlon</div>
+            <a href="#" class="testimonial-arrow" aria-label="Read story">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta herringbone-soft">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>Help shape the next generation of scholars</h2>
+        <p>
+          Your support fuels California's Decathlon teams — from regional scrimmages to the state stage —
+          helping students discover what they're capable of.
+        </p>
+        <a href="#" class="btn btn-primary">
+          Donate Now
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://academicdecathlon.org/wp-content/uploads/2023/07/c37de5e9-96c5-4e14-a15a-4442d3a87589.jpg" alt="California Academic Decathlon" style="height:52px; border-radius:6px;" />
+          <p>Promoting learning and academic excellence among California's high school students through team-based competition.</p>
+          <div class="socials">
+            <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Competitions</a></li>
+            <li><a href="#">Calendar of Events</a></li>
+            <li><a href="#">Announcements</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="#">Start a Team</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="#">Sponsor</a></li>
+            <li><a href="#">Alumni</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>4119 McKinley Boulevard</li>
+            <li>Sacramento, CA 95819</li>
+            <li><a href="#">(707) 330-3276</a></li>
+            <li><a href="#">info@academicdecathlon.org</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2025 California Academic Decathlon. All Rights Reserved.</div>
+        <div>Academic Decathlon® and USAD logo are trademarks used under license.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== GLAD HEADER hide-on-scroll =====
+    const gladHeader = document.getElementById('glad-header');
+    const mainNav = document.getElementById('navbar');
+    let lastScrollY = window.scrollY;
+    let gladVisible = true;
+
+    window.addEventListener('scroll', () => {
+      const currentY = window.scrollY;
+      if (currentY > 80 && currentY > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add('hidden');
+          mainNav.classList.add('glad-hidden');
+          gladVisible = false;
+        }
+      } else if (currentY < lastScrollY && currentY < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove('hidden');
+          mainNav.classList.remove('glad-hidden');
+          gladVisible = true;
+        }
+      }
+      lastScrollY = currentY;
+    }, { passive: true });
+
+    // ===== OFF-CANVAS MENU =====
+    const menuTrigger = document.getElementById('menuTrigger');
+    const menuClose   = document.getElementById('menuClose');
+    const menuPanel   = document.getElementById('menuPanel');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      document.body.classList.add('menu-open');
+      menuPanel.classList.add('open');
+      menuOverlay.classList.add('open');
+      menuPanel.setAttribute('aria-hidden', 'false');
+      menuTrigger.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      document.body.classList.remove('menu-open');
+      menuPanel.classList.remove('open');
+      menuOverlay.classList.remove('open');
+      menuPanel.setAttribute('aria-hidden', 'true');
+      menuTrigger.setAttribute('aria-expanded', 'false');
+    }
+    menuTrigger.addEventListener('click', () => {
+      menuPanel.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuPanel.classList.contains('open')) closeMenu();
+    });
+    menuPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  </script>
+
+</body>
+</html>

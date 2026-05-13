@@ -1,0 +1,3219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      CARPD — California Association of Recreation and Park Districts
+    </title>
+    <meta
+      name="description"
+      content="CARPD provides advocacy, education, and support to California's special recreation and park districts — strengthening parks, programs, and people across the state."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Public+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+   CARPD — Redesign
+   Class prefix: crpd-  (avoids collision with Squarespace)
+   ============================================================ */
+
+      :root {
+        /* Brand — deep, trustworthy, parks-inspired (NO yellow) */
+        --crpd-forest-900: #0f2a1d;
+        --crpd-forest-800: #143a28;
+        --crpd-forest-700: #1d5237;
+        --crpd-forest-600: #2a6b48;
+        --crpd-forest-500: #3b8a5e;
+        --crpd-moss-100: #e8f0eb;
+        --crpd-moss-50: #f3f7f4;
+
+        --crpd-sand-50: #fbf8f3;
+        --crpd-sand-100: #f3ede1;
+        --crpd-sand-200: #e6dcc7;
+        --crpd-stone-300: #cdc4b0;
+
+        --crpd-navy: #1a2740;
+        --crpd-ink-900: #0d1a14;
+        --crpd-ink-700: #2c3a32;
+        --crpd-ink-500: #5c6960;
+        --crpd-ink-400: #7c8a82;
+
+        --crpd-line: rgba(15, 42, 29, 0.1);
+        --crpd-line-strong: rgba(15, 42, 29, 0.18);
+
+        --crpd-bg: #fbf8f3;
+        --crpd-surface: #ffffff;
+
+        /* Type */
+        --crpd-font-display: "Fraunces", "Times New Roman", serif;
+        --crpd-font-body:
+          "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          system-ui, sans-serif;
+
+        /* Scale (mobile-first) */
+        --crpd-r-xs: 6px;
+        --crpd-r-sm: 10px;
+        --crpd-r-md: 14px;
+        --crpd-r-lg: 22px;
+        --crpd-r-xl: 32px;
+
+        --crpd-shadow-sm:
+          0 1px 2px rgba(13, 26, 20, 0.06), 0 1px 1px rgba(13, 26, 20, 0.04);
+        --crpd-shadow-md:
+          0 10px 30px -12px rgba(13, 26, 20, 0.18),
+          0 4px 10px -6px rgba(13, 26, 20, 0.08);
+        --crpd-shadow-lg: 0 30px 60px -20px rgba(13, 26, 20, 0.3);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--crpd-font-body);
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--crpd-ink-700);
+        background: var(--crpd-bg);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+       /* ── GLAD HEADER ── */
+      #glad-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+        height: var(--glad-h);
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.35s ease,
+          opacity 0.35s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .glad-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+        max-width: 1200px;
+        position: relative;
+      }
+      .glad-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .glad-logo img {
+        height: 38px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .glad-back-btn {
+        position: absolute;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--navy);
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 8px 18px;
+        border-radius: 6px;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+        transition: background 0.2s;
+      }
+      .glad-back-btn:hover {
+        background: var(--navy-mid);
+      }
+      .glad-back-btn svg {
+        width: 13px;
+        height: 13px;
+        stroke: #fff;
+        fill: none;
+        stroke-width: 2.2;
+        flex-shrink: 0;
+      }
+      @media (max-width: 520px) {
+        .glad-back-btn .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 8px 12px;
+        }
+      }
+      
+       nav.glad-hidden {
+        top: 0;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+        height: auto;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+        border: 0;
+        background: none;
+        color: inherit;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--crpd-font-display);
+        color: var(--crpd-forest-900);
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        line-height: 1.1;
+        margin: 0;
+        font-variation-settings: "opsz" 144;
+      }
+      p {
+        margin: 0;
+      }
+
+      /* ============================================================
+   Layout shell (replaces "container")
+   ============================================================ */
+      .crpd-shell {
+        width: 100%;
+        max-width: 1240px;
+        margin-inline: auto;
+        padding-inline: 20px;
+      }
+      @media (min-width: 768px) {
+        .crpd-shell {
+          padding-inline: 32px;
+        }
+      }
+      @media (min-width: 1100px) {
+        .crpd-shell {
+          padding-inline: 48px;
+        }
+      }
+
+      /* ============================================================
+   Accessibility
+   ============================================================ */
+      .crpd-skip {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: var(--crpd-forest-800);
+        color: #fff;
+        padding: 12px 18px;
+        z-index: 9999;
+        border-radius: 0 0 8px 0;
+        font-weight: 600;
+      }
+      .crpd-skip:focus {
+        left: 0;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--crpd-forest-600);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      /* ============================================================
+   Header / Navigation
+   ============================================================ */
+      .crpd-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(251, 248, 243, 0.92);
+        backdrop-filter: saturate(140%) blur(12px);
+        -webkit-backdrop-filter: saturate(140%) blur(12px);
+        border-bottom: 1px solid var(--crpd-line);
+      }
+      .crpd-utility {
+        display: none;
+        background: var(--crpd-forest-900);
+        color: var(--crpd-moss-100);
+        font-size: 13px;
+      }
+      @media (min-width: 900px) {
+        .crpd-utility {
+          display: block;
+        }
+      }
+      .crpd-utility-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-block: 9px;
+        gap: 24px;
+      }
+      .crpd-utility a {
+        opacity: 0.85;
+        transition: opacity 0.2s;
+      }
+      .crpd-utility a:hover {
+        opacity: 1;
+      }
+      .crpd-utility-meta {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+      }
+
+      .crpd-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-block: 14px;
+        gap: 24px;
+      }
+      @media (min-width: 900px) {
+        .crpd-nav {
+          padding-block: 18px;
+        }
+      }
+
+      .crpd-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        text-decoration: none;
+      }
+      .crpd-brand-logo {
+        height: 52px;
+        width: auto;
+        display: block;
+        flex-shrink: 0;
+      }
+      @media (min-width: 768px) {
+        .crpd-brand-logo {
+          height: 58px;
+        }
+      }
+      .crpd-brand-text {
+        display: none;
+        flex-direction: column;
+        line-height: 1.15;
+        padding-left: 14px;
+        border-left: 1px solid var(--crpd-line);
+      }
+      @media (min-width: 600px) {
+        .crpd-brand-text {
+          display: flex;
+        }
+      }
+      .crpd-brand-text strong {
+        font-family: var(--crpd-font-display);
+        font-weight: 600;
+        color: var(--crpd-forest-900);
+        font-size: 15px;
+        letter-spacing: -0.005em;
+        max-width: 20ch;
+      }
+      .crpd-brand-text span {
+        font-size: 10.5px;
+        color: var(--crpd-ink-500);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-top: 3px;
+      }
+
+      .crpd-nav-list {
+        display: none;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+        gap: 4px;
+      }
+      @media (min-width: 1024px) {
+        .crpd-nav-list {
+          display: flex;
+        }
+      }
+      .crpd-nav-list a {
+        display: inline-block;
+        padding: 10px 14px;
+        font-size: 14.5px;
+        font-weight: 500;
+        color: var(--crpd-ink-700);
+        border-radius: 8px;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .crpd-nav-list a:hover {
+        background: var(--crpd-moss-100);
+        color: var(--crpd-forest-800);
+      }
+      .crpd-nav-list .crpd-nav-current a {
+        color: var(--crpd-forest-800);
+      }
+
+      .crpd-nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .crpd-search-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        color: var(--crpd-ink-700);
+        border: 1px solid var(--crpd-line);
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .crpd-search-btn:hover {
+        background: var(--crpd-moss-100);
+        border-color: var(--crpd-line-strong);
+      }
+      @media (min-width: 768px) {
+        .crpd-search-btn {
+          display: inline-flex;
+        }
+      }
+
+      .crpd-menu-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--crpd-line);
+        color: var(--crpd-forest-900);
+      }
+      @media (min-width: 1024px) {
+        .crpd-menu-toggle {
+          display: none;
+        }
+      }
+      .crpd-menu-toggle svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Mobile drawer */
+      .crpd-drawer {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(13, 26, 20, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s ease;
+      }
+      .crpd-drawer[data-open="true"] {
+        opacity: 1;
+        visibility: visible;
+      }
+      .crpd-drawer-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(86vw, 360px);
+        background: var(--crpd-bg);
+        padding: 24px 22px 40px;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+        overflow-y: auto;
+      }
+      .crpd-drawer[data-open="true"] .crpd-drawer-panel {
+        transform: translateX(0);
+      }
+      .crpd-drawer-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+      .crpd-drawer-close {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--crpd-line);
+      }
+      .crpd-drawer-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .crpd-drawer-list a {
+        display: block;
+        padding: 14px 14px;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--crpd-ink-700);
+        border-radius: 10px;
+        border: 1px solid transparent;
+      }
+      .crpd-drawer-list a:hover {
+        background: var(--crpd-moss-100);
+        border-color: var(--crpd-line);
+      }
+      .crpd-drawer-cta {
+        display: block;
+        text-align: center;
+        margin-top: 22px;
+        padding: 14px;
+        background: var(--crpd-forest-700);
+        color: #fff;
+        border-radius: 12px;
+        font-weight: 600;
+      }
+
+      /* ============================================================
+   Buttons
+   ============================================================ */
+      .crpd-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 13px 22px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 999px;
+        transition:
+          transform 0.15s ease,
+          background 0.2s ease,
+          color 0.2s ease,
+          box-shadow 0.2s ease;
+        white-space: nowrap;
+      }
+      .crpd-btn:active {
+        transform: translateY(1px);
+      }
+      .crpd-btn-primary {
+        background: var(--crpd-forest-700);
+        color: #fff;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.12) inset,
+          0 8px 20px -8px rgba(15, 42, 29, 0.45);
+      }
+      .crpd-btn-primary:hover {
+        background: var(--crpd-forest-800);
+      }
+      .crpd-btn-ghost {
+        background: transparent;
+        color: var(--crpd-forest-800);
+        border: 1px solid var(--crpd-forest-700);
+      }
+      .crpd-btn-ghost:hover {
+        background: var(--crpd-forest-700);
+        color: #fff;
+      }
+      .crpd-btn-light {
+        background: rgba(255, 255, 255, 0.94);
+        color: var(--crpd-forest-900);
+      }
+      .crpd-btn-light:hover {
+        background: #fff;
+      }
+      .crpd-btn-outline-light {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .crpd-btn-outline-light:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: #fff;
+      }
+
+      .crpd-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ============================================================
+   Hero — full-bleed slideshow
+   ============================================================ */
+      .crpd-hero {
+        position: relative;
+        min-height: 560px;
+        height: calc(100vh - 88px);
+        max-height: 780px;
+        overflow: hidden;
+        background: var(--crpd-forest-900);
+        isolation: isolate;
+      }
+      @media (min-width: 768px) {
+        .crpd-hero {
+          min-height: 640px;
+        }
+      }
+
+      .crpd-slides {
+        position: absolute;
+        inset: 0;
+      }
+      .crpd-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1.4s ease;
+        transform: scale(1.04);
+      }
+      .crpd-slide[data-active="true"] {
+        opacity: 1;
+        animation: crpd-kenburns 8s ease-out forwards;
+      }
+      @keyframes crpd-kenburns {
+        from {
+          transform: scale(1.04);
+        }
+        to {
+          transform: scale(1.1);
+        }
+      }
+      .crpd-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(13, 26, 20, 0.1) 0%,
+            rgba(13, 26, 20, 0.55) 60%,
+            rgba(13, 26, 20, 0.85) 100%
+          ),
+          linear-gradient(
+            110deg,
+            rgba(15, 42, 29, 0.78) 0%,
+            rgba(15, 42, 29, 0.3) 55%,
+            rgba(15, 42, 29, 0) 80%
+          );
+      }
+
+      .crpd-hero-inner {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-block: 48px 44px;
+        color: #fff;
+      }
+      @media (min-width: 768px) {
+        .crpd-hero-inner {
+          padding-block: 80px 90px;
+        }
+      }
+
+      .crpd-hero-eyelet {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12.5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 18px;
+      }
+      .crpd-hero-eyelet::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .crpd-hero h1 {
+        color: #fff;
+        font-size: clamp(2.4rem, 6vw, 4.6rem);
+        font-weight: 400;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 30;
+        max-width: 18ch;
+        margin-bottom: 18px;
+      }
+      .crpd-hero h1 em {
+        font-style: italic;
+        font-weight: 300;
+        color: #cfe3d5;
+      }
+      .crpd-hero p.crpd-hero-lede {
+        font-size: clamp(1rem, 1.6vw, 1.18rem);
+        max-width: 54ch;
+        color: rgba(255, 255, 255, 0.88);
+        margin-bottom: 32px;
+      }
+
+      .crpd-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      /* Slide pagination */
+      .crpd-slide-nav {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 18px;
+        z-index: 3;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        pointer-events: none;
+      }
+      @media (min-width: 768px) {
+        .crpd-slide-nav {
+          left: 32px;
+          right: 32px;
+          bottom: 24px;
+        }
+      }
+      @media (min-width: 1100px) {
+        .crpd-slide-nav {
+          left: 48px;
+          right: 48px;
+        }
+      }
+      .crpd-slide-dots {
+        display: flex;
+        gap: 8px;
+        pointer-events: auto;
+      }
+      .crpd-slide-dots button {
+        width: 32px;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.3);
+        transition:
+          background 0.25s,
+          width 0.25s;
+      }
+      .crpd-slide-dots button[data-active="true"] {
+        background: #fff;
+        width: 48px;
+      }
+
+      .crpd-slide-counter {
+        pointer-events: auto;
+        font-variant-numeric: tabular-nums;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: 0.04em;
+      }
+      .crpd-slide-counter strong {
+        font-weight: 600;
+        color: #fff;
+      }
+
+      /* ============================================================
+   Announcement bar (under hero)
+   ============================================================ */
+      .crpd-announce {
+        background: var(--crpd-forest-800);
+        color: #e2ece5;
+      }
+      .crpd-announce-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px 22px;
+        padding-block: 14px;
+        font-size: 14px;
+      }
+      .crpd-announce-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #fff;
+      }
+      .crpd-announce-tag::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #7cc99c;
+        box-shadow: 0 0 0 4px rgba(124, 201, 156, 0.25);
+      }
+      .crpd-announce a {
+        margin-left: auto;
+        color: #fff;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 1px;
+        transition: border-color 0.2s;
+      }
+      .crpd-announce a:hover {
+        border-color: #fff;
+      }
+
+      /* ============================================================
+   Sections — general
+   ============================================================ */
+      .crpd-section {
+        padding-block: 64px;
+      }
+      @media (min-width: 768px) {
+        .crpd-section {
+          padding-block: 96px;
+        }
+      }
+      @media (min-width: 1100px) {
+        .crpd-section {
+          padding-block: 120px;
+        }
+      }
+
+      .crpd-section-head {
+        max-width: 62ch;
+        margin-bottom: 48px;
+      }
+      .crpd-section-label {
+        display: inline-block;
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--crpd-forest-600);
+        margin-bottom: 16px;
+      }
+      .crpd-section-head h2 {
+        font-size: clamp(2rem, 4.2vw, 3.1rem);
+        font-weight: 500;
+        margin-bottom: 18px;
+      }
+      .crpd-section-head p {
+        font-size: 1.05rem;
+        color: var(--crpd-ink-500);
+        max-width: 60ch;
+      }
+
+      /* ============================================================
+   About — split layout, mission stats
+   ============================================================ */
+      .crpd-about {
+        background: var(--crpd-surface);
+      }
+      .crpd-about-grid {
+        display: grid;
+        gap: 48px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 980px) {
+        .crpd-about-grid {
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 80px;
+          align-items: center;
+        }
+      }
+
+      .crpd-about-text h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 24px;
+      }
+      .crpd-about-text h2 em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--crpd-forest-600);
+      }
+      .crpd-about-text > p {
+        font-size: 1.05rem;
+        color: var(--crpd-ink-700);
+        margin-bottom: 18px;
+        line-height: 1.7;
+      }
+      .crpd-about-pillars {
+        display: grid;
+        gap: 14px;
+        margin-top: 28px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 520px) {
+        .crpd-about-pillars {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .crpd-pillar {
+        padding: 18px 18px 20px;
+        border: 1px solid var(--crpd-line);
+        border-radius: 14px;
+        background: var(--crpd-sand-50);
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s,
+          border-color 0.25s;
+      }
+      .crpd-pillar:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--crpd-shadow-md);
+        border-color: var(--crpd-forest-500);
+      }
+      .crpd-pillar-num {
+        font-family: var(--crpd-font-display);
+        font-size: 14px;
+        color: var(--crpd-forest-600);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        margin-bottom: 6px;
+      }
+      .crpd-pillar h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .crpd-pillar p {
+        font-size: 14px;
+        color: var(--crpd-ink-500);
+        line-height: 1.55;
+      }
+
+      /* About visual / stats panel */
+      .crpd-about-visual {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        background: var(--crpd-forest-800);
+        min-height: 480px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        color: #fff;
+        isolation: isolate;
+      }
+      .crpd-about-visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image: url("https://images.unsplash.com/photo-1473445730015-841f29a9490b?auto=format&fit=crop&w=1400&q=80");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.45;
+      }
+      .crpd-about-visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 42, 29, 0.3) 0%,
+          rgba(15, 42, 29, 0.85) 75%,
+          rgba(15, 42, 29, 0.95) 100%
+        );
+      }
+      .crpd-about-stats {
+        position: relative;
+        z-index: 2;
+        padding: 32px 28px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      @media (min-width: 540px) {
+        .crpd-about-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .crpd-stat {
+      }
+      .crpd-stat-num {
+        font-family: var(--crpd-font-display);
+        font-size: clamp(2.4rem, 5vw, 3.4rem);
+        font-weight: 300;
+        font-variation-settings: "opsz" 144;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+      }
+      .crpd-stat-num span {
+        font-size: 0.6em;
+        color: #cfe3d5;
+        margin-left: 2px;
+      }
+      .crpd-stat-label {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.4;
+      }
+
+      .crpd-about-quote {
+        position: relative;
+        z-index: 2;
+        padding: 0 28px 28px;
+        font-family: var(--crpd-font-display);
+        font-style: italic;
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.5;
+      }
+
+      /* ============================================================
+   Programs / services
+   ============================================================ */
+      .crpd-programs {
+        background: var(--crpd-sand-100);
+      }
+
+      .crpd-programs-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 680px) {
+        .crpd-programs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .crpd-programs-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 18px;
+        }
+      }
+
+      .crpd-program {
+        background: #fff;
+        border-radius: 18px;
+        padding: 28px 24px 26px;
+        border: 1px solid var(--crpd-line);
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+      .crpd-program:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--crpd-shadow-md);
+        border-color: var(--crpd-forest-500);
+      }
+      .crpd-program-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--crpd-moss-100);
+        color: var(--crpd-forest-700);
+        display: grid;
+        place-items: center;
+        margin-bottom: 20px;
+      }
+      .crpd-program-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .crpd-program h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .crpd-program p {
+        font-size: 14.5px;
+        color: var(--crpd-ink-500);
+        line-height: 1.55;
+        margin-bottom: 18px;
+      }
+      .crpd-program-link {
+        margin-top: auto;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--crpd-forest-700);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .crpd-program-link svg {
+        transition: transform 0.25s ease;
+      }
+      .crpd-program:hover .crpd-program-link svg {
+        transform: translateX(4px);
+      }
+
+      /* ============================================================
+   Membership CTA — band
+   ============================================================ */
+      .crpd-membership {
+        background: var(--crpd-forest-900);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+      }
+      .crpd-membership::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image: url("https://images.unsplash.com/photo-1551649446-d6bd5bea0f0c?auto=format&fit=crop&w=1600&q=80");
+        background-size: cover;
+        background-position: center right;
+        opacity: 0.18;
+      }
+      .crpd-membership::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          90deg,
+          rgba(15, 42, 29, 0.92) 0%,
+          rgba(15, 42, 29, 0.78) 60%,
+          rgba(15, 42, 29, 0.55) 100%
+        );
+      }
+      .crpd-membership-inner {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        gap: 32px;
+        grid-template-columns: 1fr;
+        align-items: center;
+      }
+      @media (min-width: 900px) {
+        .crpd-membership-inner {
+          grid-template-columns: 1.4fr 1fr;
+          gap: 64px;
+        }
+      }
+      .crpd-membership h2 {
+        color: #fff;
+        font-size: clamp(2rem, 4.4vw, 3.2rem);
+        font-weight: 400;
+        margin-bottom: 18px;
+      }
+      .crpd-membership h2 em {
+        font-style: italic;
+        color: #cfe3d5;
+        font-weight: 300;
+      }
+      .crpd-membership-text p {
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.88);
+        max-width: 50ch;
+        margin-bottom: 28px;
+        line-height: 1.65;
+      }
+      .crpd-membership-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .crpd-membership-benefits {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 18px;
+        padding: 28px;
+        backdrop-filter: blur(6px);
+      }
+      .crpd-membership-benefits h3 {
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 18px;
+        letter-spacing: 0.01em;
+      }
+      .crpd-membership-benefits ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .crpd-membership-benefits li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        font-size: 14.5px;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.5;
+      }
+      .crpd-membership-benefits li svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        margin-top: 1px;
+        color: #7cc99c;
+      }
+
+      /* ============================================================
+   Events / Conference feature
+   ============================================================ */
+      .crpd-events {
+        background: var(--crpd-bg);
+      }
+      .crpd-events-feature {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: 1fr;
+        align-items: stretch;
+        margin-bottom: 48px;
+      }
+      @media (min-width: 900px) {
+        .crpd-events-feature {
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 48px;
+        }
+      }
+
+      .crpd-event-image {
+        position: relative;
+        border-radius: 22px;
+        overflow: hidden;
+        min-height: 360px;
+        background: #cfe3d5;
+      }
+      .crpd-event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        min-height: 360px;
+      }
+      .crpd-event-image-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--crpd-forest-800);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .crpd-event-meta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .crpd-event-date {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-bottom: 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--crpd-line);
+      }
+      .crpd-event-date-big {
+        font-family: var(--crpd-font-display);
+        font-size: clamp(2.8rem, 6vw, 4.2rem);
+        font-weight: 300;
+        color: var(--crpd-forest-800);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+      }
+      .crpd-event-date-text {
+        font-size: 14px;
+        color: var(--crpd-ink-500);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+      }
+      .crpd-event-date-text strong {
+        color: var(--crpd-forest-900);
+        display: block;
+        font-size: 18px;
+        letter-spacing: 0;
+        text-transform: none;
+        font-family: var(--crpd-font-display);
+        font-weight: 500;
+      }
+
+      .crpd-event-meta h2 {
+        font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+      .crpd-event-meta > p {
+        font-size: 1rem;
+        color: var(--crpd-ink-500);
+        margin-bottom: 24px;
+        line-height: 1.65;
+      }
+      .crpd-event-loc {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: var(--crpd-forest-700);
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+      .crpd-event-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      /* Mini events list */
+      .crpd-events-list {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 680px) {
+        .crpd-events-list {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .crpd-event-mini {
+        background: var(--crpd-surface);
+        border: 1px solid var(--crpd-line);
+        border-radius: 16px;
+        padding: 24px 22px;
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s,
+          border-color 0.25s;
+        display: flex;
+        flex-direction: column;
+      }
+      .crpd-event-mini:hover {
+        transform: translateY(-3px);
+        border-color: var(--crpd-forest-500);
+        box-shadow: var(--crpd-shadow-md);
+      }
+      .crpd-event-mini-tag {
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--crpd-forest-600);
+        margin-bottom: 12px;
+      }
+      .crpd-event-mini h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .crpd-event-mini p {
+        font-size: 14px;
+        color: var(--crpd-ink-500);
+        margin-bottom: 14px;
+        line-height: 1.55;
+        flex: 1;
+      }
+      .crpd-event-mini a {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--crpd-forest-700);
+        display: inline-flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      /* ============================================================
+   News / Communicator
+   ============================================================ */
+      .crpd-news {
+        background: var(--crpd-moss-50);
+      }
+      .crpd-news-head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+      .crpd-news-head .crpd-section-head {
+        margin-bottom: 0;
+      }
+      .crpd-news-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 680px) {
+        .crpd-news-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .crpd-news-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .crpd-news-card {
+        background: var(--crpd-surface);
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--crpd-line);
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s;
+      }
+      .crpd-news-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--crpd-shadow-md);
+      }
+      .crpd-news-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+      .crpd-news-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 50%,
+          rgba(13, 26, 20, 0.2)
+        );
+      }
+      .crpd-news-body {
+        padding: 24px 22px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .crpd-news-meta {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        font-size: 12px;
+        color: var(--crpd-ink-500);
+        margin-bottom: 12px;
+      }
+      .crpd-news-cat {
+        color: var(--crpd-forest-700);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .crpd-news-card h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: 12px;
+      }
+      .crpd-news-card p {
+        font-size: 14.5px;
+        color: var(--crpd-ink-500);
+        line-height: 1.55;
+        margin-bottom: 18px;
+        flex: 1;
+      }
+      .crpd-news-card a.crpd-news-readmore {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--crpd-forest-700);
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      /* ============================================================
+   Impact / testimonials
+   ============================================================ */
+      .crpd-impact {
+        background: var(--crpd-surface);
+        position: relative;
+        overflow: hidden;
+      }
+      .crpd-impact-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 900px) {
+        .crpd-impact-grid {
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 48px;
+        }
+      }
+
+      .crpd-quote-card {
+        background: var(--crpd-forest-800);
+        color: #fff;
+        border-radius: 24px;
+        padding: 40px 32px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 380px;
+      }
+      @media (min-width: 768px) {
+        .crpd-quote-card {
+          padding: 56px 48px;
+        }
+      }
+      .crpd-quote-mark {
+        position: absolute;
+        top: -20px;
+        right: 24px;
+        font-family: var(--crpd-font-display);
+        font-size: 200px;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.06);
+        font-weight: 300;
+        pointer-events: none;
+      }
+      .crpd-quote-card blockquote {
+        position: relative;
+        z-index: 1;
+        font-family: var(--crpd-font-display);
+        font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+        font-weight: 400;
+        font-style: italic;
+        line-height: 1.35;
+        color: #fff;
+        margin: 0 0 28px;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 50;
+      }
+      .crpd-quote-cite {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .crpd-quote-avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--crpd-forest-500);
+        display: grid;
+        place-items: center;
+        font-family: var(--crpd-font-display);
+        font-weight: 600;
+        color: #fff;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .crpd-quote-cite-text strong {
+        display: block;
+        color: #fff;
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .crpd-quote-cite-text span {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .crpd-impact-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .crpd-impact-stat {
+        background: var(--crpd-sand-50);
+        border: 1px solid var(--crpd-line);
+        border-radius: 18px;
+        padding: 24px 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 170px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+      }
+      .crpd-impact-stat:hover {
+        transform: translateY(-3px);
+        border-color: var(--crpd-forest-500);
+      }
+      .crpd-impact-stat-num {
+        font-family: var(--crpd-font-display);
+        font-size: clamp(2.2rem, 5vw, 3rem);
+        font-weight: 300;
+        color: var(--crpd-forest-800);
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .crpd-impact-stat-num span {
+        font-size: 0.5em;
+        font-weight: 500;
+        margin-left: 2px;
+        color: var(--crpd-forest-600);
+      }
+      .crpd-impact-stat-label {
+        font-size: 13.5px;
+        color: var(--crpd-ink-500);
+        margin-top: 12px;
+        line-height: 1.4;
+      }
+
+      /* ============================================================
+   Partners / sponsors
+   ============================================================ */
+      .crpd-partners {
+        background: var(--crpd-sand-50);
+        border-top: 1px solid var(--crpd-line);
+        border-bottom: 1px solid var(--crpd-line);
+      }
+      .crpd-partners .crpd-section {
+        padding-block: 64px;
+      }
+      .crpd-partners-head {
+        text-align: center;
+        margin-bottom: 36px;
+      }
+      .crpd-partners-head p {
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--crpd-ink-500);
+      }
+      .crpd-partners-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        align-items: center;
+      }
+      @media (min-width: 680px) {
+        .crpd-partners-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .crpd-partners-grid {
+          grid-template-columns: repeat(6, 1fr);
+        }
+      }
+
+      .crpd-partner {
+        height: 60px;
+        display: grid;
+        place-items: center;
+        color: var(--crpd-ink-400);
+        font-family: var(--crpd-font-display);
+        font-style: italic;
+        font-weight: 500;
+        font-size: 18px;
+        letter-spacing: 0.02em;
+        border-radius: 8px;
+        transition: color 0.2s;
+        text-align: center;
+        padding: 0 8px;
+      }
+      .crpd-partner:hover {
+        color: var(--crpd-forest-700);
+      }
+
+      /* ============================================================
+   Final CTA
+   ============================================================ */
+      .crpd-final-cta {
+        background: var(--crpd-forest-900);
+        color: #fff;
+        text-align: center;
+        padding-block: 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .crpd-final-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          60% 80% at 50% 30%,
+          rgba(59, 138, 94, 0.25),
+          transparent 70%
+        );
+      }
+      .crpd-final-cta-inner {
+        position: relative;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+      .crpd-final-cta h2 {
+        color: #fff;
+        font-size: clamp(2rem, 4.6vw, 3.4rem);
+        font-weight: 400;
+        margin-bottom: 18px;
+      }
+      .crpd-final-cta h2 em {
+        font-style: italic;
+        color: #cfe3d5;
+        font-weight: 300;
+      }
+      .crpd-final-cta p {
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 32px;
+      }
+      .crpd-final-cta-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ============================================================
+   Footer
+   ============================================================ */
+      .crpd-footer {
+        background: var(--crpd-ink-900);
+        color: rgba(255, 255, 255, 0.7);
+        padding-block: 64px 32px;
+      }
+      .crpd-footer-grid {
+        display: grid;
+        gap: 40px;
+        grid-template-columns: 1fr;
+        margin-bottom: 48px;
+      }
+      @media (min-width: 680px) {
+        .crpd-footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .crpd-footer-grid {
+          grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+        }
+      }
+
+      .crpd-footer h4 {
+        color: #fff;
+        font-family: var(--crpd-font-body);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+      .crpd-footer ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .crpd-footer ul a {
+        font-size: 14.5px;
+        color: rgba(255, 255, 255, 0.65);
+        transition: color 0.2s;
+      }
+      .crpd-footer ul a:hover {
+        color: #fff;
+      }
+
+      .crpd-footer-brand .crpd-brand {
+        align-items: center;
+      }
+      .crpd-footer-brand .crpd-brand-logo {
+        background: #fff;
+        padding: 8px 10px;
+        border-radius: 10px;
+        height: 62px;
+      }
+      .crpd-footer-brand .crpd-brand-text {
+        border-left-color: rgba(255, 255, 255, 0.15);
+      }
+      .crpd-footer-brand .crpd-brand-text strong {
+        color: #fff;
+      }
+      .crpd-footer-brand .crpd-brand-text span {
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .crpd-footer-brand p {
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.65);
+        margin-top: 18px;
+        max-width: 36ch;
+      }
+
+      .crpd-footer-contact {
+        font-size: 14.5px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .crpd-footer-contact strong {
+        color: #fff;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .crpd-footer-contact a:hover {
+        color: #fff;
+      }
+
+      .crpd-newsletter p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 16px;
+        line-height: 1.55;
+      }
+      .crpd-newsletter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .crpd-newsletter-form input {
+        width: 100%;
+        padding: 13px 16px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        color: #fff;
+        font-family: inherit;
+        font-size: 14.5px;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .crpd-newsletter-form input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .crpd-newsletter-form input:focus {
+        outline: none;
+        border-color: var(--crpd-forest-500);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .crpd-newsletter-form button {
+        padding: 13px 16px;
+        background: var(--crpd-forest-500);
+        color: #fff;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: background 0.2s;
+      }
+      .crpd-newsletter-form button:hover {
+        background: var(--crpd-forest-600);
+      }
+
+      .crpd-footer-bottom {
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      @media (min-width: 768px) {
+        .crpd-footer-bottom {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+      .crpd-footer-legal {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 22px;
+      }
+      .crpd-footer-legal a {
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .crpd-footer-legal a:hover {
+        color: #fff;
+      }
+
+      /* ============================================================
+   Reveal-on-scroll
+   ============================================================ */
+      .crpd-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .crpd-reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .crpd-slide[data-active="true"] {
+          animation: none;
+          transform: none;
+        }
+        .crpd-reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="crpd-skip" href="#main">Skip to main content</a>
+   
+     <!-- GLAD HEADER -->
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="crpd-header" role="banner">
+      <div class="crpd-utility" aria-label="Utility navigation">
+        <div class="crpd-shell crpd-utility-inner">
+          <div>
+            Special districts strengthening California communities since 1968
+          </div>
+          <div class="crpd-utility-meta">
+            <a href="tel:+19167225550" aria-label="Call CARPD"
+              >(916) 722-5550</a
+            >
+            <span aria-hidden="true">·</span>
+            <a href="#contact">Roseville, CA</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="crpd-shell">
+        <nav class="crpd-nav" aria-label="Primary">
+          <a
+            class="crpd-brand"
+            href="/"
+            aria-label="CARPD — California Association of Recreation and Park Districts, home"
+          >
+            <img
+              class="crpd-brand-logo"
+              src="https://d2blwilx4xw5sk.cloudfront.net/42829cf1-4785-4ba4-8559-68ccbda52a5d/8b8df19d-ee9e-4fe6-82fa-0910c1d1dcea/New%20CARPD%20Logo.jpg?response-content-disposition=attachment%3B%20filename%3D%22New%20CARPD%20Logo.jpg%22%3B%20filename%2A%3DUTF-8%27%27New%2520CARPD%2520Logo.jpg&response-content-type=image%2Fjpeg&Expires=2147483647&Signature=IHKvViBTOHCpBHIiziVsuWdjSslkkAzu5NurGddlIrKx3TjJuBsN3badUXZVbGe2NOIDJnLtI7aRRj6PlhHisQY-qvUVN-McpboUqHBMngXXElFVhHVs6umy7oZ8aZgLqOAGv6aVa6wnNNhyY8tDyJtzvOmzKVaxmfbo96sBqRj1AMjRq~l4~PEXgY8I-5biHjHmRRbPKS7TyHCMLNoYX3txm1Dsh55ySCO~l8CFAfihu2I1pUieOTttReAHx~WwjVOBiY5cSPEIB24v76A9ao4xIIefLdypVr-N3odPGBCyM2QtGbBNiS12LrC5XudTtBxLu7djqvbe2aO0hvZDkg__&Key-Pair-Id=APKAJ5IHCXOL4TBJNRUA&DO-NOT-COPY-THIS-URL"
+              alt="CARPD logo"
+              width="160"
+              height="58"
+            />
+          </a>
+
+          <ul class="crpd-nav-list" role="list">
+            <li class="crpd-nav-current">
+              <a href="/" aria-current="page">Home</a>
+            </li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#advocacy">Advocacy</a></li>
+            <li><a href="#events">Events &amp; Activities</a></li>
+            <li><a href="#communicator">Communicator</a></li>
+
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+
+          <div class="crpd-nav-actions">
+            <button class="crpd-search-btn" type="button" aria-label="Search">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </button>
+            <a
+              class="crpd-btn crpd-btn-primary"
+              href="#join"
+              style="display: none"
+              >Join CARPD</a
+            >
+            <button
+              class="crpd-menu-toggle"
+              type="button"
+              aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="crpd-drawer"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="7" x2="21" y2="7" />
+                <line x1="3" y1="14" x2="21" y2="14" />
+                <line x1="3" y1="21" x2="21" y2="21" />
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      <style>
+        @media (min-width: 1024px) {
+          .crpd-nav-actions .crpd-btn-primary {
+            display: inline-flex !important;
+          }
+        }
+      </style>
+    </header>
+
+    <!-- ===================== MOBILE DRAWER ===================== -->
+    <div
+      class="crpd-drawer"
+      id="crpd-drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu"
+    >
+      <div class="crpd-drawer-panel">
+        <div class="crpd-drawer-head">
+          <img
+            class="crpd-brand-logo"
+            src="https://d2blwilx4xw5sk.cloudfront.net/42829cf1-4785-4ba4-8559-68ccbda52a5d/8b8df19d-ee9e-4fe6-82fa-0910c1d1dcea/New%20CARPD%20Logo.jpg?response-content-disposition=attachment%3B%20filename%3D%22New%20CARPD%20Logo.jpg%22%3B%20filename%2A%3DUTF-8%27%27New%2520CARPD%2520Logo.jpg&response-content-type=image%2Fjpeg&Expires=2147483647&Signature=IHKvViBTOHCpBHIiziVsuWdjSslkkAzu5NurGddlIrKx3TjJuBsN3badUXZVbGe2NOIDJnLtI7aRRj6PlhHisQY-qvUVN-McpboUqHBMngXXElFVhHVs6umy7oZ8aZgLqOAGv6aVa6wnNNhyY8tDyJtzvOmzKVaxmfbo96sBqRj1AMjRq~l4~PEXgY8I-5biHjHmRRbPKS7TyHCMLNoYX3txm1Dsh55ySCO~l8CFAfihu2I1pUieOTttReAHx~WwjVOBiY5cSPEIB24v76A9ao4xIIefLdypVr-N3odPGBCyM2QtGbBNiS12LrC5XudTtBxLu7djqvbe2aO0hvZDkg__&Key-Pair-Id=APKAJ5IHCXOL4TBJNRUA&DO-NOT-COPY-THIS-URL"
+            style="height: 48px"
+            alt="CARPD logo"
+          />
+          <button
+            class="crpd-drawer-close"
+            type="button"
+            aria-label="Close menu"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <ul class="crpd-drawer-list" role="list">
+          <li><a href="/">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#advocacy">Advocacy</a></li>
+          <li><a href="#events">Events &amp; Activities</a></li>
+          <li><a href="#communicator">CARPD Communicator</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <a class="crpd-drawer-cta" href="#join">Join CARPD</a>
+      </div>
+    </div>
+
+    <main id="main">
+      <!-- ===================== HERO ===================== -->
+      <section class="crpd-hero" aria-label="Featured">
+        <div class="crpd-slides" aria-live="off">
+          <div
+            class="crpd-slide"
+            data-active="true"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1500313830540-7b6650a74fd0?auto=format&fit=crop&w=2000&q=80&quot;);
+            "
+            role="img"
+            aria-label="Family enjoying a sunlit park"
+          ></div>
+          <div
+            class="crpd-slide"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=2000&q=80&quot;);
+            "
+            role="img"
+            aria-label="Sierra forest landscape in California"
+          ></div>
+          <div
+            class="crpd-slide"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=2000&q=80&quot;);
+            "
+            role="img"
+            aria-label="Community recreation event"
+          ></div>
+          <div
+            class="crpd-slide"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1444930694458-01babe71870b?auto=format&fit=crop&w=2000&q=80&quot;);
+            "
+            role="img"
+            aria-label="Mountains and meadow at sunset"
+          ></div>
+          <div
+            class="crpd-slide"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=2000&q=80&quot;);
+            "
+            role="img"
+            aria-label="Children playing outdoors"
+          ></div>
+        </div>
+
+        <div class="crpd-shell crpd-hero-inner">
+         
+          <h1>
+            The voice of California's <em>recreation &amp; park districts.</em>
+          </h1>
+          <p class="crpd-hero-lede">
+            CARPD represents special districts across the state — championing
+            the parks, programs, and people who make community life essential,
+            equitable, and enduring.
+          </p>
+          <div class="crpd-hero-actions">
+            <a class="crpd-btn crpd-btn-light" href="#join">
+              Join CARPD
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+            <a class="crpd-btn crpd-btn-outline-light" href="#events"
+              >Explore 2026 Conference</a
+            >
+          </div>
+        </div>
+
+        <div class="crpd-slide-nav">
+          <div class="crpd-slide-counter">
+            <strong id="crpd-slide-num">01</strong> &nbsp;/&nbsp; 05
+          </div>
+          <div
+            class="crpd-slide-dots"
+            role="tablist"
+            aria-label="Slideshow controls"
+          >
+            <button
+              type="button"
+              data-slide="0"
+              data-active="true"
+              aria-label="Slide 1"
+            ></button>
+            <button type="button" data-slide="1" aria-label="Slide 2"></button>
+            <button type="button" data-slide="2" aria-label="Slide 3"></button>
+            <button type="button" data-slide="3" aria-label="Slide 4"></button>
+            <button type="button" data-slide="4" aria-label="Slide 5"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== ANNOUNCEMENT ===================== -->
+      <aside class="crpd-announce" aria-label="Announcement">
+        <div class="crpd-shell crpd-announce-inner">
+          <span class="crpd-announce-tag">New</span>
+          <span
+            >SB 499 has been signed into law — strengthening parkland use for
+            emergency &amp; disaster response across California.</span
+          >
+          <a href="#advocacy">
+            Read the announcement
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        </div>
+      </aside>
+
+      <!-- ===================== ABOUT ===================== -->
+      <section class="crpd-section crpd-about" id="about">
+        <div class="crpd-shell">
+          <div class="crpd-about-grid">
+            <div class="crpd-about-text crpd-reveal">
+              <span class="crpd-section-label">About CARPD</span>
+              <h2>Stronger parks. <em>Stronger communities.</em></h2>
+              <p>
+                The California Association of Recreation and Park Districts is a
+                501(c)(6) non-profit representing special recreation and park
+                districts throughout the state. For over fifty years, we've
+                worked to improve the quality and efficiency of the districts
+                that serve California's communities.
+              </p>
+              <p>
+                Through advocacy, education, and member services — including
+                reduced rates on workers' compensation and liability coverage
+                via CAPRI — we help districts deliver essential, life-enhancing
+                experiences to the people they serve.
+              </p>
+
+              <div class="crpd-about-pillars">
+                <div class="crpd-pillar">
+                  <div class="crpd-pillar-num">01</div>
+                  <h3>Educate</h3>
+                  <p>
+                    Annual conferences, trainings, and professional development
+                    for districts and their leadership.
+                  </p>
+                </div>
+                <div class="crpd-pillar">
+                  <div class="crpd-pillar-num">02</div>
+                  <h3>Advocate</h3>
+                  <p>
+                    Active legislative engagement at the state Capitol on issues
+                    that affect every district.
+                  </p>
+                </div>
+                <div class="crpd-pillar">
+                  <div class="crpd-pillar-num">03</div>
+                  <h3>Support</h3>
+                  <p>
+                    Member services, partnerships, and resources that help
+                    districts run efficiently.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="crpd-about-visual crpd-reveal">
+              <div class="crpd-about-stats">
+                <div class="crpd-stat">
+                  <div class="crpd-stat-num">55<span>+</span></div>
+                  <div class="crpd-stat-label">
+                    Years of service to California districts
+                  </div>
+                </div>
+                <div class="crpd-stat">
+                  <div class="crpd-stat-num">100<span>+</span></div>
+                  <div class="crpd-stat-label">
+                    Member districts across the state
+                  </div>
+                </div>
+                <div class="crpd-stat">
+                  <div class="crpd-stat-num">$1M<span>+</span></div>
+                  <div class="crpd-stat-label">
+                    Saved annually through CAPRI coverage
+                  </div>
+                </div>
+                <div class="crpd-stat">
+                  <div class="crpd-stat-num">1</div>
+                  <div class="crpd-stat-label">
+                    Unified voice at the state Capitol
+                  </div>
+                </div>
+              </div>
+              <div class="crpd-about-quote">
+                "Essential life-enhancing services for local communities."
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== PROGRAMS / SERVICES ===================== -->
+      <section class="crpd-section crpd-programs" id="programs">
+        <div class="crpd-shell">
+          <div class="crpd-section-head crpd-reveal">
+            <span class="crpd-section-label">What we do</span>
+            <h2>Programs &amp; services that move districts forward.</h2>
+            <p>
+              From legislative advocacy to insurance savings, CARPD delivers the
+              tools, training, and community districts need to thrive.
+            </p>
+          </div>
+
+          <div class="crpd-programs-grid">
+            <article class="crpd-program crpd-reveal">
+              <div class="crpd-program-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 21h18" />
+                  <path d="M5 21V9l7-5 7 5v12" />
+                  <path d="M10 21v-6h4v6" />
+                </svg>
+              </div>
+              <h3>Legislative Advocacy</h3>
+              <p>
+                Active engagement at the State Capitol — monitoring, sponsoring,
+                and supporting legislation that protects and strengthens
+                districts.
+              </p>
+              <a class="crpd-program-link" href="#advocacy"
+                >Learn more
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </article>
+
+            <article class="crpd-program crpd-reveal">
+              <div class="crpd-program-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              </div>
+              <h3>Annual Conference</h3>
+              <p>
+                Four days of education, networking, and recognition — bringing
+                together district staff, board members, and partners statewide.
+              </p>
+              <a class="crpd-program-link" href="#events"
+                >Learn more
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </article>
+
+            <article class="crpd-program crpd-reveal">
+              <div class="crpd-program-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                  />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+              </div>
+              <h3>CAPRI Insurance</h3>
+              <p>
+                Through our joint powers authority, members access reduced rates
+                on workers' compensation and liability/property damage coverage.
+              </p>
+              <a class="crpd-program-link" href="#join"
+                >Learn more
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </article>
+
+            <article class="crpd-program crpd-reveal">
+              <div class="crpd-program-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <h3>Training &amp; Awards</h3>
+              <p>
+                Year-round trainings and our Awards of Distinction recognizing
+                exceptional programs, facilities, and community service.
+              </p>
+              <a class="crpd-program-link" href="#events"
+                >Learn more
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== MEMBERSHIP CTA ===================== -->
+      <section class="crpd-section crpd-membership" id="join">
+        <div class="crpd-shell crpd-membership-inner">
+          <div class="crpd-membership-text crpd-reveal">
+            <span class="crpd-section-label" style="color: #cfe3d5"
+              >Become a member</span
+            >
+            <h2>
+              Join the network shaping <em>the future of public recreation.</em>
+            </h2>
+            <p>
+              Add your district's voice to a statewide coalition that's been
+              protecting park funding, sharing best practices, and building
+              stronger communities for over five decades.
+            </p>
+            <div class="crpd-membership-actions">
+              <a class="crpd-btn crpd-btn-light" href="#join">
+                Start your membership
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+              <a class="crpd-btn crpd-btn-outline-light" href="#contact"
+                >Talk to our team</a
+              >
+            </div>
+          </div>
+
+          <div class="crpd-membership-benefits crpd-reveal">
+            <h3>What members receive</h3>
+            <ul>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span
+                  >Reduced rates on workers' comp &amp; liability coverage
+                  through CAPRI</span
+                >
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span
+                  >Discounted access to the annual CARPD Conference and
+                  trainings</span
+                >
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span
+                  >Quarterly CARPD Communicator newsletter &amp; legislative
+                  updates</span
+                >
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>Statewide advocacy representation at the Capitol</span>
+              </li>
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span
+                  >Awards recognition &amp; professional development
+                  opportunities</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== EVENTS ===================== -->
+      <section class="crpd-section crpd-events" id="events">
+        <div class="crpd-shell">
+          <div class="crpd-section-head crpd-reveal">
+            <span class="crpd-section-label">Upcoming Events</span>
+            <h2>Where California's park leaders gather.</h2>
+            <p>
+              From our flagship conference to the inaugural golf tournament —
+              connect, learn, and celebrate the work of California's recreation
+              and park districts.
+            </p>
+          </div>
+
+          <div class="crpd-events-feature crpd-reveal">
+            <div class="crpd-event-image">
+              <span class="crpd-event-image-badge">Featured · 2026</span>
+              <img
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80"
+                alt="Monterey coast with rocks and ocean — site of the 2026 CARPD Conference"
+                loading="lazy"
+              />
+            </div>
+            <div class="crpd-event-meta">
+              <div class="crpd-event-date">
+                <div class="crpd-event-date-big">May<br />27–30</div>
+                <div class="crpd-event-date-text">
+                  <strong>2026 CARPD Conference</strong>
+                  "Standing Strong"
+                </div>
+              </div>
+              <h2>Monterey, California</h2>
+              <p>
+                Four days of professional education, board engagement,
+                networking, and recognition — at the gorgeous Monterey coast.
+                Registration is now open for attendees and sponsors.
+              </p>
+              <div class="crpd-event-loc">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Monterey, CA
+              </div>
+              <div class="crpd-event-actions">
+                <a class="crpd-btn crpd-btn-primary" href="#events">
+                  Register to attend
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+                <a class="crpd-btn crpd-btn-ghost" href="#events"
+                  >Sponsor the event</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="crpd-events-list">
+            <article class="crpd-event-mini crpd-reveal">
+              <div class="crpd-event-mini-tag">May 27 · 2026</div>
+              <h3>Inaugural CARPD Golf Tournament</h3>
+              <p>
+                Tee off at the legendary Del Monte Golf Course in Monterey — our
+                first-ever tournament in conjunction with the annual conference.
+              </p>
+              <a href="#events"
+                >Register
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </article>
+            <article class="crpd-event-mini crpd-reveal">
+              <div class="crpd-event-mini-tag">Ongoing</div>
+              <h3>CARPD Trainings</h3>
+              <p>
+                Year-round professional development sessions designed for
+                district staff, board members, and partners across the state.
+              </p>
+              <a href="#events"
+                >View trainings
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </article>
+            <article class="crpd-event-mini crpd-reveal">
+              <div class="crpd-event-mini-tag">Annual</div>
+              <h3>Capitol Visit &amp; Awards</h3>
+              <p>
+                Take part in our annual Capitol Visit and Awards of Distinction
+                — recognizing outstanding programs, facilities, and service.
+              </p>
+              <a href="#advocacy"
+                >View highlights
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== NEWS ===================== -->
+      <section class="crpd-section crpd-news" id="communicator">
+        <div class="crpd-shell">
+          <div class="crpd-news-head crpd-reveal">
+            <div class="crpd-section-head">
+              <span class="crpd-section-label">News &amp; Communicator</span>
+              <h2>The latest from CARPD.</h2>
+              <p>
+                Legislative updates, conference news, and stories from member
+                districts — straight from the field and the Capitol.
+              </p>
+            </div>
+            <a class="crpd-btn crpd-btn-ghost" href="#communicator"
+              >View all news
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="crpd-news-grid">
+            <article class="crpd-news-card crpd-reveal">
+              <div
+                class="crpd-news-image"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+                role="img"
+                aria-label="California State Capitol building"
+              ></div>
+              <div class="crpd-news-body">
+                <div class="crpd-news-meta">
+                  <span class="crpd-news-cat">Advocacy Win</span><span>·</span
+                  ><span>Oct 2025</span>
+                </div>
+                <h3>SB 499 Signed Into Law</h3>
+                <p>
+                  A huge win for CARPD and California's communities —
+                  strengthening the use of parkland and recreational facilities
+                  for emergency and disaster response.
+                </p>
+                <a class="crpd-news-readmore" href="#advocacy"
+                  >Read the full story
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="crpd-news-card crpd-reveal">
+              <div
+                class="crpd-news-image"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+                role="img"
+                aria-label="Stack of newsletters"
+              ></div>
+              <div class="crpd-news-body">
+                <div class="crpd-news-meta">
+                  <span class="crpd-news-cat">Newsletter</span><span>·</span
+                  ><span>April 2026</span>
+                </div>
+                <h3>CARPD Communicator — Spring Edition</h3>
+                <p>
+                  Our quarterly publication delivers legislative updates, member
+                  spotlights, training news, and statewide stories to your
+                  inbox.
+                </p>
+                <a class="crpd-news-readmore" href="#communicator"
+                  >Read this issue
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="crpd-news-card crpd-reveal">
+              <div
+                class="crpd-news-image"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+                role="img"
+                aria-label="Career opportunities — desk with notebook and laptop"
+              ></div>
+              <div class="crpd-news-body">
+                <div class="crpd-news-meta">
+                  <span class="crpd-news-cat">Career</span><span>·</span
+                  ><span>Ongoing</span>
+                </div>
+                <h3>Open Positions Across California</h3>
+                <p>
+                  Browse current employment opportunities in recreation and
+                  parks — and post your district's open roles to reach qualified
+                  candidates statewide.
+                </p>
+                <a class="crpd-news-readmore" href="#about"
+                  >View opportunities
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== IMPACT / TESTIMONIAL ===================== -->
+      <section class="crpd-section crpd-impact" id="impact">
+        <div class="crpd-shell">
+          <div class="crpd-section-head crpd-reveal">
+            <span class="crpd-section-label">Our Impact</span>
+            <h2>Together, we serve millions of Californians.</h2>
+          </div>
+
+          <div class="crpd-impact-grid">
+            <figure class="crpd-quote-card crpd-reveal">
+              <span class="crpd-quote-mark" aria-hidden="true">"</span>
+              <blockquote>
+                CARPD gives districts like ours a seat at the table — and a
+                voice that carries from local parks to the State Capitol.
+              </blockquote>
+              <figcaption class="crpd-quote-cite">
+                <div class="crpd-quote-avatar" aria-hidden="true">MR</div>
+                <div class="crpd-quote-cite-text">
+                  <strong>Maria Reyes</strong>
+                  <span>District Manager · CARPD Member Agency</span>
+                </div>
+              </figcaption>
+            </figure>
+
+            <div class="crpd-impact-stats">
+              <div class="crpd-impact-stat crpd-reveal">
+                <div class="crpd-impact-stat-num">100<span>+</span></div>
+                <div class="crpd-impact-stat-label">
+                  Member districts statewide
+                </div>
+              </div>
+              <div class="crpd-impact-stat crpd-reveal">
+                <div class="crpd-impact-stat-num">10M<span>+</span></div>
+                <div class="crpd-impact-stat-label">
+                  Californians served by member districts
+                </div>
+              </div>
+              <div class="crpd-impact-stat crpd-reveal">
+                <div class="crpd-impact-stat-num">55<span>+</span></div>
+                <div class="crpd-impact-stat-label">
+                  Years of statewide advocacy
+                </div>
+              </div>
+              <div class="crpd-impact-stat crpd-reveal">
+                <div class="crpd-impact-stat-num">4<span>days</span></div>
+                <div class="crpd-impact-stat-label">
+                  Annual conference of learning &amp; recognition
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== PARTNERS ===================== -->
+      <aside class="crpd-partners" aria-label="Our partners and sponsors">
+        <div class="crpd-shell crpd-section" style="padding-block: 64px">
+          <div class="crpd-partners-head crpd-reveal">
+            <p>Proudly partnered with</p>
+          </div>
+          <div class="crpd-partners-grid crpd-reveal">
+            <div class="crpd-partner">CAPRI JPA</div>
+            <div class="crpd-partner">CSDA</div>
+            <div class="crpd-partner">CPRS</div>
+            <div class="crpd-partner">NRPA</div>
+            <div class="crpd-partner">CalPark</div>
+            <div class="crpd-partner">Streamline</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ===================== FINAL CTA ===================== -->
+      <section class="crpd-final-cta" id="advocacy">
+        <div class="crpd-shell crpd-final-cta-inner">
+          <h2>Ready to add your district's <em>voice?</em></h2>
+          <p>
+            Whether you're considering membership, attending the 2026
+            Conference, or looking to engage with our legislative work — we'd
+            love to hear from you.
+          </p>
+          <div class="crpd-final-cta-actions">
+            <a class="crpd-btn crpd-btn-light" href="#join">
+              Join CARPD
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+            <a class="crpd-btn crpd-btn-outline-light" href="#contact"
+              >Contact our team</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="crpd-footer" id="contact" role="contentinfo">
+      <div class="crpd-shell">
+        <div class="crpd-footer-grid">
+          <div class="crpd-footer-brand">
+            <a class="crpd-brand" href="/" aria-label="CARPD home">
+              <img
+                class="crpd-brand-logo"
+                src="https://d2blwilx4xw5sk.cloudfront.net/42829cf1-4785-4ba4-8559-68ccbda52a5d/8b8df19d-ee9e-4fe6-82fa-0910c1d1dcea/New%20CARPD%20Logo.jpg?response-content-disposition=attachment%3B%20filename%3D%22New%20CARPD%20Logo.jpg%22%3B%20filename%2A%3DUTF-8%27%27New%2520CARPD%2520Logo.jpg&response-content-type=image%2Fjpeg&Expires=2147483647&Signature=IHKvViBTOHCpBHIiziVsuWdjSslkkAzu5NurGddlIrKx3TjJuBsN3badUXZVbGe2NOIDJnLtI7aRRj6PlhHisQY-qvUVN-McpboUqHBMngXXElFVhHVs6umy7oZ8aZgLqOAGv6aVa6wnNNhyY8tDyJtzvOmzKVaxmfbo96sBqRj1AMjRq~l4~PEXgY8I-5biHjHmRRbPKS7TyHCMLNoYX3txm1Dsh55ySCO~l8CFAfihu2I1pUieOTttReAHx~WwjVOBiY5cSPEIB24v76A9ao4xIIefLdypVr-N3odPGBCyM2QtGbBNiS12LrC5XudTtBxLu7djqvbe2aO0hvZDkg__&Key-Pair-Id=APKAJ5IHCXOL4TBJNRUA&DO-NOT-COPY-THIS-URL"
+                 alt="CARPD logo"
+              />
+              <span class="crpd-brand-text">
+                <strong>CARPD</strong>
+                <span>California Parks &amp; Recreation</span>
+              </span>
+            </a>
+            <p>
+              The California Association of Recreation and Park Districts —
+              providing advocacy, education, and support to special districts
+              statewide since 1968.
+            </p>
+          </div>
+
+          <div>
+            <h4>Explore</h4>
+            <ul role="list">
+              <li><a href="#about">About CARPD</a></li>
+              <li><a href="#advocacy">Advocacy</a></li>
+              <li><a href="#events">Events &amp; Activities</a></li>
+              <li><a href="#communicator">Communicator</a></li>
+              <li><a href="#join">Join CARPD</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Resources</h4>
+            <ul role="list">
+              <li><a href="#about">Board of Directors</a></li>
+              <li><a href="#about">Member Districts</a></li>
+              <li><a href="#about">Open Employment</a></li>
+              <li><a href="#events">Trainings</a></li>
+              <li><a href="#advocacy">Legislative Platform</a></li>
+            </ul>
+          </div>
+
+          <div class="crpd-newsletter">
+            <h4>Stay informed</h4>
+            <p>Subscribe to the CARPD Communicator and legislative updates.</p>
+            <form
+              class="crpd-newsletter-form"
+              onsubmit="
+                event.preventDefault();
+                this.querySelector('button').textContent = 'Thank you';
+              "
+            >
+              <label class="crpd-skip" for="crpd-news-email"
+                >Email address</label
+              >
+              <input
+                id="crpd-news-email"
+                type="email"
+                placeholder="your@email.com"
+                required
+              />
+              <button type="submit">Subscribe</button>
+            </form>
+            <div class="crpd-footer-contact" style="margin-top: 24px">
+              <strong>Contact</strong>
+              1075 Creekside Ridge Drive, Suite 240<br />
+              Roseville, CA 95678<br />
+              <a href="tel:+19167225550">(916) 722-5550</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="crpd-footer-bottom">
+          <div>
+            © 2026 California Association of Recreation and Park Districts. All
+            rights reserved.
+          </div>
+          <div class="crpd-footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">District Transparency</a>
+            <a href="#">Accessibility Statement</a>
+            <a href="#contact">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+
+         // GLAD hide on scroll
+      const gladHeader = document.getElementById("glad-header");
+      const navbar = document.getElementById("navbar");
+      let lastY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              navbar.classList.add("glad-hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              navbar.classList.remove("glad-hidden");
+              gladVisible = true;
+            }
+          }
+          lastY = y;
+        },
+        { passive: true },
+      );
+
+      /* ============================================================
+   Hero slideshow
+   ============================================================ */
+      (function () {
+        const slides = document.querySelectorAll(".crpd-slide");
+        const dots = document.querySelectorAll(".crpd-slide-dots button");
+        const counter = document.getElementById("crpd-slide-num");
+        let current = 0;
+        let timer;
+
+        function go(i) {
+          slides[current].setAttribute("data-active", "false");
+          dots[current].setAttribute("data-active", "false");
+          current = (i + slides.length) % slides.length;
+          slides[current].setAttribute("data-active", "true");
+          dots[current].setAttribute("data-active", "true");
+          if (counter)
+            counter.textContent = String(current + 1).padStart(2, "0");
+        }
+        function next() {
+          go(current + 1);
+        }
+        function start() {
+          timer = setInterval(next, 6500);
+        }
+        function stop() {
+          clearInterval(timer);
+        }
+
+        dots.forEach((d, i) => {
+          d.addEventListener("click", () => {
+            stop();
+            go(i);
+            start();
+          });
+        });
+
+        start();
+      })();
+
+      /* ============================================================
+   Mobile drawer
+   ============================================================ */
+      (function () {
+        const drawer = document.getElementById("crpd-drawer");
+        const toggle = document.querySelector(".crpd-menu-toggle");
+        const close = document.querySelector(".crpd-drawer-close");
+        const drawerLinks = document.querySelectorAll(
+          ".crpd-drawer-list a, .crpd-drawer-cta",
+        );
+
+        function open() {
+          drawer.setAttribute("data-open", "true");
+          toggle.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+        }
+        function shut() {
+          drawer.setAttribute("data-open", "false");
+          toggle.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        }
+        toggle.addEventListener("click", open);
+        close.addEventListener("click", shut);
+        drawer.addEventListener("click", (e) => {
+          if (e.target === drawer) shut();
+        });
+        drawerLinks.forEach((a) => a.addEventListener("click", shut));
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && drawer.getAttribute("data-open") === "true")
+            shut();
+        });
+      })();
+
+      /* ============================================================
+   Reveal on scroll
+   ============================================================ */
+      (function () {
+        if (!("IntersectionObserver" in window)) {
+          document
+            .querySelectorAll(".crpd-reveal")
+            .forEach((el) => el.classList.add("is-visible"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+        );
+
+        document
+          .querySelectorAll(".crpd-reveal")
+          .forEach((el) => io.observe(el));
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Broken Chains for Humanity — Serving the People of Guatemala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lato:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --primary: #4a1a6f;
+        --primary-light: #6b3fa0;
+        --primary-dark: #2d0f47;
+        --bg-light: #f9f8f7;
+        --bg-white: #ffffff;
+        --text-dark: #1a1a1a;
+        --text-gray: #555555;
+        --text-light: #888888;
+        --border: #e8e8e8;
+        --glad-h: 56px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+        background: var(--bg-white);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* ── GLAD HEADER ── */
+      #glad-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 300;
+        height: var(--glad-h);
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        transition: transform 0.35s ease, opacity 0.35s ease;
+      }
+
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .glad-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+        max-width: 1400px;
+        position: relative;
+      }
+
+      .glad-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .glad-logo img {
+        height: 38px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+
+      .glad-back-btn {
+        position: absolute;
+        right: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--primary);
+        color: #fff;
+        font-family: "Lato", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 8px 18px;
+        border-radius: 4px;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+        transition: background 0.2s;
+      }
+
+      .glad-back-btn:hover {
+        background: var(--primary-light);
+      }
+
+      .glad-back-btn svg {
+        width: 13px;
+        height: 13px;
+        stroke: #fff;
+        fill: none;
+        stroke-width: 2.2;
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 520px) {
+        .glad-back-btn .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 8px 12px;
+        }
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: var(--glad-h);
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.3s;
+        box-shadow: 0 2px 12px rgba(74, 26, 111, 0.08);
+        height: 68px;
+      }
+
+      nav.glad-hidden {
+        top: 0;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .nav-logo-text .org-name {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary);
+        line-height: 1;
+        letter-spacing: -0.01em;
+      }
+
+      .nav-logo-text .org-sub {
+        font-size: 9px;
+        color: var(--text-light);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 3px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        list-style: none;
+      }
+
+      .nav-links > li {
+        position: relative;
+      }
+
+      .nav-links > li > a {
+        display: block;
+        padding: 10px 14px;
+        font-family: "Lato", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-gray);
+        text-decoration: none;
+        border-radius: 4px;
+        letter-spacing: 0.02em;
+        transition: all 0.25s;
+        white-space: nowrap;
+      }
+
+      .nav-links > li > a:hover {
+        color: var(--primary);
+        background: rgba(74, 26, 111, 0.08);
+      }
+
+      .nav-links > li > a.active {
+        color: var(--primary);
+        background: rgba(74, 26, 111, 0.12);
+      }
+
+      .nav-cta {
+        display: inline-block;
+        padding: 10px 24px;
+        background: var(--primary);
+        color: #fff;
+        font-family: "Lato", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 4px;
+        letter-spacing: 0.05em;
+        transition: all 0.2s;
+        white-space: nowrap;
+        margin-left: 12px;
+        text-transform: uppercase;
+      }
+
+      .nav-cta:hover {
+        background: var(--primary-light);
+        transform: translateY(-1px);
+      }
+
+      .nav-links > li > a.has-drop::after {
+        content: "▾";
+        font-size: 8px;
+        margin-left: 5px;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+      }
+
+      .nav-links > li:hover > a.has-drop::after {
+        opacity: 1;
+      }
+
+      /* Dropdown */
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        min-width: 240px;
+        background: var(--bg-white);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 12px;
+        box-shadow: 0 12px 40px rgba(74, 26, 111, 0.12);
+        z-index: 500;
+      }
+
+      .nav-links > li:hover .dropdown {
+        display: block;
+      }
+
+      .dropdown a {
+        display: block;
+        padding: 11px 14px;
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--text-gray);
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.2s;
+      }
+
+      .dropdown a:hover {
+        background: rgba(74, 26, 111, 0.1);
+        color: var(--primary);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--primary);
+        border-radius: 1px;
+        transition: transform 0.3s, opacity 0.3s;
+      }
+
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: calc(var(--glad-h) + 68px);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.99);
+        z-index: 199;
+        padding: 2rem 5%;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+      }
+
+      .mobile-menu.open {
+        display: flex;
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 15px 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--text-dark);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border);
+        font-family: "Playfair Display", serif;
+        letter-spacing: 0.01em;
+      }
+
+      .mobile-menu a:hover {
+        color: var(--primary);
+      }
+
+      .mobile-menu a:last-child {
+        border: none;
+      }
+
+      .mobile-menu .m-cta {
+        margin-top: 2rem;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 700;
+        padding: 12px 20px;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 12px;
+        font-family: "Lato", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: calc(var(--glad-h) + 68px) 5% 0;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%),
+          url("https://images.unsplash.com/photo-1635282937057-dd12c9421b87?w=1200&auto=format&fit=crop&q=80")
+            center / cover no-repeat;
+        background-blend-mode: overlay;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 900px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .hero-overline {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .hero-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(48px, 10vw, 76px);
+        font-weight: 800;
+        line-height: 1.15;
+        color: var(--bg-white);
+        letter-spacing: -0.02em;
+      }
+
+      .hero-description {
+        font-size: 17px;
+        font-weight: 300;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 650px;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        padding: 15px 44px;
+        background: var(--text-dark);
+        color: #fff;
+        font-family: "Lato", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.25s;
+        text-transform: uppercase;
+      }
+
+      .btn-primary:hover {
+        background: var(--text-light);
+        transform: translateY(-2px);
+      }
+
+      /* ── SECTION ── */
+      .section {
+        padding: 90px 5%;
+      }
+
+      .section-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-kicker {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--primary);
+        margin-bottom: 14px;
+        display: inline-block;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(36px, 6vw, 60px);
+        font-weight: 700;
+        color: var(--text-dark);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+      }
+
+      .section-body {
+        font-size: 15px;
+        font-weight: 300;
+        color: var(--text-gray);
+        line-height: 1.85;
+        max-width: 700px;
+        margin-bottom: 44px;
+      }
+
+      /* ── ABOUT SECTION ── */
+      #about {
+        background: var(--bg-light);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+        align-items: center;
+      }
+
+      .about-img-wrap {
+        width: 100%;
+        aspect-ratio: 3/4;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(74, 26, 111, 0.18);
+      }
+
+      .about-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .about-content h2 {
+        margin-bottom: 28px;
+      }
+
+      .about-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 40px;
+      }
+
+      .about-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 18px 20px;
+        background: var(--bg-white);
+        border-left: 3px solid var(--primary);
+        border-radius: 4px;
+      }
+
+      .about-item strong {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .about-item p {
+        font-size: 14px;
+        color: var(--text-gray);
+        line-height: 1.7;
+      }
+
+      .btn-navy {
+        display: inline-block;
+        padding: 13px 32px;
+        background: var(--primary);
+        color: #fff;
+        font-family: "Lato", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.2s;
+        text-transform: uppercase;
+      }
+
+      .btn-navy:hover {
+        background: var(--primary-light);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        display: inline-block;
+        padding: 12px 30px;
+        background: transparent;
+        color: var(--primary);
+        font-family: "Lato", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        border: 2px solid var(--primary);
+        border-radius: 4px;
+        transition: all 0.2s;
+        text-transform: uppercase;
+      }
+
+      .btn-outline:hover {
+        background: var(--primary);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      /* ── FOCUS SECTION ── */
+      #focus {
+        background: var(--bg-white);
+      }
+
+      .focus-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+
+      .focus-card {
+        background: var(--bg-light);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 40px 32px;
+        text-align: left;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .focus-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+        z-index: 0;
+      }
+
+      .focus-card:nth-child(1)::before {
+        background-image: url("https://images.unsplash.com/photo-1662151900393-97f6bc1567ef?w=600&auto=format&fit=crop&q=80");
+      }
+
+      .focus-card:nth-child(2)::before {
+        background-image: url("https://plus.unsplash.com/premium_photo-1668197656835-785b240c578e?w=600&auto=format&fit=crop&q=80");
+      }
+
+      .focus-card:nth-child(3)::before {
+        background-image: url("https://images.unsplash.com/photo-1758206523860-0583e7b51a5e?w=600&auto=format&fit=crop&q=80");
+      }
+
+      .focus-card:hover {
+        background: var(--bg-white);
+        border-color: var(--primary);
+        box-shadow: 0 12px 40px rgba(74, 26, 111, 0.12);
+        transform: translateY(-4px);
+      }
+
+      .focus-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 14px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .focus-card p {
+        font-size: 14px;
+        color: var(--text-gray);
+        line-height: 1.75;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── DREAM SECTION ── */
+      #dream {
+        background: var(--primary);
+        padding: 90px 5%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dream-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      #dream .section-kicker {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      #dream .section-title {
+        color: var(--bg-white);
+      }
+
+      #dream .section-body {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .dream-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .dream-item {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 32px 28px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dream-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 160px;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.1;
+        z-index: 0;
+      }
+
+      .dream-item:nth-child(1)::before {
+        background-image: url("https://images.unsplash.com/photo-1662151900393-97f6bc1567ef?w=600&auto=format&fit=crop&q=80");
+      }
+
+      .dream-item:nth-child(2)::before {
+        background-image: url("https://plus.unsplash.com/premium_photo-1668197656835-785b240c578e?w=600&auto=format&fit=crop&q=80");
+      }
+
+      .dream-item:nth-child(3)::before {
+        background-image: url("https://images.unsplash.com/photo-1758206523860-0583e7b51a5e?w=600&auto=format&fit=crop&q=80");
+      }
+
+      .dream-item h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--bg-white);
+        margin-bottom: 12px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .dream-item p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── CTA SECTION ── */
+      .cta-section {
+        background: var(--text-dark);
+        padding: 80px 5%;
+        text-align: center;
+      }
+
+      .cta-inner {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .cta-section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(36px, 6vw, 52px);
+        font-weight: 700;
+        color: var(--bg-white);
+        margin-bottom: 18px;
+      }
+
+      .cta-section p {
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.8;
+        margin-bottom: 32px;
+      }
+
+      .btn-light {
+        display: inline-block;
+        padding: 13px 40px;
+        background: var(--bg-white);
+        color: var(--primary);
+        font-family: "Lato", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.2s;
+        text-transform: uppercase;
+      }
+
+      .btn-light:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-2px);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--primary-dark);
+        padding: 60px 5% 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 48px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-brand .fb-name {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--bg-white);
+        letter-spacing: -0.01em;
+        margin-bottom: 12px;
+      }
+
+      .footer-brand p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.8;
+        max-width: 320px;
+        margin-bottom: 16px;
+      }
+
+      .footer-col h4 {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 16px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col li {
+        margin-bottom: 11px;
+      }
+
+      .footer-col a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        text-decoration: none;
+        transition: color 0.2s;
+        font-weight: 400;
+      }
+
+      .footer-col a:hover {
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-top: 24px;
+      }
+
+      .footer-bottom p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .footer-contact {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .footer-contact strong {
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      /* ── ANIMATIONS ── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1100px) {
+        .about-grid,
+        .focus-grid,
+        .dream-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .footer-brand {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          height: auto;
+          padding: 12px 5%;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .nav-cta {
+          display: none;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .section {
+          padding: 70px 5%;
+        }
+
+        .hero {
+          padding: calc(var(--glad-h) + 70px) 5% 0;
+          min-height: 80vh;
+        }
+
+        .hero-title {
+          font-size: clamp(40px, 10vw, 60px);
+        }
+
+        .focus-grid,
+        .dream-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-logo-text .org-name {
+          font-size: 18px;
+        }
+
+        .section {
+          padding: 60px 5%;
+        }
+
+        .hero-title {
+          font-size: clamp(32px, 10vw, 48px);
+        }
+
+        .btn-primary {
+          padding: 12px 32px;
+          font-size: 12px;
+        }
+
+        .focus-card,
+        .dream-item {
+          padding: 28px 20px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GLAD HEADER -->
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- NAV -->
+    <nav id="navbar">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-text">
+          <div class="org-name">Broken Chains</div>
+          <div class="org-sub">Serving Guatemala</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li>
+          <a href="#" class="has-drop">About</a>
+          <div class="dropdown">
+            <a href="#">About Us</a>
+            <a href="#">Our Mission</a>
+            <a href="#">Volunteers</a>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="has-drop">Programs</a>
+          <div class="dropdown">
+            <a href="#">Medical Clinics</a>
+            <a href="#">Food and Soccer Balls</a>
+            <a href="#">Foraging in the Garbage Dump</a>
+            <a href="#">Working in Guatemala</a>
+            <a href="#">Evangelistic Meetings</a>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="has-drop">Projects</a>
+          <div class="dropdown">
+            <a href="#">Current Project</a>
+            <a href="#">In Memoriam</a>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="has-drop">Resources</a>
+          <div class="dropdown">
+            <a href="#">Adventist Review Article</a>
+            <a href="#">Pacific Union Recorder Article</a>
+            <a href="#">Website</a>
+          </div>
+        </li>
+        <li><a href="#">Contact Information</a></li>
+      </ul>
+      <a href="#" class="nav-cta">Donations</a>
+      <button class="hamburger" id="menuBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#" class="mob-link">Home</a>
+      <a href="#" class="mob-link">About Us</a>
+      <a href="#" class="mob-link">Our Mission</a>
+      <a href="#" class="mob-link">Medical Clinics</a>
+      <a href="#" class="mob-link">Food and Soccer Balls</a>
+      <a href="#" class="mob-link">Foraging in the Garbage Dump</a>
+      <a href="#" class="mob-link">Working in Guatemala</a>
+      <a href="#" class="mob-link">Evangelistic Meetings</a>
+      <a href="#" class="mob-link">Current Project</a>
+      <a href="#" class="mob-link">In Memoriam</a>
+      <a href="#" class="mob-link">Volunteers</a>
+      <a href="#" class="mob-link">Adventist Review Article</a>
+      <a href="#" class="mob-link">Pacific Union Recorder Article</a>
+      <a href="#" class="mob-link">Contact Information</a>
+      <a href="#" class="m-cta mob-link">Donations</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-overline">Welcome to Our Mission</div>
+        <h1 class="hero-title">Breaking Chains, Building Hope</h1>
+        <p class="hero-description">
+          Serving the impoverished Mayan communities of Guatemala through medical clinics, education, spiritual guidance, and compassionate humanitarian service.
+        </p>
+        <a href="#" class="btn-primary">Support Our Mission</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-img-wrap fade-up">
+            <img
+              src="https://images.unsplash.com/photo-1622598453695-4fbaf151aadc?w=800&auto=format&fit=crop&q=80"
+              alt="Community service in Guatemala"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-content fade-up" style="transition-delay: 0.1s">
+            <p class="section-kicker">Our Story</p>
+            <h2 class="section-title">A Mission Built on Faith</h2>
+            <p class="section-body">
+              Since 2006, volunteers have traveled to the remote mountains of Jalapa, Guatemala to serve communities still recovering from decades of conflict. In 2010, Broken Chains for Humanity was established as a nonprofit organization dedicated to bringing hope and healing to the Mayan people.
+            </p>
+            <div class="about-list">
+              <div class="about-item">
+                <p>
+                  <strong>Medical Clinics</strong> — Free healthcare and dental services to over 800 patients annually
+                </p>
+              </div>
+              <div class="about-item">
+                <p>
+                  <strong>Food & Relief</strong> — Providing nutrition to families living in extreme poverty
+                </p>
+              </div>
+              <div class="about-item">
+                <p>
+                  <strong>Spiritual Growth</strong> — Grace-centered Bible seminars and evangelical outreach
+                </p>
+              </div>
+              <div class="about-item">
+                <p>
+                  <strong>Education</strong> — Long-term goal to build schools for Mayan children
+                </p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap">
+              <a href="#" class="btn-navy">Learn More</a>
+              <a href="#" class="btn-outline">Get Involved</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOCUS -->
+    <section class="section" id="focus">
+      <div class="section-inner">
+        <p class="section-kicker fade-up">What We Do</p>
+        <h2 class="section-title fade-up">Our Focus Areas</h2>
+        <p class="section-body fade-up">
+          We address the critical needs of impoverished Guatemalan communities through comprehensive programs.
+        </p>
+        <div class="focus-grid fade-up" style="transition-delay: 0.15s">
+          <div class="focus-card">
+            <h3>Medical Services</h3>
+            <p>Doctors, nurses, and medical professionals provide free clinics treating hundreds of patients. We're expanding mobile clinics to reach remote villages.</p>
+          </div>
+          <div class="focus-card">
+            <h3>Food & Survival</h3>
+            <p>Families in the Jalapa garbage dump search for food daily. We distribute nutrition and relief to those in extreme need.</p>
+          </div>
+          <div class="focus-card">
+            <h3>Gospel Message</h3>
+            <p>Evening Bible seminars point people toward a compassionate God, sharing the message of Christ's love and hope for eternal life.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DREAM -->
+    <section id="dream">
+      <div class="dream-inner">
+        <p class="section-kicker fade-up">Our Vision</p>
+        <h2 class="section-title fade-up">The Dream</h2>
+        <p class="section-body fade-up">
+          We envision a transformed future for Guatemala's most vulnerable communities. Our long-term goals include sustained medical care, quality education, and spiritual growth.
+        </p>
+        <div class="dream-grid fade-up" style="transition-delay: 0.2s">
+          <div class="dream-item">
+            <h3>Mobile Clinics</h3>
+            <p>We're accepting pre-owned ambulances and vans to convert into mobile medical and dental clinics. Trained local personnel will visit towns monthly.</p>
+          </div>
+          <div class="dream-item">
+            <h3>Educational Centers</h3>
+            <p>A long-term goal is to build schools specially designed for Mayan children, providing quality education rooted in Christian values.</p>
+          </div>
+          <div class="dream-item">
+            <h3>Sustainable Impact</h3>
+            <p>Training local medical and educational personnel ensures long-term sustainability and deeper community engagement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+      <div class="cta-inner">
+        <h2>Your Partnership Makes a Difference</h2>
+        <p>
+          Join us in our mission to serve the impoverished Mayan communities of Guatemala. Whether through prayer, volunteering, or financial support, your involvement transforms lives.
+        </p>
+        <a href="#" class="btn-light">Donate Now</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="fb-name">Broken Chains for Humanity</div>
+          <p>
+            A faith-based nonprofit organization dedicated to serving the impoverished Mayan communities of Guatemala through medical care, education, and spiritual ministry.
+          </p>
+          <div class="footer-contact">
+            <strong>Contact:</strong><br>
+            786-282-9852<br>
+            rmcook52@aol.com
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Organization</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Mission</a></li>
+            <li><a href="#">Leadership</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#">Medical Clinics</a></li>
+            <li><a href="#">Food Relief</a></li>
+            <li><a href="#">Education</a></li>
+            <li><a href="#">Evangelism</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Donate</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="#">Prayer</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Broken Chains for Humanity, Inc. All rights reserved.</p>
+        <p>
+          <a href="#" style="color: rgba(255, 255, 255, 0.4); text-decoration: none;">Privacy Policy</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // GLAD hide on scroll
+      const gladHeader = document.getElementById("glad-header");
+      const navbar = document.getElementById("navbar");
+      let lastY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              navbar.classList.add("glad-hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              navbar.classList.remove("glad-hidden");
+              gladVisible = true;
+            }
+          }
+          lastY = y;
+        },
+        { passive: true }
+      );
+
+      // Mobile menu
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+        menuBtn.classList.toggle("open");
+      });
+      document.querySelectorAll(".mob-link").forEach((l) =>
+        l.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          menuBtn.classList.remove("open");
+        })
+      );
+
+      // Fade in on scroll
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 }
+      );
+      document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
