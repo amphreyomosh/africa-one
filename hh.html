@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>California Central Valley Flood Control Association</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2e4a;
+    --navy-deep: #0f1e30;
+    --navy-mid: #243858;
+    --blue: #2566a8;
+    --blue-light: #3a7dbf;
+    --blue-pale: #e8f2fa;
+    --teal: #1d8a6b;
+    --teal-light: #2aaa85;
+    --teal-pale: #e4f5ef;
+    --sand: #c8b89a;
+    --sand-light: #e8dece;
+    --sand-pale: #f5f1eb;
+    --white: #ffffff;
+    --off-white: #f8f6f2;
+    --text-dark: #1a1f2e;
+    --text-mid: #3d4b5e;
+    --text-muted: #6b7a8d;
+    --border: #dde3ea;
+    --section-pad: clamp(60px, 8vw, 100px);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── NAV ─────────────────────────────────────── */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(15, 30, 48, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+  }
+
+  .nav-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .nav-logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .nav-logo-text .org-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .nav-logo-text .org-sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.72);
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .nav-cta {
+    background: var(--blue) !important;
+    color: var(--white) !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    padding: 7px 16px !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--blue-light) !important; }
+
+  .nav-mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .nav-mobile-toggle { display: flex; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 68px; left: 0; right: 0;
+      background: var(--navy-deep);
+      padding: 16px 24px 24px;
+      gap: 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-links.open a { padding: 10px 12px; font-size: 15px; }
+  }
+
+  /* ─── HERO ────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--navy-deep);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.floodassociation.net/uploads/1/1/0/9/11095956/background-images/1320834938.jpeg');
+    background-size: cover;
+    background-position: center 40%;
+    opacity: 0.28;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(10,22,38,0.92) 0%,
+      rgba(26,46,74,0.78) 55%,
+      rgba(15,30,48,0.60) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 120px 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-left {}
+
+  .hero-since {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 24px;
+  }
+
+  .hero-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.12;
+    color: var(--white);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .hero-heading em {
+    font-style: italic;
+    color: var(--sand);
+  }
+
+  .hero-body {
+    font-size: clamp(16px, 2vw, 18px);
+    color: rgba(255,255,255,0.72);
+    line-height: 1.75;
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.15s;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--blue-light);
+    transform: translateY(-1px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 52px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .hero-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px 24px;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s;
+  }
+
+  .hero-card:hover { background: rgba(255,255,255,0.09); }
+
+  .hero-card-tag {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sand);
+    margin-bottom: 6px;
+  }
+
+  .hero-card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+
+  .hero-card-meta {
+    font-size: 13px;
+    color: rgba(255,255,255,0.48);
+  }
+
+  @media (max-width: 860px) {
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-right { display: none; }
+    .hero-stats { gap: 24px; }
+  }
+
+  /* ─── SECTION SHARED ──────────────────────────── */
+  .section {
+    padding: var(--section-pad) 0;
+  }
+
+  .section-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    color: var(--text-dark);
+    font-weight: 400;
+  }
+
+  .section-subheading {
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-top: 12px;
+  }
+
+  .section-header { margin-bottom: 56px; }
+
+  /* ─── ABOUT ───────────────────────────────────── */
+  .about-section { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+
+  .about-img-wrap {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .about-img-wrap img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-img-badge {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: var(--navy-deep);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 18px;
+    border-radius: 8px;
+  }
+
+  .about-text .section-label { color: var(--teal); }
+
+  .about-body {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin: 20px 0 32px;
+  }
+
+  .about-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pillar-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .pillar-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--teal-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pillar-icon svg { width: 20px; height: 20px; fill: var(--teal); }
+
+  .pillar-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+
+  .pillar-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-img-wrap img { height: 280px; }
+  }
+
+  /* ─── SERVICES / PROGRAMS ─────────────────────── */
+  .services-section { background: var(--off-white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 32px;
+    transition: box-shadow 0.25s, transform 0.2s;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 8px 32px rgba(26,46,74,0.08);
+    transform: translateY(-3px);
+  }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .service-icon svg { width: 26px; height: 26px; }
+
+  .service-icon.blue { background: var(--blue-pale); }
+  .service-icon.blue svg { fill: var(--blue); }
+  .service-icon.teal { background: var(--teal-pale); }
+  .service-icon.teal svg { fill: var(--teal); }
+  .service-icon.sand { background: #f5f1eb; }
+  .service-icon.sand svg { fill: #8a7560; }
+
+  .service-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .service-desc {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue);
+    margin-top: 16px;
+    transition: gap 0.2s;
+  }
+
+  .service-link:hover { gap: 10px; }
+
+  @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 580px) { .services-grid { grid-template-columns: 1fr; } }
+
+  /* ─── MEMBERSHIP CTA ──────────────────────────── */
+  .membership-section {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .membership-section::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(37,102,168,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .membership-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .membership-text .section-label { color: var(--sand); }
+
+  .membership-text .section-heading { color: var(--white); }
+
+  .membership-body {
+    font-size: 16px;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.8;
+    margin: 20px 0 36px;
+  }
+
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 13px 28px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    transition: background 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-outline-white:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  .membership-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+  }
+
+  .benefit-check {
+    width: 28px;
+    height: 28px;
+    background: var(--teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .benefit-check svg { width: 14px; height: 14px; fill: var(--white); }
+
+  .benefit-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .benefit-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  @media (max-width: 768px) { .membership-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+  /* ─── EVENTS ──────────────────────────────────── */
+  .events-section { background: var(--white); }
+
+  .events-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+  }
+
+  .event-card-featured {
+    background: var(--navy);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .event-card-img {
+    height: 220px;
+    background: var(--navy-mid);
+    overflow: hidden;
+  }
+
+  .event-card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+  }
+
+  .event-card-body {
+    padding: 28px 32px 32px;
+    flex: 1;
+  }
+
+  .event-date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--sand);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .event-card-featured .event-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .event-card-featured .event-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .event-small-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .event-small-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .event-small-card:hover { background: var(--blue-pale); }
+
+  .event-small-date {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+
+  .event-small-title {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+
+  .event-small-loc {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .view-all-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+
+  .view-all-link:hover { gap: 10px; }
+
+  @media (max-width: 768px) { .events-grid { grid-template-columns: 1fr; } }
+
+  /* ─── NEWS ────────────────────────────────────── */
+  .news-section { background: var(--off-white); }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .news-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .news-card:hover {
+    box-shadow: 0 8px 24px rgba(26,46,74,0.08);
+    transform: translateY(-2px);
+  }
+
+  .news-card-img {
+    height: 180px;
+    background: var(--blue-pale);
+    overflow: hidden;
+  }
+
+  .news-card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .news-card-body { padding: 22px 24px; }
+
+  .news-tag {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .news-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .news-excerpt {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .news-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 900px) { .news-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 580px) { .news-grid { grid-template-columns: 1fr; } }
+
+  /* ─── IMPACT ──────────────────────────────────── */
+  .impact-section { background: var(--white); }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 64px;
+  }
+
+  .impact-stat {
+    background: var(--white);
+    padding: 40px 28px;
+    text-align: center;
+  }
+
+  .impact-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  .impact-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    background: var(--off-white);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 32px;
+  }
+
+  .testimonial-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(16px, 2vw, 19px);
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  .author-title {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .impact-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) { .impact-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* ─── PARTNERS ────────────────────────────────── */
+  .partners-section { background: var(--off-white); }
+
+  .partners-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 48px;
+  }
+
+  .partner-badge {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-align: center;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .partner-badge:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  /* ─── CONTACT / FOOTER ────────────────────────── */
+  .contact-section { background: var(--navy-deep); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 48px;
+  }
+
+  .contact-info .section-heading { color: var(--white); }
+
+  .contact-body {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    margin: 16px 0 32px;
+  }
+
+  .contact-details { display: flex; flex-direction: column; gap: 14px; }
+
+  .contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .contact-detail-icon {
+    width: 36px; height: 36px;
+    background: rgba(37,102,168,0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-detail-icon svg { width: 18px; height: 18px; fill: var(--blue-light); }
+
+  .contact-detail-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 2px;
+  }
+
+  .contact-detail-value {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .contact-form-wrap {}
+
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .form-input, .form-textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    resize: none;
+  }
+
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.28); }
+  .form-input:focus, .form-textarea:focus { border-color: var(--blue-light); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-logo-wrap img { width: 44px; height: 44px; object-fit: contain; }
+
+  .footer-org-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.4;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    text-align: right;
+  }
+
+  /* ─── SCROLL ANIMATIONS ───────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+   
+  #glad-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  transition: transform .3s ease, opacity .3s ease;
+}
+#glad-header.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+.calbcc-header.glad-hidden { top: 0; }
+.glad-inner {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.glad-logo img { height: 36px; width: auto; display: block; margin-left: 40px !important;}
+.glad-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  background: #1e3a6e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid #1e3a6e;
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+  margin-right: 40px !important;
+}
+.glad-back-btn:hover { background: #142d57; border-color: #142d57; transform: translateX(-2px); }
+@media (max-width: 480px) { .btn-label { display: none; } .glad-back-btn { padding: 7px 10px; } }
+</style>
+</head>
+<body>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
+      <img src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w" alt="GLAD Technology Digital Services" />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#fff" stroke-width="2.2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+<!-- ═══ NAVIGATION ═══════════════════════════════════════ -->
+<nav class="site-nav" id="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="CCVFCA Home">
+      <img src="https://www.floodassociation.net/uploads/1/1/0/9/11095956/ccvfca-logo_orig.png"
+           alt="CCVFCA Logo" onerror="this.style.display='none'">
+      <div class="nav-logo-text">
+        <span class="org-name">Flood Control</span>
+        <span class="org-sub">California Central Valley</span>
+      </div>
+    </a>
+    <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#membership" class="nav-cta">Join CCVFCA</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" role="presentation"></div>
+  <div class="hero-overlay" role="presentation"></div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <span class="hero-since">Together in the flood fight — since 1926</span>
+      <h1 class="hero-heading">Protecting Life, Property &amp; the <em>Central Valley</em></h1>
+      <p class="hero-body">The California Central Valley Flood Control Association promotes effective flood management, policy advocacy, and collaboration among agencies working to safeguard California's Central Valley from flood risk.</p>
+      <div class="hero-cta-row">
+        <a href="#membership" class="btn-primary">
+          Become a Member
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">1926</div>
+          <div class="hero-stat-label">Est. Year</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100+</div>
+          <div class="hero-stat-label">Member Agencies</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">5M+</div>
+          <div class="hero-stat-label">Acres Protected</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden="true">
+      <div class="hero-card">
+        <div class="hero-card-tag">Upcoming Event</div>
+        <div class="hero-card-title">Annual Flood Forum — Spring 2025</div>
+        <div class="hero-card-meta">Sacramento · Registration Open</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-tag">Latest News</div>
+        <div class="hero-card-title">State Flood Risk Reduction Legislation Update</div>
+        <div class="hero-card-meta">Policy &amp; Advocacy · May 2025</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-tag">Resources</div>
+        <div class="hero-card-title">Flood Management Toolkit for Local Agencies</div>
+        <div class="hero-card-meta">Members-Only Access</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ══════════════════════════════════════════════ -->
+<section class="section about-section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img src="https://www.floodassociation.net/uploads/1/1/0/9/11095956/background-images/1339499753.jpeg"
+             alt="California Central Valley flood control levees and wetlands"
+             onerror="this.src='https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80'">
+        <div class="about-img-badge">Levees protect precious habitat</div>
+      </div>
+      <div class="about-text reveal reveal-delay-1">
+        <div class="section-label">Our Mission</div>
+        <h2 class="section-heading">Advancing Flood Safety Across California's Central Valley</h2>
+        <p class="about-body">Founded in 1926, CCVFCA promotes the common interests of its member agencies in maintaining effective flood control systems throughout California's Central Valley — safeguarding life, property, and the natural environment for generations to come.</p>
+        <div class="about-pillars">
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <div class="pillar-title">Policy Advocacy</div>
+              <div class="pillar-desc">Representing member interests at the state legislature, regulatory agencies, and in court.</div>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div class="pillar-title">Membership Network</div>
+              <div class="pillar-desc">Connecting flood control districts, reclamation districts, and agencies across the Central Valley.</div>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+            </div>
+            <div>
+              <div class="pillar-title">Technical Resources</div>
+              <div class="pillar-desc">Providing members with up-to-date information, research, and operational guidance.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROGRAMS / SERVICES ════════════════════════════════ -->
+<section class="section services-section" id="programs">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-heading">Programs &amp; Services</h2>
+      <p class="section-subheading">We support our member agencies with advocacy, education, technical tools, and peer collaboration to advance flood risk reduction across California.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon blue">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-title">Legislative &amp; Regulatory Advocacy</div>
+        <div class="service-desc">Active representation at the state legislature and regulatory agencies on flood control policy, funding, and compliance issues affecting Central Valley districts.</div>
+        <a href="#" class="service-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon teal">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="service-title">Annual Flood Forum</div>
+        <div class="service-desc">Our flagship annual conference bringing together flood managers, elected officials, and engineers to share knowledge, address challenges, and network across the region.</div>
+        <a href="#events" class="service-link">View events <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon sand">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="service-title">Member Resources &amp; Information</div>
+        <div class="service-desc">Curated information, technical guidance, legal updates, and agency tools for flood managers, elected officials, and those living in Central Valley floodplains.</div>
+        <a href="#resources" class="service-link">Access resources <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon blue">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="service-title">Issues &amp; Policy Tracking</div>
+        <div class="service-desc">Monitoring and communicating on legislative, legal, and regulatory flood control issues that directly affect member agencies and floodplain communities.</div>
+        <a href="#" class="service-link">View issues <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon teal">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="service-title">Newsletter &amp; Communications</div>
+        <div class="service-desc">Regular newsletters keeping members and stakeholders informed on flood policy developments, agency news, meeting summaries, and member spotlights.</div>
+        <a href="#" class="service-link">Subscribe <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon sand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="service-title">Member Meetings &amp; Committees</div>
+        <div class="service-desc">Regular member meetings and standing committees providing forums for members to engage, share expertise, and collectively shape the Association's direction and priorities.</div>
+        <a href="#" class="service-link">Meeting schedule <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MEMBERSHIP CTA ══════════════════════════════════════ -->
+<section class="section membership-section" id="membership">
+  <div class="section-inner">
+    <div class="membership-inner">
+      <div class="membership-text reveal">
+        <div class="section-label">Membership</div>
+        <h2 class="section-heading">Join the Association</h2>
+        <p class="membership-body">CCVFCA membership connects you with a statewide network of flood control professionals, provides access to critical resources, and ensures your agency's voice is heard in Sacramento. Flood control districts, reclamation districts, water agencies, and local governments are welcome.</p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="#contact" class="btn-primary">Apply for Membership</a>
+          <a href="#" class="btn-outline-white">View Current Members</a>
+        </div>
+      </div>
+      <div class="membership-benefits reveal reveal-delay-1">
+        <div class="benefit-item">
+          <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <div class="benefit-title">Policy Representation</div>
+            <div class="benefit-desc">Your interests represented at the state legislature and regulatory agencies</div>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <div class="benefit-title">Members-Only Resources</div>
+            <div class="benefit-desc">Exclusive access to legal guidance, technical tools, and policy updates</div>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <div class="benefit-title">Annual Flood Forum Access</div>
+            <div class="benefit-desc">Priority registration and discounted rates for member agencies</div>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <div class="benefit-title">Peer Network</div>
+            <div class="benefit-desc">Connect with 100+ flood management professionals across California</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EVENTS ══════════════════════════════════════════════ -->
+<section class="section events-section" id="events">
+  <div class="section-inner">
+    <div class="events-header-row reveal">
+      <div>
+        <div class="section-label">Meetings &amp; Events</div>
+        <h2 class="section-heading">Upcoming Events</h2>
+      </div>
+      <a href="#" class="view-all-link">View all events <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="events-grid reveal">
+      <div class="event-card-featured">
+        <div class="event-card-img">
+          <img src="https://www.floodassociation.net/uploads/1/1/0/9/11095956/background-images/1320834938.jpeg"
+               alt="Annual Flood Forum"
+               onerror="this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80'">
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Spring 2025 · Sacramento, CA
+          </div>
+          <div class="event-title">Annual Flood Forum 2025</div>
+          <div class="event-desc">CCVFCA's flagship annual conference — bringing together flood managers, engineers, elected officials, and community stakeholders for a full day of sessions, panels, and networking focused on Central Valley flood risk and policy.</div>
+          <a href="#" class="btn-primary" style="font-size:14px; padding:10px 22px;">Register Now</a>
+        </div>
+      </div>
+      <div class="event-small-list">
+        <div class="event-small-card">
+          <div class="event-small-date">June 2025</div>
+          <div class="event-small-title">CCVFCA Board Meeting</div>
+          <div class="event-small-loc">West Sacramento · Members Only</div>
+        </div>
+        <div class="event-small-card">
+          <div class="event-small-date">July 2025</div>
+          <div class="event-small-title">Legislative Committee Meeting</div>
+          <div class="event-small-loc">Sacramento · Open to Members</div>
+        </div>
+        <div class="event-small-card">
+          <div class="event-small-date">September 2025</div>
+          <div class="event-small-title">Technical Workshop: Levee Operations</div>
+          <div class="event-small-loc">Modesto · Registration Required</div>
+        </div>
+        <div class="event-small-card">
+          <div class="event-small-date">November 2025</div>
+          <div class="event-small-title">Annual Member Meeting</div>
+          <div class="event-small-loc">Sacramento · All Members Welcome</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEWS ════════════════════════════════════════════════ -->
+<section class="section news-section" id="news">
+  <div class="section-inner">
+    <div class="events-header-row reveal">
+      <div>
+        <div class="section-label">Latest Updates</div>
+        <h2 class="section-heading">News &amp; Announcements</h2>
+      </div>
+      <a href="#" class="view-all-link">View newsletter <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="news-grid">
+      <div class="news-card reveal">
+        <div class="news-card-img" style="background: var(--navy); display:flex; align-items:center; justify-content:center;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="news-card-body">
+          <span class="news-tag">Legislation</span>
+          <div class="news-title">State Flood Risk Reduction Legislation — 2025 Session Update</div>
+          <div class="news-excerpt">Key bills affecting levee maintenance standards, funding allocations, and CVFPP implementation move through committee.</div>
+          <div class="news-date">May 2025</div>
+        </div>
+      </div>
+      <div class="news-card reveal reveal-delay-1">
+        <div class="news-card-img" style="background: var(--teal); display:flex; align-items:center; justify-content:center;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="news-card-body">
+          <span class="news-tag">Flood Safety</span>
+          <div class="news-title">New FEMA Flood Map Updates for Central Valley Regions</div>
+          <div class="news-excerpt">Updated Flood Insurance Rate Maps affect risk classifications and insurance requirements for dozens of Valley communities.</div>
+          <div class="news-date">April 2025</div>
+        </div>
+      </div>
+      <div class="news-card reveal reveal-delay-2">
+        <div class="news-card-img" style="background: #3a5a80; display:flex; align-items:center; justify-content:center;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="news-card-body">
+          <span class="news-tag">Association News</span>
+          <div class="news-title">CCVFCA Newsletter — Spring 2025 Edition Now Available</div>
+          <div class="news-excerpt">This issue covers the upcoming Flood Forum, legislative priorities, member agency spotlights, and staff updates.</div>
+          <div class="news-date">March 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ IMPACT ══════════════════════════════════════════════ -->
+<section class="section impact-section" id="resources">
+  <div class="section-inner">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="section-label">Our Impact</div>
+      <h2 class="section-heading">Decades of Flood Protection</h2>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="impact-stat">
+        <div class="impact-num">1926</div>
+        <div class="impact-label">Year Founded</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num">100+</div>
+        <div class="impact-label">Member Agencies</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num">1,600mi</div>
+        <div class="impact-label">Levees in System</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num">7M+</div>
+        <div class="impact-label">Californians Protected</div>
+      </div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"CCVFCA gives our district a seat at the table in Sacramento. Their advocacy on levee funding and regulatory issues has been invaluable to agencies like ours."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">RF</div>
+          <div>
+            <div class="author-name">Flood Control District Director</div>
+            <div class="author-title">Sacramento Valley Member Agency</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-quote">"The Annual Flood Forum is the best opportunity we have to connect with peers, learn about best practices, and understand where state policy is headed for our region."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">ML</div>
+          <div>
+            <div class="author-name">Reclamation District Manager</div>
+            <div class="author-title">San Joaquin Valley Member Agency</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARTNERS ════════════════════════════════════════════ -->
+<section class="section partners-section">
+  <div class="section-inner">
+    <div class="section-header reveal" style="text-align:center; margin-bottom:0;">
+      <div class="section-label">Working With</div>
+      <h2 class="section-heading">Partner Agencies &amp; Organizations</h2>
+      <p class="section-subheading" style="margin:12px auto 0; text-align:center;">CCVFCA works in close coordination with state and federal agencies, legislative bodies, and allied organizations to advance flood safety in California.</p>
+    </div>
+    <div class="partners-logos reveal">
+      <div class="partner-badge">California DWR</div>
+      <div class="partner-badge">Army Corps of Engineers</div>
+      <div class="partner-badge">FEMA Region 9</div>
+      <div class="partner-badge">California Legislature</div>
+      <div class="partner-badge">Sacramento Area Flood Control Agency</div>
+      <div class="partner-badge">State Reclamation Board</div>
+      <div class="partner-badge">Central Valley Regional Water Board</div>
+      <div class="partner-badge">CSPA</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT + FOOTER ════════════════════════════════════ -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label" style="color: var(--sand);">Get in Touch</div>
+        <h2 class="section-heading">Contact CCVFCA</h2>
+        <p class="contact-body">Whether you're interested in membership, have a policy question, or want to learn more about our work, our team is here to help.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-detail-label">Address</div>
+              <div class="contact-detail-value">3050 Beacon Blvd., Suite 203<br>West Sacramento, CA 95691</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-detail-label">Phone</div>
+              <div class="contact-detail-value">(916) 446-0197</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="contact-detail-label">Executive Director</div>
+              <div class="contact-detail-value">Adam Borchard</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap reveal reveal-delay-1">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Organization</label>
+          <input class="form-input" type="text" placeholder="Flood Control District / Agency">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="jane@agency.ca.gov">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" rows="4" placeholder="How can we help?"></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%; justify-content:center;" type="submit">Send Message</button>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-logo-wrap">
+        <img src="https://www.floodassociation.net/uploads/1/1/0/9/11095956/ccvfca-logo_orig.png"
+             alt="CCVFCA" onerror="this.style.display='none'">
+        <div class="footer-org-name">California Central Valley<br>Flood Control Association</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="footer-copy">© 2025 CCVFCA. All rights reserved.<br>Together in the flood fight since 1926.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  const nav = document.getElementById('site-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 40
+      ? 'rgba(10,20,34,0.98)'
+      : 'rgba(15,30,48,0.96)';
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+     //glad header 
+    const gladHeader = document.getElementById("glad-header");
+const calbccHeader = document.querySelector(".calbcc-header");
+let lastScrollY = window.scrollY, gladVisible = true;
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+  if (y > 80 && y > lastScrollY) {
+    if (gladVisible) { gladHeader.classList.add("hidden"); gladVisible = false; }
+  } else if (y < lastScrollY && y < 40) {
+    if (!gladVisible) { gladHeader.classList.remove("hidden"); gladVisible = true; }
+  }
+  lastScrollY = y;
+}, { passive: true });
+    //
+</script>
+</body>
+</html>

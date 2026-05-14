@@ -1,0 +1,1983 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>California Farm Water Coalition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Lora:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --cfwc-navy: #0d2b45;
+        --cfwc-navy-mid: #1a3f5c;
+        --cfwc-blue: #2070a0;
+        --cfwc-blue-light: #3a8bbf;
+        --cfwc-sky: #e8f4fd;
+        --cfwc-green: #2d6a2f;
+        --cfwc-green-light: #e7f4e8;
+        --cfwc-gold: #c9841a;
+        --cfwc-gold-light: #fdf3e0;
+        --cfwc-warm: #f8f5f0;
+        --cfwc-text: #1a2836;
+        --cfwc-text-mid: #3d5168;
+        --cfwc-text-muted: #6b7f94;
+        --cfwc-border: #d6dfe8;
+        --cfwc-white: #ffffff;
+        --font-sans: "DM Sans", sans-serif;
+        --font-serif: "Lora", serif;
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 16px;
+        --shadow-card: 0 2px 12px rgba(13, 43, 69, 0.08);
+        --shadow-hover: 0 6px 28px rgba(13, 43, 69, 0.14);
+        --transition: 0.22s ease;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--cfwc-text);
+        background: var(--cfwc-white);
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ── UTILITY ─────────────────────────────────────────────── */
+      .cfwc-wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .cfwc-section {
+        padding: 88px 0;
+      }
+      .cfwc-section--alt {
+        background: var(--cfwc-warm);
+      }
+      .cfwc-section--navy {
+        background: var(--cfwc-navy);
+        color: var(--cfwc-white);
+      }
+      .cfwc-section--sky {
+        background: var(--cfwc-sky);
+      }
+      .cfwc-label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--cfwc-blue);
+        margin-bottom: 12px;
+      }
+      .cfwc-label--white {
+        color: #7db8d8;
+      }
+      .cfwc-label--gold {
+        color: var(--cfwc-gold);
+      }
+      .cfwc-h2 {
+        font-family: var(--font-sans);
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 500;
+        line-height: 1.2;
+        color: var(--cfwc-navy);
+        letter-spacing: -0.02em;
+      }
+      .cfwc-h2--white {
+        color: var(--cfwc-white);
+      }
+      .cfwc-lead {
+        font-size: 17px;
+        color: var(--cfwc-text-mid);
+        line-height: 1.75;
+        max-width: 680px;
+      }
+      .cfwc-lead--white {
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .cfwc-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 28px;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-sans);
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        white-space: nowrap;
+      }
+      .cfwc-btn--primary {
+        background: var(--cfwc-blue);
+        color: var(--cfwc-white);
+      }
+      .cfwc-btn--primary:hover {
+        background: var(--cfwc-navy);
+        transform: translateY(-1px);
+      }
+      .cfwc-btn--outline {
+        background: transparent;
+        border: 1.5px solid var(--cfwc-blue);
+        color: var(--cfwc-blue);
+      }
+      .cfwc-btn--outline:hover {
+        background: var(--cfwc-blue);
+        color: var(--cfwc-white);
+      }
+      .cfwc-btn--white {
+        background: var(--cfwc-white);
+        color: var(--cfwc-navy);
+      }
+      .cfwc-btn--white:hover {
+        background: var(--cfwc-sky);
+        transform: translateY(-1px);
+      }
+      .cfwc-btn--outline-white {
+        background: transparent;
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        color: var(--cfwc-white);
+      }
+      .cfwc-btn--outline-white:hover {
+        border-color: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* ── NAVBAR ──────────────────────────────────────────────── */
+      .cfwc-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--cfwc-border);
+        transition: box-shadow var(--transition);
+      }
+      .cfwc-nav.scrolled {
+        box-shadow: 0 2px 20px rgba(13, 43, 69, 0.1);
+      }
+      .cfwc-nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+        gap: 24px;
+      }
+      .cfwc-nav__logo img {
+        height: 44px;
+        width: auto;
+      }
+      .cfwc-nav__links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+      }
+      .cfwc-nav__links li {
+        position: relative;
+      }
+      .cfwc-nav__links > li > a {
+        display: block;
+        padding: 8px 13px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--cfwc-text-mid);
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+      }
+      .cfwc-nav__links > li > a:hover {
+        color: var(--cfwc-blue);
+        background: var(--cfwc-sky);
+      }
+      .cfwc-nav__dropdown {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        min-width: 210px;
+        background: var(--cfwc-white);
+        border: 1px solid var(--cfwc-border);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-hover);
+        list-style: none;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(6px);
+        transition: var(--transition);
+        z-index: 200;
+      }
+      .cfwc-nav__links li:hover .cfwc-nav__dropdown {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+      .cfwc-nav__dropdown li a {
+        display: block;
+        padding: 9px 16px;
+        font-size: 13.5px;
+        color: var(--cfwc-text-mid);
+        transition: var(--transition);
+      }
+      .cfwc-nav__dropdown li a:hover {
+        background: var(--cfwc-sky);
+        color: var(--cfwc-blue);
+      }
+      .cfwc-nav__dropdown li:first-child a {
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+      }
+      .cfwc-nav__dropdown li:last-child a {
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+      }
+      .cfwc-nav__cta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .cfwc-nav__hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 8px;
+        background: none;
+        border: none;
+      }
+      .cfwc-nav__hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--cfwc-text);
+        border-radius: 2px;
+        transition: var(--transition);
+      }
+      .cfwc-mobile-menu {
+        display: none;
+        flex-direction: column;
+        background: var(--cfwc-white);
+        border-top: 1px solid var(--cfwc-border);
+        padding: 16px 24px 24px;
+        gap: 4px;
+      }
+      .cfwc-mobile-menu.open {
+        display: flex;
+      }
+      .cfwc-mobile-menu a {
+        display: block;
+        padding: 10px 0;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--cfwc-text-mid);
+        border-bottom: 1px solid var(--cfwc-border);
+      }
+      .cfwc-mobile-menu a:last-child {
+        border-bottom: none;
+      }
+
+      /* ── HERO ────────────────────────────────────────────────── */
+      .cfwc-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding-top: 70px;
+      }
+      .cfwc-hero > .cfwc-wrap {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        height: 100%;
+      }
+      .cfwc-hero__bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("https://farmwater.org/wp-content/uploads/2025/04/GreenDesert_16x9-1024x576.jpg");
+        background-size: cover;
+        background-position: center 40%;
+        transform: scale(1.04);
+        animation: heroZoom 14s ease-in-out infinite alternate;
+      }
+      @keyframes heroZoom {
+        from {
+          transform: scale(1.04);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+      .cfwc-hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          100deg,
+          rgba(10, 26, 42, 0.82) 0%,
+          rgba(10, 26, 42, 0.55) 55%,
+          rgba(10, 26, 42, 0.2) 100%
+        );
+      }
+      .cfwc-hero__content {
+        position: relative;
+        z-index: 2;
+        max-width: 680px;
+        text-align: left;
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+      }
+      .cfwc-hero__title {
+        font-family: var(--font-sans);
+        font-size: clamp(36px, 6vw, 66px);
+        font-weight: 300;
+        line-height: 1.1;
+        color: var(--cfwc-white);
+        letter-spacing: -0.03em;
+        margin-bottom: 22px;
+      }
+      .cfwc-hero__title strong {
+        font-weight: 600;
+        display: block;
+      }
+      .cfwc-hero__desc {
+        font-size: clamp(16px, 2vw, 19px);
+        color: rgba(255, 255, 255, 0.84);
+        line-height: 1.7;
+        margin-bottom: 36px;
+        max-width: 560px;
+      }
+      .cfwc-hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+      .cfwc-hero__scroll {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .cfwc-hero__scroll-line {
+        width: 1px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.35);
+        animation: scrollPulse 2s ease-in-out infinite;
+      }
+      @keyframes scrollPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scaleY(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+
+      /* ── IMPACT NUMBERS ──────────────────────────────────────── */
+      .cfwc-stats {
+        background: var(--cfwc-navy);
+        padding: 52px 0;
+      }
+      .cfwc-stats__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 2px;
+      }
+      .cfwc-stat {
+        padding: 28px 32px;
+        text-align: center;
+        position: relative;
+      }
+      .cfwc-stat + .cfwc-stat::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 20%;
+        bottom: 20%;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .cfwc-stat__num {
+        font-family: var(--font-sans);
+        font-size: 42px;
+        font-weight: 300;
+        color: var(--cfwc-white);
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .cfwc-stat__num span {
+        color: #7db8d8;
+      }
+      .cfwc-stat__label {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.55);
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      /* ── ABOUT ───────────────────────────────────────────────── */
+      .cfwc-about__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .cfwc-about__visual {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        aspect-ratio: 4/3;
+      }
+      .cfwc-about__visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .cfwc-about__badge {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        background: var(--cfwc-navy);
+        color: var(--cfwc-white);
+        padding: 14px 20px;
+        border-radius: var(--radius-md);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+      .cfwc-about__badge strong {
+        display: block;
+        font-size: 22px;
+        font-weight: 600;
+        color: #7db8d8;
+        line-height: 1;
+        margin-bottom: 3px;
+      }
+      .cfwc-about__text {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .cfwc-about__goals {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .cfwc-about__goal {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 14px 16px;
+        background: var(--cfwc-sky);
+        border-radius: var(--radius-md);
+        border-left: 3px solid var(--cfwc-blue);
+      }
+      .cfwc-about__goal-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .cfwc-about__goal-text {
+        font-size: 14.5px;
+        color: var(--cfwc-text-mid);
+        line-height: 1.5;
+      }
+      .cfwc-about__actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      /* ── PROGRAMS ────────────────────────────────────────────── */
+      .cfwc-programs__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 48px;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .cfwc-programs__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .cfwc-card {
+        background: var(--cfwc-white);
+        border: 1px solid var(--cfwc-border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .cfwc-card:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-3px);
+        border-color: #bdd0e2;
+      }
+      .cfwc-card__icon-wrap {
+        padding: 28px 28px 0;
+      }
+      .cfwc-card__icon {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--radius-md);
+        background: var(--cfwc-sky);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+      }
+      .cfwc-card__body {
+        padding: 20px 28px 28px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .cfwc-card__title {
+        font-family: var(--font-sans);
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--cfwc-navy);
+        line-height: 1.3;
+      }
+      .cfwc-card__text {
+        font-size: 14.5px;
+        color: var(--cfwc-text-mid);
+        line-height: 1.65;
+        flex: 1;
+      }
+      .cfwc-card__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--cfwc-blue);
+        margin-top: 6px;
+        transition: gap var(--transition);
+      }
+      .cfwc-card__link:hover {
+        gap: 10px;
+      }
+
+      /* ── MOSAC ───────────────────────────────────────────────── */
+      .cfwc-mosac {
+        background: var(--cfwc-navy);
+        padding: 72px 0;
+        color: var(--cfwc-white);
+      }
+      .cfwc-mosac__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .cfwc-mosac__img {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        aspect-ratio: 16/10;
+      }
+      .cfwc-mosac__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .cfwc-mosac__text {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .cfwc-mosac__tag {
+        display: inline-block;
+        padding: 5px 12px;
+        background: rgba(125, 184, 216, 0.15);
+        border: 1px solid rgba(125, 184, 216, 0.3);
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #7db8d8;
+        width: fit-content;
+      }
+      .cfwc-mosac__facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 4px 0;
+      }
+      .cfwc-mosac__fact {
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: var(--radius-md);
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .cfwc-mosac__fact-num {
+        font-size: 24px;
+        font-weight: 300;
+        color: #7db8d8;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .cfwc-mosac__fact-text {
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.4;
+      }
+
+      /* ── NEWS / BLOG ─────────────────────────────────────────── */
+      .cfwc-news__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 44px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .cfwc-news__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+      .cfwc-news-card {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: var(--cfwc-white);
+        border: 1px solid var(--cfwc-border);
+        display: flex;
+        flex-direction: column;
+        transition: var(--transition);
+        height: 100%;
+      }
+      .cfwc-news-card:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-3px);
+      }
+      .cfwc-news-card--featured .cfwc-news-card__img {
+        aspect-ratio: 16/9;
+      }
+      .cfwc-news-card__img {
+        width: 100%;
+        aspect-ratio: 3/2;
+        overflow: hidden;
+        background: var(--cfwc-sky);
+      }
+      .cfwc-news-card__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+      .cfwc-news-card:hover .cfwc-news-card__img img {
+        transform: scale(1.04);
+      }
+      .cfwc-news-card__body {
+        padding: 22px 24px 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .cfwc-news-card__date {
+        font-size: 12px;
+        color: var(--cfwc-text-muted);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .cfwc-news-card__title {
+        font-family: var(--font-sans);
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--cfwc-navy);
+        line-height: 1.35;
+        flex: 1;
+      }
+      .cfwc-news-card--featured .cfwc-news-card__title {
+        font-size: 22px;
+      }
+      .cfwc-news-card__excerpt {
+        font-size: 14px;
+        color: var(--cfwc-text-mid);
+        line-height: 1.65;
+      }
+      .cfwc-news-card__read {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: var(--cfwc-blue);
+        margin-top: 4px;
+      }
+
+      /* ── DOCUMENTARY ─────────────────────────────────────────── */
+      .cfwc-doc {
+        background: var(--cfwc-warm);
+        padding: 80px 0;
+      }
+      .cfwc-doc__inner {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 60px;
+        align-items: center;
+      }
+      .cfwc-doc__text {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .cfwc-doc__img {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-hover);
+        aspect-ratio: 16/9;
+      }
+      .cfwc-doc__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .cfwc-doc__pbs {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        background: var(--cfwc-white);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--cfwc-border);
+        width: fit-content;
+        font-size: 13px;
+        color: var(--cfwc-text-mid);
+      }
+      .cfwc-doc__pbs-dot {
+        width: 10px;
+        height: 10px;
+        background: #e84040;
+        border-radius: 50%;
+        animation: pulseDot 1.5s ease-in-out infinite;
+      }
+      @keyframes pulseDot {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      /* ── JOIN CTA ────────────────────────────────────────────── */
+      .cfwc-join {
+        padding: 80px 0;
+        background: var(--cfwc-blue);
+        color: var(--cfwc-white);
+      }
+      .cfwc-join__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .cfwc-join__text {
+        max-width: 600px;
+      }
+      .cfwc-join__text h2 {
+        font-size: clamp(24px, 3.5vw, 38px);
+        font-weight: 400;
+        line-height: 1.2;
+        color: var(--cfwc-white);
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+      }
+      .cfwc-join__text p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.65;
+      }
+      .cfwc-join__actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      /* ── RESOURCES ───────────────────────────────────────────── */
+      .cfwc-resources__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+      .cfwc-res-card {
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--cfwc-border);
+        background: var(--cfwc-white);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: var(--transition);
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .cfwc-res-card:hover {
+        border-color: var(--cfwc-blue);
+        box-shadow: 0 4px 20px rgba(32, 112, 160, 0.12);
+        transform: translateY(-2px);
+      }
+      .cfwc-res-card__icon {
+        font-size: 28px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--cfwc-sky);
+        border-radius: var(--radius-sm);
+      }
+      .cfwc-res-card__title {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--cfwc-navy);
+      }
+      .cfwc-res-card__desc {
+        font-size: 13.5px;
+        color: var(--cfwc-text-muted);
+        line-height: 1.55;
+        flex: 1;
+      }
+      .cfwc-res-card__arrow {
+        font-size: 13px;
+        color: var(--cfwc-blue);
+        font-weight: 500;
+      }
+
+      /* ── FOOTER ──────────────────────────────────────────────── */
+      .cfwc-footer {
+        background: var(--cfwc-navy);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 64px 0 0;
+      }
+      .cfwc-footer__top {
+        display: grid;
+        grid-template-columns: 280px 1fr 1fr 1fr;
+        gap: 48px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .cfwc-footer__brand {
+      }
+      .cfwc-footer__brand img {
+        height: 40px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        opacity: 0.9;
+        margin-bottom: 16px;
+      }
+      .cfwc-footer__brand p {
+        font-size: 13.5px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+      .cfwc-footer__social {
+        display: flex;
+        gap: 10px;
+      }
+      .cfwc-footer__social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.65);
+        transition: var(--transition);
+      }
+      .cfwc-footer__social a:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--cfwc-white);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+      .cfwc-footer__col h4 {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 16px;
+      }
+      .cfwc-footer__links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .cfwc-footer__links a {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+        transition: var(--transition);
+      }
+      .cfwc-footer__links a:hover {
+        color: var(--cfwc-white);
+      }
+      .cfwc-footer__bottom {
+        padding: 22px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.35);
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .cfwc-footer__bottom a {
+        color: rgba(255, 255, 255, 0.4);
+        transition: var(--transition);
+      }
+      .cfwc-footer__bottom a:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ── RESPONSIVE ──────────────────────────────────────────── */
+      @media (max-width: 1024px) {
+        .cfwc-programs__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cfwc-resources__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cfwc-news__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cfwc-news-card--featured {
+          grid-column: 1 / -1;
+        }
+        .cfwc-footer__top {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        .cfwc-section {
+          padding: 64px 0;
+        }
+        .cfwc-nav__links,
+        .cfwc-nav__cta {
+          display: none;
+        }
+        .cfwc-nav__hamburger {
+          display: flex;
+        }
+        .cfwc-hero {
+          min-height: 90vh;
+        }
+        .cfwc-about__grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .cfwc-mosac__inner {
+          grid-template-columns: 1fr;
+        }
+        .cfwc-doc__inner {
+          grid-template-columns: 1fr;
+        }
+        .cfwc-programs__grid {
+          grid-template-columns: 1fr;
+        }
+        .cfwc-resources__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cfwc-news__grid {
+          grid-template-columns: 1fr;
+        }
+        .cfwc-footer__top {
+          grid-template-columns: 1fr;
+        }
+        .cfwc-join__inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .cfwc-stats__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cfwc-stat + .cfwc-stat::before {
+          display: none;
+        }
+      }
+      @media (max-width: 480px) {
+        .cfwc-resources__grid {
+          grid-template-columns: 1fr;
+        }
+        .cfwc-hero__title {
+          font-size: 36px;
+        }
+        .cfwc-stats__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+    <!-- NAVBAR -->
+    <nav class="cfwc-nav" id="cfwcNav">
+      <div class="cfwc-wrap">
+        <div class="cfwc-nav__inner">
+          <a href="https://farmwater.org" class="cfwc-nav__logo">
+            <img
+              src="https://farmwater.org/wp-content/uploads/2023/08/CFWC_Landscape_Logo.png"
+              alt="California Farm Water Coalition"
+            />
+          </a>
+          <ul class="cfwc-nav__links">
+            <li>
+              <a href="https://farmwater.org/2025-impact-report/"
+                >2025 Impact Report</a
+              >
+            </li>
+            <li>
+              <a href="https://farmwater.org/cfwc-blog/">Blog</a>
+            </li>
+            <li>
+              <a href="https://farmwater.org/resources/">Resources ▾</a>
+              <ul class="cfwc-nav__dropdown">
+                <li>
+                  <a href="https://farmwater.org/fact-sheets/">Fact Sheets</a>
+                </li>
+                <li><a href="https://farmwater.org/maps/">Maps</a></li>
+                <li>
+                  <a href="https://farmwater.org/updates/"
+                    >Farm Water Updates</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://farmwater.org/learn-more-california-water/farm-water-facts/"
+                    >Farm Water Info</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="https://farmwater.org/about-california-farm-water-coalition/"
+                >About Us ▾</a
+              >
+              <ul class="cfwc-nav__dropdown">
+                <li>
+                  <a
+                    href="https://farmwater.org/about-california-farm-water-coalition/california-farm-water-mission/"
+                    >Mission Statement</a
+                  >
+                </li>
+                <li>
+                  <a href="https://farmwater.org/programs-activities/"
+                    >Programs & Activities</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://farmwater.org/about-california-farm-water-coalition/board-of-directors/"
+                    >Board of Directors</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="https://farmwater.org/mosac/">MOSAC ▾</a>
+              <ul class="cfwc-nav__dropdown">
+                <li>
+                  <a href="https://farmwater.org/partners-and-sponsors/"
+                    >Partners & Sponsors</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="https://farmwater.org/learn-more-california-water/releases-and-statements/"
+                >Press ▾</a
+              >
+              <ul class="cfwc-nav__dropdown">
+                <li>
+                  <a
+                    href="mailto:farmwater@farmwater.org?subject=Media%20Inquiry"
+                    >Media Inquiries</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="cfwc-nav__cta">
+            <a
+              href="https://farmwater.org/subscribe-news-line/"
+              class="cfwc-btn cfwc-btn--outline"
+              style="padding: 9px 18px; font-size: 13.5px"
+              >Subscribe</a
+            >
+            <a
+              href="https://join.farmwater.org/"
+              class="cfwc-btn cfwc-btn--primary"
+              style="padding: 9px 18px; font-size: 13.5px"
+              >Join the Coalition</a
+            >
+          </div>
+          <button
+            class="cfwc-nav__hamburger"
+            id="cfwcHamburger"
+            aria-label="Open menu"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="cfwc-mobile-menu" id="cfwcMobileMenu">
+        <a href="https://farmwater.org/2025-impact-report/"
+          >2025 Impact Report</a
+        >
+        <a href="https://farmwater.org/cfwc-blog/">Blog</a>
+        <a href="https://farmwater.org/resources/">Resources</a>
+        <a href="https://farmwater.org/about-california-farm-water-coalition/"
+          >About Us</a
+        >
+        <a href="https://farmwater.org/mosac/">MOSAC</a>
+        <a
+          href="https://farmwater.org/learn-more-california-water/releases-and-statements/"
+          >Press</a
+        >
+        <a href="https://join.farmwater.org/" style="color: var(--cfwc-blue)"
+          >Join the Coalition →</a
+        >
+        <a href="https://farmwater.org/donate/" style="color: var(--cfwc-blue)"
+          >Donate →</a
+        >
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="cfwc-hero">
+      <video
+        class="cfwc-hero__bg"
+        autoplay
+        muted
+        loop
+        playsinline
+      
+        style="
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        "
+      >
+        <source
+          src="https://farmwater.org/wp-content/uploads/1692/23/2021-Website-Header-30-v2.webm"
+          type="video/webm"
+        />
+        Your browser does not support the video tag.
+      </video>
+      <div class="cfwc-hero__overlay"></div>
+      <div class="cfwc-wrap">
+        <div class="cfwc-hero__content">
+          <h1 class="cfwc-hero__title">
+            Food Grows Where
+            <strong>Water Flows.</strong>
+          </h1>
+          <p class="cfwc-hero__desc">
+            The California Farm Water Coalition is the trusted, fact-based voice
+            for California agriculture — sharing the vital story of water's role
+            in feeding our nation since 1989.
+          </p>
+          <div class="cfwc-hero__actions">
+            <a
+              href="https://farmwater.org/2025-impact-report/"
+              class="cfwc-btn cfwc-btn--primary"
+              style="font-size: 16px; padding: 15px 32px"
+            >
+              View 2025 Impact Report
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="cfwc-hero__scroll">
+        <div class="cfwc-hero__scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- IMPACT STATS -->
+    <section class="cfwc-stats">
+      <div class="cfwc-wrap">
+        <div class="cfwc-stats__grid">
+          <div class="cfwc-stat">
+            <div class="cfwc-stat__num">35<span>+</span></div>
+            <div class="cfwc-stat__label">Years of Advocacy</div>
+          </div>
+          <div class="cfwc-stat">
+            <div class="cfwc-stat__num">90<span>%</span></div>
+            <div class="cfwc-stat__label">U.S. Winter Vegetables from CA</div>
+          </div>
+          <div class="cfwc-stat">
+            <div class="cfwc-stat__num">250<span>k</span></div>
+            <div class="cfwc-stat__label">Annual MOSAC Visitors</div>
+          </div>
+          <div class="cfwc-stat">
+            <div class="cfwc-stat__num">16</div>
+            <div class="cfwc-stat__label">Counties Served by MOSAC</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="cfwc-section cfwc-section--alt">
+      <div class="cfwc-wrap">
+        <div class="cfwc-about__grid">
+          <div class="cfwc-about__visual">
+            <img
+              src="https://farmwater.org/wp-content/uploads/2025/04/GreenDesert_16x9-1024x576.jpg"
+              alt="California farmland with irrigation"
+            />
+            <div class="cfwc-about__badge">
+              <strong>1989</strong>
+              Founded during California's six-year drought
+            </div>
+          </div>
+          <div class="cfwc-about__text">
+            <div>
+              <div class="cfwc-label">Who We Are</div>
+              <h2 class="cfwc-h2">
+                A fact-based voice for California agriculture
+              </h2>
+            </div>
+            <p class="cfwc-lead">
+              The California Farm Water Coalition is a non-profit, educational
+              organization committed to sharing fact-based information about the
+              important role water plays in the food, fiber, and nursery
+              products grown in California.
+            </p>
+            <div class="cfwc-about__goals">
+              <div class="cfwc-about__goal">
+                <div class="cfwc-about__goal-icon"></div>
+                <div class="cfwc-about__goal-text">
+                  Serve as the unified voice for agricultural water users across
+                  California
+                </div>
+              </div>
+              <div class="cfwc-about__goal">
+                <div class="cfwc-about__goal-icon"></div>
+                <div class="cfwc-about__goal-text">
+                  Represent irrigated agriculture in the media and to
+                  policymakers
+                </div>
+              </div>
+              <div class="cfwc-about__goal">
+                <div class="cfwc-about__goal-icon"></div>
+                <div class="cfwc-about__goal-text">
+                  Educate the public about the benefits of California's
+                  irrigated agriculture
+                </div>
+              </div>
+            </div>
+            <div class="cfwc-about__actions">
+              <a
+                href="https://farmwater.org/about-california-farm-water-coalition/"
+                class="cfwc-btn cfwc-btn--primary"
+                >Learn About Us</a
+              >
+              <a
+                href="https://join.farmwater.org/"
+                class="cfwc-btn cfwc-btn--outline"
+                >Join the Coalition</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="cfwc-section">
+      <div class="cfwc-wrap">
+        <div class="cfwc-programs__header">
+          <div>
+            <div class="cfwc-label">What We Do</div>
+            <h2 class="cfwc-h2">Programs & Activities</h2>
+          </div>
+          <a
+            href="https://farmwater.org/programs-activities/"
+            class="cfwc-btn cfwc-btn--outline"
+            >View All Programs</a
+          >
+        </div>
+        <div class="cfwc-programs__grid">
+          <div class="cfwc-card">
+            <div class="cfwc-card__icon-wrap"></div>
+            <div class="cfwc-card__body">
+              <div class="cfwc-card__title">Publications & Multimedia</div>
+              <div class="cfwc-card__text">
+                Fact sheets, interactive resources, and compelling visual media
+                that make the connection between farm water and America's food
+                supply clear and accessible.
+              </div>
+              <a
+                href="https://farmwater.org/fact-sheets/"
+                class="cfwc-card__link"
+                >Explore resources →</a
+              >
+            </div>
+          </div>
+          <div class="cfwc-card">
+            <div class="cfwc-card__icon-wrap"></div>
+            <div class="cfwc-card__body">
+              <div class="cfwc-card__title">Public Outreach & Social Media</div>
+              <div class="cfwc-card__text">
+                Consumer and industry outreach across Facebook, Instagram, and
+                Twitter — bringing the farm water story directly to Californians
+                and national audiences.
+              </div>
+              <a
+                href="https://farmwater.org/programs-activities/"
+                class="cfwc-card__link"
+                >Follow us →</a
+              >
+            </div>
+          </div>
+          <div class="cfwc-card">
+            <div class="cfwc-card__icon-wrap"></div>
+            <div class="cfwc-card__body">
+              <div class="cfwc-card__title">Farm Tours & Direct Outreach</div>
+              <div class="cfwc-card__text">
+                First-hand experiences for government officials, media,
+                educators, and the public — seeing California's agricultural
+                water use and conservation firsthand.
+              </div>
+              <a
+                href="https://farmwater.org/programs-activities/"
+                class="cfwc-card__link"
+                >Learn more →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOSAC -->
+    <section class="cfwc-mosac">
+      <div class="cfwc-wrap">
+        <div class="cfwc-mosac__inner">
+          <div class="cfwc-mosac__img">
+            <img
+              src="https://www.farmwater.org/wp-content/uploads/2022/12/Large-Exterior-scaled.jpg"
+              alt="Museum of Science and Curiosity - Sacramento"
+            />
+          </div>
+          <div class="cfwc-mosac__text">
+            <div class="cfwc-mosac__tag">Education Initiative</div>
+            <h2 class="cfwc-h2 cfwc-h2--white">
+              Museum of Science and Curiosity
+            </h2>
+            <p class="cfwc-lead cfwc-lead--white">
+              CFWC sponsors three interactive educational exhibits at
+              Sacramento's SMUD Museum of Science and Curiosity — bringing the
+              story of farm water to life for visitors from across California
+              and beyond.
+            </p>
+            <div class="cfwc-mosac__facts">
+              <div class="cfwc-mosac__fact">
+                <div class="cfwc-mosac__fact-num">25,000</div>
+                <div class="cfwc-mosac__fact-text">
+                  sq ft of interactive exhibits
+                </div>
+              </div>
+              <div class="cfwc-mosac__fact">
+                <div class="cfwc-mosac__fact-num">3</div>
+                <div class="cfwc-mosac__fact-text">
+                  farm water exhibits sponsored by CFWC
+                </div>
+              </div>
+              <div class="cfwc-mosac__fact">
+                <div class="cfwc-mosac__fact-num">250k</div>
+                <div class="cfwc-mosac__fact-text">
+                  expected annual visitors
+                </div>
+              </div>
+              <div class="cfwc-mosac__fact">
+                <div class="cfwc-mosac__fact-num">16</div>
+                <div class="cfwc-mosac__fact-text">county region served</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap">
+              <a
+                href="https://farmwater.org/mosac/"
+                class="cfwc-btn cfwc-btn--white"
+                >Explore MOSAC</a
+              >
+              <a
+                href="https://farmwater.org/donate/"
+                class="cfwc-btn cfwc-btn--outline-white"
+                >Support the Exhibits</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTARY -->
+    <section class="cfwc-doc">
+      <div class="cfwc-wrap">
+        <div class="cfwc-doc__inner">
+          <div class="cfwc-doc__text">
+            <div>
+              <div class="cfwc-label cfwc-label--gold">Now Playing on PBS</div>
+              <h2 class="cfwc-h2">The Green Desert</h2>
+            </div>
+            <p class="cfwc-lead">
+              A compelling documentary shining a spotlight on the escalating
+              water challenges along the Colorado River — and the farmers of the
+              Imperial and Coachella valleys who supply up to 90% of America's
+              winter vegetables.
+            </p>
+            <div class="cfwc-doc__pbs">
+              <div class="cfwc-doc__pbs-dot"></div>
+              Airing now on PBS Stations &amp; streaming
+            </div>
+            <a
+              href="https://www.pbs.org/video/the-green-desert-beqjsy/"
+              class="cfwc-btn cfwc-btn--primary"
+              style="width: fit-content"
+              >Watch the Documentary</a
+            >
+          </div>
+          <div class="cfwc-doc__img">
+            <img
+              src="https://farmwater.org/wp-content/uploads/2025/04/GreenDesert_16x9-1024x576.jpg"
+              alt="The Green Desert documentary"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS / BLOG -->
+    <section class="cfwc-section cfwc-section--sky">
+      <div class="cfwc-wrap">
+        <div class="cfwc-news__header">
+          <div>
+            <div class="cfwc-label">Coalition Blog</div>
+            <h2 class="cfwc-h2">Latest News & Updates</h2>
+          </div>
+          <a
+            href="https://farmwater.org/cfwc-blog/"
+            class="cfwc-btn cfwc-btn--outline"
+            >All Blog Posts</a
+          >
+        </div>
+        <div class="cfwc-news__grid">
+          <a
+            href="https://farmwater.org/farm-water-news/sgmas-new-subsidence-guidance-a-higher-bar-real-world-impacts/"
+            class="cfwc-news-card cfwc-news-card--featured"
+          >
+            <div class="cfwc-news-card__img">
+              <img
+                src="https://farmwater.org/wp-content/uploads/2023/10/Allocation-Map-6-2-21-875x1024-1.png"
+                alt="SGMA Subsidence Guidance"
+                style="object-position: center top"
+              />
+            </div>
+            <div class="cfwc-news-card__body">
+              <div class="cfwc-news-card__date">May 9, 2026</div>
+              <div class="cfwc-news-card__title">
+                SGMA's New Subsidence Guidance: A Higher Bar, Real-World Impacts
+              </div>
+              <div class="cfwc-news-card__excerpt">
+                Stricter triggers and heavier monitoring expectations may speed
+                up local decisions. For farms, canals, and rural towns, that can
+                raise near-term pressure and highlight the practical tools
+                needed to adapt.
+              </div>
+              <div class="cfwc-news-card__read">Read more →</div>
+            </div>
+          </a>
+          <a
+            href="https://farmwater.org/farm-water-news/cfwc-releases-2025-impact-report-a-year-of-advocacy-outreach-and-partnership/"
+            class="cfwc-news-card"
+          >
+            <div class="cfwc-news-card__img">
+              <img
+                src="https://farmwater.org/wp-content/uploads/2025/04/GreenDesert_16x9-1024x576.jpg"
+                alt="2025 Impact Report"
+              />
+            </div>
+            <div class="cfwc-news-card__body">
+              <div class="cfwc-news-card__date">January 28, 2026</div>
+              <div class="cfwc-news-card__title">
+                CFWC Releases 2025 Impact Report: A Year of Advocacy, Outreach,
+                and Partnership
+              </div>
+              <div class="cfwc-news-card__read">Read more →</div>
+            </div>
+          </a>
+          <a
+            href="https://farmwater.org/farm-water-news/mike-wade-receives-association-of-california-water-agencies-acwa-lifetime-achievement-award/"
+            class="cfwc-news-card"
+          >
+            <div
+              class="cfwc-news-card__img"
+              style="
+                background: #e8f4fd;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 48px;
+              "
+            ></div>
+            <div class="cfwc-news-card__body">
+              <div class="cfwc-news-card__date">December 5, 2025</div>
+              <div class="cfwc-news-card__title">
+                Mike Wade Receives ACWA Lifetime Achievement Award
+              </div>
+              <div class="cfwc-news-card__read">Read more →</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN CTA -->
+    <section class="cfwc-join">
+      <div class="cfwc-wrap">
+        <div class="cfwc-join__inner">
+          <div class="cfwc-join__text">
+            <h2>
+              Become part of the coalition protecting California's water future
+            </h2>
+            <p>
+              CFWC represents farmers, water agencies, agricultural businesses,
+              and organizations from Shasta to Imperial County. Join us in
+              advocating for fact-based water policy.
+            </p>
+          </div>
+          <div class="cfwc-join__actions">
+            <a
+              href="https://join.farmwater.org/"
+              class="cfwc-btn cfwc-btn--white"
+              >Join the Coalition</a
+            >
+            <a
+              href="https://farmwater.org/donate/"
+              class="cfwc-btn cfwc-btn--outline-white"
+              >Make a Donation</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section class="cfwc-section">
+      <div class="cfwc-wrap">
+        <div style="margin-bottom: 44px">
+          <div class="cfwc-label">Knowledge Center</div>
+          <h2 class="cfwc-h2">Resources & Tools</h2>
+        </div>
+        <div class="cfwc-resources__grid">
+          <a href="https://farmwater.org/fact-sheets/" class="cfwc-res-card">
+            <div class="cfwc-res-card__title">Fact Sheets</div>
+            <div class="cfwc-res-card__desc">
+              Evidence-based publications on California water, agriculture, and
+              conservation topics.
+            </div>
+            <div class="cfwc-res-card__arrow">Browse fact sheets →</div>
+          </a>
+          <a href="https://farmwater.org/maps/" class="cfwc-res-card">
+            <div class="cfwc-res-card__title">Maps</div>
+            <div class="cfwc-res-card__desc">
+              Visual data on California water allocation, agricultural regions,
+              and infrastructure.
+            </div>
+            <div class="cfwc-res-card__arrow">View maps →</div>
+          </a>
+          <a href="https://farmwater.org/updates/" class="cfwc-res-card">
+            <div class="cfwc-res-card__title">Farm Water Updates</div>
+            <div class="cfwc-res-card__desc">
+              Timely news and policy updates relevant to California's
+              agricultural water users.
+            </div>
+            <div class="cfwc-res-card__arrow">Read updates →</div>
+          </a>
+          <a
+            href="https://farmwater.org/learn-more-california-water/farm-water-facts/"
+            class="cfwc-res-card"
+          >
+            <div class="cfwc-res-card__title">Farm Water Facts</div>
+            <div class="cfwc-res-card__desc">
+              In-depth information about California's water system and its role
+              in feeding the nation.
+            </div>
+            <div class="cfwc-res-card__arrow">Learn more →</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE STRIP -->
+    <div
+      style="
+        background: var(--cfwc-warm);
+        border-top: 1px solid var(--cfwc-border);
+        border-bottom: 1px solid var(--cfwc-border);
+        padding: 44px 0;
+      "
+    >
+      <div
+        class="cfwc-wrap"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 24px;
+        "
+      >
+        <div>
+          <div
+            style="
+              font-size: 18px;
+              font-weight: 500;
+              color: var(--cfwc-navy);
+              margin-bottom: 6px;
+            "
+          >
+            Stay informed with the Farm Water News Line
+          </div>
+          <div style="font-size: 14.5px; color: var(--cfwc-text-muted)">
+            Policy updates, blog posts, and water news delivered to your inbox.
+          </div>
+        </div>
+        <a
+          href="https://farmwater.org/subscribe-news-line/"
+          class="cfwc-btn cfwc-btn--primary"
+          style="white-space: nowrap"
+          >Subscribe to News Line</a
+        >
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="cfwc-footer">
+      <div class="cfwc-wrap">
+        <div class="cfwc-footer__top">
+          <div class="cfwc-footer__brand">
+            <img
+              src="https://farmwater.org/wp-content/uploads/2023/08/CFWC_Landscape_Logo.png"
+              alt="California Farm Water Coalition"
+            />
+            <p>
+              A non-profit educational organization sharing fact-based
+              information about the vital role water plays in California's food,
+              fiber, and nursery products since 1989.
+            </p>
+            <div class="cfwc-footer__social">
+              <a
+                href="https://www.facebook.com/foodgrowswherewaterflows/"
+                aria-label="Facebook"
+                >f</a
+              >
+              <a
+                href="https://www.instagram.com/farmwater/"
+                aria-label="Instagram"
+                >ig</a
+              >
+              <a href="https://www.twitter.com/farmwater" aria-label="Twitter"
+                >x</a
+              >
+            </div>
+          </div>
+          <div class="cfwc-footer__col">
+            <h4>About</h4>
+            <ul class="cfwc-footer__links">
+              <li>
+                <a
+                  href="https://farmwater.org/about-california-farm-water-coalition/"
+                  >About CFWC</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://farmwater.org/about-california-farm-water-coalition/california-farm-water-mission/"
+                  >Our Mission</a
+                >
+              </li>
+              <li>
+                <a href="https://farmwater.org/programs-activities/"
+                  >Programs & Activities</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://farmwater.org/about-california-farm-water-coalition/board-of-directors/"
+                  >Board of Directors</a
+                >
+              </li>
+              <li>
+                <a href="https://farmwater.org/2025-impact-report/"
+                  >2025 Impact Report</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="cfwc-footer__col">
+            <h4>Resources</h4>
+            <ul class="cfwc-footer__links">
+              <li>
+                <a href="https://farmwater.org/fact-sheets/">Fact Sheets</a>
+              </li>
+              <li><a href="https://farmwater.org/maps/">Maps</a></li>
+              <li>
+                <a href="https://farmwater.org/updates/">Farm Water Updates</a>
+              </li>
+              <li>
+                <a
+                  href="https://farmwater.org/learn-more-california-water/farm-water-facts/"
+                  >Farm Water Facts</a
+                >
+              </li>
+              <li><a href="https://farmwater.org/cfwc-blog/">Blog</a></li>
+              <li>
+                <a
+                  href="https://farmwater.org/learn-more-california-water/releases-and-statements/"
+                  >Press Releases</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="cfwc-footer__col">
+            <h4>Get Involved</h4>
+            <ul class="cfwc-footer__links">
+              <li>
+                <a href="https://join.farmwater.org/">Join the Coalition</a>
+              </li>
+              <li><a href="https://farmwater.org/donate/">Donate</a></li>
+              <li>
+                <a href="https://farmwater.org/subscribe-news-line/"
+                  >Subscribe to News Line</a
+                >
+              </li>
+              <li><a href="https://farmwater.org/mosac/">MOSAC Exhibits</a></li>
+              <li>
+                <a href="https://farmwater.org/partners-and-sponsors/"
+                  >Partners & Sponsors</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://farmwater.org/about-california-farm-water-coalition/contact-us/"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="cfwc-footer__bottom">
+          <span
+            >© 2026 California Farm Water Coalition. All rights reserved.</span
+          >
+          <span>
+            <a href="mailto:farmwater@farmwater.org">farmwater@farmwater.org</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.getElementById("cfwcNav");
+      window.addEventListener("scroll", () => {
+        nav.classList.toggle("scrolled", window.scrollY > 20);
+      });
+      const hamburger = document.getElementById("cfwcHamburger");
+      const mobileMenu = document.getElementById("cfwcMobileMenu");
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+      });
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>

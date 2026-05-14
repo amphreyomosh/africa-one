@@ -1,0 +1,2602 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CERA bridges research, data, and educational practice in California, transforming insight into impact for students across the state."
+    />
+    <title>Home | CERA | California Educational Research Association</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --navy: #0e2a47;
+        --navy-mid: #163a60;
+        --navy-light: #1e4f82;
+        --blue-accent: #2d7cc1;
+        --blue-bright: #3a9fd6;
+        --gold: #c9a227;
+        --gold-light: #e8c050;
+        --slate: #4a6280;
+        --slate-light: #6b8aab;
+        --off-white: #f4f7fa;
+        --light-blue-bg: #e8f1f9;
+        --white: #ffffff;
+        --text-dark: #0d1f33;
+        --text-mid: #2a3f58;
+        --text-muted: #5a7390;
+        --border: #d0dce9;
+        --section-gap: 6rem;
+        --font-sans: "DM Sans", sans-serif;
+        --font-serif: "DM Serif Display", serif;
+        /* Added for glad header */
+        --shell-max: 1280px;
+        --gutter: 2rem;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--text-dark);
+        background: var(--white);
+        line-height: 1.6;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ─── NAV ─── */
+      .cera-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: var(--navy);
+        transition: box-shadow 0.3s;
+      }
+      .cera-nav.scrolled {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+      }
+      .cera-nav__inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+      .cera-nav__logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+      .cera-nav__logo img {
+        height: 44px;
+        width: auto;
+      }
+      .cera-nav__links {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        list-style: none;
+      }
+      .cera-nav__links > li {
+        position: relative;
+      }
+      .cera-nav__links > li > a,
+      .cera-nav__links > li > button {
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.85);
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
+      }
+      .cera-nav__links > li > a:hover,
+      .cera-nav__links > li > button:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .cera-nav__dropdown {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        background: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 8px 30px rgba(14, 42, 71, 0.18);
+        min-width: 210px;
+        padding: 0.5rem 0;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-6px);
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        list-style: none;
+        z-index: 10;
+      }
+      .cera-nav__links > li:hover .cera-nav__dropdown,
+      .cera-nav__links > li:focus-within .cera-nav__dropdown {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+      .cera-nav__dropdown a {
+        display: block;
+        padding: 0.6rem 1.25rem;
+        font-size: 0.875rem;
+        color: var(--text-mid);
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .cera-nav__dropdown a:hover {
+        background: var(--off-white);
+        color: var(--navy);
+      }
+      .cera-nav__cta-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-shrink: 0;
+      }
+      .cera-btn--outline-white {
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.45);
+        background: transparent;
+        padding: 0.45rem 1.1rem;
+        border-radius: 7px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        white-space: nowrap;
+      }
+      .cera-btn--outline-white:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.75);
+      }
+      .cera-btn--gold {
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: var(--gold);
+        border: none;
+        padding: 0.5rem 1.2rem;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+      .cera-btn--gold:hover {
+        background: var(--gold-light);
+      }
+
+      .cera-nav__hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .cera-nav__hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition: transform 0.3s;
+      }
+
+      /* ─── HERO ─── */
+      .cera-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: var(--navy);
+      }
+      .cera-hero__bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("https://static.wixstatic.com/media/5a29d8_b8bfbb1fcbeb4e139dbcd9e392124834f000.jpg/v1/fill/w_1280,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_b8bfbb1fcbeb4e139dbcd9e392124834f000.jpg");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.22;
+      }
+      .cera-hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(14, 42, 71, 0.97) 0%,
+          rgba(22, 58, 96, 0.88) 55%,
+          rgba(45, 124, 193, 0.55) 100%
+        );
+      }
+      .cera-hero__net {
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(58, 159, 214, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            circle at 20% 70%,
+            rgba(201, 162, 39, 0.08) 0%,
+            transparent 50%
+          );
+      }
+      .cera-hero__inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        padding-top: 6rem;
+        padding-bottom: 5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        width: 100%;
+      }
+      .cera-hero__content {
+        max-width: 600px;
+      }
+      .cera-hero__logo-lockup {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .cera-hero__logo-lockup img {
+        height: 56px;
+        width: auto;
+      }
+      .cera-hero__founded {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--gold-light);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+      }
+      .cera-hero h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+        color: #fff;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+      }
+      .cera-hero__tagline {
+        font-size: 1.125rem;
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+        max-width: 520px;
+      }
+      .cera-hero__actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .cera-btn--primary-lg {
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: var(--gold);
+        border: none;
+        padding: 0.875rem 2.25rem;
+        border-radius: 9px;
+        cursor: pointer;
+        display: inline-block;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .cera-btn--primary-lg:hover {
+        background: var(--gold-light);
+        transform: translateY(-1px);
+      }
+      .cera-hero__visual {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .cera-hero__stat-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .cera-hero__stat {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 1.5rem;
+        backdrop-filter: blur(8px);
+      }
+      .cera-hero__stat-num {
+        font-family: var(--font-serif);
+        font-size: 2.25rem;
+        color: var(--gold-light);
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+      .cera-hero__stat-label {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.4;
+      }
+      .cera-hero__event-card {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(58, 159, 214, 0.35);
+        border-radius: 12px;
+        padding: 1.5rem;
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .cera-hero__event-date {
+        background: var(--blue-accent);
+        border-radius: 8px;
+        padding: 0.75rem;
+        text-align: center;
+        min-width: 64px;
+        flex-shrink: 0;
+      }
+      .cera-hero__event-date-month {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.75);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .cera-hero__event-date-day {
+        font-family: var(--font-serif);
+        font-size: 1.75rem;
+        color: #fff;
+        line-height: 1;
+      }
+      .cera-hero__event-info {
+        flex: 1;
+      }
+      .cera-hero__event-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--blue-bright);
+        margin-bottom: 0.3rem;
+      }
+      .cera-hero__event-title {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 0.2rem;
+      }
+      .cera-hero__event-location {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .cera-hero__scroll {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        animation: bounce 2s infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+      .cera-hero__scroll-line {
+        width: 1px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      /* ─── SECTION WRAPPER ─── */
+      .cera-section {
+        padding: var(--section-gap) 0;
+      }
+      .cera-section--alt {
+        background: var(--off-white);
+      }
+      .cera-section--navy {
+        background: var(--navy);
+        color: #fff;
+      }
+      .cera-section--blue-light {
+        background: var(--light-blue-bg);
+      }
+
+      .cera-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .cera-section-header {
+        max-width: 680px;
+        margin: 0 auto 3.5rem;
+        text-align: center;
+      }
+      .cera-section-header--left {
+        max-width: 100%;
+        text-align: left;
+        margin-bottom: 2.5rem;
+      }
+      .cera-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--blue-accent);
+        margin-bottom: 0.75rem;
+      }
+      .cera-label--gold {
+        color: var(--gold);
+      }
+      .cera-label--light {
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      .cera-h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(1.875rem, 3vw, 2.5rem);
+        font-weight: 400;
+        color: var(--navy);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+      .cera-h2--white {
+        color: #fff;
+      }
+
+      .cera-lead {
+        font-size: 1.0625rem;
+        color: var(--text-muted);
+        line-height: 1.75;
+      }
+      .cera-lead--white {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ─── ABOUT ─── */
+      .cera-about__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .cera-about__body p {
+        font-size: 1rem;
+        color: var(--text-mid);
+        line-height: 1.8;
+        margin-bottom: 1.25rem;
+      }
+      .cera-about__body p:last-child {
+        margin-bottom: 0;
+      }
+      .cera-about__visual {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .cera-pillar {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.75rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .cera-pillar:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(14, 42, 71, 0.1);
+      }
+      .cera-pillar:first-child {
+        grid-column: span 2;
+      }
+      .cera-pillar__accent {
+        width: 36px;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--blue-accent);
+        margin-bottom: 1rem;
+      }
+      .cera-pillar:nth-child(2) .cera-pillar__accent {
+        background: var(--gold);
+      }
+      .cera-pillar:nth-child(3) .cera-pillar__accent {
+        background: var(--navy-light);
+      }
+      .cera-pillar__title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.5rem;
+      }
+      .cera-pillar__body {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+      }
+
+      /* ─── PROGRAMS ─── */
+      .cera-programs__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .cera-program-card {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 2rem;
+        border: 1px solid var(--border);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+      .cera-program-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(14, 42, 71, 0.1);
+      }
+      .cera-program-card__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.25rem;
+        font-size: 1.5rem;
+      }
+      .cera-program-card:nth-child(2) .cera-program-card__icon {
+        background: var(--blue-accent);
+      }
+      .cera-program-card:nth-child(3) .cera-program-card__icon {
+        background: var(--navy-light);
+      }
+      .cera-program-card:nth-child(4) .cera-program-card__icon {
+        background: var(--gold);
+      }
+      .cera-program-card:nth-child(5) .cera-program-card__icon {
+        background: var(--slate);
+      }
+      .cera-program-card:nth-child(6) .cera-program-card__icon {
+        background: var(--blue-bright);
+      }
+      .cera-program-card__title {
+        font-size: 1.0625rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.6rem;
+      }
+      .cera-program-card__body {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+        flex: 1;
+        margin-bottom: 1.25rem;
+      }
+      .cera-program-card__link {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--blue-accent);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        transition: gap 0.2s;
+      }
+      .cera-program-card__link:hover {
+        gap: 0.6rem;
+      }
+
+      /* ─── CONFERENCE ─── */
+      .cera-conf {
+        position: relative;
+        overflow: hidden;
+      }
+      .cera-conf__bg-shape {
+        position: absolute;
+        right: -5%;
+        top: -20%;
+        width: 55%;
+        height: 140%;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .cera-conf__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+      }
+      .cera-conf__title {
+        font-family: var(--font-serif);
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        font-weight: 400;
+      }
+      .cera-conf__theme {
+        font-size: 0.9375rem;
+        color: var(--gold-light);
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+      .cera-conf__details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 2.5rem;
+      }
+      .cera-conf__detail {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.9375rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .cera-conf__detail-icon {
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1rem;
+      }
+      .cera-conf__actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .cera-btn--white {
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: #fff;
+        border: none;
+        padding: 0.875rem 2rem;
+        border-radius: 9px;
+        cursor: pointer;
+        display: inline-block;
+        transition: background 0.2s;
+      }
+      .cera-btn--white:hover {
+        background: var(--off-white);
+      }
+      .cera-btn--ghost-white {
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.85);
+        background: transparent;
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        padding: 0.875rem 2rem;
+        border-radius: 9px;
+        cursor: pointer;
+        display: inline-block;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .cera-btn--ghost-white:hover {
+        border-color: rgba(255, 255, 255, 0.7);
+        color: #fff;
+      }
+      .cera-conf__hotel-card {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .cera-conf__hotel-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        opacity: 0.85;
+      }
+      .cera-conf__hotel-body {
+        padding: 1.5rem;
+      }
+      .cera-conf__hotel-name {
+        font-weight: 700;
+        color: #fff;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+      }
+      .cera-conf__hotel-loc {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 1rem;
+      }
+      .cera-btn--blue-sm {
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: #fff;
+        background: var(--blue-accent);
+        border: none;
+        padding: 0.5rem 1.25rem;
+        border-radius: 7px;
+        cursor: pointer;
+        display: inline-block;
+        transition: background 0.2s;
+      }
+      .cera-btn--blue-sm:hover {
+        background: var(--navy-light);
+      }
+
+      /* ─── MEMBERSHIP ─── */
+      .cera-membership__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .cera-membership__benefits {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1.75rem 0 2.5rem;
+      }
+      .cera-membership__benefit {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.875rem;
+        font-size: 0.9375rem;
+        color: var(--text-mid);
+        line-height: 1.5;
+      }
+      .cera-membership__benefit-icon {
+        width: 22px;
+        height: 22px;
+        background: var(--blue-accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+      .cera-btn--primary {
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: var(--gold);
+        border: none;
+        padding: 0.875rem 2.25rem;
+        border-radius: 9px;
+        cursor: pointer;
+        display: inline-block;
+        transition: background 0.2s;
+      }
+      .cera-btn--primary:hover {
+        background: var(--gold-light);
+      }
+      .cera-membership__visual {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .cera-member-type {
+        background: var(--navy);
+        border-radius: 14px;
+        padding: 1.75rem 1.5rem;
+        color: #fff;
+      }
+      .cera-member-type:nth-child(2) {
+        background: var(--blue-accent);
+      }
+      .cera-member-type:nth-child(3) {
+        background: var(--navy-light);
+        grid-column: span 2;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .cera-member-type__emoji {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .cera-member-type:nth-child(3) .cera-member-type__emoji {
+        margin-bottom: 0;
+      }
+      .cera-member-type__name {
+        font-weight: 700;
+        font-size: 0.9375rem;
+        margin-bottom: 0.25rem;
+      }
+      .cera-member-type__desc {
+        font-size: 0.8125rem;
+        opacity: 0.7;
+        line-height: 1.5;
+      }
+
+      /* ─── AWARDS ─── */
+      .cera-awards__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+      }
+      .cera-award-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.75rem 1.5rem;
+        text-align: center;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .cera-award-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(14, 42, 71, 0.1);
+      }
+      .cera-award-card__icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+      .cera-award-card__name {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.4rem;
+        line-height: 1.35;
+      }
+      .cera-award-card__desc {
+        font-size: 0.8125rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* ─── IMPACT ─── */
+      .cera-impact__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+      }
+      .cera-impact-stat {
+        text-align: center;
+        padding: 2rem 1rem;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .cera-impact-stat__num {
+        font-family: var(--font-serif);
+        font-size: 2.75rem;
+        color: var(--gold-light);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .cera-impact-stat__label {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.4;
+      }
+      .cera-testimonials__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .cera-testimonial {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 1.75rem;
+      }
+      .cera-testimonial__quote {
+        font-size: 0.9375rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.75;
+        margin-bottom: 1.25rem;
+        font-style: italic;
+      }
+      .cera-testimonial__author {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--gold-light);
+      }
+      .cera-testimonial__role {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 0.15rem;
+      }
+
+      /* ─── SPONSORS ─── */
+      .cera-sponsors__tier {
+        margin-bottom: 3rem;
+      }
+      .cera-sponsors__tier-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .cera-sponsors__row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+      .cera-sponsors__row--lg {
+        gap: 3rem;
+      }
+      .cera-sponsor-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        filter: grayscale(100%) opacity(0.55);
+        transition: filter 0.2s;
+      }
+      .cera-sponsor-logo:hover {
+        filter: grayscale(0%) opacity(1);
+      }
+      .cera-sponsor-logo img {
+        height: 44px;
+        width: auto;
+        max-width: 160px;
+        object-fit: contain;
+      }
+      .cera-sponsor-logo--lg img {
+        height: 64px;
+      }
+      .cera-sponsors__cta {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 2.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .cera-sponsors__cta p {
+        font-size: 1rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+      }
+      .cera-btn--navy {
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: #fff;
+        background: var(--navy);
+        border: none;
+        padding: 0.875rem 2.25rem;
+        border-radius: 9px;
+        cursor: pointer;
+        display: inline-block;
+        transition: background 0.2s;
+      }
+      .cera-btn--navy:hover {
+        background: var(--navy-mid);
+      }
+
+      /* ─── FOOTER ─── */
+      .cera-footer {
+        background: var(--text-dark);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 4.5rem 0 0;
+      }
+      .cera-footer__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      .cera-footer__brand img {
+        height: 48px;
+        width: auto;
+        margin-bottom: 1rem;
+        opacity: 0.9;
+      }
+      .cera-footer__brand p {
+        font-size: 0.875rem;
+        line-height: 1.7;
+        max-width: 280px;
+        margin-bottom: 1.5rem;
+      }
+      .cera-footer__social {
+        display: flex;
+        gap: 0.75rem;
+      }
+      .cera-footer__social-link {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.7);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .cera-footer__social-link:hover {
+        background: var(--blue-accent);
+        color: #fff;
+      }
+      .cera-footer__col-title {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 1.25rem;
+      }
+      .cera-footer__links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .cera-footer__links a {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.55);
+        transition: color 0.2s;
+      }
+      .cera-footer__links a:hover {
+        color: #fff;
+      }
+      .cera-footer__contact-item {
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+      .cera-footer__contact-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 0.15rem;
+      }
+      .cera-footer__contact-val {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .cera-footer__contact-val a {
+        color: var(--blue-bright);
+        transition: color 0.2s;
+      }
+      .cera-footer__contact-val a:hover {
+        color: #fff;
+      }
+      .cera-footer__mailing {
+        margin-top: 1.25rem;
+      }
+      .cera-footer__mailing a {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--gold-light);
+        border: 1px solid rgba(201, 162, 39, 0.4);
+        padding: 0.5rem 1rem;
+        border-radius: 7px;
+        display: inline-block;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .cera-footer__mailing a:hover {
+        background: rgba(201, 162, 39, 0.1);
+        border-color: var(--gold-light);
+      }
+      .cera-footer__bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .cera-footer__copy {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .cera-footer__bottom-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .cera-footer__bottom-links a {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.35);
+        transition: color 0.2s;
+      }
+      .cera-footer__bottom-links a:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ─── MOBILE NAV ─── */
+      .cera-nav__mobile-menu {
+        display: none;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--navy);
+        padding: 1.5rem;
+        z-index: 999;
+        flex-direction: column;
+        gap: 0.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+      .cera-nav__mobile-menu.open {
+        display: flex;
+      }
+      .cera-nav__mobile-menu a {
+        font-size: 0.9375rem;
+        color: rgba(255, 255, 255, 0.8);
+        padding: 0.6rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        font-weight: 500;
+      }
+      .cera-nav__mobile-menu a:hover {
+        color: #fff;
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 1100px) {
+        .cera-programs__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cera-awards__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cera-impact__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cera-testimonials__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cera-footer__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .cera-hero__inner {
+          grid-template-columns: 1fr;
+        }
+        .cera-hero__visual {
+          display: none;
+        }
+        .cera-about__grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .cera-conf__grid {
+          grid-template-columns: 1fr;
+        }
+        .cera-conf__hotel-card {
+          display: none;
+        }
+        .cera-membership__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-gap: 4rem;
+        }
+        .cera-nav__links {
+          display: none;
+        }
+        .cera-nav__cta-group {
+          display: none;
+        }
+        .cera-nav__hamburger {
+          display: flex;
+        }
+        .cera-programs__grid {
+          grid-template-columns: 1fr;
+        }
+        .cera-awards__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cera-impact__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cera-testimonials__grid {
+          grid-template-columns: 1fr;
+        }
+        .cera-footer__grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .cera-hero__stat-cards {
+          grid-template-columns: 1fr;
+        }
+        .cera-about__visual {
+          grid-template-columns: 1fr;
+        }
+        .cera-pillar:first-child {
+          grid-column: span 1;
+        }
+        .cera-membership__visual {
+          grid-template-columns: 1fr;
+        }
+        .cera-member-type:nth-child(3) {
+          grid-column: span 1;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .cera-awards__grid {
+          grid-template-columns: 1fr;
+        }
+        .cera-impact__grid {
+          grid-template-columns: 1fr;
+        }
+        .cera-conf__actions {
+          flex-direction: column;
+        }
+        .cera-footer__bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      /* ─── ANIMATE ON SCROLL ─── */
+      .cera-fade-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .cera-fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 2001; /* Increased to ensure it's above nav */
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+    <!-- NAV -->
+    <nav
+      class="cera-nav"
+      id="mainNav"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div class="cera-nav__inner">
+        <a
+          href="https://www.caedresearch.org/"
+          class="cera-nav__logo"
+          aria-label="CERA Home"
+        >
+          <img
+            src="https://static.wixstatic.com/media/5a29d8_a34cee88e8934b5d8f326dd319de377d~mv2.png/v1/fill/w_528,h_169,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20-%20no%20lower%20text%20-%20white.png"
+            alt="CERA logo"
+          />
+        </a>
+        <ul class="cera-nav__links" role="list">
+          <li>
+            <button aria-expanded="false" aria-haspopup="true">Board ▾</button>
+            <ul class="cera-nav__dropdown">
+              <li>
+                <a href="https://www.caedresearch.org/board-members"
+                  >Board Members</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/board-bylaws"
+                  >Board Bylaws</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/board-business"
+                  >Board Business</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/board-bylaws"
+                  >Board Roles</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button aria-expanded="false" aria-haspopup="true">
+              Communications ▾
+            </button>
+            <ul class="cera-nav__dropdown">
+              <li>
+                <a href="https://www.caedresearch.org/presidents-letter"
+                  >President's Letter</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button aria-expanded="false" aria-haspopup="true">
+              Conference ▾
+            </button>
+            <ul class="cera-nav__dropdown">
+              <li>
+                <a href="https://www.caedresearch.org/register"
+                  >2026 Conference Info</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/session-proposals"
+                  >Submit a Session Proposal</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/conference-location"
+                  >Conference Location</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li><a href="https://www.caedresearch.org/webinars">Webinars</a></li>
+          <li>
+            <button aria-expanded="false" aria-haspopup="true">Awards ▾</button>
+            <ul class="cera-nav__dropdown">
+              <li>
+                <a
+                  href="https://www.caedresearch.org/lifetime-achievement-award"
+                  >Lifetime Achievement Award</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/outstanding-paper"
+                  >Outstanding Paper Award</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/research-practice"
+                  >Research-Practice Partnership Award</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.caedresearch.org/leadership-in-data-or-assessment-award"
+                  >Leadership in Data Award</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button aria-expanded="false" aria-haspopup="true">
+              Data Viz ▾
+            </button>
+            <ul class="cera-nav__dropdown">
+              <li>
+                <a href="https://www.caedresearch.org/copy-of-data-viz-award"
+                  >Data Viz Award Winners</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/data-viz"
+                  >About the Data Viz Awards</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button aria-expanded="false" aria-haspopup="true">
+              Sponsors ▾
+            </button>
+            <ul class="cera-nav__dropdown">
+              <li>
+                <a href="https://www.caedresearch.org/become-a-sponsor"
+                  >Become a Sponsor</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="cera-nav__cta-group">
+          <a
+            href="https://careers.aera.net/jobs/?t735=120"
+            class="cera-btn--outline-white"
+            target="_blank"
+            rel="noopener"
+            >AERA Job Board</a
+          >
+          <a href="https://www.caedresearch.org/join-us" class="cera-btn--gold"
+            >Join Us</a
+          >
+        </div>
+        <button
+          class="cera-nav__hamburger"
+          id="hamburgerBtn"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <nav
+        class="cera-nav__mobile-menu"
+        id="mobileMenu"
+        aria-label="Mobile menu"
+      >
+        <a href="https://www.caedresearch.org/board-members">Board Members</a>
+        <a href="https://www.caedresearch.org/presidents-letter"
+          >President's Letter</a
+        >
+        <a href="https://www.caedresearch.org/register">Conference 2026</a>
+        <a href="https://www.caedresearch.org/session-proposals"
+          >Submit Session Proposal</a
+        >
+        <a href="https://www.caedresearch.org/webinars">Webinars</a>
+        <a href="https://www.caedresearch.org/lifetime-achievement-award"
+          >Awards</a
+        >
+        <a href="https://www.caedresearch.org/data-viz">Data Viz</a>
+        <a href="https://www.caedresearch.org/become-a-sponsor"
+          >Become a Sponsor</a
+        >
+        <a
+          href="https://www.caedresearch.org/join-us"
+          style="color: #e8c050; font-weight: 700"
+          >Join Us</a
+        >
+      </nav>
+    </nav>
+
+    <!-- HERO -->
+    <section class="cera-hero" aria-label="Hero section">
+      <div class="cera-hero__bg" role="presentation"></div>
+      <div class="cera-hero__overlay" role="presentation"></div>
+      <div class="cera-hero__net" role="presentation"></div>
+
+      <div class="cera-hero__inner">
+        <div class="cera-hero__content">
+          <div class="cera-hero__logo-lockup">
+            <img
+              src="https://static.wixstatic.com/media/5a29d8_a34cee88e8934b5d8f326dd319de377d~mv2.png/v1/fill/w_528,h_169,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20-%20no%20lower%20text%20-%20white.png"
+              alt="CERA — California Educational Research Association"
+            />
+          </div>
+          <p class="cera-hero__founded">
+            Bridging Research, Data, and Practice since 1921
+          </p>
+          <h1>Transforming Insight into Impact for California Students</h1>
+          <p class="cera-hero__tagline">
+            CERA connects educators, researchers, and leaders across California
+            to advance equity and improve outcomes for every learner through
+            evidence-based practice.
+          </p>
+          <div class="cera-hero__actions">
+            <a
+              href="https://www.caedresearch.org/join-us"
+              class="cera-btn--primary-lg"
+              >Join Our Network</a
+            >
+          </div>
+        </div>
+
+        <div class="cera-hero__visual" aria-hidden="true">
+          <div class="cera-hero__stat-cards">
+            <div class="cera-hero__stat">
+              <div class="cera-hero__stat-num">100+</div>
+              <div class="cera-hero__stat-label">
+                Years bridging research and practice
+              </div>
+            </div>
+            <div class="cera-hero__stat">
+              <div class="cera-hero__stat-num">K–16</div>
+              <div class="cera-hero__stat-label">
+                Members across all education sectors
+              </div>
+            </div>
+          </div>
+          <div class="cera-hero__event-card">
+            <div class="cera-hero__event-date">
+              <div class="cera-hero__event-date-month">Nov</div>
+              <div class="cera-hero__event-date-day">4–6</div>
+            </div>
+            <div class="cera-hero__event-info">
+              <div class="cera-hero__event-tag">Annual Conference 2026</div>
+              <div class="cera-hero__event-title">
+                Equity by Design: Reimagining Research, Policy, and Practice
+              </div>
+              <div class="cera-hero__event-location">
+                Omni Rancho Las Palmas · Palm Desert, CA
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cera-hero__scroll" aria-hidden="true">
+        <div class="cera-hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="cera-section" id="about" aria-labelledby="about-heading">
+      <div class="cera-container">
+        <div class="cera-about__grid">
+          <div class="cera-about__body cera-fade-up">
+            <div class="cera-section-header--left">
+              <p class="cera-label">About CERA</p>
+              <h2 class="cera-h2" id="about-heading">
+                A Professional Home for California's Education Community
+              </h2>
+            </div>
+            <p>
+              The California Educational Research Association (CERA) bridges
+              research, data, and educational practice in California for the
+              purpose of transforming insight into impact.
+            </p>
+            <p>
+              Founded in 1921, CERA is a non-profit, professional association
+              with members from K–12, higher education, research organizations,
+              and community and business partners. By bridging these
+              often-siloed domains, CERA empowers educators and leaders to
+              translate evidence into meaningful action.
+            </p>
+            <p>
+              When you join CERA, you become part of a statewide network
+              committed to advancing equity and improving outcomes for students
+              across California. There is power in our collective when we come
+              together with purpose.
+            </p>
+            <br />
+            <a
+              href="https://www.caedresearch.org/join-us"
+              class="cera-btn--primary"
+              >Become a Member</a
+            >
+          </div>
+          <div class="cera-about__visual cera-fade-up">
+            <div class="cera-pillar">
+              <div class="cera-pillar__accent"></div>
+              <div class="cera-pillar__title">Bridging Research & Practice</div>
+              <div class="cera-pillar__body">
+                We connect the dots between academic research, policy, and real
+                classroom outcomes — ensuring evidence reaches the people who
+                need it most.
+              </div>
+            </div>
+            <div class="cera-pillar">
+              <div class="cera-pillar__accent"></div>
+              <div class="cera-pillar__title">Advancing Equity</div>
+              <div class="cera-pillar__body">
+                Equity is at the core of everything we do — from our conference
+                themes to how we support members across California's diverse
+                communities.
+              </div>
+            </div>
+            <div class="cera-pillar">
+              <div class="cera-pillar__accent"></div>
+              <div class="cera-pillar__title">Statewide Collaboration</div>
+              <div class="cera-pillar__body">
+                Our network spans K–12, higher education, research
+                organizations, and community partners — united by a shared
+                mission to serve California students.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS / SERVICES -->
+    <section
+      class="cera-section cera-section--alt"
+      id="programs"
+      aria-labelledby="programs-heading"
+    >
+      <div class="cera-container">
+        <div class="cera-section-header cera-fade-up">
+          <p class="cera-label">Programs &amp; Services</p>
+          <h2 class="cera-h2" id="programs-heading">
+            Everything You Need to Do Your Best Work
+          </h2>
+          <p class="cera-lead">
+            From annual conferences to data visualization awards, CERA provides
+            the professional resources and community that California educators
+            and researchers need to thrive.
+          </p>
+        </div>
+        <div class="cera-programs__grid">
+          <div class="cera-program-card cera-fade-up">
+            <div class="cera-program-card__title">Annual Conference</div>
+            <div class="cera-program-card__body">
+              Three days of keynotes, research sessions, and networking with
+              California's leading education researchers, practitioners, and
+              policymakers.
+            </div>
+            <a
+              href="https://www.caedresearch.org/register"
+              class="cera-program-card__link"
+              >Learn more →</a
+            >
+          </div>
+          <div class="cera-program-card cera-fade-up">
+            <div class="cera-program-card__title">Webinars</div>
+            <div class="cera-program-card__body">
+              Virtual professional development sessions on timely topics in
+              educational research, assessment, and data-driven decision making.
+            </div>
+            <a
+              href="https://www.caedresearch.org/webinars"
+              class="cera-program-card__link"
+              >View upcoming →</a
+            >
+          </div>
+          <div class="cera-program-card cera-fade-up">
+            <div class="cera-program-card__title">Awards Program</div>
+            <div class="cera-program-card__body">
+              Recognizing outstanding contributions through the Lifetime
+              Achievement, Outstanding Paper, Research-Practice Partnership, and
+              Leadership in Data awards.
+            </div>
+            <a
+              href="https://www.caedresearch.org/lifetime-achievement-award"
+              class="cera-program-card__link"
+              >Explore awards →</a
+            >
+          </div>
+          <div class="cera-program-card cera-fade-up">
+            <div class="cera-program-card__title">
+              Data Visualization Awards
+            </div>
+            <div class="cera-program-card__body">
+              Celebrating the innovative use of data visualization to
+              communicate educational insights and drive evidence-based action
+              across California.
+            </div>
+            <a
+              href="https://www.caedresearch.org/data-viz"
+              class="cera-program-card__link"
+              >See winners →</a
+            >
+          </div>
+          <div class="cera-program-card cera-fade-up">
+            <div class="cera-program-card__title">
+              Partnerships &amp; Sponsorships
+            </div>
+            <div class="cera-program-card__body">
+              Connect your organization with California's education research
+              community through CERA's corporate and institutional partnership
+              opportunities.
+            </div>
+            <a
+              href="https://www.caedresearch.org/become-a-sponsor"
+              class="cera-program-card__link"
+              >Become a sponsor →</a
+            >
+          </div>
+          <div class="cera-program-card cera-fade-up">
+            <div class="cera-program-card__title">AERA Job Board</div>
+            <div class="cera-program-card__body">
+              Access the American Educational Research Association job board —
+              your gateway to career opportunities in educational research and
+              practice.
+            </div>
+            <a
+              href="https://careers.aera.net/jobs/?t735=120"
+              target="_blank"
+              rel="noopener"
+              class="cera-program-card__link"
+              >Browse jobs →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFERENCE -->
+    <section
+      class="cera-section cera-section--navy cera-conf"
+      id="conference"
+      aria-labelledby="conf-heading"
+    >
+      <div class="cera-conf__bg-shape" role="presentation"></div>
+      <div class="cera-container">
+        <div class="cera-conf__grid">
+          <div class="cera-fade-up">
+            <p class="cera-label cera-label--light">
+              CERA Annual Conference 2026
+            </p>
+            <h2 class="cera-conf__title" id="conf-heading">
+              Equity by Design: Reimagining Research, Policy, and Practice
+            </h2>
+            <p class="cera-conf__theme">
+              Building Systems Where Every Learner Has a Fair Chance to Succeed.
+            </p>
+            <div class="cera-conf__details">
+              <div class="cera-conf__detail">
+                <div class="cera-conf__detail-icon"></div>
+                November 4 – 6, 2026
+              </div>
+              <div class="cera-conf__detail">
+                <div class="cera-conf__detail-icon"></div>
+                Omni Rancho Las Palmas Resort &amp; Spa, Palm Desert, CA
+              </div>
+              <div class="cera-conf__detail">
+                <div class="cera-conf__detail-icon"></div>
+                <a
+                  href="https://cera2026.sched.com/"
+                  target="_blank"
+                  rel="noopener"
+                  style="color: var(--blue-bright)"
+                  >cera2026.sched.com</a
+                >
+              </div>
+            </div>
+            <div class="cera-conf__actions">
+              <a
+                href="https://cera2026.sched.com/"
+                target="_blank"
+                rel="noopener"
+                class="cera-btn--white"
+                >Register Now</a
+              >
+              <a
+                href="https://www.caedresearch.org/session-proposals"
+                class="cera-btn--ghost-white"
+                >Submit a Session Proposal</a
+              >
+            </div>
+          </div>
+          <div class="cera-conf__hotel-card cera-fade-up">
+            <img
+              src="https://static.wixstatic.com/media/3ebf5d_d554683db15d4377a4fc0d1eed6ff2be~mv2.jpg/v1/fill/w_800,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Omni%20pic.jpg"
+              alt="Omni Rancho Las Palmas Resort &amp; Spa"
+              class="cera-conf__hotel-img"
+              loading="lazy"
+            />
+            <div class="cera-conf__hotel-body">
+              <div class="cera-conf__hotel-name">
+                Omni Rancho Las Palmas Resort &amp; Spa
+              </div>
+              <div class="cera-conf__hotel-loc">Palm Desert, California</div>
+              <a
+                href="https://bookings.omnihotels.com/offer/palm-springs-rancho-las-palmas/california-education-research-association"
+                target="_blank"
+                rel="noopener"
+                class="cera-btn--blue-sm"
+                >Book Conference Room Block</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBERSHIP -->
+    <section
+      class="cera-section"
+      id="membership"
+      aria-labelledby="membership-heading"
+    >
+      <div class="cera-container">
+        <div class="cera-membership__grid">
+          <div class="cera-fade-up">
+            <p class="cera-label">Membership</p>
+            <h2 class="cera-h2" id="membership-heading">
+              Join California's Education Research Community
+            </h2>
+            <ul class="cera-membership__benefits" role="list">
+              <li class="cera-membership__benefit">
+                <div class="cera-membership__benefit-icon" aria-hidden="true">
+                  ✓
+                </div>
+                Access to the annual CERA conference at member rates
+              </li>
+              <li class="cera-membership__benefit">
+                <div class="cera-membership__benefit-icon" aria-hidden="true">
+                  ✓
+                </div>
+                Statewide network of researchers, practitioners, and education
+                leaders
+              </li>
+              <li class="cera-membership__benefit">
+                <div class="cera-membership__benefit-icon" aria-hidden="true">
+                  ✓
+                </div>
+                Professional development through webinars and events
+              </li>
+              <li class="cera-membership__benefit">
+                <div class="cera-membership__benefit-icon" aria-hidden="true">
+                  ✓
+                </div>
+                Opportunities to present research and share your work
+              </li>
+              <li class="cera-membership__benefit">
+                <div class="cera-membership__benefit-icon" aria-hidden="true">
+                  ✓
+                </div>
+                Eligibility for CERA awards and recognition programs
+              </li>
+              <li class="cera-membership__benefit">
+                <div class="cera-membership__benefit-icon" aria-hidden="true">
+                  ✓
+                </div>
+                President's Letter communications and updates
+              </li>
+            </ul>
+            <a
+              href="https://www.caedresearch.org/join-us"
+              class="cera-btn--primary"
+              >Join CERA Today</a
+            >
+          </div>
+          <div
+            class="cera-membership__visual cera-fade-up"
+            aria-label="CERA membership types"
+          >
+            <div class="cera-member-type">
+              <div class="cera-member-type__emoji"></div>
+              <div class="cera-member-type__name">K–12 Members</div>
+              <div class="cera-member-type__desc">
+                Teachers, administrators, and district researchers
+              </div>
+            </div>
+            <div class="cera-member-type">
+              <div class="cera-member-type__emoji"></div>
+              <div class="cera-member-type__name">Higher Education</div>
+              <div class="cera-member-type__desc">
+                Faculty, graduate students, and university researchers
+              </div>
+            </div>
+            <div class="cera-member-type">
+              <div class="cera-member-type__emoji"></div>
+              <div class="cera-member-type__name">
+                Research Organizations &amp; Community Partners
+              </div>
+              <div class="cera-member-type__desc">
+                Nonprofits, think tanks, policy organizations, and business
+                partners working to advance education in California
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section
+      class="cera-section cera-section--blue-light"
+      id="awards"
+      aria-labelledby="awards-heading"
+    >
+      <div class="cera-container">
+        <div class="cera-section-header cera-fade-up">
+          <p class="cera-label">Recognition</p>
+          <h2 class="cera-h2" id="awards-heading">
+            Celebrating Excellence in Educational Research
+          </h2>
+          <p class="cera-lead">
+            CERA honors members and organizations who make outstanding
+            contributions to educational research, practice, and leadership in
+            California.
+          </p>
+        </div>
+        <div class="cera-awards__grid">
+          <div class="cera-award-card cera-fade-up">
+            <div class="cera-award-card__icon"></div>
+            <div class="cera-award-card__name">Lifetime Achievement Award</div>
+            <div class="cera-award-card__desc">
+              Honoring a lifetime of distinguished contributions to educational
+              research in California.
+            </div>
+          </div>
+          <div class="cera-award-card cera-fade-up">
+            <div class="cera-award-card__icon"></div>
+            <div class="cera-award-card__name">Outstanding Paper Award</div>
+            <div class="cera-award-card__desc">
+              Recognizing exceptional research papers presented at the annual
+              CERA conference.
+            </div>
+          </div>
+          <div class="cera-award-card cera-fade-up">
+            <div class="cera-award-card__icon"></div>
+            <div class="cera-award-card__name">
+              Research-Practice Partnership Award
+            </div>
+            <div class="cera-award-card__desc">
+              Celebrating successful collaborations that bridge the gap between
+              research and classroom practice.
+            </div>
+          </div>
+          <div class="cera-award-card cera-fade-up">
+            <div class="cera-award-card__icon"></div>
+            <div class="cera-award-card__name">
+              Leadership in Data or Assessment Award
+            </div>
+            <div class="cera-award-card__desc">
+              Recognizing innovative leadership in the use of data and
+              assessment to improve student outcomes.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT & TESTIMONIALS -->
+    <section
+      class="cera-section cera-section--navy"
+      id="impact"
+      aria-labelledby="impact-heading"
+    >
+      <div class="cera-container">
+        <div class="cera-section-header cera-fade-up">
+          <p class="cera-label cera-label--light">Our Impact</p>
+          <h2 class="cera-h2 cera-h2--white" id="impact-heading">
+            A Century of Connecting Research to Classrooms
+          </h2>
+          <p class="cera-lead cera-lead--white">
+            Since 1921, CERA has been the professional home for California's
+            education research community — building the connections that
+            transform evidence into action.
+          </p>
+        </div>
+        <div
+          class="cera-impact__grid cera-fade-up"
+          aria-label="CERA impact statistics"
+        >
+          <div class="cera-impact-stat">
+            <div class="cera-impact-stat__num">1921</div>
+            <div class="cera-impact-stat__label">Year CERA was founded</div>
+          </div>
+          <div class="cera-impact-stat">
+            <div class="cera-impact-stat__num">K–16</div>
+            <div class="cera-impact-stat__label">
+              Across all education sectors
+            </div>
+          </div>
+          <div class="cera-impact-stat">
+            <div class="cera-impact-stat__num">Annual</div>
+            <div class="cera-impact-stat__label">
+              Conference bringing the community together
+            </div>
+          </div>
+          <div class="cera-impact-stat">
+            <div class="cera-impact-stat__num">CA-wide</div>
+            <div class="cera-impact-stat__label">
+              Network of colleagues and collaborators
+            </div>
+          </div>
+        </div>
+        <div class="cera-testimonials__grid cera-fade-up">
+          <div class="cera-testimonial">
+            <p class="cera-testimonial__quote">
+              "CERA is where research meets reality. The connections I've made
+              through this network have directly shaped how I approach data and
+              decision-making in my district."
+            </p>
+            <div class="cera-testimonial__author">CERA Member</div>
+            <div class="cera-testimonial__role">
+              K–12 District Research Director
+            </div>
+          </div>
+          <div class="cera-testimonial">
+            <p class="cera-testimonial__quote">
+              "The annual conference is unlike any other education event in
+              California. The quality of dialogue between researchers and
+              practitioners is exceptional and always actionable."
+            </p>
+            <div class="cera-testimonial__author">CERA Member</div>
+            <div class="cera-testimonial__role">
+              University Faculty, Education Research
+            </div>
+          </div>
+          <div class="cera-testimonial">
+            <p class="cera-testimonial__quote">
+              "Being part of CERA has opened doors to collaborations I never
+              would have found otherwise. It's a community that genuinely
+              invests in advancing equity for California's students."
+            </p>
+            <div class="cera-testimonial__author">CERA Member</div>
+            <div class="cera-testimonial__role">
+              Education Research Organization
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPONSORS -->
+    <section
+      class="cera-section"
+      id="sponsors"
+      aria-labelledby="sponsors-heading"
+    >
+      <div class="cera-container">
+        <div class="cera-section-header cera-fade-up">
+          <p class="cera-label">Thank You to Our 2025 Sponsors</p>
+          <h2 class="cera-h2" id="sponsors-heading">
+            Partners in Advancing California Education
+          </h2>
+          <p class="cera-lead">
+            CERA is proud to partner with leading organizations committed to
+            improving educational outcomes across California.
+          </p>
+        </div>
+
+        <div class="cera-sponsors__tier cera-fade-up">
+          <div class="cera-sponsors__tier-label">Platinum Sponsor</div>
+          <div class="cera-sponsors__row cera-sponsors__row--lg">
+            <a
+              href="https://www.ets.org"
+              target="_blank"
+              rel="noopener"
+              class="cera-sponsor-logo cera-sponsor-logo--lg"
+              aria-label="ETS"
+            >
+              <img
+                src="https://static.wixstatic.com/media/86e480_a23e16ffb9964b71ac62c1a31f5b7f8f~mv2.jpg/v1/fill/w_433,h_193,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ETS_Digital_RGB_Blackboard%20720x320.jpg"
+                alt="ETS"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </div>
+
+        <div class="cera-sponsors__tier cera-fade-up">
+          <div class="cera-sponsors__tier-label">Gold Sponsors</div>
+          <div class="cera-sponsors__row">
+            <a
+              href="https://www.nwea.org"
+              target="_blank"
+              rel="noopener"
+              class="cera-sponsor-logo"
+              aria-label="NWEA"
+            >
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_6740f6f57d734b56857a3e1cdff4739f~mv2.png/v1/fill/w_343,h_68,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_6740f6f57d734b56857a3e1cdff4739f~mv2.png"
+                alt="NWEA"
+                loading="lazy"
+              />
+            </a>
+            <a
+              href="https://www.wested.org"
+              target="_blank"
+              rel="noopener"
+              class="cera-sponsor-logo"
+              aria-label="WestEd"
+            >
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_ff1cd057b7a54c10a7a0deb3165b2e74~mv2.png/v1/crop/x_998,y_1110,w_8117,h_1610/fill/w_343,h_68,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_ff1cd057b7a54c10a7a0deb3165b2e74~mv2.png"
+                alt="WestEd"
+                loading="lazy"
+              />
+            </a>
+            <a
+              href="https://www.pearson.com"
+              target="_blank"
+              rel="noopener"
+              class="cera-sponsor-logo"
+              aria-label="Pearson"
+            >
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_e20c1ac881f9441dbbf04603bb6d447a~mv2.png/v1/fill/w_343,h_76,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_e20c1ac881f9441dbbf04603bb6d447a~mv2.png"
+                alt="Pearson"
+                loading="lazy"
+              />
+            </a>
+            <a
+              href="https://www.curriculumassociates.com"
+              target="_blank"
+              rel="noopener"
+              class="cera-sponsor-logo"
+              aria-label="Curriculum Associates / i-Ready"
+            >
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_9e86c6ee8a544b7bafb593c562c951d9~mv2.png/v1/fill/w_343,h_98,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_9e86c6ee8a544b7bafb593c562c951d9~mv2.png"
+                alt="Curriculum Associates / i-Ready"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </div>
+
+        <div class="cera-sponsors__tier cera-fade-up">
+          <div class="cera-sponsors__tier-label">Silver Sponsors</div>
+          <div class="cera-sponsors__row">
+            <a
+              href="#"
+              class="cera-sponsor-logo"
+              aria-label="Viridian Education"
+            >
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_de62c34fdeed404bb935d054d34dba97~mv2.png/v1/crop/x_17,y_0,w_1540,h_422/fill/w_277,h_76,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_de62c34fdeed404bb935d054d34dba97~mv2.png"
+                alt="Viridian Education"
+                loading="lazy"
+              />
+            </a>
+            <a href="#" class="cera-sponsor-logo" aria-label="LinkIt!">
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_7a208374e0e14263a01302b2f79040f5~mv2.png/v1/fill/w_274,h_88,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_7a208374e0e14263a01302b2f79040f5~mv2.png"
+                alt="LinkIt!"
+                loading="lazy"
+              />
+            </a>
+            <a
+              href="https://www.powerschool.com"
+              target="_blank"
+              rel="noopener"
+              class="cera-sponsor-logo"
+              aria-label="PowerSchool"
+            >
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_45490580524e40809113955bcde76012~mv2.png/v1/crop/x_380,y_399,w_2104,h_712/fill/w_274,h_93,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_45490580524e40809113955bcde76012~mv2.png"
+                alt="PowerSchool"
+                loading="lazy"
+              />
+            </a>
+            <a
+              href="https://www.studentclearinghouse.org"
+              target="_blank"
+              rel="noopener"
+              class="cera-sponsor-logo"
+              aria-label="National Student Clearinghouse"
+            >
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_ddb0de65dc9540899da37c5fc84e922a~mv2.png/v1/fill/w_274,h_59,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_ddb0de65dc9540899da37c5fc84e922a~mv2.png"
+                alt="National Student Clearinghouse"
+                loading="lazy"
+              />
+            </a>
+            <a href="#" class="cera-sponsor-logo" aria-label="Usable Data">
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_c12908226a2043b5a0d6b590dcff2c3a~mv2.png/v1/fill/w_274,h_115,al_c,lg_1,q_85,enc_avif,quality_auto/5a29d8_c12908226a2043b5a0d6b590dcff2c3a~mv2.png"
+                alt="Usable Data"
+                loading="lazy"
+              />
+            </a>
+            <a href="#" class="cera-sponsor-logo" aria-label="OnDataSuite">
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_22cf35f1d1554ec4be9d3e2b2359394b~mv2.png/v1/fill/w_274,h_68,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_22cf35f1d1554ec4be9d3e2b2359394b~mv2.png"
+                alt="OnDataSuite"
+                loading="lazy"
+              />
+            </a>
+            <a
+              href="https://www.renaissance.com"
+              target="_blank"
+              rel="noopener"
+              class="cera-sponsor-logo"
+              aria-label="Renaissance"
+            >
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_a3ecb29c1a1e41d0bdab968e084df5a4~mv2.png/v1/crop/x_67,y_136,w_468,h_72/fill/w_274,h_42,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_a3ecb29c1a1e41d0bdab968e084df5a4~mv2.png"
+                alt="Renaissance"
+                loading="lazy"
+              />
+            </a>
+            <a href="#" class="cera-sponsor-logo" aria-label="CORE Districts">
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_b87b4488af6f466b90c02e8416dca336~mv2.png/v1/fill/w_274,h_76,al_c,lg_1,q_85,enc_avif,quality_auto/5a29d8_b87b4488af6f466b90c02e8416dca336~mv2.png"
+                alt="CORE Districts"
+                loading="lazy"
+              />
+            </a>
+            <a href="#" class="cera-sponsor-logo" aria-label="Inform 2 Inspire">
+              <img
+                src="https://static.wixstatic.com/media/5a29d8_bc4e0ae47ba84229915287b7dbb7a91b~mv2.png/v1/fill/w_274,h_98,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5a29d8_bc4e0ae47ba84229915287b7dbb7a91b~mv2.png"
+                alt="Inform 2 Inspire"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </div>
+
+        <div class="cera-sponsors__cta cera-fade-up">
+          <p>
+            Interested in partnering with CERA and reaching California's
+            education research community?
+          </p>
+          <a
+            href="https://www.caedresearch.org/become-a-sponsor"
+            class="cera-btn--navy"
+            >Become a 2026 Sponsor</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="cera-footer" role="contentinfo">
+      <div class="cera-container">
+        <div class="cera-footer__grid">
+          <div class="cera-footer__brand">
+            <img
+              src="https://static.wixstatic.com/media/5a29d8_a34cee88e8934b5d8f326dd319de377d~mv2.png/v1/fill/w_528,h_169,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20-%20no%20lower%20text%20-%20white.png"
+              alt="CERA"
+            />
+            <p>
+              The California Educational Research Association bridges research,
+              data, and educational practice — transforming insight into impact
+              for California students since 1921.
+            </p>
+            <div class="cera-footer__social">
+              <a
+                href="https://www.facebook.com/profile.php?id=61588168303101"
+                target="_blank"
+                rel="noopener"
+                class="cera-footer__social-link"
+                aria-label="Facebook"
+                >f</a
+              >
+              <a
+                href="http://www.linkedin.com/in/california-educational-research-association-cera-b77b783b1"
+                target="_blank"
+                rel="noopener"
+                class="cera-footer__social-link"
+                aria-label="LinkedIn"
+                >in</a
+              >
+            </div>
+            <div class="cera-footer__mailing">
+              <a
+                href="https://lp.constantcontactpages.com/sl/YyQMrtn"
+                target="_blank"
+                rel="noopener"
+                >✉ Join Our Mailing List</a
+              >
+            </div>
+          </div>
+          <div>
+            <p class="cera-footer__col-title">Organization</p>
+            <ul class="cera-footer__links">
+              <li>
+                <a href="https://www.caedresearch.org/board-members"
+                  >Board Members</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/board-bylaws"
+                  >Board Bylaws</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/board-business"
+                  >Board Business</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/presidents-letter"
+                  >President's Letter</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/join-us">Join CERA</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="cera-footer__col-title">Programs</p>
+            <ul class="cera-footer__links">
+              <li>
+                <a href="https://www.caedresearch.org/register"
+                  >Annual Conference</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/session-proposals"
+                  >Submit a Session</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/webinars">Webinars</a>
+              </li>
+              <li>
+                <a
+                  href="https://www.caedresearch.org/lifetime-achievement-award"
+                  >Awards</a
+                >
+              </li>
+              <li>
+                <a href="https://www.caedresearch.org/data-viz"
+                  >Data Viz Awards</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://careers.aera.net/jobs/?t735=120"
+                  target="_blank"
+                  rel="noopener"
+                  >AERA Job Board</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="cera-footer__col-title">Contact</p>
+            <div class="cera-footer__contact-item">
+              <div class="cera-footer__contact-label">Mailing Address</div>
+              <div class="cera-footer__contact-val">
+                PO Box 1792<br />Rancho Cordova, CA 95741
+              </div>
+            </div>
+            <div class="cera-footer__contact-item">
+              <div class="cera-footer__contact-label">Email</div>
+              <div class="cera-footer__contact-val">
+                <a href="mailto:registration@CaEdResearch.org"
+                  >registration@CaEdResearch.org</a
+                >
+              </div>
+            </div>
+            <div class="cera-footer__contact-item">
+              <div class="cera-footer__contact-label">Sponsorships</div>
+              <div class="cera-footer__contact-val">
+                <a href="https://www.caedresearch.org/become-a-sponsor"
+                  >Become a Sponsor</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cera-footer__bottom">
+          <p class="cera-footer__copy">
+            © 2025 California Educational Research Association. All rights
+            reserved.
+          </p>
+          <nav
+            class="cera-footer__bottom-links"
+            aria-label="Footer legal links"
+          >
+            <a href="https://www.caedresearch.org/">Privacy Policy</a>
+            <a href="https://www.caedresearch.org/">Accessibility</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+      const nav = document.getElementById("mainNav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", window.scrollY > 40);
+        },
+        { passive: true },
+      );
+
+      const hamburger = document.getElementById("hamburgerBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      hamburger.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("open");
+        hamburger.setAttribute("aria-expanded", open);
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add("visible"), i * 80);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".cera-fade-up")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

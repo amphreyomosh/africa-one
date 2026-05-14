@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>California Center for Cooperative Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #2E9B8A;
+    --teal-dark: #1D6E60;
+    --teal-light: #E6F5F2;
+    --teal-mid: #3DB8A4;
+    --olive: #8C9A2E;
+    --olive-light: #F0F3DC;
+    --gold: #C49A1E;
+    --gold-light: #FBF3DC;
+    --navy: #1A2E3B;
+    --slate: #3D5060;
+    --text: #1E2E38;
+    --text-muted: #5C6E7A;
+    --border: #D8E4E1;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--bg);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAVBAR ── */
+  .cccd-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .cccd-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 1rem;
+  }
+  .cccd-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .cccd-logo-wrap img {
+    height: 48px;
+    width: auto;
+  }
+  .cccd-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+  }
+  .cccd-nav-links a {
+    display: block;
+    padding: 0 16px;
+    height: 72px;
+    line-height: 72px;
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.18s;
+    white-space: nowrap;
+  }
+  .cccd-nav-links a:hover { color: var(--teal); }
+  .cccd-nav-links a.active { color: var(--teal); border-bottom: 3px solid var(--teal); }
+  .cccd-nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--teal);
+    color: var(--white) !important;
+    padding: 10px 22px !important;
+    height: auto !important;
+    line-height: normal !important;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: background 0.18s !important;
+    text-decoration: none;
+  }
+  .cccd-nav-cta:hover { background: var(--teal-dark) !important; color: var(--white) !important; }
+  .cccd-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .cccd-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--slate);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  /* ── HERO ── */
+  .cccd-hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--navy);
+  }
+  .cccd-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.cccd.coop/sites/default/files/styles/slideshow/public/Educating%20People%20About%20Co-ops.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.32;
+  }
+  .cccd-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, rgba(26,46,59,0.92) 45%, rgba(26,46,59,0.55) 100%);
+  }
+  .cccd-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem 5rem;
+    width: 100%;
+  }
+  .cccd-hero-content {
+    max-width: 660px;
+  }
+  .cccd-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46,155,138,0.22);
+    border: 1px solid rgba(61,184,164,0.35);
+    color: #7ADBD0;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+  }
+  .cccd-hero-tag span {
+    width: 6px;
+    height: 6px;
+    background: #7ADBD0;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .cccd-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    line-height: 1.12;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .cccd-hero h1 em {
+    font-style: italic;
+    color: #7ADBD0;
+  }
+  .cccd-hero-desc {
+    font-size: 18px;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    max-width: 540px;
+    font-weight: 300;
+  }
+  .cccd-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--teal);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cccd-hero-btn:hover { background: var(--teal-mid); transform: translateY(-1px); }
+  .cccd-hero-btn svg { flex-shrink: 0; transition: transform 0.2s; }
+  .cccd-hero-btn:hover svg { transform: translateX(3px); }
+  .cccd-hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .cccd-hero-stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .cccd-hero-stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .cccd-hero-stat-label {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .cccd-hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* ── SECTION WRAP ── */
+  .cccd-section {
+    padding: 6rem 2rem;
+  }
+  .cccd-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .cccd-section-header {
+    margin-bottom: 3.5rem;
+  }
+  .cccd-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cccd-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+  .cccd-section-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.18;
+  }
+  .cccd-section-header p {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin-top: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── ABOUT ── */
+  .cccd-about { background: var(--white); }
+  .cccd-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .cccd-about-img-wrap {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .cccd-about-img-wrap img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+  .cccd-about-img-badge {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 18px;
+    border-radius: 8px;
+  }
+  .cccd-about-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3vw, 2.7rem);
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+  .cccd-about-content p {
+    font-size: 16.5px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+  .cccd-about-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .cccd-value-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--teal-light);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--teal-dark);
+  }
+  .cccd-value-pill-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--teal);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cccd-value-pill-icon svg { color: white; }
+  .cccd-about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: gap 0.2s;
+  }
+  .cccd-about-link:hover { gap: 12px; }
+
+  /* ── CO-OP TYPES ── */
+  .cccd-types { background: var(--bg); }
+  .cccd-types-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+  }
+  .cccd-type-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.22s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .cccd-type-card:hover {
+    border-color: var(--teal);
+    box-shadow: 0 4px 24px rgba(46,155,138,0.12);
+    transform: translateY(-2px);
+  }
+  .cccd-type-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cccd-type-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cccd-type-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* ── PROGRAMS ── */
+  .cccd-programs { background: var(--white); }
+  .cccd-programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .cccd-program-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.22s;
+  }
+  .cccd-program-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+    transform: translateY(-2px);
+    border-color: var(--teal);
+  }
+  .cccd-program-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .cccd-program-body {
+    padding: 1.75rem;
+  }
+  .cccd-program-tag {
+    display: inline-block;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+  .cccd-program-body h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+  .cccd-program-body p {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+  .cccd-program-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--teal);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: gap 0.2s;
+  }
+  .cccd-program-link:hover { gap: 10px; }
+
+  /* ── IMPACT ── */
+  .cccd-impact {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .cccd-impact::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(46,155,138,0.08);
+  }
+  .cccd-impact::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(46,155,138,0.06);
+  }
+  .cccd-impact .cccd-section-header h2 { color: var(--white); }
+  .cccd-impact .cccd-section-header p { color: rgba(255,255,255,0.6); }
+  .cccd-impact .cccd-eyebrow { color: #7ADBD0; }
+  .cccd-impact .cccd-eyebrow::before { background: #7ADBD0; }
+  .cccd-impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .cccd-impact-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem;
+  }
+  .cccd-impact-card-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(46,155,138,0.25);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: #7ADBD0;
+  }
+  .cccd-impact-num {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .cccd-impact-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* ── EVENTS ── */
+  .cccd-events { background: var(--bg); }
+  .cccd-events-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 3rem;
+    align-items: start;
+  }
+  .cccd-event-featured {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .cccd-event-feat-header {
+    background: var(--teal);
+    padding: 2rem 2.25rem;
+  }
+  .cccd-event-feat-type {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.5rem;
+  }
+  .cccd-event-feat-title {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    color: var(--white);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .cccd-event-feat-body {
+    padding: 2rem 2.25rem;
+  }
+  .cccd-event-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 1.75rem;
+  }
+  .cccd-event-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14.5px;
+    color: var(--text-muted);
+  }
+  .cccd-event-meta-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--teal-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--teal);
+    flex-shrink: 0;
+  }
+  .cccd-event-feat-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .cccd-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--white);
+    padding: 13px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.18s, transform 0.15s;
+  }
+  .cccd-btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+  .cccd-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--teal);
+    border: 2px solid var(--teal);
+    padding: 11px 26px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.18s;
+  }
+  .cccd-btn-outline:hover { background: var(--teal); color: var(--white); }
+  .cccd-event-sidebar h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--navy);
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+  .cccd-event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .cccd-event-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    text-decoration: none;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all 0.2s;
+  }
+  .cccd-event-item:hover {
+    border-color: var(--teal);
+    box-shadow: 0 2px 12px rgba(46,155,138,0.1);
+  }
+  .cccd-event-date-badge {
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    border-radius: 8px;
+    width: 48px;
+    min-width: 48px;
+    height: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .cccd-event-date-badge small {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+  .cccd-event-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .cccd-event-item-time {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  /* ── NEWS ── */
+  .cccd-news { background: var(--white); }
+  .cccd-news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .cccd-news-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .cccd-news-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+    border-color: var(--teal);
+    transform: translateY(-2px);
+  }
+  .cccd-news-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 1rem;
+  }
+  .cccd-news-category-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--teal);
+    border-radius: 50%;
+  }
+  .cccd-news-card h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+    flex: 1;
+  }
+  .cccd-news-card p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+  .cccd-news-read-more {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  /* ── MEMBERSHIP CTA ── */
+  .cccd-membership {
+    background: var(--teal-light);
+    border-top: 1px solid rgba(46,155,138,0.15);
+    border-bottom: 1px solid rgba(46,155,138,0.15);
+  }
+  .cccd-membership-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+  .cccd-membership h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    color: var(--navy);
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+  .cccd-membership p {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 520px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .cccd-membership-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 200px;
+  }
+
+  /* ── NEWSLETTER ── */
+  .cccd-newsletter {
+    background: var(--bg);
+  }
+  .cccd-newsletter-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 3rem 3.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .cccd-newsletter h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .cccd-newsletter p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .cccd-newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cccd-newsletter-form input[type="email"],
+  .cccd-newsletter-form input[type="text"] {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.18s;
+    background: var(--bg);
+  }
+  .cccd-newsletter-form input:focus {
+    border-color: var(--teal);
+  }
+  .cccd-newsletter-form button {
+    width: 100%;
+    padding: 14px 24px;
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s;
+  }
+  .cccd-newsletter-form button:hover { background: var(--teal-dark); }
+
+  /* ── PARTNERS ── */
+  .cccd-partners { background: var(--white); }
+  .cccd-partners-logos {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .cccd-partner-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .cccd-partner-item:hover {
+    border-color: var(--teal);
+    color: var(--teal-dark);
+  }
+
+  /* ── FOOTER ── */
+  .cccd-footer {
+    background: var(--navy);
+    padding: 5rem 2rem 2rem;
+  }
+  .cccd-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .cccd-footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  .cccd-footer-brand img { height: 44px; margin-bottom: 1.25rem; filter: brightness(0) invert(1); opacity: 0.9; }
+  .cccd-footer-brand p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .cccd-footer-social {
+    display: flex;
+    gap: 10px;
+  }
+  .cccd-footer-social a {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 16px;
+  }
+  .cccd-footer-social a:hover {
+    background: var(--teal);
+    color: var(--white);
+  }
+  .cccd-footer-col h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1.25rem;
+  }
+  .cccd-footer-col ul { list-style: none; }
+  .cccd-footer-col ul li { margin-bottom: 10px; }
+  .cccd-footer-col ul li a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 14.5px;
+    transition: color 0.15s;
+    font-weight: 300;
+  }
+  .cccd-footer-col ul li a:hover { color: #7ADBD0; }
+  .cccd-footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 12px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .cccd-footer-contact-icon {
+    width: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  .cccd-footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .cccd-footer-bottom a {
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .cccd-footer-bottom a:hover { color: rgba(255,255,255,0.65); }
+  .cccd-footer-roc {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 1024px) {
+    .cccd-types-grid { grid-template-columns: repeat(5, 1fr); gap: 0.75rem; }
+    .cccd-programs-grid { grid-template-columns: 1fr 1fr; }
+    .cccd-impact-grid { grid-template-columns: repeat(2, 1fr); }
+    .cccd-footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .cccd-nav-links { display: none; }
+    .cccd-nav-cta { display: none; }
+    .cccd-hamburger { display: flex; }
+    .cccd-hero { min-height: 75vh; }
+    .cccd-hero-stats { gap: 1.25rem; flex-wrap: wrap; }
+    .cccd-about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cccd-about-img-wrap img { height: 280px; }
+    .cccd-types-grid { grid-template-columns: repeat(3, 1fr); }
+    .cccd-programs-grid { grid-template-columns: 1fr; }
+    .cccd-impact-grid { grid-template-columns: repeat(2, 1fr); }
+    .cccd-events-layout { grid-template-columns: 1fr; }
+    .cccd-news-grid { grid-template-columns: 1fr; }
+    .cccd-membership-inner { grid-template-columns: 1fr; }
+    .cccd-newsletter-box { grid-template-columns: 1fr; padding: 2rem; }
+    .cccd-footer-grid { grid-template-columns: 1fr 1fr; }
+    .cccd-section { padding: 4rem 1.25rem; }
+    .cccd-hero-inner { padding: 4rem 1.25rem 3rem; }
+    .cccd-about-values { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .cccd-types-grid { grid-template-columns: repeat(2, 1fr); }
+    .cccd-impact-grid { grid-template-columns: 1fr; }
+    .cccd-footer-grid { grid-template-columns: 1fr; }
+    .cccd-footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+  .cccd-mobile-menu {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    z-index: 99;
+  }
+  .cccd-mobile-menu.open { display: block; }
+  .cccd-mobile-menu a {
+    display: block;
+    padding: 12px 0;
+    color: var(--slate);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+  }
+  .cccd-mobile-menu a:last-child { border-bottom: none; }
+
+  /* fade-in on scroll */
+  .cccd-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .cccd-reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  
+  #glad-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  transition: transform .3s ease, opacity .3s ease;
+}
+#glad-header.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+.calbcc-header.glad-hidden { top: 0; }
+.glad-inner {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.glad-logo img { height: 36px; width: auto; display: block; margin-left: 40px !important;}
+.glad-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  background: #1e3a6e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid #1e3a6e;
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+  margin-right: 40px !important;
+}
+.glad-back-btn:hover { background: #142d57; border-color: #142d57; transform: translateX(-2px); }
+@media (max-width: 480px) { .btn-label { display: none; } .glad-back-btn { padding: 7px 10px; } }
+</style>
+</head>
+<body>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
+      <img src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w" alt="GLAD Technology Digital Services" />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#fff" stroke-width="2.2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+<!-- NAVBAR -->
+<nav class="cccd-nav" role="navigation" aria-label="Main navigation">
+  <div class="cccd-nav-inner">
+    <a href="https://www.cccd.coop/" class="cccd-logo-wrap" aria-label="CCCD Home">
+      <img src="https://www.cccd.coop/sites/all/themes/cccd/logo.png" alt="California Center for Cooperative Development">
+    </a>
+    <ul class="cccd-nav-links" role="list">
+      <li><a href="https://www.cccd.coop/" class="active">Home</a></li>
+      <li><a href="https://www.cccd.coop/about-cccd">About Us</a></li>
+      <li><a href="https://www.cccd.coop/membership">Membership</a></li>
+      <li><a href="https://www.cccd.coop/co-op-info">Co-op Info</a></li>
+      <li><a href="https://www.cccd.coop/events">Events</a></li>
+      <li><a href="https://www.cccd.coop/news">News</a></li>
+      <li><a href="https://www.cccd.coop/contact-us">Contact</a></li>
+    </ul>
+    <a href="https://www.cccd.coop/membership/donate-cccd" class="cccd-nav-cta">
+      Support Our Work
+    </a>
+    <button class="cccd-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="cccd-mobile-menu" id="mobileMenu" role="menu">
+    <a href="https://www.cccd.coop/">Home</a>
+    <a href="https://www.cccd.coop/about-cccd">About Us</a>
+    <a href="https://www.cccd.coop/membership">Membership</a>
+    <a href="https://www.cccd.coop/co-op-info">Co-op Info</a>
+    <a href="https://www.cccd.coop/events">Events</a>
+    <a href="https://www.cccd.coop/news">News</a>
+    <a href="https://www.cccd.coop/contact-us">Contact</a>
+    <a href="https://www.cccd.coop/membership/donate-cccd" style="color: var(--teal); font-weight: 700; border-bottom: none;">Support Our Work →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="cccd-hero" aria-label="Hero">
+  <div class="cccd-hero-bg"></div>
+  <div class="cccd-hero-overlay"></div>
+  <div class="cccd-hero-inner">
+    <div class="cccd-hero-content">
+      <h1>Building <em>stronger communities</em> through cooperation</h1>
+      <p class="cccd-hero-desc">CCCD promotes cooperative values and principles across California — providing education, technical assistance, and uniting cooperatives of every type toward a more equitable economy.</p>
+      <a href="https://www.cccd.coop/co-op-info/what-co-op" class="cccd-hero-btn">
+        Learn About Co-ops
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <div class="cccd-hero-stats">
+        <div class="cccd-hero-stat-item">
+          <span class="cccd-hero-stat-num">500+</span>
+          <span class="cccd-hero-stat-label">Cooperatives supported</span>
+        </div>
+        <div class="cccd-hero-stat-divider"></div>
+        <div class="cccd-hero-stat-item">
+          <span class="cccd-hero-stat-num">10+</span>
+          <span class="cccd-hero-stat-label">Co-op types served</span>
+        </div>
+        <div class="cccd-hero-stat-divider"></div>
+        <div class="cccd-hero-stat-item">
+          <span class="cccd-hero-stat-num">17+</span>
+          <span class="cccd-hero-stat-label">Years in California</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CO-OP TYPES -->
+<section class="cccd-section cccd-types">
+  <div class="cccd-section-inner">
+    <div class="cccd-section-header cccd-reveal">
+      <p class="cccd-eyebrow">Browse by type</p>
+      <h2>Every kind of cooperative</h2>
+      <p>California's cooperative economy spans agriculture, housing, childcare, worker-owned businesses, and more. Find resources for your co-op type.</p>
+    </div>
+    <div class="cccd-types-grid cccd-reveal">
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/general-co-ops" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/CCCD_Generic-icon_round.png?itok=Y4wapZhz" alt="General Co-ops"></div>
+        <span class="cccd-type-name">General</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/agricultural-co-ops" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/CCCD_Agriculture-icon_round.png?itok=6Elqw0SU" alt="Agricultural Co-ops"></div>
+        <span class="cccd-type-name">Agricultural</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/artisan-co-ops" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/CCCD_Arts-icon_round.png?itok=8xtuA7kL" alt="Artisan Co-ops"></div>
+        <span class="cccd-type-name">Artisan</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/business" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/BusinessNewRoundedCorners_0.jpg?itok=-slE2I2Q" alt="Business Co-ops"></div>
+        <span class="cccd-type-name">Business</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/childcare-co-ops" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/CCCD_Childcare-icon_round.png?itok=XV7knDEg" alt="Childcare Co-ops"></div>
+        <span class="cccd-type-name">Childcare</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/financial-co-ops" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/moneySign.png?itok=0jj9RDDO" alt="Financial Co-ops"></div>
+        <span class="cccd-type-name">Financial</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/food-co-ops" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/CCCD_Food-icon_round.png?itok=5fQ9EdAf" alt="Food Co-ops"></div>
+        <span class="cccd-type-name">Food</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/housing-co-ops" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/CCCD_Housing-icon_round.png?itok=LvAfOS45" alt="Housing Co-ops"></div>
+        <span class="cccd-type-name">Housing</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/more" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/UtilityNewRoundedCorners.jpg?itok=LnpQHpjG" alt="More Co-op Types"></div>
+        <span class="cccd-type-name">More</span>
+      </a>
+      <a href="https://www.cccd.coop/co-op-info/co-op-types/worker-co-ops" class="cccd-type-card">
+        <div class="cccd-type-icon"><img src="https://www.cccd.coop/sites/default/files/styles/flexslider_thumbnail/public/co-op-type-icons/CCCD_Worker-icon_round.png?itok=QOz_f6TA" alt="Worker Co-ops"></div>
+        <span class="cccd-type-name">Worker</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="cccd-section cccd-about">
+  <div class="cccd-section-inner">
+    <div class="cccd-about-grid">
+      <div class="cccd-about-img-wrap cccd-reveal">
+        <img src="https://www.cccd.coop/sites/default/files/styles/slideshow/public/Foster_rotator.jpg?itok=2gDbiPSi" alt="Community gathering at the California State Capitol">
+        <div class="cccd-about-img-badge">Incorporated 2007 · Davis, CA</div>
+      </div>
+      <div class="cccd-about-content cccd-reveal">
+        <p class="cccd-eyebrow">About CCCD</p>
+        <h2>A nonprofit dedicated to California's cooperative movement</h2>
+        <p>CCCD is a 501(c)3 nonprofit that promotes cooperatives as a vibrant business model to address the economic and social needs of California's communities. We support cooperatives of all types — agricultural, arts, childcare, energy, housing, worker-owned, and more.</p>
+        <p>Many of our staff and board members were previously associated with the University of California at Davis Center for Cooperatives, bringing decades of experience to communities across the state.</p>
+        <div class="cccd-about-values">
+          <div class="cccd-value-pill">
+            <div class="cccd-value-pill-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2.2"><path d="M8 2l1.5 3H14l-3.5 2.5 1.5 3.5L8 9l-4 2 1.5-3.5L2 5h4.5z"/></svg></div>
+            Education & Training
+          </div>
+          <div class="cccd-value-pill">
+            <div class="cccd-value-pill-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2.2"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg></div>
+            Technical Assistance
+          </div>
+          <div class="cccd-value-pill">
+            <div class="cccd-value-pill-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2.2"><path d="M3 8c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5-5-2.2-5-5z"/><path d="M6 8l1.5 1.5 3-3"/></svg></div>
+            Community Prosperity
+          </div>
+          <div class="cccd-value-pill">
+            <div class="cccd-value-pill-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2.2"><path d="M2 12c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="8" cy="4" r="2"/></svg></div>
+            Equity & Empowerment
+          </div>
+        </div>
+        <a href="https://www.cccd.coop/about-cccd" class="cccd-about-link">
+          Learn more about our mission
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="cccd-section cccd-programs">
+  <div class="cccd-section-inner">
+    <div class="cccd-section-header cccd-reveal" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem;">
+      <div>
+        <p class="cccd-eyebrow">What we do</p>
+        <h2>How CCCD makes a difference</h2>
+      </div>
+      <a href="https://www.cccd.coop/about-us/services" class="cccd-about-link" style="flex-shrink:0;">All services →</a>
+    </div>
+    <div class="cccd-programs-grid">
+      <div class="cccd-program-card cccd-reveal">
+        <img src="https://www.cccd.coop/sites/default/files/styles/medium/public/ribbon_0.png?itok=jnQ_gwm8" alt="Cooperative Development Assistance" class="cccd-program-img" style="object-fit:contain; background:#F0F3DC; padding:2rem;">
+        <div class="cccd-program-body">
+          <span class="cccd-program-tag">Development</span>
+          <h3>Cooperative Development Assistance</h3>
+          <p>CCCD helps people use the cooperative model to achieve together what they could not on their own — from affordable housing co-ops to quality childcare co-ops that fit real families' needs.</p>
+          <a href="https://www.cccd.coop/co-op-info/co-op-stories/cooperative-development-assistance" class="cccd-program-link">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="cccd-program-card cccd-reveal">
+        <img src="https://www.cccd.coop/sites/default/files/styles/medium/public/workshop.jpg?itok=4XAJXcfj" alt="Education and Training" class="cccd-program-img">
+        <div class="cccd-program-body">
+          <span class="cccd-program-tag">Education</span>
+          <h3>Education &amp; Training for Cooperatives</h3>
+          <p>Cooperatives are unique. CCCD provides training and support that help co-ops thrive — from member education and board governance to annual conferences that bring the movement together.</p>
+          <a href="https://www.cccd.coop/co-op-info/co-op-stories/education-and-training-cooperatives" class="cccd-program-link">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="cccd-program-card cccd-reveal">
+        <img src="https://www.cccd.coop/sites/default/files/styles/medium/public/empowerment.jpg?itok=wWTvqouv" alt="Empowerment in Under-served Communities" class="cccd-program-img">
+        <div class="cccd-program-body">
+          <span class="cccd-program-tag">Community</span>
+          <h3>Empowerment in Under-served Communities</h3>
+          <p>CCCD is committed to bettering the lives of under-served communities through cooperatives that create jobs, affordable housing, and childcare — giving the disempowered a real seat at the table.</p>
+          <a href="https://www.cccd.coop/co-op-info/co-op-stories/generating-empowerment-and-wealth-under-served-communities" class="cccd-program-link">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="cccd-section cccd-impact">
+  <div class="cccd-section-inner">
+    <div class="cccd-section-header cccd-reveal">
+      <p class="cccd-eyebrow">Our reach</p>
+      <h2>Cooperation is making a difference</h2>
+      <p>Since 2007, CCCD has been at the heart of California's cooperative ecosystem — educating, connecting, and empowering communities statewide.</p>
+    </div>
+    <div class="cccd-impact-grid">
+      <div class="cccd-impact-card cccd-reveal">
+        <div class="cccd-impact-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="cccd-impact-num">10+</div>
+        <div class="cccd-impact-label">Types of cooperatives served across California</div>
+      </div>
+      <div class="cccd-impact-card cccd-reveal">
+        <div class="cccd-impact-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="cccd-impact-num">Annual</div>
+        <div class="cccd-impact-label">California Co-op Conference bringing the movement together</div>
+      </div>
+      <div class="cccd-impact-card cccd-reveal">
+        <div class="cccd-impact-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="cccd-impact-num">501(c)3</div>
+        <div class="cccd-impact-label">Recognized nonprofit advancing cooperative development since 2007</div>
+      </div>
+      <div class="cccd-impact-card cccd-reveal">
+        <div class="cccd-impact-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="cccd-impact-num">ROC USA</div>
+        <div class="cccd-impact-label">Certified Technical Assistance Provider for manufactured home parks</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="cccd-section cccd-events">
+  <div class="cccd-section-inner">
+    <div class="cccd-section-header cccd-reveal">
+      <p class="cccd-eyebrow">Upcoming events</p>
+      <h2>Join the cooperative community</h2>
+    </div>
+    <div class="cccd-events-layout cccd-reveal">
+      <div class="cccd-event-featured">
+        <div class="cccd-event-feat-header">
+          <div class="cccd-event-feat-type">Featured Event</div>
+          <div class="cccd-event-feat-title">2026 California Co-op Conference</div>
+        </div>
+        <div class="cccd-event-feat-body">
+          <div class="cccd-event-meta">
+            <div class="cccd-event-meta-row">
+              <div class="cccd-event-meta-icon">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="12" rx="2"/><path d="M2 7h12M5 1v4M11 1v4"/></svg>
+              </div>
+              May 15–16, 2026 &nbsp;·&nbsp; 8:00am – 4:30pm
+            </div>
+            <div class="cccd-event-meta-row">
+              <div class="cccd-event-meta-icon">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"/><path d="M8 2C5.2 2 3 4.2 3 7c0 4 5 8 5 8s5-4 5-8c0-2.8-2.2-5-5-5z"/></svg>
+              </div>
+              California (venue TBA)
+            </div>
+          </div>
+          <p class="cccd-event-feat-desc">California's premier annual gathering for co-op professionals, members, and enthusiasts. Learn, connect, and celebrate the cooperative difference across every sector of our economy.</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://www.cccd.coop/events/2026-california-co-op-conference" class="cccd-btn-primary">Register Now</a>
+            <a href="https://www.cccd.coop/events" class="cccd-btn-outline">All Events</a>
+          </div>
+        </div>
+      </div>
+      <div class="cccd-event-sidebar">
+        <h3>More upcoming events</h3>
+        <div class="cccd-event-list">
+          <a href="https://www.cccd.coop/events/2026-agricultural-cooperatives-leadership-conference" class="cccd-event-item">
+            <div class="cccd-event-date-badge">
+              <span>TBD</span>
+              <small>2026</small>
+            </div>
+            <div>
+              <div class="cccd-event-item-title">2026 Agricultural Cooperatives Leadership Conference</div>
+              <div class="cccd-event-item-time">Leadership development for ag co-ops</div>
+            </div>
+          </a>
+          <a href="https://www.cccd.coop/events/october-co-op-month" class="cccd-event-item">
+            <div class="cccd-event-date-badge">
+              <span>Oct</span>
+              <small>2026</small>
+            </div>
+            <div>
+              <div class="cccd-event-item-title">Co-op Month Celebration</div>
+              <div class="cccd-event-item-time">October — National Co-op Month</div>
+            </div>
+          </a>
+          <a href="https://www.cccd.coop/news/promoting-shared-wisdom-through-cooperative-connections" class="cccd-event-item">
+            <div class="cccd-event-date-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--teal)"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div>
+              <div class="cccd-event-item-title">Past Event Recordings</div>
+              <div class="cccd-event-item-time">Watch sessions from previous conferences</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="cccd-section cccd-news">
+  <div class="cccd-section-inner">
+    <div class="cccd-section-header cccd-reveal" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem;">
+      <div>
+        <p class="cccd-eyebrow">Latest news</p>
+        <h2>What's happening in California's co-op world</h2>
+      </div>
+      <a href="https://www.cccd.coop/news" class="cccd-about-link" style="flex-shrink:0;">All news →</a>
+    </div>
+    <div class="cccd-news-grid cccd-reveal">
+      <a href="https://www.cccd.coop/news/now-hiring-executive-director" class="cccd-news-card">
+        <div class="cccd-news-category"><span class="cccd-news-category-dot"></span>Hiring</div>
+        <h3>Now Hiring: Executive Director</h3>
+        <p>CCCD seeks a passionate leader to guide cooperative businesses and build a more just, sustainable California. Hybrid role based in Davis, CA. Apply by May 21, 2026.</p>
+        <div class="cccd-news-read-more">Read more <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+      </a>
+      <a href="https://www.cccd.coop/news" class="cccd-news-card">
+        <div class="cccd-news-category"><span class="cccd-news-category-dot"></span>Co-op Success</div>
+        <h3>SunCoast Market Co-op Opens in Imperial Beach</h3>
+        <p>SunCoast Market has achieved a milestone years in the making — opening a member-driven consumer food cooperative to serve the community of Imperial Beach, CA.</p>
+        <div class="cccd-news-read-more">Read more <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+      </a>
+      <a href="https://www.cccd.coop/news" class="cccd-news-card">
+        <div class="cccd-news-category"><span class="cccd-news-category-dot"></span>Media Coverage</div>
+        <h3>KQED News: Mobile Homes Provide Affordable Housing, But Their Future Is at Risk</h3>
+        <p>CCCD's Manufactured Home Parks Acquisitions and Advocacy Manager, Randy Keller, recently spoke on KQED News about the state of Manufactured Home Parks in California.</p>
+        <div class="cccd-news-read-more">Read more <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP CTA -->
+<section class="cccd-membership">
+  <div class="cccd-membership-inner">
+    <div class="cccd-reveal">
+      <p class="cccd-eyebrow">Join the movement</p>
+      <h2>Become a CCCD member or supporter</h2>
+      <p>As a nonprofit, CCCD depends on the support of members and donors who believe in the cooperative difference. Your contribution helps us provide education, technical assistance, and advocacy for cooperatives across California.</p>
+    </div>
+    <div class="cccd-membership-btns cccd-reveal">
+      <a href="https://www.cccd.coop/membership" class="cccd-btn-primary">Join as a Member</a>
+      <a href="https://www.cccd.coop/membership/donate-cccd" class="cccd-btn-outline">Make a Donation</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="cccd-section cccd-newsletter">
+  <div class="cccd-section-inner">
+    <div class="cccd-newsletter-box cccd-reveal">
+      <div>
+        <p class="cccd-eyebrow">Stay informed</p>
+        <h2>Join our mailing list</h2>
+        <p>Get news, event announcements, resources, and updates from California's cooperative development community delivered to your inbox.</p>
+      </div>
+      <div class="cccd-newsletter-form">
+        <input type="text" placeholder="Your name" aria-label="Your name">
+        <input type="email" placeholder="Your email address" aria-label="Email address">
+        <button type="button">Subscribe to updates</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="cccd-section cccd-partners" style="padding-top: 3rem; padding-bottom: 4rem;">
+  <div class="cccd-section-inner">
+    <div class="cccd-section-header cccd-reveal" style="margin-bottom: 2rem;">
+      <p class="cccd-eyebrow">Affiliations &amp; certifications</p>
+    </div>
+    <div class="cccd-partners-logos cccd-reveal">
+      <div class="cccd-partner-item">
+        <img src="https://www.cccd.coop/sites/default/files/ROC-USA-logo.png" alt="ROC USA" style="height: 28px; display: none;" onerror="this.style.display='none'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        ROC USA Certified Technical Assistance Provider
+      </div>
+      <div class="cccd-partner-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        NCBA CLUSA Member
+      </div>
+      <div class="cccd-partner-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        501(c)3 Nonprofit Organization
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="cccd-footer" role="contentinfo">
+  <div class="cccd-footer-inner">
+    <div class="cccd-footer-grid">
+      <div class="cccd-footer-brand">
+        <img src="https://www.cccd.coop/sites/all/themes/cccd/logo.png" alt="California Center for Cooperative Development">
+        <p>CCCD promotes cooperative identity, values, and principles to advance the contemporary cooperative movement across California through education, technical assistance, and advocacy.</p>
+        <div class="cccd-footer-social">
+          <a href="mailto:info@cccd.coop" aria-label="Email CCCD">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+          </a>
+          <a href="https://www.facebook.com/cccd.coop" aria-label="CCCD on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://twitter.com/cccdcoop" aria-label="CCCD on Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="cccd-footer-col">
+        <h4>Organization</h4>
+        <ul>
+          <li><a href="https://www.cccd.coop/about-cccd">About CCCD</a></li>
+          <li><a href="https://www.cccd.coop/about-us/staff">Staff</a></li>
+          <li><a href="https://www.cccd.coop/about-us/board-directors">Board of Directors</a></li>
+          <li><a href="https://www.cccd.coop/about-us/newsletter-and-annual-reports">Annual Reports</a></li>
+          <li><a href="https://www.cccd.coop/about-us/press-kit">Press Kit</a></li>
+          <li><a href="https://www.cccd.coop/hiring-executive-director">Careers</a></li>
+        </ul>
+      </div>
+      <div class="cccd-footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://www.cccd.coop/co-op-info/what-co-op">What is a Co-op?</a></li>
+          <li><a href="https://www.cccd.coop/co-op-info/co-op-types">Co-op Types</a></li>
+          <li><a href="https://www.cccd.coop/co-op-info/co-op-stories">Co-op Stories</a></li>
+          <li><a href="https://www.cccd.coop/co-op-info/co-op-video-series">Video Series</a></li>
+          <li><a href="https://www.cccd.coop/membership">CCCD Membership</a></li>
+          <li><a href="https://www.cccd.coop/membership/donate-cccd">Donate</a></li>
+        </ul>
+      </div>
+      <div class="cccd-footer-col">
+        <h4>Contact</h4>
+        <div class="cccd-footer-contact-item">
+          <svg class="cccd-footer-contact-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="7" r="2.5"/><path d="M8 1C5 1 2.5 3.5 2.5 7c0 5 5.5 9 5.5 9s5.5-4 5.5-9C13.5 3.5 11 1 8 1z"/></svg>
+          979 F Street, Suite A<br>Davis, CA 95616
+        </div>
+        <div class="cccd-footer-contact-item">
+          <svg class="cccd-footer-contact-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h2l1 4-1.5 1.5S5.5 11 8 12.5L9.5 11l4 1v2s-2 1.5-5 0C5.5 13 2.5 10 1.5 7 0.5 4 3 3 3 3z"/></svg>
+          530-297-1032
+        </div>
+        <div class="cccd-footer-contact-item">
+          <svg class="cccd-footer-contact-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6l6 4 6-4"/></svg>
+          <a href="https://www.cccd.coop/contact-us" style="color: rgba(255,255,255,0.55); text-decoration: none;">Send us a message</a>
+        </div>
+        <div class="cccd-footer-roc" style="margin-top: 1.25rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          ROC USA Certified Provider
+        </div>
+      </div>
+    </div>
+    <div class="cccd-footer-bottom">
+      <span>© 2026 California Center for Cooperative Development. All rights reserved.</span>
+      <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="https://www.cccd.coop/privacy-statement">Privacy Statement</a>
+        <a href="https://www.cccd.coop/contact-us">Contact Us</a>
+        <a href="https://www.cccd.coop/membership/donate-cccd">Donate to CCCD</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+       //glad header 
+    const gladHeader = document.getElementById("glad-header");
+const calbccHeader = document.querySelector(".calbcc-header");
+let lastScrollY = window.scrollY, gladVisible = true;
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+  if (y > 80 && y > lastScrollY) {
+    if (gladVisible) { gladHeader.classList.add("hidden"); gladVisible = false; }
+  } else if (y < lastScrollY && y < 40) {
+    if (!gladVisible) { gladHeader.classList.remove("hidden"); gladVisible = true; }
+  }
+  lastScrollY = y;
+}, { passive: true });
+    //
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', function() {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  const reveals = document.querySelectorAll('.cccd-reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

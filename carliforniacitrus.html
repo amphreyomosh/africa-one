@@ -1,0 +1,3020 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      California Citrus Quality Council — Protecting California Citrus at Home
+      and Abroad
+    </title>
+    <meta
+      name="description"
+      content="The California Citrus Quality Council (CCQC) ensures California citrus meets domestic and international regulatory standards — supporting export programs, food safety, crop health, and pesticide compliance since 1967."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="California Citrus Quality Council" />
+    <meta
+      property="og:description"
+      content="Ensuring California citrus meets domestic and international regulatory standards since 1967."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --citrus-500: #f5a623;
+        --citrus-600: #e8821e;
+        --citrus-700: #c9690f;
+        --citrus-300: #fbc02d;
+        --citrus-100: #fdefc9;
+        --citrus-50: #fff9ed;
+        --grove-900: #2c3a1e;
+        --grove-800: #3c4f26;
+        --grove-700: #4f6b22;
+        --grove-600: #5e7a3b;
+        --grove-300: #a9bd86;
+        --grove-100: #ebf0e0;
+        --ink: #23291c;
+        --slate: #5a6253;
+        --line: #e4e2d8;
+        --paper: #ffffff;
+        --shell: #fbfaf5;
+        --shadow-sm: 0 2px 8px rgba(44, 58, 30, 0.06);
+        --shadow-md: 0 14px 38px -12px rgba(44, 58, 30, 0.18);
+        --shadow-lg: 0 30px 70px -20px rgba(44, 58, 30, 0.32);
+        --r-sm: 10px;
+        --r-md: 18px;
+        --r-lg: 28px;
+        --maxw: 1200px;
+        --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          "Source Sans 3",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 600;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        color: var(--grove-900);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      ul {
+        list-style: none;
+      }
+      section {
+        position: relative;
+      }
+      .shell-wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .eyebrow-tag {
+        font-family: "Source Sans 3";
+        font-weight: 700;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--citrus-700);
+      }
+
+      /* ---------- Buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: "Source Sans 3";
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 0.92rem 1.7rem;
+        border-radius: 999px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition:
+          transform 0.25s var(--ease),
+          box-shadow 0.25s var(--ease),
+          background 0.25s var(--ease);
+      }
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--citrus-300),
+          var(--citrus-600)
+        );
+        color: #3a2606;
+        box-shadow: 0 10px 24px -8px rgba(232, 130, 30, 0.6);
+      }
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 34px -8px rgba(232, 130, 30, 0.7);
+      }
+      .btn-ghost {
+        background: transparent;
+        border-color: var(--grove-300);
+        color: var(--grove-800);
+      }
+      .btn-ghost:hover {
+        background: var(--grove-100);
+        border-color: var(--grove-600);
+      }
+      .btn-light {
+        background: #fff;
+        color: var(--grove-800);
+        box-shadow: var(--shadow-sm);
+      }
+      .btn-light:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+      .btn .arr {
+        transition: transform 0.25s var(--ease);
+      }
+      .btn:hover .arr {
+        transform: translateX(4px);
+      }
+
+      /* ---------- Top utility bar ---------- */
+      .utility {
+        background: var(--grove-900);
+        color: #dfe6d2;
+        font-size: 0.85rem;
+      }
+      .utility .shell-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        gap: 1rem;
+      }
+      .utility a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.2rem 0;
+        transition: color 0.2s;
+      }
+      .utility a:hover {
+        color: var(--citrus-300);
+      }
+      .utility .u-right {
+        display: flex;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+      }
+      .utility .u-left {
+        display: flex;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+      }
+      .dot-ico {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--citrus-500);
+        display: inline-block;
+      }
+
+      /* ---------- Header / Nav ---------- */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+        transition: box-shadow 0.3s;
+      }
+      .site-header.scrolled {
+        box-shadow: var(--shadow-sm);
+      }
+      .nav-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        gap: 1.5rem;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        flex-shrink: 0;
+      }
+      .brand svg,
+      .brand img {
+        width: 48px;
+        height: auto;
+      }
+      .footer-brand .brand svg,
+      .footer-brand .brand img {
+        width: 52px;
+      }
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.08;
+      }
+      .brand-text .bt-name {
+        font-family: "Fraunces";
+        font-weight: 600;
+        font-size: 1.06rem;
+        color: var(--grove-900);
+      }
+      .brand-text .bt-sub {
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--citrus-700);
+        font-weight: 700;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+      .nav-item {
+        position: relative;
+      }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.6rem 0.85rem;
+        border-radius: var(--r-sm);
+        font-weight: 600;
+        font-size: 0.96rem;
+        color: var(--grove-800);
+        transition:
+          background 0.2s,
+          color 0.2s;
+        cursor: pointer;
+      }
+      .nav-link:hover {
+        background: var(--citrus-50);
+        color: var(--citrus-700);
+      }
+      .nav-link svg {
+        width: 11px;
+        height: 11px;
+        transition: transform 0.25s;
+      }
+      .nav-item:hover .nav-link svg {
+        transform: rotate(180deg);
+      }
+      .dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        min-width: 248px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        box-shadow: var(--shadow-md);
+        padding: 0.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: all 0.22s var(--ease);
+      }
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .dropdown a {
+        display: block;
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: var(--slate);
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .dropdown a:hover {
+        background: var(--citrus-50);
+        color: var(--citrus-700);
+      }
+      .nav-cta {
+        flex-shrink: 0;
+      }
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.4rem;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .menu-toggle span {
+        width: 24px;
+        height: 2.5px;
+        background: var(--grove-800);
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+      .menu-toggle.open span:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+      }
+      .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.open span:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        background:
+          radial-gradient(
+            900px 500px at 88% -8%,
+            rgba(245, 166, 35, 0.22),
+            transparent 60%
+          ),
+          radial-gradient(
+            700px 600px at -5% 110%,
+            rgba(79, 107, 34, 0.16),
+            transparent 55%
+          ),
+          linear-gradient(180deg, var(--citrus-50), #fff 75%);
+        padding-top: 84px;
+        padding-bottom: 96px;
+        overflow: hidden;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .hero-copy {
+        max-width: 560px;
+      }
+      .hero h1 {
+        font-size: clamp(2.5rem, 4.4vw, 3.85rem);
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+      }
+      .hero h1 .accent {
+        color: var(--citrus-600);
+      }
+      .hero-lead {
+        font-size: 1.16rem;
+        color: var(--slate);
+        margin-bottom: 2rem;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .hero-since {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.92rem;
+        color: var(--slate);
+        font-weight: 500;
+      }
+      .hero-since b {
+        font-family: "Fraunces";
+        font-weight: 600;
+        color: var(--grove-900);
+        font-size: 1.05rem;
+      }
+      .hero-since .vline {
+        width: 1px;
+        height: 30px;
+        background: var(--line);
+      }
+
+      /* hero visual */
+      .hero-visual {
+        position: relative;
+      }
+      .citrus-stack {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1/1;
+        max-width: 480px;
+        margin-left: auto;
+      }
+      .citrus-disc {
+        position: absolute;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          #fbc02d,
+          #f5a623,
+          #ffe08a,
+          #f5a623,
+          #fbc02d
+        );
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .citrus-disc::before {
+        content: "";
+        position: absolute;
+        inset: 14%;
+        border-radius: 50%;
+        background: repeating-conic-gradient(
+          from 0deg,
+          #fff6e0 0deg 26deg,
+          #ffe7af 26deg 30deg
+        );
+        box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.6);
+      }
+      .citrus-disc::after {
+        content: "";
+        position: absolute;
+        inset: 38%;
+        border-radius: 50%;
+        background: radial-gradient(circle, #fff, #ffebb8);
+      }
+      .cd1 {
+        width: 62%;
+        height: 62%;
+        top: 0;
+        right: 6%;
+      }
+      .cd2 {
+        width: 46%;
+        height: 46%;
+        bottom: 8%;
+        right: 30%;
+        background: conic-gradient(
+          from 0deg,
+          #e8821e,
+          #f5a623,
+          #ffb347,
+          #e8821e
+        );
+      }
+      .cd3 {
+        width: 34%;
+        height: 34%;
+        bottom: 2%;
+        right: 2%;
+        background: conic-gradient(
+          from 0deg,
+          #7a9a3e,
+          #a9bd86,
+          #9cb36f,
+          #7a9a3e
+        );
+      }
+      .cd3::before {
+        background: repeating-conic-gradient(
+          from 0deg,
+          #f0f4e4 0deg 26deg,
+          #dce6c4 26deg 30deg
+        );
+      }
+      .cd3::after {
+        background: radial-gradient(circle, #fff, #e4eccf);
+      }
+      @keyframes floaty {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      .citrus-disc {
+        animation: floaty 7s var(--ease) infinite;
+      }
+      .cd2 {
+        animation-delay: -2.3s;
+      }
+      .cd3 {
+        animation-delay: -4.6s;
+      }
+
+      /* ---------- Marquee strip ---------- */
+      .partner-strip {
+        background: var(--grove-900);
+        padding: 26px 0;
+        overflow: hidden;
+      }
+      .partner-strip .ps-head {
+        text-align: center;
+        color: #9fb182;
+        font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+      .marquee {
+        display: flex;
+        gap: 64px;
+        animation: scroll 32s linear infinite;
+        width: max-content;
+      }
+      .marquee span {
+        color: #cdd7bc;
+        font-family: "Fraunces";
+        font-size: 1.15rem;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0.85;
+      }
+      .marquee span::after {
+        content: "•";
+        margin-left: 64px;
+        color: var(--citrus-500);
+      }
+      @keyframes scroll {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ---------- Section shared ---------- */
+      .section {
+        padding: 96px 0;
+      }
+      .section-head {
+        max-width: 680px;
+        margin-bottom: 54px;
+      }
+      .section-head.center {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      .section-head h2 {
+        font-size: clamp(2rem, 3.3vw, 2.85rem);
+        font-weight: 600;
+        margin: 0.7rem 0 1rem;
+      }
+      .section-head p {
+        font-size: 1.1rem;
+        color: var(--slate);
+      }
+
+      /* ---------- About ---------- */
+      .about {
+        background: var(--shell);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .about-visual {
+        position: relative;
+      }
+      .about-frame {
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        background: linear-gradient(160deg, var(--grove-700), var(--grove-900));
+        aspect-ratio: 4/3.4;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        padding: 30px;
+      }
+      .about-frame .grove-rows {
+        position: absolute;
+        inset: 0;
+        opacity: 0.55;
+      }
+      .about-frame .grove-rows i {
+        position: absolute;
+        background: rgba(169, 189, 134, 0.5);
+        border-radius: 50%;
+      }
+      .about-quote {
+        position: relative;
+        z-index: 2;
+        color: #f1f4e8;
+      }
+      .about-quote p {
+        font-family: "Fraunces";
+        font-size: 1.32rem;
+        line-height: 1.4;
+        font-weight: 500;
+      }
+      .about-quote cite {
+        display: block;
+        margin-top: 0.9rem;
+        font-style: normal;
+        font-size: 0.9rem;
+        color: var(--citrus-300);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .est-chip {
+        position: absolute;
+        top: -22px;
+        right: -14px;
+        width: 104px;
+        height: 104px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: var(--shadow-md);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--citrus-300);
+        z-index: 3;
+      }
+      .est-chip b {
+        font-family: "Fraunces";
+        font-size: 1.7rem;
+        color: var(--citrus-600);
+        line-height: 1;
+      }
+      .est-chip span {
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--slate);
+        font-weight: 700;
+      }
+      .about-copy p {
+        color: var(--slate);
+        font-size: 1.07rem;
+        margin-bottom: 1.1rem;
+      }
+      .about-points {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin: 1.8rem 0;
+      }
+      .about-point {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+      }
+      .about-point .ck {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        background: var(--citrus-100);
+        color: var(--citrus-700);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .about-point span {
+        font-size: 0.97rem;
+        font-weight: 600;
+        color: var(--grove-800);
+      }
+
+      /* ---------- Stats ---------- */
+      .stats {
+        background: var(--grove-900);
+        color: #eef2e4;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        text-align: center;
+      }
+      .stat-item {
+        padding: 1rem 0;
+        position: relative;
+      }
+      .stat-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -16px;
+        top: 14%;
+        height: 72%;
+        width: 1px;
+        background: rgba(169, 189, 134, 0.28);
+      }
+      .stat-num {
+        font-family: "Fraunces";
+        font-size: clamp(2.4rem, 3.4vw, 3.1rem);
+        font-weight: 700;
+        color: var(--citrus-300);
+        line-height: 1;
+      }
+      .stat-label {
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+        color: #c4cfb2;
+        font-weight: 500;
+      }
+
+      /* ---------- Programs ---------- */
+      .prog-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+      }
+      .prog-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        padding: 30px;
+        transition:
+          transform 0.3s var(--ease),
+          box-shadow 0.3s var(--ease),
+          border-color 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .prog-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--citrus-300),
+          var(--citrus-600)
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s var(--ease);
+      }
+      .prog-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-md);
+        border-color: transparent;
+      }
+      .prog-card:hover::before {
+        transform: scaleX(1);
+      }
+      .prog-ico {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+        background: var(--citrus-50);
+        color: var(--citrus-700);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.1rem;
+      }
+      .prog-card.alt .prog-ico {
+        background: var(--grove-100);
+        color: var(--grove-700);
+      }
+      .prog-card h3 {
+        font-size: 1.32rem;
+        margin-bottom: 0.55rem;
+      }
+      .prog-card p {
+        color: var(--slate);
+        font-size: 0.98rem;
+        margin-bottom: 1.1rem;
+      }
+      .prog-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: var(--citrus-700);
+      }
+      .prog-link .arr {
+        transition: transform 0.25s var(--ease);
+      }
+      .prog-card:hover .prog-link .arr {
+        transform: translateX(4px);
+      }
+
+      /* ---------- Export markets ---------- */
+      .markets {
+        background: var(--shell);
+      }
+      .markets-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .market-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .market-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.05rem 1.1rem;
+        border-radius: var(--r-sm);
+        transition: background 0.2s;
+        border: 1px solid transparent;
+      }
+      .market-row:hover {
+        background: #fff;
+        border-color: var(--line);
+        box-shadow: var(--shadow-sm);
+      }
+      .market-flag {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces";
+        font-weight: 700;
+        color: #fff;
+        font-size: 1.05rem;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, var(--grove-600), var(--grove-800));
+      }
+      .market-row:nth-child(2n) .market-flag {
+        background: linear-gradient(
+          135deg,
+          var(--citrus-500),
+          var(--citrus-700)
+        );
+      }
+      .market-info {
+        flex: 1;
+      }
+      .market-info b {
+        display: block;
+        font-family: "Fraunces";
+        font-size: 1.1rem;
+        color: var(--grove-900);
+        font-weight: 600;
+      }
+      .market-info span {
+        font-size: 0.88rem;
+        color: var(--slate);
+      }
+      .market-row .arr {
+        color: var(--slate);
+        transition:
+          transform 0.25s,
+          color 0.25s;
+      }
+      .market-row:hover .arr {
+        transform: translateX(4px);
+        color: var(--citrus-700);
+      }
+      .markets-aside {
+        background: linear-gradient(165deg, var(--grove-800), var(--grove-900));
+        border-radius: var(--r-lg);
+        padding: 42px;
+        color: #eef2e4;
+        box-shadow: var(--shadow-lg);
+      }
+      .markets-aside h3 {
+        color: #fff;
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+      }
+      .markets-aside p {
+        color: #c4cfb2;
+        margin-bottom: 1.6rem;
+        font-size: 1rem;
+      }
+      .aside-stat {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(169, 189, 134, 0.22);
+      }
+      .aside-stat:first-of-type {
+        border-top: none;
+      }
+      .aside-stat b {
+        font-family: "Fraunces";
+        font-size: 1.5rem;
+        color: var(--citrus-300);
+        flex-shrink: 0;
+        min-width: 62px;
+      }
+      .aside-stat span {
+        font-size: 0.92rem;
+        color: #c4cfb2;
+        align-self: center;
+      }
+
+      /* ---------- News ---------- */
+      .news-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 48px;
+      }
+      .news-feature {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        overflow: hidden;
+      }
+      .news-feature .nf-banner {
+        background: linear-gradient(
+          135deg,
+          var(--citrus-300),
+          var(--citrus-600)
+        );
+        padding: 42px 36px;
+        color: #3a2606;
+        position: relative;
+        overflow: hidden;
+      }
+      .news-feature .nf-banner::after {
+        content: "";
+        position: absolute;
+        right: -40px;
+        bottom: -40px;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .nf-tag {
+        display: inline-block;
+        background: rgba(58, 38, 6, 0.15);
+        padding: 0.3rem 0.8rem;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.9rem;
+      }
+      .news-feature .nf-banner h3 {
+        font-size: 1.7rem;
+        color: #3a2606;
+        position: relative;
+        z-index: 2;
+      }
+      .news-feature .nf-banner .nf-date {
+        margin-top: 0.6rem;
+        font-weight: 600;
+        font-size: 0.92rem;
+        position: relative;
+        z-index: 2;
+      }
+      .nf-body {
+        padding: 28px 36px 32px;
+      }
+      .nf-body p {
+        color: var(--slate);
+        margin-bottom: 1.2rem;
+      }
+      .news-list {
+        display: flex;
+        flex-direction: column;
+      }
+      .news-list h3 {
+        font-size: 1.15rem;
+        margin-bottom: 0.6rem;
+        color: var(--grove-900);
+      }
+      .news-item {
+        display: block;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--line);
+        transition: padding-left 0.22s var(--ease);
+      }
+      .news-item:hover {
+        padding-left: 8px;
+      }
+      .news-item .ni-date {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--citrus-700);
+        margin-bottom: 0.2rem;
+      }
+      .news-item .ni-title {
+        font-weight: 600;
+        color: var(--grove-800);
+        font-size: 0.99rem;
+        line-height: 1.4;
+      }
+      .news-item:hover .ni-title {
+        color: var(--citrus-700);
+      }
+      .news-all {
+        margin-top: 1.4rem;
+      }
+
+      /* ---------- Resources band ---------- */
+      .resources {
+        background: var(--shell);
+      }
+      .res-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 22px;
+      }
+      .res-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        padding: 26px;
+        transition:
+          transform 0.3s var(--ease),
+          box-shadow 0.3s;
+      }
+      .res-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+      }
+      .res-ico {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        background: var(--grove-100);
+        color: var(--grove-700);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.9rem;
+      }
+      .res-card h4 {
+        font-family: "Fraunces";
+        font-size: 1.12rem;
+        margin-bottom: 0.4rem;
+        color: var(--grove-900);
+      }
+      .res-card p {
+        font-size: 0.9rem;
+        color: var(--slate);
+        margin-bottom: 0.9rem;
+      }
+      .res-card a {
+        font-size: 0.86rem;
+        font-weight: 700;
+        color: var(--citrus-700);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      /* ---------- CTA ---------- */
+      .cta-band {
+        padding: 104px 0;
+      }
+      .cta-inner {
+        background:
+          radial-gradient(
+            700px 380px at 12% 8%,
+            rgba(245, 166, 35, 0.32),
+            transparent 62%
+          ),
+          linear-gradient(150deg, var(--grove-800), var(--grove-900));
+        border-radius: var(--r-lg);
+        padding: 72px 64px;
+        text-align: center;
+        color: #eef2e4;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-inner::before,
+      .cta-inner::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(245, 166, 35, 0.22);
+      }
+      .cta-inner::before {
+        width: 260px;
+        height: 260px;
+        top: -120px;
+        right: -60px;
+      }
+      .cta-inner::after {
+        width: 180px;
+        height: 180px;
+        bottom: -90px;
+        left: -40px;
+        border-color: rgba(169, 189, 134, 0.25);
+      }
+      .cta-inner h2 {
+        color: #fff;
+        font-size: clamp(2rem, 3.4vw, 2.9rem);
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+      }
+      .cta-inner p {
+        color: #c4cfb2;
+        font-size: 1.12rem;
+        max-width: 560px;
+        margin: 0 auto 2rem;
+        position: relative;
+        z-index: 2;
+      }
+      .cta-inner .btn {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* ---------- Footer ---------- */
+      .site-footer {
+        background: var(--grove-900);
+        color: #aebd97;
+        padding-top: 72px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+        gap: 48px;
+        padding-bottom: 54px;
+      }
+      .footer-brand .brand {
+        margin-bottom: 1.1rem;
+      }
+      .footer-brand .brand-text .bt-name {
+        color: #fff;
+      }
+      .footer-brand p {
+        font-size: 0.94rem;
+        line-height: 1.7;
+        color: #9fb182;
+        max-width: 320px;
+      }
+      .footer-col h4 {
+        color: #fff;
+        font-family: "Fraunces";
+        font-size: 1.05rem;
+        margin-bottom: 1.1rem;
+        font-weight: 600;
+      }
+      .footer-col ul li {
+        margin-bottom: 0.6rem;
+      }
+      .footer-col a {
+        font-size: 0.93rem;
+        color: #aebd97;
+        transition:
+          color 0.2s,
+          padding-left 0.2s;
+      }
+      .footer-col a:hover {
+        color: var(--citrus-300);
+        padding-left: 4px;
+      }
+      .footer-contact p {
+        font-size: 0.93rem;
+        color: #aebd97;
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+      .footer-contact b {
+        color: #fff;
+        font-weight: 600;
+      }
+      .footer-contact a {
+        color: var(--citrus-300);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(169, 189, 134, 0.18);
+        padding: 24px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        font-size: 0.86rem;
+        color: #8a9b72;
+      }
+      .footer-bottom .fb-links {
+        display: flex;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+      }
+      .footer-bottom a:hover {
+        color: var(--citrus-300);
+      }
+
+      /* ---------- Reveal anim ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ---------- Mobile nav panel ---------- */
+      .mobile-panel {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: min(86vw, 360px);
+        background: #fff;
+        z-index: 200;
+        transform: translateX(100%);
+        transition: transform 0.35s var(--ease);
+        padding: 90px 26px 30px;
+        overflow-y: auto;
+        box-shadow: var(--shadow-lg);
+      }
+      .mobile-panel.open {
+        transform: translateX(0);
+      }
+      .mobile-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(44, 58, 30, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+        z-index: 150;
+      }
+      .mobile-overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .m-group {
+        border-bottom: 1px solid var(--line);
+        padding: 0.4rem 0;
+      }
+      .m-group > button {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: none;
+        border: none;
+        font-family: "Source Sans 3";
+        font-weight: 700;
+        font-size: 1.02rem;
+        color: var(--grove-900);
+        padding: 0.85rem 0.2rem;
+        cursor: pointer;
+      }
+      .m-group > button svg {
+        width: 13px;
+        transition: transform 0.25s;
+      }
+      .m-group.open > button svg {
+        transform: rotate(180deg);
+      }
+      .m-sub {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s var(--ease);
+      }
+      .m-sub a {
+        display: block;
+        padding: 0.55rem 0.2rem 0.55rem 1rem;
+        font-size: 0.94rem;
+        color: var(--slate);
+        font-weight: 500;
+      }
+      .m-sub a:hover {
+        color: var(--citrus-700);
+      }
+      .m-flat {
+        display: block;
+        font-weight: 700;
+        font-size: 1.02rem;
+        color: var(--grove-900);
+        padding: 0.85rem 0.2rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .mobile-panel .btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1.5rem;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 1080px) {
+        .hero-grid,
+        .about-grid,
+        .markets-grid,
+        .news-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .hero-visual {
+          max-width: 440px;
+          margin: 0 auto;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 36px 24px;
+        }
+        .stat-item:nth-child(2)::after {
+          display: none;
+        }
+        .prog-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .res-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+        }
+      }
+      @media (max-width: 760px) {
+        .main-nav,
+        .nav-cta {
+          display: none;
+        }
+        .menu-toggle {
+          display: flex;
+        }
+        .utility .u-left {
+          display: none;
+        }
+        .section {
+          padding: 68px 0;
+        }
+        .cta-band {
+          padding: 64px 0;
+        }
+        .cta-inner {
+          padding: 48px 26px;
+        }
+        .prog-grid,
+        .res-grid,
+        .stats-grid,
+        .footer-grid,
+        .about-points {
+          grid-template-columns: 1fr;
+        }
+        .stat-item::after {
+          display: none;
+        }
+        .hero {
+          padding-top: 54px;
+          padding-bottom: 64px;
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .hero-actions .btn {
+          justify-content: center;
+        }
+        .hero-since {
+          justify-content: center;
+          margin-top: 0.5rem;
+        }
+        .markets-aside {
+          padding: 32px 26px;
+        }
+        .news-feature .nf-banner,
+        .nf-body {
+          padding-left: 26px;
+          padding-right: 26px;
+        }
+        .est-chip {
+          width: 84px;
+          height: 84px;
+          right: 0;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+      @media (max-width: 420px) {
+        .shell-wrap {
+          padding: 0 18px;
+        }
+      }
+
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+        margin-left: 40px !important;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Skip link -->
+    <a
+      href="#main"
+      style="
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: #fff;
+        padding: 0.6rem 1rem;
+        z-index: 999;
+        border-radius: 0 0 8px 0;
+      "
+      onfocus="this.style.left = '0'"
+      onblur="this.style.left = '-999px'"
+      >Skip to content</a
+    >
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+    <!-- Utility bar -->
+    <div class="utility">
+      <div class="shell-wrap">
+        <div class="u-left">
+          <span
+            ><span class="dot-ico"></span>&nbsp;Auburn, California &nbsp;·&nbsp;
+            (530) 885-1894</span
+          >
+        </div>
+        <div class="u-right">
+          <a href="#contact">Contact Us</a>
+          <a href="#resources">Statistics</a>
+          <a href="#resources">Other Resources</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+      <div class="shell-wrap">
+        <div class="nav-row">
+          <a
+            href="#main"
+            class="brand"
+            aria-label="California Citrus Quality Council home"
+          >
+            <!-- Real CCQC logo. SVG fallback shows if the image fails to load. -->
+            <img
+              src="https://ccqc.org/wp-content/uploads/CCQC-Globe-logo-web.png"
+              alt="California Citrus Quality Council logo"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'block';
+              "
+            />
+            <svg
+              viewBox="0 0 320 300"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              style="display: none"
+            >
+              <defs>
+                <linearGradient id="rind" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FBC02D" />
+                  <stop offset="55%" stop-color="#F5A623" />
+                  <stop offset="100%" stop-color="#E8821E" />
+                </linearGradient>
+                <linearGradient id="leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#7A9A3E" />
+                  <stop offset="100%" stop-color="#4F6B22" />
+                </linearGradient>
+                <clipPath id="globe">
+                  <circle cx="100" cy="170" r="92" />
+                </clipPath>
+              </defs>
+              <path
+                d="M150 70 C150 30 196 18 232 26 C214 64 178 84 150 78 Z"
+                fill="url(#leaf)"
+              />
+              <path
+                d="M150 70 C150 38 124 18 92 22 C108 56 132 78 150 76 Z"
+                fill="url(#leaf)"
+                opacity="0.92"
+              />
+              <circle cx="100" cy="170" r="92" fill="url(#rind)" />
+              <g clip-path="url(#globe)">
+                <g fill="#FFFFFF" opacity="0.78">
+                  <path d="M-20 96 q120 -34 240 0 v22 q-120 -34 -240 0 Z" />
+                  <path d="M-20 150 q120 -40 240 0 v24 q-120 -40 -240 0 Z" />
+                  <path d="M-20 208 q120 -40 240 0 v24 q-120 -40 -240 0 Z" />
+                  <path d="M-20 262 q120 -36 240 0 v22 q-120 -36 -240 0 Z" />
+                </g>
+                <g fill="#D9701A" opacity="0.55">
+                  <path d="M-20 124 q120 -38 240 0 v14 q-120 -38 -240 0 Z" />
+                  <path d="M-20 180 q120 -42 240 0 v14 q-120 -42 -240 0 Z" />
+                  <path d="M-20 236 q120 -40 240 0 v14 q-120 -40 -240 0 Z" />
+                </g>
+              </g>
+            </svg>
+          </a>
+
+          <nav class="main-nav" aria-label="Primary">
+            <div class="nav-item">
+              <span class="nav-link"
+                >News
+                <svg viewBox="0 0 12 8" fill="none">
+                  <path
+                    d="M1 1l5 5 5-5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  /></svg
+              ></span>
+              <div class="dropdown">
+                <a href="#news">Recent Postings</a>
+                <a href="#news">Calendar</a>
+                <a href="#news">Meetings</a>
+                <a href="#news">Press Releases</a>
+              </div>
+            </div>
+            <div class="nav-item">
+              <span class="nav-link"
+                >Export Programs
+                <svg viewBox="0 0 12 8" fill="none">
+                  <path
+                    d="M1 1l5 5 5-5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  /></svg
+              ></span>
+              <div class="dropdown">
+                <a href="#markets">General Overview</a>
+                <a href="#markets">Australia Preclearance</a>
+                <a href="#markets">Korea — Septoria</a>
+                <a href="#markets">China</a>
+                <a href="#markets">Chile</a>
+                <a href="#markets">Japan</a>
+                <a href="#markets">New Zealand &amp; Thailand</a>
+                <a href="#markets">Vietnam</a>
+                <a href="#markets">Tariffs</a>
+              </div>
+            </div>
+            <div class="nav-item">
+              <span class="nav-link"
+                >Crop Health
+                <svg viewBox="0 0 12 8" fill="none">
+                  <path
+                    d="M1 1l5 5 5-5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  /></svg
+              ></span>
+              <div class="dropdown">
+                <a href="#programs">Crop Profile</a>
+                <a href="#programs">Pest Management Strategic Plan</a>
+                <a href="#programs">Sweet Orange Scab</a>
+                <a href="#programs">Citrus Black Spot</a>
+                <a href="#programs">Light Brown Apple Moth</a>
+                <a href="#programs">HLB / ACP</a>
+                <a href="#programs">Invasive Pests</a>
+                <a href="#resources">Statistics</a>
+              </div>
+            </div>
+            <div class="nav-item">
+              <span class="nav-link"
+                >Alerts &amp; Resources
+                <svg viewBox="0 0 12 8" fill="none">
+                  <path
+                    d="M1 1l5 5 5-5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  /></svg
+              ></span>
+              <div class="dropdown">
+                <a href="#news">Advisories</a>
+                <a href="#programs">Chemical &amp; Regulatory</a>
+                <a href="#resources">MRL Databases</a>
+                <a href="#programs">Food Safety</a>
+                <a href="#resources">Other Resources</a>
+              </div>
+            </div>
+            <div class="nav-item">
+              <span class="nav-link"
+                >About
+                <svg viewBox="0 0 12 8" fill="none">
+                  <path
+                    d="M1 1l5 5 5-5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  /></svg
+              ></span>
+              <div class="dropdown">
+                <a href="#about">Mission</a>
+                <a href="#about">Purpose &amp; Objectives</a>
+                <a href="#about">Board of Directors</a>
+                <a href="#about">History</a>
+                <a href="#contact">Contact Us</a>
+              </div>
+            </div>
+          </nav>
+
+          <a href="#contact" class="btn btn-primary nav-cta">Get in Touch</a>
+
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile nav -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <aside class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
+      <div class="m-group">
+        <button>
+          News
+          <svg viewBox="0 0 12 8" fill="none">
+            <path
+              d="M1 1l5 5 5-5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="m-sub">
+          <a href="#news">Recent Postings</a><a href="#news">Calendar</a
+          ><a href="#news">Meetings</a><a href="#news">Press Releases</a>
+        </div>
+      </div>
+      <div class="m-group">
+        <button>
+          Export Programs
+          <svg viewBox="0 0 12 8" fill="none">
+            <path
+              d="M1 1l5 5 5-5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="m-sub">
+          <a href="#markets">General Overview</a
+          ><a href="#markets">Australia Preclearance</a
+          ><a href="#markets">Korea — Septoria</a><a href="#markets">China</a
+          ><a href="#markets">Chile</a><a href="#markets">Japan</a
+          ><a href="#markets">Vietnam</a><a href="#markets">Tariffs</a>
+        </div>
+      </div>
+      <div class="m-group">
+        <button>
+          Crop Health
+          <svg viewBox="0 0 12 8" fill="none">
+            <path
+              d="M1 1l5 5 5-5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="m-sub">
+          <a href="#programs">Crop Profile</a
+          ><a href="#programs">Pest Management Strategic Plan</a
+          ><a href="#programs">Sweet Orange Scab</a
+          ><a href="#programs">Citrus Black Spot</a
+          ><a href="#programs">HLB / ACP</a
+          ><a href="#programs">Invasive Pests</a
+          ><a href="#resources">Statistics</a>
+        </div>
+      </div>
+      <div class="m-group">
+        <button>
+          Alerts &amp; Resources
+          <svg viewBox="0 0 12 8" fill="none">
+            <path
+              d="M1 1l5 5 5-5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="m-sub">
+          <a href="#news">Advisories</a
+          ><a href="#programs">Chemical &amp; Regulatory</a
+          ><a href="#resources">MRL Databases</a
+          ><a href="#programs">Food Safety</a
+          ><a href="#resources">Other Resources</a>
+        </div>
+      </div>
+      <div class="m-group">
+        <button>
+          About
+          <svg viewBox="0 0 12 8" fill="none">
+            <path
+              d="M1 1l5 5 5-5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="m-sub">
+          <a href="#about">Mission</a
+          ><a href="#about">Purpose &amp; Objectives</a
+          ><a href="#about">Board of Directors</a><a href="#about">History</a
+          ><a href="#contact">Contact Us</a>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+    </aside>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="shell-wrap">
+          <div class="hero-grid">
+            <div class="hero-copy reveal">
+              <h1>
+                Protecting California Citrus
+                <span class="accent">at home and around the world</span>
+              </h1>
+              <p class="hero-lead">
+                The California Citrus Quality Council works with government
+                agencies, international standards bodies, the University of
+                California, and the citrus industry to keep California fruit
+                compliant with phytosanitary, food safety, and pesticide-residue
+                regulations in every market we serve.
+              </p>
+              <div class="hero-actions">
+                <a href="#markets" class="btn btn-primary"
+                  >Explore Export Programs
+                  <svg
+                    class="arr"
+                    width="16"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+                <div class="hero-since">
+                  <b>Since 1967</b>
+                  <span class="vline"></span>
+                  <span>A science-based,<br />grower-supported nonprofit</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-visual reveal">
+              <div class="citrus-stack">
+                <div class="citrus-disc cd1"></div>
+                <div class="citrus-disc cd2"></div>
+                <div class="citrus-disc cd3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PARTNER STRIP -->
+      <section class="partner-strip" aria-label="Partners and collaborators">
+        <p class="ps-head">Working alongside trusted partners</p>
+        <div class="marquee">
+          <span>CDFA</span><span>USDA APHIS</span><span>Codex Alimentarius</span
+          ><span>University of California</span
+          ><span>Citrus Research Board</span
+          ><span>California Citrus Mutual</span><span>U.S. EPA</span>
+          <span>CDFA</span><span>USDA APHIS</span><span>Codex Alimentarius</span
+          ><span>University of California</span
+          ><span>Citrus Research Board</span
+          ><span>California Citrus Mutual</span><span>U.S. EPA</span>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section about" id="about">
+        <div class="shell-wrap">
+          <div class="about-grid">
+            <div class="about-visual reveal">
+              <div class="about-frame">
+                <div class="grove-rows" aria-hidden="true">
+                  <i
+                    style="width: 60px; height: 60px; left: 8%; bottom: 14%"
+                  ></i>
+                  <i
+                    style="width: 90px; height: 90px; left: 30%; bottom: 22%"
+                  ></i>
+                  <i
+                    style="width: 70px; height: 70px; left: 58%; bottom: 10%"
+                  ></i>
+                  <i
+                    style="width: 110px; height: 110px; left: 62%; bottom: 34%"
+                  ></i>
+                  <i
+                    style="width: 50px; height: 50px; left: 18%; bottom: 40%"
+                  ></i>
+                  <i
+                    style="
+                      width: 80px;
+                      height: 80px;
+                      left: 84%;
+                      bottom: 18%;
+                      opacity: 0.6;
+                    "
+                  ></i>
+                </div>
+                <blockquote class="about-quote">
+                  <p>
+                    “CCQC is pro-active and always maintains a science-based
+                    approach to the issues relating to the state's citrus
+                    industry.”
+                  </p>
+                  <cite>— From the CCQC Mission</cite>
+                </blockquote>
+              </div>
+              <div class="est-chip"><b>1967</b><span>Established</span></div>
+            </div>
+            <div class="about-copy reveal">
+              <span class="eyebrow-tag">Who We Are</span>
+              <h2>
+                A nonprofit dedicated to the quality and reputation of
+                California citrus
+              </h2>
+              <p>
+                Formed in 1967, the California Citrus Quality Council is a
+                nonprofit corporation supported by California citrus growers. We
+                conduct the industry's quality assurance program under the
+                California Citrus Improvement Program marketing order, in
+                partnership with the Citrus Research Board.
+              </p>
+              <p>
+                Our work spans quarantine matters, technical assistance,
+                international compliance, and pesticide policy — anticipating
+                phytosanitary issues before they restrict export opportunities.
+              </p>
+              <div class="about-points">
+                <div class="about-point">
+                  <span class="ck"
+                    ><svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                    >
+                      <path
+                        d="M2 7l3.5 3.5L12 3"
+                        stroke="currentColor"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg></span
+                  ><span>Science-based advocacy</span>
+                </div>
+                <div class="about-point">
+                  <span class="ck"
+                    ><svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                    >
+                      <path
+                        d="M2 7l3.5 3.5L12 3"
+                        stroke="currentColor"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg></span
+                  ><span>Grower-funded &amp; governed</span>
+                </div>
+                <div class="about-point">
+                  <span class="ck"
+                    ><svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                    >
+                      <path
+                        d="M2 7l3.5 3.5L12 3"
+                        stroke="currentColor"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg></span
+                  ><span>International standards expertise</span>
+                </div>
+                <div class="about-point">
+                  <span class="ck"
+                    ><svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                    >
+                      <path
+                        d="M2 7l3.5 3.5L12 3"
+                        stroke="currentColor"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg></span
+                  ><span>Ten-member Board of Directors</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-ghost"
+                >Learn About Our Mission
+                <svg
+                  class="arr"
+                  width="16"
+                  height="14"
+                  viewBox="0 0 16 14"
+                  fill="none"
+                >
+                  <path
+                    d="M1 7h13M9 1l5 6-5 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats">
+        <div class="shell-wrap" style="padding-top: 62px; padding-bottom: 62px">
+          <div class="stats-grid">
+            <div class="stat-item reveal">
+              <div class="stat-num">1967</div>
+              <div class="stat-label">Serving growers since</div>
+            </div>
+            <div class="stat-item reveal">
+              <div class="stat-num">8+</div>
+              <div class="stat-label">International export markets</div>
+            </div>
+            <div class="stat-item reveal">
+              <div class="stat-num">10</div>
+              <div class="stat-label">Board of Directors members</div>
+            </div>
+            <div class="stat-item reveal">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Grower-supported nonprofit</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAMS -->
+      <section class="section" id="programs">
+        <div class="shell-wrap">
+          <div class="section-head center reveal">
+            <span class="eyebrow-tag">What We Do</span>
+            <h2>Programs and resources that keep citrus moving</h2>
+            <p>
+              From export compliance to crop health, CCQC delivers the technical
+              guidance, advisories, and standards work the California citrus
+              industry relies on.
+            </p>
+          </div>
+          <div class="prog-grid">
+            <article class="prog-card reveal">
+              <div class="prog-ico">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2a10 10 0 100 20 10 10 0 000-20z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M2 12h20M12 2c2.5 2.7 4 6.3 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.3-4-10s1.5-7.3 4-10z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+              <h3>Export Programs</h3>
+              <p>
+                Program overviews, workplans, registered shippers' lists,
+                presentations, and country tariffs for every major citrus export
+                market.
+              </p>
+              <a href="#markets" class="prog-link"
+                >View export markets
+                <svg
+                  class="arr"
+                  width="15"
+                  height="12"
+                  viewBox="0 0 16 14"
+                  fill="none"
+                >
+                  <path
+                    d="M1 7h13M9 1l5 6-5 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </article>
+            <article class="prog-card alt reveal">
+              <div class="prog-ico">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9 12l2 2 4-4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Advisories</h3>
+              <p>
+                Timely international advisories on residue testing, copper
+                applications, and expert recommendations from Korea, China,
+                Australia, and beyond.
+              </p>
+              <a href="#news" class="prog-link"
+                >Read latest advisories
+                <svg
+                  class="arr"
+                  width="15"
+                  height="12"
+                  viewBox="0 0 16 14"
+                  fill="none"
+                >
+                  <path
+                    d="M1 7h13M9 1l5 6-5 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </article>
+            <article class="prog-card reveal">
+              <div class="prog-ico">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2C9 6 6 9 6 14a6 6 0 0012 0c0-5-3-8-6-12z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 14v4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <h3>Korea Septoria Program</h3>
+              <p>
+                NAVEK guidelines, handouts, spray application tables and
+                notices, plus reports from government and private-industry
+                experts.
+              </p>
+              <a href="#markets" class="prog-link"
+                >Explore the program
+                <svg
+                  class="arr"
+                  width="15"
+                  height="12"
+                  viewBox="0 0 16 14"
+                  fill="none"
+                >
+                  <path
+                    d="M1 7h13M9 1l5 6-5 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </article>
+            <article class="prog-card alt reveal">
+              <div class="prog-ico">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 3c-3 0-5 2-5 5 0 4 5 13 5 13s5-9 5-13c0-3-2-5-5-5z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <circle
+                    cx="12"
+                    cy="8"
+                    r="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+              <h3>Invasive Pests</h3>
+              <p>
+                Latest updates on Oriental Fruit Fly, Pierce's Disease,
+                glassy-winged sharpshooter, and others — with current quarantine
+                maps and information.
+              </p>
+              <a href="#programs" class="prog-link"
+                >Check pest updates
+                <svg
+                  class="arr"
+                  width="15"
+                  height="12"
+                  viewBox="0 0 16 14"
+                  fill="none"
+                >
+                  <path
+                    d="M1 7h13M9 1l5 6-5 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </article>
+            <article class="prog-card reveal">
+              <div class="prog-ico">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M8 12l3 3 5-6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Food Safety</h3>
+              <p>
+                Downloadable presentations, handbooks, and materials from
+                industry experts — guiding best practices for delivering safer
+                produce.
+              </p>
+              <a href="#resources" class="prog-link"
+                >Browse resources
+                <svg
+                  class="arr"
+                  width="15"
+                  height="12"
+                  viewBox="0 0 16 14"
+                  fill="none"
+                >
+                  <path
+                    d="M1 7h13M9 1l5 6-5 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </article>
+            <article class="prog-card alt reveal">
+              <div class="prog-ico">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M9 3v6l-5 9a2 2 0 002 3h12a2 2 0 002-3l-5-9V3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M7 3h10M8 14h8"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <h3>Chemical &amp; Regulatory</h3>
+              <p>
+                Guidance on crop protection tools and pesticide policy issues
+                that directly impact the California citrus industry.
+              </p>
+              <a href="#resources" class="prog-link"
+                >View regulatory info
+                <svg
+                  class="arr"
+                  width="15"
+                  height="12"
+                  viewBox="0 0 16 14"
+                  fill="none"
+                >
+                  <path
+                    d="M1 7h13M9 1l5 6-5 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPORT MARKETS -->
+      <section class="section markets" id="markets">
+        <div class="shell-wrap">
+          <div class="markets-grid">
+            <div class="reveal">
+              <span class="eyebrow-tag">Export Programs</span>
+              <h2
+                style="
+                  font-size: clamp(2rem, 3.3vw, 2.7rem);
+                  margin: 0.7rem 0 1.3rem;
+                "
+              >
+                Compliance pathways for every major market
+              </h2>
+              <div class="market-list">
+                <a href="#markets" class="market-row"
+                  ><span class="market-flag">AU</span
+                  ><span class="market-info"
+                    ><b>Australia</b
+                    ><span>Preclearance program &amp; workplans</span></span
+                  ><svg
+                    class="arr"
+                    width="18"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+                <a href="#markets" class="market-row"
+                  ><span class="market-flag">KR</span
+                  ><span class="market-info"
+                    ><b>Korea</b
+                    ><span>Septoria program &amp; NAVEK guidelines</span></span
+                  ><svg
+                    class="arr"
+                    width="18"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+                <a href="#markets" class="market-row"
+                  ><span class="market-flag">CN</span
+                  ><span class="market-info"
+                    ><b>China</b
+                    ><span
+                      >Protocol requirements &amp; Phytophthora GAPS</span
+                    ></span
+                  ><svg
+                    class="arr"
+                    width="18"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+                <a href="#markets" class="market-row"
+                  ><span class="market-flag">JP</span
+                  ><span class="market-info"
+                    ><b>Japan</b
+                    ><span
+                      >Program overview &amp; registered shippers</span
+                    ></span
+                  ><svg
+                    class="arr"
+                    width="18"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+                <a href="#markets" class="market-row"
+                  ><span class="market-flag">CL</span
+                  ><span class="market-info"
+                    ><b>Chile</b
+                    ><span>Export requirements &amp; documentation</span></span
+                  ><svg
+                    class="arr"
+                    width="18"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+                <a href="#markets" class="market-row"
+                  ><span class="market-flag">VN</span
+                  ><span class="market-info"
+                    ><b>Vietnam</b
+                    ><span
+                      >Newly opened mandarin market — March 2026</span
+                    ></span
+                  ><svg
+                    class="arr"
+                    width="18"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+              </div>
+            </div>
+            <aside class="markets-aside reveal">
+              <h3>Need market requirements fast?</h3>
+              <p>
+                Every program page includes overviews, workplans, registered
+                shippers' lists, presentations, and country tariffs — all in one
+                place.
+              </p>
+              <div class="aside-stat">
+                <b>8+</b><span>Countries with active export programs</span>
+              </div>
+              <div class="aside-stat">
+                <b>MRL</b
+                ><span>Databases for residue limits in major markets</span>
+              </div>
+              <div class="aside-stat">
+                <b>24/7</b><span>Access to advisories &amp; documentation</span>
+              </div>
+              <a
+                href="#contact"
+                class="btn btn-light"
+                style="margin-top: 1.8rem"
+                >Contact CCQC
+                <svg
+                  class="arr"
+                  width="16"
+                  height="14"
+                  viewBox="0 0 16 14"
+                  fill="none"
+                >
+                  <path
+                    d="M1 7h13M9 1l5 6-5 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section class="section" id="news">
+        <div class="shell-wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow-tag">Latest News</span>
+            <h2>Advisories and industry updates</h2>
+            <p>
+              Stay current on export protocols, objective measurement reports,
+              and regulatory changes affecting California citrus.
+            </p>
+          </div>
+          <div class="news-grid">
+            <article class="news-feature reveal">
+              <div class="nf-banner">
+                <span class="nf-tag">Featured Advisory</span>
+                <h3>Vietnam Opens Its Market to California Mandarins</h3>
+                <p class="nf-date">March 2026</p>
+              </div>
+              <div class="nf-body">
+                <p>
+                  Vietnam has opened to California mandarin exports — a
+                  significant new opportunity for the industry. CCQC's advisory
+                  library covers the protocol requirements, residue testing
+                  guidance, and documentation growers and shippers need to
+                  participate.
+                </p>
+                <a href="#news" class="btn btn-primary"
+                  >Read the Advisory
+                  <svg
+                    class="arr"
+                    width="16"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+              </div>
+            </article>
+            <div class="news-list reveal">
+              <h3>Recent postings</h3>
+              <a href="#news" class="news-item"
+                ><div class="ni-date">March 10, 2026</div>
+                <div class="ni-title">
+                  CDFA Releases 2025/26 California Valencia Orange Objective
+                  Measurement Report
+                </div></a
+              >
+              <a href="#news" class="news-item"
+                ><div class="ni-date">Feb 24, 2026</div>
+                <div class="ni-title">
+                  Advisory — China and Korea Second Copper Application
+                </div></a
+              >
+              <a href="#news" class="news-item"
+                ><div class="ni-date">Jan 7, 2026</div>
+                <div class="ni-title">
+                  Citrus MRLs in Major Export Markets
+                </div></a
+              >
+              <a href="#news" class="news-item"
+                ><div class="ni-date">Jan 5, 2026</div>
+                <div class="ni-title">Advisory — Piperonyl Butoxide MRL</div></a
+              >
+              <a href="#news" class="news-item"
+                ><div class="ni-date">Oct 8, 2025</div>
+                <div class="ni-title">
+                  Advisory — China Protocol and Phytophthora GAPS
+                </div></a
+              >
+              <div class="news-all">
+                <a href="#news" class="btn btn-ghost"
+                  >View All News
+                  <svg
+                    class="arr"
+                    width="16"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 7h13M9 1l5 6-5 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESOURCES -->
+      <section class="section resources" id="resources">
+        <div class="shell-wrap">
+          <div class="section-head center reveal">
+            <span class="eyebrow-tag">Tools &amp; References</span>
+            <h2>Resources at your fingertips</h2>
+            <p>
+              Practical references the California citrus industry uses every
+              season.
+            </p>
+          </div>
+          <div class="res-grid">
+            <article class="res-card reveal">
+              <div class="res-ico">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="16"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M3 9h18M8 4v16"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+              <h4>MRL Databases</h4>
+              <p>
+                Maximum residue limits for citrus across major export markets.
+              </p>
+              <a href="#resources">Open databases →</a>
+            </article>
+            <article class="res-card reveal">
+              <div class="res-ico">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M14 3v6h6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h4>Crop Profile &amp; PMSP</h4>
+              <p>
+                Crop profile and the Pest Management Strategic Plan for citrus.
+              </p>
+              <a href="#resources">View documents →</a>
+            </article>
+            <article class="res-card reveal">
+              <div class="res-ico">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M3 21V9l9-6 9 6v12"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9 21v-7h6v7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h4>Statistics</h4>
+              <p>
+                Production data and objective measurement reports for California
+                citrus.
+              </p>
+              <a href="#resources">See statistics →</a>
+            </article>
+            <article class="res-card reveal">
+              <div class="res-ico">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <circle
+                    cx="11"
+                    cy="11"
+                    r="7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M21 21l-5-5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <h4>Other Resources</h4>
+              <p>
+                Additional links, references, and partner materials for the
+                industry.
+              </p>
+              <a href="#resources">Explore more →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-band">
+        <div class="shell-wrap">
+          <div class="cta-inner reveal">
+            <h2>Have a question about citrus compliance?</h2>
+            <p>
+              Whether you're navigating a new export market or need guidance on
+              residue standards, the CCQC team is here to help the California
+              citrus industry stay ahead.
+            </p>
+            <a href="#contact" class="btn btn-primary"
+              >Contact the Council
+              <svg
+                class="arr"
+                width="16"
+                height="14"
+                viewBox="0 0 16 14"
+                fill="none"
+              >
+                <path
+                  d="M1 7h13M9 1l5 6-5 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" id="contact">
+      <div class="shell-wrap">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a
+              href="#main"
+              class="brand"
+              aria-label="California Citrus Quality Council home"
+            >
+              <img
+                src="https://ccqc.org/wp-content/uploads/CCQC-Globe-logo-web.png"
+                alt="California Citrus Quality Council logo"
+                onerror="
+                  this.style.display = 'none';
+                  this.nextElementSibling.style.display = 'block';
+                "
+              />
+              <svg
+                viewBox="0 0 320 300"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                style="display: none"
+              >
+                <defs>
+                  <linearGradient
+                    id="rindF"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stop-color="#FBC02D" />
+                    <stop offset="55%" stop-color="#F5A623" />
+                    <stop offset="100%" stop-color="#E8821E" />
+                  </linearGradient>
+                  <linearGradient
+                    id="leafF"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stop-color="#7A9A3E" />
+                    <stop offset="100%" stop-color="#4F6B22" />
+                  </linearGradient>
+                  <clipPath id="globeF">
+                    <circle cx="100" cy="170" r="92" />
+                  </clipPath>
+                </defs>
+                <path
+                  d="M150 70 C150 30 196 18 232 26 C214 64 178 84 150 78 Z"
+                  fill="url(#leafF)"
+                />
+                <path
+                  d="M150 70 C150 38 124 18 92 22 C108 56 132 78 150 76 Z"
+                  fill="url(#leafF)"
+                  opacity="0.92"
+                />
+                <circle cx="100" cy="170" r="92" fill="url(#rindF)" />
+                <g clip-path="url(#globeF)">
+                  <g fill="#FFFFFF" opacity="0.78">
+                    <path d="M-20 96 q120 -34 240 0 v22 q-120 -34 -240 0 Z" />
+                    <path d="M-20 150 q120 -40 240 0 v24 q-120 -40 -240 0 Z" />
+                    <path d="M-20 208 q120 -40 240 0 v24 q-120 -40 -240 0 Z" />
+                    <path d="M-20 262 q120 -36 240 0 v22 q-120 -36 -240 0 Z" />
+                  </g>
+                  <g fill="#D9701A" opacity="0.55">
+                    <path d="M-20 124 q120 -38 240 0 v14 q-120 -38 -240 0 Z" />
+                    <path d="M-20 180 q120 -42 240 0 v14 q-120 -42 -240 0 Z" />
+                    <path d="M-20 236 q120 -40 240 0 v14 q-120 -40 -240 0 Z" />
+                  </g>
+                </g>
+              </svg>
+              <span class="brand-text">
+                <span class="bt-name">California Citrus</span>
+                <span class="bt-sub">Quality Council</span>
+              </span>
+            </a>
+            <p>
+              A nonprofit corporation supported by California citrus growers —
+              ensuring California citrus meets domestic and international
+              regulatory standards since 1967.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Programs</h4>
+            <ul>
+              <li><a href="#markets">Export Programs</a></li>
+              <li><a href="#markets">Korea Septoria</a></li>
+              <li><a href="#programs">Crop Health</a></li>
+              <li><a href="#programs">Invasive Pests</a></li>
+              <li><a href="#programs">Food Safety</a></li>
+              <li><a href="#programs">Chemical &amp; Regulatory</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#news">Advisories</a></li>
+              <li><a href="#resources">MRL Databases</a></li>
+              <li><a href="#resources">Statistics</a></li>
+              <li><a href="#news">Recent Postings</a></li>
+              <li><a href="#news">Meetings &amp; Calendar</a></li>
+              <li><a href="#resources">Other Resources</a></li>
+            </ul>
+          </div>
+          <div class="footer-col footer-contact">
+            <h4>Contact</h4>
+            <p>
+              <b>California Citrus Quality Council</b><br />853 Lincoln Way,
+              Suite 206<br />Auburn, CA 95603
+            </p>
+            <p>
+              Phone: <a href="tel:+15308851894">(530) 885-1894</a><br />Fax:
+              (530) 885-1546
+            </p>
+            <p>
+              James R. Cranney, President<br /><a
+                href="mailto:jcranney@ccqc.org"
+                >jcranney@ccqc.org</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >&copy; 2018&ndash;2026 California Citrus Quality Council. All
+            rights reserved.</span
+          >
+          <div class="fb-links">
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#news">Press Releases</a>
+            <a href="#main">Back to top</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Header shadow on scroll
+      const header = document.getElementById("siteHeader");
+      window.addEventListener(
+        "scroll",
+        () => {
+          header.classList.toggle("scrolled", window.scrollY > 10);
+        },
+        { passive: true },
+      );
+
+      // Mobile menu
+      const toggle = document.getElementById("menuToggle");
+      const panel = document.getElementById("mobilePanel");
+      const overlay = document.getElementById("mobileOverlay");
+      function closeMenu() {
+        toggle.classList.remove("open");
+        panel.classList.remove("open");
+        overlay.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+      toggle.addEventListener("click", () => {
+        const open = panel.classList.toggle("open");
+        toggle.classList.toggle("open", open);
+        overlay.classList.toggle("open", open);
+        toggle.setAttribute("aria-expanded", open);
+        document.body.style.overflow = open ? "hidden" : "";
+      });
+      overlay.addEventListener("click", closeMenu);
+      panel
+        .querySelectorAll("a")
+        .forEach((a) => a.addEventListener("click", closeMenu));
+
+      // Mobile accordion
+      panel.querySelectorAll(".m-group>button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const g = btn.parentElement;
+          const sub = g.querySelector(".m-sub");
+          const open = g.classList.toggle("open");
+          sub.style.maxHeight = open ? sub.scrollHeight + "px" : 0;
+        });
+      });
+
+      // Scroll reveal
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".reveal").forEach((el, i) => {
+        el.style.transitionDelay = (i % 4) * 0.07 + "s";
+        io.observe(el);
+      });
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>

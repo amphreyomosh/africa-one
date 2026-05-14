@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>California Black Chamber of Commerce | Empowering Black Business in California</title>
+<meta name="description" content="The California Black Chamber of Commerce is the largest African American non-profit business organization in the state, supporting small and emerging businesses through advocacy, education, and access to capital." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Brand palette - rooted in the original red, modernized with deep ink, warm cream, and gold accent */
+    --calbcc-red: #B8262C;
+    --calbcc-red-dark: #8E1A1F;
+    --calbcc-red-deep: #5C1014;
+    --calbcc-ink: #0E1116;
+    --calbcc-charcoal: #1F242C;
+    --calbcc-slate: #3C4452;
+    --calbcc-muted: #6B7280;
+    --calbcc-line: #E5E2DC;
+    --calbcc-cream: #F6F2EA;
+    --calbcc-cream-warm: #EFE9DC;
+    --calbcc-paper: #FBF8F2;
+    --calbcc-white: #FFFFFF;
+    --calbcc-gold: #C8A24A;
+    --calbcc-gold-light: #E2C682;
+
+    --display: 'Fraunces', 'Times New Roman', serif;
+    --body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+    --shell-max: 1280px;
+    --gutter: clamp(20px, 4vw, 40px);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--calbcc-ink);
+    background: var(--calbcc-paper);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .calbcc-shell {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* ============ ACCESSIBILITY ============ */
+  .calbcc-skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--calbcc-ink);
+    color: var(--calbcc-white);
+    padding: 12px 18px;
+    z-index: 9999;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+  }
+  .calbcc-skip:focus { left: 0; }
+  :focus-visible {
+    outline: 3px solid var(--calbcc-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ============ TOP UTILITY BAR ============ */
+  .calbcc-topbar {
+    background: var(--calbcc-ink);
+    color: var(--calbcc-cream);
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .calbcc-topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    flex-wrap: wrap;
+  }
+  .calbcc-topbar-left {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    min-width: 0;
+  }
+  .calbcc-topbar-left a:nth-child(n+2) { display: none; }
+  .calbcc-topbar-left a {
+    color: var(--calbcc-cream);
+    opacity: .85;
+    transition: opacity .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .calbcc-topbar-left a:hover { opacity: 1; }
+  .calbcc-topbar-right {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .calbcc-social-link {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.06);
+    color: var(--calbcc-cream);
+    transition: background .2s, transform .2s;
+  }
+  .calbcc-social-link:hover { background: var(--calbcc-red); transform: translateY(-1px); }
+  .calbcc-social-link svg { width: 13px; height: 13px; }
+
+  /* ============ HEADER & NAV ============ */
+  .calbcc-header {
+    background: var(--calbcc-white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--calbcc-line);
+    backdrop-filter: blur(8px);
+  }
+  .calbcc-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px 0;
+  }
+  .calbcc-brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--calbcc-ink);
+  }
+  .calbcc-brand-logo {
+    height: 56px;
+    width: auto;
+    display: block;
+  }
+
+  .calbcc-nav {
+    display: none;
+    align-items: center;
+    gap: 4px;
+  }
+  .calbcc-nav-item {
+    position: relative;
+  }
+  .calbcc-nav-link {
+    padding: 10px 14px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--calbcc-charcoal);
+    border-radius: 8px;
+    transition: background .2s, color .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  .calbcc-nav-link:hover { background: var(--calbcc-cream); color: var(--calbcc-red); }
+  .calbcc-nav-link svg { width: 11px; height: 11px; opacity: .6; }
+
+  .calbcc-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 240px;
+    background: var(--calbcc-white);
+    border: 1px solid var(--calbcc-line);
+    border-radius: var(--radius-md);
+    padding: 8px;
+    box-shadow: 0 20px 40px -10px rgba(14,17,22,.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all .2s var(--ease);
+  }
+  .calbcc-nav-item:hover .calbcc-dropdown,
+  .calbcc-nav-item:focus-within .calbcc-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .calbcc-dropdown a {
+    display: block;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--calbcc-charcoal);
+    border-radius: 6px;
+    transition: background .15s, color .15s;
+  }
+  .calbcc-dropdown a:hover { background: var(--calbcc-cream); color: var(--calbcc-red); }
+
+  .calbcc-header-cta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .calbcc-header-cta .calbcc-btn:not(.calbcc-burger) {
+    display: none;
+  }
+  .calbcc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    font-size: 14.5px;
+    font-weight: 600;
+    border-radius: 100px;
+    border: 1.5px solid transparent;
+    transition: all .25s var(--ease);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .calbcc-btn-primary {
+    background: var(--calbcc-red);
+    color: var(--calbcc-white);
+    border-color: var(--calbcc-red);
+  }
+  .calbcc-btn-primary:hover {
+    background: var(--calbcc-red-dark);
+    border-color: var(--calbcc-red-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px -8px rgba(184,38,44,.5);
+  }
+  .calbcc-btn-ghost {
+    background: transparent;
+    color: var(--calbcc-ink);
+    border-color: var(--calbcc-ink);
+  }
+  .calbcc-btn-ghost:hover { background: var(--calbcc-ink); color: var(--calbcc-white); }
+  .calbcc-btn-light {
+    background: var(--calbcc-white);
+    color: var(--calbcc-ink);
+    border-color: var(--calbcc-white);
+  }
+  .calbcc-btn-light:hover { transform: translateY(-1px); box-shadow: 0 10px 22px -8px rgba(0,0,0,.3); }
+  .calbcc-btn-outline-light {
+    background: transparent;
+    color: var(--calbcc-white);
+    border-color: rgba(255,255,255,.4);
+  }
+  .calbcc-btn-outline-light:hover { background: var(--calbcc-white); color: var(--calbcc-ink); border-color: var(--calbcc-white); }
+
+  .calbcc-burger {
+    display: flex;
+    background: none;
+    border: none;
+    width: 44px;
+    height: 44px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    padding: 0;
+  }
+  .calbcc-burger span {
+    width: 22px;
+    height: 2px;
+    background: var(--calbcc-ink);
+    transition: transform .25s, opacity .25s;
+  }
+  .calbcc-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .calbcc-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .calbcc-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ============ HERO ============ */
+  .calbcc-hero {
+    position: relative;
+    background: var(--calbcc-ink);
+    color: var(--calbcc-white);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .calbcc-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 80% 20%, rgba(184,38,44,.35), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 10% 90%, rgba(200,162,74,.18), transparent 60%);
+    z-index: 0;
+  }
+  .calbcc-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0);
+    background-size: 32px 32px;
+    z-index: 0;
+    mask: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .calbcc-hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: stretch;
+    padding: 44px 0 52px;
+  }
+  .calbcc-hero-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(32px, 8.5vw, 44px);
+    line-height: 1.06;
+    letter-spacing: -1px;
+    margin: 0 0 20px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .calbcc-hero-title-line {
+    display: block;
+  }
+  .calbcc-hero-lead {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: rgba(255,255,255,.78);
+    max-width: 540px;
+    margin: 0 0 28px;
+  }
+  .calbcc-hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .calbcc-hero-actions .calbcc-btn {
+    width: 100%;
+  }
+
+  .calbcc-hero-visual {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--calbcc-charcoal);
+    box-shadow: 0 20px 44px -20px rgba(0,0,0,.5);
+  }
+  .calbcc-hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .calbcc-hero-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(14,17,22,.7) 100%);
+  }
+  .calbcc-hero-visual-card {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    right: 14px;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+    color: var(--calbcc-ink);
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .calbcc-hero-visual-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--calbcc-red);
+    color: var(--calbcc-white);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .calbcc-hero-visual-card-icon svg { width: 19px; height: 19px; }
+  .calbcc-hero-visual-card-title {
+    font-weight: 700;
+    font-size: 13.5px;
+    margin: 0 0 2px;
+    line-height: 1.25;
+  }
+  .calbcc-hero-visual-card-sub {
+    font-size: 11.5px;
+    color: var(--calbcc-muted);
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .calbcc-hero-stats {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 28px 0;
+  }
+  .calbcc-hero-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 18px;
+  }
+  .calbcc-stat-num {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(26px, 8vw, 34px);
+    line-height: 1;
+    color: var(--calbcc-white);
+    letter-spacing: -1px;
+  }
+  .calbcc-stat-num span { color: var(--calbcc-gold); }
+  .calbcc-stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+
+  /* ============ SECTION BASE ============ */
+  .calbcc-section {
+    padding: clamp(70px, 9vw, 120px) 0;
+  }
+  .calbcc-section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .calbcc-section-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(32px, 4.4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin: 0;
+    max-width: 720px;
+  }
+  .calbcc-section-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--calbcc-red);
+  }
+  .calbcc-section-lead {
+    font-size: 17px;
+    color: var(--calbcc-slate);
+    max-width: 420px;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ============ ABOUT SECTION ============ */
+  .calbcc-about {
+    background: var(--calbcc-cream);
+  }
+  .calbcc-about-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .calbcc-about-visual {
+    position: relative;
+    padding: 12px 14px 14px 12px;
+  }
+  .calbcc-about-img-main {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--calbcc-charcoal);
+  }
+  .calbcc-about-img-main img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .calbcc-about-img-accent {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 44%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 6px solid var(--calbcc-cream);
+    background: var(--calbcc-red);
+  }
+  .calbcc-about-img-accent img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .calbcc-about-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--calbcc-red);
+    color: var(--calbcc-white);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 14px;
+    box-shadow: 0 12px 24px -8px rgba(184,38,44,.5);
+  }
+  .calbcc-about-badge-num {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1;
+  }
+  .calbcc-about-badge-text {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .calbcc-about-content p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--calbcc-slate);
+    margin: 0 0 22px;
+  }
+  .calbcc-about-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .calbcc-pillar {
+    padding: 22px;
+    background: var(--calbcc-white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--calbcc-line);
+  }
+  .calbcc-pillar-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--calbcc-red);
+    color: var(--calbcc-white);
+    display: grid;
+    place-items: center;
+    margin-bottom: 14px;
+  }
+  .calbcc-pillar-icon svg { width: 20px; height: 20px; }
+  .calbcc-pillar-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0 0 4px;
+  }
+  .calbcc-pillar-text {
+    font-size: 13.5px;
+    color: var(--calbcc-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ============ PROGRAMS ============ */
+  .calbcc-programs {
+    background: var(--calbcc-paper);
+  }
+  .calbcc-programs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .calbcc-program-card {
+    background: var(--calbcc-white);
+    border: 1px solid var(--calbcc-line);
+    border-radius: var(--radius-lg);
+    padding: 32px 30px;
+    transition: all .3s var(--ease);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .calbcc-program-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--calbcc-red);
+    box-shadow: 0 24px 48px -16px rgba(14,17,22,.12);
+  }
+  .calbcc-program-card-num {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--calbcc-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .calbcc-program-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--calbcc-cream);
+    color: var(--calbcc-red);
+    display: grid;
+    place-items: center;
+    margin-bottom: 26px;
+    transition: all .3s var(--ease);
+  }
+  .calbcc-program-card:hover .calbcc-program-icon {
+    background: var(--calbcc-red);
+    color: var(--calbcc-white);
+  }
+  .calbcc-program-icon svg { width: 26px; height: 26px; }
+  .calbcc-program-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    margin: 0 0 12px;
+  }
+  .calbcc-program-desc {
+    color: var(--calbcc-slate);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 0 0 24px;
+    flex: 1;
+  }
+  .calbcc-program-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--calbcc-red);
+    transition: gap .2s;
+  }
+  .calbcc-program-card:hover .calbcc-program-link { gap: 12px; }
+  .calbcc-program-link svg { width: 14px; height: 14px; }
+
+  /* ============ FEATURED CTA (Mixer) ============ */
+  .calbcc-featured {
+    background: var(--calbcc-ink);
+    color: var(--calbcc-white);
+    position: relative;
+    overflow: hidden;
+  }
+  .calbcc-featured::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 50%, rgba(184,38,44,.4), transparent 60%);
+  }
+  .calbcc-featured-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 32px;
+  }
+  .calbcc-featured-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--calbcc-gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .calbcc-featured-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(32px, 4.4vw, 54px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin: 0 0 24px;
+  }
+  .calbcc-featured-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px 0 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,.12);
+  }
+  .calbcc-featured-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .calbcc-featured-meta-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.08);
+    display: grid;
+    place-items: center;
+    color: var(--calbcc-gold);
+    flex-shrink: 0;
+  }
+  .calbcc-featured-meta-icon svg { width: 18px; height: 18px; }
+  .calbcc-featured-meta-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,.55);
+    font-weight: 500;
+  }
+  .calbcc-featured-meta-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--calbcc-white);
+  }
+  .calbcc-featured-desc {
+    font-size: 17px;
+    color: rgba(255,255,255,.78);
+    line-height: 1.7;
+    margin: 0 0 32px;
+    max-width: 520px;
+  }
+  .calbcc-featured-visual {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--calbcc-red);
+  }
+  .calbcc-featured-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  /* ============ EVENTS / NEWS ============ */
+  .calbcc-events-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .calbcc-event-feature {
+    background: var(--calbcc-white);
+    border: 1px solid var(--calbcc-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .3s var(--ease);
+  }
+  .calbcc-event-feature:hover {
+    box-shadow: 0 24px 48px -16px rgba(14,17,22,.12);
+  }
+  .calbcc-event-feature-img {
+    background: var(--calbcc-ink);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+  .calbcc-event-feature-img img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .calbcc-event-feature-body {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .calbcc-event-date {
+    display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--calbcc-red);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .calbcc-event-feature-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 0 0 14px;
+  }
+  .calbcc-event-feature-desc {
+    color: var(--calbcc-slate);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 24px;
+  }
+
+  .calbcc-news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .calbcc-news-item {
+    background: var(--calbcc-white);
+    border: 1px solid var(--calbcc-line);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    transition: all .25s var(--ease);
+    display: block;
+  }
+  .calbcc-news-item:hover {
+    border-color: var(--calbcc-red);
+    transform: translateX(4px);
+  }
+  .calbcc-news-cat {
+    display: inline-block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    color: var(--calbcc-muted);
+    margin-bottom: 10px;
+  }
+  .calbcc-news-cat::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--calbcc-red);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .calbcc-news-title {
+    font-weight: 600;
+    font-size: 15.5px;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--calbcc-ink);
+  }
+
+  /* ============ MEMBERSHIP CTA ============ */
+  .calbcc-membership {
+    background: var(--calbcc-cream-warm);
+    position: relative;
+    overflow: hidden;
+  }
+  .calbcc-membership-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .calbcc-membership-content {
+    padding: 0;
+  }
+  .calbcc-membership-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(32px, 4.4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin: 0 0 24px;
+  }
+  .calbcc-membership-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--calbcc-red);
+  }
+  .calbcc-membership-desc {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--calbcc-slate);
+    margin: 0 0 32px;
+    max-width: 540px;
+  }
+  .calbcc-membership-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .calbcc-membership-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--calbcc-ink);
+  }
+  .calbcc-membership-benefits svg {
+    width: 18px;
+    height: 18px;
+    color: var(--calbcc-red);
+    flex-shrink: 0;
+  }
+  .calbcc-membership-visual {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--calbcc-red);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .calbcc-membership-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+
+  /* ============ IMPACT / TESTIMONIAL ============ */
+  .calbcc-impact {
+    background: var(--calbcc-paper);
+  }
+  .calbcc-impact-card {
+    background: var(--calbcc-ink);
+    color: var(--calbcc-white);
+    border-radius: var(--radius-xl);
+    padding: clamp(50px, 7vw, 90px) clamp(40px, 6vw, 80px);
+    position: relative;
+    overflow: hidden;
+  }
+  .calbcc-impact-card::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    right: 40px;
+    font-family: var(--display);
+    font-size: 260px;
+    line-height: 1;
+    color: var(--calbcc-red);
+    opacity: .25;
+    font-weight: 600;
+  }
+  .calbcc-impact-quote {
+    position: relative;
+    z-index: 2;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+    margin: 0 0 36px;
+    max-width: 880px;
+    font-style: italic;
+  }
+  .calbcc-impact-author {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 2;
+  }
+  .calbcc-impact-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--calbcc-red);
+    color: var(--calbcc-white);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .calbcc-impact-avatar svg {
+    width: 24px;
+    height: 24px;
+  }
+  .calbcc-impact-author-name {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 2px;
+  }
+  .calbcc-impact-author-role {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    margin: 0;
+  }
+
+  /* ============ PARTNERS ============ */
+  .calbcc-partners {
+    background: var(--calbcc-white);
+    border-top: 1px solid var(--calbcc-line);
+    border-bottom: 1px solid var(--calbcc-line);
+  }
+  .calbcc-partners-head {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .calbcc-partners-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--calbcc-muted);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .calbcc-partners-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(26px, 3.4vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin: 0;
+  }
+  .calbcc-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--calbcc-line);
+    border-left: 1px solid var(--calbcc-line);
+  }
+  .calbcc-partner {
+    aspect-ratio: 3 / 2;
+    border-right: 1px solid var(--calbcc-line);
+    border-bottom: 1px solid var(--calbcc-line);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    transition: background .25s;
+    text-align: center;
+  }
+  .calbcc-partner:hover { background: var(--calbcc-cream); }
+  .calbcc-partner span {
+    font-family: var(--display);
+    font-weight: 600;
+    color: var(--calbcc-charcoal);
+    font-size: 15px;
+    letter-spacing: -0.3px;
+  }
+
+  /* ============ KDEE STRIP ============ */
+  .calbcc-kdee {
+    background: var(--calbcc-red);
+    color: var(--calbcc-white);
+    padding: 50px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .calbcc-kdee::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 50%, rgba(0,0,0,.25), transparent 60%);
+  }
+  .calbcc-kdee-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  .calbcc-kdee-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+  .calbcc-kdee-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    border: 2px solid rgba(255,255,255,.3);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .calbcc-kdee-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.3);
+    animation: calbcc-pulse 2s infinite;
+  }
+  @keyframes calbcc-pulse {
+    0% { transform: scale(1); opacity: .8; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+  .calbcc-kdee-icon svg { width: 26px; height: 26px; color: var(--calbcc-white); }
+  .calbcc-kdee-text {
+    line-height: 1.3;
+  }
+  .calbcc-kdee-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: .8;
+    font-weight: 600;
+  }
+  .calbcc-kdee-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(22px, 2.6vw, 30px);
+    margin: 4px 0 0;
+    letter-spacing: -0.5px;
+  }
+  .calbcc-kdee-sub {
+    font-size: 14px;
+    opacity: .85;
+    margin: 4px 0 0;
+  }
+
+  /* ============ FOOTER ============ */
+  .calbcc-footer {
+    background: var(--calbcc-ink);
+    color: var(--calbcc-cream);
+    padding: 80px 0 32px;
+  }
+  .calbcc-footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    margin-bottom: 40px;
+  }
+  .calbcc-footer-brand {
+    margin-bottom: 24px;
+  }
+  .calbcc-footer-logo {
+    height: 64px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+  .calbcc-footer-about {
+    color: rgba(255,255,255,.6);
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin: 0 0 24px;
+    max-width: 380px;
+  }
+  .calbcc-footer-social {
+    display: flex;
+    gap: 10px;
+  }
+  .calbcc-footer-social .calbcc-social-link {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .calbcc-footer-social .calbcc-social-link svg { width: 15px; height: 15px; }
+
+  .calbcc-footer-col h4 {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--calbcc-white);
+    margin: 0 0 24px;
+  }
+  .calbcc-footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .calbcc-footer-col a {
+    color: rgba(255,255,255,.65);
+    font-size: 14.5px;
+    transition: color .2s;
+  }
+  .calbcc-footer-col a:hover { color: var(--calbcc-gold); }
+
+  .calbcc-footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .calbcc-footer-contact-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    color: rgba(255,255,255,.65);
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .calbcc-footer-contact-item svg {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    color: var(--calbcc-red);
+    flex-shrink: 0;
+  }
+  .calbcc-footer-contact-item a:hover { color: var(--calbcc-gold); }
+
+  .calbcc-footer-bottom {
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,.5);
+  }
+  .calbcc-footer-bottom-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .calbcc-footer-bottom-links a:hover { color: var(--calbcc-gold); }
+
+  /* ============ MOBILE NAV ============ */
+  .calbcc-mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--calbcc-white);
+    z-index: 99;
+    padding: 100px 24px 40px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform .3s var(--ease);
+  }
+  .calbcc-mobile-menu.is-open { transform: translateX(0); }
+  .calbcc-mobile-menu nav { display: flex; flex-direction: column; gap: 4px; }
+  .calbcc-mobile-menu nav > a,
+  .calbcc-mobile-menu details > summary {
+    padding: 14px 0;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--calbcc-ink);
+    border-bottom: 1px solid var(--calbcc-line);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .calbcc-mobile-menu details > summary::-webkit-details-marker { display: none; }
+  .calbcc-mobile-menu details[open] > summary svg { transform: rotate(180deg); }
+  .calbcc-mobile-menu details > summary svg { transition: transform .2s; }
+  .calbcc-mobile-menu details > div { padding: 8px 0 16px 12px; display: flex; flex-direction: column; gap: 8px; }
+  .calbcc-mobile-menu details > div a { padding: 8px 0; font-size: 15px; color: var(--calbcc-slate); }
+  .calbcc-mobile-menu-cta {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .calbcc-mobile-menu-cta .calbcc-btn { width: 100%; }
+
+  #glad-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  transition: transform .3s ease, opacity .3s ease;
+}
+#glad-header.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+.calbcc-header.glad-hidden { top: 0; }
+.glad-inner {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.glad-logo img { height: 28px; width: auto; display: block; }
+.glad-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  background: #1e3a6e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid #1e3a6e;
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+}
+.glad-back-btn:hover { background: #142d57; border-color: #142d57; transform: translateX(-2px); }
+@media (max-width: 480px) { .btn-label { display: none; } .glad-back-btn { padding: 7px 10px; } }
+
+  /* ============ RESPONSIVE — MOBILE-FIRST (min-width) ============ */
+
+  /* Large phones / small tablets */
+  @media (min-width: 600px) {
+    .calbcc-topbar-left a:nth-child(n+2) { display: inline-flex; }
+    .calbcc-topbar-left { gap: 24px; }
+    .calbcc-hero-inner { padding: 60px 0 68px; }
+    .calbcc-hero-title { font-size: clamp(40px, 6.5vw, 52px); }
+    .calbcc-hero-lead { font-size: 16.5px; }
+    .calbcc-hero-actions { flex-direction: row; flex-wrap: wrap; }
+    .calbcc-hero-actions .calbcc-btn { width: auto; }
+    .calbcc-hero-stats-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .calbcc-programs-grid { grid-template-columns: repeat(2, 1fr); }
+    .calbcc-about-pillars { grid-template-columns: repeat(2, 1fr); }
+    .calbcc-membership-benefits { grid-template-columns: repeat(2, 1fr); }
+    .calbcc-partners-grid { grid-template-columns: repeat(3, 1fr); }
+    .calbcc-footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) {
+    .calbcc-about-grid { gap: 56px; }
+    .calbcc-event-feature { grid-template-columns: 1fr; }
+    .calbcc-event-feature-img { aspect-ratio: 16 / 9; }
+  }
+
+  /* Desktop */
+  @media (min-width: 1025px) {
+    .calbcc-nav { display: flex; }
+    .calbcc-header-cta .calbcc-btn:not(.calbcc-burger) { display: inline-flex; }
+    .calbcc-burger { display: none; }
+
+    .calbcc-hero-inner {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: clamp(72px, 9vw, 120px) 0 clamp(80px, 10vw, 130px);
+    }
+    .calbcc-hero-title { font-size: clamp(52px, 5vw, 76px); letter-spacing: -2px; line-height: 1.02; }
+    .calbcc-hero-lead { font-size: 18px; }
+    .calbcc-hero-visual { border-radius: var(--radius-xl); box-shadow: 0 30px 60px -20px rgba(0,0,0,.5); }
+    .calbcc-stat-num { font-size: clamp(32px, 3.4vw, 42px); }
+
+    .calbcc-section-head { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; margin-bottom: 60px; }
+
+    .calbcc-about-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 80px; align-items: center; }
+    .calbcc-about-visual { padding: 0; }
+    .calbcc-about-img-accent { right: -20px; bottom: -28px; width: 48%; border-width: 8px; }
+    .calbcc-about-badge { top: -18px; left: -18px; width: 124px; height: 124px; padding: 16px; }
+    .calbcc-about-badge-num { font-size: 30px; }
+
+    .calbcc-programs-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .calbcc-featured-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .calbcc-featured-meta { flex-direction: row; flex-wrap: wrap; gap: 32px; }
+
+    .calbcc-events-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 32px; align-items: start; }
+    .calbcc-event-feature { display: grid; grid-template-columns: 1fr 1fr; }
+    .calbcc-event-feature-body { padding: 36px 32px; }
+
+    .calbcc-membership-inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+    .calbcc-membership-content { padding: clamp(20px, 4vw, 56px) 0; }
+    .calbcc-membership-visual { aspect-ratio: auto; align-self: stretch; min-height: 460px; }
+
+    .calbcc-partners-grid { grid-template-columns: repeat(6, 1fr); }
+
+    .calbcc-footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .calbcc-footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+      flex-wrap: wrap;
+    }
+  }
+
+  /* Reveal animations */
+  .calbcc-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .calbcc-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .calbcc-reveal { opacity: 1; transform: none; transition: none; }
+    * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="calbcc-skip">Skip to main content</a>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
+      <img src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w" alt="GLAD Technology Digital Services" />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#fff" stroke-width="2.2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- Top Utility Bar -->
+<div class="calbcc-topbar">
+  <div class="calbcc-shell calbcc-topbar-inner">
+    <div class="calbcc-topbar-left">
+      <a href="tel:9164678878">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        916-467-8878
+      </a>
+      <a href="mailto:cbcc@calbcc.org">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        cbcc@calbcc.org
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Sacramento &amp; Los Angeles Offices
+      </a>
+    </div>
+    <div class="calbcc-topbar-right">
+      <a href="https://www.facebook.com/Calbcc" class="calbcc-social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://twitter.com/calbcc" class="calbcc-social-link" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/california-black-chamber-of-commerce-foundation-inc/" class="calbcc-social-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://www.youtube.com/channel/UCDEYGR4ACuYvPDJtgxDUMSw" class="calbcc-social-link" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="var(--calbcc-ink)"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="calbcc-header">
+  <div class="calbcc-shell calbcc-header-inner">
+    <a href="/" class="calbcc-brand" aria-label="California Black Chamber of Commerce - Home">
+      <img src="https://growthzonecmsprodeastus.azureedge.net/sites/506/2017/12/CA-Black-Chamber-of-Commerce-Logo-h100.png" alt="California Black Chamber of Commerce" class="calbcc-brand-logo" />
+    </a>
+
+    <nav class="calbcc-nav" aria-label="Primary">
+      <div class="calbcc-nav-item">
+        <button class="calbcc-nav-link" aria-haspopup="true">About <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="calbcc-dropdown" role="menu">
+          <a href="#about">About Us</a>
+          <a href="#">President &amp; CEO</a>
+          <a href="#">Board of Directors</a>
+          <a href="#partners">Strategic Partners</a>
+          <a href="#">Our Staff</a>
+        </div>
+      </div>
+      <div class="calbcc-nav-item">
+        <button class="calbcc-nav-link" aria-haspopup="true">Members <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="calbcc-dropdown" role="menu">
+          <a href="#membership">Membership Benefits</a>
+          <a href="#">Member Application</a>
+          <a href="#">Member Directory</a>
+          <a href="#">Member-to-Member Deals</a>
+          <a href="#">Member Login</a>
+        </div>
+      </div>
+      <div class="calbcc-nav-item">
+        <button class="calbcc-nav-link" aria-haspopup="true">Programs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="calbcc-dropdown" role="menu">
+          <a href="#programs">SCALE Capital Access</a>
+          <a href="#">Financial Literacy Group</a>
+          <a href="#">LA Wildfire Recovery</a>
+          <a href="#">A Time for Unity</a>
+          <a href="#">Job Postings</a>
+        </div>
+      </div>
+      <a href="#news" class="calbcc-nav-link">News</a>
+      <a href="#events" class="calbcc-nav-link">Events</a>
+      <a href="#kdee" class="calbcc-nav-link">97.5 KDEE</a>
+      <a href="#contact" class="calbcc-nav-link">Contact</a>
+    </nav>
+
+    <div class="calbcc-header-cta">
+      <a href="#" class="calbcc-btn calbcc-btn-ghost">Member Login</a>
+      <a href="#membership" class="calbcc-btn calbcc-btn-primary">Join Today</a>
+      <button class="calbcc-burger" id="calbcc-burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="calbcc-mobile-menu" id="calbcc-mobile-menu" role="dialog" aria-label="Mobile menu">
+  <nav>
+    <details>
+      <summary>About <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div>
+        <a href="#about">About Us</a>
+        <a href="#">President &amp; CEO</a>
+        <a href="#">Board of Directors</a>
+        <a href="#partners">Strategic Partners</a>
+        <a href="#">Our Staff</a>
+      </div>
+    </details>
+    <details>
+      <summary>Members <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div>
+        <a href="#membership">Membership Benefits</a>
+        <a href="#">Member Application</a>
+        <a href="#">Member Directory</a>
+        <a href="#">Member-to-Member Deals</a>
+      </div>
+    </details>
+    <details>
+      <summary>Programs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div>
+        <a href="#programs">SCALE Capital Access</a>
+        <a href="#">Financial Literacy Group</a>
+        <a href="#">LA Wildfire Recovery</a>
+        <a href="#">A Time for Unity</a>
+        <a href="#">Job Postings</a>
+      </div>
+    </details>
+    <a href="#news">News</a>
+    <a href="#events">Events</a>
+    <a href="#kdee">97.5 KDEE</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="calbcc-mobile-menu-cta">
+    <a href="#" class="calbcc-btn calbcc-btn-ghost">Member Login</a>
+    <a href="#membership" class="calbcc-btn calbcc-btn-primary">Join Today</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="calbcc-hero">
+  <div class="calbcc-shell calbcc-hero-inner">
+    <div>
+      <h1 class="calbcc-hero-title">
+        <span class="calbcc-hero-title-line">Building wealth.</span>
+        <span class="calbcc-hero-title-line">Building business.</span>
+        <span class="calbcc-hero-title-line">Building California.</span>
+      </h1>
+      <p class="calbcc-hero-lead">
+        The California Black Chamber of Commerce is the largest African American non-profit business organization in the state, representing hundreds of small businesses, affiliates, and local chambers from Sacramento to Los Angeles and everywhere in between.
+      </p>
+      <div class="calbcc-hero-actions">
+        <a href="#membership" class="calbcc-btn calbcc-btn-light">
+          Become a Member
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#programs" class="calbcc-btn calbcc-btn-outline-light">Explore Programs</a>
+      </div>
+    </div>
+
+    <div class="calbcc-hero-visual">
+      <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" alt="Black business owner in their storefront" />
+      <div class="calbcc-hero-visual-overlay"></div>
+      <div class="calbcc-hero-visual-card">
+        <div class="calbcc-hero-visual-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div>
+          <p class="calbcc-hero-visual-card-title">SCALE Capital Access Program</p>
+          <p class="calbcc-hero-visual-card-sub">$25.3M in funding now available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="calbcc-shell calbcc-hero-stats">
+    <div class="calbcc-hero-stats-grid">
+      <div>
+        <div class="calbcc-stat-num">500<span>+</span></div>
+        <div class="calbcc-stat-label">Member Businesses</div>
+      </div>
+      <div>
+        <div class="calbcc-stat-num">$25.3<span>M</span></div>
+        <div class="calbcc-stat-label">Capital Access Program</div>
+      </div>
+      <div>
+        <div class="calbcc-stat-num">$200<span>K+</span></div>
+        <div class="calbcc-stat-label">Granted to Local Chambers</div>
+      </div>
+      <div>
+        <div class="calbcc-stat-num">25<span>+</span></div>
+        <div class="calbcc-stat-label">Years of Advocacy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="calbcc-section calbcc-about" id="about">
+  <div class="calbcc-shell">
+    <div class="calbcc-about-grid">
+      <div class="calbcc-about-visual calbcc-reveal">
+        <div class="calbcc-about-img-main">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Diverse group of business leaders in a strategy meeting" />
+        </div>
+        <div class="calbcc-about-img-accent">
+          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&q=80" alt="Handshake between business partners" />
+        </div>
+        <div class="calbcc-about-badge">
+          <div>
+            <div class="calbcc-about-badge-num">1998</div>
+            <div class="calbcc-about-badge-text">Founded</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calbcc-about-content calbcc-reveal">
+        <h2 class="calbcc-section-title">A statewide engine for Black economic power.</h2>
+        <p>
+          Since 1998, the California Black Chamber of Commerce Foundation has been a public charity dedicated to education, training, community growth, and youth entrepreneurial development &mdash; with partnerships that have allowed our Renaissance 21st Century Project to flourish across the state and beyond.
+        </p>
+        <p>
+          Today we are committed to being a resource for local and statewide communities. Our work starts with financial literacy and grows into the small businesses, coalitions, and policy advocacy that shape the future of California enterprise.
+        </p>
+
+        <div class="calbcc-about-pillars">
+          <div class="calbcc-pillar">
+            <div class="calbcc-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <p class="calbcc-pillar-title">Education</p>
+            <p class="calbcc-pillar-text">Financial literacy and entrepreneur training programs</p>
+          </div>
+          <div class="calbcc-pillar">
+            <div class="calbcc-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <p class="calbcc-pillar-title">Community</p>
+            <p class="calbcc-pillar-text">Local chambers and statewide leadership forums</p>
+          </div>
+          <div class="calbcc-pillar">
+            <div class="calbcc-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <p class="calbcc-pillar-title">Capital</p>
+            <p class="calbcc-pillar-text">Access to lending, grants, and growth funding</p>
+          </div>
+          <div class="calbcc-pillar">
+            <div class="calbcc-pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <p class="calbcc-pillar-title">Advocacy</p>
+            <p class="calbcc-pillar-text">Voice in policy at the state and federal level</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="calbcc-section calbcc-programs" id="programs">
+  <div class="calbcc-shell">
+    <div class="calbcc-section-head calbcc-reveal">
+      <h2 class="calbcc-section-title">Programs that move businesses forward.</h2>
+      <p class="calbcc-section-lead">From access to capital to financial literacy, our programs are designed to support small and emerging businesses at every stage of growth.</p>
+    </div>
+
+    <div class="calbcc-programs-grid">
+      <article class="calbcc-program-card calbcc-reveal">
+        <span class="calbcc-program-card-num">01</span>
+        <div class="calbcc-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3 class="calbcc-program-title">SCALE Capital Access</h3>
+        <p class="calbcc-program-desc">A $25.3M program funded by the U.S. Treasury's State Small Business Credit Initiative, helping California's diverse small businesses access capital and grow.</p>
+        <a href="#" class="calbcc-program-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="calbcc-program-card calbcc-reveal">
+        <span class="calbcc-program-card-num">02</span>
+        <div class="calbcc-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3 class="calbcc-program-title">Financial Literacy Group</h3>
+        <p class="calbcc-program-desc">Education and training that empowers entrepreneurs and communities with the financial knowledge they need to build lasting wealth and stable businesses.</p>
+        <a href="#" class="calbcc-program-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="calbcc-program-card calbcc-reveal">
+        <span class="calbcc-program-card-num">03</span>
+        <div class="calbcc-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="calbcc-program-title">LA Wildfire Recovery</h3>
+        <p class="calbcc-program-desc">Resources, relief, and direct support for Los Angeles businesses and communities affected by wildfires &mdash; helping our members rebuild and recover.</p>
+        <a href="#" class="calbcc-program-link">Get resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="calbcc-program-card calbcc-reveal">
+        <span class="calbcc-program-card-num">04</span>
+        <div class="calbcc-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 class="calbcc-program-title">A Time for Unity</h3>
+        <p class="calbcc-program-desc">A statewide initiative bringing communities together &mdash; promoting dialogue, partnership, and collective action over division and blame.</p>
+        <a href="#" class="calbcc-program-link">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="calbcc-program-card calbcc-reveal">
+        <span class="calbcc-program-card-num">05</span>
+        <div class="calbcc-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3 class="calbcc-program-title">Job &amp; Career Postings</h3>
+        <p class="calbcc-program-desc">A curated jobs board connecting talented candidates with member businesses and corporate partners across California.</p>
+        <a href="#" class="calbcc-program-link">Browse jobs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="calbcc-program-card calbcc-reveal">
+        <span class="calbcc-program-card-num">06</span>
+        <div class="calbcc-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <h3 class="calbcc-program-title">Renaissance 21st Century</h3>
+        <p class="calbcc-program-desc">Our signature foundation initiative supporting entrepreneur training, leadership forums, and youth entrepreneurial development across California.</p>
+        <a href="#" class="calbcc-program-link">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED EVENT (Business Mixer) -->
+<section class="calbcc-section calbcc-featured">
+  <div class="calbcc-shell calbcc-featured-inner">
+    <div class="calbcc-reveal">
+      <span class="calbcc-featured-eyebrow">Featured Event &middot; 2026</span>
+      <h2 class="calbcc-featured-title">CBCC Small Business Mixer</h2>
+      <p class="calbcc-featured-desc">
+        Connect with hundreds of fellow business owners, partners, and community leaders for an evening of networking, opportunity, and celebration of Black enterprise in California.
+      </p>
+
+      <div class="calbcc-featured-meta">
+        <div class="calbcc-featured-meta-item">
+          <div class="calbcc-featured-meta-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="calbcc-featured-meta-label">Date</div>
+            <div class="calbcc-featured-meta-value">Spring 2026</div>
+          </div>
+        </div>
+        <div class="calbcc-featured-meta-item">
+          <div class="calbcc-featured-meta-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="calbcc-featured-meta-label">Location</div>
+            <div class="calbcc-featured-meta-value">Sacramento, CA</div>
+          </div>
+        </div>
+        <div class="calbcc-featured-meta-item">
+          <div class="calbcc-featured-meta-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          </div>
+          <div>
+            <div class="calbcc-featured-meta-label">Attendees</div>
+            <div class="calbcc-featured-meta-value">300+ Expected</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="calbcc-btn calbcc-btn-primary">
+        Reserve Your Spot
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="calbcc-featured-visual calbcc-reveal">
+      <img src="https://growthzonecmsprodeastus.azureedge.net/sites/506/2025/12/CBCC-Business-MIxer-Banner-2026.jpg" alt="CBCC Small Business Mixer 2026 banner" onerror="this.src='https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&q=80'" />
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS / NEWS -->
+<section class="calbcc-section" id="news">
+  <div class="calbcc-shell">
+    <div class="calbcc-section-head calbcc-reveal">
+      <h2 class="calbcc-section-title">News &amp; upcoming events.</h2>
+      <p class="calbcc-section-lead">Stay current with what's happening across the chamber, our partners, and the broader California business community.</p>
+    </div>
+
+    <div class="calbcc-events-grid">
+      <a href="#" class="calbcc-event-feature calbcc-reveal" id="events">
+        <div class="calbcc-event-feature-img">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80" alt="Business networking event in Sacramento" />
+        </div>
+        <div class="calbcc-event-feature-body">
+          <span class="calbcc-event-date">Upcoming &middot; This Quarter</span>
+          <h3 class="calbcc-event-feature-title">Statewide Leadership Congress 2026</h3>
+          <p class="calbcc-event-feature-desc">
+            Our flagship gathering of California's Black business leaders, policymakers, and corporate partners. Join us for two days of conversation, connection, and strategy.
+          </p>
+          <span class="calbcc-program-link">View event details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <div class="calbcc-news-list">
+        <a href="#" class="calbcc-news-item calbcc-reveal">
+          <div class="calbcc-news-cat">Announcement</div>
+          <h4 class="calbcc-news-title">Capital access applications now open for SCALE program participants</h4>
+        </a>
+        <a href="#" class="calbcc-news-item calbcc-reveal">
+          <div class="calbcc-news-cat">Member Spotlight</div>
+          <h4 class="calbcc-news-title">How a Sacramento-based member grew revenue 3x in twelve months</h4>
+        </a>
+        <a href="#" class="calbcc-news-item calbcc-reveal">
+          <div class="calbcc-news-cat">Policy</div>
+          <h4 class="calbcc-news-title">CBCC responds to new state procurement guidelines for small business</h4>
+        </a>
+        <a href="#" class="calbcc-news-item calbcc-reveal">
+          <div class="calbcc-news-cat">Community</div>
+          <h4 class="calbcc-news-title">LA wildfire recovery resources updated &mdash; new partners join relief effort</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP CTA -->
+<section class="calbcc-membership" id="membership">
+  <div class="calbcc-shell calbcc-membership-inner">
+    <div class="calbcc-membership-content calbcc-reveal">
+      <h2 class="calbcc-membership-title">Membership matters.</h2>
+      <p class="calbcc-membership-desc">
+        When you join the California Black Chamber of Commerce, you're joining a network built to open doors, share resources, and amplify your business in the largest state economy in the country.
+      </p>
+
+      <ul class="calbcc-membership-benefits">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Member directory listing</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Member-to-member deals</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Capital access programs</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Job posting opportunities</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Statewide events &amp; mixers</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Policy advocacy &amp; voice</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Marketing on 97.5 KDEE</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Training &amp; financial literacy</li>
+      </ul>
+
+      <div class="calbcc-hero-actions">
+        <a href="#" class="calbcc-btn calbcc-btn-primary">
+          Apply for Membership
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#" class="calbcc-btn calbcc-btn-ghost">View All Benefits</a>
+      </div>
+    </div>
+
+    <div class="calbcc-membership-visual">
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80" alt="Business team collaborating around a table" />
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT / TESTIMONIAL -->
+<section class="calbcc-section calbcc-impact">
+  <div class="calbcc-shell">
+    <div class="calbcc-impact-card calbcc-reveal">
+      <p class="calbcc-impact-quote">
+        The California Black Chamber of Commerce is honored to participate as a resource partner, working to ensure California's diverse small businesses &mdash; including those run by women, people of color, people with disabilities, and veterans &mdash; are ready to access the capital they need to grow.
+      </p>
+      <div class="calbcc-impact-author">
+        <div class="calbcc-impact-avatar">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+        </div>
+        <div>
+          <p class="calbcc-impact-author-name">California Black Chamber of Commerce</p>
+          <p class="calbcc-impact-author-role">On the SCALE Capital Access Program</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="calbcc-section calbcc-partners" id="partners">
+  <div class="calbcc-shell">
+    <div class="calbcc-partners-head calbcc-reveal">
+      <div class="calbcc-partners-label">Our Corporate Partners</div>
+      <h2 class="calbcc-partners-title">Trusted by California's leading organizations</h2>
+    </div>
+
+    <div class="calbcc-partners-grid">
+      <div class="calbcc-partner"><span>City of Sacramento</span></div>
+      <div class="calbcc-partner"><span>California Forever</span></div>
+      <div class="calbcc-partner"><span>Amazon</span></div>
+      <div class="calbcc-partner"><span>CalTrans</span></div>
+      <div class="calbcc-partner"><span>DoorDash</span></div>
+      <div class="calbcc-partner"><span>Wells Fargo</span></div>
+      <div class="calbcc-partner"><span>California Water</span></div>
+      <div class="calbcc-partner"><span>DGS California</span></div>
+      <div class="calbcc-partner"><span>Lyft</span></div>
+      <div class="calbcc-partner"><span>IBank</span></div>
+      <div class="calbcc-partner"><span>U.S. Treasury</span></div>
+      <div class="calbcc-partner"><span>GSFLG</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- KDEE RADIO STRIP -->
+<section class="calbcc-kdee" id="kdee">
+  <div class="calbcc-shell calbcc-kdee-inner">
+    <div class="calbcc-kdee-left">
+      <div class="calbcc-kdee-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+      </div>
+      <div class="calbcc-kdee-text">
+        <div class="calbcc-kdee-label">Now Streaming</div>
+        <h3 class="calbcc-kdee-title">97.5 KDEE &mdash; The Soul of Sacramento</h3>
+        <p class="calbcc-kdee-sub">The voice of our community. Marketing opportunities and on-air advertising available for members.</p>
+      </div>
+    </div>
+    <div>
+      <a href="#" class="calbcc-btn calbcc-btn-light">Marketing Opportunities</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="calbcc-footer" id="contact">
+  <div class="calbcc-shell">
+    <div class="calbcc-footer-grid">
+      <div>
+        <div class="calbcc-footer-brand">
+          <img src="https://growthzonecmsprodeastus.azureedge.net/sites/506/2017/12/CA-Black-Chamber-of-Commerce-Logo-h100.png" alt="California Black Chamber of Commerce" class="calbcc-footer-logo" />
+        </div>
+        <p class="calbcc-footer-about">
+          The largest African American non-profit business organization in California, representing hundreds of small and emerging businesses, affiliates, and local chambers of commerce.
+        </p>
+        <div class="calbcc-footer-social">
+          <a href="https://www.facebook.com/Calbcc" class="calbcc-social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://twitter.com/calbcc" class="calbcc-social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/company/california-black-chamber-of-commerce-foundation-inc/" class="calbcc-social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCDEYGR4ACuYvPDJtgxDUMSw" class="calbcc-social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="var(--calbcc-ink)"/></svg></a>
+        </div>
+      </div>
+
+      <div class="calbcc-footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#">President &amp; CEO</a></li>
+          <li><a href="#">Board of Directors</a></li>
+          <li><a href="#partners">Strategic Partners</a></li>
+          <li><a href="#">Our Staff</a></li>
+        </ul>
+      </div>
+
+      <div class="calbcc-footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#membership">Membership Benefits</a></li>
+          <li><a href="#">Member Application</a></li>
+          <li><a href="#">Member Directory</a></li>
+          <li><a href="#">Job Postings</a></li>
+          <li><a href="#">Member-to-Member Deals</a></li>
+        </ul>
+      </div>
+
+      <div class="calbcc-footer-col">
+        <h4>Get In Touch</h4>
+        <div class="calbcc-footer-contact">
+          <div class="calbcc-footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><a href="tel:9164678878">916-467-8878</a></div>
+          </div>
+          <div class="calbcc-footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div><a href="mailto:cbcc@calbcc.org">cbcc@calbcc.org</a></div>
+          </div>
+          <div class="calbcc-footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>1600 Sacramento Inn Way<br/>Suite 232, Sacramento, CA 95815</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calbcc-footer-bottom">
+      <div>&copy; 2026 California Black Chamber of Commerce. All rights reserved.</div>
+      <div class="calbcc-footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Accessibility</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const burger = document.getElementById('calbcc-burger');
+  const mobileMenu = document.getElementById('calbcc-mobile-menu');
+  burger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.calbcc-reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // glad header
+  const gladHeader = document.getElementById("glad-header");
+const calbccHeader = document.querySelector(".calbcc-header");
+let lastScrollY = window.scrollY, gladVisible = true;
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+  if (y > 80 && y > lastScrollY) {
+    if (gladVisible) { gladHeader.classList.add("hidden"); gladVisible = false; }
+  } else if (y < lastScrollY && y < 40) {
+    if (!gladVisible) { gladHeader.classList.remove("hidden"); gladVisible = true; }
+  }
+  lastScrollY = y;
+}, { passive: true });
+</script>
+
+</body>
+</html>

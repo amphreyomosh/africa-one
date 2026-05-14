@@ -70,6 +70,101 @@
         --crpd-shadow-lg: 0 30px 60px -20px rgba(13, 26, 20, 0.3);
       }
 
+      :root {
+  --glad-h: 64px;
+  --glad-bg: #ffffff;
+  --glad-border: rgba(15, 42, 29, 0.10);
+  --glad-navy: #1a2740;
+  --glad-navy-hover: #2a3a5a;
+}
+ 
+/* =========================================================
+   STEP 2 — REPLACE your existing #glad-header CSS block
+   with this corrected version
+   ========================================================= */
+#glad-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;                    /* above the main sticky header */
+  height: var(--glad-h);
+  background: var(--glad-bg);      /* solid white background */
+  border-bottom: 1px solid var(--glad-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  will-change: transform;
+}
+#glad-header.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+ 
+.glad-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+.glad-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+.glad-logo img { height: 38px; width: auto; display: block; object-fit: contain; }
+ 
+.glad-back-btn {
+  position: absolute;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--glad-navy);
+  color: #fff;
+  font-family: "Public Sans", "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.glad-back-btn:hover { background: var(--glad-navy-hover); }
+.glad-back-btn svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 2.2; flex-shrink: 0; }
+ 
+@media (max-width: 520px) {
+  :root { --glad-h: 56px; }
+  .glad-back-btn .btn-label { display: none; }
+  .glad-back-btn { padding: 8px 12px; }
+  .glad-logo img { height: 32px; }
+}
+ 
+/* =========================================================
+   STEP 3 — Push the page down so content isn't hidden
+   behind the fixed GLAD bar, and shift the sticky header.
+   ========================================================= */
+body {
+  padding-top: var(--glad-h);          /* makes room for fixed GLAD bar */
+  transition: padding-top 0.35s ease;
+}
+body.glad-hidden {
+  padding-top: 0;                      /* reclaim space when GLAD hides */
+}
+ 
+.crpd-header {
+  top: var(--glad-h);                  /* sticky main header sits BELOW GLAD */
+  transition: top 0.35s ease;
+}
+body.glad-hidden .crpd-header {
+  top: 0;                              /* slides up when GLAD is hidden */
+}
+
       *,
       *::before,
       *::after {
@@ -141,8 +236,8 @@
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        background: var(--navy);
-        color: #fff;
+        background: blue !important;
+        color: #fff !important;
         font-family: "DM Sans", sans-serif;
         font-size: 12px;
         font-weight: 600;
@@ -159,7 +254,7 @@
       .glad-back-btn svg {
         width: 13px;
         height: 13px;
-        stroke: #fff;
+        stroke: #fff !important;
         fill: none;
         stroke-width: 2.2;
         flex-shrink: 0;
@@ -3088,33 +3183,44 @@
 
     <script>
 
-         // GLAD hide on scroll
-      const gladHeader = document.getElementById("glad-header");
-      const navbar = document.getElementById("navbar");
-      let lastY = window.scrollY,
-        gladVisible = true;
-      window.addEventListener(
-        "scroll",
-        () => {
-          const y = window.scrollY;
-          if (y > 80 && y > lastY) {
-            if (gladVisible) {
-              gladHeader.classList.add("hidden");
-              navbar.classList.add("glad-hidden");
-              gladVisible = false;
-            }
-          } else if (y < lastY && y < 40) {
-            if (!gladVisible) {
-              gladHeader.classList.remove("hidden");
-              navbar.classList.remove("glad-hidden");
-              gladVisible = true;
-            }
-          }
-          lastY = y;
-        },
-        { passive: true },
-      );
-
+        (function () {
+  const gladHeader = document.getElementById('glad-header');
+  if (!gladHeader) return;
+ 
+  let lastY = window.scrollY;
+  let gladVisible = true;
+  let ticking = false;
+ 
+  const SHOW_THRESHOLD = 40;   // scroll up past this near top → show
+  const HIDE_THRESHOLD = 80;   // must be past this to hide
+ 
+  function onScroll() {
+    const y = window.scrollY;
+ 
+    // Scrolling DOWN past hide threshold → hide
+    if (y > HIDE_THRESHOLD && y > lastY && gladVisible) {
+      gladHeader.classList.add('hidden');
+      document.body.classList.add('glad-hidden');
+      gladVisible = false;
+    }
+    // Scrolling UP near top → show again
+    else if (y < lastY && y < SHOW_THRESHOLD && !gladVisible) {
+      gladHeader.classList.remove('hidden');
+      document.body.classList.remove('glad-hidden');
+      gladVisible = true;
+    }
+ 
+    lastY = y;
+    ticking = false;
+  }
+ 
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
       /* ============================================================
    Hero slideshow
    ============================================================ */
