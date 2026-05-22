@@ -1,0 +1,2177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSOAA — California State Outdoor Advertising Association</title>
+    <meta
+      name="description"
+      content="The California State Outdoor Advertising Association leads and unites a responsible outdoor advertising industry serving advertisers, consumers, and the public."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===================================================================
+         CSOAA — all selectors namespaced with `csoaa-` to avoid host-site
+         collisions. CSS variables namespaced with `--csoaa-`.
+      =================================================================== */
+      .csoaa-root *,
+      .csoaa-root *::before,
+      .csoaa-root *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      .csoaa-root {
+        --csoaa-green-900: #143726;
+        --csoaa-green-800: #1c4a32;
+        --csoaa-green-700: #22593d;
+        --csoaa-green-600: #2c6b4a;
+        --csoaa-green-500: #3a8460;
+        --csoaa-green-100: #e4efe8;
+        --csoaa-green-50: #f1f6f2;
+        --csoaa-gold: #e0b53b;
+        --csoaa-ink: #1d2620;
+        --csoaa-slate: #54605a;
+        --csoaa-mute: #7a857f;
+        --csoaa-line: #e2e7e3;
+        --csoaa-bg: #ffffff;
+        --csoaa-bg-soft: #f6f8f6;
+        --csoaa-bg-warm: #fafbf9;
+        --csoaa-white: #ffffff;
+        --csoaa-radius: 14px;
+        --csoaa-radius-lg: 20px;
+        --csoaa-shadow-sm: 0 2px 8px rgba(20, 55, 38, 0.06);
+        --csoaa-shadow-md: 0 10px 30px rgba(20, 55, 38, 0.09);
+        --csoaa-shadow-lg: 0 20px 50px rgba(20, 55, 38, 0.14);
+        --csoaa-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+        --csoaa-container: 1180px;
+
+        font-family:
+          "Plus Jakarta Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        color: var(--csoaa-ink);
+        background: var(--csoaa-bg);
+        line-height: 1.65;
+        font-size: 17px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      .csoaa-root img {
+        max-width: 100%;
+        display: block;
+      }
+      .csoaa-root a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .csoaa-root ul {
+        list-style: none;
+      }
+      .csoaa-root h1,
+      .csoaa-root h2,
+      .csoaa-root h3,
+      .csoaa-root h4 {
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+
+      /* ---- Layout ---- */
+      .csoaa-container {
+        max-width: var(--csoaa-container);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .csoaa-section {
+        padding: 96px 0;
+      }
+      .csoaa-eyebrow {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--csoaa-green-600);
+        margin-bottom: 14px;
+      }
+      .csoaa-section-head {
+        max-width: 640px;
+        margin-bottom: 54px;
+      }
+      .csoaa-section-head.csoaa-center {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      .csoaa-section-head h2 {
+        font-size: clamp(28px, 3.6vw, 40px);
+        color: var(--csoaa-ink);
+        margin-bottom: 16px;
+      }
+      .csoaa-section-head p {
+        color: var(--csoaa-slate);
+        font-size: 17px;
+      }
+
+      /* ---- Buttons ---- */
+      .csoaa-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 14px 28px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition:
+          transform 0.25s var(--csoaa-ease),
+          box-shadow 0.25s var(--csoaa-ease),
+          background 0.25s var(--csoaa-ease),
+          color 0.25s var(--csoaa-ease);
+      }
+      .csoaa-btn svg {
+        transition: transform 0.25s var(--csoaa-ease);
+      }
+      .csoaa-btn-primary {
+        background: var(--csoaa-green-700);
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(34, 89, 61, 0.22);
+      }
+      .csoaa-btn-primary:hover {
+        background: var(--csoaa-green-800);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 26px rgba(34, 89, 61, 0.3);
+      }
+      .csoaa-btn-primary:hover svg {
+        transform: translateX(4px);
+      }
+      .csoaa-btn-outline {
+        background: transparent;
+        color: var(--csoaa-green-700);
+        border-color: var(--csoaa-green-100);
+      }
+      .csoaa-btn-outline:hover {
+        border-color: var(--csoaa-green-600);
+        background: var(--csoaa-green-50);
+        transform: translateY(-2px);
+      }
+      .csoaa-btn-ghost {
+        background: #fff;
+        color: var(--csoaa-green-800);
+        border-color: var(--csoaa-line);
+      }
+      .csoaa-btn-ghost:hover {
+        border-color: var(--csoaa-green-600);
+        transform: translateY(-2px);
+        box-shadow: var(--csoaa-shadow-sm);
+      }
+      .csoaa-btn-light {
+        background: #fff;
+        color: var(--csoaa-green-800);
+      }
+      .csoaa-btn-light:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+      }
+
+      /* ---- Header ---- */
+      .csoaa-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: saturate(180%) blur(14px);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        border-bottom: 1px solid transparent;
+        transition:
+          box-shadow 0.3s var(--csoaa-ease),
+          border-color 0.3s var(--csoaa-ease),
+          background 0.3s var(--csoaa-ease);
+      }
+      .csoaa-header.csoaa-scrolled {
+        box-shadow: var(--csoaa-shadow-sm);
+        border-bottom-color: var(--csoaa-line);
+        background: rgba(255, 255, 255, 0.95);
+      }
+      .csoaa-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 84px;
+      }
+      .csoaa-nav-logo img {
+        height: 54px;
+        width: auto;
+        transition: height 0.3s var(--csoaa-ease);
+      }
+      .csoaa-header.csoaa-scrolled .csoaa-nav-logo img {
+        height: 46px;
+      }
+      .csoaa-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .csoaa-nav-links a {
+        font-size: 14.5px;
+        font-weight: 600;
+        color: var(--csoaa-slate);
+        padding: 9px 14px;
+        border-radius: 8px;
+        position: relative;
+        transition:
+          color 0.2s var(--csoaa-ease),
+          background 0.2s var(--csoaa-ease);
+      }
+      .csoaa-nav-links a:hover {
+        color: var(--csoaa-green-700);
+        background: var(--csoaa-green-50);
+      }
+      .csoaa-nav-links a.csoaa-active {
+        color: var(--csoaa-green-800);
+      }
+      .csoaa-nav-links a.csoaa-active::after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 2px;
+        height: 2px;
+        background: var(--csoaa-green-600);
+        border-radius: 2px;
+      }
+      .csoaa-nav-cta {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .csoaa-nav-cta .csoaa-btn {
+        padding: 11px 22px;
+      }
+      .csoaa-burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+      }
+      .csoaa-burger span {
+        width: 24px;
+        height: 2px;
+        background: var(--csoaa-ink);
+        border-radius: 2px;
+        transition: 0.3s var(--csoaa-ease);
+      }
+      .csoaa-burger.csoaa-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .csoaa-burger.csoaa-open span:nth-child(2) {
+        opacity: 0;
+      }
+      .csoaa-burger.csoaa-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* ---- Mobile drawer ---- */
+      .csoaa-drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 55, 38, 0.4);
+        z-index: 98;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s var(--csoaa-ease),
+          visibility 0.35s var(--csoaa-ease);
+      }
+      .csoaa-drawer-overlay.csoaa-open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .csoaa-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(86vw, 340px);
+        background: #fff;
+        z-index: 99;
+        padding: 28px 26px;
+        transform: translateX(100%);
+        transition: transform 0.4s var(--csoaa-ease);
+        display: flex;
+        flex-direction: column;
+      }
+      .csoaa-drawer.csoaa-open {
+        transform: translateX(0);
+      }
+      .csoaa-drawer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+      .csoaa-drawer-top img {
+        height: 46px;
+      }
+      .csoaa-drawer-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 26px;
+        color: var(--csoaa-slate);
+        line-height: 1;
+        padding: 4px;
+      }
+      .csoaa-drawer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+      }
+      .csoaa-drawer-links a {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--csoaa-ink);
+        padding: 14px 12px;
+        border-radius: 10px;
+        transition:
+          background 0.2s var(--csoaa-ease),
+          color 0.2s var(--csoaa-ease);
+      }
+      .csoaa-drawer-links a:hover {
+        background: var(--csoaa-green-50);
+        color: var(--csoaa-green-700);
+      }
+      .csoaa-drawer .csoaa-btn {
+        margin-top: 14px;
+        justify-content: center;
+      }
+
+      /* ---- Hero ---- */
+      .csoaa-hero {
+        position: relative;
+        min-height: 92vh;
+        display: flex;
+        align-items: center;
+        padding: 140px 150px;
+        overflow: hidden;
+      }
+      .csoaa-hero-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, #5a655e, #3d4641);
+        filter: grayscale(100%);
+      }
+      .csoaa-hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+      }
+      .csoaa-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          100deg,
+          rgba(20, 55, 38, 0.93) 0%,
+          rgba(20, 55, 38, 0.78) 42%,
+          rgba(20, 55, 38, 0.42) 100%
+        );
+      }
+      .csoaa-hero .csoaa-container {
+        position: relative;
+        z-index: 2;
+        max-width: 1400px;
+        margin: 0;
+        padding-left: clamp(24px, 5vw, 90px);
+        padding-right: 24px;
+      }
+      .csoaa-hero-inner {
+        max-width: 620px;
+        margin-right: auto;
+        margin-left: 0;
+        text-align: left;
+      }
+      .csoaa-hero h1 {
+        font-size: clamp(38px, 5.4vw, 62px);
+        color: #fff;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 22px;
+      }
+      .csoaa-hero h1 .csoaa-hl {
+        color: var(--csoaa-gold);
+      }
+      .csoaa-hero p {
+        font-size: clamp(17px, 2vw, 19px);
+        color: #dceadf;
+        max-width: 540px;
+        margin-bottom: 34px;
+      }
+      .csoaa-hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      /* ---- Scroll animations ---- */
+      .csoaa-root [data-csoaa-anim] {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.7s var(--csoaa-ease),
+          transform 0.7s var(--csoaa-ease);
+      }
+      .csoaa-root [data-csoaa-anim].csoaa-in {
+        opacity: 1;
+        transform: none;
+      }
+      .csoaa-hero [data-csoaa-anim] {
+        transition-delay: var(--d, 0s);
+      }
+
+      /* ---- Mission ---- */
+      .csoaa-mission {
+        background: var(--csoaa-bg-soft);
+      }
+      .csoaa-mission-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .csoaa-mission-text .csoaa-eyebrow {
+        margin-bottom: 16px;
+      }
+      .csoaa-mission-text h2 {
+        font-size: clamp(27px, 3.4vw, 38px);
+        color: var(--csoaa-ink);
+        margin-bottom: 20px;
+      }
+      .csoaa-mission-text p {
+        color: var(--csoaa-slate);
+        font-size: 17.5px;
+        margin-bottom: 18px;
+      }
+      .csoaa-mission-text .csoaa-lead {
+        font-size: 19px;
+        color: var(--csoaa-ink);
+        font-weight: 500;
+        line-height: 1.6;
+      }
+      .csoaa-mission-values {
+        display: grid;
+        gap: 14px;
+        margin: 28px 0 30px;
+      }
+      .csoaa-value-row {
+        display: flex;
+        gap: 13px;
+        align-items: flex-start;
+      }
+      .csoaa-value-ic {
+        flex: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        background: var(--csoaa-green-100);
+        color: var(--csoaa-green-700);
+        display: grid;
+        place-items: center;
+      }
+      .csoaa-value-row strong {
+        display: block;
+        font-size: 15.5px;
+        color: var(--csoaa-ink);
+        font-weight: 700;
+      }
+      .csoaa-value-row span {
+        font-size: 14.5px;
+        color: var(--csoaa-mute);
+      }
+      .csoaa-mission-visual {
+        position: relative;
+      }
+      .csoaa-mission-visual .csoaa-photo {
+        border-radius: var(--csoaa-radius-lg);
+        overflow: hidden;
+        box-shadow: var(--csoaa-shadow-lg);
+        aspect-ratio: 4/4.4;
+      }
+      .csoaa-mission-visual .csoaa-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .csoaa-mission-badge {
+        position: absolute;
+        left: -26px;
+        bottom: 34px;
+        background: #fff;
+        border-radius: var(--csoaa-radius);
+        padding: 20px 24px;
+        box-shadow: var(--csoaa-shadow-md);
+        border: 1px solid var(--csoaa-line);
+        max-width: 230px;
+      }
+      .csoaa-mission-badge .csoaa-b-num {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--csoaa-green-700);
+        line-height: 1.25;
+      }
+      .csoaa-mission-badge .csoaa-b-txt {
+        font-size: 13.5px;
+        color: var(--csoaa-slate);
+        font-weight: 500;
+        margin-top: 6px;
+      }
+
+      /* ---- Discover cards ---- */
+      .csoaa-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+      }
+      .csoaa-dcard {
+        background: #fff;
+        border: 1px solid var(--csoaa-line);
+        border-radius: var(--csoaa-radius-lg);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.3s var(--csoaa-ease),
+          box-shadow 0.3s var(--csoaa-ease),
+          border-color 0.3s var(--csoaa-ease);
+      }
+      .csoaa-dcard:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--csoaa-shadow-md);
+        border-color: var(--csoaa-green-100);
+      }
+      .csoaa-dcard-top {
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--csoaa-green-50);
+      }
+      .csoaa-dcard-ic {
+        width: 46px;
+        height: 46px;
+        border-radius: 11px;
+        background: var(--csoaa-green-700);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 6px 14px rgba(34, 89, 61, 0.25);
+      }
+      .csoaa-dcard-body {
+        padding: 28px 26px 30px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .csoaa-dcard-body h3 {
+        font-size: 20px;
+        color: var(--csoaa-ink);
+        margin-bottom: 10px;
+      }
+      .csoaa-dcard-body p {
+        font-size: 15px;
+        color: var(--csoaa-slate);
+        margin-bottom: 20px;
+        flex: 1;
+      }
+      .csoaa-dcard-link {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: var(--csoaa-green-700);
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .csoaa-dcard-link svg {
+        transition: transform 0.25s var(--csoaa-ease);
+      }
+      .csoaa-dcard:hover .csoaa-dcard-link svg {
+        transform: translateX(4px);
+      }
+
+      /* ---- PSA ---- */
+      .csoaa-psa {
+        background: var(--csoaa-green-800);
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+      }
+      .csoaa-psa::before {
+        content: "";
+        position: absolute;
+        top: -120px;
+        right: -120px;
+        width: 380px;
+        height: 380px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.07),
+          transparent 70%
+        );
+      }
+      .csoaa-psa-grid {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+      .csoaa-psa-visual {
+        border-radius: var(--csoaa-radius-lg);
+        overflow: hidden;
+        box-shadow: var(--csoaa-shadow-lg);
+        aspect-ratio: 16/11;
+      }
+      .csoaa-psa-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .csoaa-psa-text .csoaa-eyebrow {
+        color: #9fc7ad;
+      }
+      .csoaa-psa-text h2 {
+        font-size: clamp(27px, 3.4vw, 38px);
+        color: #fff;
+        margin-bottom: 18px;
+      }
+      .csoaa-psa-text p {
+        color: #cfe0d4;
+        font-size: 17px;
+        margin-bottom: 16px;
+      }
+      .csoaa-psa-list {
+        display: grid;
+        gap: 13px;
+        margin: 24px 0 30px;
+      }
+      .csoaa-psa-list li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        font-size: 15.5px;
+        color: #e3ede5;
+      }
+      .csoaa-psa-list .csoaa-chk {
+        flex: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.14);
+        display: grid;
+        place-items: center;
+        margin-top: 1px;
+      }
+
+      /* ---- Members ---- */
+      .csoaa-members {
+        background: var(--csoaa-bg-warm);
+      }
+      .csoaa-members-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 44px;
+      }
+      .csoaa-mcard {
+        background: #fff;
+        border: 1px solid var(--csoaa-line);
+        border-radius: var(--csoaa-radius);
+        min-height: 128px;
+        display: grid;
+        place-items: center;
+        padding: 24px 20px;
+        text-align: center;
+        transition:
+          transform 0.28s var(--csoaa-ease),
+          box-shadow 0.28s var(--csoaa-ease),
+          border-color 0.28s var(--csoaa-ease);
+      }
+      .csoaa-mcard:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--csoaa-shadow-md);
+        border-color: var(--csoaa-green-100);
+      }
+      .csoaa-mcard .csoaa-m-name {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--csoaa-green-800);
+        letter-spacing: -0.01em;
+      }
+      .csoaa-mcard .csoaa-m-sub {
+        font-size: 12.5px;
+        color: var(--csoaa-mute);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-top: 5px;
+      }
+      .csoaa-members-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        background: #fff;
+        border: 1px solid var(--csoaa-line);
+        border-radius: var(--csoaa-radius-lg);
+        padding: 30px 36px;
+        flex-wrap: wrap;
+      }
+      .csoaa-members-foot h3 {
+        font-size: 21px;
+        color: var(--csoaa-ink);
+        margin-bottom: 4px;
+      }
+      .csoaa-members-foot p {
+        font-size: 15px;
+        color: var(--csoaa-slate);
+      }
+
+      /* ---- CTA ---- */
+      .csoaa-cta-wrap {
+        padding: 0 0 100px;
+      }
+      .csoaa-cta {
+        background: var(--csoaa-green-700);
+        border-radius: 24px;
+        padding: 64px 56px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .csoaa-cta::before,
+      .csoaa-cta::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.08),
+          transparent 70%
+        );
+      }
+      .csoaa-cta::before {
+        width: 300px;
+        height: 300px;
+        top: -130px;
+        left: -90px;
+      }
+      .csoaa-cta::after {
+        width: 340px;
+        height: 340px;
+        bottom: -160px;
+        right: -100px;
+      }
+      .csoaa-cta-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .csoaa-cta h2 {
+        font-size: clamp(27px, 3.6vw, 40px);
+        color: #fff;
+        margin-bottom: 16px;
+      }
+      .csoaa-cta p {
+        color: #cfe0d4;
+        font-size: 17.5px;
+        margin-bottom: 30px;
+      }
+      .csoaa-cta-actions {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ---- Contact ---- */
+      .csoaa-contact {
+        background: var(--csoaa-bg-soft);
+      }
+      .csoaa-contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .csoaa-contact-card {
+        background: #fff;
+        border: 1px solid var(--csoaa-line);
+        border-radius: var(--csoaa-radius-lg);
+        padding: 38px 36px;
+      }
+      .csoaa-contact-card h3 {
+        font-size: 21px;
+        color: var(--csoaa-ink);
+        margin-bottom: 8px;
+      }
+      .csoaa-contact-card .csoaa-c-sub {
+        font-size: 15px;
+        color: var(--csoaa-slate);
+        margin-bottom: 26px;
+      }
+      .csoaa-contact-item {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        margin-bottom: 22px;
+      }
+      .csoaa-contact-item:last-child {
+        margin-bottom: 0;
+      }
+      .csoaa-contact-ic {
+        flex: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        background: var(--csoaa-green-50);
+        color: var(--csoaa-green-700);
+        display: grid;
+        place-items: center;
+      }
+      .csoaa-contact-item .csoaa-ci-label {
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--csoaa-mute);
+        margin-bottom: 3px;
+      }
+      .csoaa-contact-item .csoaa-ci-val {
+        font-size: 16px;
+        color: var(--csoaa-ink);
+        font-weight: 600;
+      }
+      .csoaa-contact-item .csoaa-ci-val a:hover {
+        color: var(--csoaa-green-700);
+      }
+      .csoaa-contact-form {
+        display: grid;
+        gap: 16px;
+      }
+      .csoaa-field {
+        display: grid;
+        gap: 6px;
+      }
+      .csoaa-field label {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--csoaa-ink);
+      }
+      .csoaa-field input,
+      .csoaa-field textarea {
+        font-family: inherit;
+        font-size: 15px;
+        color: var(--csoaa-ink);
+        border: 1.5px solid var(--csoaa-line);
+        border-radius: 10px;
+        padding: 12px 14px;
+        background: var(--csoaa-bg-warm);
+        transition:
+          border-color 0.2s var(--csoaa-ease),
+          background 0.2s var(--csoaa-ease);
+      }
+      .csoaa-field input:focus,
+      .csoaa-field textarea:focus {
+        outline: none;
+        border-color: var(--csoaa-green-500);
+        background: #fff;
+      }
+      .csoaa-field textarea {
+        resize: vertical;
+        min-height: 104px;
+      }
+      .csoaa-form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .csoaa-contact-form .csoaa-btn {
+        justify-content: center;
+        margin-top: 4px;
+      }
+
+      /* ---- Footer ---- */
+      .csoaa-footer {
+        background: var(--csoaa-green-900);
+        color: #bcd0c2;
+        padding: 64px 0 0;
+      }
+      .csoaa-footer-top {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 40px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .csoaa-footer-brand img {
+        height: 60px;
+        margin-bottom: 18px;
+      }
+      .csoaa-footer-brand p {
+        font-size: 14.5px;
+        color: #9fb4a5;
+        max-width: 300px;
+        line-height: 1.7;
+      }
+      .csoaa-footer-col h4 {
+        font-size: 14px;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 18px;
+        font-weight: 700;
+      }
+      .csoaa-footer-col ul {
+        display: grid;
+        gap: 11px;
+      }
+      .csoaa-footer-col a {
+        font-size: 14.5px;
+        color: #9fb4a5;
+        transition: color 0.2s var(--csoaa-ease);
+      }
+      .csoaa-footer-col a:hover {
+        color: #fff;
+      }
+      .csoaa-footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 0;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .csoaa-footer-bottom p {
+        font-size: 13.5px;
+        color: #7e9486;
+      }
+      .csoaa-footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .csoaa-footer-social a {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.07);
+        display: grid;
+        place-items: center;
+        color: #bcd0c2;
+        transition:
+          background 0.25s var(--csoaa-ease),
+          color 0.25s var(--csoaa-ease),
+          transform 0.25s var(--csoaa-ease);
+      }
+      .csoaa-footer-social a:hover {
+        background: var(--csoaa-green-600);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      /* ---- Responsive ---- */
+      @media (max-width: 1024px) {
+        .csoaa-nav-links {
+          display: none;
+        }
+        .csoaa-burger {
+          display: flex;
+        }
+        .csoaa-nav-cta .csoaa-btn {
+          display: none;
+        }
+        .csoaa-mission-grid,
+        .csoaa-psa-grid {
+          grid-template-columns: 1fr;
+          gap: 44px;
+        }
+        .csoaa-mission-visual {
+          max-width: 480px;
+          margin: 0 auto;
+        }
+        .csoaa-psa-visual {
+          order: -1;
+        }
+        .csoaa-cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .csoaa-members-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .csoaa-footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 36px;
+        }
+      }
+      @media (max-width: 680px) {
+        .csoaa-root {
+          font-size: 16px;
+        }
+        .csoaa-section {
+          padding: 68px 0;
+        }
+        .csoaa-container {
+          padding: 0 20px;
+        }
+        .csoaa-hero {
+          min-height: auto;
+          padding: 130px 0 70px;
+        }
+        .csoaa-hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .csoaa-hero-actions .csoaa-btn {
+          justify-content: center;
+        }
+        .csoaa-cards-grid {
+          grid-template-columns: 1fr;
+        }
+        .csoaa-members-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .csoaa-contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .csoaa-form-row {
+          grid-template-columns: 1fr;
+        }
+        .csoaa-contact-card {
+          padding: 30px 24px;
+        }
+        .csoaa-cta {
+          padding: 48px 26px;
+        }
+        .csoaa-cta-actions {
+          flex-direction: column;
+        }
+        .csoaa-cta-actions .csoaa-btn {
+          justify-content: center;
+        }
+        .csoaa-members-foot {
+          padding: 26px 24px;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+        .csoaa-mission-badge {
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: -26px;
+        }
+        .csoaa-footer-top {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .csoaa-footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        .csoaa-section-head {
+          margin-bottom: 38px;
+        }
+      }
+      @media (max-width: 380px) {
+        .csoaa-members-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+       #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+    </style>
+  </head>
+  <body>
+    <!-- =================================================================
+         Everything is wrapped in .csoaa-root so styles + variables stay
+         scoped. The old GLAD boilerplate header has been removed; the
+         CSOAA header below is now the single header for the page.
+    ================================================================== -->
+    <div class="csoaa-root">
+      <header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+      <!-- ============ HEADER ============ -->
+      <header class="csoaa-header" id="csoaa-header">
+        <div class="csoaa-container">
+          <nav class="csoaa-nav">
+            <a href="#" class="csoaa-nav-logo" aria-label="CSOAA Home">
+              <img
+                src="https://static.wixstatic.com/media/5bc2fb_af3df59f94a8412ba0141eb8a73d390d~mv2.png/v1/fill/w_686,h_368,al_c,lg_1,q_85,enc_avif,quality_auto/CSOAA%20Logo%20no%20background.png"
+                alt="California State Outdoor Advertising Association"
+              />
+            </a>
+            <ul class="csoaa-nav-links">
+              <li><a href="#" class="csoaa-active">Home</a></li>
+              <li><a href="#csoaa-mission">About</a></li>
+              <li><a href="#csoaa-discover">Discover Outdoor</a></li>
+              <li><a href="#csoaa-psa">PSA Program</a></li>
+              <li><a href="#csoaa-members">Members</a></li>
+              <li><a href="#csoaa-contact">Contact</a></li>
+            </ul>
+            <div class="csoaa-nav-cta">
+              <a href="#" class="csoaa-btn csoaa-btn-outline">Annual Meeting</a>
+              <a href="#csoaa-contact" class="csoaa-btn csoaa-btn-primary"
+                >Get in Touch</a
+              >
+              <button
+                class="csoaa-burger"
+                id="csoaa-burger"
+                aria-label="Open menu"
+                aria-expanded="false"
+              >
+                <span></span><span></span><span></span>
+              </button>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <!-- ============ MOBILE DRAWER ============ -->
+      <div class="csoaa-drawer-overlay" id="csoaa-overlay"></div>
+      <aside
+        class="csoaa-drawer"
+        id="csoaa-drawer"
+        aria-label="Mobile navigation"
+      >
+        <div class="csoaa-drawer-top">
+          <img
+            src="https://static.wixstatic.com/media/5bc2fb_af3df59f94a8412ba0141eb8a73d390d~mv2.png/v1/fill/w_686,h_368,al_c,lg_1,q_85,enc_avif,quality_auto/CSOAA%20Logo%20no%20background.png"
+            alt="CSOAA"
+          />
+          <button
+            class="csoaa-drawer-close"
+            id="csoaa-drawer-close"
+            aria-label="Close menu"
+          >
+            &times;
+          </button>
+        </div>
+        <nav class="csoaa-drawer-links">
+          <a href="#" data-csoaa-close>Home</a>
+          <a href="#csoaa-mission" data-csoaa-close>About</a>
+          <a href="#csoaa-discover" data-csoaa-close>Discover Outdoor</a>
+          <a href="#csoaa-psa" data-csoaa-close>PSA Program</a>
+          <a href="#csoaa-members" data-csoaa-close>Members</a>
+          <a href="#csoaa-contact" data-csoaa-close>Contact</a>
+        </nav>
+        <a href="#" class="csoaa-btn csoaa-btn-outline" data-csoaa-close
+          >Annual Meeting</a
+        >
+        <a
+          href="#csoaa-contact"
+          class="csoaa-btn csoaa-btn-primary"
+          data-csoaa-close
+          >Get in Touch</a
+        >
+      </aside>
+
+      <!-- ============ HERO ============ -->
+      <section class="csoaa-hero">
+        <div class="csoaa-hero-bg">
+          <img
+            src="https://static.wixstatic.com/media/5bc2fb_a7a3f3d1d42a4d2db0f1165230caefa5~mv2.jpg/v1/fill/w_1480,h_700,al_c,q_85,enc_avif,quality_auto/24_edited.jpg"
+            alt=""
+          />
+        </div>
+        <div class="csoaa-hero-overlay"></div>
+        <div class="csoaa-container">
+          <div class="csoaa-hero-inner">
+            <h1 data-csoaa-anim style="--d: 0s">
+              Leaders in <span class="csoaa-hl">Outdoor Advertising</span>
+            </h1>
+            <p data-csoaa-anim style="--d: 0.1s">
+              CSOAA leads and unites a responsible outdoor advertising industry
+              across California — serving advertisers, consumers, the public,
+              and the agencies that oversee our work.
+            </p>
+            <div class="csoaa-hero-actions" data-csoaa-anim style="--d: 0.2s">
+              <a href="#csoaa-mission" class="csoaa-btn csoaa-btn-light">
+                Discover Our Mission
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MISSION ============ -->
+      <section class="csoaa-section csoaa-mission" id="csoaa-mission">
+        <div class="csoaa-container">
+          <div class="csoaa-mission-grid">
+            <div class="csoaa-mission-text">
+              <span class="csoaa-eyebrow" data-csoaa-anim>Our Goal</span>
+              <h2 data-csoaa-anim style="--d: 0.05s">
+                A responsible, unified outdoor advertising industry
+              </h2>
+              <p class="csoaa-lead" data-csoaa-anim style="--d: 0.1s">
+                The guiding principle of CSOAA and its member companies is to
+                lead and unite a responsible outdoor advertising industry — one
+                that serves the needs of advertisers, consumers, the public, and
+                the governmental entities responsible for overseeing industry
+                activities.
+              </p>
+              <p data-csoaa-anim style="--d: 0.15s">
+                We are committed to doing it all in an ethical and professional
+                manner, setting the standard for outdoor advertising across
+                California.
+              </p>
+              <div class="csoaa-mission-values">
+                <div class="csoaa-value-row" data-csoaa-anim style="--d: 0.2s">
+                  <span class="csoaa-value-ic">
+                    <svg
+                      width="19"
+                      height="19"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"
+                      />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  </span>
+                  <div>
+                    <strong>Ethical Leadership</strong
+                    ><span
+                      >Holding our industry to the highest professional
+                      standards.</span
+                    >
+                  </div>
+                </div>
+                <div class="csoaa-value-row" data-csoaa-anim style="--d: 0.25s">
+                  <span class="csoaa-value-ic">
+                    <svg
+                      width="19"
+                      height="19"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <circle cx="9" cy="7" r="3.5" />
+                      <path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1" />
+                      <path
+                        d="M16 3.5a3.5 3.5 0 0 1 0 7M22 21v-1a6 6 0 0 0-4-5.6"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <strong>A United Voice</strong
+                    ><span
+                      >Representing member companies and affiliates
+                      statewide.</span
+                    >
+                  </div>
+                </div>
+                <div class="csoaa-value-row" data-csoaa-anim style="--d: 0.3s">
+                  <span class="csoaa-value-ic">
+                    <svg
+                      width="19"
+                      height="19"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <strong>Public Service</strong
+                    ><span
+                      >Serving communities, advertisers, and the public
+                      good.</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <a
+                href="#"
+                class="csoaa-btn csoaa-btn-primary"
+                data-csoaa-anim
+                style="--d: 0.35s"
+              >
+                About CSOAA
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+            <div class="csoaa-mission-visual" data-csoaa-anim style="--d: 0.2s">
+              <div class="csoaa-photo">
+                <img
+                  src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=80"
+                  alt="Outdoor advertising billboard against a clear sky"
+                />
+              </div>
+              <div class="csoaa-mission-badge">
+                <div class="csoaa-b-num">Since the earliest civilizations</div>
+                <div class="csoaa-b-txt">
+                  Outdoor advertising has connected people for thousands of
+                  years.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DISCOVER ============ -->
+      <section class="csoaa-section" id="csoaa-discover">
+        <div class="csoaa-container">
+          <div class="csoaa-section-head csoaa-center">
+            <span class="csoaa-eyebrow" data-csoaa-anim>Discover Outdoor</span>
+            <h2 data-csoaa-anim style="--d: 0.05s">
+              An industry with a remarkable story
+            </h2>
+            <p data-csoaa-anim style="--d: 0.1s">
+              Outdoor advertising traces its lineage back thousands of years.
+              Formats have evolved — but outdoor is still here. Explore its
+              history, the facts behind it, and the formats available today.
+            </p>
+          </div>
+          <div class="csoaa-cards-grid">
+            <article class="csoaa-dcard" data-csoaa-anim style="--d: 0.1s">
+              <div class="csoaa-dcard-top">
+                <span class="csoaa-dcard-ic">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 8v4l3 2" />
+                    <circle cx="12" cy="12" r="9" />
+                  </svg>
+                </span>
+              </div>
+              <div class="csoaa-dcard-body">
+                <h3>History of Outdoor</h3>
+                <p>
+                  From stone obelisks publicizing laws in ancient Egypt to
+                  today's digital displays — discover how outdoor advertising
+                  has shaped public communication for millennia.
+                </p>
+                <a href="#" class="csoaa-dcard-link"
+                  >Explore the history
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+            <article class="csoaa-dcard" data-csoaa-anim style="--d: 0.18s">
+              <div class="csoaa-dcard-top">
+                <span class="csoaa-dcard-ic">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M9 11l3 3L22 4" />
+                    <path
+                      d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <div class="csoaa-dcard-body">
+                <h3>Facts vs. Myths</h3>
+                <p>
+                  Misconceptions about outdoor advertising are common. Get the
+                  truth about the industry, its impact, and its role in
+                  California's communities and economy.
+                </p>
+                <a href="#" class="csoaa-dcard-link"
+                  >See the facts
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+            <article class="csoaa-dcard" data-csoaa-anim style="--d: 0.26s">
+              <div class="csoaa-dcard-top">
+                <span class="csoaa-dcard-ic">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="4" width="18" height="13" rx="2" />
+                    <path d="M12 17v4M8 21h8" />
+                  </svg>
+                </span>
+              </div>
+              <div class="csoaa-dcard-body">
+                <h3>Types of Billboards</h3>
+                <p>
+                  Bulletins, posters, digital displays and more — learn about
+                  the different outdoor advertising formats available and how
+                  each one reaches audiences.
+                </p>
+                <a href="#" class="csoaa-dcard-link"
+                  >View the formats
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PSA ============ -->
+      <section class="csoaa-section csoaa-psa" id="csoaa-psa">
+        <div class="csoaa-container">
+          <div class="csoaa-psa-grid">
+            <div class="csoaa-psa-visual" data-csoaa-anim>
+              <img
+                src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80"
+                alt="Community members collaborating on a public service project"
+              />
+            </div>
+            <div class="csoaa-psa-text">
+              <span class="csoaa-eyebrow" data-csoaa-anim>Public Service</span>
+              <h2 data-csoaa-anim style="--d: 0.05s">
+                The CSOAA Public Service Announcement Program
+              </h2>
+              <p data-csoaa-anim style="--d: 0.1s">
+                Our PSA Program coordinates CSOAA members to give charities and
+                civic organizations the opportunity to run Public Service
+                Announcement campaigns on outdoor advertising displays across
+                California.
+              </p>
+              <ul class="csoaa-psa-list">
+                <li data-csoaa-anim style="--d: 0.15s">
+                  <span class="csoaa-chk"
+                    ><svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12l5 5L20 6" /></svg></span
+                  >Donated billboard space for qualifying nonprofits
+                </li>
+                <li data-csoaa-anim style="--d: 0.2s">
+                  <span class="csoaa-chk"
+                    ><svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12l5 5L20 6" /></svg></span
+                  >Coordinated statewide campaign placement
+                </li>
+                <li data-csoaa-anim style="--d: 0.25s">
+                  <span class="csoaa-chk"
+                    ><svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12l5 5L20 6" /></svg></span
+                  >Greater visibility for civic and charitable causes
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="csoaa-btn csoaa-btn-light"
+                data-csoaa-anim
+                style="--d: 0.3s"
+              >
+                Learn About the Program
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MEMBERS ============ -->
+      <section class="csoaa-section csoaa-members" id="csoaa-members">
+        <div class="csoaa-container">
+          <div class="csoaa-section-head csoaa-center">
+            <span class="csoaa-eyebrow" data-csoaa-anim>Our Members</span>
+            <h2 data-csoaa-anim style="--d: 0.05s">
+              Trusted companies across California
+            </h2>
+            <p data-csoaa-anim style="--d: 0.1s">
+              CSOAA brings together established outdoor advertising companies
+              committed to a responsible, professional industry.
+            </p>
+          </div>
+          <div class="csoaa-members-grid">
+            <div class="csoaa-mcard" data-csoaa-anim style="--d: 0.05s">
+              <div>
+                <div class="csoaa-m-name">Bulletin Displays</div>
+                <div class="csoaa-m-sub">Outdoor Advertising</div>
+              </div>
+            </div>
+            <div class="csoaa-mcard" data-csoaa-anim style="--d: 0.1s">
+              <div>
+                <div class="csoaa-m-name">Clear Channel Outdoor</div>
+                <div class="csoaa-m-sub">Outdoor Advertising</div>
+              </div>
+            </div>
+            <div class="csoaa-mcard" data-csoaa-anim style="--d: 0.15s">
+              <div>
+                <div class="csoaa-m-name">Foster Interstate Media</div>
+                <div class="csoaa-m-sub">Media, Inc.</div>
+              </div>
+            </div>
+            <div class="csoaa-mcard" data-csoaa-anim style="--d: 0.2s">
+              <div>
+                <div class="csoaa-m-name">Lamar</div>
+                <div class="csoaa-m-sub">Advertising</div>
+              </div>
+            </div>
+            <div class="csoaa-mcard" data-csoaa-anim style="--d: 0.05s">
+              <div>
+                <div class="csoaa-m-name">Meadow Outdoor</div>
+                <div class="csoaa-m-sub">Advertising</div>
+              </div>
+            </div>
+            <div class="csoaa-mcard" data-csoaa-anim style="--d: 0.1s">
+              <div>
+                <div class="csoaa-m-name">OUTFRONT</div>
+                <div class="csoaa-m-sub">Media</div>
+              </div>
+            </div>
+            <div class="csoaa-mcard" data-csoaa-anim style="--d: 0.15s">
+              <div>
+                <div class="csoaa-m-name">United Outdoor</div>
+                <div class="csoaa-m-sub">Advertising</div>
+              </div>
+            </div>
+            <div class="csoaa-mcard" data-csoaa-anim style="--d: 0.2s">
+              <div>
+                <div class="csoaa-m-name">Veale</div>
+                <div class="csoaa-m-sub">Outdoor Advertising</div>
+              </div>
+            </div>
+          </div>
+          <div class="csoaa-members-foot" data-csoaa-anim>
+            <div>
+              <h3>Interested in becoming a member?</h3>
+              <p>
+                Join a unified voice for responsible outdoor advertising in
+                California.
+              </p>
+            </div>
+            <a href="#csoaa-contact" class="csoaa-btn csoaa-btn-primary">
+              Become a Member
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <div class="csoaa-cta-wrap">
+        <div class="csoaa-container">
+          <div class="csoaa-cta" data-csoaa-anim>
+            <div class="csoaa-cta-inner">
+              <h2>Join us at the CSOAA Annual Meeting</h2>
+              <p>
+                Connect with industry leaders, stay informed on legislation, and
+                help shape the future of outdoor advertising in California.
+              </p>
+              <div class="csoaa-cta-actions">
+                <a href="#" class="csoaa-btn csoaa-btn-light"
+                  >View Annual Meeting</a
+                >
+                <a
+                  href="#csoaa-contact"
+                  class="csoaa-btn csoaa-btn-outline"
+                  style="color: #fff; border-color: rgba(255, 255, 255, 0.35)"
+                  >Contact CSOAA</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ CONTACT ============ -->
+      <section class="csoaa-section csoaa-contact" id="csoaa-contact">
+        <div class="csoaa-container">
+          <div class="csoaa-section-head csoaa-center">
+            <span class="csoaa-eyebrow" data-csoaa-anim>Contact Us</span>
+            <h2 data-csoaa-anim style="--d: 0.05s">We're here to assist you</h2>
+            <p data-csoaa-anim style="--d: 0.1s">
+              Have questions or comments? Reach out — our team is glad to help
+              with any inquiry.
+            </p>
+          </div>
+          <div class="csoaa-contact-grid">
+            <div class="csoaa-contact-card" data-csoaa-anim>
+              <h3>Get in touch</h3>
+              <p class="csoaa-c-sub">
+                For any inquiries, please call or email us.
+              </p>
+              <div class="csoaa-contact-item">
+                <span class="csoaa-contact-ic">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <div class="csoaa-ci-label">Phone</div>
+                  <div class="csoaa-ci-val">
+                    <a href="tel:9162436277">(916) 243-6277</a>
+                  </div>
+                </div>
+              </div>
+              <div class="csoaa-contact-item">
+                <span class="csoaa-contact-ic">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m2 7 10 6 10-6" />
+                  </svg>
+                </span>
+                <div>
+                  <div class="csoaa-ci-label">Email</div>
+                  <div class="csoaa-ci-val">
+                    <a href="mailto:info@csoaa.com">info@csoaa.com</a>
+                  </div>
+                </div>
+              </div>
+              <div class="csoaa-contact-item">
+                <span class="csoaa-contact-ic">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"
+                    />
+                    <circle cx="12" cy="10.5" r="2.5" />
+                  </svg>
+                </span>
+                <div>
+                  <div class="csoaa-ci-label">Mailing Address</div>
+                  <div class="csoaa-ci-val">
+                    CSOAA, P.O. Box 214<br />Clarksburg, CA 95612
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="csoaa-contact-card" data-csoaa-anim style="--d: 0.1s">
+              <h3>Send a message</h3>
+              <p class="csoaa-c-sub">
+                Questions or comments — we are here to assist you.
+              </p>
+              <form
+                class="csoaa-contact-form"
+                id="csoaa-contact-form"
+                novalidate
+              >
+                <div class="csoaa-form-row">
+                  <div class="csoaa-field">
+                    <label for="csoaa-name">Name</label>
+                    <input
+                      type="text"
+                      id="csoaa-name"
+                      name="name"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+                  <div class="csoaa-field">
+                    <label for="csoaa-email">Email</label>
+                    <input
+                      type="email"
+                      id="csoaa-email"
+                      name="email"
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="csoaa-field">
+                  <label for="csoaa-subject">Subject</label>
+                  <input
+                    type="text"
+                    id="csoaa-subject"
+                    name="subject"
+                    placeholder="How can we help?"
+                  />
+                </div>
+                <div class="csoaa-field">
+                  <label for="csoaa-message">Message</label>
+                  <textarea
+                    id="csoaa-message"
+                    name="message"
+                    placeholder="Write your message..."
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="csoaa-btn csoaa-btn-primary">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="csoaa-footer">
+        <div class="csoaa-container">
+          <div class="csoaa-footer-top">
+            <div class="csoaa-footer-brand">
+              <img
+                src="https://static.wixstatic.com/media/5bc2fb_af3df59f94a8412ba0141eb8a73d390d~mv2.png/v1/fill/w_686,h_368,al_c,lg_1,q_85,enc_avif,quality_auto/CSOAA%20Logo%20no%20background.png"
+                alt="CSOAA"
+                style="filter: brightness(0) invert(1) opacity(0.92)"
+              />
+              <p>
+                The California State Outdoor Advertising Association — leading
+                and uniting a responsible outdoor advertising industry across
+                California.
+              </p>
+            </div>
+            <div class="csoaa-footer-col">
+              <h4>About</h4>
+              <ul>
+                <li><a href="#csoaa-mission">Our Goal</a></li>
+                <li><a href="#">Officers &amp; Board</a></li>
+                <li><a href="#">Policy Committees</a></li>
+                <li><a href="#csoaa-psa">PSA Program</a></li>
+              </ul>
+            </div>
+            <div class="csoaa-footer-col">
+              <h4>Discover</h4>
+              <ul>
+                <li><a href="#csoaa-discover">History of Outdoor</a></li>
+                <li><a href="#">Benefits of Outdoor</a></li>
+                <li><a href="#">Facts vs. Myths</a></li>
+                <li><a href="#">Types of Billboards</a></li>
+              </ul>
+            </div>
+            <div class="csoaa-footer-col">
+              <h4>Resources</h4>
+              <ul>
+                <li><a href="#">Legislation</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Press Releases</a></li>
+                <li><a href="#csoaa-contact">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="csoaa-footer-bottom">
+            <p>
+              &copy; 2026 CSOAA — California State Outdoor Advertising
+              Association. All rights reserved.
+            </p>
+            <div class="csoaa-footer-social">
+              <a href="#" aria-label="LinkedIn"
+                ><svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.5 8h4V24h-4V8Zm7.5 0h3.8v2.2h.06c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7c0-1.67-.03-3.8-2.32-3.8-2.32 0-2.68 1.8-2.68 3.68V24H8V8Z"
+                  /></svg
+              ></a>
+              <a href="#" aria-label="Email"
+                ><svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m2 7 10 6 10-6" /></svg
+              ></a>
+              <a href="#" aria-label="Phone"
+                ><svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var root = document.querySelector(".csoaa-root");
+        var header = document.getElementById("csoaa-header");
+
+        function onScroll() {
+          header.classList.toggle("csoaa-scrolled", window.scrollY > 20);
+        }
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        var burger = document.getElementById("csoaa-burger"),
+          drawer = document.getElementById("csoaa-drawer"),
+          overlay = document.getElementById("csoaa-overlay"),
+          drawerClose = document.getElementById("csoaa-drawer-close");
+
+        function openMenu() {
+          drawer.classList.add("csoaa-open");
+          overlay.classList.add("csoaa-open");
+          burger.classList.add("csoaa-open");
+          burger.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+        }
+        function closeMenu() {
+          drawer.classList.remove("csoaa-open");
+          overlay.classList.remove("csoaa-open");
+          burger.classList.remove("csoaa-open");
+          burger.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        }
+        burger.addEventListener("click", openMenu);
+        drawerClose.addEventListener("click", closeMenu);
+        overlay.addEventListener("click", closeMenu);
+        document.querySelectorAll("[data-csoaa-close]").forEach(function (el) {
+          el.addEventListener("click", closeMenu);
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeMenu();
+        });
+
+        var anims = root.querySelectorAll("[data-csoaa-anim]");
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (en) {
+                if (en.isIntersecting) {
+                  en.target.classList.add("csoaa-in");
+                  io.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+          );
+          anims.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          anims.forEach(function (el) {
+            el.classList.add("csoaa-in");
+          });
+        }
+
+        var form = document.getElementById("csoaa-contact-form");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var btn = form.querySelector("button[type=submit]");
+          var original = btn.textContent;
+          btn.textContent = "Message Sent ✓";
+          btn.style.background = "var(--csoaa-green-500)";
+          form.reset();
+          setTimeout(function () {
+            btn.textContent = original;
+            btn.style.background = "";
+          }, 2600);
+        });
+      })();
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>

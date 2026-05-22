@@ -1,0 +1,196 @@
+<!-- Newsletter Section -->
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap");
+
+  .nl-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 3rem;
+    font-family: "Inter", sans-serif;
+  }
+  .nl-card {
+    background: linear-gradient(135deg, #0d3b52, #0b2f41);
+    border-radius: 12px;
+    padding: 4rem;
+    max-width: 1400px;
+    width: 100%;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .nl-card::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+    top: -80px;
+    right: -80px;
+    pointer-events: none;
+  }
+  .nl-left {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+  }
+  .nl-heading {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.6rem;
+    line-height: 1.2;
+  }
+  .nl-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.68);
+    margin: 0;
+    line-height: 1.65;
+    max-width: 360px;
+  }
+  .nl-divider {
+    width: 0.5px;
+    background: rgba(255,255,255,0.15);
+    align-self: stretch;
+    min-height: 80px;
+    flex-shrink: 0;
+  }
+  .nl-right {
+    flex: 1;
+    min-width: 0;
+    max-width: 440px;
+    position: relative;
+  }
+  .nl-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .nl-input-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .nl-input-row input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 46px;
+    padding: 0 14px;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .nl-input-row input[type="email"]::placeholder {
+    color: rgba(0,0,0,0.38);
+  }
+  .nl-input-row input[type="email"]:focus {
+    border-color: #c9a84c;
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+  }
+  .nl-input-row button {
+    flex-shrink: 0;
+    height: 46px;
+    padding: 0 20px;
+    font-size: 12px !important;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    border-radius: 8px;
+    border: none;
+    background: #B8862F;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+    box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+  }
+  .nl-input-row button:hover {
+    background: #b8963f;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  }
+  .nl-input-row button:active {
+    transform: scale(0.97);
+  }
+  .nl-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.38);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+  }
+  .nl-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.38);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    .nl-card {
+      flex-direction: column;
+      padding: 4rem 3rem;
+      gap: 1.5rem;
+    }
+    .nl-divider { display: none; }
+    .nl-left, .nl-right { max-width: 100%; width: 100%; }
+    .nl-sub { max-width: 100%; }
+  }
+
+  @media (max-width: 420px) {
+    .nl-input-row { flex-direction: column; }
+    .nl-input-row input[type="email"] { width: 100%; }
+    .nl-input-row button { width: 100%; }
+  }
+</style>
+
+<div class="nl-wrapper">
+  <div class="nl-card">
+    <div class="nl-left">
+      <h2 class="nl-heading">Subscribe to Our Newsletter</h2>
+      <p class="nl-sub">
+        Get updates on our latest initiatives, events, and impact stories straight to your inbox.
+      </p>
+    </div>
+    <div class="nl-divider"></div>
+    <div class="nl-right">
+      
+        <!-- Hidden tag -->
+        <input type="hidden" name="tags" value="Website Newsletter" />
+        <!-- Mailchimp bot protection -->
+        <div style="position: absolute; left: -5000px" aria-hidden="true">
+          <input
+            type="text"
+            name="b_4a0d3a7f26443f324af174c7f_623988de4d"
+            tabindex="-1"
+            value=""
+          />
+        </div>
+
+        <div class="nl-input-row">
+          <input type="email" name="EMAIL" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </div>
+      
+      
+    </div>
+  </div>
+</div>

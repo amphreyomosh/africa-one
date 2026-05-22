@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Children of Promise International (COPI) — an interdenominational Christian mission caring for orphans and destitute children through faith-based homes, schools and family assistance worldwide since 1974." />
+<title>Children of Promise International — Caring for God's Children Since 1974</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   COPI — Children of Promise International
+   Design tokens
+   ============================================================ */
+:root{
+  /* Brand — COPI dusty blue, warmed and deepened for contrast */
+  --blue-900:#1c3a5e;
+  --blue-700:#27557f;
+  --blue-600:#356a99;
+  --blue-500:#5a8bb0;
+  --blue-100:#e3edf4;
+  --blue-50:#f1f6f9;
+
+  /* Warm accent — terracotta, echoing global care / homes */
+  --accent-700:#b9572f;
+  --accent-600:#cd6336;
+  --accent-500:#dd7a4f;
+  --accent-100:#f6e3d8;
+
+  /* Neutrals — soft sand / cream */
+  --cream:#faf7f2;
+  --sand:#f2ede4;
+  --paper:#ffffff;
+  --ink-900:#23262b;
+  --ink-700:#41454d;
+  --ink-500:#6a6f78;
+  --line:#e4ddd1;
+
+  --radius-s:8px;
+  --radius:14px;
+  --radius-l:22px;
+  --shadow-s:0 1px 2px rgba(28,58,94,.06), 0 2px 8px rgba(28,58,94,.05);
+  --shadow-m:0 6px 16px rgba(28,58,94,.08), 0 2px 6px rgba(28,58,94,.05);
+  --shadow-l:0 18px 40px rgba(28,58,94,.12), 0 4px 12px rgba(28,58,94,.07);
+
+  --font-display:'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body:'Source Sans 3', system-ui, sans-serif;
+
+  --maxw:1180px;
+  --gap:clamp(3.5rem, 7vw, 6rem);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+
+body{
+  font-family:var(--font-body);
+  color:var(--ink-700);
+  background:var(--cream);
+  line-height:1.7;
+  font-size:1.0625rem;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  color:var(--ink-900);
+  line-height:1.18;
+  font-weight:700;
+  letter-spacing:-.01em;
+}
+
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+ul{list-style:none;}
+
+.wrap{
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding-inline:clamp(1.25rem,4vw,2.5rem);
+}
+
+.eyebrow{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.78rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent-600);
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+}
+.eyebrow::before{
+  content:"";
+  width:26px;height:2px;
+  background:var(--accent-500);
+  display:inline-block;
+}
+
+.section-title{
+  font-size:clamp(1.7rem,3.4vw,2.45rem);
+  margin-top:.85rem;
+  max-width:22ch;
+}
+.section-intro{
+  margin-top:1rem;
+  max-width:56ch;
+  color:var(--ink-500);
+  font-size:1.075rem;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55rem;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.97rem;
+  padding:.92rem 1.7rem;
+  border-radius:999px;
+  border:1.5px solid transparent;
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .25s ease, background-color .2s ease, color .2s ease;
+  white-space:nowrap;
+}
+.btn svg{transition:transform .2s ease;}
+.btn-primary{
+  background:var(--accent-600);
+  color:#fff;
+  box-shadow:0 6px 16px rgba(185,87,47,.28);
+}
+.btn-primary:hover{
+  background:var(--accent-700);
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(185,87,47,.34);
+}
+.btn-primary:hover svg{transform:translateX(3px);}
+.btn-ghost{
+  background:transparent;
+  color:var(--blue-700);
+  border-color:var(--blue-100);
+}
+.btn-ghost:hover{
+  background:var(--blue-50);
+  border-color:var(--blue-500);
+  transform:translateY(-2px);
+}
+.btn-light{
+  background:#fff;
+  color:var(--blue-700);
+  box-shadow:var(--shadow-s);
+}
+.btn-light:hover{transform:translateY(-2px);box-shadow:var(--shadow-m);}
+
+/* Reveal-on-scroll */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .7s cubic-bezier(.2,.65,.3,1), transform .7s cubic-bezier(.2,.65,.3,1);
+}
+.reveal.in{opacity:1;transform:none;}
+[data-delay="1"]{transition-delay:.08s;}
+[data-delay="2"]{transition-delay:.16s;}
+[data-delay="3"]{transition-delay:.24s;}
+[data-delay="4"]{transition-delay:.32s;}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+  .reveal{opacity:1;transform:none;}
+  html{scroll-behavior:auto;}
+}
+
+:focus-visible{
+  outline:3px solid var(--accent-500);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.skip-link{
+  position:absolute;left:-999px;top:0;z-index:200;
+  background:var(--blue-900);color:#fff;
+  padding:.7rem 1.2rem;border-radius:0 0 8px 0;
+  font-family:var(--font-display);font-weight:700;
+}
+.skip-link:focus{left:0;}
+
+.topbar{
+  background:var(--blue-900);
+  color:#cfdde9;
+  font-size:.82rem;
+  letter-spacing:.01em;
+}
+.topbar .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding-block:.5rem;
+  flex-wrap:wrap;
+}
+.topbar strong{color:#fff;font-weight:600;}
+.topbar .tb-note{
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.topbar .tb-note svg{flex:none;color:var(--accent-500);}
+.topbar .tb-links{display:flex;gap:1.3rem;}
+.topbar .tb-links a{transition:color .18s ease;}
+.topbar .tb-links a:hover{color:#fff;}
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(250,247,242,.9);
+  backdrop-filter:saturate(160%) blur(12px);
+  -webkit-backdrop-filter:saturate(160%) blur(12px);
+  border-bottom:1px solid transparent;
+  transition:box-shadow .3s ease, border-color .3s ease, background-color .3s ease, padding .25s ease;
+}
+.site-header.scrolled{
+  box-shadow:0 4px 20px rgba(28,58,94,.09);
+  border-color:var(--line);
+  background:rgba(255,255,255,.95);
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding-block:.85rem;
+  transition:padding .25s ease;
+}
+.site-header.scrolled .nav{padding-block:.6rem;}
+
+/* Logo wordmark — rebuilt cleanly to match COPI identity */
+.brand{display:flex;align-items:center;gap:.7rem;flex:none;}
+.brand-mark{
+  width:46px;height:46px;flex:none;
+  border-radius:12px;
+  background:linear-gradient(150deg,var(--blue-600),var(--blue-900));
+  display:grid;place-items:center;
+  box-shadow:0 4px 12px rgba(28,58,94,.25);
+}
+.brand-mark svg{width:26px;height:26px;}
+.brand-text{display:flex;flex-direction:column;line-height:1.05;}
+.brand-text .bt-main{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:1.04rem;
+  color:var(--blue-900);
+  letter-spacing:-.015em;
+  white-space:nowrap;
+}
+.brand-text .bt-sub{
+  font-size:.66rem;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:var(--accent-600);
+  font-weight:600;
+  margin-top:.12rem;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:.15rem;
+}
+.nav-links > li > a{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.95rem;
+  color:var(--ink-700);
+  padding:.55rem .8rem;
+  border-radius:8px;
+  position:relative;
+  white-space:nowrap;
+  transition:color .18s ease, background-color .18s ease;
+}
+.nav-links > li > a::after{
+  content:"";
+  position:absolute;
+  left:.8rem;right:.8rem;bottom:.32rem;
+  height:2px;
+  background:var(--accent-500);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .22s ease;
+}
+.nav-links > li > a:hover{color:var(--blue-900);}
+.nav-links > li > a:hover::after{transform:scaleX(1);}
+
+.nav-cta{display:flex;align-items:center;justify-content:flex-end;gap:.55rem;flex:none;}
+.nav-cta .btn{padding:.62rem 1.15rem;font-size:.9rem;}
+
+.burger{
+  display:none;
+  width:46px;height:46px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  padding:0;
+  place-items:center;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+}
+.burger span{
+  display:block;width:22px;height:2.4px;
+  background:var(--blue-900);
+  border-radius:2px;
+  transition:all .3s ease;
+  transform-origin:center;
+}
+.burger.open span:nth-child(1){
+  transform:translateY(9px) rotate(45deg);
+}
+.burger.open span:nth-child(2){
+  opacity:0;
+}
+.burger.open span:nth-child(3){
+  transform:translateY(-9px) rotate(-45deg);
+}
+
+/* Off-canvas mobile menu */
+.menu-overlay{
+  position:fixed;inset:0;
+  background:rgba(28,58,94,.5);
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease, visibility .3s ease;
+  z-index:150;
+  backdrop-filter:blur(2px);
+}
+.menu-overlay.open{opacity:1;visibility:visible;}
+
+.mobile-menu{
+  position:fixed;
+  top:0;right:0;
+  height:100%;
+  width:min(90vw,340px);
+  background:var(--cream);
+  z-index:160;
+  transform:translateX(105%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  display:flex;
+  flex-direction:column;
+  box-shadow:-20px 0 50px rgba(28,58,94,.2);
+}
+.mobile-menu.open{transform:translateX(0);}
+.mm-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 1.3rem;
+  border-bottom:1px solid var(--line);
+  flex-wrap:nowrap;
+  gap:1rem;
+}
+.mm-close{
+  width:40px;height:40px;flex:none;
+  border:1px solid var(--line);
+  background:#fff;border-radius:10px;
+  cursor:pointer;font-size:1.2rem;color:var(--blue-900);
+  display:grid;place-items:center;line-height:1;
+}
+.mm-links{
+  padding:1rem 0.8rem 1.2rem;
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+  flex:1;
+}
+.mm-links a{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1rem;
+  color:var(--ink-900);
+  padding:.85rem 1rem;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background-color .18s ease, color .18s ease;
+}
+.mm-links a:hover{background:var(--blue-50);color:var(--blue-700);}
+.mm-links a svg{color:var(--ink-500);flex:none;}
+.mm-foot{padding:1rem 1.3rem;border-top:1px solid var(--line);}
+.mm-foot .btn{width:100%;}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  background:
+    radial-gradient(60% 70% at 88% 12%, rgba(221,122,79,.10), transparent 70%),
+    radial-gradient(55% 60% at 8% 95%, rgba(53,106,153,.10), transparent 70%),
+    var(--cream);
+  padding-top:clamp(3rem,6vw,5rem);
+  padding-bottom:clamp(3rem,6vw,5.5rem);
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:center;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--blue-50);
+  border:1px solid var(--blue-100);
+  color:var(--blue-700);
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.82rem;
+  padding:.45rem .95rem;
+  border-radius:999px;
+}
+.hero-tag .dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent-500);
+}
+.hero h1{
+  font-size:clamp(2.25rem,5.2vw,3.6rem);
+  font-weight:800;
+  margin-top:1.25rem;
+  letter-spacing:-.025em;
+}
+.hero h1 .hl{
+  color:var(--accent-600);
+  position:relative;
+}
+.hero p.lead{
+  margin-top:1.3rem;
+  font-size:1.13rem;
+  max-width:46ch;
+  color:var(--ink-700);
+}
+.hero-actions{
+  margin-top:1.9rem;
+  display:flex;gap:.9rem;flex-wrap:wrap;align-items:center;
+}
+.hero-verse{
+  margin-top:2.1rem;
+  padding-left:1.1rem;
+  border-left:3px solid var(--accent-500);
+  font-style:italic;
+  color:var(--ink-500);
+  font-size:1.0rem;
+  max-width:42ch;
+}
+.hero-verse cite{
+  display:block;
+  font-style:normal;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.82rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--blue-700);
+  margin-top:.5rem;
+}
+
+/* Hero visual */
+.hero-visual{position:relative;}
+.hero-photo{
+  border-radius:var(--radius-l);
+  overflow:hidden;
+  box-shadow:var(--shadow-l);
+  aspect-ratio:4/4.6;
+  background:var(--sand);
+}
+.hero-photo img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 32%;
+}
+.hero-badge{
+  position:absolute;
+  left:-1.4rem;bottom:1.8rem;
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-l);
+  padding:1.05rem 1.25rem;
+  display:flex;align-items:center;gap:.85rem;
+  max-width:248px;
+}
+.hero-badge .hb-icon{
+  width:46px;height:46px;flex:none;
+  border-radius:12px;
+  background:var(--accent-100);
+  color:var(--accent-700);
+  display:grid;place-items:center;
+}
+.hero-badge .hb-num{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:1.35rem;
+  color:var(--blue-900);
+  line-height:1;
+}
+.hero-badge .hb-label{
+  font-size:.82rem;
+  color:var(--ink-500);
+  margin-top:.15rem;
+}
+.hero-float{
+  position:absolute;
+  right:-1rem;top:1.6rem;
+  background:var(--blue-900);
+  color:#fff;
+  border-radius:var(--radius);
+  padding:.85rem 1.1rem;
+  box-shadow:var(--shadow-l);
+  font-family:var(--font-display);
+  display:flex;align-items:center;gap:.6rem;
+  font-weight:600;font-size:.86rem;
+}
+.hero-float svg{color:var(--accent-500);flex:none;}
+
+/* Trust strip */
+.trust{
+  border-top:1px solid var(--line);
+  margin-top:clamp(2.5rem,5vw,3.8rem);
+  padding-top:1.8rem;
+}
+.trust-row{
+  display:flex;
+  align-items:center;
+  gap:clamp(1.2rem,4vw,3rem);
+  flex-wrap:wrap;
+  justify-content:space-between;
+}
+.trust-label{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-500);
+}
+.trust-badges{
+  display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap;
+}
+.trust-item{
+  display:flex;align-items:center;gap:.6rem;
+  color:var(--ink-700);
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.92rem;
+}
+.trust-item .ti-mark{
+  width:34px;height:34px;flex:none;
+  border-radius:9px;
+  display:grid;place-items:center;
+  font-weight:800;font-size:.7rem;
+  color:#fff;
+}
+.ti-gold{background:linear-gradient(150deg,#d6a448,#b9842e);}
+.ti-star{background:linear-gradient(150deg,#5aa469,#3f7d4f);}
+.ti-501{background:linear-gradient(150deg,var(--blue-600),var(--blue-900));}
+
+/* ============================================================
+   STATS BAND
+   ============================================================ */
+.stats{
+  background:var(--blue-900);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.stats::before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    radial-gradient(40% 60% at 85% 0%, rgba(221,122,79,.22), transparent 70%),
+    radial-gradient(40% 70% at 5% 100%, rgba(90,139,176,.25), transparent 70%);
+}
+.stats .wrap{position:relative;padding-block:clamp(3rem,5vw,4rem);}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+}
+.stat{
+  text-align:center;
+  padding:1rem .5rem;
+  position:relative;
+}
+.stat:not(:last-child)::after{
+  content:"";
+  position:absolute;
+  right:0;top:18%;height:64%;width:1px;
+  background:rgba(255,255,255,.14);
+}
+.stat .s-num{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(2rem,4vw,2.85rem);
+  color:#fff;
+  letter-spacing:-.02em;
+  line-height:1;
+}
+.stat .s-num .plus{color:var(--accent-500);}
+.stat .s-label{
+  margin-top:.55rem;
+  font-size:.92rem;
+  color:#bdd0e0;
+  letter-spacing:.02em;
+}
+
+/* ============================================================
+   MISSION / ABOUT
+   ============================================================ */
+.section{padding-block:var(--gap);}
+.mission{background:var(--cream);}
+.mission-grid{
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:center;
+}
+.mission-figure{
+  position:relative;
+}
+.mission-figure .mf-main{
+  border-radius:var(--radius-l);
+  overflow:hidden;
+  box-shadow:var(--shadow-l);
+  border:6px solid #fff;
+}
+.mission-figure .mf-main img{
+  width:100%;
+  aspect-ratio:5/5.6;
+  object-fit:cover;
+  object-position:center 30%;
+}
+.mission-figure .mf-quote{
+  position:absolute;
+  right:-1.2rem;bottom:-1.4rem;
+  background:var(--accent-600);
+  color:#fff;
+  border-radius:var(--radius);
+  padding:1.15rem 1.3rem;
+  max-width:230px;
+  box-shadow:var(--shadow-l);
+}
+.mf-quote .mq-text{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.95rem;
+  line-height:1.45;
+}
+.mf-quote .mq-by{
+  margin-top:.55rem;
+  font-size:.78rem;
+  color:#f6dccc;
+  letter-spacing:.04em;
+}
+.mission-body p{margin-top:1.05rem;}
+.mission-body p:first-of-type{margin-top:1.1rem;}
+.founder-card{
+  margin-top:1.7rem;
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:1.05rem 1.2rem;
+  box-shadow:var(--shadow-s);
+}
+.founder-card .fc-img{
+  width:54px;height:54px;flex:none;
+  border-radius:50%;
+  background:linear-gradient(150deg,var(--blue-500),var(--blue-900));
+  display:grid;place-items:center;
+  color:#fff;font-family:var(--font-display);
+  font-weight:800;font-size:1.1rem;
+}
+.founder-card .fc-name{
+  font-family:var(--font-display);
+  font-weight:700;
+  color:var(--ink-900);
+  font-size:1rem;
+}
+.founder-card .fc-role{
+  font-size:.86rem;color:var(--ink-500);
+}
+
+/* ============================================================
+   WHAT WE DO — CARDS
+   ============================================================ */
+.work{background:var(--sand);}
+.work-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+.cards{
+  margin-top:2.6rem;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.4rem;
+}
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:1.6rem 1.45rem 1.7rem;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-l);
+  border-color:transparent;
+}
+.card .c-icon{
+  width:52px;height:52px;
+  border-radius:13px;
+  display:grid;place-items:center;
+  margin-bottom:1.1rem;
+  transition:transform .25s ease;
+}
+.card:hover .c-icon{transform:scale(1.06) rotate(-3deg);}
+.c-icon.i-blue{background:var(--blue-50);color:var(--blue-700);}
+.c-icon.i-accent{background:var(--accent-100);color:var(--accent-700);}
+.c-icon.i-green{background:#e6f1e8;color:#3f7d4f;}
+.c-icon.i-gold{background:#f6ecd6;color:#a3791f;}
+.card h3{font-size:1.16rem;}
+.card p{
+  margin-top:.55rem;
+  font-size:.97rem;
+  color:var(--ink-500);
+}
+.card .c-link{
+  margin-top:1.05rem;
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.88rem;
+  color:var(--blue-700);
+}
+.card .c-link svg{transition:transform .2s ease;}
+.card:hover .c-link svg{transform:translateX(4px);}
+
+/* ============================================================
+   WHERE WE SERVE
+   ============================================================ */
+.serve{background:var(--cream);}
+.serve-grid{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:center;
+}
+.serve-copy .section-intro{margin-bottom:1.6rem;}
+.serve-note{
+  display:flex;gap:.85rem;
+  background:#fff;
+  border:1px solid var(--line);
+  border-left:3px solid var(--accent-500);
+  border-radius:var(--radius-s);
+  padding:1rem 1.15rem;
+  margin-top:1.5rem;
+}
+.serve-note svg{flex:none;color:var(--accent-600);margin-top:.15rem;}
+.serve-note p{font-size:.95rem;color:var(--ink-700);}
+.country-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1rem;
+}
+.country{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:1.25rem 1.3rem;
+  display:flex;
+  align-items:center;
+  gap:.95rem;
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.country:hover{transform:translateY(-4px);box-shadow:var(--shadow-m);}
+.country .flag{
+  width:44px;height:44px;flex:none;
+  border-radius:11px;
+  display:grid;place-items:center;
+  font-size:1.3rem;
+  background:var(--blue-50);
+}
+.country .ct-name{
+  font-family:var(--font-display);
+  font-weight:700;
+  color:var(--ink-900);
+  font-size:1.02rem;
+}
+.country .ct-meta{
+  font-size:.82rem;color:var(--ink-500);
+  margin-top:.1rem;
+}
+
+/* ============================================================
+   UPDATES
+   ============================================================ */
+.updates{background:var(--sand);}
+.update-list{
+  margin-top:2.4rem;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.4rem;
+}
+.update{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:1.5rem 1.6rem;
+  display:flex;
+  flex-direction:column;
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.update:hover{transform:translateY(-4px);box-shadow:var(--shadow-m);}
+.update-top{
+  display:flex;align-items:center;gap:.7rem;
+  margin-bottom:.9rem;
+}
+.update .u-flag{
+  width:38px;height:38px;flex:none;
+  border-radius:10px;
+  background:var(--blue-50);
+  display:grid;place-items:center;
+  font-size:1.05rem;
+}
+.update .u-date{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.74rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--accent-600);
+}
+.update h3{font-size:1.1rem;}
+.update p{
+  margin-top:.5rem;
+  font-size:.96rem;
+  color:var(--ink-500);
+  flex:1;
+}
+.update .u-link{
+  margin-top:1rem;
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--font-display);
+  font-weight:700;font-size:.88rem;
+  color:var(--blue-700);
+}
+.update .u-link svg{transition:transform .2s ease;}
+.update:hover .u-link svg{transform:translateX(4px);}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta{
+  position:relative;
+  background:
+    radial-gradient(50% 80% at 80% 10%, rgba(221,122,79,.20), transparent 70%),
+    linear-gradient(160deg,var(--blue-700),var(--blue-900));
+  color:#fff;
+  overflow:hidden;
+}
+.cta::after{
+  content:"";
+  position:absolute;
+  left:-5%;bottom:-40%;
+  width:340px;height:340px;
+  border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.1);
+}
+.cta .wrap{
+  position:relative;
+  padding-block:clamp(3.5rem,6vw,5.5rem);
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.cta .eyebrow{color:#f0b694;}
+.cta .eyebrow::before{background:var(--accent-500);}
+.cta h2{
+  color:#fff;
+  font-size:clamp(1.9rem,4vw,2.85rem);
+  margin-top:.9rem;
+  max-width:20ch;
+}
+.cta p{
+  margin-top:1.1rem;
+  color:#cdddea;
+  max-width:54ch;
+  font-size:1.08rem;
+}
+.cta-actions{
+  margin-top:2rem;
+  display:flex;gap:.9rem;flex-wrap:wrap;justify-content:center;
+}
+.cta-actions .btn-ghost{
+  color:#fff;border-color:rgba(255,255,255,.35);
+}
+.cta-actions .btn-ghost:hover{
+  background:rgba(255,255,255,.1);
+  border-color:#fff;
+}
+.cta-reassure{
+  margin-top:1.5rem;
+  font-size:.86rem;
+  color:#9fb6c8;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.cta-reassure svg{color:var(--accent-500);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{
+  background:#16263a;
+  color:#9fb1c2;
+  font-size:.93rem;
+}
+.footer-main{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:2.5rem;
+  padding-block:clamp(3rem,5vw,4rem);
+}
+.footer-brand .brand-text .bt-main{color:#fff;}
+.footer-about{
+  margin-top:1.1rem;
+  max-width:34ch;
+  color:#8ea1b3;
+  font-size:.93rem;
+}
+.footer-col h4{
+  color:#fff;
+  font-size:.82rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.footer-col ul{display:flex;flex-direction:column;gap:.62rem;}
+.footer-col a{
+  color:#9fb1c2;
+  transition:color .18s ease, padding-left .18s ease;
+}
+.footer-col a:hover{color:#fff;padding-left:4px;}
+.footer-contact li{
+  display:flex;gap:.6rem;align-items:flex-start;
+  margin-bottom:.7rem;
+}
+.footer-contact svg{flex:none;margin-top:.2rem;color:var(--accent-500);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.09);
+  padding-block:1.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  flex-wrap:wrap;
+  font-size:.85rem;
+  color:#7d90a3;
+}
+.footer-bottom .fb-badges{display:flex;gap:1.1rem;flex-wrap:wrap;}
+.footer-bottom .fb-badges span{
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.footer-bottom .fb-badges svg{color:var(--accent-500);}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  /* Desktop nav collapses to the burger menu before it can be
+     squeezed — five links + two buttons need real horizontal room. */
+  .nav-links{display:none;}
+  .nav-cta .btn{display:none;}
+  .burger{display:flex!important;}
+  .topbar .tb-links{display:none;}
+}
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .hero-visual{max-width:460px;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.8rem 1rem;}
+  .stat:nth-child(2)::after{display:none;}
+  .mission-grid{grid-template-columns:1fr;gap:3.5rem;}
+  .mission-figure{max-width:440px;}
+  .cards{grid-template-columns:repeat(2,1fr);}
+  .serve-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .footer-main{grid-template-columns:1fr 1fr;gap:2rem;}
+}
+@media (max-width:760px){
+  .stat::after{display:none!important;}
+  .update-list{grid-template-columns:1fr;}
+  .hero-badge{left:0;}
+  .hero-float{right:0;}
+  .mission-figure .mf-quote{right:0;}
+}
+@media (max-width:540px){
+  body{font-size:1rem;}
+  .cards{grid-template-columns:1fr;}
+  .country-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr;gap:1.4rem;}
+  .footer-main{grid-template-columns:1fr;gap:2rem;}
+  .hero-actions .btn,.cta-actions .btn{width:100%;}
+  .work-head{flex-direction:column;align-items:flex-start;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+}
+
+#glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="tb-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+      <span>Please note: we are <strong>not</strong> affiliated with the Children of Promise organization in Anderson, IN.</span>
+    </span>
+    <div class="tb-links">
+      <a href="#">Sponsor a Child</a>
+      <a href="#">Volunteer</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav wrap" aria-label="Primary">
+    <a class="brand" href="#" aria-label="Children of Promise International — home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21s-7-4.5-9.3-9.2C1 8.5 2.7 5 6.2 5c2.2 0 3.7 1.4 4.6 2.8C11.6 6.4 13.1 5 15.4 5 18.9 5 20.7 8.5 19.1 11.8 16.9 16.5 12 21 12 21Z"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="bt-main">Children of Promise</span>
+        <span class="bt-sub">International</span>
+      </span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#mission">Who We Are</a></li>
+      <li><a href="#work">What We Do</a></li>
+      <li><a href="#serve">Where We Serve</a></li>
+      <li><a href="#updates">Mission News</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost">Sponsor a Child</a>
+      <a href="#donate" class="btn btn-primary">
+        Donate Now
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="mm-head">
+    <span class="brand-text" style="font-size:.85em;">
+      <span class="bt-main">Children of Promise</span>
+      <span class="bt-sub">International</span>
+    </span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="mm-links" aria-label="Mobile primary">
+    <a href="#mission">Who We Are <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
+    <a href="#work">What We Do <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
+    <a href="#serve">Where We Serve <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
+    <a href="#updates">Mission News <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
+    <a href="#contact">Contact <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
+    <a href="#">Sponsor a Child <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
+  </nav>
+  <div class="mm-foot">
+    <a href="#donate" class="btn btn-primary">Donate Now</a>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="hero-tag reveal"><span class="dot"></span>Christian mission · Caring for orphans since 1974</span>
+          <h1 class="reveal" data-delay="1">Every child deserves a place called <span class="hl">home</span>.</h1>
+          <p class="lead reveal" data-delay="2">
+            Children of Promise International is an interdenominational Christian
+            mission providing food, shelter, education and loving care to orphaned
+            and destitute children through faith-based homes around the world.
+          </p>
+          <div class="hero-actions reveal" data-delay="3">
+            <a href="#" class="btn btn-primary">
+              Sponsor a Child Today
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#mission" class="btn btn-ghost">Learn About Our Mission</a>
+          </div>
+          <blockquote class="hero-verse reveal" data-delay="4">
+            “…to care for orphans … in their distress.”
+            <cite>James 1:27</cite>
+          </blockquote>
+        </div>
+
+        <div class="hero-visual reveal" data-delay="2">
+          <div class="hero-photo">
+            <img src="https://images.unsplash.com/photo-1607453998774-d533f65dac99?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2hpbGRyZW58ZW58MHx8MHx8fDA%3D" alt="Two young children playing together outdoors" />
+          </div>
+          <div class="hero-badge">
+            <span class="hb-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+            </span>
+            <span>
+              <span class="hb-num">Nearly 10</span>
+              <span class="hb-label">countries reached with care &amp; the Gospel</span>
+            </span>
+          </div>
+          <div class="hero-float">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a5 5 0 0 0-8.8-3.3A5 5 0 0 0 3.2 8.6c0 5 8.8 10.4 8.8 10.4s8.8-5.4 8.8-10.4Z"/></svg>
+            5 decades of service
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust strip -->
+      <div class="trust reveal">
+        <div class="trust-row">
+          <span class="trust-label">A trusted, accountable ministry</span>
+          <div class="trust-badges">
+            <span class="trust-item">
+              <span class="ti-mark ti-gold">GOLD</span>
+              Candid · Seal of Transparency
+            </span>
+            <span class="trust-item">
+              <span class="ti-mark ti-star">★★★</span>
+              Charity Navigator · Three-Star
+            </span>
+            <span class="trust-item">
+              <span class="ti-mark ti-501">501</span>
+              U.S. 501(c)(3) Non-Profit
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats" aria-label="Our impact at a glance">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat reveal">
+          <div class="s-num">1974</div>
+          <div class="s-label">Founded as a Christian mission</div>
+        </div>
+        <div class="stat reveal" data-delay="1">
+          <div class="s-num">10<span class="plus">+</span></div>
+          <div class="s-label">Countries served worldwide</div>
+        </div>
+        <div class="stat reveal" data-delay="2">
+          <div class="s-num">1,000s</div>
+          <div class="s-label">Children cared for to date</div>
+        </div>
+        <div class="stat reveal" data-delay="3">
+          <div class="s-num">5</div>
+          <div class="s-label">Decades of faithful outreach</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISSION / WHO WE ARE ============ -->
+  <section class="section mission" id="mission">
+    <div class="wrap">
+      <div class="mission-grid">
+        <figure class="mission-figure reveal">
+          <div class="mf-main">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=700&fit=crop" alt="Children from around the world smiling together" />
+          </div>
+          <div class="mf-quote">
+            <p class="mq-text">“He left an American pastorate at fifty-eight to reach the unreached.”</p>
+            <p class="mq-by">— The story of founder Linn Haitz</p>
+          </div>
+        </figure>
+
+        <div class="mission-body reveal" data-delay="1">
+          <span class="eyebrow">Who We Are</span>
+          <h2 class="section-title">An interdenominational Christian mission for the world's children.</h2>
+          <p>
+            Children of Promise International (COPI) is an interdenominational
+            Christian mission organization founded in 1974 and dedicated to caring
+            for orphans. Through church-based orphan homes, learning centers and
+            affiliated ministries, COPI reaches the unreached with the Gospel of
+            Jesus Christ.
+          </p>
+          <p>
+            Our founder, Linn Haitz, pioneered COPI's mission in 1968 when — at the
+            age of fifty-eight — he left an American pastorate to reach the unreached
+            in the jungles of South America. From there, our outreach expanded to
+            India, Central America and other marginalized regions. In the five
+            decades since, COPI's mission has grown to care for thousands of orphans
+            and destitute children in nearly 10 countries worldwide.
+          </p>
+          <p>
+            We are blessed to operate with a volunteer staff acting as a faithful
+            conduit between donors and the children they support.
+          </p>
+          <div class="founder-card">
+            <span class="fc-img" aria-hidden="true">LH</span>
+            <span>
+              <span class="fc-name">Linn Haitz</span>
+              <span class="fc-role">Founder &amp; missionary pioneer · 1968</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT WE DO ============ -->
+  <section class="section work" id="work">
+    <div class="wrap">
+      <div class="work-head">
+        <div class="reveal">
+          <span class="eyebrow">What We Do</span>
+          <h2 class="section-title">Whole-life care for orphaned and destitute children.</h2>
+        </div>
+        <p class="section-intro reveal" data-delay="1" style="margin-top:0;">
+          COPI provides physical and spiritual care through Christ-centered orphan
+          homes, and supports needy children through schools, nutrition programs
+          and family assistance.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="c-icon i-blue" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-6h4v6"/></svg>
+          </div>
+          <h3>Faith-Based Homes</h3>
+          <p>24-hour care for orphaned, abandoned and impoverished children in loving, Christ-centered children's homes.</p>
+          <a href="#" class="c-link">Children's Homes
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="card reveal" data-delay="1">
+          <div class="c-icon i-accent" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-3 9 3-9 3-9-3Z"/><path d="M7 9v5c0 1.5 2.5 3 5 3s5-1.5 5-3V9"/><path d="M21 7v6"/></svg>
+          </div>
+          <h3>Free Schools</h3>
+          <p>Christian education and higher-learning opportunities that open doors for children who would otherwise go without.</p>
+          <a href="#" class="c-link">Free Schools
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="card reveal" data-delay="2">
+          <div class="c-icon i-green" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 3 6 6 6 10a6 6 0 0 1-12 0c0-4 2-7 6-10Z"/><path d="M12 21v-7"/></svg>
+          </div>
+          <h3>Food &amp; Nutrition</h3>
+          <p>Feeding and nutrition programs that bring complete, daily nourishment to vulnerable children and families.</p>
+          <a href="#" class="c-link">Nutrition Programs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="card reveal" data-delay="3">
+          <div class="c-icon i-gold" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.2 3.2 0 0 1 0 7"/><path d="M18 14c2.5.8 4 3 4 6"/></svg>
+          </div>
+          <h3>Family Assistance</h3>
+          <p>Helping families build spiritual maturity, gain life skills and improve their overall health and wellbeing.</p>
+          <a href="#" class="c-link">Family Assistance
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHERE WE SERVE ============ -->
+  <section class="section serve" id="serve">
+    <div class="wrap">
+      <div class="serve-grid">
+        <div class="serve-copy reveal">
+          <span class="eyebrow">Where We Serve</span>
+          <h2 class="section-title">A door of opportunity, opened across the globe.</h2>
+          <p class="section-intro">
+            Somewhere around the world a child longs for love, food, shelter and a
+            place called home. Through partnerships with churches, ministries and
+            faithful supporters, COPI's children's homes provide that home in
+            communities that need it most.
+          </p>
+          <div class="serve-note">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.3-9.2C1 8.5 2.7 5 6.2 5c2.2 0 3.7 1.4 4.6 2.8C11.6 6.4 13.1 5 15.4 5 18.9 5 20.7 8.5 19.1 11.8 16.9 16.5 12 21 12 21Z"/></svg>
+            <p>Each home is connected to a local church or like-minded Christian mission, so children are nurtured by loving caregivers in the Word of God.</p>
+          </div>
+        </div>
+
+        <div class="country-grid reveal" data-delay="1">
+          <div class="country">
+            <span class="flag" aria-hidden="true">🇰🇭</span>
+            <span><span class="ct-name">Cambodia</span><span class="ct-meta">Faith-based children's home</span></span>
+          </div>
+          <div class="country">
+            <span class="flag" aria-hidden="true">🇨🇷</span>
+            <span><span class="ct-name">Costa Rica</span><span class="ct-meta">Homes of Life partnership</span></span>
+          </div>
+          <div class="country">
+            <span class="flag" aria-hidden="true">🇬🇹</span>
+            <span><span class="ct-name">Guatemala</span><span class="ct-meta">Children's home &amp; ministry</span></span>
+          </div>
+          <div class="country">
+            <span class="flag" aria-hidden="true">🇭🇹</span>
+            <span><span class="ct-name">Haiti</span><span class="ct-meta">Care, shelter &amp; education</span></span>
+          </div>
+          <div class="country">
+            <span class="flag" aria-hidden="true">🇮🇳</span>
+            <span><span class="ct-name">India</span><span class="ct-meta">Homes, schools &amp; nutrition</span></span>
+          </div>
+          <div class="country">
+            <span class="flag" aria-hidden="true">🇻🇪</span>
+            <span><span class="ct-name">Venezuela</span><span class="ct-meta">Affiliated mission outreach</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISSION NEWS / UPDATES ============ -->
+  <section class="section updates" id="updates">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;">
+        <span class="eyebrow" style="justify-content:center;">Mission News</span>
+        <h2 class="section-title" style="margin-inline:auto;">The latest from the field.</h2>
+        <p class="section-intro" style="margin-inline:auto;">
+          Stay connected with how God is working through COPI's homes and the
+          children in our care around the world.
+        </p>
+      </div>
+
+      <div class="update-list">
+        <article class="update reveal">
+          <div class="update-top">
+            <span class="u-flag" aria-hidden="true">🇭🇹</span>
+            <span class="u-date">Latest Update · October 2025</span>
+          </div>
+          <h3>News &amp; updates from Haiti</h3>
+          <p>The most recent report from our Haitian children's home — caring for children through a season of real need and uncertainty.</p>
+          <a href="#" class="u-link">Read the Haiti update
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="update reveal" data-delay="1">
+          <div class="update-top">
+            <span class="u-flag" aria-hidden="true">🇮🇳</span>
+            <span class="u-date">Latest Update · October 2025</span>
+          </div>
+          <h3>Home Directors meeting summary — India</h3>
+          <p>Highlights from the latest gathering of our India home directors, with progress, prayer needs and plans for the children in our care.</p>
+          <a href="#" class="u-link">Read the India summary
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA / DONATE ============ -->
+  <section class="cta" id="donate">
+    <div class="wrap">
+      <span class="eyebrow reveal">Become a Partner</span>
+      <h2 class="reveal" data-delay="1">Open a door of opportunity for a child today.</h2>
+      <p class="reveal" data-delay="2">
+        Your prayers and your partnership become a conduit of love — providing
+        food, shelter, education and the Gospel to children who need a home.
+        Join us as a prayer and financial partner for God's children.
+      </p>
+      <div class="cta-actions reveal" data-delay="3">
+        <a href="#" class="btn btn-light">
+          Donate Now
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="btn btn-ghost">Sponsor a Child</a>
+      </div>
+      <p class="cta-reassure reveal" data-delay="3">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg>
+        Secure giving · 100% volunteer staff · Registered 501(c)(3) non-profit
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="#" aria-label="Children of Promise International — home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.3-9.2C1 8.5 2.7 5 6.2 5c2.2 0 3.7 1.4 4.6 2.8C11.6 6.4 13.1 5 15.4 5 18.9 5 20.7 8.5 19.1 11.8 16.9 16.5 12 21 12 21Z"/></svg>
+          </span>
+          <span class="brand-text">
+            <span class="bt-main">Children of Promise</span>
+            <span class="bt-sub">International</span>
+          </span>
+        </a>
+        <p class="footer-about">
+          Providing food, shelter, clothing, medical care, education and spiritual
+          nourishment to the Lord's children around the world since 1974.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#mission">Who We Are</a></li>
+          <li><a href="#work">What We Do</a></li>
+          <li><a href="#serve">Where We Serve</a></li>
+          <li><a href="#updates">Mission News</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="#">Sponsor a Child</a></li>
+          <li><a href="#donate">Donate Now</a></li>
+          <li><a href="#">Mission Partnerships</a></li>
+          <li><a href="#">Adoption</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <ul>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+            <a href="#">Send us a message</a>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9-9a9 9 0 0 1 18 0c-2 4.5-9 9-9 9Z"/><circle cx="12" cy="11" r="2.6"/></svg>
+            <span>A U.S.-based mission ministry</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z"/></svg>
+            <span>EIN 43-1027276</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2025 Children of Promise International. A U.S. 501(c)(3) non-profit organization.</span>
+      <div class="fb-badges">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 20l-4.9 2.2.9-5.5-4-3.9 5.5-.8Z"/></svg>
+          Candid Gold Transparency
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 20l-4.9 2.2.9-5.5-4-3.9 5.5-.8Z"/></svg>
+          Charity Navigator Three-Star
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---- Sticky header shadow on scroll ---- */
+  var header = document.getElementById('siteHeader');
+  function onScroll(){
+    if(window.scrollY > 12){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---- Mobile off-canvas menu ---- */
+  var burger  = document.getElementById('burger');
+  var menu    = document.getElementById('mobileMenu');
+  var overlay = document.getElementById('menuOverlay');
+  var mmClose = document.getElementById('mmClose');
+
+  function openMenu(){
+    menu.classList.add('open');
+    overlay.classList.add('open');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded','true');
+    menu.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu(){
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    menu.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  burger.addEventListener('click', openMenu);
+  mmClose.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && menu.classList.contains('open')){ closeMenu(); }
+  });
+
+  /* ---- Scroll-reveal with IntersectionObserver ---- */
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+
+})();
+
+ //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+</script>
+</body>
+</html>

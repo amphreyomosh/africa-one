@@ -1,0 +1,1819 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connecticut Catholic Conference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+
+      :root {
+        --navy: #1a2e4a;
+        --navy-mid: #243d5e;
+        --gold: #c8922a;
+        --gold-light: #e2a83c;
+        --gold-pale: #f5e6c8;
+        --slate: #4a5568;
+        --slate-light: #718096;
+        --bg: #f8f7f4;
+        --bg-warm: #f2efe8;
+        --white: #ffffff;
+        --border: #e2ddd4;
+        --text: #1a202c;
+        --text-body: #3d4a5c;
+        --radius: 8px;
+        --radius-lg: 16px;
+        --shadow-sm:
+          0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --shadow-md:
+          0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.05);
+        --shadow-lg:
+          0 12px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+        --transition: 0.25s ease;
+        --max-w: 1200px;
+      }
+
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+
+      /* ── UTILITY ── */
+      .ct-container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 20px !important;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+
+      /* ── HEADER ── */
+      #site-header {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.97);
+        border-bottom: 1px solid transparent;
+        transition:
+          border-color var(--transition),
+          box-shadow var(--transition),
+          background var(--transition);
+      }
+      #site-header.scrolled {
+        border-color: var(--border);
+        box-shadow: var(--shadow-sm);
+        background: rgba(255, 255, 255, 0.99);
+        top: 0;
+      }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        height: 72px;
+      }
+      .site-logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+        text-decoration: none;
+      }
+      .logo-shield {
+        width: 44px;
+        height: 52px;
+        flex-shrink: 0;
+      }
+      .logo-text {
+        line-height: 1.2;
+      }
+      .logo-text strong {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: -0.01em;
+      }
+      .logo-text span {
+        font-size: 11px;
+        color: var(--slate-light);
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .main-nav a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--slate);
+        padding: 8px 14px;
+        border-radius: 6px;
+        transition:
+          color var(--transition),
+          background var(--transition);
+        white-space: nowrap;
+      }
+      .main-nav a:hover {
+        color: var(--navy);
+        background: var(--bg-warm);
+      }
+      .main-nav a.active {
+        color: var(--navy);
+        font-weight: 600;
+      }
+
+
+      .nav-cta {
+        margin-left: 12px;
+        background: var(--gold);
+        color: var(--white) !important;
+        padding: 9px 20px !important;
+        border-radius: 6px !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        transition:
+          background var(--transition),
+          transform var(--transition) !important;
+      }
+      .nav-cta:hover {
+        background: var(--gold-light) !important;
+        transform: translateY(-1px);
+      }
+
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 8px;
+        margin-left: auto;
+        border: none;
+        background: none;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--navy);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 72px 0 0;
+        background: var(--white);
+        z-index: 99;
+        flex-direction: column;
+        padding: 24px;
+        gap: 4px;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+      .mobile-menu a {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--text);
+        padding: 14px 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .mobile-menu .mobile-cta {
+        margin-top: 20px;
+        background: var(--gold);
+        color: var(--white);
+        border-radius: 8px;
+        text-align: center;
+        padding: 16px !important;
+        border-bottom: none;
+        font-weight: 700;
+        font-size: 15px;
+      }
+
+
+      /* ── HERO ── */
+      .hero {
+        margin-top: 72px;
+        background: var(--navy);
+        position: relative;
+        overflow: hidden;
+        min-height: 520px;
+        display: flex;
+        align-items: center;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1551759138-3a1d9214d973?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNhdGhvbGljJTIwbWFzc3xlbnwwfHwwfHx8MA%3D%3D")
+          center/cover no-repeat;
+        opacity: 0.2;
+      }
+      .hero-accent {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(180deg, var(--gold), var(--gold-light));
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+        padding: 72px 0;
+      }
+      .hero-content {
+        animation: fadeUp 0.7s ease both;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(200, 146, 42, 0.2);
+        border: 1px solid rgba(200, 146, 42, 0.35);
+        color: var(--gold-light);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 100px;
+        margin-bottom: 20px;
+      }
+      .hero-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold-light);
+      }
+      .hero h1 {
+        font-family: "Lora", serif;
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 600;
+        line-height: 1.25;
+        color: var(--white);
+        margin-bottom: 18px;
+        letter-spacing: -0.01em;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--gold-light);
+      }
+      .hero p {
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.7;
+        margin-bottom: 32px;
+        max-width: 440px;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold);
+        color: var(--white);
+        font-size: 15px;
+        font-weight: 600;
+        padding: 14px 28px;
+        border-radius: 7px;
+        border: none;
+        cursor: pointer;
+        transition:
+          background var(--transition),
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+      .btn-primary:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(200, 146, 42, 0.35);
+      }
+      .btn-primary svg {
+        width: 16px;
+        height: 16px;
+      }
+
+
+      .hero-image-col {
+        animation: fadeUp 0.7s 0.15s ease both;
+      }
+      .hero-card {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        backdrop-filter: blur(8px);
+      }
+      .hero-card-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--gold-light);
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .hero-news-item {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .hero-news-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .hero-news-item a {
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.5;
+        display: block;
+        transition: color var(--transition);
+      }
+      .hero-news-item a:hover {
+        color: var(--gold-light);
+      }
+      .hero-news-item span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        margin-top: 4px;
+        display: block;
+      }
+
+
+      /* ── MISSION BAND ── */
+      .mission-band {
+        background: var(--bg-warm);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 40px 0;
+      }
+      .mission-band-inner {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+      }
+      .mission-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 32px;
+        border-right: 1px solid var(--border);
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .mission-stat:last-child {
+        border-right: none;
+      }
+      .mission-stat.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .stat-num {
+        font-family: "Lora", serif;
+        font-size: 36px;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .stat-label {
+        font-size: 13px;
+        color: var(--slate-light);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+
+      /* ── SECTIONS ── */
+      section {
+        padding: 80px 0;
+      }
+      .section-label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-family: "Lora", serif;
+        font-size: clamp(22px, 3vw, 32px);
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        margin-bottom: 14px;
+      }
+      .section-desc {
+        font-size: 16px;
+        color: var(--slate);
+        max-width: 520px;
+        line-height: 1.7;
+      }
+
+
+      /* ── NEWS SECTION ── */
+      .news-section {
+        background: var(--white);
+      }
+      .news-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 44px;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .news-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition),
+          border-color var(--transition);
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .news-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .news-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: #ccc;
+      }
+      .news-card-img {
+        height: 180px;
+        overflow: hidden;
+        background: var(--bg-warm);
+      }
+      .news-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+      .news-card:hover .news-card-img img {
+        transform: scale(1.04);
+      }
+      .news-card-img-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .news-card-img-placeholder svg {
+        width: 40px;
+        height: 40px;
+        opacity: 0.2;
+      }
+      .news-card-body {
+        padding: 22px;
+      }
+      .news-tag {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+      .news-card-body h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1.45;
+        margin-bottom: 10px;
+      }
+      .news-card-body p {
+        font-size: 14px;
+        color: var(--slate);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+      .news-link {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gold);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: gap var(--transition);
+      }
+      .news-link:hover {
+        gap: 8px;
+      }
+      .view-all-link {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--gold);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+        transition: gap var(--transition);
+      }
+      .view-all-link:hover {
+        gap: 9px;
+      }
+
+
+      /* ── ISSUES SECTION ── */
+      .issues-section {
+        background: var(--bg);
+      }
+      .issues-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+
+      .issues-list {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .issue-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 18px 20px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        transition:
+          border-color var(--transition),
+          box-shadow var(--transition),
+          transform var(--transition);
+        text-decoration: none;
+      }
+      .issue-item:hover {
+        border-color: var(--gold);
+        box-shadow: var(--shadow-sm);
+        transform: translateX(4px);
+      }
+      .issue-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: var(--gold-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .issue-icon svg {
+        width: 20px;
+        height: 20px;
+        color: var(--gold);
+      }
+      .issue-text h4 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .issue-text p {
+        font-size: 13px;
+        color: var(--slate);
+        line-height: 1.5;
+      }
+
+
+      .issues-highlight {
+        background: var(--navy);
+        border-radius: var(--radius-lg);
+        padding: 40px;
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+      .issues-highlight::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: rgba(200, 146, 42, 0.1);
+      }
+      .highlight-quote {
+        font-family: "Lora", serif;
+        font-size: 20px;
+        font-style: italic;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.92);
+        margin-bottom: 24px;
+        position: relative;
+      }
+      .highlight-quote::before {
+        content: "\201C";
+        font-size: 48px;
+        color: var(--gold);
+        line-height: 0;
+        vertical-align: -18px;
+        margin-right: 4px;
+      }
+      .highlight-source {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gold-light);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .highlight-cta {
+        margin-top: 28px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(200, 146, 42, 0.2);
+        border: 1px solid rgba(200, 146, 42, 0.4);
+        color: var(--gold-light);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 6px;
+        transition:
+          background var(--transition),
+          border-color var(--transition);
+      }
+      .highlight-cta:hover {
+        background: rgba(200, 146, 42, 0.3);
+        border-color: rgba(200, 146, 42, 0.6);
+      }
+
+
+      /* ── FEATURE STRIP ── */
+      .feature-strip {
+        background: var(--navy-mid);
+        padding: 56px 0;
+      }
+      .feature-strip-inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .feature-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        transition:
+          background var(--transition),
+          border-color var(--transition);
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      .feature-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .feature-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(200, 146, 42, 0.3);
+      }
+      .feature-card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: rgba(200, 146, 42, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+      }
+      .feature-card-icon svg {
+        width: 22px;
+        height: 22px;
+        color: var(--gold-light);
+      }
+      .feature-card h3 {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 8px;
+      }
+      .feature-card p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.65;
+        margin-bottom: 18px;
+      }
+      .feature-card a {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gold-light);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: gap var(--transition);
+      }
+      .feature-card a:hover {
+        gap: 8px;
+      }
+
+
+      /* ── CTA SECTION ── */
+      .cta-section {
+        background: var(--bg-warm);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 64px 0;
+      }
+      .cta-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 48px;
+        align-items: center;
+      }
+      .cta-content h2 {
+        font-family: "Lora", serif;
+        font-size: clamp(20px, 2.5vw, 28px);
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 10px;
+      }
+      .cta-content p {
+        font-size: 15px;
+        color: var(--slate);
+        max-width: 500px;
+      }
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 2px solid var(--gold);
+        color: var(--gold);
+        font-size: 15px;
+        font-weight: 600;
+        padding: 13px 26px;
+        border-radius: 7px;
+        white-space: nowrap;
+        transition:
+          background var(--transition),
+          color var(--transition);
+      }
+      .btn-secondary:hover {
+        background: var(--gold);
+        color: var(--white);
+      }
+
+
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+
+
+      /* ── FOOTER ── */
+      footer {
+        background: #111a26;
+        color: rgba(255, 255, 255, 0.75);
+        padding: 56px 0 32px;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .footer-logo strong {
+        color: var(--white);
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .footer-tagline {
+        font-size: 13px;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 240px;
+        margin-bottom: 20px;
+      }
+      .footer-contact {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.7;
+      }
+      .footer-col h4 {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 16px;
+      }
+      .footer-col a {
+        display: block;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 10px;
+        transition: color var(--transition);
+      }
+      .footer-col a:hover {
+        color: var(--gold-light);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .footer-bottom p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .social-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.07);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background var(--transition);
+      }
+      .social-btn:hover {
+        background: rgba(200, 146, 42, 0.3);
+      }
+      .social-btn svg {
+        width: 16px;
+        height: 16px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .main-nav {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .mobile-menu {
+          display: flex;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 56px 0;
+        }
+        .hero-image-col {
+          display: none;
+        }
+        .news-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .issues-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .feature-strip-inner {
+          grid-template-columns: 1fr;
+        }
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+        .cta-inner {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+      @media (max-width: 640px) {
+        section {
+          padding: 56px 0;
+        }
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+        .mission-band-inner {
+          grid-template-columns: 1fr;
+        }
+        .mission-stat {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .mission-stat:last-child {
+          border-bottom: none;
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+        }
+        .hero h1 {
+          font-size: 26px;
+        }
+        .news-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+
+    <!-- HEADER -->
+    <header id="site-header" role="banner">
+      <div class="ct-container">
+        <div class="header-inner">
+          <a
+            href="#"
+            class="site-logo"
+            aria-label="Connecticut Catholic Conference Home"
+          >
+            <!-- Shield SVG representing the organization's logo shape -->
+            <svg
+              class="logo-shield"
+              viewBox="0 0 44 52"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 2L4 10v20c0 11 8 18 18 20 10-2 18-9 18-20V10L22 2z"
+                fill="#1a2e4a"
+              />
+              <rect x="19.5" y="12" width="5" height="20" rx="1" fill="white" />
+              <rect x="11" y="19.5" width="22" height="5" rx="1" fill="white" />
+            </svg>
+            <div class="logo-text">
+              <strong>Connecticut Catholic Conference</strong>
+              <span>Public Policy &amp; Advocacy</span>
+            </div>
+          </a>
+          <nav class="main-nav" aria-label="Primary navigation">
+            <a href="#" class="active">Home</a>
+            <a href="#">Issues</a>
+            <a href="#">About</a>
+            <a href="#">Links</a>
+            <a href="#">Contact</a>
+            <a href="#" class="nav-cta">Take Action</a>
+          </nav>
+          <button
+            class="hamburger"
+            aria-label="Open menu"
+            aria-expanded="false"
+            id="hamburger"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+      <a href="#">Home</a>
+      <a href="#">Issues</a>
+      <a href="#">About</a>
+      <a href="#">Links of Interest</a>
+      <a href="#">Contact Us</a>
+      <a href="#" class="mobile-cta">Take Action →</a>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-accent" aria-hidden="true"></div>
+      <div class="ct-container">
+        <div class="hero-inner">
+          <div class="hero-content">
+            <div class="hero-badge">
+              Archdiocese of Hartford · Diocese of Bridgeport · Diocese of
+              Norwich
+            </div>
+            <h1 id="hero-heading">
+              Advocating for <em>Human Dignity</em><br />in Connecticut
+            </h1>
+            <p>
+              The Connecticut Catholic Conference is the public policy and
+              advocacy office of the Catholic Church in Connecticut, bringing
+              Catholic teaching to bear on critical issues facing our state and
+              nation.
+            </p>
+            <a href="#" class="btn-primary">
+              Take Action Today
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </a>
+          </div>
+          <div class="hero-image-col">
+            <div class="hero-card">
+              <div class="hero-card-label">Latest Updates</div>
+              <div class="hero-news-item">
+                <a href="#"
+                  >Pope Leo XIV Urges Humane Treatment of Immigrants, Calls for
+                  Heeding U.S. Bishops' Message</a
+                >
+                <span>Immigration · May 2025</span>
+              </div>
+              <div class="hero-news-item">
+                <a href="#"
+                  >U.S. Bishops Issue a "Special Message" on Immigration from
+                  Plenary Assembly in Baltimore</a
+                >
+                <span>USCCB · May 2025</span>
+              </div>
+              <div class="hero-news-item">
+                <a href="#"
+                  >Conference Releases 2025 Annual Abortion Report — Numbers
+                  Continue to Rise</a
+                >
+                <span>Life Issues · 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- MISSION BAND -->
+    <div class="mission-band" aria-label="Organization overview">
+      <div class="ct-container">
+        <div class="mission-band-inner">
+          <div class="mission-stat observe">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Catholic Dioceses Represented</div>
+          </div>
+          <div class="mission-stat observe" style="transition-delay: 0.1s">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Years of Advocacy in Connecticut</div>
+          </div>
+          <div class="mission-stat observe" style="transition-delay: 0.2s">
+            <div class="stat-num">1M+</div>
+            <div class="stat-label">Catholics Represented in CT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- NEWS SECTION -->
+    <section class="news-section" aria-labelledby="news-heading">
+      <div class="ct-container">
+        <div class="news-header">
+          <div>
+            <span class="section-label">Latest News</span>
+            <h2 class="section-title" id="news-heading">
+              Church Speaks on the Issues That Matter
+            </h2>
+          </div>
+          <a href="#" class="view-all-link">
+            View All News
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+        </div>
+        <div class="news-grid">
+          <article class="news-card observe">
+            <div class="news-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
+                alt="Immigrants at a rally"
+                loading="lazy"
+              />
+            </div>
+            <div class="news-card-body">
+              <div class="news-tag">Immigration</div>
+              <h3>Pope and Bishops Speak Out on Immigration Issue</h3>
+              <p>
+                Pope Leo XIV replied that immigrants must be treated with
+                dignity even if they lack legal status, urging all Catholics to
+                heed the bishops' message.
+              </p>
+              <a href="#" class="news-link"
+                >Read More
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="news-card observe" style="transition-delay: 0.1s">
+            <div class="news-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80"
+                alt="Church interior"
+                loading="lazy"
+              />
+            </div>
+            <div class="news-card-body">
+              <div class="news-tag">Religious Freedom</div>
+              <h3>First Freedom News: Religious Liberty Under Threat</h3>
+              <p>
+                Religious freedom — the first freedom — is under attack in our
+                nation and around the world. The USCCB Committee for Religious
+                Freedom keeps Catholics informed.
+              </p>
+              <a href="#" class="news-link"
+                >Read More
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" /></svg
+              ></a>
+            </div>
+          </article>
+          <article class="news-card observe" style="transition-delay: 0.2s">
+            <div class="news-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1635840420799-f75477b0b977?w=600&q=80"
+                alt="Life issues advocacy"
+                loading="lazy"
+              />
+            </div>
+            <div class="news-card-body">
+              <div class="news-tag">Life Issues</div>
+              <h3>Conference Releases 2025 Annual Abortion Report</h3>
+              <p>
+                Connecticut abortion numbers continue to significantly increase.
+                The report documents concerning trends and the role of Planned
+                Parenthood of Southern New England.
+              </p>
+              <a href="#" class="news-link"
+                >Read More
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" /></svg
+              ></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ISSUES SECTION -->
+    <section class="issues-section" aria-labelledby="issues-heading">
+      <div class="ct-container">
+        <div class="issues-layout">
+          <div>
+            <span class="section-label">Our Issues</span>
+            <h2 class="section-title" id="issues-heading">
+              Catholic Teaching on the Issues Facing Our State
+            </h2>
+            <p class="section-desc">
+              We bring the moral framework of Catholic social teaching to bear
+              on Connecticut's most pressing public policy questions.
+            </p>
+            <div class="issues-list">
+              <a href="#" class="issue-item">
+                <div class="issue-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div class="issue-text">
+                  <h4>Immigration &amp; Migration</h4>
+                  <p>
+                    Advocating for humane, just immigration policies rooted in
+                    the dignity of every human person.
+                  </p>
+                </div>
+              </a>
+              <a href="#" class="issue-item">
+                <div class="issue-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <div class="issue-text">
+                  <h4>Life &amp; Human Dignity</h4>
+                  <p>
+                    Upholding the sanctity of human life from conception to
+                    natural death in state and federal law.
+                  </p>
+                </div>
+              </a>
+              <a href="#" class="issue-item">
+                <div class="issue-icon">
+                 
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                </div>
+                <div class="issue-text">
+                  <h4>Religious Freedom</h4>
+                  <p>
+                    Defending the first freedom — the right of individuals and
+                    institutions to live by their faith.
+                  </p>
+                </div>
+              </a>
+              <a href="#" class="issue-item">
+                <div class="issue-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                  </svg>
+                </div>
+                <div class="issue-text">
+                  <h4>Education &amp; Families</h4>
+                  <p>
+                    Supporting Catholic schools and family-centered policies
+                    that honor parents as primary educators.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="issues-highlight">
+              <div class="highlight-quote">
+                We stand in firm solidarity with our immigrant brothers and
+                sisters, and with all those whose lives and dignity are under
+                threat.
+              </div>
+              <div class="highlight-source">
+                Archbishop Timothy P. Broglio · USCCB President
+              </div>
+              <a href="#" class="highlight-cta">
+                Read the Full Statement
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FEATURE STRIP -->
+    <section class="feature-strip" aria-labelledby="resources-heading">
+      <div class="ct-container">
+        <h2 class="sr-only" id="resources-heading">Resources and Programs</h2>
+        <div class="feature-strip-inner">
+          <div class="feature-card observe">
+            <div class="feature-card-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path
+                  d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l6 6v8a2 2 0 0 1-2 2z"
+                />
+                <polyline points="17 21 17 13 7 13 7 21" />
+                <polyline points="7 3 7 8 15 8" />
+              </svg>
+            </div>
+            <h3>CT Catholic Public Affairs Conference</h3>
+            <p>
+              The voice of the Catholic Church on current issues facing our
+              state — bringing together clergy, laity, and leaders to advocate
+              for the common good at the Capitol.
+            </p>
+            <a href="#"
+              >Learn More
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" /></svg
+            ></a>
+          </div>
+          <div class="feature-card observe" style="transition-delay: 0.1s">
+            <div class="feature-card-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+              </svg>
+            </div>
+            <h3>A Catholic Response to the Immigration Debate</h3>
+            <p>
+              A morally grounded, theologically sound commentary capable of
+              fostering genuine dialogue — offering Catholics a framework for
+              engaging this complex national issue.
+            </p>
+            <a href="#"
+              >Read the Commentary
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" /></svg
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CTA SECTION -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="ct-container">
+        <div class="cta-inner">
+          <div class="cta-content">
+            <h2 id="cta-heading">Stay Informed. Take Action.</h2>
+            <p>
+              Receive action alerts and newsletters from the Connecticut
+              Catholic Public Affairs Conference. Join thousands of Catholics
+              who are engaged in shaping public policy in Connecticut.
+            </p>
+          </div>
+          <a
+            href="#"
+            class="btn-primary"
+            style="flex-shrink: 0; font-size: 15px; padding: 14px 28px"
+          >
+            Sign Up for Alerts
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer role="contentinfo">
+      <div class="ct-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <svg
+                width="32"
+                height="38"
+                viewBox="0 0 44 52"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M22 2L4 10v20c0 11 8 18 18 20 10-2 18-9 18-20V10L22 2z"
+                  fill="#c8922a"
+                  opacity="0.8"
+                />
+                <rect
+                  x="19.5"
+                  y="12"
+                  width="5"
+                  height="20"
+                  rx="1"
+                  fill="white"
+                />
+                <rect
+                  x="11"
+                  y="19.5"
+                  width="22"
+                  height="5"
+                  rx="1"
+                  fill="white"
+                />
+              </svg>
+              <strong>Connecticut Catholic Conference</strong>
+            </div>
+            <p class="footer-tagline">
+              The public policy and advocacy office of the Catholic Church in
+              Connecticut. Serving the Archdiocese of Hartford, Diocese of
+              Bridgeport, Diocese of Norwich, and Ukrainian Diocese of Stamford.
+            </p>
+            <div class="footer-contact">
+              134 Farmington Avenue<br />
+              Hartford, Connecticut 06105<br />
+              860-524-7882<br />
+              ccc@ctcatholic.org
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Issues</h4>
+            <a href="#">Immigration</a>
+            <a href="#">Life &amp; Dignity</a>
+            <a href="#">Religious Freedom</a>
+            <a href="#">Education</a>
+            <a href="#">Health Care</a>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="#">Abortion Report 2025</a>
+            <a href="#">First Freedom News</a>
+            <a href="#">USCCB Statements</a>
+            <a href="#">Legislative Network</a>
+          </div>
+          <div class="footer-col">
+            <h4>Organization</h4>
+            <a href="#">About Us</a>
+            <a href="#">Bishops</a>
+            <a href="#">Links of Interest</a>
+            <a href="#">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 Connecticut Catholic Conference. All rights reserved.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <script>
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+
+
+      // Sticky header
+      const header = document.getElementById("site-header");
+      window.addEventListener(
+        "scroll",
+        () => {
+          header.classList.toggle("scrolled", window.scrollY > 20);
+        },
+        { passive: true },
+      );
+
+
+      // Mobile menu
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      hamburger.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        hamburger.classList.toggle("open", isOpen);
+        hamburger.setAttribute("aria-expanded", isOpen);
+        document.body.style.overflow = isOpen ? "hidden" : "";
+      });
+      mobileMenu.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          hamburger.classList.remove("open");
+          hamburger.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        });
+      });
+
+
+      // Intersection Observer for fade-in animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+
+
+      document
+        .querySelectorAll(".observe, .news-card, .feature-card, .mission-stat")
+        .forEach((el) => {
+          observer.observe(el);
+        });
+    </script>
+  </body>
+</html>
+
+
+

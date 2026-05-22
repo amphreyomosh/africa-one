@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elk Grove Education Association | EGEA</title>
+<meta name="description" content="The Elk Grove Education Association represents ~3,000 K-12 educators in the Elk Grove Unified School District. A proud chapter of CTA and NEA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+  ============================================================ */
+  :root {
+    --navy:     #1a2e4a;
+    --navy-mid: #243d5f;
+    --navy-lt:  #2d5080;
+    --gold:     #c9922a;
+    --gold-lt:  #e8b448;
+    --sand:     #f5f0e8;
+    --sand-md:  #ede6d6;
+    --white:    #ffffff;
+    --text:     #1a1a2e;
+    --text-md:  #3d4660;
+    --text-lt:  #6b7394;
+    --radius-sm: 6px;
+    --radius:    12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 2px 8px rgba(26,46,74,.08);
+    --shadow:    0 6px 24px rgba(26,46,74,.12);
+    --shadow-lg: 0 16px 48px rgba(26,46,74,.18);
+    --transition: 0.28s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ============================================================
+     RESET & BASE
+  ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+
+  /* ============================================================
+     LAYOUT HELPERS
+  ============================================================ */
+  .egea-wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .egea-section { padding: 96px 0; }
+  .egea-section--sm { padding: 64px 0; }
+  .egea-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .egea-h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--navy);
+  }
+  .egea-h3 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--navy);
+  }
+  .egea-body { font-size: 1.0625rem; color: var(--text-md); line-height: 1.75; }
+  .egea-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9375rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .egea-btn--primary {
+    background: var(--gold);
+    color: var(--white);
+  }
+  .egea-btn--primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .egea-btn--outline {
+    background: transparent;
+    color: var(--navy);
+    border-color: var(--navy);
+  }
+  .egea-btn--outline:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); }
+  .egea-btn--outline-white {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255,255,255,.5);
+  }
+  .egea-btn--outline-white:hover { background: rgba(255,255,255,.12); transform: translateY(-2px); }
+
+  /* ============================================================
+     TOPBAR
+  ============================================================ */
+  .egea-topbar {
+    background: var(--navy);
+    color: rgba(255,255,255,.75);
+    font-size: .8125rem;
+    padding: 9px 0;
+  }
+  .egea-topbar__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .egea-topbar a { color: rgba(255,255,255,.75); transition: color var(--transition); }
+  .egea-topbar a:hover { color: var(--gold-lt); }
+  .egea-topbar__social { display: flex; gap: 14px; }
+  .egea-topbar__social a {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--transition);
+  }
+  .egea-topbar__social a:hover { background: var(--gold); }
+  .egea-topbar__social svg { width: 14px; height: 14px; fill: white; }
+
+  /* ============================================================
+     HEADER / NAV
+  ============================================================ */
+  .egea-header {
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 0 rgba(26,46,74,.08), var(--shadow-sm);
+    transition: box-shadow var(--transition);
+  }
+  .egea-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 24px;
+  }
+  .egea-nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .egea-nav__logo img { width: 52px; height: 52px; object-fit: contain; }
+  .egea-nav__logo-text { line-height: 1.15; }
+  .egea-nav__logo-text strong {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -.01em;
+  }
+  .egea-nav__logo-text span {
+    font-size: .75rem;
+    color: var(--text-lt);
+    font-weight: 400;
+  }
+  .egea-nav__links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .egea-nav__item { position: relative; }
+  .egea-nav__link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--text-md);
+    transition: all var(--transition);
+    white-space: nowrap;
+  }
+  .egea-nav__link:hover, .egea-nav__item:hover .egea-nav__link {
+    color: var(--navy);
+    background: var(--sand);
+  }
+  .egea-nav__link svg { width: 14px; height: 14px; transition: transform var(--transition); }
+  .egea-nav__item:hover .egea-nav__link svg { transform: rotate(180deg); }
+  .egea-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 220px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(26,46,74,.06);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all var(--transition);
+    padding: 8px;
+  }
+  .egea-nav__item:hover .egea-dropdown {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .egea-dropdown a {
+    display: block;
+    padding: 9px 14px;
+    border-radius: var(--radius-sm);
+    font-size: .875rem;
+    color: var(--text-md);
+    transition: all var(--transition);
+  }
+  .egea-dropdown a:hover { background: var(--sand); color: var(--navy); }
+  .egea-nav__cta { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+
+  /* hamburger */
+  .egea-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition);
+  }
+  .egea-hamburger:hover { background: var(--sand); }
+  .egea-hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--navy);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+
+  /* ============================================================
+     HERO
+  ============================================================ */
+  .egea-hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    background: var(--navy);
+    overflow: hidden;
+  }
+  .egea-hero__bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(45,80,128,.55) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 10% 100%, rgba(201,146,42,.12) 0%, transparent 60%),
+      linear-gradient(135deg, #1a2e4a 0%, #243d5f 50%, #1a2e4a 100%);
+  }
+  /* geometric accent shapes */
+  .egea-hero__geo {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .egea-hero__geo::before {
+    content: '';
+    position: absolute;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,146,42,.15);
+    right: -80px; top: -80px;
+  }
+  .egea-hero__geo::after {
+    content: '';
+    position: absolute;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,146,42,.1);
+    right: 60px; top: 60px;
+  }
+  .egea-hero__grid-line {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .egea-hero__inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: center;
+    padding: 80px 0;
+  }
+  .egea-hero__content {}
+  .egea-hero__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 8px;
+    background: rgba(201,146,42,.15);
+    border: 1px solid rgba(201,146,42,.3);
+    border-radius: 100px;
+    font-size: .8125rem;
+    font-weight: 600;
+    color: var(--gold-lt);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .egea-hero__tag span.dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold-lt);
+  }
+  .egea-hero__title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .egea-hero__title em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+  .egea-hero__sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,.72);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 40px;
+  }
+  .egea-hero__actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .egea-hero__actions .egea-btn--primary { padding: 16px 32px; font-size: 1rem; }
+  .egea-hero__stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,.1);
+  }
+  .egea-hero__stat-val {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--gold-lt);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .egea-hero__stat-lbl { font-size: .8125rem; color: rgba(255,255,255,.55); font-weight: 500; }
+
+  /* hero card */
+  .egea-hero__card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+  }
+  .egea-hero__card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    color: var(--white);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .egea-hero__card-sub { font-size: .875rem; color: rgba(255,255,255,.55); margin-bottom: 28px; }
+  .egea-hero__card-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .egea-hero__card-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    background: rgba(255,255,255,.05);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255,255,255,.07);
+    transition: background var(--transition);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .egea-hero__card-item:hover { background: rgba(255,255,255,.1); }
+  .egea-hero__card-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(201,146,42,.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .egea-hero__card-icon svg { width: 18px; height: 18px; stroke: var(--gold-lt); fill: none; }
+  .egea-hero__card-item-text strong { display: block; font-size: .875rem; color: var(--white); font-weight: 600; margin-bottom: 2px; }
+  .egea-hero__card-item-text span { font-size: .8rem; color: rgba(255,255,255,.5); }
+  .egea-hero__card-footer { font-size: .8125rem; color: rgba(255,255,255,.45); text-align: center; }
+  .egea-hero__card-footer strong { color: var(--gold-lt); }
+
+  /* ============================================================
+     ANNOUNCEMENT BANNER
+  ============================================================ */
+  .egea-banner {
+    background: var(--gold);
+    padding: 14px 0;
+  }
+  .egea-banner__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .egea-banner span { font-size: .9rem; font-weight: 500; color: var(--white); }
+  .egea-banner a {
+    font-size: .875rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity var(--transition);
+  }
+  .egea-banner a:hover { opacity: .75; }
+
+  /* ============================================================
+     ABOUT / MISSION
+  ============================================================ */
+  .egea-about { background: var(--white); }
+  .egea-about__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .egea-about__visual {
+    position: relative;
+  }
+  .egea-about__img-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--sand-md);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .egea-about__img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: var(--text-lt);
+  }
+  .egea-about__img-placeholder svg { width: 64px; height: 64px; stroke: currentColor; fill: none; opacity: .4; }
+  .egea-about__img-placeholder span { font-size: .875rem; opacity: .5; }
+  .egea-about__badge {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-lg);
+    min-width: 160px;
+    text-align: center;
+  }
+  .egea-about__badge-val {
+    font-family: 'Fraunces', serif;
+    font-size: 2.25rem;
+    color: var(--gold-lt);
+    line-height: 1;
+    font-weight: 400;
+  }
+  .egea-about__badge-lbl { font-size: .75rem; color: rgba(255,255,255,.6); margin-top: 4px; }
+  .egea-about__content { padding-right: 20px; }
+  .egea-about__body { margin-bottom: 32px; }
+  .egea-about__features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .egea-about__feat {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 16px;
+    background: var(--sand);
+    border-radius: var(--radius);
+  }
+  .egea-about__feat-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .egea-about__feat-icon svg { width: 18px; height: 18px; stroke: var(--gold-lt); fill: none; }
+  .egea-about__feat strong { display: block; font-size: .875rem; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .egea-about__feat span { font-size: .8125rem; color: var(--text-lt); }
+
+  /* ============================================================
+     QUICK LINKS / PROGRAMS
+  ============================================================ */
+  .egea-programs { background: var(--sand); }
+  .egea-programs__head { text-align: center; max-width: 600px; margin: 0 auto 56px; }
+  .egea-programs__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .egea-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(26,46,74,.06);
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .egea-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .egea-card__icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--sand-md);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .egea-card__icon svg { width: 24px; height: 24px; stroke: var(--navy); fill: none; }
+  .egea-card__title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .egea-card__body { font-size: .875rem; color: var(--text-md); line-height: 1.7; flex: 1; margin-bottom: 20px; }
+  .egea-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--navy-lt);
+    transition: gap var(--transition);
+    margin-top: auto;
+  }
+  .egea-card__link:hover { gap: 10px; }
+  .egea-card__link svg { width: 16px; height: 16px; }
+
+  /* ============================================================
+     MEMBERSHIP CTA
+  ============================================================ */
+  .egea-membership {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .egea-membership::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,146,42,.12) 0%, transparent 70%);
+    right: -150px; top: -150px;
+    pointer-events: none;
+  }
+  .egea-membership__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 64px;
+    align-items: center;
+  }
+  .egea-membership__content {}
+  .egea-membership__label { color: var(--gold-lt); opacity: .9; }
+  .egea-membership__title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .egea-membership__title em { font-style: italic; color: var(--gold-lt); }
+  .egea-membership__sub { font-size: 1rem; color: rgba(255,255,255,.65); line-height: 1.75; margin-bottom: 36px; }
+  .egea-membership__perks { display: flex; flex-direction: column; gap: 14px; }
+  .egea-membership__perk {
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .egea-membership__perk-icon {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: rgba(201,146,42,.2);
+    border: 1px solid rgba(201,146,42,.3);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  .egea-membership__perk-icon svg { width: 12px; height: 12px; stroke: var(--gold-lt); fill: none; }
+  .egea-membership__perk strong { display: block; font-size: .9375rem; color: var(--white); margin-bottom: 2px; font-weight: 600; }
+  .egea-membership__perk span { font-size: .8125rem; color: rgba(255,255,255,.5); }
+
+  /* membership card */
+  .egea-membership__card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: var(--radius-lg);
+    padding: 40px 32px;
+    backdrop-filter: blur(8px);
+  }
+  .egea-membership__card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .egea-membership__card-sub { font-size: .875rem; color: rgba(255,255,255,.5); margin-bottom: 28px; }
+  .egea-membership__card-steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; }
+  .egea-step {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+  }
+  .egea-step:last-child { border-bottom: none; }
+  .egea-step__num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem; font-weight: 700; color: var(--white); flex-shrink: 0; margin-top: 2px;
+  }
+  .egea-step strong { display: block; font-size: .875rem; color: var(--white); margin-bottom: 2px; font-weight: 600; }
+  .egea-step span { font-size: .8rem; color: rgba(255,255,255,.45); }
+
+  /* ============================================================
+     ANNOUNCEMENTS
+  ============================================================ */
+  .egea-news { background: var(--white); }
+  .egea-news__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    gap: 24px;
+  }
+  .egea-news__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .egea-news-card {
+    background: var(--sand);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(26,46,74,.05);
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .egea-news-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .egea-news-card__cat {
+    background: var(--navy);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .egea-news-card__cat span {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+  }
+  .egea-news-card__body { padding: 24px; flex: 1; }
+  .egea-news-card__title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .egea-news-card__desc { font-size: .875rem; color: var(--text-md); line-height: 1.7; margin-bottom: 20px; }
+  .egea-news-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .8125rem;
+    font-weight: 600;
+    color: var(--navy-lt);
+    transition: gap var(--transition);
+  }
+  .egea-news-card__link:hover { gap: 10px; }
+  .egea-news-card__link svg { width: 14px; height: 14px; }
+
+  /* ============================================================
+     EVENTS
+  ============================================================ */
+  .egea-events { background: var(--sand); }
+  .egea-events__head { text-align: center; max-width: 560px; margin: 0 auto 52px; }
+  .egea-events__list { display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto 40px; }
+  .egea-event-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(26,46,74,.05);
+    transition: all var(--transition);
+    text-decoration: none;
+  }
+  .egea-event-item:hover { transform: translateX(4px); box-shadow: var(--shadow); }
+  .egea-event-date {
+    text-align: center;
+    min-width: 56px;
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 10px 8px;
+    flex-shrink: 0;
+  }
+  .egea-event-date__mo { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-lt); }
+  .egea-event-date__d { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 400; color: var(--white); line-height: 1; }
+  .egea-event-info { flex: 1; }
+  .egea-event-info strong { display: block; font-size: .9375rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .egea-event-info span { font-size: .8125rem; color: var(--text-lt); }
+  .egea-event-tag {
+    padding: 4px 12px;
+    background: var(--sand-md);
+    border-radius: 100px;
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  .egea-events__cta { text-align: center; }
+
+  /* ============================================================
+     TESTIMONIAL
+  ============================================================ */
+  .egea-testimonials { background: var(--navy); padding: 80px 0; }
+  .egea-testimonials__inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .egea-testi {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    transition: background var(--transition);
+  }
+  .egea-testi:hover { background: rgba(255,255,255,.08); }
+  .egea-testi__quote { font-size: 2rem; color: var(--gold); margin-bottom: 16px; line-height: 1; }
+  .egea-testi__text {
+    font-size: .9375rem;
+    color: rgba(255,255,255,.75);
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .egea-testi__author { display: flex; align-items: center; gap: 12px; }
+  .egea-testi__avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(201,146,42,.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8125rem; font-weight: 700; color: var(--gold-lt);
+    flex-shrink: 0;
+  }
+  .egea-testi__name { font-size: .875rem; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+  .egea-testi__role { font-size: .8rem; color: rgba(255,255,255,.4); }
+
+  /* ============================================================
+     PARTNERS
+  ============================================================ */
+  .egea-partners { background: var(--white); padding: 72px 0; }
+  .egea-partners__head { text-align: center; margin-bottom: 48px; }
+  .egea-partners__head p { font-size: 1rem; color: var(--text-lt); margin-top: 8px; }
+  .egea-partners__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+    flex-wrap: wrap;
+  }
+  .egea-partner-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .55;
+    transition: opacity var(--transition);
+    filter: grayscale(100%);
+  }
+  .egea-partner-logo:hover { opacity: 1; filter: grayscale(0); }
+  .egea-partner-logo img { height: 48px; width: auto; object-fit: contain; }
+  .egea-partner-logo--text {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -.01em;
+    padding: 0 8px;
+  }
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+  .egea-footer { background: var(--navy); color: rgba(255,255,255,.7); }
+  .egea-footer__main { padding: 72px 0 48px; }
+  .egea-footer__grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  .egea-footer__brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .egea-footer__brand-logo img { width: 44px; height: 44px; object-fit: contain; }
+  .egea-footer__brand-name { font-size: .95rem; font-weight: 700; color: var(--white); }
+  .egea-footer__brand-tagline { font-size: .8125rem; color: rgba(255,255,255,.4); margin-top: 4px; }
+  .egea-footer__brand-desc { font-size: .875rem; line-height: 1.7; margin-bottom: 24px; }
+  .egea-footer__social { display: flex; gap: 10px; }
+  .egea-footer__social a {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(255,255,255,.08);
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--transition);
+  }
+  .egea-footer__social a:hover { background: var(--gold); }
+  .egea-footer__social svg { width: 16px; height: 16px; fill: white; }
+  .egea-footer__col-title {
+    font-size: .8125rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .egea-footer__links { display: flex; flex-direction: column; gap: 10px; }
+  .egea-footer__links a {
+    font-size: .875rem;
+    color: rgba(255,255,255,.55);
+    transition: color var(--transition);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .egea-footer__links a:hover { color: var(--gold-lt); }
+  .egea-footer__contact { display: flex; flex-direction: column; gap: 14px; }
+  .egea-footer__contact-item { display: flex; gap: 12px; align-items: flex-start; }
+  .egea-footer__contact-item svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; flex-shrink: 0; margin-top: 3px; }
+  .egea-footer__contact-item span { font-size: .875rem; color: rgba(255,255,255,.55); }
+  .egea-footer__bottom {
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 24px 0;
+  }
+  .egea-footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .egea-footer__copy { font-size: .8125rem; color: rgba(255,255,255,.35); }
+  .egea-footer__affil { display: flex; align-items: center; gap: 20px; }
+  .egea-footer__affil img { height: 32px; width: auto; opacity: .55; filter: grayscale(100%) brightness(2); }
+
+  /* ============================================================
+     OFFICE HOURS BAR
+  ============================================================ */
+  .egea-hours-bar {
+    background: var(--sand);
+    border-top: 1px solid rgba(26,46,74,.08);
+    padding: 20px 0;
+  }
+  .egea-hours-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .egea-hours-item { display: flex; align-items: center; gap: 10px; }
+  .egea-hours-item svg { width: 18px; height: 18px; stroke: var(--navy); fill: none; }
+  .egea-hours-item strong { font-size: .875rem; color: var(--navy); font-weight: 700; }
+  .egea-hours-item span { font-size: .875rem; color: var(--text-lt); }
+
+  /* ============================================================
+     ANIMATIONS
+  ============================================================ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .egea-hero__content > * { animation: fadeUp .7s ease both; }
+  .egea-hero__content > *:nth-child(1) { animation-delay: .1s; }
+  .egea-hero__content > *:nth-child(2) { animation-delay: .2s; }
+  .egea-hero__content > *:nth-child(3) { animation-delay: .3s; }
+  .egea-hero__content > *:nth-child(4) { animation-delay: .4s; }
+  .egea-hero__content > *:nth-child(5) { animation-delay: .55s; }
+  .egea-hero__card { animation: fadeUp .8s ease .45s both; }
+
+  /* ============================================================
+     MOBILE NAV DRAWER
+  ============================================================ */
+  .egea-mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+  }
+  .egea-mobile-nav.open { display: block; }
+  .egea-mobile-nav__overlay {
+    position: absolute; inset: 0;
+    background: rgba(26,46,74,.6);
+    backdrop-filter: blur(4px);
+  }
+  .egea-mobile-nav__panel {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: min(320px, 90vw);
+    background: var(--white);
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .egea-mobile-nav__close {
+    align-self: flex-end;
+    width: 36px; height: 36px; border-radius: 8px;
+    border: 1px solid rgba(26,46,74,.1);
+    background: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+  }
+  .egea-mobile-nav__close svg { width: 18px; height: 18px; stroke: var(--navy); fill: none; }
+  .egea-mobile-nav a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    font-size: .9375rem;
+    font-weight: 500;
+    color: var(--text-md);
+    transition: background var(--transition);
+  }
+  .egea-mobile-nav a:hover { background: var(--sand); color: var(--navy); }
+  .egea-mobile-nav__section { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-lt); padding: 12px 14px 4px; }
+  .egea-mobile-nav__divider { height: 1px; background: rgba(26,46,74,.07); margin: 8px 0; }
+
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
+  @media (max-width: 1024px) {
+    .egea-hero__inner { grid-template-columns: 1fr; gap: 48px; }
+    .egea-hero__card { max-width: 480px; }
+    .egea-about__inner { grid-template-columns: 1fr; gap: 48px; }
+    .egea-about__content { padding-right: 0; }
+    .egea-about__badge { bottom: -12px; right: -12px; }
+    .egea-membership__inner { grid-template-columns: 1fr; gap: 48px; }
+    .egea-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .egea-programs__grid { grid-template-columns: repeat(2, 1fr); }
+    .egea-news__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .egea-section { padding: 64px 0; }
+    .egea-nav__links, .egea-nav__cta { display: none; }
+    .egea-hamburger { display: flex; }
+    .egea-hero { min-height: auto; }
+    .egea-hero__stats { gap: 24px; flex-wrap: wrap; }
+    .egea-programs__grid { grid-template-columns: 1fr; }
+    .egea-news__grid { grid-template-columns: 1fr; }
+    .egea-testimonials__inner { grid-template-columns: 1fr; }
+    .egea-footer__grid { grid-template-columns: 1fr; }
+    .egea-news__head { flex-direction: column; align-items: flex-start; }
+    .egea-topbar__left { display: none; }
+    .egea-about__features { grid-template-columns: 1fr; }
+    .egea-hours-bar__inner { flex-direction: column; gap: 16px; }
+  }
+
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+</style>
+</head>
+<body>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============================================================
+     TOPBAR
+============================================================ -->
+<div class="egea-topbar">
+  <div class="egea-wrap">
+    <div class="egea-topbar__inner">
+      <span class="egea-topbar__left">Empowering Educators Since 1952 · A proud chapter of CTA and NEA</span>
+      <div style="display:flex;align-items:center;gap:20px;">
+        <a href="tel:9166854588">📞 916-685-4588</a>
+        <span>|</span>
+        <a href="mailto:info@elkgroveeducators.org">Email EGEA</a>
+        <div class="egea-topbar__social">
+          <a href="https://www.facebook.com/egealeadership" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/elkgroveeducators/" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="egea-header">
+  <div class="egea-wrap">
+    <nav class="egea-nav">
+      <a href="/" class="egea-nav__logo">
+        <img src="https://static.wixstatic.com/media/b136a5_7573bd6c53da44139ce25d0b1e09aaf6~mv1.png/v1/fill/w_270,h_270,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b136a5_7573bd6c53da44139ce25d0b1e09aaf6~mv1.png" alt="EGEA Logo">
+        <div class="egea-nav__logo-text">
+          <strong>Elk Grove Education Association</strong>
+          <span>EGEA · CTA · NEA</span>
+        </div>
+      </a>
+
+      <ul class="egea-nav__links">
+        <li class="egea-nav__item">
+          <a href="https://www.elkgroveeducators.org/about-us" class="egea-nav__link">
+            About Us
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="egea-dropdown">
+            <a href="https://www.elkgroveeducators.org/about-us">About EGEA</a>
+            <a href="https://www.elkgroveeducators.org/about-us">Leadership & Staff</a>
+          </div>
+        </li>
+        <li class="egea-nav__item">
+          <a href="https://www.elkgroveeducators.org/contract" class="egea-nav__link">
+            Contract
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="egea-dropdown">
+            <a href="https://www.elkgroveeducators.org/contract">EGEA/EGUSD Contract</a>
+            <a href="https://www.elkgroveeducators.org/tep">Teacher Evaluation Project</a>
+          </div>
+        </li>
+        <li class="egea-nav__item">
+          <a href="https://www.elkgroveeducators.org/elections" class="egea-nav__link">Elections</a>
+        </li>
+        <li class="egea-nav__item">
+          <a href="https://www.elkgroveeducators.org/rep-council" class="egea-nav__link">
+            Rep Council
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="egea-dropdown">
+            <a href="https://www.elkgroveeducators.org/rep-council">Calendar, Agendas & Minutes</a>
+            <a href="https://www.elkgroveeducators.org/site-rep-resources">Site Rep Resources</a>
+          </div>
+        </li>
+        <li class="egea-nav__item">
+          <a href="https://www.elkgroveeducators.org/member-benefits" class="egea-nav__link">
+            Member Resources
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="egea-dropdown">
+            <a href="https://www.elkgroveeducators.org/member-benefits">Member Benefits</a>
+            <a href="https://www.elkgroveeducators.org/scholarships">Scholarships</a>
+            <a href="https://www.elkgroveeducators.org/leaves">Leaves</a>
+            <a href="https://www.elkgroveeducators.org/faqs">FAQs</a>
+            <a href="https://www.elkgroveeducators.org/newsletter-the-professional">Newsletter</a>
+            <a href="https://www.elkgroveeducators.org/legislative-updates">Legislative Updates</a>
+            <a href="https://www.elkgroveeducators.org/retirement">Retirement</a>
+            <a href="https://www.elkgroveeducators.org/new-members">New Hire Info</a>
+            <a href="https://www.elkgroveeducators.org/resources">Informational Resources</a>
+            <a href="https://www.elkgroveeducators.org/egea-political-action-committee-pac">PAC</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="egea-nav__cta">
+        <a href="https://docs.google.com/document/d/1Z7vxkiYZlug3oiu3yvBYqcMdDJEirQDbEipnw6eow-s/edit" class="egea-btn egea-btn--primary">Join EGEA</a>
+      </div>
+
+      <button class="egea-hamburger" onclick="document.getElementById('mobileNav').classList.add('open')" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="egea-mobile-nav" id="mobileNav">
+  <div class="egea-mobile-nav__overlay" onclick="document.getElementById('mobileNav').classList.remove('open')"></div>
+  <div class="egea-mobile-nav__panel">
+    <button class="egea-mobile-nav__close" onclick="document.getElementById('mobileNav').classList.remove('open')">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="egea-mobile-nav__section">Navigation</div>
+    <a href="https://www.elkgroveeducators.org/about-us">About Us</a>
+    <a href="https://www.elkgroveeducators.org/contract">Contract</a>
+    <a href="https://www.elkgroveeducators.org/elections">Elections</a>
+    <a href="https://www.elkgroveeducators.org/rep-council">Rep Council</a>
+    <div class="egea-mobile-nav__divider"></div>
+    <div class="egea-mobile-nav__section">Member Resources</div>
+    <a href="https://www.elkgroveeducators.org/member-benefits">Benefits</a>
+    <a href="https://www.elkgroveeducators.org/scholarships">Scholarships</a>
+    <a href="https://www.elkgroveeducators.org/leaves">Leaves</a>
+    <a href="https://www.elkgroveeducators.org/faqs">FAQs</a>
+    <a href="https://www.elkgroveeducators.org/newsletter-the-professional">Newsletter</a>
+    <a href="https://www.elkgroveeducators.org/new-members">New Hire Info</a>
+    <div class="egea-mobile-nav__divider"></div>
+    <a href="https://docs.google.com/document/d/1Z7vxkiYZlug3oiu3yvBYqcMdDJEirQDbEipnw6eow-s/edit" style="background:var(--gold);color:white;border-radius:6px;font-weight:700;text-align:center;margin-top:8px;">Join EGEA Today</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     ANNOUNCEMENT BANNER
+============================================================ -->
+<div class="egea-banner">
+  <div class="egea-banner__inner">
+    <span>🗓 Spring 2026 Events Calendar is now available.</span>
+    <a href="https://docs.google.com/document/d/1o0x1NhGYRZ5S1A9AP3cYBRrDDTX0VIrnTMgaRKLvWlc/edit?usp=sharing">View Full Calendar →</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="egea-hero">
+  <div class="egea-hero__bg"></div>
+  <div class="egea-hero__geo"></div>
+  <div class="egea-hero__grid-line"></div>
+  <div class="egea-wrap" style="width:100%;max-width:1200px;margin:0 auto;padding:0 24px;">
+    <div class="egea-hero__inner">
+      <div class="egea-hero__content">
+        <div class="egea-hero__title">
+          Supporting Every<br><em>Educator</em> in Elk Grove
+        </div>
+        <p class="egea-hero__sub">
+          EGEA represents approximately 3,000 K–12 teachers, nurses, counselors, librarians, and speech and language therapists in the Elk Grove Unified School District. We advocate, protect, and empower.
+        </p>
+        <div class="egea-hero__actions">
+          <a href="https://docs.google.com/document/d/1Z7vxkiYZlug3oiu3yvBYqcMdDJEirQDbEipnw6eow-s/edit" class="egea-btn egea-btn--primary">
+            Become a Member
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="egea-hero__stats">
+          <div>
+            <div class="egea-hero__stat-val">~3,000</div>
+            <div class="egea-hero__stat-lbl">Members represented</div>
+          </div>
+          <div>
+            <div class="egea-hero__stat-val">Since 1952</div>
+            <div class="egea-hero__stat-lbl">Empowering educators</div>
+          </div>
+          <div>
+            <div class="egea-hero__stat-val">K–12</div>
+            <div class="egea-hero__stat-lbl">Across all grade levels</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="egea-hero__card">
+        <div class="egea-hero__card-title">Quick Access</div>
+        <div class="egea-hero__card-sub">Jump to what you need most</div>
+        <div class="egea-hero__card-list">
+          <a href="https://www.elkgroveeducators.org/contract" class="egea-hero__card-item">
+            <div class="egea-hero__card-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="egea-hero__card-item-text">
+              <strong>View Our Contract</strong>
+              <span>EGEA/EGUSD Collective Bargaining Agreement</span>
+            </div>
+          </a>
+          <a href="https://www.elkgroveeducators.org/member-benefits" class="egea-hero__card-item">
+            <div class="egea-hero__card-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="egea-hero__card-item-text">
+              <strong>Member Benefits</strong>
+              <span>Explore all the benefits of membership</span>
+            </div>
+          </a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSemV8PgMw2YMrI8Y8mung55ZYP4WeBe7S9X3qZGcde2HeJeng/viewform" class="egea-hero__card-item">
+            <div class="egea-hero__card-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="egea-hero__card-item-text">
+              <strong>Submit a Grievance</strong>
+              <span>Access the online grievance form</span>
+            </div>
+          </a>
+          <a href="https://sites.google.com/elkgroveeducators.org/egea-pac/home" class="egea-hero__card-item">
+            <div class="egea-hero__card-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.75"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="egea-hero__card-item-text">
+              <strong>EGEA PAC</strong>
+              <span>Educator endorsed candidates & political action</span>
+            </div>
+          </a>
+        </div>
+        <div class="egea-hero__card-footer">Office hours: <strong>Mon–Fri 12:30–5:00pm</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section class="egea-section egea-about">
+  <div class="egea-wrap">
+    <div class="egea-about__inner">
+      <div class="egea-about__visual">
+        <div class="egea-about__img-wrap">
+          <div class="egea-about__img-placeholder">
+            <svg viewBox="0 0 24 24" stroke-width="1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>EGEA Members in action</span>
+          </div>
+        </div>
+        <div class="egea-about__badge">
+          <div class="egea-about__badge-val">70+</div>
+          <div class="egea-about__badge-lbl">Years of advocacy</div>
+        </div>
+      </div>
+      <div class="egea-about__content">
+        <span class="egea-label">Who We Are</span>
+        <h2 class="egea-h2">Advocating for Educators, Students, and Schools</h2>
+        <p class="egea-body egea-about__body">
+          The Elk Grove Education Association (EGEA) is a local chapter of the California Teachers Association (CTA) and the National Education Association (NEA). We represent teachers, nurses, counselors, librarians, and speech and language therapists across the Elk Grove Unified School District — working every day to protect your rights and elevate your profession.
+        </p>
+        <div class="egea-about__features">
+          <div class="egea-about__feat">
+            <div class="egea-about__feat-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <strong>Contract Protection</strong>
+              <span>Negotiating fair agreements for all members</span>
+            </div>
+          </div>
+          <div class="egea-about__feat">
+            <div class="egea-about__feat-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l.82-.82a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <strong>Direct Support</strong>
+              <span>Staff available Mon–Fri 12:30–5:00pm</span>
+            </div>
+          </div>
+          <div class="egea-about__feat">
+            <div class="egea-about__feat-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <strong>Political Action</strong>
+              <span>Endorsing candidates who support education</span>
+            </div>
+          </div>
+          <div class="egea-about__feat">
+            <div class="egea-about__feat-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div>
+              <strong>Professional Growth</strong>
+              <span>Free university credits & development programs</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://www.elkgroveeducators.org/about-us" class="egea-btn egea-btn--outline">Learn About EGEA</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROGRAMS / SERVICES
+============================================================ -->
+<section class="egea-section egea-programs">
+  <div class="egea-wrap">
+    <div class="egea-programs__head">
+      <span class="egea-label">What We Offer</span>
+      <h2 class="egea-h2">Resources Built for Educators</h2>
+      <p class="egea-body" style="margin-top:12px;">Everything you need to navigate your career, understand your rights, and thrive in the classroom.</p>
+    </div>
+    <div class="egea-programs__grid">
+      <div class="egea-card">
+        <div class="egea-card__icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3 class="egea-card__title">Collective Bargaining Contract</h3>
+        <p class="egea-card__body">Access the full EGEA/EGUSD Collective Bargaining Agreement — your definitive guide to salary, benefits, working conditions, and rights.</p>
+        <a href="https://www.elkgroveeducators.org/contract" class="egea-card__link">
+          View Contract <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="egea-card">
+        <div class="egea-card__icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.75"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <h3 class="egea-card__title">Scholarships & Grants</h3>
+        <p class="egea-card__body">EGEA offers scholarships for members and their dependents. CTA also provides $300 classroom setup grants for new teachers.</p>
+        <a href="https://www.elkgroveeducators.org/scholarships" class="egea-card__link">
+          View Scholarships <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="egea-card">
+        <div class="egea-card__icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3 class="egea-card__title">Free University Credits (CTA)</h3>
+        <p class="egea-card__body">CTA's Free University Credit Program offers members accredited professional development courses at no cost — move on the salary schedule.</p>
+        <a href="https://www.elkgroveeducators.org/cta-free-university-credit-program" class="egea-card__link">
+          Explore Program <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="egea-card">
+        <div class="egea-card__icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="egea-card__title">Employee Assistance Program</h3>
+        <p class="egea-card__body">Access confidential counseling, mental health resources, and personal support services through the Employee Assistance Program (EAP).</p>
+        <a href="https://docs.google.com/document/d/1nKG23O-doDLNvu-8Du8_-yA4gxQTrUSBzkZAceoS6tg/edit" class="egea-card__link">
+          Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="egea-card">
+        <div class="egea-card__icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="egea-card__title">Rep Council & Site Reps</h3>
+        <p class="egea-card__body">Your Site Representative is your first point of contact. Access Rep Council calendars, agendas, minutes, and site rep resources here.</p>
+        <a href="https://www.elkgroveeducators.org/rep-council" class="egea-card__link">
+          Rep Council <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="egea-card">
+        <div class="egea-card__icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.75"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3 class="egea-card__title">Political Action Committee</h3>
+        <p class="egea-card__body">Find out about educator-endorsed candidates for the Sacramento County Office of Education School Board and other elections affecting public education.</p>
+        <a href="https://sites.google.com/elkgroveeducators.org/egea-pac/home" class="egea-card__link">
+          Visit EGEA PAC <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MEMBERSHIP CTA
+============================================================ -->
+<section class="egea-section egea-membership">
+  <div class="egea-wrap">
+    <div class="egea-membership__inner">
+      <div class="egea-membership__content">
+        <span class="egea-label egea-membership__label">Join EGEA</span>
+        <h2 class="egea-membership__title">Your voice is <em>stronger</em> with us</h2>
+        <p class="egea-membership__sub">
+          As a member of EGEA, CTA, and NEA, you gain access to legal protections, professional development, financial benefits, and a community of fellow educators committed to making public education the best it can be.
+        </p>
+        <div class="egea-membership__perks">
+          <div class="egea-membership__perk">
+            <div class="egea-membership__perk-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>Legal Representation</strong>
+              <span>CTA attorneys to support you in disciplinary matters and evaluation disputes</span>
+            </div>
+          </div>
+          <div class="egea-membership__perk">
+            <div class="egea-membership__perk-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>Liability Insurance</strong>
+              <span>Comprehensive professional liability coverage through NEA and CTA</span>
+            </div>
+          </div>
+          <div class="egea-membership__perk">
+            <div class="egea-membership__perk-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>Member Benefits & Discounts</strong>
+              <span>Travel, insurance, financial planning, and more through CTA and NEA</span>
+            </div>
+          </div>
+          <div class="egea-membership__perk">
+            <div class="egea-membership__perk-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>Collective Bargaining Power</strong>
+              <span>United voice in salary negotiations, working conditions, and benefits</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="egea-membership__card">
+        <div class="egea-membership__card-title">Become a Member</div>
+        <div class="egea-membership__card-sub">Three simple steps to join EGEA today</div>
+        <div class="egea-membership__card-steps">
+          <div class="egea-step">
+            <div class="egea-step__num">1</div>
+            <div>
+              <strong>Download the form</strong>
+              <span>Click the link below to access the EGEA membership form</span>
+            </div>
+          </div>
+          <div class="egea-step">
+            <div class="egea-step__num">2</div>
+            <div>
+              <strong>Complete & submit</strong>
+              <span>Return form to your site rep or the EGEA office directly</span>
+            </div>
+          </div>
+          <div class="egea-step">
+            <div class="egea-step__num">3</div>
+            <div>
+              <strong>Verify membership</strong>
+              <span>Check your Aug–May pay stubs for the EGEA dues deduction</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://docs.google.com/document/d/1Z7vxkiYZlug3oiu3yvBYqcMdDJEirQDbEipnw6eow-s/edit" class="egea-btn egea-btn--primary" style="width:100%;justify-content:center;padding:16px;">
+          Join EGEA / CTA / NEA Today
+        </a>
+        <p style="text-align:center;margin-top:14px;font-size:.8125rem;color:rgba(255,255,255,.4);">Questions? Call us at 916-685-4588</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ANNOUNCEMENTS
+============================================================ -->
+<section class="egea-section egea-news">
+  <div class="egea-wrap">
+    <div class="egea-news__head">
+      <div>
+        <span class="egea-label">Announcements</span>
+        <h2 class="egea-h2">Updates & Resources</h2>
+      </div>
+      <a href="https://www.elkgroveeducators.org/newsletter-the-professional" class="egea-btn egea-btn--outline" style="flex-shrink:0;">View Newsletter</a>
+    </div>
+    <div class="egea-news__grid">
+      <div class="egea-news-card">
+        <div class="egea-news-card__cat">
+          <span>Professional Development</span>
+        </div>
+        <div class="egea-news-card__body">
+          <h3 class="egea-news-card__title">CTA Free University Credit Program</h3>
+          <p class="egea-news-card__desc">Earn accredited university credits through CTA's professional development program — at no cost to EGEA members. Move on the salary schedule.</p>
+          <a href="https://www.elkgroveeducators.org/cta-free-university-credit-program" class="egea-news-card__link">
+            Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="egea-news-card">
+        <div class="egea-news-card__cat">
+          <span>Classroom Grants</span>
+        </div>
+        <div class="egea-news-card__body">
+          <h3 class="egea-news-card__title">CalRTA Mini-Grants for Classroom Teachers</h3>
+          <p class="egea-news-card__desc">Enter the CalRTA mini-grant drawing — once in November and once in March. A great opportunity to fund your classroom projects and needs.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSduCNLMnOGkSy3qtBEWrV5H8bY2ijRpUI7cExR5j5PKtVWVog/viewform" class="egea-news-card__link">
+            Apply Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="egea-news-card">
+        <div class="egea-news-card__cat">
+          <span>New Teacher Resources</span>
+        </div>
+        <div class="egea-news-card__body">
+          <h3 class="egea-news-card__title">$300 Classroom Setup Grant for New Teachers</h3>
+          <p class="egea-news-card__desc">CTA members who are new classroom teachers can apply for a $300 classroom setup grant. A welcome support as you launch your teaching career.</p>
+          <a href="https://www.ctamemberbenefits.org/Life-Events/Classroom-Setup-Grant" class="egea-news-card__link">
+            Apply for Grant <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EVENTS
+============================================================ -->
+<section class="egea-section egea-events">
+  <div class="egea-wrap">
+    <div class="egea-events__head">
+      <span class="egea-label">Calendar</span>
+      <h2 class="egea-h2">Upcoming Events</h2>
+      <p class="egea-body" style="margin-top:12px;">Stay connected and engaged with EGEA events throughout the year.</p>
+    </div>
+    <div class="egea-events__list">
+      <a href="https://www.elkgroveeducators.org/rep-council" class="egea-event-item">
+        <div class="egea-event-date"><div class="egea-event-date__mo">Jun</div><div class="egea-event-date__d">5</div></div>
+        <div class="egea-event-info">
+          <strong>Rep Council Meeting</strong>
+          <span>Regular meeting for all site representatives — agenda posted online</span>
+        </div>
+        <span class="egea-event-tag">Rep Council</span>
+      </a>
+      <a href="https://docs.google.com/document/d/1o0x1NhGYRZ5S1A9AP3cYBRrDDTX0VIrnTMgaRKLvWlc/edit" class="egea-event-item">
+        <div class="egea-event-date"><div class="egea-event-date__mo">Jun</div><div class="egea-event-date__d">12</div></div>
+        <div class="egea-event-info">
+          <strong>End-of-Year Member Celebration</strong>
+          <span>See the full events calendar for location and time details</span>
+        </div>
+        <span class="egea-event-tag">Community</span>
+      </a>
+      <a href="https://www.elkgroveeducators.org/elections" class="egea-event-item">
+        <div class="egea-event-date"><div class="egea-event-date__mo">Jun</div><div class="egea-event-date__d">20</div></div>
+        <div class="egea-event-info">
+          <strong>EGEA Officer Elections</strong>
+          <span>Annual elections for EGEA leadership positions</span>
+        </div>
+        <span class="egea-event-tag">Elections</span>
+      </a>
+    </div>
+    <div class="egea-events__cta">
+      <a href="https://docs.google.com/document/d/1o0x1NhGYRZ5S1A9AP3cYBRrDDTX0VIrnTMgaRKLvWlc/edit" class="egea-btn egea-btn--outline">View Full Spring 2026 Calendar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section class="egea-testimonials">
+  <div class="egea-wrap">
+    <div style="text-align:center;margin-bottom:52px;">
+      <span class="egea-label" style="color:var(--gold-lt);opacity:.9;">Member Spotlight</span>
+      <h2 class="egea-h2" style="color:var(--white);">Voices from Our Community</h2>
+    </div>
+    <div class="egea-testimonials__inner">
+      <div class="egea-testi">
+        <div class="egea-testi__quote">"</div>
+        <p class="egea-testi__text">At the start of my teaching career, everything felt overwhelming. EGEA provided support while I was still learning the system. I joined EGEA for the communication but found a community.</p>
+        <div class="egea-testi__author">
+          <div class="egea-testi__avatar">TF</div>
+          <div>
+            <div class="egea-testi__name">Trena Furlow</div>
+            <div class="egea-testi__role">Joseph Sims Elementary, Grade 5 · Member Since 2020</div>
+          </div>
+        </div>
+      </div>
+      <div class="egea-testi">
+        <div class="egea-testi__quote">"</div>
+        <p class="egea-testi__text">Having EGEA in my corner when I faced a difficult evaluation situation made all the difference. Knowing I had representation gave me confidence and peace of mind throughout the process.</p>
+        <div class="egea-testi__author">
+          <div class="egea-testi__avatar">JM</div>
+          <div>
+            <div class="egea-testi__name">EGEA Member</div>
+            <div class="egea-testi__role">Middle School Teacher · EGUSD</div>
+          </div>
+        </div>
+      </div>
+      <div class="egea-testi">
+        <div class="egea-testi__quote">"</div>
+        <p class="egea-testi__text">EGEA's Rep Council keeps me informed and engaged. Being a site rep means I can be a resource for my colleagues and help them navigate their rights and the contract.</p>
+        <div class="egea-testi__author">
+          <div class="egea-testi__avatar">SR</div>
+          <div>
+            <div class="egea-testi__name">EGEA Site Representative</div>
+            <div class="egea-testi__role">High School · EGUSD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeaIePByzmm_mDi9wbRe6NJ4tfEZbSQITCFK5r9pIqqex-fHg/viewform" class="egea-btn egea-btn--outline-white">Share Your Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SOCIAL / COMMUNITY
+============================================================ -->
+<section class="egea-section--sm egea-hours-bar" style="background:var(--sand);padding:48px 0;">
+  <div class="egea-wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="egea-community-grid">
+      <div>
+        <span class="egea-label">Community</span>
+        <h2 class="egea-h2" style="margin-bottom:12px;font-size:clamp(1.5rem,2.5vw,2rem);">Photos for EGEA</h2>
+        <p class="egea-body" style="margin-bottom:24px;">Submit a pic of you and your EGEA colleagues doing something awesome, attending an event, or just your crew. We want to highlight our members on social media!</p>
+        <p style="font-size:.8125rem;color:var(--text-lt);margin-bottom:20px;"><strong>Pro tip:</strong> You must be signed in to any Google account to view forms and submit photos.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeE9Fysj9EqBy5hQpZg5PCvsYd9-b83VM_clkfrn79UZXGuHg/viewform" class="egea-btn egea-btn--outline">Submit a Photo</a>
+      </div>
+      <div>
+        <span class="egea-label">Connect</span>
+        <h2 class="egea-h2" style="margin-bottom:12px;font-size:clamp(1.5rem,2.5vw,2rem);">EGEA on Social Media</h2>
+        <p class="egea-body" style="margin-bottom:24px;">Follow us on Facebook and Instagram for the latest updates, events, member spotlights, and advocacy news from across Elk Grove and California.</p>
+        <div style="display:flex;gap:14px;">
+          <a href="https://www.facebook.com/egealeadership" class="egea-btn egea-btn--primary" style="background:var(--navy);">
+            <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
+          <a href="https://www.instagram.com/elkgroveeducators/" class="egea-btn egea-btn--outline">
+            Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PARTNERS
+============================================================ -->
+<section class="egea-partners">
+  <div class="egea-wrap">
+    <div class="egea-partners__head">
+      <span class="egea-label">Our Affiliations</span>
+      <h2 class="egea-h2">Proud Chapter of CTA and NEA</h2>
+      <p>EGEA is affiliated with two of the nation's most powerful educator advocacy organizations.</p>
+    </div>
+    <div class="egea-partners__row">
+      <a href="https://www.cta.org" class="egea-partner-logo" title="California Teachers Association">
+        <img src="https://static.wixstatic.com/media/b136a5_b0e95fc1d3c24e8c95a9c7d87f5e0a96~mv1.png/v1/fill/w_164,h_62,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CTA.png" alt="California Teachers Association" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="egea-partner-logo--text" style="display:none;">CTA</span>
+      </a>
+      <a href="https://www.nea.org" class="egea-partner-logo" title="National Education Association">
+        <img src="https://static.wixstatic.com/media/b136a5_9a4ac1e9d5704b7aaa89012e83de2c9e~mv1.png/v1/fill/w_164,h_62,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/NEA.png" alt="National Education Association" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="egea-partner-logo--text" style="display:none;">NEA</span>
+      </a>
+      <a href="https://www.egusd.net" class="egea-partner-logo egea-partner-logo--text" title="Elk Grove Unified School District">
+        Elk Grove USD
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OFFICE HOURS BAR
+============================================================ -->
+<div class="egea-hours-bar">
+  <div class="egea-wrap">
+    <div class="egea-hours-bar__inner">
+      <div class="egea-hours-item">
+        <svg viewBox="0 0 24 24" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <strong>Office Hours:</strong>
+        <span>Monday – Friday, 12:30 – 5:00 pm</span>
+      </div>
+      <div class="egea-hours-item">
+        <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <strong>Address:</strong>
+        <span>9297 Office Park Circle, Suite 100, Elk Grove, CA 95758</span>
+      </div>
+      <div class="egea-hours-item">
+        <svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l.82-.82a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <strong>Phone:</strong>
+        <a href="tel:9166854588" style="color:var(--text-lt);">916-685-4588</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="egea-footer">
+  <div class="egea-footer__main">
+    <div class="egea-wrap">
+      <div class="egea-footer__grid">
+        <div>
+          <div class="egea-footer__brand-logo">
+            <img src="https://static.wixstatic.com/media/b136a5_7573bd6c53da44139ce25d0b1e09aaf6~mv1.png/v1/fill/w_270,h_270,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b136a5_7573bd6c53da44139ce25d0b1e09aaf6~mv1.png" alt="EGEA Logo">
+            <div>
+              <div class="egea-footer__brand-name">EGEA</div>
+              <div class="egea-footer__brand-tagline">Empowering Excellence in Education</div>
+            </div>
+          </div>
+          <p class="egea-footer__brand-desc">The Elk Grove Education Association represents ~3,000 K–12 educators in the Elk Grove Unified School District. A proud chapter of CTA and NEA since 1952.</p>
+          <div class="egea-footer__social">
+            <a href="https://www.facebook.com/egealeadership" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/elkgroveeducators/" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="egea-footer__col-title">Quick Links</div>
+          <ul class="egea-footer__links">
+            <li><a href="https://www.elkgroveeducators.org/about-us">About EGEA</a></li>
+            <li><a href="https://www.elkgroveeducators.org/contract">EGEA/EGUSD Contract</a></li>
+            <li><a href="https://www.elkgroveeducators.org/elections">Elections</a></li>
+            <li><a href="https://www.elkgroveeducators.org/rep-council">Rep Council</a></li>
+            <li><a href="https://www.elkgroveeducators.org/site-rep-resources">Site Rep Resources</a></li>
+            <li><a href="https://sites.google.com/elkgroveeducators.org/egea-pac/home">EGEA PAC</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="egea-footer__col-title">Member Resources</div>
+          <ul class="egea-footer__links">
+            <li><a href="https://www.elkgroveeducators.org/member-benefits">Member Benefits</a></li>
+            <li><a href="https://www.elkgroveeducators.org/scholarships">Scholarships</a></li>
+            <li><a href="https://www.elkgroveeducators.org/leaves">Leaves</a></li>
+            <li><a href="https://www.elkgroveeducators.org/faqs">FAQs</a></li>
+            <li><a href="https://www.elkgroveeducators.org/retirement">Retirement</a></li>
+            <li><a href="https://www.elkgroveeducators.org/new-members">New Hire Info</a></li>
+            <li><a href="https://www.elkgroveeducators.org/newsletter-the-professional">Newsletter</a></li>
+            <li><a href="https://www.elkgroveeducators.org/legislative-updates">Legislative Updates</a></li>
+            <li><a href="https://www.elkgroveeducators.org/cta-free-university-credit-program">CTA Free Credits</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="egea-footer__col-title">Contact Us</div>
+          <div class="egea-footer__contact">
+            <div class="egea-footer__contact-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>9297 Office Park Circle, Suite 100<br>Elk Grove, CA 95758</span>
+            </div>
+            <div class="egea-footer__contact-item">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l.82-.82a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:9166854588" style="color:rgba(255,255,255,.55);">916-685-4588</a>
+            </div>
+            <div class="egea-footer__contact-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Mon–Fri, 12:30–5:00 pm</span>
+            </div>
+          </div>
+          <div style="margin-top:24px;">
+            <a href="https://docs.google.com/document/d/1Z7vxkiYZlug3oiu3yvBYqcMdDJEirQDbEipnw6eow-s/edit" class="egea-btn egea-btn--primary" style="width:100%;justify-content:center;">Join EGEA Today</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="egea-footer__bottom">
+    <div class="egea-wrap">
+      <div class="egea-footer__bottom-inner">
+        <p class="egea-footer__copy">© 2026 Elk Grove Education Association. All rights reserved.</p>
+        <p class="egea-footer__copy">The Elk Grove Education Association is a proud chapter of the California Teachers Association and the National Education Association.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) {
+  .egea-community-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+}
+
+</style>
+ <script>
+   //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+ </script>
+</body>
+</html>

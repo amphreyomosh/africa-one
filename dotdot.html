@@ -1,0 +1,2401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOT Tot Center — Sacramento Childcare Since 1983</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        /* DOT Tot brand palette — primaries from the balloon logo */
+        --brand-blue: #2bb3d9;
+        --brand-blue-dark: #1e8fb0;
+        --brand-blue-light: #e4f5fb;
+        --brand-blue-50: #f4fafd;
+        --brand-orange: #f28a2e;
+        --brand-orange-light: #fff1e2;
+        --brand-purple: #9b59b6;
+        --brand-purple-light: #f2e8f7;
+        --brand-yellow: #f5c518;
+        --brand-yellow-light: #fff8e0;
+        --brand-green: #5bb85b;
+        --brand-green-light: #e8f5e8;
+        --brand-red: #e74c3c;
+        /* Primary brand action color — warm terracotta orange */
+        --brand-primary: #c96a1a;
+        --brand-primary-dark: #a85513;
+        --brand-primary-light: #fbeadb;
+        --brand-primary-50: #fdf6f0;
+        /* Legacy aliases */
+        --brand-teal: #c96a1a;
+        --brand-teal-light: #fbeadb;
+        --brand-teal-dark: #a85513;
+        --brand-teal-50: #fdf6f0;
+        --text-primary: #1a2332;
+        --text-secondary: #4a5568;
+        --text-muted: #718096;
+        --bg-white: #ffffff;
+        --bg-light: #f9fafb;
+        --bg-section: #f4f7fa;
+        --border: #e5edf2;
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --radius-xl: 28px;
+        --shadow-sm:
+          0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 16px 40px rgba(15, 110, 86, 0.12);
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --shell-max: 1240px;
+        --gutter: 2rem;
+        --glad-height: 56px;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text-primary);
+        background: var(--bg-white);
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      a {
+        color: inherit;
+      }
+
+      /* ── GLAD HEADER (top bar) ── */
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1100;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: var(--glad-height);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+
+      /* ── NAVBAR (DOT) ── */
+      .dot-navbar {
+        position: fixed;
+        top: var(--glad-height);
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid transparent;
+        transition: all var(--transition);
+      }
+      /* When GLAD bar hides, slide the dot-navbar up to the top */
+      #glad-header.hidden ~ .dot-navbar {
+        top: 0;
+      }
+      .dot-navbar.scrolled {
+        background: rgba(255, 255, 255, 0.97);
+        border-bottom-color: var(--border);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+      }
+      .dot-nav-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        height: 72px;
+      }
+      .dot-nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+      /* Multicolor balloon logo mark — circles representing DOT TOT balloons */
+      .dot-nav-logo-mark {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 2px;
+        width: 42px;
+        height: 42px;
+      }
+      .dot-nav-logo-mark i {
+        border-radius: 50%;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .dot-nav-logo-mark i:nth-child(1) {
+        background: var(--brand-red);
+      }
+      .dot-nav-logo-mark i:nth-child(2) {
+        background: var(--brand-yellow);
+      }
+      .dot-nav-logo-mark i:nth-child(3) {
+        background: var(--brand-blue);
+      }
+      .dot-nav-logo-mark i:nth-child(4) {
+        background: var(--brand-green);
+      }
+      .dot-nav-logo-mark i:nth-child(5) {
+        background: var(--brand-orange);
+      }
+      .dot-nav-logo-mark i:nth-child(6) {
+        background: var(--brand-purple);
+      }
+      .dot-nav-logo-text {
+        display: flex;
+        flex-direction: column;
+      }
+      .dot-nav-logo-text strong {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: -0.3px;
+        line-height: 1.1;
+      }
+      .dot-nav-logo-text small {
+        font-size: 11px;
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-top: 1px;
+      }
+      .dot-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        list-style: none;
+      }
+      .dot-nav-links a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-size: 14px;
+        font-weight: 500;
+        padding: 9px 14px;
+        border-radius: 100px;
+        transition: all var(--transition);
+        white-space: nowrap;
+        position: relative;
+      }
+      .dot-nav-links a:hover {
+        color: var(--brand-primary-dark);
+        background: var(--brand-primary-50);
+      }
+      .dot-nav-cta {
+        background: var(--brand-primary);
+        color: #fff !important;
+        padding: 9px 22px !important;
+        margin-left: 8px;
+        box-shadow: 0 4px 12px rgba(201, 106, 26, 0.25);
+      }
+      .dot-nav-cta:hover {
+        background: var(--brand-primary-dark) !important;
+        transform: translateY(-1px);
+      }
+      .dot-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 10px;
+        border: none;
+        background: none;
+      }
+      .dot-hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: all var(--transition);
+      }
+      .dot-hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .dot-hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .dot-hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* ── MOBILE MENU ── */
+      .mobile-menu {
+        position: fixed;
+        top: calc(var(--glad-height) + 72px);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        padding: 2rem 1.5rem;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        visibility: hidden;
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+        visibility: visible;
+      }
+      .mobile-menu ul {
+        list-style: none;
+      }
+      .mobile-menu ul a {
+        display: block;
+        text-decoration: none;
+        color: var(--text-primary);
+        font-size: 18px;
+        font-weight: 500;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .mobile-cta-btn {
+        display: block;
+        margin-top: 2rem;
+        background: var(--brand-primary);
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        padding: 16px;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      /* ── HERO / CAROUSEL ── */
+      .hero {
+        position: relative;
+        height: 90vh;
+        min-height: 600px;
+        overflow: hidden;
+        background: #0d1929;
+        padding-top: calc(var(--glad-height) + 72px);
+      }
+      .hero-stage {
+        position: absolute;
+        inset: calc(var(--glad-height) + 72px) 0 0 0;
+        overflow: hidden;
+      }
+      .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+      }
+      .slide.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .slide-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.08);
+        transition: transform 8s ease-out;
+      }
+      .slide.active .slide-img {
+        transform: scale(1);
+      }
+      .slide-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            105deg,
+            rgba(13, 25, 41, 0.88) 0%,
+            rgba(13, 25, 41, 0.55) 50%,
+            rgba(13, 25, 41, 0.4) 100%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(13, 25, 41, 0.2) 0%,
+            rgba(13, 25, 41, 0.5) 100%
+          );
+      }
+
+      .hero-container {
+        position: relative;
+        z-index: 2;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        height: calc(90vh - var(--glad-height) - 72px);
+        min-height: calc(600px - var(--glad-height) - 72px);
+        display: flex;
+        align-items: center;
+      }
+      .hero-content {
+        max-width: 640px;
+        width: 100%;
+        padding: 4rem 0;
+      }
+      .hero-h1 {
+        font-size: clamp(2.25rem, 5vw, 3.6rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.08;
+        letter-spacing: -1.2px;
+        margin-bottom: 1.5rem;
+      }
+      .hero-h1 .accent {
+        background: linear-gradient(
+          120deg,
+          #f5a86b 0%,
+          #e88a3a 50%,
+          #c96a1a 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-style: italic;
+        font-weight: 700;
+      }
+      .hero-sub {
+        font-size: clamp(15px, 1.6vw, 17px);
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.7;
+        margin-bottom: 2.25rem;
+        max-width: 500px;
+      }
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .btn-primary {
+        background: var(--brand-primary);
+        color: #fff;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all var(--transition);
+        white-space: nowrap;
+        box-shadow: 0 8px 24px rgba(201, 106, 26, 0.4);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary:hover {
+        background: var(--brand-primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(201, 106, 26, 0.5);
+      }
+      .btn-primary svg {
+        transition: transform var(--transition);
+      }
+      .btn-primary:hover svg {
+        transform: translateX(4px);
+      }
+      .btn-ghost {
+        color: #fff;
+        text-decoration: none;
+        padding: 14px 26px;
+        border-radius: 100px;
+        font-weight: 500;
+        font-size: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        transition: all var(--transition);
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.45);
+      }
+
+      /* ── MODERN CAROUSEL CONTROLS ── */
+      .carousel-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+        padding: 0 2rem 2rem;
+        pointer-events: none;
+      }
+      .carousel-bottom-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        pointer-events: auto;
+      }
+
+      /* Slide counter + progress */
+      .carousel-meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .slide-counter {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        font-variant-numeric: tabular-nums;
+      }
+      .slide-counter .current {
+        font-size: 28px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+      }
+      .slide-counter .divider {
+        width: 28px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.4);
+        margin: 0 6px;
+        align-self: center;
+      }
+      .slide-counter .total {
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .progress-bar {
+        width: 120px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 100px;
+        overflow: hidden;
+        position: relative;
+      }
+      .progress-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        background: #fff;
+        border-radius: 100px;
+      }
+      .progress-fill.running {
+        animation: progress 6s linear forwards;
+      }
+      @keyframes progress {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      /* Thumbnail navigator */
+      .carousel-thumbs {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .thumb {
+        width: 64px;
+        height: 44px;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid transparent;
+        background: none;
+        padding: 0;
+        transition: all var(--transition);
+        position: relative;
+        opacity: 0.55;
+      }
+      .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .thumb:hover {
+        opacity: 0.85;
+        transform: translateY(-2px);
+      }
+      .thumb.active {
+        opacity: 1;
+        border-color: #fff;
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+      }
+
+      /* Nav arrows */
+      .carousel-nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .nav-arrow {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition);
+      }
+      .nav-arrow:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+        transform: scale(1.05);
+      }
+      .nav-arrow svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* ── REVIEW BADGES BAR ── */
+      .trust-bar {
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border);
+        padding: 2rem;
+      }
+      .trust-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto auto auto auto 1fr;
+        align-items: center;
+        gap: 0;
+      }
+      .trust-label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+      }
+      .trust-label::before,
+      .trust-label::after {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: var(--border);
+      }
+      .trust-badges-row {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+      }
+      .review-badge {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 22px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--bg-white);
+        transition: all var(--transition);
+        text-decoration: none;
+        color: inherit;
+      }
+      .review-badge:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+        border-color: transparent;
+      }
+      .review-badge-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .review-badge-icon.yelp {
+        background: #d32323;
+      }
+      .review-badge-icon.google {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+      }
+      .review-badge-icon.cdss {
+        background: #1a3d6e;
+      }
+      .review-badge-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .review-badge-top {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+      .review-badge-main {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-top: 2px;
+      }
+      /* Yelp logo letterform */
+      .yelp-mark {
+        color: #fff;
+        font-weight: 800;
+        font-size: 18px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        letter-spacing: -0.5px;
+      }
+      /* Google G */
+      .google-g {
+        width: 26px;
+        height: 26px;
+        display: block;
+      }
+      /* CDSS mark */
+      .cdss-mark {
+        color: #fff;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+      }
+
+      /* ── SECTION BASE ── */
+      section {
+        padding: 6rem 0px;
+      }
+      .section-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+      .section-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: var(--brand-primary-dark);
+        margin-bottom: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-label::before {
+        content: "";
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--brand-primary-dark);
+      }
+      .section-heading {
+        font-size: clamp(1.7rem, 3vw, 2.4rem);
+        font-weight: 700;
+        line-height: 1.18;
+        letter-spacing: -0.8px;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+      }
+      .section-sub {
+        font-size: 16px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        max-width: 580px;
+      }
+
+      /* ── MISSION ── */
+      .mission-strip {
+        background: linear-gradient(
+          135deg,
+          var(--brand-primary-dark) 0%,
+          var(--brand-primary) 100%
+        );
+        padding: 5rem 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .mission-strip::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.12) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .mission-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      .mission-text .section-label {
+        color: #ffe9a8;
+      }
+      .mission-text .section-label::before {
+        background: #ffe9a8;
+      }
+      .mission-text .section-heading {
+        color: #fff;
+      }
+      .mission-text p {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 16px;
+        line-height: 1.75;
+        margin-bottom: 1rem;
+      }
+      .mission-text p:last-child {
+        margin-bottom: 0;
+      }
+      .mission-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .stat-card {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        backdrop-filter: blur(8px);
+        transition: all var(--transition);
+      }
+      .stat-card:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-3px);
+      }
+      .stat-card .num {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        letter-spacing: -1px;
+      }
+      .stat-card .label {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+        line-height: 1.45;
+      }
+
+      /* ── CLASSES ── */
+      .classes-section {
+        background: var(--bg-light);
+      }
+      .classes-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+      .classes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.25rem;
+      }
+      .class-card {
+        background: var(--bg-white);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: all var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .class-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: transparent;
+      }
+      .class-card-top {
+        padding: 1.75rem 1.75rem 1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .class-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .class-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .class-icon.teal {
+        background: var(--brand-blue-light);
+        color: var(--brand-blue-dark);
+      }
+      .class-icon.orange {
+        background: var(--brand-orange-light);
+        color: var(--brand-orange);
+      }
+      .class-icon.purple {
+        background: var(--brand-purple-light);
+        color: var(--brand-purple);
+      }
+      .class-icon.blue {
+        background: var(--brand-green-light);
+        color: var(--brand-green);
+      }
+      .class-card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+      }
+      .class-age {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--brand-primary-dark);
+        background: var(--brand-primary-light);
+        padding: 3px 10px;
+        border-radius: 100px;
+      }
+      .class-card-body {
+        padding: 0 1.75rem 1.5rem;
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.65;
+        flex: 1;
+      }
+      .class-card-foot {
+        padding: 1.1rem 1.75rem;
+        border-top: 1px solid var(--border);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--brand-teal);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all var(--transition);
+      }
+      .class-card:hover .class-card-foot {
+        background: var(--brand-teal-50);
+      }
+      .class-card-foot svg {
+        transition: transform var(--transition);
+      }
+      .class-card:hover .class-card-foot svg {
+        transform: translateX(4px);
+      }
+
+      /* ── GALLERY (with text hover effects) ── */
+      .gallery-section {
+        background: var(--bg-white);
+      }
+      .gallery-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 260px 220px;
+        gap: 14px;
+      }
+      .gallery-item {
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        position: relative;
+        cursor: pointer;
+      }
+      .gallery-item:first-child {
+        grid-row: span 2;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(13, 25, 41, 0) 40%,
+          rgba(13, 25, 41, 0.88) 100%
+        );
+        opacity: 0;
+        transition: opacity var(--transition);
+        pointer-events: none;
+      }
+      .gallery-caption {
+        position: absolute;
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        z-index: 2;
+        color: #fff;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .gallery-caption .gc-label {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--brand-yellow);
+        margin-bottom: 0.5rem;
+      }
+      .gallery-caption .gc-title {
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: -0.3px;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.08);
+      }
+      .gallery-item:hover::after {
+        opacity: 1;
+      }
+      .gallery-item:hover .gallery-caption {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* ── TESTIMONIALS ── */
+      .testimonials-section {
+        background: var(--bg-section);
+      }
+      .testimonials-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .testimonials-header .section-label {
+        justify-content: center;
+      }
+      .testimonials-header .section-sub {
+        margin: 0 auto;
+      }
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 1.25rem;
+      }
+      .testimonial-card {
+        background: var(--bg-white);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        padding: 2rem;
+        transition: all var(--transition);
+        position: relative;
+      }
+      .testimonial-card:hover {
+        box-shadow: var(--shadow-lg);
+        border-color: transparent;
+        transform: translateY(-4px);
+      }
+      .quote-mark {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.5rem;
+        color: var(--brand-primary-light);
+        font-size: 60px;
+        font-weight: 700;
+        line-height: 1;
+        font-family: serif;
+        pointer-events: none;
+      }
+      .stars {
+        color: #f4a825;
+        font-size: 14px;
+        margin-bottom: 1.2rem;
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 1;
+      }
+      .testimonial-card p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+      }
+      .author-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .author-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+      .author-role {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 1px;
+      }
+
+      /* ── CTA ── */
+      .cta-section {
+        background: var(--bg-light);
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+          circle,
+          rgba(201, 106, 26, 0.07) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .cta-inner {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-inner .section-label {
+        justify-content: center;
+      }
+      .cta-inner .section-heading {
+        margin-bottom: 1.25rem;
+      }
+      .cta-inner p {
+        font-size: 16.5px;
+        color: var(--text-secondary);
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+      }
+      .cta-btns {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .btn-primary-green {
+        background: var(--brand-primary);
+        color: #fff;
+        text-decoration: none;
+        padding: 15px 34px;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all var(--transition);
+        box-shadow: 0 8px 20px rgba(201, 106, 26, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary-green:hover {
+        background: var(--brand-primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(201, 106, 26, 0.4);
+      }
+      .btn-primary-green svg {
+        transition: transform var(--transition);
+      }
+      .btn-primary-green:hover svg {
+        transform: translateX(4px);
+      }
+      .btn-outline-green {
+        color: var(--brand-primary-dark);
+        text-decoration: none;
+        padding: 14px 30px;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 15px;
+        border: 1.5px solid var(--brand-primary);
+        transition: all var(--transition);
+      }
+      .btn-outline-green:hover {
+        background: var(--brand-primary-light);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: #0d1929;
+        color: rgba(255, 255, 255, 0.65);
+        padding: 4rem 2rem 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      footer::before {
+        content: "";
+        position: absolute;
+        bottom: -200px;
+        left: -100px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(201, 106, 26, 0.12) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .footer-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        position: relative;
+        z-index: 1;
+      }
+      .footer-brand-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1.25rem;
+      }
+      .footer-brand-mark {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 2px;
+        width: 42px;
+        height: 42px;
+      }
+      .footer-brand-mark i {
+        border-radius: 50%;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .footer-brand-mark i:nth-child(1) {
+        background: var(--brand-red);
+      }
+      .footer-brand-mark i:nth-child(2) {
+        background: var(--brand-yellow);
+      }
+      .footer-brand-mark i:nth-child(3) {
+        background: var(--brand-blue);
+      }
+      .footer-brand-mark i:nth-child(4) {
+        background: var(--brand-green);
+      }
+      .footer-brand-mark i:nth-child(5) {
+        background: var(--brand-orange);
+      }
+      .footer-brand-mark i:nth-child(6) {
+        background: var(--brand-purple);
+      }
+      .footer-brand-text strong {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 700;
+        display: block;
+      }
+      .footer-brand-text small {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .footer-brand p {
+        font-size: 14px;
+        line-height: 1.7;
+        max-width: 320px;
+        margin-bottom: 1.25rem;
+      }
+      .footer-brand .license {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.8;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .footer-col h4 {
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 1.25rem;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col ul li {
+        margin-bottom: 0.65rem;
+      }
+      .footer-col ul a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 14px;
+        transition: color var(--transition);
+      }
+      .footer-col ul a:hover {
+        color: var(--brand-primary);
+      }
+      .footer-bottom {
+        max-width: 1240px;
+        margin: 3rem auto 0;
+        padding-top: 1.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 980px) {
+        .mission-inner {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .footer-inner {
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 2.5rem;
+        }
+        .footer-brand {
+          grid-column: span 3;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 220px 220px 220px;
+        }
+        .gallery-item:first-child {
+          grid-row: span 1;
+          grid-column: span 2;
+        }
+        .carousel-bottom-inner {
+          flex-wrap: wrap;
+          gap: 1.5rem;
+        }
+      }
+      @media (max-width: 760px) {
+        .dot-nav-links {
+          display: none;
+        }
+        .dot-hamburger {
+          display: flex;
+        }
+        section {
+          padding: 4rem 1.25rem;
+        }
+        .mission-strip {
+          padding: 4rem 1.25rem;
+        }
+        .trust-inner {
+          gap: 1.25rem;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+        }
+        .gallery-item,
+        .gallery-item:first-child {
+          grid-column: span 1;
+          grid-row: span 1;
+          height: 240px;
+        }
+        .footer-inner {
+          grid-template-columns: 1fr;
+        }
+        .footer-brand {
+          grid-column: span 1;
+        }
+        .dot-nav-logo-text small {
+          display: none;
+        }
+        .carousel-bottom {
+          padding: 0 1.25rem 1.5rem;
+        }
+        .carousel-bottom-inner {
+          gap: 1.25rem;
+        }
+        .carousel-thumbs {
+          display: none;
+        }
+        .hero-container {
+          padding: 0 1.25rem;
+        }
+        .hero-content {
+          padding: 3rem 0 6rem;
+        }
+        .dot-nav-inner {
+          padding: 0 1.25rem;
+        }
+        .classes-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .gallery-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GLAD HEADER (top bar) -->
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- NAVBAR -->
+    <nav class="dot-navbar" id="dot-navbar">
+      <div class="dot-nav-inner">
+        <a href="#" class="dot-nav-logo" aria-label="DOT Tot Center home">
+          <div class="dot-nav-logo-mark" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="dot-nav-logo-text">
+            <strong>DOT Tot Center</strong>
+            <small>Sacramento · Since 1983</small>
+          </div>
+        </a>
+        <ul class="dot-nav-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Curriculum</a></li>
+          <li><a href="#">Classes</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">Virtual Tour</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#" class="dot-nav-cta">Enroll Now</a></li>
+        </ul>
+        <button
+          class="dot-hamburger"
+          id="dot-hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#" onclick="closeMobile()">About</a></li>
+        <li><a href="#" onclick="closeMobile()">Curriculum</a></li>
+        <li><a href="#" onclick="closeMobile()">Classes</a></li>
+        <li><a href="#" onclick="closeMobile()">Testimonials</a></li>
+        <li><a href="#" onclick="closeMobile()">Virtual Tour</a></li>
+        <li><a href="#" onclick="closeMobile()">Contact</a></li>
+      </ul>
+      <a href="#" class="mobile-cta-btn" onclick="closeMobile()">Enroll Now</a>
+    </div>
+
+    <!-- HERO CAROUSEL -->
+    <section class="hero" id="hero">
+      <div class="hero-stage" id="heroStage">
+        <div class="slide active" data-slide="0">
+          <img
+            class="slide-img"
+            src="https://static.wixstatic.com/media/6a7225_62bc7c86239f466699eae8c9f7da1158~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_62bc7c86239f466699eae8c9f7da1158~mv2.jpg"
+            alt="Children learning at DOT Tot Center"
+          />
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="slide" data-slide="1">
+          <img
+            class="slide-img"
+            src="https://static.wixstatic.com/media/6a7225_49a7cec438104a69a6287e63702c5b24~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_49a7cec438104a69a6287e63702c5b24~mv2.jpg"
+            alt="Teacher engaging with children"
+          />
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="slide" data-slide="2">
+          <img
+            class="slide-img"
+            src="https://static.wixstatic.com/media/6a7225_334b7d99e0c746f2a7af7272e02b4d98~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_334b7d99e0c746f2a7af7272e02b4d98~mv2.jpg"
+            alt="Classroom activity"
+          />
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="slide" data-slide="3">
+          <img
+            class="slide-img"
+            src="https://static.wixstatic.com/media/6a7225_dd22576783704f76ab66e0268d0ff47d~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_dd22576783704f76ab66e0268d0ff47d~mv2.jpg"
+            alt="Children learning together"
+          />
+          <div class="slide-overlay"></div>
+        </div>
+        <div class="slide" data-slide="4">
+          <img
+            class="slide-img"
+            src="https://static.wixstatic.com/media/6a7225_b3395448af034832840697bae9c2a800~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_b3395448af034832840697bae9c2a800~mv2.jpg"
+            alt="DOT Tot learning environment"
+          />
+          <div class="slide-overlay"></div>
+        </div>
+      </div>
+
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-h1">
+            Where every child<br /><span class="accent">explores, grows,</span
+            ><br />and belongs.
+          </h1>
+          <p class="hero-sub">
+            A non-profit, parent-operated center providing nurturing care and
+            enriching early education for children ages 6 weeks to 6 years —
+            proudly serving Sacramento families since 1983.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn-primary">
+              Schedule a Tour
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="16"
+                height="16"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+            <a href="#" class="btn-ghost">Explore Programs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modern carousel controls -->
+      <div class="carousel-bottom">
+        <div class="carousel-bottom-inner">
+          <div class="carousel-meta">
+            <div class="slide-counter">
+              <span class="current" id="slideCurrent">01</span>
+              <span class="divider"></span>
+              <span class="total" id="slideTotal">05</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill running" id="progressFill"></div>
+            </div>
+          </div>
+
+          <div class="carousel-thumbs" id="carouselThumbs"></div>
+
+          <div class="carousel-nav">
+            <button class="nav-arrow" id="prevBtn" aria-label="Previous slide">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <button class="nav-arrow" id="nextBtn" aria-label="Next slide">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST BADGES -->
+    <div class="trust-bar">
+      <div class="trust-inner">
+        <span class="trust-label">Trusted by Sacramento Families</span>
+        <div class="trust-badges-row">
+          <a href="#" class="review-badge">
+            <div class="review-badge-icon yelp">
+              <span class="yelp-mark">yelp</span>
+            </div>
+            <div class="review-badge-text">
+              <span class="review-badge-top">People Love Us On</span>
+              <span class="review-badge-main">Yelp</span>
+            </div>
+          </a>
+          <a href="#" class="review-badge">
+            <div class="review-badge-icon google">
+              <svg
+                class="google-g"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#4285F4"
+                  d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"
+                />
+                <path
+                  fill="#34A853"
+                  d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"
+                />
+                <path
+                  fill="#FBBC05"
+                  d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"
+                />
+                <path
+                  fill="#EA4335"
+                  d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"
+                />
+              </svg>
+            </div>
+            <div class="review-badge-text">
+              <span class="review-badge-top">People Love Us On</span>
+              <span class="review-badge-main">Google Reviews</span>
+            </div>
+          </a>
+          <a href="#" class="review-badge">
+            <div class="review-badge-icon cdss">
+              <span class="cdss-mark">CDSS</span>
+            </div>
+            <div class="review-badge-text">
+              <span class="review-badge-top">Licensed by</span>
+              <span class="review-badge-main">CA Dept. of Social Services</span>
+            </div>
+          </a>
+          <a href="#" class="review-badge">
+            <div
+              class="review-badge-icon"
+              style="background: var(--brand-yellow)"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="#fff"
+                width="22"
+                height="22"
+                stroke="#fff"
+                stroke-width="0.5"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <div class="review-badge-text">
+              <span class="review-badge-top">Serving Families</span>
+              <span class="review-badge-main">For Over 40 Years</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSION -->
+    <div class="mission-strip">
+      <div class="mission-inner">
+        <div class="mission-text">
+          <span class="section-label">Our Mission</span>
+          <h2 class="section-heading">
+            Nurturing every child's<br />potential since 1983.
+          </h2>
+          <p>
+            DOT Tot Center is a non-profit, parent-operated organization in the
+            heart of downtown Sacramento — close to public transportation and
+            just steps from the Capitol Building.
+          </p>
+          <p>
+            Our mission is to provide a safe, welcoming place where children can
+            explore the world, expand their minds, express themselves, and build
+            the confidence to become independent, self-assured people.
+          </p>
+        </div>
+        <div class="mission-stats">
+          <div class="stat-card">
+            <div class="num">40<span style="font-size: 1.5rem">+</span></div>
+            <div class="label">Years of trusted care in Sacramento</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">4</div>
+            <div class="label">Age-specific programs</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">6<span style="font-size: 1.5rem">wk</span></div>
+            <div class="label">Earliest enrollment age</div>
+          </div>
+          <div class="stat-card">
+            <div class="num" style="font-size: 1.4rem; line-height: 1.3">
+              Non-Profit
+            </div>
+            <div class="label">Parent-operated organization</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLASSES -->
+    <section class="classes-section">
+      <div class="section-inner">
+        <div class="classes-header">
+          <div>
+            <span class="section-label">Programs</span>
+            <h2 class="section-heading">Our Classes</h2>
+            <p class="section-sub">
+              Four developmentally designed programs, each tailored to a
+              specific stage of early childhood growth.
+            </p>
+          </div>
+          <a
+            href="#"
+            style="
+              font-size: 14px;
+              font-weight: 600;
+              color: var(--brand-teal);
+              text-decoration: none;
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+              padding-bottom: 0.5rem;
+            "
+          >
+            View Tuition &amp; Fees
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="14"
+              height="14"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        </div>
+        <div class="classes-grid">
+          <div class="class-card">
+            <div class="class-card-top">
+              <div class="class-icon teal">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3>Pooh's Corner</h3>
+                <span class="class-age">6 weeks – 12 months</span>
+              </div>
+            </div>
+            <div class="class-card-body">
+              Gentle, loving care for infants, with an emphasis on sensory
+              exploration, secure bonding, and reaching developmental milestones
+              in a warm, safe environment.
+            </div>
+            <div class="class-card-foot">
+              Learn more
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="14"
+                height="14"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </div>
+          </div>
+          <div class="class-card">
+            <div class="class-card-top">
+              <div class="class-icon orange">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              </div>
+              <div>
+                <h3>The Elmos</h3>
+                <span class="class-age">12 months – 2 years</span>
+              </div>
+            </div>
+            <div class="class-card-body">
+              Active, nurturing care for curious toddlers focused on language
+              development, creative play, and building the first set of social
+              skills.
+            </div>
+            <div class="class-card-foot">
+              Learn more
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="14"
+                height="14"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </div>
+          </div>
+          <div class="class-card">
+            <div class="class-card-top">
+              <div class="class-icon purple">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              </div>
+              <div>
+                <h3>The Tigger Bugs</h3>
+                <span class="class-age">2 – 3 years</span>
+              </div>
+            </div>
+            <div class="class-card-body">
+              Energetic, exploratory learning for 2-year-olds with a structured
+              curriculum that encourages independence and creative expression.
+            </div>
+            <div class="class-card-foot">
+              Learn more
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="14"
+                height="14"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </div>
+          </div>
+          <div class="class-card">
+            <div class="class-card-top">
+              <div class="class-icon blue">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <div>
+                <h3>The Honey Bees</h3>
+                <span class="class-age">3 – 4 years</span>
+              </div>
+            </div>
+            <div class="class-card-body">
+              A kindergarten-readiness program emphasizing early literacy,
+              numeracy, problem-solving, and cooperative group learning.
+            </div>
+            <div class="class-card-foot">
+              Learn more
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="14"
+                height="14"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section">
+      <div class="section-inner">
+        <div class="gallery-header">
+          <div>
+            <span class="section-label">Life at DOT Tot</span>
+            <h2 class="section-heading">Inside our classrooms</h2>
+          </div>
+          <a
+            href="#"
+            style="
+              font-size: 14px;
+              font-weight: 600;
+              color: var(--brand-teal);
+              text-decoration: none;
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+            "
+          >
+            Take a Virtual Tour
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="14"
+              height="14"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src="https://static.wixstatic.com/media/6a7225_62bc7c86239f466699eae8c9f7da1158~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_62bc7c86239f466699eae8c9f7da1158~mv2.jpg"
+              alt="Children in classroom"
+            />
+            <div class="gallery-caption">
+              <span class="gc-label">Discovery</span>
+              <div class="gc-title">
+                Hands-on learning in every corner of our space
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://static.wixstatic.com/media/6a7225_49a7cec438104a69a6287e63702c5b24~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_49a7cec438104a69a6287e63702c5b24~mv2.jpg"
+              alt="Teacher and students"
+            />
+            <div class="gallery-caption">
+              <span class="gc-label">Connection</span>
+              <div class="gc-title">Warm, attentive teachers</div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://static.wixstatic.com/media/6a7225_334b7d99e0c746f2a7af7272e02b4d98~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_334b7d99e0c746f2a7af7272e02b4d98~mv2.jpg"
+              alt="Group activity"
+            />
+            <div class="gallery-caption">
+              <span class="gc-label">Creativity</span>
+              <div class="gc-title">Curriculum that sparks imagination</div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://static.wixstatic.com/media/6a7225_dd22576783704f76ab66e0268d0ff47d~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_dd22576783704f76ab66e0268d0ff47d~mv2.jpg"
+              alt="Learning activities"
+            />
+            <div class="gallery-caption">
+              <span class="gc-label">Play</span>
+              <div class="gc-title">Joyful, purposeful exploration</div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://static.wixstatic.com/media/6a7225_b3395448af034832840697bae9c2a800~mv2.jpg/v1/fill/w_1043,h_695,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6a7225_b3395448af034832840697bae9c2a800~mv2.jpg"
+              alt="DOT Tot environment"
+            />
+            <div class="gallery-caption">
+              <span class="gc-label">Community</span>
+              <div class="gc-title">A place where every family belongs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="section-inner">
+        <div class="testimonials-header">
+          <span class="section-label">Testimonials</span>
+          <h2 class="section-heading">What families are saying</h2>
+          <p class="section-sub">
+            Trusted by hundreds of Sacramento families since 1983.
+          </p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="quote-mark">&#8220;</div>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>
+              DOT Tot has been an incredible home away from home for our
+              daughter. The teachers are warm, attentive, and truly care about
+              every child's development.
+            </p>
+            <div class="testimonial-author">
+              <div
+                class="author-avatar"
+                style="
+                  background: var(--brand-blue-light);
+                  color: var(--brand-blue-dark);
+                "
+              >
+                MR
+              </div>
+              <div>
+                <div class="author-name">Maria R.</div>
+                <div class="author-role">Parent, Pooh's Corner</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="quote-mark">&#8220;</div>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>
+              We love that DOT Tot is non-profit and parent-operated. It
+              genuinely feels like a community — not just a daycare. Our son has
+              thrived here.
+            </p>
+            <div class="testimonial-author">
+              <div
+                class="author-avatar"
+                style="
+                  background: var(--brand-purple-light);
+                  color: var(--brand-purple);
+                "
+              >
+                JK
+              </div>
+              <div>
+                <div class="author-name">James K.</div>
+                <div class="author-role">Parent, The Elmos</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="quote-mark">&#8220;</div>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>
+              The curriculum is thoughtful and age-appropriate. My daughter
+              started at 6 weeks old and is now in the Honey Bees class — DOT
+              Tot has been with us every step of the way.
+            </p>
+            <div class="testimonial-author">
+              <div
+                class="author-avatar"
+                style="background: #fff3e8; color: #e8832a"
+              >
+                ST
+              </div>
+              <div>
+                <div class="author-name">Sarah T.</div>
+                <div class="author-role">Parent, Honey Bees</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="section-inner">
+        <div class="cta-inner">
+          <span class="section-label">Get Started</span>
+          <h2 class="section-heading">Ready to join our community?</h2>
+          <p>
+            We're now accepting enrollments. Schedule a visit to tour our
+            facilities, meet our dedicated team, and discover how DOT Tot can
+            support your family's journey.
+          </p>
+          <div class="cta-btns">
+            <a href="#" class="btn-primary-green">
+              Schedule a Tour
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="16"
+                height="16"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+            <a href="#" class="btn-outline-green">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <div class="footer-brand-mark" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="footer-brand-text">
+              <strong>DOT Tot Center</strong>
+              <small>Sacramento, CA · Since 1983</small>
+            </div>
+          </div>
+          <p>
+            A non-profit, parent-operated childcare and preschool center in the
+            heart of downtown Sacramento. Serving children ages 6 weeks to 6
+            years.
+          </p>
+          <div class="license">
+            Infant License #340306212<br />
+            Preschool License #340306210<br />
+            Licensed by California Department of Social Services
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Curriculum</a></li>
+            <li><a href="#">Our Classes</a></li>
+            <li><a href="#">Testimonials</a></li>
+            <li><a href="#">Virtual Tour</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Families</h4>
+          <ul>
+            <li><a href="#">Current Parents</a></li>
+            <li><a href="#">Tuition &amp; Fees</a></li>
+            <li><a href="#">Enrollment</a></li>
+            <li><a href="#">Forms</a></li>
+            <li><a href="#">Calendar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="#">Downtown Sacramento</a></li>
+            <li><a href="#">Hours &amp; Directions</a></li>
+            <li><a href="#">Schedule a Tour</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 DOT Tot Center. All rights reserved.</span>
+        <span>Downtown Sacramento, CA · dottot.org</span>
+      </div>
+    </footer>
+
+    <script>
+      // GLAD header hide/show on scroll
+      const gladHeader = document.getElementById("glad-header");
+      let lastScrollY = window.scrollY;
+      let gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+
+      // Navbar scroll effect
+      const dotNavbar = document.getElementById("dot-navbar");
+      window.addEventListener("scroll", () => {
+        dotNavbar.classList.toggle("scrolled", window.scrollY > 20);
+      });
+
+      // Mobile menu
+      const hamburger = document.getElementById("dot-hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      hamburger.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        hamburger.classList.toggle("open", isOpen);
+        hamburger.setAttribute("aria-expanded", isOpen);
+      });
+      function closeMobile() {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
+
+      // ── Modern Carousel ──
+      const slides = document.querySelectorAll(".slide");
+      const thumbsContainer = document.getElementById("carouselThumbs");
+      const slideCurrent = document.getElementById("slideCurrent");
+      const slideTotalEl = document.getElementById("slideTotal");
+      const progressFill = document.getElementById("progressFill");
+      const SLIDE_DURATION = 6000;
+      let current = 0;
+      let timer;
+
+      slideTotalEl.textContent = String(slides.length).padStart(2, "0");
+
+      // Build thumbs
+      slides.forEach((slide, i) => {
+        const img = slide.querySelector("img").src;
+        const btn = document.createElement("button");
+        btn.className = "thumb" + (i === 0 ? " active" : "");
+        btn.setAttribute("aria-label", "Go to slide " + (i + 1));
+        btn.innerHTML = `<img src="${img}" alt="" />`;
+        btn.addEventListener("click", () => goTo(i));
+        thumbsContainer.appendChild(btn);
+      });
+
+      function updateCounter() {
+        slideCurrent.textContent = String(current + 1).padStart(2, "0");
+      }
+
+      function restartProgress() {
+        progressFill.classList.remove("running");
+        void progressFill.offsetWidth;
+        progressFill.classList.add("running");
+      }
+
+      function goTo(n) {
+        slides[current].classList.remove("active");
+        thumbsContainer.children[current].classList.remove("active");
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add("active");
+        thumbsContainer.children[current].classList.add("active");
+        updateCounter();
+        restartProgress();
+        resetTimer();
+      }
+
+      function next() {
+        goTo(current + 1);
+      }
+      function prev() {
+        goTo(current - 1);
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, SLIDE_DURATION);
+      }
+
+      document.getElementById("prevBtn").addEventListener("click", prev);
+      document.getElementById("nextBtn").addEventListener("click", next);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") prev();
+        if (e.key === "ArrowRight") next();
+      });
+
+      const heroSection = document.getElementById("hero");
+      heroSection.addEventListener("mouseenter", () => clearInterval(timer));
+      heroSection.addEventListener("mouseleave", resetTimer);
+
+      resetTimer();
+    </script>
+  </body>
+</html>

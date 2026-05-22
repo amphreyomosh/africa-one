@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>California Interscholastic Federation — Developing Student-Athletes of Character</title>
+<meta name="description" content="The California Interscholastic Federation governs high school sports across California, promoting equity, quality, character, and academic development for more than 1,600 member schools.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Expanded:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CIF HOMEPAGE REDESIGN — scoped with cif- prefix
+   ============================================================ */
+:root{
+  --cif-navy:#0c2756;
+  --cif-navy-deep:#081c3f;
+  --cif-navy-mid:#1a3a72;
+  --cif-gold:#f6b417;
+  --cif-gold-deep:#d99800;
+  --cif-ink:#13203a;
+  --cif-slate:#4d5a72;
+  --cif-mist:#eef2f8;
+  --cif-cloud:#f7f9fc;
+  --cif-line:#dde4ee;
+  --cif-white:#ffffff;
+  --cif-shadow:0 18px 50px -22px rgba(12,39,86,.30);
+  --cif-shadow-sm:0 6px 22px -12px rgba(12,39,86,.28);
+  --cif-radius:18px;
+  --cif-radius-lg:26px;
+  --cif-maxw:1240px;
+  --cif-ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,sans-serif;
+  color:var(--cif-ink);
+  background:var(--cif-white);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.02em;font-weight:800}
+.cif-wrap{max-width:var(--cif-maxw);margin:0 auto;padding:0 28px}
+:focus-visible{outline:3px solid var(--cif-gold);outline-offset:3px;border-radius:6px}
+
+/* ---------- BUTTONS ---------- */
+.cif-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:.98rem;
+  padding:15px 30px;border-radius:999px;cursor:pointer;border:none;
+  transition:transform .25s var(--cif-ease),box-shadow .25s var(--cif-ease),background .2s;
+  letter-spacing:-.01em;
+}
+.cif-btn--primary{
+  background:var(--cif-gold);color:var(--cif-navy-deep);
+  box-shadow:0 12px 30px -10px rgba(246,180,23,.65);
+}
+.cif-btn--primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(246,180,23,.8)}
+.cif-btn--ghost{background:transparent;color:var(--cif-navy);border:1.6px solid var(--cif-line)}
+.cif-btn--ghost:hover{border-color:var(--cif-navy);transform:translateY(-2px)}
+.cif-btn--light{background:var(--cif-white);color:var(--cif-navy-deep)}
+.cif-btn--light:hover{transform:translateY(-3px);box-shadow:var(--cif-shadow)}
+.cif-btn svg{transition:transform .25s var(--cif-ease)}
+.cif-btn:hover svg{transform:translateX(4px)}
+
+/* ---------- SECTION HEADERS ---------- */
+.cif-sec{padding:108px 0}
+.cif-sec-head{max-width:680px;margin-bottom:56px}
+.cif-sec-head h2{
+  font-size:clamp(2rem,3.6vw,3rem);color:var(--cif-navy);margin-bottom:18px;
+}
+.cif-sec-head p{font-size:1.12rem;color:var(--cif-slate)}
+.cif-sec-head--center{margin-left:auto;margin-right:auto;text-align:center}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.cif-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.0);
+  transition:background .35s var(--cif-ease),box-shadow .35s var(--cif-ease),border-color .35s;
+  border-bottom:1px solid transparent;
+}
+.cif-header.cif-scrolled{
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(14px);
+  box-shadow:0 6px 30px -18px rgba(12,39,86,.4);
+  border-bottom-color:var(--cif-line);
+}
+.cif-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  height:84px;
+}
+.cif-logo{display:flex;align-items:center;gap:13px}
+.cif-logo-mark{
+  width:54px;height:54px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.cif-logo-mark svg{width:100%;height:100%;display:block}
+.cif-logo-txt{display:flex;flex-direction:column;line-height:1.15}
+.cif-logo-txt b{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.02rem;color:var(--cif-navy)}
+.cif-logo-txt span{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--cif-slate);font-weight:500}
+.cif-header.cif-top .cif-logo-txt b{color:var(--cif-white)}
+.cif-header.cif-top .cif-logo-txt span{color:rgba(255,255,255,.7)}
+
+.cif-menu{display:flex;align-items:center;gap:6px}
+.cif-menu a{
+  font-family:'Archivo',sans-serif;font-weight:600;font-size:.95rem;
+  padding:10px 15px;border-radius:9px;color:var(--cif-navy);
+  transition:background .2s,color .2s;
+}
+.cif-menu a:hover{background:var(--cif-mist)}
+.cif-header.cif-top .cif-menu a{color:rgba(255,255,255,.92)}
+.cif-header.cif-top .cif-menu a:hover{background:rgba(255,255,255,.13)}
+
+.cif-nav-right{display:flex;align-items:center;gap:14px}
+.cif-nav-cta{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:.92rem;
+  padding:12px 24px;border-radius:999px;
+  background:var(--cif-gold);color:var(--cif-navy-deep);
+  transition:transform .2s var(--cif-ease),box-shadow .2s;
+}
+.cif-nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(246,180,23,.7)}
+
+.cif-burger{
+  display:none;width:46px;height:46px;border:none;cursor:pointer;
+  background:transparent;border-radius:11px;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;
+}
+.cif-burger span{
+  width:23px;height:2.4px;background:var(--cif-navy);border-radius:2px;
+  transition:transform .3s var(--cif-ease),opacity .2s;
+}
+.cif-header.cif-top .cif-burger span{background:var(--cif-white)}
+.cif-burger.cif-open span:nth-child(1){transform:translateY(7.4px) rotate(45deg)}
+.cif-burger.cif-open span:nth-child(2){opacity:0}
+.cif-burger.cif-open span:nth-child(3){transform:translateY(-7.4px) rotate(-45deg)}
+
+/* mobile drawer */
+.cif-drawer{
+  position:fixed;inset:0 0 0 auto;width:min(380px,86vw);
+  background:var(--cif-white);z-index:99;
+  transform:translateX(105%);transition:transform .42s var(--cif-ease);
+  padding:108px 30px 40px;display:flex;flex-direction:column;
+  box-shadow:-30px 0 60px -30px rgba(12,39,86,.5);
+}
+.cif-drawer.cif-open{transform:translateX(0)}
+.cif-drawer a{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:1.22rem;
+  color:var(--cif-navy);padding:16px 0;border-bottom:1px solid var(--cif-line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cif-drawer a span{color:var(--cif-gold-deep)}
+.cif-drawer .cif-btn{margin-top:26px;justify-content:center}
+.cif-overlay{
+  position:fixed;inset:0;background:rgba(8,28,63,.45);
+  z-index:98;opacity:0;pointer-events:none;transition:opacity .35s;
+}
+.cif-overlay.cif-open{opacity:1;pointer-events:auto}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.cif-hero{
+  position:relative;padding:188px 0 130px;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 0%,rgba(246,180,23,.16),transparent 60%),
+    linear-gradient(160deg,var(--cif-navy) 0%,var(--cif-navy-deep) 60%,#06152f 100%);
+  overflow:hidden;
+}
+.cif-hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.cif-hero-bg::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:62px 62px;
+  mask:radial-gradient(ellipse 90% 70% at 50% 35%,#000,transparent 75%);
+}
+.cif-hero-orb{
+  position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;
+}
+.cif-orb1{width:420px;height:420px;background:rgba(246,180,23,.34);top:-130px;right:-90px}
+.cif-orb2{width:380px;height:380px;background:rgba(40,90,180,.6);bottom:-160px;left:-110px}
+.cif-hero-inner{position:relative;max-width:830px}
+.cif-hero h1{
+  font-family:'Archivo Expanded','Archivo',sans-serif;
+  font-size:clamp(2.5rem,5.6vw,4.5rem);color:var(--cif-white);
+  font-weight:800;margin-bottom:26px;
+}
+.cif-hero h1 em{font-style:normal;color:var(--cif-gold)}
+.cif-hero p{
+  font-size:clamp(1.05rem,1.5vw,1.25rem);color:rgba(255,255,255,.82);
+  max-width:600px;margin-bottom:38px;
+}
+.cif-hero-stats{
+  display:flex;gap:48px;margin-top:74px;flex-wrap:wrap;
+}
+.cif-stat b{
+  display:block;font-family:'Archivo Expanded','Archivo',sans-serif;
+  font-size:clamp(2rem,3.4vw,2.8rem);color:var(--cif-gold);font-weight:800;
+}
+.cif-stat span{color:rgba(255,255,255,.7);font-size:.95rem;letter-spacing:.01em}
+.cif-hero-divider{
+  position:absolute;bottom:0;left:0;right:0;height:90px;
+  background:var(--cif-white);
+  clip-path:polygon(0 100%,100% 100%,100% 35%,0 100%);
+}
+
+/* reveal animation */
+.cif-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--cif-ease),transform .8s var(--cif-ease)}
+.cif-reveal.cif-in{opacity:1;transform:none}
+.cif-hero .cif-reveal{transition-delay:var(--d,0s)}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.cif-about{background:var(--cif-white)}
+.cif-about-grid{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center;
+}
+.cif-about-txt h2{font-size:clamp(2rem,3.5vw,3rem);color:var(--cif-navy);margin-bottom:22px}
+.cif-about-txt p{color:var(--cif-slate);font-size:1.08rem;margin-bottom:18px}
+.cif-about-txt .cif-lead{
+  font-size:1.22rem;color:var(--cif-ink);font-weight:500;line-height:1.55;
+}
+.cif-about-meta{
+  display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;
+}
+.cif-about-meta div{
+  background:var(--cif-cloud);border:1px solid var(--cif-line);
+  border-radius:13px;padding:14px 20px;
+}
+.cif-about-meta b{font-family:'Archivo',sans-serif;color:var(--cif-navy);font-size:1.05rem;display:block}
+.cif-about-meta span{font-size:.85rem;color:var(--cif-slate)}
+
+.cif-values{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cif-value{
+  background:linear-gradient(165deg,var(--cif-cloud),var(--cif-white));
+  border:1px solid var(--cif-line);border-radius:var(--cif-radius);
+  padding:30px 26px;transition:transform .3s var(--cif-ease),box-shadow .3s,border-color .3s;
+}
+.cif-value:hover{transform:translateY(-6px);box-shadow:var(--cif-shadow);border-color:transparent}
+.cif-value-ic{
+  width:50px;height:50px;border-radius:13px;
+  background:var(--cif-navy);display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+}
+.cif-value-ic svg{width:24px;height:24px;stroke:var(--cif-gold)}
+.cif-value h3{font-size:1.18rem;color:var(--cif-navy);margin-bottom:8px}
+.cif-value p{font-size:.93rem;color:var(--cif-slate);line-height:1.55}
+
+/* ============================================================
+   PROGRAMS
+   ============================================================ */
+.cif-programs{background:var(--cif-cloud)}
+.cif-prog-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.cif-prog{
+  background:var(--cif-white);border:1px solid var(--cif-line);
+  border-radius:var(--cif-radius-lg);padding:38px 32px;
+  position:relative;overflow:hidden;
+  transition:transform .35s var(--cif-ease),box-shadow .35s var(--cif-ease);
+}
+.cif-prog::before{
+  content:"";position:absolute;left:0;top:0;height:4px;width:0;
+  background:var(--cif-gold);transition:width .4s var(--cif-ease);
+}
+.cif-prog:hover{transform:translateY(-8px);box-shadow:var(--cif-shadow)}
+.cif-prog:hover::before{width:100%}
+.cif-prog-ic{
+  width:58px;height:58px;border-radius:15px;margin-bottom:22px;
+  background:linear-gradient(155deg,var(--cif-navy),var(--cif-navy-mid));
+  display:flex;align-items:center;justify-content:center;
+}
+.cif-prog-ic svg{width:28px;height:28px;stroke:var(--cif-gold);fill:none}
+.cif-prog h3{font-size:1.28rem;color:var(--cif-navy);margin-bottom:11px}
+.cif-prog p{color:var(--cif-slate);font-size:.97rem;margin-bottom:18px}
+.cif-prog-link{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:.9rem;
+  color:var(--cif-navy);display:inline-flex;align-items:center;gap:7px;
+}
+.cif-prog-link svg{width:15px;height:15px;transition:transform .25s var(--cif-ease)}
+.cif-prog:hover .cif-prog-link svg{transform:translateX(4px)}
+.cif-prog-link span{
+  border-bottom:2px solid var(--cif-gold);padding-bottom:1px;
+}
+
+/* ============================================================
+   MEMBERSHIP CTA
+   ============================================================ */
+.cif-join{
+  background:
+    radial-gradient(ellipse 60% 80% at 90% 50%,rgba(246,180,23,.2),transparent 65%),
+    linear-gradient(135deg,var(--cif-navy),var(--cif-navy-deep));
+  position:relative;overflow:hidden;
+}
+.cif-join-inner{
+  display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center;
+  position:relative;
+}
+.cif-join h2{
+  font-family:'Archivo Expanded','Archivo',sans-serif;
+  font-size:clamp(2rem,3.6vw,2.9rem);color:var(--cif-white);margin-bottom:18px;
+}
+.cif-join h2 em{font-style:normal;color:var(--cif-gold)}
+.cif-join p{color:rgba(255,255,255,.8);font-size:1.1rem;margin-bottom:30px;max-width:520px}
+.cif-join-aud{display:flex;flex-direction:column;gap:14px}
+.cif-join-card{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
+  border-radius:15px;padding:20px 24px;
+  display:flex;align-items:center;gap:16px;
+  transition:background .25s,transform .25s var(--cif-ease);
+}
+.cif-join-card:hover{background:rgba(255,255,255,.13);transform:translateX(6px)}
+.cif-join-card-ic{
+  width:44px;height:44px;border-radius:11px;flex:none;
+  background:var(--cif-gold);display:flex;align-items:center;justify-content:center;
+}
+.cif-join-card-ic svg{width:21px;height:21px;stroke:var(--cif-navy-deep)}
+.cif-join-card b{font-family:'Archivo',sans-serif;color:var(--cif-white);display:block;font-size:1.02rem}
+.cif-join-card span{color:rgba(255,255,255,.65);font-size:.88rem}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+.cif-events{background:var(--cif-white)}
+.cif-events-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:30px;margin-bottom:50px;flex-wrap:wrap;
+}
+.cif-events-head h2{font-size:clamp(2rem,3.5vw,3rem);color:var(--cif-navy)}
+.cif-events-head p{color:var(--cif-slate);font-size:1.1rem;margin-top:10px}
+.cif-event-list{display:flex;flex-direction:column;gap:0}
+.cif-event{
+  display:grid;grid-template-columns:120px 1fr auto;gap:32px;align-items:center;
+  padding:28px 8px;border-bottom:1px solid var(--cif-line);
+  transition:background .25s,padding-left .25s var(--cif-ease);
+}
+.cif-event:first-child{border-top:1px solid var(--cif-line)}
+.cif-event:hover{background:var(--cif-cloud);padding-left:22px}
+.cif-event-date{
+  text-align:center;background:var(--cif-navy);border-radius:13px;
+  padding:14px 8px;color:var(--cif-white);
+}
+.cif-event-date b{
+  display:block;font-family:'Archivo Expanded','Archivo',sans-serif;
+  font-size:1.7rem;color:var(--cif-gold);line-height:1;
+}
+.cif-event-date span{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.cif-event-info h3{font-size:1.3rem;color:var(--cif-navy);margin-bottom:5px}
+.cif-event-info p{color:var(--cif-slate);font-size:.95rem}
+.cif-event-tag{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:.78rem;
+  text-transform:uppercase;letter-spacing:.06em;
+  padding:8px 16px;border-radius:999px;white-space:nowrap;
+  background:var(--cif-mist);color:var(--cif-navy);
+}
+.cif-event-tag.cif-tag-gold{background:rgba(246,180,23,.2);color:var(--cif-gold-deep)}
+
+/* ============================================================
+   NEWS
+   ============================================================ */
+.cif-news{background:var(--cif-cloud)}
+.cif-news-grid{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:24px;
+}
+.cif-news-card{
+  background:var(--cif-white);border:1px solid var(--cif-line);
+  border-radius:var(--cif-radius-lg);overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .35s var(--cif-ease),box-shadow .35s;
+}
+.cif-news-card:hover{transform:translateY(-7px);box-shadow:var(--cif-shadow)}
+.cif-news-img{
+  height:200px;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,var(--cif-navy),var(--cif-navy-mid));
+  display:flex;align-items:flex-end;padding:22px;
+}
+.cif-news-img::after{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:34px 34px;
+}
+.cif-news-card--feat{grid-row:span 2}
+.cif-news-card--feat .cif-news-img{height:300px}
+.cif-news-cat{
+  position:relative;z-index:1;
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:.74rem;
+  text-transform:uppercase;letter-spacing:.1em;
+  background:var(--cif-gold);color:var(--cif-navy-deep);
+  padding:6px 14px;border-radius:999px;
+}
+.cif-news-body{padding:26px 26px 30px;flex:1;display:flex;flex-direction:column}
+.cif-news-date{
+  font-size:.82rem;color:var(--cif-gold-deep);font-weight:600;
+  font-family:'Archivo',sans-serif;letter-spacing:.04em;margin-bottom:10px;
+}
+.cif-news-body h3{font-size:1.2rem;color:var(--cif-navy);margin-bottom:10px;line-height:1.25}
+.cif-news-card--feat .cif-news-body h3{font-size:1.55rem}
+.cif-news-body p{color:var(--cif-slate);font-size:.94rem;flex:1}
+.cif-news-more{
+  margin-top:16px;font-family:'Archivo',sans-serif;font-weight:700;
+  font-size:.88rem;color:var(--cif-navy);display:inline-flex;gap:6px;align-items:center;
+}
+.cif-news-more svg{width:14px;height:14px;transition:transform .25s var(--cif-ease)}
+.cif-news-card:hover .cif-news-more svg{transform:translateX(4px)}
+
+/* ============================================================
+   PARTNERS
+   ============================================================ */
+.cif-partners{background:var(--cif-white);padding:80px 0}
+.cif-partners-head{text-align:center;margin-bottom:44px}
+.cif-partners-head h2{font-size:1.5rem;color:var(--cif-navy);margin-bottom:8px}
+.cif-partners-head p{color:var(--cif-slate);font-size:1rem}
+.cif-partner-row{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:16px;
+}
+.cif-partner{
+  display:flex;align-items:center;gap:11px;
+  background:var(--cif-cloud);border:1px solid var(--cif-line);
+  padding:16px 26px;border-radius:13px;
+  font-family:'Archivo',sans-serif;font-weight:700;color:var(--cif-navy);
+  font-size:.98rem;transition:transform .25s var(--cif-ease),border-color .25s;
+}
+.cif-partner:hover{transform:translateY(-4px);border-color:var(--cif-gold)}
+.cif-partner-dot{width:9px;height:9px;border-radius:50%;background:var(--cif-gold);flex:none}
+
+/* ============================================================
+   IMPACT / TESTIMONIALS
+   ============================================================ */
+.cif-impact{
+  background:
+    radial-gradient(ellipse 50% 70% at 15% 100%,rgba(246,180,23,.14),transparent 60%),
+    linear-gradient(150deg,var(--cif-navy-deep),var(--cif-navy));
+}
+.cif-impact .cif-sec-head h2{color:var(--cif-white)}
+.cif-impact .cif-sec-head p{color:rgba(255,255,255,.72)}
+.cif-quotes{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cif-quote{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--cif-radius-lg);padding:38px 36px;
+  transition:transform .3s var(--cif-ease),background .3s;
+}
+.cif-quote:hover{transform:translateY(-6px);background:rgba(255,255,255,.1)}
+.cif-quote-mark{
+  font-family:'Archivo',sans-serif;font-size:3.4rem;color:var(--cif-gold);
+  line-height:.6;display:block;margin-bottom:14px;
+}
+.cif-quote p{
+  color:var(--cif-white);font-size:1.12rem;line-height:1.6;
+  font-weight:500;margin-bottom:24px;
+}
+.cif-quote-by{display:flex;align-items:center;gap:14px}
+.cif-quote-av{
+  width:48px;height:48px;border-radius:50%;flex:none;
+  background:var(--cif-gold);display:flex;align-items:center;justify-content:center;
+  font-family:'Archivo',sans-serif;font-weight:800;color:var(--cif-navy-deep);
+}
+.cif-quote-by b{font-family:'Archivo',sans-serif;color:var(--cif-white);display:block;font-size:.98rem}
+.cif-quote-by span{color:rgba(255,255,255,.6);font-size:.85rem}
+.cif-impact-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  margin-top:60px;padding-top:54px;border-top:1px solid rgba(255,255,255,.13);
+}
+.cif-impact-stat b{
+  display:block;font-family:'Archivo Expanded','Archivo',sans-serif;
+  font-size:clamp(1.9rem,3vw,2.6rem);color:var(--cif-gold);
+}
+.cif-impact-stat span{color:rgba(255,255,255,.7);font-size:.92rem}
+
+/* ============================================================
+   CONTACT + FOOTER
+   ============================================================ */
+.cif-contact{background:var(--cif-cloud);padding:108px 0 0}
+.cif-contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;
+}
+.cif-contact-txt h2{font-size:clamp(2rem,3.4vw,2.8rem);color:var(--cif-navy);margin-bottom:18px}
+.cif-contact-txt p{color:var(--cif-slate);font-size:1.08rem;margin-bottom:32px;max-width:440px}
+.cif-contact-items{display:flex;flex-direction:column;gap:18px}
+.cif-contact-item{display:flex;gap:16px;align-items:flex-start}
+.cif-contact-item-ic{
+  width:46px;height:46px;border-radius:12px;flex:none;
+  background:var(--cif-navy);display:flex;align-items:center;justify-content:center;
+}
+.cif-contact-item-ic svg{width:21px;height:21px;stroke:var(--cif-gold)}
+.cif-contact-item b{font-family:'Archivo',sans-serif;color:var(--cif-navy);display:block;font-size:.82rem;text-transform:uppercase;letter-spacing:.07em}
+.cif-contact-item span{color:var(--cif-slate);font-size:1.02rem}
+.cif-contact-card{
+  background:var(--cif-white);border:1px solid var(--cif-line);
+  border-radius:var(--cif-radius-lg);padding:38px;box-shadow:var(--cif-shadow-sm);
+}
+.cif-contact-card h3{font-size:1.32rem;color:var(--cif-navy);margin-bottom:8px}
+.cif-contact-card>p{color:var(--cif-slate);font-size:.96rem;margin-bottom:24px}
+.cif-field{margin-bottom:16px}
+.cif-field label{
+  display:block;font-family:'Archivo',sans-serif;font-weight:600;
+  font-size:.84rem;color:var(--cif-navy);margin-bottom:7px;
+}
+.cif-field input,.cif-field select,.cif-field textarea{
+  width:100%;padding:13px 16px;border:1.5px solid var(--cif-line);
+  border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.96rem;
+  color:var(--cif-ink);background:var(--cif-cloud);transition:border-color .2s,background .2s;
+}
+.cif-field input:focus,.cif-field select:focus,.cif-field textarea:focus{
+  outline:none;border-color:var(--cif-navy);background:var(--cif-white);
+}
+.cif-field textarea{resize:vertical;min-height:96px}
+.cif-contact-card .cif-btn{width:100%;justify-content:center;margin-top:6px}
+.cif-form-note{
+  margin-top:12px;font-size:.82rem;color:var(--cif-slate);text-align:center;
+}
+
+/* footer */
+.cif-footer{
+  background:var(--cif-navy-deep);color:rgba(255,255,255,.7);
+  margin-top:108px;padding:70px 0 30px;
+}
+.cif-footer-top{
+  display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:40px;
+  padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.cif-footer-brand .cif-logo-mark{width:60px;height:60px;margin-bottom:18px}
+.cif-footer-brand p{font-size:.93rem;max-width:300px;line-height:1.6}
+.cif-footer-social{display:flex;gap:10px;margin-top:22px}
+.cif-footer-social a{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
+  transition:background .25s,transform .25s var(--cif-ease);
+}
+.cif-footer-social a:hover{background:var(--cif-gold);transform:translateY(-3px)}
+.cif-footer-social a svg{width:18px;height:18px;fill:var(--cif-white);transition:fill .25s}
+.cif-footer-social a:hover svg{fill:var(--cif-navy-deep)}
+.cif-footer-col h4{
+  font-family:'Archivo',sans-serif;color:var(--cif-white);font-size:.92rem;
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px;
+}
+.cif-footer-col a{
+  display:block;font-size:.93rem;padding:6px 0;color:rgba(255,255,255,.65);
+  transition:color .2s,padding-left .2s;
+}
+.cif-footer-col a:hover{color:var(--cif-gold);padding-left:5px}
+.cif-footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:26px;flex-wrap:wrap;gap:14px;
+}
+.cif-footer-bottom p{font-size:.85rem}
+.cif-footer-bottom .cif-foot-links{display:flex;gap:22px}
+.cif-footer-bottom .cif-foot-links a{font-size:.85rem;transition:color .2s}
+.cif-footer-bottom .cif-foot-links a:hover{color:var(--cif-gold)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1080px){
+  .cif-menu{display:none}
+  .cif-burger{display:flex}
+  .cif-nav-cta{display:none}
+  .cif-prog-grid{grid-template-columns:1fr 1fr}
+  .cif-news-grid{grid-template-columns:1fr 1fr}
+  .cif-news-card--feat{grid-column:span 2;grid-row:auto}
+  .cif-news-card--feat .cif-news-img{height:220px}
+}
+@media(max-width:880px){
+  .cif-sec{padding:78px 0}
+  .cif-about-grid,.cif-join-inner,.cif-contact-grid{grid-template-columns:1fr;gap:46px}
+  .cif-quotes{grid-template-columns:1fr}
+  .cif-impact-stats{grid-template-columns:1fr 1fr;gap:34px 24px}
+  .cif-hero{padding:150px 0 110px}
+  .cif-hero-stats{gap:32px}
+}
+@media(max-width:620px){
+  .cif-wrap{padding:0 20px}
+  .cif-prog-grid,.cif-values{grid-template-columns:1fr}
+  .cif-news-grid{grid-template-columns:1fr}
+  .cif-news-card--feat{grid-column:auto}
+  .cif-event{grid-template-columns:72px 1fr;gap:18px}
+  .cif-event-tag{grid-column:2;justify-self:start}
+  .cif-event:hover{padding-left:8px}
+  .cif-footer-top{grid-template-columns:1fr 1fr;gap:34px}
+  .cif-footer-brand{grid-column:span 2}
+  .cif-impact-stats{grid-template-columns:1fr 1fr}
+  .cif-contact-card{padding:28px}
+  .cif-hero-stats{gap:24px 36px}
+  .cif-footer-bottom{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+</style>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+<!-- ============== HEADER ============== -->
+<header class="cif-header cif-top" id="cifHeader">
+  <div class="cif-wrap cif-nav">
+    <a href="#cifTop" class="cif-logo" aria-label="California Interscholastic Federation home">
+      <span class="cif-logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 6 L46 6 L48 13 L55 16 L60 24 L60 33 L66 41 L73 44 L78 52 L82 60 L88 66 L92 74 L90 82 L82 88 L70 92 L58 94 L48 90 L40 92 L30 90 L22 84 L17 74 L13 62 L11 50 L9 38 L11 26 L15 14 Z" fill="#0c2756" stroke="#f6b417" stroke-width="3.4" stroke-linejoin="round"/>
+          <circle cx="48" cy="50" r="33" fill="#0c2756" stroke="#f6b417" stroke-width="4.2"/>
+          <circle cx="48" cy="50" r="26.5" fill="none" stroke="#f6b417" stroke-width="1.6" opacity="0.55"/>
+          <text x="48" y="62" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="30" letter-spacing="0.5" fill="#f6b417">CIF</text>
+        </svg>
+      </span>
+      <span class="cif-logo-txt">
+        <b>California Interscholastic Federation</b>
+        <span>Educational Athletics</span>
+      </span>
+    </a>
+    <nav class="cif-menu" aria-label="Primary">
+      <a href="#cifAbout">About</a>
+      <a href="#cifPrograms">Programs</a>
+      <a href="#cifEvents">Events</a>
+      <a href="#cifNews">News</a>
+      <a href="#cifImpact">Impact</a>
+      <a href="#cifContact">Contact</a>
+    </nav>
+    <div class="cif-nav-right">
+      <a href="#cifContact" class="cif-nav-cta">Find Your Section</a>
+      <button class="cif-burger" id="cifBurger" aria-label="Open menu" aria-expanded="false" aria-controls="cifDrawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="cif-overlay" id="cifOverlay"></div>
+<aside class="cif-drawer" id="cifDrawer" aria-label="Mobile navigation">
+  <a href="#cifAbout">About <span>&rarr;</span></a>
+  <a href="#cifPrograms">Programs <span>&rarr;</span></a>
+  <a href="#cifEvents">Events <span>&rarr;</span></a>
+  <a href="#cifNews">News <span>&rarr;</span></a>
+  <a href="#cifImpact">Impact <span>&rarr;</span></a>
+  <a href="#cifContact">Contact <span>&rarr;</span></a>
+  <a href="#cifContact" class="cif-btn cif-btn--primary">Find Your Section</a>
+</aside>
+
+<main id="cifTop">
+
+<!-- ============== HERO ============== -->
+<section class="cif-hero">
+  <div class="cif-hero-bg">
+    <div class="cif-hero-orb cif-orb1"></div>
+    <div class="cif-hero-orb cif-orb2"></div>
+  </div>
+  <div class="cif-wrap cif-hero-inner">
+    <h1 class="cif-reveal" style="--d:.05s">Developing student-athletes of <em>character</em> across California.</h1>
+    <p class="cif-reveal" style="--d:.15s">The California Interscholastic Federation governs high school athletics for more than 1,600 member schools — championing equity, quality, and the values that prepare young people for life beyond the field.</p>
+    <div class="cif-reveal" style="--d:.25s">
+      <a href="#cifPrograms" class="cif-btn cif-btn--primary">
+        Explore CIF Programs
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="cif-hero-stats cif-reveal" style="--d:.35s">
+      <div class="cif-stat"><b>1,600+</b><span>Member schools</span></div>
+      <div class="cif-stat"><b>10</b><span>Geographic sections</span></div>
+      <div class="cif-stat"><b>Since 1914</b><span>Serving California</span></div>
+    </div>
+  </div>
+  <div class="cif-hero-divider"></div>
+</section>
+
+<!-- ============== ABOUT ============== -->
+<section class="cif-sec cif-about" id="cifAbout">
+  <div class="cif-wrap cif-about-grid">
+    <div class="cif-about-txt cif-reveal">
+      <h2>Athletic competition as an integral part of education.</h2>
+      <p class="cif-lead">CIF is uniquely positioned to foster student growth in values and ethics — strengthening the integrity of students and adults statewide.</p>
+      <p>Founded in 1914, CIF administers and promotes high school athletics through the organization of state championship events, parent and coaching education, and the accreditation of sports officials. Guided by the ideal of <strong>Pursuing Victory with Honor</strong>, we promote sportsmanship, honesty, and quality academics in every contest.</p>
+      <p>CIF is organized under the California Department of Education and governed by the Federated Council, made up of superintendents, principals, athletic directors, and educators from ten semi-autonomous sections.</p>
+      <div class="cif-about-meta">
+        <div><b>Federated Council</b><span>Statewide governance</span></div>
+        <div><b>Nonprofit since 1977</b><span>State of California</span></div>
+        <div><b>Sacramento, CA</b><span>State office</span></div>
+      </div>
+    </div>
+    <div class="cif-values cif-reveal">
+      <article class="cif-value">
+        <div class="cif-value-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v18M3 8l9-5 9 5M5 21h14"/><circle cx="5" cy="13" r="3"/><circle cx="19" cy="13" r="3"/></svg></div>
+        <h3>Equity</h3>
+        <p>Equal opportunity for all students regardless of race, gender, or ethnicity across every aspect of the athletic program.</p>
+      </article>
+      <article class="cif-value">
+        <div class="cif-value-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6L5.7 21 8 13.8 2 9.4h7.6z"/></svg></div>
+        <h3>Quality</h3>
+        <p>Continuously evaluating and improving programs to better serve the needs of schools and the state.</p>
+      </article>
+      <article class="cif-value">
+        <div class="cif-value-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Character</h3>
+        <p>Advancing trustworthiness, respect, responsibility, fairness, caring, and good citizenship through sport.</p>
+      </article>
+      <article class="cif-value">
+        <div class="cif-value-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19V5a1 1 0 011-1h14a1 1 0 011 1v14M4 19h16M8 16V9M12 16V7M16 16v-4"/></svg></div>
+        <h3>Academics</h3>
+        <p>Reinforcing strong academic standards so students succeed in the classroom and in competition.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROGRAMS ============== -->
+<section class="cif-sec cif-programs" id="cifPrograms">
+  <div class="cif-wrap">
+    <div class="cif-sec-head cif-sec-head--center cif-reveal">
+      <h2>Programs &amp; initiatives</h2>
+      <p>From state championships to safety education, CIF delivers the services that keep educational athletics thriving across California.</p>
+    </div>
+    <div class="cif-prog-grid">
+      <article class="cif-prog cif-reveal">
+        <div class="cif-prog-ic"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0V4zM7 6H4v2a3 3 0 003 3M17 6h3v2a3 3 0 01-3 3"/></svg></div>
+        <h3>State Championships</h3>
+        <p>The organization and operation of CIF State championship events across a full calendar of sports each season.</p>
+        <a href="#cifEvents" class="cif-prog-link"><span>View championships</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+      <article class="cif-prog cif-reveal">
+        <div class="cif-prog-ic"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M19 14c1.5-1.5 3-3.3 3-5.5A4.5 4.5 0 0012 5 4.5 4.5 0 002 8.5c0 2.2 1.5 4 3 5.5l7 7 7-7z"/><path d="M3.5 11h4l2-3 3 6 2-4 1 1h4.5"/></svg></div>
+        <h3>Sports Medicine &amp; Safety</h3>
+        <p>Up-to-date health resources on heat illness, concussion management, and student-athlete wellbeing.</p>
+        <a href="#cifPrograms" class="cif-prog-link"><span>Safety resources</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+      <article class="cif-prog cif-reveal">
+        <div class="cif-prog-ic"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 21v-2a5 5 0 015-5h2a5 5 0 015 5v2M15 21v-1a4 4 0 014-4h.5"/></svg></div>
+        <h3>Inclusive Sports</h3>
+        <p>Unified Teams and Para-Athlete competition that build a culture of inclusion for students of all abilities.</p>
+        <a href="#cifPrograms" class="cif-prog-link"><span>Explore inclusion</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+      <article class="cif-prog cif-reveal">
+        <div class="cif-prog-ic"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M22 10v6"/></svg></div>
+        <h3>Coach &amp; Official Education</h3>
+        <p>Free online courses and accreditation that equip coaches and officials to lead with skill and integrity.</p>
+        <a href="#cifPrograms" class="cif-prog-link"><span>Browse courses</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+      <article class="cif-prog cif-reveal">
+        <div class="cif-prog-ic"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M7 12h2M8 11v2M15 11h.01M18 13h.01"/></svg></div>
+        <h3>Esports Initiative</h3>
+        <p>Education-based competitive gaming that connects gameplay to STEAM skills and career-ready abilities.</p>
+        <a href="#cifPrograms" class="cif-prog-link"><span>About esports</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+      <article class="cif-prog cif-reveal">
+        <div class="cif-prog-ic"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg></div>
+        <h3>Scholarship &amp; Recognition</h3>
+        <p>Honors programs including Scholar-Athletes of the Year that celebrate excellence on and off the field.</p>
+        <a href="#cifNews" class="cif-prog-link"><span>See recognition</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MEMBERSHIP CTA ============== -->
+<section class="cif-sec cif-join">
+  <div class="cif-wrap cif-join-inner">
+    <div class="cif-reveal">
+      <h2>Be part of educational athletics in <em>California</em>.</h2>
+      <p>Whether you lead a school, coach a team, or cheer from the stands, CIF connects you to the resources, rules, and community that make high school sports possible.</p>
+      <a href="#cifContact" class="cif-btn cif-btn--primary">Connect With CIF</a>
+    </div>
+    <div class="cif-join-aud cif-reveal">
+      <div class="cif-join-card">
+        <div class="cif-join-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/></svg></div>
+        <div><b>Member Schools</b><span>Governance, eligibility, and championship access</span></div>
+      </div>
+      <div class="cif-join-card">
+        <div class="cif-join-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
+        <div><b>Coaches &amp; Officials</b><span>Free training, accreditation, and certification</span></div>
+      </div>
+      <div class="cif-join-card">
+        <div class="cif-join-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2 21v-2a5 5 0 015-5h4a5 5 0 015 5v2M16 4a3.5 3.5 0 010 7M19 21v-2a5 5 0 00-3-4.6"/></svg></div>
+        <div><b>Parents &amp; Students</b><span>Resources for a positive athletic experience</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EVENTS ============== -->
+<section class="cif-sec cif-events" id="cifEvents">
+  <div class="cif-wrap">
+    <div class="cif-events-head cif-reveal">
+      <div>
+        <h2>Championships &amp; events</h2>
+        <p>Spring 2026 state championship season is underway across California.</p>
+      </div>
+      <a href="#cifNews" class="cif-btn cif-btn--ghost">Full calendar</a>
+    </div>
+    <div class="cif-event-list">
+      <article class="cif-event cif-reveal">
+        <div class="cif-event-date"><b>03</b><span>May</span></div>
+        <div class="cif-event-info">
+          <h3>CIF Regional Badminton Championships</h3>
+          <p>Regional badminton play advancing top competitors toward state honors.</p>
+        </div>
+        <span class="cif-event-tag">Regional</span>
+      </article>
+      <article class="cif-event cif-reveal">
+        <div class="cif-event-date"><b>09</b><span>May</span></div>
+        <div class="cif-event-info">
+          <h3>CIF USTA Boys Tennis Championships</h3>
+          <p>State-level boys tennis competition presented in partnership with USTA.</p>
+        </div>
+        <span class="cif-event-tag cif-tag-gold">State Final</span>
+      </article>
+      <article class="cif-event cif-reveal">
+        <div class="cif-event-date"><b>10</b><span>May</span></div>
+        <div class="cif-event-info">
+          <h3>Boys Volleyball State Championships</h3>
+          <p>California's premier boys volleyball teams meet for the state title.</p>
+        </div>
+        <span class="cif-event-tag cif-tag-gold">State Final</span>
+      </article>
+      <article class="cif-event cif-reveal">
+        <div class="cif-event-date"><b>16</b><span>May</span></div>
+        <div class="cif-event-info">
+          <h3>CIF State Swimming &amp; Diving Championships</h3>
+          <p>Elite swimmers and divers compete across individual and team events.</p>
+        </div>
+        <span class="cif-event-tag cif-tag-gold">State Final</span>
+      </article>
+      <article class="cif-event cif-reveal">
+        <div class="cif-event-date"><b>21</b><span>May</span></div>
+        <div class="cif-event-info">
+          <h3>CIF Scholar-Athletes of the Year</h3>
+          <p>Recognizing student-athletes who excel in academics, athletics, and character.</p>
+        </div>
+        <span class="cif-event-tag">Recognition</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== NEWS ============== -->
+<section class="cif-sec cif-news" id="cifNews">
+  <div class="cif-wrap">
+    <div class="cif-sec-head cif-reveal">
+      <h2>News &amp; announcements</h2>
+      <p>The latest from the CIF state office and member sections.</p>
+    </div>
+    <div class="cif-news-grid">
+      <article class="cif-news-card cif-news-card--feat cif-reveal">
+        <div class="cif-news-img"><span class="cif-news-cat">Partnership</span></div>
+        <div class="cif-news-body">
+          <span class="cif-news-date">May 5, 2026</span>
+          <h3>CIF announces Yes Day launch partnership ahead of the 2026–27 athletic year</h3>
+          <p>A new collaboration designed to expand opportunity and engagement for student-athletes statewide as CIF prepares for the upcoming season.</p>
+          <a href="#cifNews" class="cif-news-more">Read full story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+      <article class="cif-news-card cif-reveal">
+        <div class="cif-news-img"><span class="cif-news-cat">Publication</span></div>
+        <div class="cif-news-body">
+          <span class="cif-news-date">May 4, 2026</span>
+          <h3>CIF News — Spring 2026, Vol. XLVII No. 3</h3>
+          <p>The newest edition of the CIF newsletter highlights stories from across the state.</p>
+          <a href="#cifNews" class="cif-news-more">Read full story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+      <article class="cif-news-card cif-reveal">
+        <div class="cif-news-img"><span class="cif-news-cat">Championships</span></div>
+        <div class="cif-news-body">
+          <span class="cif-news-date">May 5, 2026</span>
+          <h3>Spring state championship results now available</h3>
+          <p>Recaps and brackets from tennis, volleyball, and swimming &amp; diving competition.</p>
+          <a href="#cifEvents" class="cif-news-more">Read full story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PARTNERS ============== -->
+<section class="cif-partners">
+  <div class="cif-wrap">
+    <div class="cif-partners-head cif-reveal">
+      <h2>Partners &amp; allied organizations</h2>
+      <p>Working alongside trusted organizations to serve California's student-athletes.</p>
+    </div>
+    <div class="cif-partner-row cif-reveal">
+      <div class="cif-partner"><span class="cif-partner-dot"></span>California Department of Education</div>
+      <div class="cif-partner"><span class="cif-partner-dot"></span>NFHS</div>
+      <div class="cif-partner"><span class="cif-partner-dot"></span>Special Olympics California</div>
+      <div class="cif-partner"><span class="cif-partner-dot"></span>USTA</div>
+      <div class="cif-partner"><span class="cif-partner-dot"></span>NASEF Esports</div>
+      <div class="cif-partner"><span class="cif-partner-dot"></span>CIF Federated Council</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== IMPACT / TESTIMONIALS ============== -->
+<section class="cif-sec cif-impact" id="cifImpact">
+  <div class="cif-wrap">
+    <div class="cif-sec-head cif-sec-head--center cif-reveal">
+      <h2>Pursuing victory with honor.</h2>
+      <p>For more than a century, CIF has shaped the high school experience — building athletes who are better citizens.</p>
+    </div>
+    <div class="cif-quotes">
+      <article class="cif-quote cif-reveal">
+        <span class="cif-quote-mark">&ldquo;</span>
+        <p>CIF's emphasis on character and sportsmanship gave our student-athletes a framework that reaches far beyond the scoreboard. It shapes how they show up in the classroom and the community.</p>
+        <div class="cif-quote-by">
+          <div class="cif-quote-av">AD</div>
+          <div><b>Athletic Director</b><span>CIF Member School</span></div>
+        </div>
+      </article>
+      <article class="cif-quote cif-reveal">
+        <span class="cif-quote-mark">&ldquo;</span>
+        <p>The free coaching and safety courses raised the standard across our entire program. Our coaches feel prepared, supported, and accountable to something bigger.</p>
+        <div class="cif-quote-by">
+          <div class="cif-quote-av">HC</div>
+          <div><b>Head Coach</b><span>CIF Section Program</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="cif-impact-stats">
+      <div class="cif-impact-stat cif-reveal"><b>800K+</b><span>Student-athlete participants</span></div>
+      <div class="cif-impact-stat cif-reveal"><b>110+</b><span>Years of service</span></div>
+      <div class="cif-impact-stat cif-reveal"><b>10</b><span>Geographic sections</span></div>
+      <div class="cif-impact-stat cif-reveal"><b>20+</b><span>Free education courses</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT + FOOTER ============== -->
+<section class="cif-contact" id="cifContact">
+  <div class="cif-wrap cif-contact-grid">
+    <div class="cif-contact-txt cif-reveal">
+      <h2>Get in touch with CIF.</h2>
+      <p>Questions about eligibility, championships, or membership? Reach the state office or connect with your local section.</p>
+      <div class="cif-contact-items">
+        <div class="cif-contact-item">
+          <div class="cif-contact-item-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><b>State Office</b><span>4658 Duckhorn Drive, Sacramento, CA 95834</span></div>
+        </div>
+        <div class="cif-contact-item">
+          <div class="cif-contact-item-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 3a2 2 0 01-.4 2.1L8.1 10a16 16 0 006 6l1.2-1.3a2 2 0 012.1-.4c1 .3 2 .6 3 .7a2 2 0 011.6 2z"/></svg></div>
+          <div><b>Phone</b><span>(916) 239-4477 &nbsp;·&nbsp; Fax (916) 239-4478</span></div>
+        </div>
+        <div class="cif-contact-item">
+          <div class="cif-contact-item-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></div>
+          <div><b>Sections</b><span>Connect with one of CIF's ten geographic sections</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cif-contact-card cif-reveal">
+      <h3>Send a message</h3>
+      <p>Tell us how we can help and the right team will follow up.</p>
+      <div class="cif-field">
+        <label for="cifName">Full name</label>
+        <input type="text" id="cifName" placeholder="Your name">
+      </div>
+      <div class="cif-field">
+        <label for="cifEmail">Email address</label>
+        <input type="email" id="cifEmail" placeholder="you@school.org">
+      </div>
+      <div class="cif-field">
+        <label for="cifTopic">Topic</label>
+        <select id="cifTopic">
+          <option>Membership &amp; eligibility</option>
+          <option>Championships &amp; events</option>
+          <option>Coaching &amp; officials</option>
+          <option>Sports medicine &amp; safety</option>
+          <option>General inquiry</option>
+        </select>
+      </div>
+      <div class="cif-field">
+        <label for="cifMsg">Message</label>
+        <textarea id="cifMsg" placeholder="How can we help?"></textarea>
+      </div>
+      <button class="cif-btn cif-btn--primary" id="cifSend" type="button">Submit Message</button>
+      <p class="cif-form-note">We typically respond within two business days.</p>
+    </div>
+  </div>
+
+  <footer class="cif-footer">
+    <div class="cif-wrap">
+      <div class="cif-footer-top">
+        <div class="cif-footer-brand">
+          <span class="cif-logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 6 L46 6 L48 13 L55 16 L60 24 L60 33 L66 41 L73 44 L78 52 L82 60 L88 66 L92 74 L90 82 L82 88 L70 92 L58 94 L48 90 L40 92 L30 90 L22 84 L17 74 L13 62 L11 50 L9 38 L11 26 L15 14 Z" fill="#13315f" stroke="#f6b417" stroke-width="3.4" stroke-linejoin="round"/>
+              <circle cx="48" cy="50" r="33" fill="#13315f" stroke="#f6b417" stroke-width="4.2"/>
+              <circle cx="48" cy="50" r="26.5" fill="none" stroke="#f6b417" stroke-width="1.6" opacity="0.55"/>
+              <text x="48" y="62" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="30" letter-spacing="0.5" fill="#f6b417">CIF</text>
+            </svg>
+          </span>
+          <p>The California Interscholastic Federation governs interscholastic athletics statewide — promoting equity, quality, character, and academic development.</p>
+          <div class="cif-footer-social">
+            <a href="#cifTop" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1z"/></svg></a>
+            <a href="#cifTop" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.2L7 21H4l7.5-8.6L3.6 3H10l4.5 5.7L17.5 3z"/></svg></a>
+            <a href="#cifTop" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 00-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 002 8.2 31 31 0 002 12a31 31 0 00.1 3.8 3 3 0 002.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 002.1-2.1A31 31 0 0022 12a31 31 0 00-.1-3.8zM10 15V9l5 3-5 3z"/></svg></a>
+            <a href="#cifTop" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zm0 7.4A2.9 2.9 0 1114.9 12 2.9 2.9 0 0112 14.9zM17 5.6a1.1 1.1 0 101.1 1.1A1.1 1.1 0 0017 5.6zM21 7.3A6.9 6.9 0 0019 4 6.9 6.9 0 0016.7 3C15.6 3 12 3 12 3s-3.6 0-4.7.1A6.9 6.9 0 005 4 6.9 6.9 0 003 6.3C3 7.4 3 11 3 11s0 7.4.1 8.5A6.9 6.9 0 005 21.7 6.9 6.9 0 007.3 21c1.1.1 4.7.1 4.7.1s3.6 0 4.7-.1a6.9 6.9 0 002.3-.7 6.9 6.9 0 001.9-2.3c.2-1.1.2-4.7.2-4.7s0-3.6-.1-4.7zm-2 9.4A4.8 4.8 0 0117 19a4.8 4.8 0 01-1.6.3c-.9 0-3.4 0-3.4 0s-3.6 0-4.5-.1A4.8 4.8 0 015 19a4.8 4.8 0 01-.3-1.6C4.6 16.5 4.6 13 4.6 12s0-3.6.1-4.5A4.8 4.8 0 015 5.9 4.8 4.8 0 016.6 5C7.5 4.9 12 4.9 12 4.9s3.6 0 4.5.1A4.8 4.8 0 0119 5.9c.3.5.3 1.1.3 1.6.1.9.1 3.5.1 4.5s0 3.6-.1 4.7z"/></svg></a>
+          </div>
+        </div>
+        <div class="cif-footer-col">
+          <h4>Explore</h4>
+          <a href="#cifAbout">About CIF</a>
+          <a href="#cifPrograms">Programs</a>
+          <a href="#cifEvents">Events</a>
+          <a href="#cifNews">News</a>
+        </div>
+        <div class="cif-footer-col">
+          <h4>Resources</h4>
+          <a href="#cifPrograms">Sports Medicine</a>
+          <a href="#cifPrograms">Inclusive Sports</a>
+          <a href="#cifJoin">Coaches &amp; Admin</a>
+          <a href="#cifPrograms">Officials</a>
+        </div>
+        <div class="cif-footer-col">
+          <h4>Connect</h4>
+          <a href="#cifContact">Contact</a>
+          <a href="#cifContact">CIF Sections</a>
+          <a href="#cifImpact">Sponsorship</a>
+          <a href="#cifNews">Media Center</a>
+        </div>
+      </div>
+      <div class="cif-footer-bottom">
+        <p>&copy; 2026 California Interscholastic Federation. All rights reserved.</p>
+        <div class="cif-foot-links">
+          <a href="#cifTop">Privacy Policy</a>
+          <a href="#cifTop">Terms of Service</a>
+          <a href="#cifTop">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</section>
+
+</main>
+
+<script>
+(function(){
+  /* ---- sticky header state ---- */
+  var header = document.getElementById('cifHeader');
+  function onScroll(){
+    if(window.scrollY > 30){
+      header.classList.add('cif-scrolled');
+      header.classList.remove('cif-top');
+    } else {
+      header.classList.remove('cif-scrolled');
+      header.classList.add('cif-top');
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---- mobile drawer ---- */
+  var burger  = document.getElementById('cifBurger');
+  var drawer  = document.getElementById('cifDrawer');
+  var overlay = document.getElementById('cifOverlay');
+  function setMenu(open){
+    burger.classList.toggle('cif-open', open);
+    drawer.classList.toggle('cif-open', open);
+    overlay.classList.toggle('cif-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){
+    setMenu(!drawer.classList.contains('cif-open'));
+  });
+  overlay.addEventListener('click', function(){ setMenu(false); });
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') setMenu(false);
+  });
+
+  /* ---- scroll reveal ---- */
+  var reveals = document.querySelectorAll('.cif-reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('cif-in');
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el, i){
+      // gentle stagger for grid groups
+      var sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.transitionDelay = (Math.min(sib,5) * 0.07) + 's';
+      io.observe(el);
+    });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('cif-in'); });
+  }
+  /* hero reveals fire immediately */
+  document.querySelectorAll('.cif-hero .cif-reveal').forEach(function(el){
+    requestAnimationFrame(function(){ el.classList.add('cif-in'); });
+  });
+
+  /* ---- contact form feedback ---- */
+  var send = document.getElementById('cifSend');
+  send.addEventListener('click', function(){
+    var name = document.getElementById('cifName').value.trim();
+    var mail = document.getElementById('cifEmail').value.trim();
+    if(!name || !mail){
+      send.textContent = 'Please complete name & email';
+      setTimeout(function(){ send.textContent = 'Submit Message'; }, 2200);
+      return;
+    }
+    send.textContent = 'Message sent — thank you!';
+    send.disabled = true;
+    setTimeout(function(){
+      send.textContent = 'Submit Message';
+      send.disabled = false;
+      document.getElementById('cifName').value = '';
+      document.getElementById('cifEmail').value = '';
+      document.getElementById('cifMsg').value = '';
+    }, 2600);
+  });
+})();
+</script>
+</body>
+</html>

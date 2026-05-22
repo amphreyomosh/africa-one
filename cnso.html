@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>California School Nurses Organization — Leadership, Education, Advocacy, Diversity</title>
+<meta name="description" content="CSNO promotes excellence in school nursing by optimizing student health and collaborative learning through professional development, leadership, research and advocacy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CSNO HOMEPAGE — DESIGN SYSTEM
+   Typography : Bricolage Grotesque (display) / Inter Tight (body)
+   Palette    : navy #1d3a5f · teal #3a9b8f · orange #e8732e
+   Spacing    : 8px scale (--csno-s1 .. --csno-s10)
+   ============================================================ */
+
+:root{
+  /* Brand colors */
+  --csno-navy:#1d3a5f;
+  --csno-navy-deep:#142a47;
+  --csno-teal:#3a9b8f;
+  --csno-teal-dark:#2f7f75;
+  --csno-orange:#e8732e;
+  --csno-orange-dark:#cf5f1f;
+  --csno-cream:#fbf8f2;
+  --csno-sand:#f3eee2;
+  --csno-white:#ffffff;
+  --csno-ink:#1a2433;
+  --csno-slate:#56657a;
+  --csno-line:#e4e0d4;
+
+  /* Spacing scale (8px base) */
+  --csno-s1:8px;  --csno-s2:16px; --csno-s3:24px; --csno-s4:32px;
+  --csno-s5:48px; --csno-s6:64px; --csno-s7:88px; --csno-s8:120px;
+
+  /* Radii & shadow */
+  --csno-r-sm:10px; --csno-r-md:18px; --csno-r-lg:28px;
+  --csno-shadow:0 18px 50px -22px rgba(20,42,71,.30);
+  --csno-shadow-sm:0 8px 24px -14px rgba(20,42,71,.35);
+
+  --csno-maxw:1200px;
+  --csno-ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  font-family:'Inter Tight',system-ui,sans-serif;
+  background:var(--csno-cream);
+  color:var(--csno-ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.08;letter-spacing:-.02em;font-weight:700;}
+
+/* ---------- Layout helpers ---------- */
+.csno-wrap{max-width:var(--csno-maxw);margin:0 auto;padding:0 var(--csno-s3);}
+.csno-section{padding:var(--csno-s8) 0;}
+@media(max-width:768px){.csno-section{padding:var(--csno-s7) 0;}}
+
+.csno-kicker{
+  font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--csno-teal-dark);display:flex;align-items:center;gap:10px;margin-bottom:var(--csno-s2);
+}
+.csno-kicker::before{content:"";width:28px;height:2px;background:var(--csno-orange);border-radius:2px;}
+
+.csno-h2{font-size:clamp(2rem,4.4vw,3.15rem);color:var(--csno-navy);}
+.csno-lead{font-size:1.08rem;color:var(--csno-slate);max-width:62ch;margin-top:var(--csno-s2);}
+
+/* ---------- Buttons ---------- */
+.csno-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Inter Tight',sans-serif;font-weight:600;font-size:1rem;
+  padding:15px 30px;border-radius:999px;border:2px solid transparent;
+  cursor:pointer;transition:transform .25s var(--csno-ease),box-shadow .25s var(--csno-ease),background .2s;
+}
+.csno-btn svg{transition:transform .25s var(--csno-ease);}
+.csno-btn:hover svg{transform:translateX(4px);}
+.csno-btn--primary{background:var(--csno-orange);color:#fff;box-shadow:0 12px 30px -12px rgba(232,115,46,.7);}
+.csno-btn--primary:hover{transform:translateY(-3px);background:var(--csno-orange-dark);}
+.csno-btn--light{background:#fff;color:var(--csno-navy);border-color:var(--csno-line);}
+.csno-btn--light:hover{transform:translateY(-3px);box-shadow:var(--csno-shadow-sm);}
+.csno-btn--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4);}
+.csno-btn--ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-3px);}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.csno-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(251,248,242,.88);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,box-shadow .3s,background .3s;
+}
+.csno-header.is-stuck{
+  border-color:var(--csno-line);
+  box-shadow:0 6px 24px -18px rgba(20,42,71,.5);
+  background:rgba(251,248,242,.96);
+}
+.csno-nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:var(--csno-s3);}
+.csno-brand{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.csno-brand-logo{height:52px;width:auto;display:block;}
+.csno-brand-mark{
+  width:46px;height:46px;border-radius:12px;
+  background:var(--csno-navy);color:#fff;
+  display:grid;place-items:center;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;
+  letter-spacing:-.03em;
+}
+.csno-brand-text strong{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.02rem;
+  color:var(--csno-navy);display:block;line-height:1.1;
+}
+.csno-brand-text span{font-size:.72rem;color:var(--csno-slate);letter-spacing:.04em;}
+
+.csno-menu{display:flex;align-items:center;gap:4px;}
+.csno-menu a{
+  font-size:.93rem;font-weight:500;color:var(--csno-ink);
+  padding:9px 14px;border-radius:8px;transition:color .2s,background .2s;
+}
+.csno-menu a:hover{color:var(--csno-teal-dark);background:rgba(58,155,143,.09);}
+
+.csno-header-cta{display:flex;align-items:center;gap:var(--csno-s2);flex-shrink:0;}
+.csno-login{font-size:.93rem;font-weight:600;color:var(--csno-navy);padding:8px 4px;}
+.csno-login:hover{color:var(--csno-teal-dark);}
+.csno-header-cta .csno-btn{padding:11px 22px;font-size:.92rem;}
+
+.csno-burger{
+  display:none;width:46px;height:46px;border:1px solid var(--csno-line);
+  background:#fff;border-radius:11px;cursor:pointer;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;
+}
+.csno-burger span{width:20px;height:2px;background:var(--csno-navy);border-radius:2px;transition:transform .3s var(--csno-ease),opacity .2s;}
+.csno-burger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.csno-burger.is-open span:nth-child(2){opacity:0;}
+.csno-burger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Mobile drawer */
+.csno-drawer{
+  position:fixed;inset:78px 0 0 0;z-index:99;
+  background:var(--csno-cream);
+  padding:var(--csno-s4) var(--csno-s3) var(--csno-s6);
+  display:flex;flex-direction:column;gap:6px;
+  transform:translateX(100%);transition:transform .38s var(--csno-ease);
+  overflow-y:auto;
+}
+.csno-drawer.is-open{transform:translateX(0);}
+.csno-drawer a{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:600;
+  font-size:1.3rem;color:var(--csno-navy);
+  padding:14px 8px;border-bottom:1px solid var(--csno-line);
+}
+.csno-drawer-actions{display:flex;flex-direction:column;gap:12px;margin-top:var(--csno-s3);}
+.csno-drawer-actions .csno-btn{justify-content:center;}
+
+@media(max-width:1080px){
+  .csno-menu,.csno-header-cta .csno-login,.csno-header-cta .csno-btn{display:none;}
+  .csno-burger{display:flex;}
+}
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+.csno-hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 480px at 88% -8%,rgba(58,155,143,.16),transparent 62%),
+    radial-gradient(680px 420px at -6% 108%,rgba(232,115,46,.13),transparent 60%),
+    var(--csno-cream);
+  padding:var(--csno-s8) 0 var(--csno-s7);
+}
+.csno-hero-grid{
+  display:grid;grid-template-columns:1.05fr .95fr;
+  gap:var(--csno-s6);align-items:center;
+}
+.csno-hero h1{
+  font-size:clamp(2.5rem,5.6vw,4.15rem);
+  color:var(--csno-navy);font-weight:800;
+}
+.csno-hero h1 em{font-style:normal;color:var(--csno-teal-dark);position:relative;}
+.csno-hero h1 em::after{
+  content:"";position:absolute;left:0;right:0;bottom:.06em;height:.14em;
+  background:var(--csno-orange);opacity:.32;border-radius:3px;z-index:-1;
+}
+.csno-hero p{font-size:1.15rem;color:var(--csno-slate);max-width:52ch;margin:var(--csno-s3) 0 var(--csno-s4);}
+.csno-hero-cta{display:flex;align-items:center;gap:var(--csno-s3);flex-wrap:wrap;}
+.csno-hero-note{font-size:.92rem;color:var(--csno-slate);}
+.csno-hero-note b{color:var(--csno-navy);}
+
+/* Hero visual card */
+.csno-hero-card{
+  position:relative;background:var(--csno-navy);
+  border-radius:var(--csno-r-lg);padding:var(--csno-s5) var(--csno-s4);
+  color:#fff;box-shadow:var(--csno-shadow);overflow:hidden;
+}
+.csno-hero-card::before{
+  content:"";position:absolute;top:-60px;right:-60px;
+  width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle,rgba(58,155,143,.55),transparent 70%);
+}
+.csno-hero-card-tag{
+  display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--csno-orange);
+  background:rgba(232,115,46,.14);padding:6px 13px;border-radius:999px;
+  position:relative;
+}
+.csno-hero-card h3{font-size:1.7rem;margin:var(--csno-s2) 0 6px;position:relative;}
+.csno-hero-card-loc{color:rgba(255,255,255,.7);font-size:.95rem;position:relative;}
+.csno-hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--csno-s2);
+  margin-top:var(--csno-s4);position:relative;
+}
+.csno-stat{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--csno-r-sm);padding:var(--csno-s2) var(--csno-s2);
+}
+.csno-stat b{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:1.85rem;
+  color:#fff;display:block;line-height:1;
+}
+.csno-stat span{font-size:.82rem;color:rgba(255,255,255,.65);}
+
+@media(max-width:880px){
+  .csno-hero-grid{grid-template-columns:1fr;gap:var(--csno-s5);}
+  .csno-hero{padding:var(--csno-s7) 0;}
+}
+
+/* ============================================================
+   2. ABOUT
+   ============================================================ */
+.csno-about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--csno-s6);align-items:center;}
+.csno-about-visual{
+  background:linear-gradient(160deg,var(--csno-teal),var(--csno-teal-dark));
+  border-radius:var(--csno-r-lg);padding:var(--csno-s5);color:#fff;
+  position:relative;overflow:hidden;box-shadow:var(--csno-shadow);
+}
+.csno-about-visual::after{
+  content:"";position:absolute;bottom:-80px;left:-50px;
+  width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);
+}
+.csno-about-visual .csno-mv-label{
+  font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+}
+.csno-about-visual h3{font-size:1.5rem;margin:6px 0 var(--csno-s3);}
+.csno-about-visual p{color:rgba(255,255,255,.9);font-size:1.02rem;}
+.csno-mv-divider{height:1px;background:rgba(255,255,255,.2);margin:var(--csno-s3) 0;}
+
+.csno-lead-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--csno-s2);margin-top:var(--csno-s4);}
+.csno-lead-card{
+  background:var(--csno-white);border:1px solid var(--csno-line);
+  border-radius:var(--csno-r-md);padding:var(--csno-s3);
+  transition:transform .3s var(--csno-ease),box-shadow .3s var(--csno-ease);
+}
+.csno-lead-card:hover{transform:translateY(-5px);box-shadow:var(--csno-shadow-sm);}
+.csno-lead-letter{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.5rem;
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  color:#fff;margin-bottom:var(--csno-s2);
+}
+.csno-lead-card:nth-child(1) .csno-lead-letter{background:var(--csno-navy);}
+.csno-lead-card:nth-child(2) .csno-lead-letter{background:var(--csno-teal);}
+.csno-lead-card:nth-child(3) .csno-lead-letter{background:var(--csno-orange);}
+.csno-lead-card:nth-child(4) .csno-lead-letter{background:var(--csno-navy-deep);}
+.csno-lead-card h4{font-size:1.1rem;color:var(--csno-navy);margin-bottom:4px;}
+.csno-lead-card p{font-size:.92rem;color:var(--csno-slate);}
+
+@media(max-width:880px){
+  .csno-about-grid{grid-template-columns:1fr;gap:var(--csno-s5);}
+}
+@media(max-width:480px){
+  .csno-lead-grid{grid-template-columns:1fr;}
+}
+
+/* ============================================================
+   3. PROGRAMS
+   ============================================================ */
+.csno-programs{background:var(--csno-white);}
+.csno-section-head{max-width:660px;margin-bottom:var(--csno-s5);}
+.csno-prog-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:var(--csno-s3);
+}
+.csno-prog-card{
+  background:var(--csno-cream);border:1px solid var(--csno-line);
+  border-radius:var(--csno-r-md);padding:var(--csno-s4) var(--csno-s3);
+  display:flex;flex-direction:column;
+  transition:transform .3s var(--csno-ease),box-shadow .3s var(--csno-ease),border-color .3s;
+}
+.csno-prog-card:hover{transform:translateY(-7px);box-shadow:var(--csno-shadow);border-color:transparent;}
+.csno-prog-icon{
+  width:54px;height:54px;border-radius:14px;display:grid;place-items:center;
+  margin-bottom:var(--csno-s3);background:rgba(58,155,143,.13);
+}
+.csno-prog-icon svg{width:26px;height:26px;stroke:var(--csno-teal-dark);}
+.csno-prog-card:nth-child(2) .csno-prog-icon{background:rgba(232,115,46,.13);}
+.csno-prog-card:nth-child(2) .csno-prog-icon svg{stroke:var(--csno-orange-dark);}
+.csno-prog-card:nth-child(3) .csno-prog-icon{background:rgba(29,58,95,.1);}
+.csno-prog-card:nth-child(3) .csno-prog-icon svg{stroke:var(--csno-navy);}
+.csno-prog-card:nth-child(4) .csno-prog-icon{background:rgba(58,155,143,.13);}
+.csno-prog-card h3{font-size:1.22rem;color:var(--csno-navy);margin-bottom:8px;}
+.csno-prog-card p{font-size:.93rem;color:var(--csno-slate);flex-grow:1;}
+.csno-prog-link{
+  margin-top:var(--csno-s3);font-weight:600;font-size:.92rem;
+  color:var(--csno-teal-dark);display:inline-flex;align-items:center;gap:6px;
+}
+.csno-prog-link svg{width:15px;height:15px;transition:transform .25s var(--csno-ease);}
+.csno-prog-card:hover .csno-prog-link svg{transform:translateX(4px);}
+
+@media(max-width:980px){.csno-prog-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:540px){.csno-prog-grid{grid-template-columns:1fr;}}
+
+/* ============================================================
+   4. MEMBERSHIP CTA BAND
+   ============================================================ */
+.csno-join{
+  background:
+    radial-gradient(620px 320px at 12% 0%,rgba(58,155,143,.3),transparent 60%),
+    radial-gradient(560px 320px at 90% 110%,rgba(232,115,46,.26),transparent 60%),
+    var(--csno-navy);
+  color:#fff;border-radius:var(--csno-r-lg);
+  padding:var(--csno-s7) var(--csno-s6);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--csno-s5);flex-wrap:wrap;
+}
+.csno-join-text{max-width:60ch;}
+.csno-join h2{font-size:clamp(1.9rem,3.6vw,2.7rem);color:#fff;}
+.csno-join p{color:rgba(255,255,255,.82);font-size:1.06rem;margin-top:var(--csno-s2);}
+@media(max-width:768px){
+  .csno-join{padding:var(--csno-s6) var(--csno-s4);text-align:center;justify-content:center;}
+  .csno-join-text{max-width:none;}
+}
+
+/* ============================================================
+   5. EVENTS
+   ============================================================ */
+.csno-events-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--csno-s4);align-items:start;}
+
+.csno-event-feature{
+  background:var(--csno-white);border:1px solid var(--csno-line);
+  border-radius:var(--csno-r-lg);overflow:hidden;box-shadow:var(--csno-shadow-sm);
+}
+.csno-event-banner{
+  background:linear-gradient(135deg,var(--csno-navy),var(--csno-navy-deep));
+  padding:var(--csno-s5) var(--csno-s4);color:#fff;position:relative;overflow:hidden;
+}
+.csno-event-banner::before{
+  content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
+  border-radius:50%;background:radial-gradient(circle,rgba(232,115,46,.4),transparent 70%);
+}
+.csno-event-date-pill{
+  display:inline-block;background:var(--csno-orange);color:#fff;
+  font-weight:700;font-size:.82rem;letter-spacing:.04em;
+  padding:7px 15px;border-radius:999px;position:relative;
+}
+.csno-event-banner h3{font-size:1.85rem;margin:var(--csno-s2) 0 8px;position:relative;}
+.csno-event-banner p{color:rgba(255,255,255,.78);position:relative;font-size:.97rem;}
+.csno-event-body{padding:var(--csno-s4);}
+.csno-event-body ul{display:flex;flex-direction:column;gap:12px;margin-bottom:var(--csno-s3);}
+.csno-event-body li{display:flex;gap:12px;font-size:.96rem;color:var(--csno-slate);}
+.csno-event-body li svg{width:20px;height:20px;flex-shrink:0;stroke:var(--csno-teal-dark);margin-top:2px;}
+.csno-event-body li b{color:var(--csno-navy);font-weight:600;}
+
+.csno-upcoming{
+  background:var(--csno-white);border:1px solid var(--csno-line);
+  border-radius:var(--csno-r-lg);padding:var(--csno-s4);
+}
+.csno-upcoming h3{font-size:1.25rem;color:var(--csno-navy);margin-bottom:var(--csno-s3);}
+.csno-event-item{
+  display:flex;gap:var(--csno-s2);padding:var(--csno-s2) 0;
+  border-bottom:1px solid var(--csno-line);
+}
+.csno-event-item:last-of-type{border-bottom:none;}
+.csno-event-cal{
+  flex-shrink:0;width:56px;text-align:center;
+  background:var(--csno-sand);border-radius:10px;padding:8px 4px;
+}
+.csno-event-cal .m{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--csno-orange-dark);}
+.csno-event-cal .d{font-family:'Bricolage Grotesque',sans-serif;font-size:1.35rem;font-weight:700;color:var(--csno-navy);line-height:1;}
+.csno-event-info h4{font-size:.97rem;color:var(--csno-navy);font-weight:600;line-height:1.3;}
+.csno-event-info span{font-size:.83rem;color:var(--csno-slate);}
+.csno-upcoming-foot{
+  margin-top:var(--csno-s3);display:inline-flex;align-items:center;gap:6px;
+  font-weight:600;font-size:.93rem;color:var(--csno-teal-dark);
+}
+.csno-upcoming-foot svg{width:15px;height:15px;}
+
+@media(max-width:880px){.csno-events-grid{grid-template-columns:1fr;}}
+
+/* ============================================================
+   6. NEWS
+   ============================================================ */
+.csno-news{background:var(--csno-white);}
+.csno-news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--csno-s3);}
+.csno-news-card{
+  border:1px solid var(--csno-line);border-radius:var(--csno-r-md);
+  padding:var(--csno-s4) var(--csno-s3);background:var(--csno-cream);
+  display:flex;flex-direction:column;
+  transition:transform .3s var(--csno-ease),box-shadow .3s var(--csno-ease);
+}
+.csno-news-card:hover{transform:translateY(-6px);box-shadow:var(--csno-shadow);}
+.csno-news-tag{
+  align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:var(--csno-s2);
+}
+.csno-news-card:nth-child(1) .csno-news-tag{background:rgba(232,115,46,.13);color:var(--csno-orange-dark);}
+.csno-news-card:nth-child(2) .csno-news-tag{background:rgba(58,155,143,.14);color:var(--csno-teal-dark);}
+.csno-news-card:nth-child(3) .csno-news-tag{background:rgba(29,58,95,.1);color:var(--csno-navy);}
+.csno-news-card h3{font-size:1.17rem;color:var(--csno-navy);margin-bottom:8px;}
+.csno-news-card p{font-size:.93rem;color:var(--csno-slate);flex-grow:1;}
+.csno-news-meta{
+  margin-top:var(--csno-s3);padding-top:var(--csno-s2);
+  border-top:1px solid var(--csno-line);
+  font-size:.84rem;color:var(--csno-slate);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.csno-news-meta a{font-weight:600;color:var(--csno-teal-dark);display:inline-flex;align-items:center;gap:5px;}
+.csno-news-meta a svg{width:14px;height:14px;transition:transform .25s var(--csno-ease);}
+.csno-news-card:hover .csno-news-meta a svg{transform:translateX(3px);}
+
+@media(max-width:880px){.csno-news-grid{grid-template-columns:1fr;}}
+
+/* ============================================================
+   7. PARTNERS
+   ============================================================ */
+.csno-partners{text-align:center;}
+.csno-partners .csno-kicker{justify-content:center;}
+.csno-partner-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:var(--csno-s3);
+  margin-top:var(--csno-s5);
+}
+.csno-partner{
+  background:var(--csno-white);border:1px solid var(--csno-line);
+  border-radius:var(--csno-r-md);padding:var(--csno-s4) var(--csno-s2);
+  transition:transform .3s var(--csno-ease),box-shadow .3s var(--csno-ease);
+}
+.csno-partner:hover{transform:translateY(-5px);box-shadow:var(--csno-shadow-sm);}
+.csno-partner b{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;
+  color:var(--csno-navy);display:block;
+}
+.csno-partner span{font-size:.83rem;color:var(--csno-slate);}
+@media(max-width:760px){.csno-partner-row{grid-template-columns:repeat(2,1fr);}}
+
+/* ============================================================
+   8. IMPACT / TESTIMONIAL
+   ============================================================ */
+.csno-impact{background:var(--csno-sand);}
+.csno-impact-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:var(--csno-s3);
+  margin-bottom:var(--csno-s6);
+}
+.csno-impact-stat{text-align:center;padding:var(--csno-s3) var(--csno-s2);}
+.csno-impact-stat b{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+  font-size:clamp(2.2rem,4vw,3rem);color:var(--csno-teal-dark);display:block;line-height:1;
+}
+.csno-impact-stat span{font-size:.95rem;color:var(--csno-slate);margin-top:6px;display:block;}
+.csno-quote{
+  background:var(--csno-navy);color:#fff;border-radius:var(--csno-r-lg);
+  padding:var(--csno-s6);position:relative;overflow:hidden;
+  max-width:880px;margin:0 auto;text-align:center;
+}
+.csno-quote::before{
+  content:"\201C";position:absolute;top:-20px;left:30px;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:9rem;
+  color:rgba(232,115,46,.32);line-height:1;
+}
+.csno-quote p{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:500;
+  font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.4;
+  position:relative;letter-spacing:-.01em;
+}
+.csno-quote-by{margin-top:var(--csno-s3);font-size:.95rem;color:rgba(255,255,255,.7);position:relative;}
+.csno-quote-by b{color:var(--csno-orange);font-weight:600;}
+@media(max-width:680px){
+  .csno-impact-stats{grid-template-columns:repeat(2,1fr);}
+  .csno-quote{padding:var(--csno-s5) var(--csno-s3);}
+}
+
+/* ============================================================
+   9. CONTACT + FOOTER
+   ============================================================ */
+.csno-contact{background:var(--csno-white);}
+.csno-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--csno-s6);align-items:center;}
+.csno-contact h2{font-size:clamp(1.9rem,3.6vw,2.7rem);color:var(--csno-navy);}
+.csno-contact-list{margin-top:var(--csno-s4);display:flex;flex-direction:column;gap:var(--csno-s2);}
+.csno-contact-item{display:flex;gap:14px;align-items:flex-start;}
+.csno-contact-item svg{
+  width:42px;height:42px;flex-shrink:0;padding:10px;border-radius:11px;
+  background:rgba(58,155,143,.12);stroke:var(--csno-teal-dark);
+}
+.csno-contact-item .ci-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--csno-slate);font-weight:600;}
+.csno-contact-item .ci-value{font-size:1.02rem;color:var(--csno-navy);font-weight:500;}
+.csno-contact-card{
+  background:var(--csno-cream);border:1px solid var(--csno-line);
+  border-radius:var(--csno-r-lg);padding:var(--csno-s5);
+}
+.csno-contact-card h3{font-size:1.35rem;color:var(--csno-navy);margin-bottom:8px;}
+.csno-contact-card p{font-size:.97rem;color:var(--csno-slate);margin-bottom:var(--csno-s3);}
+.csno-contact-card .csno-btn{justify-content:center;width:100%;}
+.csno-contact-quicklinks{
+  margin-top:var(--csno-s3);padding-top:var(--csno-s3);
+  border-top:1px solid var(--csno-line);display:flex;gap:var(--csno-s3);flex-wrap:wrap;
+}
+.csno-contact-quicklinks a{font-weight:600;font-size:.92rem;color:var(--csno-teal-dark);}
+.csno-contact-quicklinks a:hover{text-decoration:underline;}
+@media(max-width:880px){.csno-contact-grid{grid-template-columns:1fr;gap:var(--csno-s5);}}
+
+.csno-footer{background:var(--csno-navy);color:rgba(255,255,255,.72);padding:var(--csno-s7) 0 var(--csno-s4);}
+.csno-footer-top{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:var(--csno-s5);padding-bottom:var(--csno-s5);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.csno-footer-brand .csno-brand-mark{background:#fff;color:var(--csno-navy);}
+.csno-footer-logo-plate{
+  background:#fff;border-radius:12px;padding:8px 12px;display:inline-flex;
+}
+.csno-footer-logo-plate img{height:46px;width:auto;display:block;}
+.csno-footer-brand strong{color:#fff;}
+.csno-footer-brand span{color:rgba(255,255,255,.6);}
+.csno-footer-brand p{margin-top:var(--csno-s2);font-size:.92rem;max-width:34ch;}
+.csno-footer-col h4{
+  font-family:'Inter Tight',sans-serif;font-size:.82rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:var(--csno-s2);
+}
+.csno-footer-col a{display:block;font-size:.93rem;padding:5px 0;transition:color .2s;}
+.csno-footer-col a:hover{color:var(--csno-orange);}
+.csno-footer-legal{
+  padding-top:var(--csno-s3);font-size:.85rem;
+  display:flex;justify-content:space-between;gap:var(--csno-s2);flex-wrap:wrap;
+}
+.csno-footer-legal p{max-width:62ch;}
+.csno-footer-socials{display:flex;gap:10px;}
+.csno-footer-socials a{
+  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(255,255,255,.08);transition:background .2s,transform .2s;
+}
+.csno-footer-socials a:hover{background:var(--csno-orange);transform:translateY(-3px);}
+.csno-footer-socials svg{width:17px;height:17px;fill:#fff;}
+@media(max-width:780px){
+  .csno-footer-top{grid-template-columns:1fr 1fr;gap:var(--csno-s4);}
+  .csno-footer-legal{flex-direction:column;}
+}
+@media(max-width:480px){.csno-footer-top{grid-template-columns:1fr;}}
+
+/* ============================================================
+   SCROLL REVEAL ANIMATION
+   ============================================================ */
+.csno-reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--csno-ease),transform .7s var(--csno-ease);}
+.csno-reveal.is-visible{opacity:1;transform:translateY(0);}
+.csno-reveal[data-delay="1"]{transition-delay:.09s;}
+.csno-reveal[data-delay="2"]{transition-delay:.18s;}
+.csno-reveal[data-delay="3"]{transition-delay:.27s;}
+@media(prefers-reduced-motion:reduce){
+  .csno-reveal{opacity:1;transform:none;transition:none;}
+  *{scroll-behavior:auto!important;}
+}
+
+/* Skip link for accessibility */
+.csno-skip{
+  position:absolute;left:-999px;top:0;z-index:200;
+  background:var(--csno-navy);color:#fff;padding:12px 20px;border-radius:0 0 8px 0;
+}
+.csno-skip:focus{left:0;}
+:focus-visible{outline:3px solid var(--csno-teal);outline-offset:2px;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+</style>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+<a href="#csno-main" class="csno-skip">Skip to main content</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="csno-header" id="csno-header">
+  <div class="csno-wrap">
+    <nav class="csno-nav" aria-label="Primary">
+      <a href="#csno-hero" class="csno-brand" aria-label="California School Nurses Organization home">
+        <img src="https://csno.memberclicks.net/assets/site/alt-logo.png"
+             alt="California School Nurses Organization logo"
+             class="csno-brand-logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid';this.nextElementSibling.nextElementSibling.style.display='block';">
+        <span class="csno-brand-mark" style="display:none;">CSNO</span>
+        <span class="csno-brand-text" style="display:none;">
+          <strong>California School Nurses</strong>
+          <span>Organization</span>
+        </span>
+      </a>
+
+      <ul class="csno-menu">
+        <li><a href="#csno-about">About</a></li>
+        <li><a href="#csno-programs">Programs</a></li>
+        <li><a href="#csno-events">Events</a></li>
+        <li><a href="#csno-news">News</a></li>
+        <li><a href="#csno-partners">Partners</a></li>
+        <li><a href="#csno-contact">Contact</a></li>
+      </ul>
+
+      <div class="csno-header-cta">
+        <a href="https://csno.memberclicks.net/login" class="csno-login">Member Login</a>
+        <a href="https://csno.memberclicks.net/join-csno" class="csno-btn csno-btn--primary">Join CSNO</a>
+      </div>
+
+      <button class="csno-burger" id="csno-burger" aria-label="Open menu" aria-expanded="false" aria-controls="csno-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="csno-drawer" id="csno-drawer" aria-hidden="true">
+  <a href="#csno-about">About</a>
+  <a href="#csno-programs">Programs</a>
+  <a href="#csno-events">Events</a>
+  <a href="#csno-news">News</a>
+  <a href="#csno-partners">Partners</a>
+  <a href="#csno-contact">Contact</a>
+  <div class="csno-drawer-actions">
+    <a href="https://csno.memberclicks.net/login" class="csno-btn csno-btn--light">Member Login</a>
+    <a href="https://csno.memberclicks.net/join-csno" class="csno-btn csno-btn--primary">Join CSNO</a>
+  </div>
+</div>
+
+<main id="csno-main">
+
+<!-- ============================ 1. HERO ============================ -->
+<section class="csno-hero" id="csno-hero">
+  <div class="csno-wrap">
+    <div class="csno-hero-grid">
+      <div class="csno-hero-content csno-reveal">
+        <h1>Advancing the health of <em>every California student</em></h1>
+        <p>The California School Nurses Organization unites and empowers school nurses statewide — strengthening student health and learning through professional development, leadership, research, and advocacy.</p>
+        <div class="csno-hero-cta">
+          <a href="https://csno.memberclicks.net/join-csno" class="csno-btn csno-btn--primary">
+            Become a Member
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <span class="csno-hero-note">Trusted by school nurses since <b>1947</b></span>
+        </div>
+      </div>
+
+      <aside class="csno-hero-card csno-reveal" data-delay="1" aria-label="Annual conference highlight">
+        <span class="csno-hero-card-tag">77th Annual Conference</span>
+        <h3>Growing Together Through Leadership &amp; Innovation</h3>
+        <p class="csno-hero-card-loc">February 11–14, 2027 · Riverside, California</p>
+        <div class="csno-hero-stats">
+          <div class="csno-stat"><b>78</b><span>Years of service</span></div>
+          <div class="csno-stat"><b>62</b><span>BRN contact hours</span></div>
+          <div class="csno-stat"><b>4</b><span>Statewide programs</span></div>
+          <div class="csno-stat"><b>1947</b><span>Founded</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 2. ABOUT ============================ -->
+<section class="csno-section" id="csno-about">
+  <div class="csno-wrap">
+    <div class="csno-about-grid">
+      <div class="csno-about-visual csno-reveal">
+        <p class="csno-mv-label">Our Vision</p>
+        <h3>Setting the standard for school nursing in California.</h3>
+        <p>CSNO champions the essential role of the school nurse in improving student outcomes across every district in the state.</p>
+        <div class="csno-mv-divider"></div>
+        <p class="csno-mv-label">Our Mission</p>
+        <p>CSNO promotes excellence in school nursing by optimizing student health and collaborative learning through regional grassroots efforts, professional development, leadership cultivation, evidence-based research, standards of care, and advocacy.</p>
+      </div>
+
+      <div class="csno-about-text">
+        <p class="csno-kicker">Who We Are</p>
+        <h2 class="csno-h2">A statewide community built on the LEAD framework</h2>
+        <p class="csno-lead">As a 501(c)(3) nonprofit and an approved provider of continuing education through the California Board of Registered Nursing, CSNO has supported the profession for over seven decades. Four principles guide everything we do.</p>
+
+        <div class="csno-lead-grid">
+          <div class="csno-lead-card csno-reveal" data-delay="1">
+            <span class="csno-lead-letter">L</span>
+            <h4>Leadership</h4>
+            <p>Cultivating school nurse leaders who shape the future of student health.</p>
+          </div>
+          <div class="csno-lead-card csno-reveal" data-delay="2">
+            <span class="csno-lead-letter">E</span>
+            <h4>Education</h4>
+            <p>Delivering professional development grounded in evidence-based practice.</p>
+          </div>
+          <div class="csno-lead-card csno-reveal" data-delay="1">
+            <span class="csno-lead-letter">A</span>
+            <h4>Advocacy</h4>
+            <p>Representing school nurses in policy and legislation that affect students.</p>
+          </div>
+          <div class="csno-lead-card csno-reveal" data-delay="2">
+            <span class="csno-lead-letter">D</span>
+            <h4>Diversity</h4>
+            <p>Building an inclusive profession that reflects the communities we serve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 3. PROGRAMS ============================ -->
+<section class="csno-section csno-programs" id="csno-programs">
+  <div class="csno-wrap">
+    <div class="csno-section-head csno-reveal">
+      <p class="csno-kicker">What We Offer</p>
+      <h2 class="csno-h2">Programs that strengthen the profession</h2>
+      <p class="csno-lead">From credentialing pathways to statewide advocacy, CSNO provides the training, resources, and representation school nurses need to thrive.</p>
+    </div>
+
+    <div class="csno-prog-grid">
+      <article class="csno-prog-card csno-reveal" data-delay="1">
+        <div class="csno-prog-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+        </div>
+        <h3>School Nurse Academy</h3>
+        <p>A hybrid program designed by school nurses, for school nurses — offering 62 BRN contact hours across role, legal, and clinical modules.</p>
+        <a href="https://csno.memberclicks.net/professional-learning" class="csno-prog-link">Explore the Academy
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="csno-prog-card csno-reveal" data-delay="2">
+        <div class="csno-prog-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21v-6a9 9 0 0118 0v6"/><path d="M3 18h4M17 18h4"/><circle cx="12" cy="7" r="3"/></svg>
+        </div>
+        <h3>High Road Training Project</h3>
+        <p>Competitive grant-funded credentialing slots that bring new school nurses into high-need, rural, and underserved California communities.</p>
+        <a href="https://csno.memberclicks.net/high-road-training-project" class="csno-prog-link">View the project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="csno-prog-card csno-reveal" data-delay="3">
+        <div class="csno-prog-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <h3>Professional Learning</h3>
+        <p>Webinars, credentialing pathways, audiometry training, and continuing education to keep school nurses current and confident.</p>
+        <a href="https://csno.memberclicks.net/professional-learning" class="csno-prog-link">Browse learning
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="csno-prog-card csno-reveal" data-delay="1">
+        <div class="csno-prog-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        </div>
+        <h3>Advocacy &amp; Policy</h3>
+        <p>Working with lobbyists and the Government Relations Committee to support and oppose legislation affecting student health.</p>
+        <a href="https://csno.memberclicks.net/advocacy" class="csno-prog-link">See advocacy work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 4. MEMBERSHIP CTA BAND ==================== -->
+<section class="csno-section" id="csno-membership">
+  <div class="csno-wrap">
+    <div class="csno-join csno-reveal">
+      <div class="csno-join-text">
+        <h2>Join a community of California school nurses</h2>
+        <p>The 2026–2027 membership drive is open. Connect with colleagues statewide, access continuing education, and add your voice to advocacy that shapes student health policy.</p>
+      </div>
+      <a href="https://csno.memberclicks.net/join-csno" class="csno-btn csno-btn--primary">
+        Join or Renew Today
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 5. EVENTS ============================ -->
+<section class="csno-section csno-impact" id="csno-events" style="background:var(--csno-cream);">
+  <div class="csno-wrap">
+    <div class="csno-section-head csno-reveal">
+      <p class="csno-kicker">Conferences &amp; Meetings</p>
+      <h2 class="csno-h2">What's coming up</h2>
+      <p class="csno-lead">Stay connected through our flagship annual conference, statewide webinars, and committee meetings throughout the year.</p>
+    </div>
+
+    <div class="csno-events-grid">
+      <article class="csno-event-feature csno-reveal" data-delay="1">
+        <div class="csno-event-banner">
+          <span class="csno-event-date-pill">Feb 11–14, 2027</span>
+          <h3>77th Annual CSNO Conference</h3>
+          <p>Growing Together Through Leadership and Innovation · Mission Inn &amp; Riverside Convention Center</p>
+        </div>
+        <div class="csno-event-body">
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              <span><b>Call for Proposals is now open</b> — share your expertise with school nurses from across the state.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span>Pre-event workshops run February 10–11, ahead of the main program.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Complete the Every Student Counts survey by June 30, 2026 for a chance to win free registration.</span>
+            </li>
+          </ul>
+          <a href="https://csno.memberclicks.net/csno-conference" class="csno-btn csno-btn--primary">
+            Submit a Presentation
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <aside class="csno-upcoming csno-reveal" data-delay="2">
+        <h3>Upcoming Events</h3>
+
+        <div class="csno-event-item">
+          <div class="csno-event-cal"><div class="m">May</div><div class="d">19</div></div>
+          <div class="csno-event-info">
+            <h4>Epinephrine Standing Order Webinar</h4>
+            <span>2:00–3:15 p.m. PT · CDPH Office of School Health</span>
+          </div>
+        </div>
+        <div class="csno-event-item">
+          <div class="csno-event-cal"><div class="m">May</div><div class="d">20</div></div>
+          <div class="csno-event-info">
+            <h4>2026–2027 CSNO Membership Drive</h4>
+            <span>Statewide · Category: Events</span>
+          </div>
+        </div>
+        <div class="csno-event-item">
+          <div class="csno-event-cal"><div class="m">May</div><div class="d">28</div></div>
+          <div class="csno-event-info">
+            <h4>Government Relations Committee Meeting</h4>
+            <span>With CSNO Lobbyists · Category: Events</span>
+          </div>
+        </div>
+        <div class="csno-event-item">
+          <div class="csno-event-cal"><div class="m">Jun</div><div class="d">02</div></div>
+          <div class="csno-event-info">
+            <h4>CSNO State Board Meeting</h4>
+            <span>5:30–7:30 p.m. · Via Zoom</span>
+          </div>
+        </div>
+
+        <a href="https://csno.memberclicks.net/calendar" class="csno-upcoming-foot">
+          View full calendar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 6. NEWS ============================ -->
+<section class="csno-section csno-news" id="csno-news">
+  <div class="csno-wrap">
+    <div class="csno-section-head csno-reveal">
+      <p class="csno-kicker">Latest Updates</p>
+      <h2 class="csno-h2">News from across the organization</h2>
+      <p class="csno-lead">The latest on training opportunities, statewide initiatives, and resources for California's school nurses.</p>
+    </div>
+
+    <div class="csno-news-grid">
+      <article class="csno-news-card csno-reveal" data-delay="1">
+        <span class="csno-news-tag">Webinar</span>
+        <h3>New Epinephrine Standing Order updates</h3>
+        <p>The updated CDPH standing order now authorizes epinephrine nasal sprays and expands eligibility to licensed childcare programs — with insights from the California Surgeon General.</p>
+        <div class="csno-news-meta">
+          <span>May 2026</span>
+          <a href="https://csno.memberclicks.net/calendar">Read more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="csno-news-card csno-reveal" data-delay="2">
+        <span class="csno-news-tag">Statewide Survey</span>
+        <h3>Every Student Counts 2025–26</h3>
+        <p>The California School Health Services Survey is open for data reporting. Participating school nurses are entered to win a free conference registration — submit by June 30, 2026.</p>
+        <div class="csno-news-meta">
+          <span>Open now</span>
+          <a href="https://csno.memberclicks.net/calendar">Read more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="csno-news-card csno-reveal" data-delay="3">
+        <span class="csno-news-tag">High Road Training</span>
+        <h3>Cohort 2 candidates announced</h3>
+        <p>Round 2 candidates were selected for CSU Fresno and Sacramento. In a competitive process, 35 funded slots were awarded from over 110 school nurse applicants.</p>
+        <div class="csno-news-meta">
+          <span>Recent</span>
+          <a href="https://csno.memberclicks.net/high-road-training-project">Read more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 7. PARTNERS ============================ -->
+<section class="csno-section csno-partners" id="csno-partners" style="background:var(--csno-cream);">
+  <div class="csno-wrap">
+    <div class="csno-reveal">
+      <p class="csno-kicker">Working Together</p>
+      <h2 class="csno-h2">Partners &amp; stakeholders</h2>
+      <p class="csno-lead" style="margin-left:auto;margin-right:auto;">CSNO collaborates with state agencies and professional bodies to advance student health across California.</p>
+    </div>
+
+    <div class="csno-partner-row">
+      <div class="csno-partner csno-reveal" data-delay="1">
+        <b>CDPH</b>
+        <span>Office of School Health</span>
+      </div>
+      <div class="csno-partner csno-reveal" data-delay="2">
+        <b>CA Surgeon General</b>
+        <span>Office of the Surgeon General</span>
+      </div>
+      <div class="csno-partner csno-reveal" data-delay="3">
+        <b>CA Board of Registered Nursing</b>
+        <span>Approved CE Provider #04269</span>
+      </div>
+      <div class="csno-partner csno-reveal" data-delay="1">
+        <b>NASN</b>
+        <span>National Association of School Nurses</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 8. IMPACT / TESTIMONIAL ===================== -->
+<section class="csno-section csno-impact" id="csno-impact">
+  <div class="csno-wrap">
+    <div class="csno-impact-stats">
+      <div class="csno-impact-stat csno-reveal"><b>78</b><span>Years advancing school nursing</span></div>
+      <div class="csno-impact-stat csno-reveal" data-delay="1"><b>62</b><span>BRN contact hours offered</span></div>
+      <div class="csno-impact-stat csno-reveal" data-delay="2"><b>110+</b><span>HRTP credentialing applicants</span></div>
+      <div class="csno-impact-stat csno-reveal" data-delay="3"><b>501(c)(3)</b><span>Nonprofit serving the state</span></div>
+    </div>
+
+    <blockquote class="csno-quote csno-reveal">
+      <p>School nurses are the bridge between health and learning. CSNO exists so that no nurse stands alone — every member is part of a statewide effort to help students thrive.</p>
+      <div class="csno-quote-by">— <b>California School Nurses Organization</b></div>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ====================== 9. CONTACT + FOOTER ====================== -->
+<section class="csno-section csno-contact" id="csno-contact">
+  <div class="csno-wrap">
+    <div class="csno-contact-grid">
+      <div class="csno-contact-info csno-reveal">
+        <p class="csno-kicker">Get In Touch</p>
+        <h2>We're here to support you</h2>
+        <div class="csno-contact-list">
+          <div class="csno-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <div class="ci-label">Address</div>
+              <div class="ci-value">3511 Del Paso Rd. Suite 160, PMB 230, Sacramento, CA 95835</div>
+            </div>
+          </div>
+          <div class="csno-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <div>
+              <div class="ci-label">Phone &amp; Fax</div>
+              <div class="ci-value">Phone: 916-448-5752 · Fax: 844-273-0846</div>
+            </div>
+          </div>
+          <div class="csno-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">csno@csno.org</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="csno-contact-card csno-reveal" data-delay="1">
+        <h3>Ready to get involved?</h3>
+        <p>Become a CSNO member to access continuing education, statewide networking, and advocacy that shapes student health policy.</p>
+        <a href="https://csno.memberclicks.net/join-csno" class="csno-btn csno-btn--primary">
+          Join CSNO Today
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="csno-contact-quicklinks">
+          <a href="https://csno.memberclicks.net/member-page">Member Page</a>
+          <a href="https://csno.memberclicks.net/job-postings">Job Postings</a>
+          <a href="https://csno.memberclicks.net/school-nurse-resources">Resources</a>
+          <a href="https://csno.memberclicks.net/csno-products">CSNO Products</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="csno-footer">
+  <div class="csno-wrap">
+    <div class="csno-footer-top">
+      <div class="csno-footer-brand">
+        <div class="csno-footer-logo-plate" style="margin-bottom:6px;">
+          <img src="https://csno.memberclicks.net/assets/site/alt-logo.png"
+               alt="California School Nurses Organization logo"
+               onerror="this.parentElement.style.display='none';this.parentElement.nextElementSibling.style.display='flex';">
+        </div>
+        <div class="csno-brand" style="margin-bottom:4px;display:none;">
+          <span class="csno-brand-mark">CSNO</span>
+          <span class="csno-brand-text">
+            <strong>California School Nurses</strong>
+            <span>Organization</span>
+          </span>
+        </div>
+        <p>An approved provider of contact hours by the California Board of Registered Nursing, CEP #04269. A 501(c)(3) nonprofit organization.</p>
+      </div>
+
+      <nav class="csno-footer-col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="#csno-about">About CSNO</a>
+        <a href="#csno-programs">Programs</a>
+        <a href="#csno-events">Events</a>
+        <a href="#csno-news">News</a>
+      </nav>
+
+      <nav class="csno-footer-col" aria-label="Resources">
+        <h4>Resources</h4>
+        <a href="https://csno.memberclicks.net/school-nurse-resources">School Nurse Resources</a>
+        <a href="https://csno.memberclicks.net/advocacy">Advocacy</a>
+        <a href="https://csno.memberclicks.net/job-postings">Job Postings</a>
+        <a href="https://csno.memberclicks.net/csno-awards">Awards &amp; Scholarships</a>
+      </nav>
+
+      <nav class="csno-footer-col" aria-label="Membership">
+        <h4>Membership</h4>
+        <a href="https://csno.memberclicks.net/join-csno">Join or Renew</a>
+        <a href="https://csno.memberclicks.net/login">Member Login</a>
+        <a href="https://csno.memberclicks.net/member-page">Member Page</a>
+        <a href="https://csno.memberclicks.net/contact-us">Contact Us</a>
+      </nav>
+    </div>
+
+    <div class="csno-footer-legal">
+      <p>&copy; 2026 California School Nurses Organization. All rights reserved. · CSNO, 3511 Del Paso Rd. Suite 160, PMB 230, Sacramento, CA 95835.</p>
+      <div class="csno-footer-socials">
+        <a href="#" aria-label="CSNO on Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>
+        </a>
+        <a href="#" aria-label="CSNO on X">
+          <svg viewBox="0 0 24 24"><path d="M18.9 2h3.3l-7.2 8.2L23.8 22h-6.6l-5.2-6.8L6.1 22H2.8l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.2 3.9H5.3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  /* --- Sticky header shadow on scroll --- */
+  var header = document.getElementById('csno-header');
+  function onScroll(){
+    if(window.scrollY > 12){ header.classList.add('is-stuck'); }
+    else{ header.classList.remove('is-stuck'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* --- Mobile drawer toggle --- */
+  var burger = document.getElementById('csno-burger');
+  var drawer = document.getElementById('csno-drawer');
+  function setDrawer(open){
+    burger.classList.toggle('is-open', open);
+    drawer.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){
+    setDrawer(!drawer.classList.contains('is-open'));
+  });
+  drawer.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){ setDrawer(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && drawer.classList.contains('is-open')){ setDrawer(false); }
+  });
+  /* Close drawer if resized up to desktop */
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 1080 && drawer.classList.contains('is-open')){ setDrawer(false); }
+  });
+
+  /* --- Scroll reveal animation --- */
+  var revealEls = document.querySelectorAll('.csno-reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+</body>
+</html>

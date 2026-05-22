@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Davis Water Polo Club – Est. 1977</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===========================
+   CSS CUSTOM PROPERTIES
+=========================== */
+:root {
+  --navy: #1a2744;
+  --navy-mid: #243358;
+  --blue: #1e5fa8;
+  --blue-light: #2e74c7;
+  --amber: #c96a1a;
+  --amber-light: #e07d30;
+  --white: #ffffff;
+  --off-white: #f7f8fc;
+  --gray-50: #f4f5f9;
+  --gray-100: #e8eaf2;
+  --gray-300: #c4c9d8;
+  --gray-500: #7a829a;
+  --gray-700: #3d4460;
+  --text-primary: #1a2744;
+  --text-secondary: #4a5370;
+  --text-muted: #7a829a;
+  --font-head: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(26,39,68,0.07);
+  --shadow-md: 0 6px 24px rgba(26,39,68,0.10);
+  --shadow-lg: 0 16px 48px rgba(26,39,68,0.14);
+  --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ===========================
+   RESET & BASE
+=========================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ===========================
+   UTILITY
+=========================== */
+.polo-container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 14px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--amber);
+  border-radius: 2px;
+}
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-top: 12px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--amber);
+  color: var(--white);
+  box-shadow: 0 4px 18px rgba(201,106,26,0.28);
+}
+.btn-primary:hover {
+  background: var(--amber-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(201,106,26,0.36);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,0.55);
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.85);
+}
+.btn-navy {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-navy:hover {
+  background: var(--navy-mid);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===========================
+   polo-header / NAVBAR
+=========================== */
+.polo-header {
+  position: fixed;
+  top: auto; left: 0; right: 0;
+  z-index: 1000;
+  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+  padding: 20px 0;
+}
+.polo-header.scrolled {
+  background: rgba(26,39,68,0.97);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(26,39,68,0.2);
+  padding: 12px 0;
+  top: 0;
+}
+.polo-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.logo-wrap {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+  flex-shrink: 0;
+}
+.logo-wrap img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  transition: var(--transition);
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.logo-text span:first-child {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+.logo-text span:last-child {
+  font-family: var(--font-head);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav a {
+  font-family: var(--font-head);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.82);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  letter-spacing: 0.01em;
+}
+.nav a:hover,
+.nav a.active {
+  color: var(--white);
+  background: rgba(255,255,255,0.1);
+}
+.polo-header-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+.hamburger:hover { background: rgba(255,255,255,0.1); }
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: var(--transition);
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile Menu Overlay */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,39,68,0.97);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.mobile-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-overlay a {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  padding: 14px 32px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  transform: translateY(16px);
+  opacity: 0;
+  transition: color 0.2s, background 0.2s, transform 0.35s ease, opacity 0.35s ease;
+}
+.mobile-overlay.open a {
+  transform: translateY(0);
+  opacity: 1;
+}
+.mobile-overlay.open a:nth-child(1) { transition-delay: 0.05s; }
+.mobile-overlay.open a:nth-child(2) { transition-delay: 0.10s; }
+.mobile-overlay.open a:nth-child(3) { transition-delay: 0.15s; }
+.mobile-overlay.open a:nth-child(4) { transition-delay: 0.20s; }
+.mobile-overlay.open a:nth-child(5) { transition-delay: 0.25s; }
+.mobile-overlay.open a:nth-child(6) { transition-delay: 0.30s; }
+.mobile-overlay.open a:nth-child(7) { transition-delay: 0.35s; }
+.mobile-overlay a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+.mobile-close {
+  position: absolute;
+  top: 24px; right: 24px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.7);
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+.mobile-close:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+
+/* ===========================
+   HERO SECTION
+=========================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://www.daviswaterpolo.org/wp-content/uploads/sites/3322/2023/03/IMG_3112_edited-1-768x511.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  transform: scale(1.04);
+  transition: transform 6s ease;
+}
+.hero-bg.loaded { transform: scale(1); }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(20,32,62,0.88) 0%,
+    rgba(20,32,62,0.72) 50%,
+    rgba(20,32,62,0.35) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  padding: 120px 0 80px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.9);
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 50px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--amber-light);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  animation: fadeUp 0.7s 0.12s ease both;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--amber-light);
+}
+.hero p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 36px;
+  animation: fadeUp 0.7s 0.22s ease both;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.32s ease both;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.55);
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: fadeIn 1s 0.6s ease both;
+  cursor: pointer;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,0.3);
+  animation: scrollPulse 2s infinite;
+}
+
+/* ===========================
+   STATS STRIP
+=========================== */
+.stats-strip {
+  background: var(--navy);
+  padding: 0;
+}
+.stats-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.stat-item {
+  padding: 36px 28px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  transition: background var(--transition);
+}
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: rgba(255,255,255,0.04); }
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.stat-num span {
+  color: var(--amber-light);
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   ABOUT SECTION
+=========================== */
+.about {
+  padding: 100px 0;
+  background: var(--white);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.about-image-wrap {
+  position: relative;
+}
+.about-img-main {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+.about-img-accent {
+  position: absolute;
+  bottom: -28px;
+  right: -28px;
+  width: 210px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 5px solid var(--white);
+}
+.about-badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--font-head);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 50px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.about-content { padding-bottom: 28px; }
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 32px;
+}
+.about-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-100);
+  transition: var(--transition);
+}
+.about-feature:hover {
+  border-color: var(--blue-light);
+  background: var(--off-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.about-feature-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--blue);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--white);
+}
+.about-feature-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* ===========================
+   PROGRAMS SECTION
+=========================== */
+.programs {
+  padding: 100px 0;
+  background: var(--gray-50);
+}
+.programs-polo-header {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 56px;
+}
+.programs-polo-header .section-label { justify-content: center; }
+.programs-polo-header .section-label::before { display: none; }
+.programs-polo-header .section-label::after {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--amber);
+  border-radius: 2px;
+}
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.program-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 380px;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.program-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.program-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+}
+.program-card:hover .program-card-bg {
+  transform: scale(1.07);
+}
+.program-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20,32,62,0.15) 0%,
+    rgba(20,32,62,0.55) 50%,
+    rgba(20,32,62,0.92) 100%
+  );
+  transition: background var(--transition);
+}
+.program-card:hover .program-card-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(20,32,62,0.25) 0%,
+    rgba(20,32,62,0.62) 50%,
+    rgba(20,32,62,0.96) 100%
+  );
+}
+.program-card-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 28px;
+}
+.program-card-tag {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--font-head);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+.program-card-title {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.program-card-desc {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.6;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+.program-card:hover .program-card-desc {
+  max-height: 80px;
+  opacity: 1;
+}
+.program-card-arrow {
+  position: absolute;
+  top: 24px; right: 24px;
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: var(--transition);
+  transform: rotate(-45deg);
+}
+.program-card:hover .program-card-arrow {
+  background: var(--amber);
+  transform: rotate(0deg);
+}
+
+/* ===========================
+   AGE GROUPS SECTION
+=========================== */
+.age-groups {
+  padding: 100px 0;
+  background: var(--white);
+}
+.age-groups-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.age-groups-content { order: 2; }
+.age-groups-visual { order: 1; }
+.age-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 36px;
+}
+.age-tile {
+  background: var(--navy);
+  border-radius: var(--radius-md);
+  padding: 22px 16px;
+  text-align: center;
+  transition: var(--transition);
+  cursor: default;
+}
+.age-tile:hover {
+  background: var(--blue);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.age-tile-num {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.age-tile-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.age-tile.highlight { background: var(--amber); }
+.age-tile.highlight:hover { background: var(--amber-light); }
+.age-groups-img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+.age-note {
+  margin-top: 24px;
+  padding: 18px 20px;
+  background: var(--gray-50);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--blue);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ===========================
+   REGISTRATION CTA
+=========================== */
+.reg-cta {
+  padding: 100px 0;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.reg-cta::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(46,116,199,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.reg-cta::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,106,26,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.reg-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.reg-cta-text .section-label { color: var(--amber-light); }
+.reg-cta-text .section-label::before { background: var(--amber-light); }
+.reg-cta h2 {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.reg-cta p {
+  color: rgba(255,255,255,0.68);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 500px;
+}
+.reg-cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.reg-cta-actions .btn {
+  min-width: 200px;
+  justify-content: center;
+}
+
+/* ===========================
+   TESTIMONIAL / HIGHLIGHT
+=========================== */
+.highlight-section {
+  padding: 100px 0;
+  background: var(--gray-50);
+}
+.highlight-polo-header {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 56px;
+}
+.highlight-polo-header .section-label { justify-content: center; }
+.highlight-polo-header .section-label::before { display: none; }
+.highlight-polo-header .section-label::after {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--amber);
+  border-radius: 2px;
+}
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.highlight-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  border: 1px solid var(--gray-100);
+  transition: var(--transition);
+}
+.highlight-card:hover {
+  border-color: var(--blue-light);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+.hc-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.hc-title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.hc-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+.footer {
+  background: var(--navy);
+  padding: 72px 0 36px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+.footer-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.footer-brand-logo img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+.footer-brand-logo span {
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--white);
+}
+.footer-desc {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+.footer-col-title {
+  font-family: var(--font-head);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-links a {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--white); }
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.footer-contact-item svg { flex-shrink: 0; margin-top: 2px; color: var(--amber-light); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copy {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.35);
+}
+.footer-tagline {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.6; }
+  50% { transform: scaleY(0.5); opacity: 1; }
+}
+
+/* Intersection Observer Reveals */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+/* ---- Tablet landscape: 1024px ---- */
+@media (max-width: 1024px) {
+  .about-grid { gap: 48px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .programs-grid { grid-template-columns: 1fr 1fr; }
+  .programs-grid .program-card:last-child { grid-column: 1 / -1; height: 280px; }
+}
+
+/* ---- Tablet portrait: 900px ---- */
+@media (max-width: 900px) {
+  /* Nav → hamburger */
+  .nav { display: none; }
+  .hamburger { display: flex; }
+  .polo-header-cta .btn { display: none; }
+
+  /* Stats 2-col */
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(3) { border-right: none; }
+
+  /* About stacks */
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .about-img-accent { display: none; }
+  .about-img-main { height: 320px; }
+  .about-features { grid-template-columns: 1fr 1fr; }
+
+  /* Age groups stacks */
+  .age-groups-layout { grid-template-columns: 1fr; gap: 40px; }
+  .age-groups-content { order: 1; }
+  .age-groups-visual { order: 2; }
+  .age-groups-img { height: 320px; }
+
+  /* CTA stacks */
+  .reg-cta-inner { grid-template-columns: 1fr; gap: 32px; }
+  .reg-cta-actions { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
+
+  /* Highlights 2-col */
+  .highlight-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---- Mobile: 640px ---- */
+@media (max-width: 640px) {
+  .polo-container { padding: 0 16px; }
+
+  /* Section padding */
+  .about,
+  .programs,
+  .age-groups,
+  .reg-cta,
+  .highlight-section { padding: 64px 0; }
+
+  /* Hero */
+  .hero { min-height: 100svh; }
+  .hero-content { padding: 100px 0 72px; }
+  .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .hero p { font-size: 0.975rem; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-scroll { display: none; }
+
+  /* Stats 2-col */
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .stat-item { padding: 24px 12px; }
+  .stat-num { font-size: 1.7rem; }
+  .stat-label { font-size: 0.7rem; }
+
+  /* About */
+  .about-img-main { height: 260px; }
+  .about-features { grid-template-columns: 1fr; }
+  .section-subtitle { font-size: 0.95rem; }
+
+  /* Programs */
+  .programs-grid { grid-template-columns: 1fr; gap: 16px; }
+  .programs-grid .program-card { height: 300px; grid-column: auto; }
+  .program-card-desc { max-height: 80px; opacity: 1; }
+
+  /* Age groups */
+  .age-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .age-tile { padding: 16px 8px; }
+  .age-tile-num { font-size: 1.15rem; }
+  .age-tile-label { font-size: 0.62rem; }
+
+  /* CTA */
+  .reg-cta-actions { flex-direction: column; width: 100%; }
+  .reg-cta-actions .btn { width: 100%; min-width: unset; justify-content: center; }
+  .reg-cta h2 { font-size: 1.6rem; }
+
+  /* Highlights */
+  .highlight-grid { grid-template-columns: 1fr; gap: 16px; }
+  .highlight-card { padding: 28px 22px; }
+
+  /* Footer */
+  .footer { padding: 56px 0 28px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 36px; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+}
+
+/* Touch / hover-none devices: always reveal card content */
+@media (hover: none) {
+  .program-card-desc { max-height: 80px; opacity: 1; }
+  .program-card-arrow { background: var(--amber); transform: rotate(0deg); }
+}
+@media (max-width: 400px) {
+  .hero h1 { font-size: 1.9rem; }
+  .logo-text span:first-child { font-size: 0.875rem; }
+  .logo-text span:last-child { display: none; }
+  .age-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { padding: 20px 10px; }
+  .stat-num { font-size: 1.5rem; }
+  .programs-grid .program-card { height: 280px; }
+}
+
+#glad-polo-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-polo-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-polo-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+</style>
+</head>
+<body>
+<header id="glad-polo-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ===========================
+     MOBILE MENU OVERLAY
+=========================== -->
+<div class="mobile-overlay" id="mobileOverlay">
+  <span class="mobile-close" id="mobileClose">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </span>
+  <a href="#">Home</a>
+  <a href="#">Registration</a>
+  <a href="#">JO Quals 2026</a>
+  <a href="#">Leadership & Coaches</a>
+  <a href="#">Schedules</a>
+  <a href="#">Links & Resources</a>
+  <a href="#">Contact Us</a>
+</div>
+
+<!-- ===========================
+     polo-header
+=========================== -->
+<header class="polo-header" id="polo-header">
+  <div class="polo-container">
+    <div class="polo-header-inner">
+      <a href="#" class="logo-wrap">
+        <img src="https://daviswaterpoloclub.teamsnapsites.com/wp-content/uploads/sites/3322/2022/07/davis-water-polo.jpg" alt="Davis Water Polo Club logo">
+        <div class="logo-text">
+          <span>Davis Water Polo</span>
+          <span>Club · Est. 1977</span>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="#" class="active">Home</a>
+        <a href="#">Registration</a>
+        <a href="#">JO Quals 2026</a>
+        <a href="#">Coaches</a>
+        <a href="#">Schedules</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="polo-header-cta">
+        <a href="#" class="btn btn-primary">Register Now</a>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===========================
+     HERO
+=========================== -->
+<section class="hero" id="home">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="polo-container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Summer Session Registration Now Open
+      </div>
+      <h1>Where Champions<br>Learn to <em>Rise.</em></h1>
+      <p>Davis Water Polo Club has developed athletes at every level since 1977 — from first-time swimmers to nationally competitive players. Join our community and discover your potential in the water.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary">Register for Summer</a>
+        <a href="#" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ===========================
+     STATS STRIP
+=========================== -->
+<section class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">47<span>+</span></div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">5<span>–18</span></div>
+      <div class="stat-label">Age Range</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Age Group Divisions</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num">Co<span>-Ed</span></div>
+      <div class="stat-label">Girls &amp; Boys Program</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     ABOUT
+=========================== -->
+<section class="about" id="about">
+  <div class="polo-container">
+    <div class="about-grid">
+      <div class="about-image-wrap reveal">
+        <img
+          class="about-img-main"
+          src="https://daviswaterpoloclub.teamsnapsites.com/wp-content/uploads/sites/3322/2022/08/IMG_0009-scaled.jpg"
+          alt="Davis Water Polo players in the pool"
+          onerror="this.src='https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&q=80'"
+        >
+        <div class="about-badge">Est. 1977</div>
+        <img
+          class="about-img-accent"
+          src="https://daviswaterpoloclub.teamsnapsites.com/wp-content/uploads/sites/3322/2022/08/team-photo-2022.jpg"
+          alt="Team photo"
+          onerror="this.src='https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=400&q=80'"
+        >
+      </div>
+      <div class="about-content reveal reveal-delay-1">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">A Club Built on Passion, Community, and Compete</h2>
+        <p class="section-subtitle">Since 1977, Davis Water Polo Club has been the home for athletes who want to develop their skills, compete at a high level, and be part of a supportive team culture.</p>
+        <p class="section-subtitle" style="margin-top:14px;">Open to girls and boys ages 5 to 18, as well as college and adult players — we offer a pathway for every level of athlete.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+            </div>
+            <span class="about-feature-text">Competitive age-group play at regional & national levels</span>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <span class="about-feature-text">Experienced coaches who care about player growth</span>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <span class="about-feature-text">Welcoming community for beginners and elites alike</span>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <span class="about-feature-text">Year-round training with seasonal tournaments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     PROGRAMS
+=========================== -->
+<section class="programs" id="programs">
+  <div class="polo-container">
+    <div class="programs-polo-header reveal">
+      <div class="section-label">Our Programs</div>
+      <h2 class="section-title">Find Your Place in the Water</h2>
+      <p class="section-subtitle" style="margin:12px auto 0;">From first splash to elite competition, we have a program designed to challenge and grow every athlete.</p>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card reveal">
+        <div class="program-card-bg" style="background-image:url('https://daviswaterpoloclub.teamsnapsites.com/wp-content/uploads/sites/3322/2022/08/IMG_0009-scaled.jpg');background-image:url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80')"></div>
+        <div class="program-card-overlay"></div>
+        <div class="program-card-arrow">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="program-card-content">
+          <span class="program-card-tag">Youth</span>
+          <div class="program-card-title">Youth Development</div>
+          <div class="program-card-desc">Introductory water polo for ages 5–12. Build water confidence, fundamental skills, and a love of the game in a fun, supportive environment.</div>
+        </div>
+      </div>
+      <div class="program-card reveal reveal-delay-1">
+        <div class="program-card-bg" style="background-image:url('https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&q=80')"></div>
+        <div class="program-card-overlay"></div>
+        <div class="program-card-arrow">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="program-card-content">
+          <span class="program-card-tag">Competitive</span>
+          <div class="program-card-title">Competitive Age Group</div>
+          <div class="program-card-desc">Structured training and tournament play for dedicated athletes in the 12U, 14U, 16U, and 18U divisions with regional and national competition.</div>
+        </div>
+      </div>
+      <div class="program-card reveal reveal-delay-2">
+        <div class="program-card-bg" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80')"></div>
+        <div class="program-card-overlay"></div>
+        <div class="program-card-arrow">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="program-card-content">
+          <span class="program-card-tag">Adult</span>
+          <div class="program-card-title">Adult &amp; College</div>
+          <div class="program-card-desc">Stay active and competitive beyond high school. Our adult program welcomes all skill levels for league play and pick-up games.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     AGE GROUPS
+=========================== -->
+<section class="age-groups" id="divisions">
+  <div class="polo-container">
+    <div class="age-groups-layout">
+      <div class="age-groups-visual reveal">
+        <img
+          class="age-groups-img"
+          src="https://daviswaterpoloclub.teamsnapsites.com/wp-content/uploads/sites/3322/2022/08/team-photo-2022.jpg"
+          alt="Water polo player in action"
+          onerror="this.src='https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&q=80'"
+        >
+      </div>
+      <div class="age-groups-content reveal reveal-delay-1">
+        <div class="section-label">Divisions</div>
+        <h2 class="section-title">Competitive Divisions for Every Stage</h2>
+        <p class="section-subtitle">Our age group structure follows USA Water Polo guidelines, giving athletes the right level of challenge at every stage of development.</p>
+        <div class="age-grid">
+          <div class="age-tile">
+            <div class="age-tile-num">10U</div>
+            <div class="age-tile-label">10 &amp; Under</div>
+          </div>
+          <div class="age-tile">
+            <div class="age-tile-num">12U</div>
+            <div class="age-tile-label">12 &amp; Under</div>
+          </div>
+          <div class="age-tile highlight">
+            <div class="age-tile-num">14U</div>
+            <div class="age-tile-label">14 &amp; Under</div>
+          </div>
+          <div class="age-tile">
+            <div class="age-tile-num">16U</div>
+            <div class="age-tile-label">16 &amp; Under</div>
+          </div>
+          <div class="age-tile">
+            <div class="age-tile-num">18U</div>
+            <div class="age-tile-label">18 &amp; Under</div>
+          </div>
+          <div class="age-tile">
+            <div class="age-tile-num">18+</div>
+            <div class="age-tile-label">Adult / College</div>
+          </div>
+        </div>
+        <div class="age-note">
+          Open to girls and boys ages 5 to 18 as well as college and adult players. Age group placement is determined by the athlete's age as of December 31 of the current season.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     WHY DWPC
+=========================== -->
+<section class="highlight-section">
+  <div class="polo-container">
+    <div class="highlight-polo-header reveal">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">More Than a Club — A Community</h2>
+      <p class="section-subtitle" style="margin:12px auto 0;">Davis Water Polo Club goes beyond the pool to build character, fitness, and lifelong friendships.</p>
+    </div>
+    <div class="highlight-grid">
+      <div class="highlight-card reveal">
+        <div class="hc-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+        </div>
+        <div class="hc-title">Proven Track Record</div>
+        <div class="hc-text">Nearly five decades of developing athletes who go on to compete at the high school, collegiate, and even national levels. Our alumni speak for the program's quality.</div>
+      </div>
+      <div class="highlight-card reveal reveal-delay-1">
+        <div class="hc-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="hc-title">Expert Coaching Staff</div>
+        <div class="hc-text">Our coaches bring deep knowledge of the game alongside a genuine commitment to each player's development — technically, athletically, and as a person.</div>
+      </div>
+      <div class="highlight-card reveal reveal-delay-2">
+        <div class="hc-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="hc-title">Year-Round Programming</div>
+        <div class="hc-text">From summer sessions to fall and spring leagues, we keep athletes engaged and improving throughout the year with structured practice schedules and competitive opportunities.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     REGISTRATION CTA
+=========================== -->
+<section class="reg-cta">
+  <div class="polo-container">
+    <div class="reg-cta-inner">
+      <div class="reg-cta-text reveal">
+        <div class="section-label">Join the Club</div>
+        <h2>Summer Session Registration<br>Is Now Open</h2>
+        <p>Don't miss your chance to join one of Northern California's most respected water polo programs. Registration spots are limited — secure your place for the upcoming summer session today.</p>
+      </div>
+      <div class="reg-cta-actions reveal reveal-delay-1">
+        <a href="#" class="btn btn-primary">Register Now</a>
+        <a href="#" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     FOOTER
+=========================== -->
+<footer class="footer">
+  <div class="polo-container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <img src="https://daviswaterpoloclub.teamsnapsites.com/wp-content/uploads/sites/3322/2022/07/davis-water-polo.jpg" alt="Davis Water Polo Club logo">
+          <span>Davis Water Polo Club</span>
+        </div>
+        <p class="footer-desc">Developing water polo athletes and champions since 1977. Serving the Davis, California community with competitive and recreational programs for all ages.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <div class="footer-links">
+          <a href="#">Home</a>
+          <a href="#">Registration</a>
+          <a href="#">JO Quals 2026</a>
+          <a href="#">Leadership &amp; Coaches</a>
+          <a href="#">Schedules</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Programs</div>
+        <div class="footer-links">
+          <a href="#">Youth Development</a>
+          <a href="#">Competitive Age Group</a>
+          <a href="#">Splashball</a>
+          <a href="#">Adult &amp; College</a>
+          <a href="#">Links &amp; Resources</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Get in Touch</div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>Contact us via the club website</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Davis, California</span>
+        </div>
+        <a href="#" class="btn btn-primary" style="margin-top:18px;font-size:0.82rem;padding:10px 20px;">Email Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Davis Water Polo Club. All rights reserved.</span>
+      <span class="footer-tagline">Powered by TeamSnap</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===========================
+     JAVASCRIPT
+=========================== -->
+<script>
+// Sticky polo-header
+const poloHeader = document.getElementById('polo-header');
+window.addEventListener('scroll', () => {
+  poloHeader.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Hero BG zoom on load
+const heroBg = document.getElementById('heroBg');
+setTimeout(() => heroBg.classList.add('loaded'), 100);
+
+// Mobile Menu
+const hamburger = document.getElementById('hamburger');
+const overlay = document.getElementById('mobileOverlay');
+const closeBtn = document.getElementById('mobileClose');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  overlay.classList.toggle('open');
+  document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+});
+closeBtn.addEventListener('click', closeMobile);
+overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobile));
+function closeMobile() {
+  hamburger.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Scroll Reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Counter animation
+function animateCounter(el, target, suffix = '') {
+  let start = 0;
+  const duration = 1400;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+}, { passive: true });
+//glad polo-header
+  const gladpoloHeader = document.getElementById("glad-polo-header");
+  const calbccpoloHeader = document.querySelector(".calbcc-polo-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladpoloHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladpoloHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+</body>
+</html>

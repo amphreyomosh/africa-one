@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>California Product Stewardship Council — Building California's Circular Economy</title>
+<meta name="description" content="The California Product Stewardship Council (CPSC) is California's thought leader on producer responsibility and Extended Producer Responsibility (EPR), shifting our economy from linear waste to a circular future.">
+<link rel="icon" href="https://static.wixstatic.com/media/c1132e_37933525f7e845b9b80cef751a6b0871~mv2.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CALPSC HOMEPAGE REDESIGN
+   All custom classes are prefixed `cpsc-` to avoid CSS conflicts
+   ============================================================ */
+
+:root{
+  --cpsc-navy:#221a52;
+  --cpsc-navy-deep:#1a1340;
+  --cpsc-periwinkle:#7d7bc4;
+  --cpsc-periwinkle-soft:#9794d6;
+  --cpsc-sage:#7c9b6f;
+  --cpsc-forest:#2f7050;
+  --cpsc-forest-deep:#245c41;
+  --cpsc-purple:#4a2e8c;
+  --cpsc-gold:#e2b13c;
+
+  --cpsc-ink:#1d1b2e;
+  --cpsc-slate:#5a5870;
+  --cpsc-mute:#7d7b92;
+  --cpsc-line:#e7e6ee;
+  --cpsc-paper:#ffffff;
+  --cpsc-cloud:#f6f6fb;
+  --cpsc-cloud-2:#eeeef6;
+
+  --cpsc-display:'Bricolage Grotesque',-apple-system,BlinkMacSystemFont,sans-serif;
+  --cpsc-body:'Public Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+
+  --cpsc-shadow-sm:0 1px 3px rgba(34,26,82,.06),0 1px 2px rgba(34,26,82,.04);
+  --cpsc-shadow-md:0 8px 30px rgba(34,26,82,.08);
+  --cpsc-shadow-lg:0 24px 60px rgba(34,26,82,.14);
+
+  --cpsc-radius:18px;
+  --cpsc-radius-sm:12px;
+  --cpsc-max:1240px;
+  --cpsc-ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--cpsc-body);
+  color:var(--cpsc-ink);
+  background:var(--cpsc-paper);
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+::selection{background:var(--cpsc-periwinkle);color:#fff;}
+
+/* ---------- layout helpers ---------- */
+.cpsc-wrap{max-width:var(--cpsc-max);margin:0 auto;padding:0 28px;}
+.cpsc-section{padding:104px 0;}
+.cpsc-eyebrow-hidden{display:none;}
+.cpsc-kicker{
+  display:inline-block;font-family:var(--cpsc-body);font-weight:700;
+  font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cpsc-forest);margin-bottom:18px;
+}
+.cpsc-h2{
+  font-family:var(--cpsc-display);font-weight:700;
+  font-size:clamp(2rem,4vw,3.1rem);line-height:1.08;
+  letter-spacing:-.022em;color:var(--cpsc-ink);
+}
+.cpsc-lead{
+  font-size:clamp(1.02rem,1.4vw,1.16rem);color:var(--cpsc-slate);
+  max-width:620px;margin-top:18px;
+}
+
+/* ---------- skip link / a11y ---------- */
+.cpsc-skip{
+  position:absolute;left:-999px;top:0;z-index:9999;
+  background:var(--cpsc-navy);color:#fff;padding:12px 20px;border-radius:0 0 10px 0;
+  font-weight:600;
+}
+.cpsc-skip:focus{left:0;}
+a:focus-visible,button:focus-visible,input:focus-visible{
+  outline:3px solid var(--cpsc-periwinkle);outline-offset:3px;border-radius:4px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.cpsc-header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s var(--cpsc-ease),box-shadow .3s var(--cpsc-ease),background .3s var(--cpsc-ease);
+}
+.cpsc-header.cpsc-scrolled{
+  border-bottom-color:var(--cpsc-line);
+  box-shadow:0 6px 24px rgba(34,26,82,.06);
+}
+.cpsc-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  height:78px;max-width:var(--cpsc-max);margin:0 auto;padding:0 28px;
+}
+.cpsc-logo{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.cpsc-logo img{height:50px;width:auto;}
+.cpsc-nav-links{display:flex;align-items:center;gap:6px;}
+.cpsc-nav-links a{
+  font-weight:600;font-size:15px;color:var(--cpsc-slate);
+  padding:9px 14px;border-radius:9px;position:relative;
+  transition:color .2s var(--cpsc-ease),background .2s var(--cpsc-ease);
+}
+.cpsc-nav-links a:hover{color:var(--cpsc-navy);background:var(--cpsc-cloud);}
+.cpsc-nav-actions{display:flex;align-items:center;gap:14px;}
+.cpsc-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--cpsc-body);font-weight:700;font-size:15px;
+  padding:13px 26px;border-radius:100px;
+  transition:transform .25s var(--cpsc-ease),box-shadow .25s var(--cpsc-ease),background .25s var(--cpsc-ease);
+}
+.cpsc-btn-primary{
+  background:var(--cpsc-forest);color:#fff;
+  box-shadow:0 8px 22px rgba(47,112,80,.32);
+}
+.cpsc-btn-primary:hover{
+  background:var(--cpsc-forest-deep);transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(47,112,80,.4);
+}
+.cpsc-btn-ghost{
+  background:transparent;color:var(--cpsc-navy);
+  border:1.6px solid var(--cpsc-line);
+}
+.cpsc-btn-ghost:hover{border-color:var(--cpsc-navy);background:var(--cpsc-cloud);}
+.cpsc-btn-arrow{transition:transform .25s var(--cpsc-ease);}
+.cpsc-btn:hover .cpsc-btn-arrow{transform:translateX(4px);}
+
+/* hamburger */
+.cpsc-burger{
+  display:none;width:44px;height:44px;border-radius:11px;
+  background:var(--cpsc-cloud);position:relative;
+}
+.cpsc-burger span{
+  position:absolute;left:11px;width:22px;height:2.4px;border-radius:2px;
+  background:var(--cpsc-navy);transition:transform .35s var(--cpsc-ease),opacity .2s ease,top .35s var(--cpsc-ease);
+}
+.cpsc-burger span:nth-child(1){top:15px;}
+.cpsc-burger span:nth-child(2){top:21px;}
+.cpsc-burger span:nth-child(3){top:27px;}
+.cpsc-burger.cpsc-open span:nth-child(1){top:21px;transform:rotate(45deg);}
+.cpsc-burger.cpsc-open span:nth-child(2){opacity:0;}
+.cpsc-burger.cpsc-open span:nth-child(3){top:21px;transform:rotate(-45deg);}
+
+/* mobile drawer */
+.cpsc-drawer{
+  position:fixed;top:78px;left:0;right:0;bottom:0;z-index:999;
+  background:#fff;padding:32px 28px 48px;
+  transform:translateX(100%);
+  transition:transform .42s var(--cpsc-ease);
+  overflow-y:auto;display:flex;flex-direction:column;
+}
+.cpsc-drawer.cpsc-open{transform:translateX(0);}
+.cpsc-drawer a{
+  font-family:var(--cpsc-display);font-weight:600;font-size:1.5rem;
+  color:var(--cpsc-ink);padding:18px 6px;border-bottom:1px solid var(--cpsc-line);
+  display:flex;justify-content:space-between;align-items:center;
+  opacity:0;transform:translateX(24px);
+}
+.cpsc-drawer.cpsc-open a{
+  animation:cpsc-slidein .5s var(--cpsc-ease) forwards;
+}
+.cpsc-drawer.cpsc-open a:nth-child(1){animation-delay:.07s;}
+.cpsc-drawer.cpsc-open a:nth-child(2){animation-delay:.12s;}
+.cpsc-drawer.cpsc-open a:nth-child(3){animation-delay:.17s;}
+.cpsc-drawer.cpsc-open a:nth-child(4){animation-delay:.22s;}
+.cpsc-drawer.cpsc-open a:nth-child(5){animation-delay:.27s;}
+.cpsc-drawer.cpsc-open a:nth-child(6){animation-delay:.32s;}
+@keyframes cpsc-slidein{to{opacity:1;transform:translateX(0);}}
+.cpsc-drawer-cta{margin-top:30px;}
+.cpsc-drawer-cta .cpsc-btn{width:100%;justify-content:center;padding:17px;}
+
+ #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+/* ============================================================
+   HERO
+   ============================================================ */
+.cpsc-hero{
+  position:relative;padding:170px 0 110px;overflow:hidden;
+  background:linear-gradient(180deg,#f3f3fa 0%,#ffffff 100%);
+}
+.cpsc-hero-bg{
+  position:absolute;inset:0;z-index:0;
+}
+.cpsc-hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center 38%;
+}
+.cpsc-hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(26,19,64,.93) 0%,rgba(34,26,82,.82) 42%,rgba(34,26,82,.34) 100%);
+}
+.cpsc-hero-inner{position:relative;z-index:2;max-width:760px;}
+.cpsc-hero h1{
+  font-family:var(--cpsc-display);font-weight:800;color:#fff;
+  font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.03;
+  letter-spacing:-.03em;
+}
+.cpsc-hero h1 em{
+  font-style:normal;color:var(--cpsc-gold);
+  position:relative;white-space:nowrap;
+}
+.cpsc-hero h1 em::after{
+  content:"";position:absolute;left:0;right:0;bottom:.06em;height:.11em;
+  background:var(--cpsc-gold);opacity:.32;border-radius:3px;
+}
+.cpsc-hero p{
+  color:rgba(255,255,255,.86);font-size:clamp(1.05rem,1.7vw,1.32rem);
+  margin-top:24px;max-width:560px;line-height:1.6;
+}
+.cpsc-hero-cta{margin-top:38px;}
+.cpsc-hero .cpsc-btn-primary{
+  background:var(--cpsc-gold);color:var(--cpsc-navy-deep);
+  font-size:16px;padding:17px 34px;
+  box-shadow:0 14px 34px rgba(226,177,60,.36);
+}
+.cpsc-hero .cpsc-btn-primary:hover{
+  background:#f0c356;box-shadow:0 18px 42px rgba(226,177,60,.46);
+}
+.cpsc-hero-tags{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:44px;
+}
+.cpsc-hero-tags span{
+  font-size:13px;font-weight:600;color:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.22);border-radius:100px;
+  padding:8px 16px;backdrop-filter:blur(4px);
+}
+/* fade-up entrance */
+.cpsc-fade{opacity:0;transform:translateY(26px);}
+.cpsc-hero .cpsc-fade{animation:cpsc-fadeup .9s var(--cpsc-ease) forwards;}
+.cpsc-hero .cpsc-fade:nth-child(1){animation-delay:.1s;}
+.cpsc-hero .cpsc-fade:nth-child(2){animation-delay:.24s;}
+.cpsc-hero .cpsc-fade:nth-child(3){animation-delay:.38s;}
+.cpsc-hero .cpsc-fade:nth-child(4){animation-delay:.52s;}
+@keyframes cpsc-fadeup{to{opacity:1;transform:translateY(0);}}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.cpsc-about{background:var(--cpsc-paper);}
+.cpsc-about-grid{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:start;
+}
+.cpsc-about-copy p{color:var(--cpsc-slate);margin-top:18px;}
+.cpsc-about-copy p:first-of-type{margin-top:26px;}
+.cpsc-mv{
+  display:flex;flex-direction:column;gap:18px;
+}
+.cpsc-mv-card{
+  border:1px solid var(--cpsc-line);border-radius:var(--cpsc-radius);
+  padding:30px 30px 32px;background:var(--cpsc-cloud);
+  position:relative;overflow:hidden;
+  transition:transform .3s var(--cpsc-ease),box-shadow .3s var(--cpsc-ease);
+}
+.cpsc-mv-card:hover{transform:translateY(-4px);box-shadow:var(--cpsc-shadow-md);}
+.cpsc-mv-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+}
+.cpsc-mv-card.cpsc-mv-mission::before{background:var(--cpsc-forest);}
+.cpsc-mv-card.cpsc-mv-vision::before{background:var(--cpsc-periwinkle);}
+.cpsc-mv-card h3{
+  font-family:var(--cpsc-display);font-weight:700;font-size:1.18rem;
+  letter-spacing:-.01em;margin-bottom:10px;display:flex;align-items:center;gap:10px;
+}
+.cpsc-mv-icon{
+  width:34px;height:34px;border-radius:9px;flex-shrink:0;
+  display:grid;place-items:center;color:#fff;
+}
+.cpsc-mv-mission .cpsc-mv-icon{background:var(--cpsc-forest);}
+.cpsc-mv-vision .cpsc-mv-icon{background:var(--cpsc-periwinkle);}
+.cpsc-mv-card p{color:var(--cpsc-slate);font-size:.99rem;}
+
+/* stat band */
+.cpsc-stats{
+  margin-top:80px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--cpsc-line);border-radius:var(--cpsc-radius);
+  overflow:hidden;background:var(--cpsc-navy);
+}
+.cpsc-stat{
+  padding:42px 26px;text-align:center;color:#fff;
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.cpsc-stat:last-child{border-right:none;}
+.cpsc-stat-num{
+  font-family:var(--cpsc-display);font-weight:800;
+  font-size:clamp(2.2rem,3.6vw,3rem);line-height:1;letter-spacing:-.03em;
+  color:var(--cpsc-gold);
+}
+.cpsc-stat-label{
+  margin-top:10px;font-size:.92rem;color:rgba(255,255,255,.78);
+  font-weight:500;line-height:1.4;
+}
+
+/* ============================================================
+   PROGRAMS
+   ============================================================ */
+.cpsc-programs{background:var(--cpsc-cloud);}
+.cpsc-sec-head{max-width:680px;margin-bottom:54px;}
+.cpsc-prog-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+}
+.cpsc-prog-card{
+  background:#fff;border:1px solid var(--cpsc-line);
+  border-radius:var(--cpsc-radius);padding:28px 26px 26px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:transform .3s var(--cpsc-ease),box-shadow .3s var(--cpsc-ease),border-color .3s var(--cpsc-ease);
+}
+.cpsc-prog-card:hover{
+  transform:translateY(-6px);box-shadow:var(--cpsc-shadow-md);
+  border-color:transparent;
+}
+.cpsc-prog-ico{
+  width:52px;height:52px;border-radius:13px;display:grid;place-items:center;
+  color:#fff;flex-shrink:0;
+}
+.cpsc-c-forest{background:var(--cpsc-forest);}
+.cpsc-c-navy{background:var(--cpsc-navy);}
+.cpsc-c-peri{background:var(--cpsc-periwinkle);}
+.cpsc-c-sage{background:var(--cpsc-sage);}
+.cpsc-prog-card h3{
+  font-family:var(--cpsc-display);font-weight:700;font-size:1.12rem;
+  letter-spacing:-.01em;
+}
+.cpsc-prog-card p{font-size:.94rem;color:var(--cpsc-slate);flex:1;}
+.cpsc-prog-link{
+  font-weight:700;font-size:.9rem;color:var(--cpsc-forest);
+  display:inline-flex;align-items:center;gap:7px;
+  transition:gap .25s var(--cpsc-ease);
+}
+.cpsc-prog-card:hover .cpsc-prog-link{gap:12px;}
+.cpsc-prog-tag{
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 10px;border-radius:6px;align-self:flex-start;
+}
+.cpsc-tag-epr{background:rgba(47,112,80,.12);color:var(--cpsc-forest-deep);}
+.cpsc-tag-con{background:rgba(125,123,196,.16);color:var(--cpsc-purple);}
+.cpsc-prog-more{
+  text-align:center;margin-top:46px;
+}
+
+/* ============================================================
+   MEMBERSHIP CTA
+   ============================================================ */
+.cpsc-join{
+  position:relative;overflow:hidden;
+  background:linear-gradient(120deg,var(--cpsc-forest) 0%,var(--cpsc-forest-deep) 60%,#1d4f38 100%);
+}
+.cpsc-join::before{
+  content:"";position:absolute;right:-120px;top:-120px;
+  width:420px;height:420px;border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+.cpsc-join::after{
+  content:"";position:absolute;left:-90px;bottom:-160px;
+  width:340px;height:340px;border-radius:50%;
+  background:rgba(255,255,255,.05);
+}
+.cpsc-join-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1.4fr auto;gap:48px;align-items:center;
+}
+.cpsc-join h2{
+  font-family:var(--cpsc-display);font-weight:800;color:#fff;
+  font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:1.1;letter-spacing:-.025em;
+}
+.cpsc-join p{color:rgba(255,255,255,.82);margin-top:16px;max-width:560px;}
+.cpsc-join-actions{display:flex;flex-direction:column;gap:14px;}
+.cpsc-join .cpsc-btn-primary{
+  background:var(--cpsc-gold);color:var(--cpsc-navy-deep);
+  box-shadow:0 12px 30px rgba(0,0,0,.22);justify-content:center;
+}
+.cpsc-join .cpsc-btn-primary:hover{background:#f0c356;}
+.cpsc-join .cpsc-btn-ghost{
+  color:#fff;border-color:rgba(255,255,255,.4);justify-content:center;
+}
+.cpsc-join .cpsc-btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+
+/* ============================================================
+   CAMPAIGNS / EVENTS
+   ============================================================ */
+.cpsc-campaigns{background:var(--cpsc-paper);}
+.cpsc-camp-layout{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:28px;
+}
+.cpsc-camp-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:18px;
+}
+.cpsc-camp-card{
+  border-radius:var(--cpsc-radius);padding:26px 24px;
+  color:#fff;position:relative;overflow:hidden;min-height:178px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:8px;
+  transition:transform .3s var(--cpsc-ease),box-shadow .3s var(--cpsc-ease);
+}
+.cpsc-camp-card:hover{transform:translateY(-5px);box-shadow:var(--cpsc-shadow-lg);}
+.cpsc-camp-card::before{
+  content:"";position:absolute;right:-30px;top:-30px;
+  width:130px;height:130px;border-radius:50%;
+  background:rgba(255,255,255,.1);
+}
+.cpsc-camp-1{background:linear-gradient(150deg,#3a3380,var(--cpsc-navy));}
+.cpsc-camp-2{background:linear-gradient(150deg,#8a88cf,var(--cpsc-periwinkle));}
+.cpsc-camp-3{background:linear-gradient(150deg,#8aa87c,var(--cpsc-sage));}
+.cpsc-camp-4{background:linear-gradient(150deg,#358a61,var(--cpsc-forest));}
+.cpsc-camp-card h3{
+  font-family:var(--cpsc-display);font-weight:700;font-size:1.16rem;
+  position:relative;z-index:2;
+}
+.cpsc-camp-card p{
+  font-size:.9rem;color:rgba(255,255,255,.84);position:relative;z-index:2;
+}
+.cpsc-camp-ico{
+  position:relative;z-index:2;width:40px;height:40px;border-radius:10px;
+  background:rgba(255,255,255,.16);display:grid;place-items:center;
+  margin-bottom:auto;
+}
+/* featured event */
+.cpsc-event{
+  border:1px solid var(--cpsc-line);border-radius:var(--cpsc-radius);
+  background:var(--cpsc-cloud);padding:30px;display:flex;flex-direction:column;
+}
+.cpsc-event-flag{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  background:var(--cpsc-forest);color:#fff;font-weight:700;font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase;padding:7px 13px;border-radius:7px;
+}
+.cpsc-event h3{
+  font-family:var(--cpsc-display);font-weight:700;font-size:1.42rem;
+  line-height:1.2;letter-spacing:-.015em;margin:18px 0 6px;
+}
+.cpsc-event-desc{color:var(--cpsc-slate);font-size:.97rem;}
+.cpsc-event-meta{
+  margin-top:20px;display:flex;flex-direction:column;gap:11px;
+  border-top:1px solid var(--cpsc-line);padding-top:20px;
+}
+.cpsc-event-meta div{
+  display:flex;align-items:center;gap:11px;font-size:.95rem;
+  color:var(--cpsc-ink);font-weight:500;
+}
+.cpsc-event-meta svg{flex-shrink:0;color:var(--cpsc-forest);}
+.cpsc-event .cpsc-btn{margin-top:24px;justify-content:center;}
+
+/* ============================================================
+   NEWS
+   ============================================================ */
+.cpsc-news{background:var(--cpsc-cloud);}
+.cpsc-news-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  flex-wrap:wrap;gap:24px;margin-bottom:48px;
+}
+.cpsc-news-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+}
+.cpsc-news-card{
+  background:#fff;border:1px solid var(--cpsc-line);
+  border-radius:var(--cpsc-radius);padding:28px 26px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:transform .3s var(--cpsc-ease),box-shadow .3s var(--cpsc-ease);
+}
+.cpsc-news-card:hover{transform:translateY(-5px);box-shadow:var(--cpsc-shadow-md);}
+.cpsc-news-meta{
+  display:flex;align-items:center;gap:10px;font-size:.8rem;
+  font-weight:600;color:var(--cpsc-mute);
+}
+.cpsc-news-src{
+  color:var(--cpsc-forest);text-transform:uppercase;letter-spacing:.06em;
+}
+.cpsc-news-card h3{
+  font-family:var(--cpsc-display);font-weight:600;font-size:1.12rem;
+  line-height:1.32;letter-spacing:-.01em;flex:1;
+}
+.cpsc-news-card:hover h3{color:var(--cpsc-navy);}
+.cpsc-news-link{
+  font-weight:700;font-size:.86rem;color:var(--cpsc-forest);
+  display:inline-flex;align-items:center;gap:7px;
+  transition:gap .25s var(--cpsc-ease);
+}
+.cpsc-news-card:hover .cpsc-news-link{gap:12px;}
+/* leg alert */
+.cpsc-alert{
+  margin-top:22px;border-radius:var(--cpsc-radius);
+  background:linear-gradient(120deg,var(--cpsc-navy),var(--cpsc-navy-deep));
+  padding:34px 38px;display:grid;grid-template-columns:auto 1fr auto;
+  gap:26px;align-items:center;
+}
+.cpsc-alert-badge{
+  width:58px;height:58px;border-radius:14px;flex-shrink:0;
+  background:var(--cpsc-gold);display:grid;place-items:center;
+  color:var(--cpsc-navy-deep);
+}
+.cpsc-alert-txt h3{
+  font-family:var(--cpsc-display);font-weight:700;font-size:1.2rem;color:#fff;
+}
+.cpsc-alert-txt p{color:rgba(255,255,255,.78);font-size:.95rem;margin-top:4px;}
+.cpsc-alert .cpsc-btn-ghost{
+  color:#fff;border-color:rgba(255,255,255,.34);white-space:nowrap;
+}
+.cpsc-alert .cpsc-btn-ghost:hover{background:rgba(255,255,255,.12);}
+
+/* ============================================================
+   PARTNERS
+   ============================================================ */
+.cpsc-partners{background:var(--cpsc-paper);text-align:center;}
+.cpsc-partners .cpsc-sec-head{margin:0 auto 50px;}
+.cpsc-partner-tier{margin-bottom:38px;}
+.cpsc-partner-tier:last-child{margin-bottom:0;}
+.cpsc-tier-label{
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cpsc-mute);margin-bottom:18px;
+}
+.cpsc-partner-row{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+}
+.cpsc-partner-chip{
+  background:var(--cpsc-cloud);border:1px solid var(--cpsc-line);
+  border-radius:100px;padding:13px 26px;
+  font-weight:600;font-size:.95rem;color:var(--cpsc-slate);
+  transition:transform .25s var(--cpsc-ease),color .25s var(--cpsc-ease),border-color .25s var(--cpsc-ease),background .25s var(--cpsc-ease);
+}
+.cpsc-partner-chip:hover{
+  transform:translateY(-3px);color:var(--cpsc-navy);
+  border-color:var(--cpsc-periwinkle);background:#fff;
+}
+.cpsc-partner-chip.cpsc-chip-lead{
+  background:var(--cpsc-navy);color:#fff;border-color:var(--cpsc-navy);
+}
+.cpsc-partner-chip.cpsc-chip-lead:hover{background:var(--cpsc-navy-deep);}
+
+/* ============================================================
+   IMPACT / TESTIMONIAL
+   ============================================================ */
+.cpsc-impact{
+  background:linear-gradient(165deg,var(--cpsc-cloud) 0%,#e9e9f4 100%);
+}
+.cpsc-impact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:stretch;
+}
+.cpsc-impact-card{
+  background:#fff;border:1px solid var(--cpsc-line);
+  border-radius:var(--cpsc-radius);padding:44px 42px;
+  display:flex;flex-direction:column;
+}
+.cpsc-award-badge{
+  width:60px;height:60px;border-radius:15px;
+  background:linear-gradient(135deg,var(--cpsc-gold),#caa033);
+  display:grid;place-items:center;color:#fff;margin-bottom:22px;
+}
+.cpsc-impact-card h3{
+  font-family:var(--cpsc-display);font-weight:700;font-size:1.5rem;
+  letter-spacing:-.018em;line-height:1.18;
+}
+.cpsc-impact-card p{color:var(--cpsc-slate);margin-top:14px;font-size:1rem;}
+.cpsc-impact-card .cpsc-prog-link{margin-top:22px;}
+.cpsc-quote{
+  background:var(--cpsc-navy);border:none;color:#fff;position:relative;
+}
+.cpsc-quote-mark{
+  font-family:var(--cpsc-display);font-size:5.5rem;line-height:.5;
+  color:var(--cpsc-periwinkle);font-weight:800;margin-bottom:8px;
+}
+.cpsc-quote blockquote{
+  font-family:var(--cpsc-display);font-weight:500;
+  font-size:clamp(1.2rem,1.9vw,1.55rem);line-height:1.4;
+  letter-spacing:-.012em;flex:1;
+}
+.cpsc-quote-by{
+  margin-top:28px;display:flex;align-items:center;gap:14px;
+  border-top:1px solid rgba(255,255,255,.14);padding-top:24px;
+}
+.cpsc-quote-avatar{
+  width:50px;height:50px;border-radius:50%;flex-shrink:0;
+  background:var(--cpsc-gold);display:grid;place-items:center;
+  font-family:var(--cpsc-display);font-weight:800;color:var(--cpsc-navy-deep);
+  font-size:1.1rem;
+}
+.cpsc-quote-by strong{display:block;font-weight:700;font-size:1rem;}
+.cpsc-quote-by span{color:rgba(255,255,255,.7);font-size:.88rem;}
+
+/* ============================================================
+   CONTACT + FOOTER
+   ============================================================ */
+.cpsc-contact{background:var(--cpsc-paper);}
+.cpsc-contact-grid{
+  display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:start;
+}
+.cpsc-contact-info p{color:var(--cpsc-slate);margin-top:18px;}
+.cpsc-contact-rows{margin-top:30px;display:flex;flex-direction:column;gap:14px;}
+.cpsc-contact-rows a{
+  display:flex;align-items:center;gap:15px;
+  padding:18px 22px;border:1px solid var(--cpsc-line);
+  border-radius:var(--cpsc-radius-sm);background:var(--cpsc-cloud);
+  transition:transform .25s var(--cpsc-ease),border-color .25s var(--cpsc-ease),background .25s var(--cpsc-ease);
+}
+.cpsc-contact-rows a:hover{
+  transform:translateX(4px);border-color:var(--cpsc-periwinkle);background:#fff;
+}
+.cpsc-contact-ico{
+  width:44px;height:44px;border-radius:11px;flex-shrink:0;
+  background:var(--cpsc-forest);display:grid;place-items:center;color:#fff;
+}
+.cpsc-contact-rows span small{
+  display:block;font-size:.78rem;color:var(--cpsc-mute);
+  font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+}
+.cpsc-contact-rows span strong{
+  font-family:var(--cpsc-display);font-weight:600;font-size:1.05rem;color:var(--cpsc-ink);
+}
+/* form */
+.cpsc-form-card{
+  background:var(--cpsc-cloud);border:1px solid var(--cpsc-line);
+  border-radius:var(--cpsc-radius);padding:42px 40px;
+}
+.cpsc-form-card h3{
+  font-family:var(--cpsc-display);font-weight:700;font-size:1.45rem;
+  letter-spacing:-.015em;
+}
+.cpsc-form-card>p{color:var(--cpsc-slate);font-size:.96rem;margin-top:8px;}
+.cpsc-field{margin-top:20px;}
+.cpsc-field label{
+  display:block;font-weight:600;font-size:.85rem;color:var(--cpsc-ink);
+  margin-bottom:7px;
+}
+.cpsc-field input,.cpsc-field select{
+  width:100%;padding:14px 16px;font-family:var(--cpsc-body);font-size:.97rem;
+  border:1.5px solid var(--cpsc-line);border-radius:11px;background:#fff;
+  color:var(--cpsc-ink);transition:border-color .2s var(--cpsc-ease),box-shadow .2s var(--cpsc-ease);
+}
+.cpsc-field input:focus,.cpsc-field select:focus{
+  outline:none;border-color:var(--cpsc-forest);
+  box-shadow:0 0 0 4px rgba(47,112,80,.12);
+}
+.cpsc-field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cpsc-form-card button[type=submit]{
+  width:100%;margin-top:24px;justify-content:center;
+  background:var(--cpsc-forest);color:#fff;font-weight:700;
+  padding:16px;border-radius:100px;font-size:15px;
+  box-shadow:0 10px 26px rgba(47,112,80,.3);
+  transition:transform .25s var(--cpsc-ease),background .25s var(--cpsc-ease);
+}
+.cpsc-form-card button[type=submit]:hover{
+  background:var(--cpsc-forest-deep);transform:translateY(-2px);
+}
+.cpsc-form-note{
+  margin-top:14px;font-size:.82rem;color:var(--cpsc-mute);text-align:center;
+}
+.cpsc-form-ok{
+  margin-top:16px;background:rgba(47,112,80,.1);color:var(--cpsc-forest-deep);
+  border:1px solid rgba(47,112,80,.25);border-radius:10px;
+  padding:13px 16px;font-size:.9rem;font-weight:600;display:none;
+}
+.cpsc-form-ok.cpsc-show{display:block;}
+
+/* footer */
+.cpsc-footer{
+  background:var(--cpsc-navy-deep);color:rgba(255,255,255,.7);
+  padding:72px 0 32px;
+}
+.cpsc-footer-top{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;
+  padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.cpsc-footer-brand img{
+  height:48px;width:auto;background:#fff;padding:9px 13px;border-radius:10px;
+}
+.cpsc-footer-brand p{
+  margin-top:18px;font-size:.93rem;line-height:1.6;max-width:330px;
+}
+.cpsc-footer-social{display:flex;gap:11px;margin-top:22px;}
+.cpsc-footer-social a{
+  width:42px;height:42px;border-radius:11px;
+  background:rgba(255,255,255,.08);display:grid;place-items:center;color:#fff;
+  transition:background .25s var(--cpsc-ease),transform .25s var(--cpsc-ease);
+}
+.cpsc-footer-social a:hover{background:var(--cpsc-forest);transform:translateY(-3px);}
+.cpsc-footer-col h4{
+  font-family:var(--cpsc-display);font-weight:600;font-size:1rem;color:#fff;
+  margin-bottom:18px;
+}
+.cpsc-footer-col a{
+  display:block;font-size:.93rem;padding:6px 0;
+  transition:color .2s var(--cpsc-ease),padding-left .2s var(--cpsc-ease);
+}
+.cpsc-footer-col a:hover{color:#fff;padding-left:5px;}
+.cpsc-footer-bottom{
+  margin-top:32px;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:14px;font-size:.86rem;
+  color:rgba(255,255,255,.5);
+}
+.cpsc-footer-bottom a{color:rgba(255,255,255,.6);}
+.cpsc-footer-bottom a:hover{color:#fff;}
+
+/* ---------- scroll reveal ---------- */
+.cpsc-reveal{opacity:0;transform:translateY(36px);
+  transition:opacity .7s var(--cpsc-ease),transform .7s var(--cpsc-ease);}
+.cpsc-reveal.cpsc-in{opacity:1;transform:translateY(0);}
+.cpsc-reveal-d1{transition-delay:.08s;}
+.cpsc-reveal-d2{transition-delay:.16s;}
+.cpsc-reveal-d3{transition-delay:.24s;}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1080px){
+  .cpsc-prog-grid{grid-template-columns:repeat(2,1fr);}
+  .cpsc-news-grid{grid-template-columns:repeat(2,1fr);}
+  .cpsc-about-grid{grid-template-columns:1fr;gap:48px;}
+  .cpsc-camp-layout{grid-template-columns:1fr;}
+  .cpsc-stats{grid-template-columns:repeat(2,1fr);}
+  .cpsc-stat:nth-child(2){border-right:none;}
+  .cpsc-stat:nth-child(1),.cpsc-stat:nth-child(2){border-bottom:1px solid rgba(255,255,255,.1);}
+}
+@media (max-width:880px){
+  .cpsc-nav-links,.cpsc-nav-actions .cpsc-btn-ghost{display:none;}
+  .cpsc-burger{display:block;}
+  .cpsc-section{padding:76px 0;}
+  .cpsc-impact-grid{grid-template-columns:1fr;}
+  .cpsc-contact-grid{grid-template-columns:1fr;gap:44px;}
+  .cpsc-join-inner{grid-template-columns:1fr;gap:30px;}
+  .cpsc-footer-top{grid-template-columns:1fr 1fr;gap:34px;}
+  .cpsc-footer-brand{grid-column:1/-1;}
+  .cpsc-alert{grid-template-columns:1fr;text-align:center;justify-items:center;gap:18px;}
+  .cpsc-news-head{align-items:flex-start;}
+}
+@media (max-width:560px){
+  body{font-size:16px;}
+  .cpsc-wrap{padding:0 20px;}
+  .cpsc-nav{padding:0 20px;}
+  .cpsc-hero{padding:140px 0 84px;}
+  .cpsc-prog-grid,.cpsc-news-grid,.cpsc-camp-grid{grid-template-columns:1fr;}
+  .cpsc-stats{grid-template-columns:1fr;}
+  .cpsc-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);}
+  .cpsc-stat:last-child{border-bottom:none;}
+  .cpsc-field-row{grid-template-columns:1fr;}
+  .cpsc-footer-top{grid-template-columns:1fr;}
+  .cpsc-footer-bottom{flex-direction:column;text-align:center;}
+  .cpsc-impact-card,.cpsc-form-card{padding:32px 26px;}
+  .cpsc-mv-card,.cpsc-event{padding:26px 22px;}
+  .cpsc-hero-tags{display:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;}
+  .cpsc-reveal,.cpsc-fade,.cpsc-drawer a{opacity:1!important;transform:none!important;}
+}
+</style>
+</head>
+<body>
+
+<a class="cpsc-skip" href="#cpsc-main">Skip to main content</a>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+<!-- ============ HEADER ============ -->
+<header class="cpsc-header" id="cpsc-header">
+  <nav class="cpsc-nav" aria-label="Primary">
+    <a class="cpsc-logo" href="https://www.calpsc.org/" aria-label="California Product Stewardship Council home">
+      <img src="https://static.wixstatic.com/media/c1132e_37933525f7e845b9b80cef751a6b0871~mv2.png/v1/fill/w_234,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/12-17-08%20CPSC-logo-tagline%20for%20print.png" alt="California Product Stewardship Council logo" width="150" height="50">
+    </a>
+    <ul class="cpsc-nav-links">
+      <li><a href="#cpsc-about">About</a></li>
+      <li><a href="#cpsc-programs">Programs</a></li>
+      <li><a href="#cpsc-campaigns">Campaigns</a></li>
+      <li><a href="https://www.calpsc.org/legislation">Legislation</a></li>
+      <li><a href="#cpsc-news">News</a></li>
+    </ul>
+    <div class="cpsc-nav-actions">
+      <a class="cpsc-btn cpsc-btn-ghost" href="#cpsc-contact">Contact</a>
+      <a class="cpsc-btn cpsc-btn-primary" href="http://paypal.me/calpsc">
+        Donate
+        <svg class="cpsc-btn-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <button class="cpsc-burger" id="cpsc-burger" aria-label="Open menu" aria-expanded="false" aria-controls="cpsc-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<div class="cpsc-drawer" id="cpsc-drawer" aria-hidden="true">
+  <a href="#cpsc-about">About<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></a>
+  <a href="#cpsc-programs">Programs<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></a>
+  <a href="#cpsc-campaigns">Campaigns<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></a>
+  <a href="https://www.calpsc.org/legislation">Legislation<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></a>
+  <a href="#cpsc-news">News<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></a>
+  <a href="#cpsc-contact">Contact<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></a>
+  <div class="cpsc-drawer-cta">
+    <a class="cpsc-btn cpsc-btn-primary" href="http://paypal.me/calpsc">Donate Now</a>
+  </div>
+</div>
+
+<main id="cpsc-main">
+
+<!-- ============ 1. HERO ============ -->
+<section class="cpsc-hero" aria-label="Introduction">
+  <div class="cpsc-hero-bg">
+    <img src="https://static.wixstatic.com/media/ad724e_20494a1507874b49bb546dc4f72b50e6~mv2.jpg/v1/fill/w_1480,h_900,al_c,q_85/ad724e_20494a1507874b49bb546dc4f72b50e6~mv2.jpg" alt="California State Capitol building in Sacramento">
+  </div>
+  <div class="cpsc-wrap">
+    <div class="cpsc-hero-inner">
+      <h1 class="cpsc-fade">Building California's <em>circular economy</em>, product by product.</h1>
+      <p class="cpsc-fade">A statewide network of local governments, businesses, and advocates working to make producers responsible for the full lifecycle of the products they sell.</p>
+      <div class="cpsc-hero-cta cpsc-fade">
+        <a class="cpsc-btn cpsc-btn-primary" href="http://paypal.me/calpsc">
+          Support Our Mission
+          <svg class="cpsc-btn-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="cpsc-hero-tags cpsc-fade">
+        <span>Extended Producer Responsibility</span>
+        <span>Zero Waste Policy</span>
+        <span>14+ Stewardship Programs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. ABOUT ============ -->
+<section class="cpsc-section cpsc-about" id="cpsc-about" aria-label="About the organization">
+  <div class="cpsc-wrap">
+    <div class="cpsc-about-grid">
+      <div class="cpsc-about-copy cpsc-reveal">
+        <span class="cpsc-kicker">Who We Are</span>
+        <h2 class="cpsc-h2">California's expert voice on producer responsibility.</h2>
+        <p>The California Product Stewardship Council (CPSC) is a powerful network of local governments, non-profit organizations, businesses, and individuals advancing policies and projects where producers share responsibility for managing problem products at the end of their life.</p>
+        <p>As California's thought leader on the Extended Producer Responsibility movement, CPSC has helped pass landmark legislation and run pilot programs that prove a circular economy works — keeping toxic materials out of communities and creating new markets for recovered resources.</p>
+      </div>
+      <div class="cpsc-mv cpsc-reveal cpsc-reveal-d1">
+        <div class="cpsc-mv-card cpsc-mv-mission">
+          <h3>
+            <span class="cpsc-mv-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>
+            </span>
+            Our Mission
+          </h3>
+          <p>To shift California's economy from a linear model — one that subsidizes resource extraction and ratepayer-funded disposal — toward a circular economy built on producer-financed recovery programs with transparent, reliable oversight.</p>
+        </div>
+        <div class="cpsc-mv-card cpsc-mv-vision">
+          <h3>
+            <span class="cpsc-mv-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </span>
+            Our Vision
+          </h3>
+          <p>Producers hold primary responsibility to establish, fund, and manage end-of-life systems for their products — with accountability and transparency that improves the health and well-being of all Californians.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- stat band -->
+    <div class="cpsc-stats cpsc-reveal" aria-label="Our impact in numbers">
+      <div class="cpsc-stat">
+        <div class="cpsc-stat-num">26M+</div>
+        <div class="cpsc-stat-label">Californians supporting producer responsibility</div>
+      </div>
+      <div class="cpsc-stat">
+        <div class="cpsc-stat-num">~70%</div>
+        <div class="cpsc-stat-label">Of the state's population behind the EPR movement</div>
+      </div>
+      <div class="cpsc-stat">
+        <div class="cpsc-stat-num">150</div>
+        <div class="cpsc-stat-label">Local resolutions passed supporting stewardship</div>
+      </div>
+      <div class="cpsc-stat">
+        <div class="cpsc-stat-num">14+</div>
+        <div class="cpsc-stat-label">Established &amp; pending stewardship programs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. PROGRAMS ============ -->
+<section class="cpsc-section cpsc-programs" id="cpsc-programs" aria-label="Programs and initiatives">
+  <div class="cpsc-wrap">
+    <div class="cpsc-sec-head cpsc-reveal">
+      <span class="cpsc-kicker">Stewardship Programs</span>
+      <h2 class="cpsc-h2">Solutions for hard-to-manage products.</h2>
+      <p class="cpsc-lead">California operates more than a dozen product stewardship programs across the spectrum — from producer responsibility to consumer-funded recovery. Explore the materials we work on.</p>
+    </div>
+
+    <div class="cpsc-prog-grid">
+      <article class="cpsc-prog-card cpsc-reveal">
+        <div class="cpsc-prog-ico cpsc-c-forest" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="7" width="12" height="14" rx="2"/><path d="M9 7V4h6v3M10 12v4M14 12v4"/></svg>
+        </div>
+        <span class="cpsc-prog-tag cpsc-tag-epr">Producer Responsibility</span>
+        <h3>Batteries</h3>
+        <p>Safe collection and recycling of loose household batteries to keep fire hazards out of the waste stream.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/battery-stewardship">Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d1">
+        <div class="cpsc-prog-ico cpsc-c-navy" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M9 3h6M8 9h8l1 9a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3Z"/></svg>
+        </div>
+        <span class="cpsc-prog-tag cpsc-tag-epr">Producer Responsibility</span>
+        <h3>Pharmaceuticals &amp; Sharps</h3>
+        <p>Convenient take-back of unused medicine and home-generated sharps to protect families and waterways.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_6be421b01b334f1bbabd89df65560382.pdf">Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d2">
+        <div class="cpsc-prog-ico cpsc-c-peri" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4-8 4-8-4ZM4 7v10l8 4M20 7v10l-8 4"/></svg>
+        </div>
+        <span class="cpsc-prog-tag cpsc-tag-epr">Producer Responsibility</span>
+        <h3>Textiles</h3>
+        <p>First-in-the-nation textile EPR — building recovery, reuse, and repair systems for clothing and fabric.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/cpsc-textilestewardship">Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d3">
+        <div class="cpsc-prog-ico cpsc-c-sage" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        </div>
+        <span class="cpsc-prog-tag cpsc-tag-con">Emerging Program</span>
+        <h3>Solar Panels</h3>
+        <p>Building collection pathways for end-of-life solar panels, with free pilot pickups and a reuse map.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/cpsc-solarstewardship">Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cpsc-prog-card cpsc-reveal">
+        <div class="cpsc-prog-ico cpsc-c-forest" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7l-1 12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7M3 7h18M9 7V4h6v3"/><path d="M10 11v6M14 11v6"/></svg>
+        </div>
+        <span class="cpsc-prog-tag cpsc-tag-con">Consumer Responsibility</span>
+        <h3>Paint &amp; Carpet</h3>
+        <p>Statewide recovery programs that divert leftover paint and used carpet from landfills into reuse.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_9254006802ab43db90e035c5f2ab65a6.pdf">Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d1">
+        <div class="cpsc-prog-ico cpsc-c-navy" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M6 7V5h12v2M6 19v2M18 19v2"/></svg>
+        </div>
+        <span class="cpsc-prog-tag cpsc-tag-con">Consumer Responsibility</span>
+        <h3>Mattresses &amp; Tires</h3>
+        <p>Recovery and recycling systems that handle bulky, hard-to-dispose products responsibly statewide.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_b63826a5f56b463baeace608a47453a6.pdf">Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d2">
+        <div class="cpsc-prog-ico cpsc-c-peri" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <span class="cpsc-prog-tag cpsc-tag-con">Consumer Responsibility</span>
+        <h3>Electronics</h3>
+        <p>Programs for e-waste recovery — keeping toxic electronics out of landfills and recovering valuable materials.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_6b8a992256674f98a144c55653f95ff1.pdf">Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d3">
+        <div class="cpsc-prog-ico cpsc-c-sage" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22V8a3 3 0 0 1 6 0v14M7 22h10M11 8V5a1 1 0 0 1 2 0v3"/></svg>
+        </div>
+        <span class="cpsc-prog-tag cpsc-tag-con">Emerging Program</span>
+        <h3>Gas Cylinders</h3>
+        <p>Promoting refillable propane cylinders and safe reuse of single-use camping canisters.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_99dc468b9b0a4335b11745e506372133.pdf">Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+    </div>
+
+    <div class="cpsc-prog-more cpsc-reveal">
+      <a class="cpsc-btn cpsc-btn-ghost" href="https://www.calpsc.org/product-stewardship">
+        View all stewardship programs
+        <svg class="cpsc-btn-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. MEMBERSHIP / PARTICIPATION CTA ============ -->
+<section class="cpsc-section cpsc-join" aria-label="Get involved">
+  <div class="cpsc-wrap">
+    <div class="cpsc-join-inner cpsc-reveal">
+      <div>
+        <h2>Bring producer responsibility to your community.</h2>
+        <p>Whether you're a city, county, business, or advocate — CPSC helps you take the first step toward safer, healthier communities. Join our network of stakeholders or become a sponsor and help shape California's circular future.</p>
+      </div>
+      <div class="cpsc-join-actions">
+        <a class="cpsc-btn cpsc-btn-primary" href="#cpsc-contact">
+          Become a Stakeholder
+          <svg class="cpsc-btn-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="cpsc-btn cpsc-btn-ghost" href="https://www.calpsc.org/about-us">Explore Sponsorship</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. CAMPAIGNS / EVENTS ============ -->
+<section class="cpsc-section cpsc-campaigns" id="cpsc-campaigns" aria-label="Campaigns and events">
+  <div class="cpsc-wrap">
+    <div class="cpsc-sec-head cpsc-reveal">
+      <span class="cpsc-kicker">Campaigns &amp; Events</span>
+      <h2 class="cpsc-h2">Active work, on the ground.</h2>
+      <p class="cpsc-lead">From medicine disposal to carpet recycling, propane tank reuse to battery stewardship — our campaigns turn policy into real-world change.</p>
+    </div>
+
+    <div class="cpsc-camp-layout">
+      <div class="cpsc-camp-grid cpsc-reveal">
+        <a class="cpsc-camp-card cpsc-camp-1" href="https://www.calpsc.org/cpsc-textilestewardship">
+          <span class="cpsc-camp-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4-8 4-8-4ZM4 7v10l8 4M20 7v10l-8 4"/></svg>
+          </span>
+          <h3>Textile Stewardship Pilots</h3>
+          <p>Recovery, reuse, and repair pilots building circular systems for clothing across California.</p>
+        </a>
+        <a class="cpsc-camp-card cpsc-camp-2" href="https://www.calpsc.org/cpsc-solarstewardship">
+          <span class="cpsc-camp-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2"/></svg>
+          </span>
+          <h3>Solar Stewardship</h3>
+          <p>Free pilot collection of residential solar panels and an interactive reuse map.</p>
+        </a>
+        <a class="cpsc-camp-card cpsc-camp-3" href="https://www.calpsc.org/marineflares">
+          <span class="cpsc-camp-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 8 8 12 12 22 16 12 16 8 12 2Z"/></svg>
+          </span>
+          <h3>Make the Flare Switch</h3>
+          <p>Safe disposal of expired marine flares and a push toward reusable electronic alternatives.</p>
+        </a>
+        <a class="cpsc-camp-card cpsc-camp-4" href="https://www.calpsc.org/battery-stewardship">
+          <span class="cpsc-camp-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="7" width="12" height="14" rx="2"/><path d="M9 7V4h6v3M11 11l-1 4h3l-1 4"/></svg>
+          </span>
+          <h3>Battery Stewardship</h3>
+          <p>Reducing fire risk through safe, accessible battery collection and recycling statewide.</p>
+        </a>
+      </div>
+
+      <article class="cpsc-event cpsc-reveal cpsc-reveal-d1">
+        <span class="cpsc-event-flag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Upcoming Event
+        </span>
+        <h3>Textile Recovery Education Event</h3>
+        <p class="cpsc-event-desc">A free community event with CPSC and San Joaquin County Public Works, funded by CalRecycle — featuring speakers on local textile collection, reuse, and the future of textile circularity.</p>
+        <div class="cpsc-event-meta">
+          <div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+            May 29, 2026 · 9 AM – 2 PM
+          </div>
+          <div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Robert J. Cabral Ag Center, Stockton
+          </div>
+        </div>
+        <a class="cpsc-btn cpsc-btn-primary" href="https://www.surveymonkey.com/r/SJTextileEvent">
+          RSVP for this Event
+          <svg class="cpsc-btn-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. NEWS / ANNOUNCEMENTS ============ -->
+<section class="cpsc-section cpsc-news" id="cpsc-news" aria-label="News and announcements">
+  <div class="cpsc-wrap">
+    <div class="cpsc-news-head cpsc-reveal">
+      <div class="cpsc-sec-head" style="margin-bottom:0;">
+        <span class="cpsc-kicker">In the News</span>
+        <h2 class="cpsc-h2">CPSC in the headlines.</h2>
+      </div>
+      <a class="cpsc-btn cpsc-btn-ghost" href="https://www.calpsc.org/announcements">
+        All announcements
+        <svg class="cpsc-btn-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="cpsc-news-grid">
+      <article class="cpsc-news-card cpsc-reveal">
+        <div class="cpsc-news-meta">
+          <span class="cpsc-news-src">Floor Daily</span><span>·</span><span>May 7, 2026</span>
+        </div>
+        <h3>CARE Meeting Focuses on Recycling Innovation and New Legislation</h3>
+        <a class="cpsc-news-link" href="https://www.floordaily.net/flooring-news/care-meeting-focuses-on-recycling-innovation-new-york-legislation">Read article
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </article>
+
+      <article class="cpsc-news-card cpsc-reveal cpsc-reveal-d1">
+        <div class="cpsc-news-meta">
+          <span class="cpsc-news-src">Sourcing Journal</span><span>·</span><span>Mar 2, 2026</span>
+        </div>
+        <h3>Group Chosen to Implement California's Responsible Textile Recovery Act</h3>
+        <a class="cpsc-news-link" href="https://www.calpsc.org/_files/ugd/ad724e_2b51578fc2bb4adf933422b6b3e0480a.pdf">Read article
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </article>
+
+      <article class="cpsc-news-card cpsc-reveal cpsc-reveal-d2">
+        <div class="cpsc-news-meta">
+          <span class="cpsc-news-src">CalMatters</span><span>·</span><span>Jan 2, 2026</span>
+        </div>
+        <h3>New California Fee Targets Batteries in Power Tools and Devices</h3>
+        <a class="cpsc-news-link" href="https://www.calpsc.org/_files/ugd/ad724e_080b0b31149c4542b4e1add297a69835.pdf">Read article
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </article>
+    </div>
+
+    <!-- legislative alert -->
+    <div class="cpsc-alert cpsc-reveal">
+      <div class="cpsc-alert-badge" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+      <div class="cpsc-alert-txt">
+        <h3>Legislative Alert: SB 1010 Advances</h3>
+        <p>The CPSC-sponsored Refrigerant Stewardship and Recovery Act passed the Senate Appropriations Committee — establishing a new EPR program for safe refrigerant recovery from household appliances.</p>
+      </div>
+      <a class="cpsc-btn cpsc-btn-ghost" href="https://www.calpsc.org/legislation">Track Legislation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. PARTNERS / SPONSORS ============ -->
+<section class="cpsc-section cpsc-partners" aria-label="Partners and sponsors">
+  <div class="cpsc-wrap">
+    <div class="cpsc-sec-head cpsc-reveal">
+      <span class="cpsc-kicker">Our Supporters</span>
+      <h2 class="cpsc-h2">Backed by leaders across California.</h2>
+      <p class="cpsc-lead" style="margin-left:auto;margin-right:auto;">CPSC advocates on behalf of countless cities, counties, and jurisdictions — and is supported by sponsors who share our vision for responsible material management.</p>
+    </div>
+
+    <div class="cpsc-partner-tier cpsc-reveal">
+      <div class="cpsc-tier-label">Circular &amp; Platinum Sponsors</div>
+      <div class="cpsc-partner-row">
+        <span class="cpsc-partner-chip cpsc-chip-lead">Little Kamper</span>
+        <span class="cpsc-partner-chip cpsc-chip-lead">Recology</span>
+        <span class="cpsc-partner-chip cpsc-chip-lead">WM</span>
+      </div>
+    </div>
+
+    <div class="cpsc-partner-tier cpsc-reveal cpsc-reveal-d1">
+      <div class="cpsc-tier-label">Gold &amp; Silver Sponsors</div>
+      <div class="cpsc-partner-row">
+        <span class="cpsc-partner-chip">Republic Services</span>
+        <span class="cpsc-partner-chip">Marin Sanitary Service</span>
+        <span class="cpsc-partner-chip">CEAR Inc.</span>
+        <span class="cpsc-partner-chip">Waste Connections</span>
+        <span class="cpsc-partner-chip">GreenWaste</span>
+        <span class="cpsc-partner-chip">Circular Polymers</span>
+        <span class="cpsc-partner-chip">Fibershed</span>
+        <span class="cpsc-partner-chip">Rehrig Pacific</span>
+        <span class="cpsc-partner-chip">RRS</span>
+      </div>
+    </div>
+
+    <div class="cpsc-partner-tier cpsc-reveal cpsc-reveal-d2">
+      <div class="cpsc-tier-label">Bronze, Green &amp; Reciprocal Partners</div>
+      <div class="cpsc-partner-row">
+        <span class="cpsc-partner-chip">California Waste Haulers Council</span>
+        <span class="cpsc-partner-chip">Product Care Association</span>
+        <span class="cpsc-partner-chip">Textile Exchange</span>
+        <span class="cpsc-partner-chip">Sirius Signal</span>
+        <span class="cpsc-partner-chip">Green Cities of California</span>
+        <span class="cpsc-partner-chip">California Resource Recovery Association</span>
+        <span class="cpsc-partner-chip">Californians Against Waste</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. IMPACT / TESTIMONIAL ============ -->
+<section class="cpsc-section cpsc-impact" aria-label="Our impact">
+  <div class="cpsc-wrap">
+    <div class="cpsc-impact-grid">
+      <div class="cpsc-impact-card cpsc-reveal">
+        <div class="cpsc-award-badge" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>
+        </div>
+        <h3>Celebrating leadership through the Arrow Awards.</h3>
+        <p>Each year, CPSC honors California businesses and legislators for outstanding innovation, partnership, and leadership in product stewardship — recognized before more than 700 government and industry representatives.</p>
+        <a class="cpsc-prog-link" href="https://www.calpsc.org/arrow-award-winners">See the Arrow Award winners
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="cpsc-impact-card cpsc-quote cpsc-reveal cpsc-reveal-d1">
+        <div class="cpsc-quote-mark" aria-hidden="true">&ldquo;</div>
+        <blockquote>Our goals are to educate you about producer responsibility, inspire you, and give you the tools to take action on the products that matter most to your family and community.</blockquote>
+        <div class="cpsc-quote-by">
+          <span class="cpsc-quote-avatar" aria-hidden="true">DK</span>
+          <div>
+            <strong>Doug Kobold</strong>
+            <span>Executive Director, CPSC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. CONTACT ============ -->
+<section class="cpsc-section cpsc-contact" id="cpsc-contact" aria-label="Contact us">
+  <div class="cpsc-wrap">
+    <div class="cpsc-contact-grid">
+      <div class="cpsc-contact-info cpsc-reveal">
+        <span class="cpsc-kicker">Get In Touch</span>
+        <h2 class="cpsc-h2">Let's build a circular California together.</h2>
+        <p>Have a product-related problem in your community? Want to learn how your city or county can adopt producer responsibility? We're here to help.</p>
+        <div class="cpsc-contact-rows">
+          <a href="mailto:info@calpsc.org">
+            <span class="cpsc-contact-ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            </span>
+            <span><small>Email</small><strong>info@calpsc.org</strong></span>
+          </a>
+          <a href="tel:2794447481">
+            <span class="cpsc-contact-ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+            </span>
+            <span><small>Phone</small><strong>279.444.7481</strong></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="cpsc-form-card cpsc-reveal cpsc-reveal-d1">
+        <h3>Join our stakeholder network</h3>
+        <p>Want to join our list of CPSC stakeholders? Complete the form below and we'll be in touch.</p>
+        <form id="cpsc-form" novalidate>
+          <div class="cpsc-field">
+            <label for="cpsc-name">Full name</label>
+            <input type="text" id="cpsc-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="cpsc-field-row">
+            <div class="cpsc-field">
+              <label for="cpsc-org">Organization</label>
+              <input type="text" id="cpsc-org" name="organization" placeholder="City, county, or business">
+            </div>
+            <div class="cpsc-field">
+              <label for="cpsc-phone">Phone number</label>
+              <input type="tel" id="cpsc-phone" name="phone" placeholder="(555) 000-0000">
+            </div>
+          </div>
+          <div class="cpsc-field">
+            <label for="cpsc-email">Email address</label>
+            <input type="email" id="cpsc-email" name="email" placeholder="you@example.com" required>
+          </div>
+          <button type="submit" class="cpsc-btn">
+            Submit
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <div class="cpsc-form-ok" id="cpsc-form-ok">
+            Thank you — your information has been received. We'll be in touch soon.
+          </div>
+          <p class="cpsc-form-note">Or email us directly at info@calpsc.org</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="cpsc-footer" aria-label="Site footer">
+  <div class="cpsc-wrap">
+    <div class="cpsc-footer-top">
+      <div class="cpsc-footer-brand">
+        <img src="https://static.wixstatic.com/media/c1132e_37933525f7e845b9b80cef751a6b0871~mv2.png/v1/fill/w_234,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/12-17-08%20CPSC-logo-tagline%20for%20print.png" alt="California Product Stewardship Council logo" width="160" height="53">
+        <p>California's thought leader on Product Stewardship and the Extended Producer Responsibility movement — shifting our economy toward a circular future.</p>
+        <div class="cpsc-footer-social">
+          <a href="https://www.facebook.com/CaliforniaPSC/" aria-label="CPSC on Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/calpsc/" aria-label="CPSC on Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/275758" aria-label="CPSC on LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.5 8h4V24h-4V8Zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4 0 4.75 2.65 4.75 6.1V24h-4v-7c0-1.67-.03-3.8-2.32-3.8-2.32 0-2.68 1.8-2.68 3.68V24H8V8Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="cpsc-footer-col">
+        <h4>Explore</h4>
+        <a href="https://www.calpsc.org/about-us">About Us</a>
+        <a href="https://www.calpsc.org/product-stewardship">Programs</a>
+        <a href="https://www.calpsc.org/campaigns">Campaigns</a>
+        <a href="https://www.calpsc.org/legislation">Legislation</a>
+      </div>
+      <div class="cpsc-footer-col">
+        <h4>Resources</h4>
+        <a href="https://www.calpsc.org/announcements">Announcements</a>
+        <a href="https://www.calpsc.org/arrow-award-winners">Arrow Awards</a>
+        <a href="https://www.calpsc.org/cpsc-textilestewardship">Textile Pilots</a>
+        <a href="https://www.calpsc.org/site-map">Site Map</a>
+      </div>
+      <div class="cpsc-footer-col">
+        <h4>Get Involved</h4>
+        <a href="http://paypal.me/calpsc">Donate</a>
+        <a href="#cpsc-contact">Become a Stakeholder</a>
+        <a href="https://www.surveymonkey.com/r/2026Arrows">2026 Arrow Nominations</a>
+        <a href="mailto:info@calpsc.org">Contact Us</a>
+      </div>
+    </div>
+    <div class="cpsc-footer-bottom">
+      <span>&copy; 2026 California Product Stewardship Council. All Rights Reserved.</span>
+      <span><a href="https://www.calpsc.org/site-map">Sitemap</a> &nbsp;·&nbsp; <a href="mailto:info@calpsc.org">info@calpsc.org</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- sticky header shadow ---- */
+  var header = document.getElementById('cpsc-header');
+  function onScroll(){
+    if(window.scrollY > 12) header.classList.add('cpsc-scrolled');
+    else header.classList.remove('cpsc-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---- mobile drawer ---- */
+  var burger = document.getElementById('cpsc-burger');
+  var drawer = document.getElementById('cpsc-drawer');
+  function setDrawer(open){
+    burger.classList.toggle('cpsc-open', open);
+    drawer.classList.toggle('cpsc-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){
+    setDrawer(!drawer.classList.contains('cpsc-open'));
+  });
+  drawer.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){ setDrawer(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && drawer.classList.contains('cpsc-open')) setDrawer(false);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 880 && drawer.classList.contains('cpsc-open')) setDrawer(false);
+  });
+
+  /* ---- scroll reveal ---- */
+  var reveals = document.querySelectorAll('.cpsc-reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('cpsc-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('cpsc-in'); });
+  }
+
+  /* ---- smooth anchor offset for sticky header ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
+      var id = this.getAttribute('href');
+      if(id === '#' || id === '#cpsc-main') return;
+      var target = document.querySelector(id);
+      if(target){
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.scrollY - 84;
+        window.scrollTo({top:top, behavior:'smooth'});
+      }
+    });
+  });
+
+  /* ---- stakeholder form ---- */
+  var form = document.getElementById('cpsc-form');
+  var ok = document.getElementById('cpsc-form-ok');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('cpsc-name');
+    var email = document.getElementById('cpsc-email');
+    var valid = true;
+    [name,email].forEach(function(field){
+      if(!field.value.trim()){
+        field.style.borderColor = '#c0392b';
+        valid = false;
+      } else {
+        field.style.borderColor = '';
+      }
+    });
+    if(valid){
+      ok.classList.add('cpsc-show');
+      form.querySelector('button[type=submit]').textContent = 'Submitted ✓';
+      setTimeout(function(){ form.reset(); }, 400);
+    }
+  });
+})();
+
+//glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+</body>
+</html>

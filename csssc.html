@@ -1,0 +1,2207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSSSC — California Standardbred Sires Stakes Committee</title>
+    <meta
+      name="description"
+      content="The California Standardbred Sires Stakes Committee provides oversight and administration of the Sires Stakes Fund and all related programs supporting California harness racing."
+    />
+    <meta
+      name="keywords"
+      content="California, harness racing, standardbred, sires stakes, stallion, stud fee, breeder, trotter, pacer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ==========================================================================
+   CSSSC HOMEPAGE REDESIGN — all classes prefixed `csx-` to avoid conflicts
+   ========================================================================== */
+
+      :root {
+        --csx-green-900: #0f3d24;
+        --csx-green-800: #16532f;
+        --csx-green-700: #1d6b3d;
+        --csx-green-600: #2a8651;
+        --csx-gold-600: #b8902f;
+        --csx-gold-500: #d6ab47;
+        --csx-gold-400: #e7c976;
+        --csx-ink: #1a2420;
+        --csx-slate: #51605a;
+        --csx-mist: #7d8b85;
+        --csx-line: #e3e7e4;
+        --csx-bg: #ffffff;
+        --csx-bg-soft: #f5f7f5;
+        --csx-bg-cream: #faf8f3;
+        --csx-radius: 16px;
+        --csx-radius-lg: 24px;
+        --csx-shadow-sm:
+          0 1px 3px rgba(15, 61, 36, 0.06), 0 6px 18px rgba(15, 61, 36, 0.05);
+        --csx-shadow-md: 0 10px 30px rgba(15, 61, 36, 0.1);
+        --csx-shadow-lg: 0 24px 60px rgba(15, 61, 36, 0.16);
+        --csx-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+        --csx-wrap: 1180px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        font-family:
+          "Manrope",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: var(--csx-ink);
+        background: var(--csx-bg);
+        line-height: 1.62;
+        font-size: 15.5px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+        color: var(--csx-green-900);
+      }
+
+      .csx-wrap {
+        max-width: var(--csx-wrap);
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      .csx-section {
+        padding: 110px 0;
+      }
+      .csx-section-head {
+        max-width: 620px;
+        margin-bottom: 56px;
+      }
+      .csx-kicker {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--csx-gold-600);
+        margin-bottom: 16px;
+      }
+      .csx-section-head h2 {
+        font-size: clamp(1.45rem, 2.3vw, 1.85rem);
+      }
+      .csx-section-head p {
+        margin-top: 16px;
+        color: var(--csx-slate);
+        font-size: 1rem;
+      }
+
+      /* ---------- Buttons ---------- */
+      .csx-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        padding: 14px 28px;
+        border-radius: 999px;
+        transition:
+          transform 0.25s var(--csx-ease),
+          box-shadow 0.25s var(--csx-ease),
+          background 0.25s var(--csx-ease);
+      }
+      .csx-btn-primary {
+        background: var(--csx-green-800);
+        color: #fff;
+        box-shadow: 0 8px 22px rgba(22, 83, 47, 0.28);
+      }
+      .csx-btn-primary:hover {
+        background: var(--csx-green-700);
+        transform: translateY(-3px);
+        box-shadow: 0 14px 32px rgba(22, 83, 47, 0.34);
+      }
+      .csx-btn-gold {
+        background: var(--csx-gold-500);
+        color: var(--csx-green-900);
+        box-shadow: 0 8px 22px rgba(184, 144, 47, 0.32);
+      }
+      .csx-btn-gold:hover {
+        background: var(--csx-gold-400);
+        transform: translateY(-3px);
+      }
+      .csx-btn svg {
+        transition: transform 0.25s var(--csx-ease);
+      }
+      .csx-btn:hover svg {
+        transform: translateX(4px);
+      }
+
+      /* ==========================================================================
+   HEADER
+   ========================================================================== */
+      .csx-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid transparent;
+        transition:
+          border-color 0.3s var(--csx-ease),
+          box-shadow 0.3s var(--csx-ease);
+      }
+      .csx-header.csx-scrolled {
+        border-bottom-color: var(--csx-line);
+        box-shadow: 0 4px 20px rgba(15, 61, 36, 0.05);
+      }
+      .csx-nav {
+        max-width: var(--csx-wrap);
+        margin: 0 auto;
+        padding: 14px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .csx-brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+      }
+      .csx-brand img {
+        height: 48px;
+        width: auto;
+      }
+      .csx-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.15;
+      }
+      .csx-brand-text strong {
+        font-family: "Fraunces", serif;
+        font-size: 1.28rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--csx-green-800);
+      }
+      .csx-brand-text span {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--csx-mist);
+        text-transform: uppercase;
+      }
+
+      .csx-menu {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .csx-menu a {
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--csx-slate);
+        padding: 9px 14px;
+        border-radius: 999px;
+        transition:
+          color 0.2s var(--csx-ease),
+          background 0.2s var(--csx-ease);
+      }
+      .csx-menu a:hover {
+        color: var(--csx-green-800);
+        background: var(--csx-bg-soft);
+      }
+
+      .csx-nav-cta {
+        margin-left: 12px;
+      }
+      .csx-nav-cta .csx-btn {
+        padding: 11px 20px;
+        font-size: 0.85rem;
+      }
+
+      .csx-burger {
+        display: none;
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        background: var(--csx-bg-soft);
+        position: relative;
+      }
+      .csx-burger span {
+        position: absolute;
+        left: 13px;
+        width: 20px;
+        height: 2px;
+        background: var(--csx-green-900);
+        border-radius: 2px;
+        transition:
+          transform 0.3s var(--csx-ease),
+          opacity 0.2s var(--csx-ease);
+      }
+      .csx-burger span:nth-child(1) {
+        top: 17px;
+      }
+      .csx-burger span:nth-child(2) {
+        top: 23px;
+      }
+      .csx-burger span:nth-child(3) {
+        top: 29px;
+      }
+      .csx-burger.csx-open span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .csx-burger.csx-open span:nth-child(2) {
+        opacity: 0;
+      }
+      .csx-burger.csx-open span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* Mobile menu drawer */
+      .csx-mobile {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: min(86vw, 360px);
+        background: #fff;
+        z-index: 99;
+        transform: translateX(100%);
+        transition: transform 0.42s var(--csx-ease);
+        box-shadow: -20px 0 60px rgba(15, 61, 36, 0.18);
+        padding: 100px 28px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .csx-mobile.csx-open {
+        transform: translateX(0);
+      }
+      .csx-mobile a {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--csx-green-900);
+        padding: 14px 14px;
+        border-radius: 12px;
+        border-bottom: 1px solid var(--csx-line);
+        transition:
+          background 0.2s var(--csx-ease),
+          padding-left 0.2s var(--csx-ease);
+      }
+      .csx-mobile a:hover {
+        background: var(--csx-bg-soft);
+        padding-left: 22px;
+      }
+      .csx-mobile .csx-btn {
+        margin-top: 18px;
+        justify-content: center;
+      }
+      .csx-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 61, 36, 0.42);
+        z-index: 98;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s var(--csx-ease);
+      }
+      .csx-overlay.csx-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* ==========================================================================
+   HERO  (with crossfading slideshow)
+   ========================================================================== */
+      .csx-hero {
+        position: relative;
+        background-color: var(--csx-green-900);
+        color: #fff;
+        overflow: hidden;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Slideshow layers */
+      .csx-hero-slides {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .csx-hero-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center 30%;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transform: scale(1.08);
+        transition:
+          opacity 1.4s var(--csx-ease),
+          transform 7s linear;
+      }
+      .csx-hero-slide.csx-active {
+        opacity: 1;
+        transform: scale(1);
+      }
+      /* Green/gold overlay so headline stays legible over every slide */
+      .csx-hero-veil {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          105deg,
+          rgba(15, 61, 36, 0.94) 0%,
+          rgba(22, 83, 47, 0.82) 42%,
+          rgba(15, 61, 36, 0.46) 100%
+        );
+        pointer-events: none;
+      }
+      .csx-hero::after {
+        content: "";
+        position: absolute;
+        right: -120px;
+        bottom: -140px;
+        width: 480px;
+        height: 480px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(214, 171, 71, 0.28) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Slide indicator dots */
+      .csx-hero-dots {
+        display: flex;
+        gap: 12px;
+        margin-top: 40px;
+      }
+      .csx-hero-dot {
+        width: 38px;
+        height: 4px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.28);
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s var(--csx-ease);
+      }
+      .csx-hero-dot:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .csx-hero-dot.csx-active {
+        background: rgba(255, 255, 255, 0.35);
+      }
+      .csx-hero-dot.csx-active::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--csx-gold-500);
+        transform-origin: left;
+        animation: csx-dot-fill 6s linear forwards;
+      }
+      @keyframes csx-dot-fill {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+      .csx-hero-inner {
+        max-width: var(--csx-wrap);
+        margin: 0 auto;
+        width: 100%;
+        padding: 110px 28px;
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1.4fr auto;
+        gap: 56px;
+        align-items: center;
+      }
+      .csx-hero-content {
+        max-width: 620px;
+      }
+      .csx-hero h1 {
+        color: #fff;
+        font-size: clamp(1.85rem, 3.3vw, 2.6rem);
+        line-height: 1.13;
+      }
+      .csx-hero h1 em {
+        font-style: italic;
+        color: var(--csx-gold-400);
+      }
+      .csx-hero p {
+        margin-top: 22px;
+        font-size: clamp(1rem, 1.3vw, 1.12rem);
+        color: rgba(255, 255, 255, 0.86);
+        max-width: 540px;
+      }
+      .csx-hero-actions {
+        margin-top: 38px;
+      }
+
+      /* Floating "at a glance" stats card */
+      .csx-hero-card {
+        width: 320px;
+        background: rgba(15, 61, 36, 0.42);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: var(--csx-radius-lg);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 14px 34px 22px;
+        box-shadow: 0 30px 70px rgba(15, 61, 36, 0.4);
+      }
+      .csx-hero-card-label {
+        display: block;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--csx-gold-400);
+        padding: 18px 0 8px;
+      }
+      .csx-hero-stat {
+        text-align: center;
+        padding: 22px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .csx-hero-card-label + .csx-hero-stat {
+        border-top: none;
+      }
+      .csx-hero-stat strong {
+        display: block;
+        font-family: "Fraunces", serif;
+        font-size: 2.4rem;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1;
+      }
+      .csx-hero-stat span {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.76);
+        font-weight: 500;
+      }
+
+      /* Reveal animation */
+      .csx-reveal {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      .csx-revealed {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.7s var(--csx-ease),
+          transform 0.7s var(--csx-ease);
+      }
+      .csx-hero .csx-reveal {
+        transition-delay: var(--d, 0s);
+      }
+
+      /* ==========================================================================
+   ABOUT
+   ========================================================================== */
+      .csx-about {
+        background: var(--csx-bg);
+      }
+      .csx-about-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .csx-about-text h2 {
+        font-size: clamp(1.45rem, 2.3vw, 1.8rem);
+      }
+      .csx-about-text p {
+        margin-top: 20px;
+        color: var(--csx-slate);
+        font-size: 1rem;
+      }
+      .csx-about-text p + p {
+        margin-top: 16px;
+      }
+
+      .csx-about-cards {
+        display: grid;
+        gap: 18px;
+      }
+      .csx-fact {
+        background: var(--csx-bg-cream);
+        border: 1px solid var(--csx-line);
+        border-radius: var(--csx-radius);
+        padding: 26px 28px;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        transition:
+          transform 0.3s var(--csx-ease),
+          box-shadow 0.3s var(--csx-ease),
+          border-color 0.3s var(--csx-ease);
+      }
+      .csx-fact:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--csx-shadow-md);
+        border-color: var(--csx-gold-400);
+      }
+      .csx-fact-icon {
+        flex-shrink: 0;
+        width: 52px;
+        height: 52px;
+        border-radius: 13px;
+        background: var(--csx-green-800);
+        display: grid;
+        place-items: center;
+      }
+      .csx-fact-icon svg {
+        width: 26px;
+        height: 26px;
+        stroke: var(--csx-gold-400);
+      }
+      .csx-fact h3 {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--csx-green-900);
+      }
+      .csx-fact p {
+        margin-top: 5px;
+        font-size: 0.96rem;
+        color: var(--csx-slate);
+      }
+
+      /* ==========================================================================
+   PROGRAMS
+   ========================================================================== */
+      .csx-programs {
+        background: var(--csx-bg-soft);
+      }
+      .csx-prog-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      .csx-prog-card {
+        background: #fff;
+        border-radius: var(--csx-radius);
+        padding: 34px 28px;
+        border: 1px solid var(--csx-line);
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.35s var(--csx-ease),
+          box-shadow 0.35s var(--csx-ease);
+      }
+      .csx-prog-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--csx-green-700),
+          var(--csx-gold-500)
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s var(--csx-ease);
+      }
+      .csx-prog-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--csx-shadow-lg);
+      }
+      .csx-prog-card:hover::before {
+        transform: scaleX(1);
+      }
+      .csx-prog-num {
+        font-family: "Fraunces", serif;
+        font-size: 1.1rem;
+        color: var(--csx-gold-600);
+        font-weight: 600;
+      }
+      .csx-prog-card h3 {
+        margin-top: 14px;
+        font-family: "Manrope", sans-serif;
+        font-size: 1.22rem;
+        font-weight: 800;
+        color: var(--csx-green-900);
+      }
+      .csx-prog-card p {
+        margin-top: 12px;
+        font-size: 0.98rem;
+        color: var(--csx-slate);
+      }
+
+      /* ==========================================================================
+   PARTICIPATION CTA
+   ========================================================================== */
+      .csx-join {
+        padding: 0;
+      }
+      .csx-join-band {
+        max-width: var(--csx-wrap);
+        margin: 0 auto;
+        background:
+          linear-gradient(
+            120deg,
+            rgba(15, 61, 36, 0.95) 0%,
+            rgba(22, 83, 47, 0.88) 100%
+          ),
+          url("https://calsired.chhaonline.com/img/home3.jpg") center / cover
+            no-repeat;
+        background-color: var(--csx-green-800);
+        border-radius: var(--csx-radius-lg);
+        padding: 76px 64px;
+        display: grid;
+        grid-template-columns: 1.4fr auto;
+        gap: 48px;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .csx-join-band::after {
+        content: "";
+        position: absolute;
+        left: -80px;
+        top: -80px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(214, 171, 71, 0.22),
+          transparent 70%
+        );
+      }
+      .csx-join-text {
+        position: relative;
+        z-index: 2;
+      }
+      .csx-join-text h2 {
+        color: #fff;
+        font-size: clamp(1.55rem, 2.6vw, 2rem);
+      }
+      .csx-join-text p {
+        margin-top: 16px;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.98rem;
+        max-width: 540px;
+      }
+      .csx-join-action {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* ==========================================================================
+   EVENTS
+   ========================================================================== */
+      .csx-events {
+        background: var(--csx-bg);
+      }
+      .csx-events-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .csx-event-card {
+        border-radius: var(--csx-radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--csx-line);
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.35s var(--csx-ease),
+          box-shadow 0.35s var(--csx-ease);
+      }
+      .csx-event-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--csx-shadow-lg);
+      }
+      .csx-event-media {
+        height: 220px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+      .csx-event-media.csx-m1 {
+        background-image:
+          linear-gradient(
+            180deg,
+            rgba(15, 61, 36, 0.12),
+            rgba(15, 61, 36, 0.55)
+          ),
+          url("https://calsired.chhaonline.com/img/home2.jpg");
+      }
+      .csx-event-media.csx-m2 {
+        background-image:
+          linear-gradient(
+            180deg,
+            rgba(15, 61, 36, 0.12),
+            rgba(15, 61, 36, 0.55)
+          ),
+          url("https://calsired.chhaonline.com/img/harness.jpg");
+      }
+      .csx-event-tag {
+        position: absolute;
+        left: 22px;
+        top: 22px;
+        background: var(--csx-gold-500);
+        color: var(--csx-green-900);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 7px 14px;
+        border-radius: 999px;
+      }
+      .csx-event-body {
+        padding: 30px 30px 34px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .csx-event-body h3 {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.32rem;
+        font-weight: 800;
+        color: var(--csx-green-900);
+      }
+      .csx-event-body p {
+        margin-top: 12px;
+        color: var(--csx-slate);
+        font-size: 1rem;
+      }
+      .csx-event-link {
+        margin-top: auto;
+        padding-top: 22px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        color: var(--csx-green-700);
+        font-size: 0.97rem;
+      }
+      .csx-event-link svg {
+        transition: transform 0.25s var(--csx-ease);
+      }
+      .csx-event-card:hover .csx-event-link svg {
+        transform: translateX(4px);
+      }
+
+      /* ==========================================================================
+   NEWS
+   ========================================================================== */
+      .csx-news {
+        background: var(--csx-bg-cream);
+      }
+      .csx-news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+      }
+      .csx-news-card {
+        background: #fff;
+        border: 1px solid var(--csx-line);
+        border-radius: var(--csx-radius);
+        padding: 32px 30px;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.3s var(--csx-ease),
+          box-shadow 0.3s var(--csx-ease),
+          border-color 0.3s var(--csx-ease);
+      }
+      .csx-news-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--csx-shadow-md);
+        border-color: var(--csx-gold-400);
+      }
+      .csx-news-date {
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--csx-gold-600);
+      }
+      .csx-news-card h3 {
+        margin-top: 12px;
+        font-family: "Manrope", sans-serif;
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--csx-green-900);
+        line-height: 1.35;
+      }
+      .csx-news-card p {
+        margin-top: 12px;
+        color: var(--csx-slate);
+        font-size: 0.98rem;
+        flex: 1;
+      }
+      .csx-news-divider {
+        margin-top: 20px;
+        height: 1px;
+        background: var(--csx-line);
+      }
+
+      /* ==========================================================================
+   PARTNERS
+   ========================================================================== */
+      .csx-partners {
+        background: var(--csx-bg);
+      }
+      .csx-partners .csx-section-head {
+        text-align: center;
+        margin: 0 auto 50px;
+      }
+      .csx-partner-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .csx-partner {
+        border: 1px solid var(--csx-line);
+        border-radius: var(--csx-radius);
+        padding: 32px 24px;
+        text-align: center;
+        background: var(--csx-bg-soft);
+        transition:
+          transform 0.3s var(--csx-ease),
+          box-shadow 0.3s var(--csx-ease);
+      }
+      .csx-partner:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--csx-shadow-sm);
+      }
+      .csx-partner strong {
+        display: block;
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        color: var(--csx-green-800);
+        font-size: 1.05rem;
+      }
+      .csx-partner span {
+        display: block;
+        margin-top: 6px;
+        font-size: 0.88rem;
+        color: var(--csx-mist);
+      }
+
+      /* ==========================================================================
+   IMPACT
+   ========================================================================== */
+      .csx-impact {
+        background:
+          linear-gradient(
+            115deg,
+            rgba(15, 61, 36, 0.97),
+            rgba(22, 83, 47, 0.93)
+          ),
+          url("https://calsired.chhaonline.com/img/news.jpg") center / cover
+            no-repeat;
+        background-color: var(--csx-green-900);
+        color: #fff;
+      }
+      .csx-impact-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .csx-impact-quote {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+        line-height: 1.32;
+        color: #fff;
+      }
+      .csx-impact-quote em {
+        color: var(--csx-gold-400);
+        font-style: italic;
+      }
+      .csx-impact-attr {
+        margin-top: 26px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .csx-impact-stats {
+        display: grid;
+        gap: 14px;
+      }
+      .csx-stat {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: var(--csx-radius);
+        padding: 24px 28px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .csx-stat strong {
+        font-family: "Fraunces", serif;
+        font-size: 2.2rem;
+        color: var(--csx-gold-400);
+        display: block;
+        line-height: 1;
+      }
+      .csx-stat span {
+        display: block;
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.96rem;
+      }
+
+      /* ==========================================================================
+   CONTACT + FOOTER
+   ========================================================================== */
+      .csx-contact {
+        background: var(--csx-bg-soft);
+      }
+      .csx-contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .csx-contact-text h2 {
+        font-size: clamp(1.45rem, 2.3vw, 1.8rem);
+      }
+      .csx-contact-text p {
+        margin-top: 16px;
+        color: var(--csx-slate);
+        font-size: 0.98rem;
+      }
+      .csx-contact-text .csx-btn {
+        margin-top: 30px;
+      }
+
+      .csx-contact-cards {
+        display: grid;
+        gap: 16px;
+      }
+      .csx-cc {
+        background: #fff;
+        border: 1px solid var(--csx-line);
+        border-radius: var(--csx-radius);
+        padding: 24px 26px;
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      .csx-cc-icon {
+        flex-shrink: 0;
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        background: var(--csx-bg-cream);
+        display: grid;
+        place-items: center;
+      }
+      .csx-cc-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: var(--csx-green-700);
+      }
+      .csx-cc-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--csx-mist);
+      }
+      .csx-cc strong {
+        display: block;
+        margin-top: 3px;
+        color: var(--csx-green-900);
+        font-size: 1.04rem;
+        font-weight: 700;
+      }
+      .csx-cc strong a:hover {
+        color: var(--csx-gold-600);
+      }
+
+      .csx-footer {
+        background: var(--csx-green-900);
+        color: rgba(255, 255, 255, 0.72);
+        padding: 70px 0 32px;
+      }
+      .csx-footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 48px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .csx-footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-bottom: 20px;
+      }
+      .csx-footer-brand img {
+        height: 52px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        opacity: 0.95;
+      }
+      .csx-footer-brand strong {
+        font-family: "Fraunces", serif;
+        font-size: 1.4rem;
+        letter-spacing: 0.08em;
+        color: #fff;
+      }
+      .csx-footer-about p {
+        font-size: 0.98rem;
+        max-width: 340px;
+      }
+      .csx-footer-col h4 {
+        font-family: "Manrope", sans-serif;
+        color: #fff;
+        font-size: 0.92rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+      .csx-footer-col a {
+        display: block;
+        padding: 7px 0;
+        font-size: 0.98rem;
+        color: rgba(255, 255, 255, 0.72);
+        transition:
+          color 0.2s var(--csx-ease),
+          padding-left 0.2s var(--csx-ease);
+      }
+      .csx-footer-col a:hover {
+        color: var(--csx-gold-400);
+        padding-left: 6px;
+      }
+      .csx-footer-bottom {
+        padding-top: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .csx-footer-bottom a:hover {
+        color: var(--csx-gold-400);
+      }
+
+      /* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+      @media (max-width: 1024px) {
+        .csx-section {
+          padding: 88px 0;
+        }
+        .csx-prog-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .csx-partner-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .csx-about-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .csx-impact-grid {
+          grid-template-columns: 1fr;
+          gap: 44px;
+        }
+        .csx-join-band {
+          grid-template-columns: 1fr;
+          padding: 60px 44px;
+        }
+        .csx-hero-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .csx-hero-content {
+          max-width: 640px;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .csx-menu,
+        .csx-nav-cta {
+          display: none;
+        }
+        .csx-burger {
+          display: block;
+        }
+        .csx-news-grid {
+          grid-template-columns: 1fr;
+        }
+        .csx-events-grid {
+          grid-template-columns: 1fr;
+        }
+        .csx-contact-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .csx-footer-top {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        body {
+          font-size: 16px;
+        }
+        .csx-wrap,
+        .csx-nav,
+        .csx-hero-inner {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .csx-section {
+          padding: 66px 0;
+        }
+        .csx-hero {
+          min-height: 88vh;
+        }
+        .csx-hero-inner {
+          padding-top: 96px;
+          padding-bottom: 72px;
+        }
+        .csx-prog-grid,
+        .csx-partner-row {
+          grid-template-columns: 1fr;
+        }
+        .csx-join-band {
+          padding: 48px 28px;
+          border-radius: var(--csx-radius);
+        }
+        .csx-hero-card {
+          width: 100%;
+          padding: 10px 26px 16px;
+        }
+        .csx-hero-stat {
+          padding: 16px 0;
+        }
+        .csx-hero-stat strong {
+          font-size: 2rem;
+        }
+        .csx-hero-dots {
+          margin-top: 32px;
+          flex-wrap: wrap;
+        }
+        .csx-brand-text strong {
+          font-size: 1.2rem;
+        }
+        .csx-brand img {
+          height: 40px;
+        }
+        .csx-section-head {
+          margin-bottom: 40px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .csx-reveal {
+          opacity: 1;
+          transform: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <style>
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+    </style>
+
+    <script>
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="csx-header" id="csx-header">
+      <nav class="csx-nav" aria-label="Primary">
+        <a class="csx-brand" href="#csx-top" aria-label="CSSSC home">
+          <img
+            src="https://calsired.chhaonline.com/img/logo.png"
+            alt="CSSSC logo"
+          />
+          <span class="csx-brand-text">
+            <strong>CSSSC</strong>
+            <span>California Standardbred Sires Stakes</span>
+          </span>
+        </a>
+
+        <div class="csx-menu">
+          <a href="#csx-about">About</a>
+          <a href="#csx-programs">Programs</a>
+          <a href="#csx-events">Events</a>
+          <a href="#csx-news">News</a>
+          <a href="#csx-partners">Partners</a>
+          <a href="#csx-contact">Contact</a>
+        </div>
+
+        <div class="csx-nav-cta">
+          <a class="csx-btn csx-btn-primary" href="#csx-join"
+            >Register a Sire</a
+          >
+        </div>
+
+        <button
+          class="csx-burger"
+          id="csx-burger"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <div class="csx-overlay" id="csx-overlay"></div>
+    <aside class="csx-mobile" id="csx-mobile" aria-label="Mobile navigation">
+      <a href="#csx-about">About</a>
+      <a href="#csx-programs">Programs</a>
+      <a href="#csx-events">Events</a>
+      <a href="#csx-news">News</a>
+      <a href="#csx-partners">Partners</a>
+      <a href="#csx-contact">Contact</a>
+      <a class="csx-btn csx-btn-primary" href="#csx-join">Register a Sire</a>
+    </aside>
+
+    <main id="csx-top">
+      <!-- ===================== 1. HERO ===================== -->
+      <section class="csx-hero">
+        <div class="csx-hero-slides" id="csx-hero-slides" aria-hidden="true">
+          <div
+            class="csx-hero-slide csx-active"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1512934772407-b292436089ee?w=1600&auto=format&fit=crop&q=70&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG9yc2UlMjBjb21wZXRpdGlvbnxlbnwwfHwwfHx8MA%3D%3D&quot;);
+            "
+          ></div>
+          <div
+            class="csx-hero-slide"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1509399316151-9b86c70fdd40?w=1600&auto=format&fit=crop&q=70&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aG9yc2UlMjBjb21wZXRpdGlvbnxlbnwwfHwwfHx8MA%3D%3D&quot;);
+            "
+          ></div>
+          <div
+            class="csx-hero-slide"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1605954973204-2be36e12a1a1?w=1600&auto=format&fit=crop&q=70&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGhvcnNlJTIwY29tcGV0aXRpb258ZW58MHx8MHx8fDA%3D&quot;);
+            "
+          ></div>
+          <div
+            class="csx-hero-slide"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1662062274618-8babed7851ff?w=1600&auto=format&fit=crop&q=70&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGhvcnNlJTIwY29tcGV0aXRpb258ZW58MHx8MHx8fDA%3D&quot;);
+            "
+          ></div>
+        </div>
+        <div class="csx-hero-veil"></div>
+
+        <div class="csx-hero-inner">
+          <div class="csx-hero-content">
+            <h1 class="csx-reveal" style="--d: 0.05s">
+              Strengthening California's <em>harness racing</em> heritage
+            </h1>
+            <p class="csx-reveal" style="--d: 0.18s">
+              The California Standardbred Sires Stakes Committee provides the
+              oversight, structure, and funding that keep the state's trotters
+              and pacers competing — from the Stallion Register through to
+              series purses and awards.
+            </p>
+            <div class="csx-hero-actions csx-reveal" style="--d: 0.3s">
+              <a class="csx-btn csx-btn-gold" href="#csx-about">
+                Explore the Program
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+
+            <div
+              class="csx-hero-dots csx-reveal"
+              id="csx-hero-dots"
+              style="--d: 0.36s"
+              role="tablist"
+              aria-label="Hero slides"
+            >
+              <button
+                class="csx-hero-dot csx-active"
+                type="button"
+                aria-label="Show slide 1"
+              ></button>
+              <button
+                class="csx-hero-dot"
+                type="button"
+                aria-label="Show slide 2"
+              ></button>
+              <button
+                class="csx-hero-dot"
+                type="button"
+                aria-label="Show slide 3"
+              ></button>
+              <button
+                class="csx-hero-dot"
+                type="button"
+                aria-label="Show slide 4"
+              ></button>
+            </div>
+          </div>
+
+          <aside
+            class="csx-hero-card csx-reveal"
+            style="--d: 0.42s"
+            aria-label="Program at a glance"
+          >
+            <span class="csx-hero-card-label">The Program at a Glance</span>
+            <div class="csx-hero-stat">
+              <strong>4</strong>
+              <span>Core Sires Stakes programs administered</span>
+            </div>
+            <div class="csx-hero-stat">
+              <strong>Cal Expo</strong>
+              <span>Home of Sires Stakes series race nights</span>
+            </div>
+            <div class="csx-hero-stat">
+              <strong>Statewide</strong>
+              <span>California Stallion Register coverage</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===================== 2. ABOUT ===================== -->
+      <section class="csx-section csx-about" id="csx-about">
+        <div class="csx-wrap">
+          <div class="csx-about-grid">
+            <div class="csx-about-text csx-reveal">
+              <span class="csx-kicker">About the Committee</span>
+              <h2>
+                Oversight built to protect breeders, owners, and the sport
+              </h2>
+              <p>
+                Established by law, the California Standardbred Sires Stakes
+                Committee (CSSSC, Inc.) administers the Sires Stakes Fund and
+                every program connected to it. Our work ensures that investment
+                in California-bred standardbreds is recognized, rewarded, and
+                safeguarded across generations.
+              </p>
+              <p>
+                The CSSSC Board meets regularly — generally in conjunction with
+                the California Harness Horsemen's Association board meetings —
+                to govern eligibility rules, set race conditions, and direct
+                purses and awards with transparency and consistency.
+              </p>
+            </div>
+
+            <div class="csx-about-cards">
+              <div class="csx-fact csx-reveal" style="--d: 0.06s">
+                <div class="csx-fact-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />
+                  </svg>
+                </div>
+                <div>
+                  <h3>Statutory Authority</h3>
+                  <p>
+                    Created by law to oversee and administer the Sires Stakes
+                    Fund for California.
+                  </p>
+                </div>
+              </div>
+              <div class="csx-fact csx-reveal" style="--d: 0.14s">
+                <div class="csx-fact-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3>Transparent Governance</h3>
+                  <p>
+                    A standing board sets eligibility, race conditions, purses,
+                    and awards.
+                  </p>
+                </div>
+              </div>
+              <div class="csx-fact csx-reveal" style="--d: 0.22s">
+                <div class="csx-fact-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3>Industry Partnership</h3>
+                  <p>
+                    Works alongside the California Harness Horsemen's
+                    Association statewide.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 3. PROGRAMS ===================== -->
+      <section class="csx-section csx-programs" id="csx-programs">
+        <div class="csx-wrap">
+          <div class="csx-section-head csx-reveal">
+            <span class="csx-kicker">Programs &amp; Services</span>
+            <h2>Four pillars of the Sires Stakes program</h2>
+            <p>
+              Every CSSSC program works together to support California's
+              standardbred breeding industry — from registering a stallion to
+              paying out series purses.
+            </p>
+          </div>
+
+          <div class="csx-prog-grid">
+            <article class="csx-prog-card csx-reveal" style="--d: 0.04s">
+              <span class="csx-prog-num">01</span>
+              <h3>California Stallion Register</h3>
+              <p>
+                The official register of stallions standing in California,
+                establishing eligibility for the Sires Stakes program.
+              </p>
+            </article>
+            <article class="csx-prog-card csx-reveal" style="--d: 0.12s">
+              <span class="csx-prog-num">02</span>
+              <h3>Eligibility &amp; Staked Generations</h3>
+              <p>
+                Clear rules defining which horses qualify and how staked
+                generations carry forward year to year.
+              </p>
+            </article>
+            <article class="csx-prog-card csx-reveal" style="--d: 0.2s">
+              <span class="csx-prog-num">03</span>
+              <h3>Sires Stakes Series Races</h3>
+              <p>
+                A full schedule of series races for eligible trotters and
+                pacers, run on Sires Stakes race nights.
+              </p>
+            </article>
+            <article class="csx-prog-card csx-reveal" style="--d: 0.28s">
+              <span class="csx-prog-num">04</span>
+              <h3>Purses &amp; Awards</h3>
+              <p>
+                Administration of purses and awards that reward competitive
+                performance and breeding investment.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 4. PARTICIPATION CTA ===================== -->
+      <section class="csx-join csx-section" id="csx-join">
+        <div class="csx-join-band csx-reveal">
+          <div class="csx-join-text">
+            <span class="csx-kicker" style="color: var(--csx-gold-400)"
+              >Take Part</span
+            >
+            <h2>Register your stallion and protect your investment</h2>
+            <p>
+              Standing a stallion in California or have you sold a
+              stakes-eligible horse? Keeping the CSSSC informed protects
+              potential earnings and keeps your records accurate. The committee
+              does not track ownership changes — confirm transfers and sales as
+              soon as possible.
+            </p>
+          </div>
+          <div class="csx-join-action">
+            <a class="csx-btn csx-btn-gold" href="#csx-contact">
+              Get Started
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 5. EVENTS ===================== -->
+      <section class="csx-section csx-events" id="csx-events">
+        <div class="csx-wrap">
+          <div class="csx-section-head csx-reveal">
+            <span class="csx-kicker">Events &amp; Racing</span>
+            <h2>Sires Stakes race nights and schedule</h2>
+            <p>
+              Series races run throughout the season for eligible
+              California-bred standardbreds. Stay current with the schedule and
+              key dates.
+            </p>
+          </div>
+
+          <div class="csx-events-grid">
+            <article class="csx-event-card csx-reveal" style="--d: 0.05s">
+              <div class="csx-event-media csx-m1">
+                <span class="csx-event-tag">Race Series</span>
+              </div>
+              <div class="csx-event-body">
+                <h3>Sires Stakes Series Races</h3>
+                <p>
+                  Eligible trotters and pacers compete across the Sires Stakes
+                  series on designated race nights at Cal Expo. Conditions and
+                  divisions are set by the CSSSC Board.
+                </p>
+                <a class="csx-event-link" href="#csx-contact">
+                  See current schedule
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="csx-event-card csx-reveal" style="--d: 0.15s">
+              <div class="csx-event-media csx-m2">
+                <span class="csx-event-tag">Board Meetings</span>
+              </div>
+              <div class="csx-event-body">
+                <h3>CSSSC Board Meetings</h3>
+                <p>
+                  The committee meets regularly, generally in conjunction with
+                  the California Harness Horsemen's Association board meetings,
+                  to govern the program and its purses.
+                </p>
+                <a class="csx-event-link" href="#csx-contact">
+                  Contact for meeting dates
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 6. NEWS ===================== -->
+      <section class="csx-section csx-news" id="csx-news">
+        <div class="csx-wrap">
+          <div class="csx-section-head csx-reveal">
+            <span class="csx-kicker">News &amp; Updates</span>
+            <h2>Latest from the committee</h2>
+            <p>
+              Program announcements, schedule releases, and important reminders
+              for breeders and owners.
+            </p>
+          </div>
+
+          <div class="csx-news-grid">
+            <article class="csx-news-card csx-reveal" style="--d: 0.05s">
+              <span class="csx-news-date">Schedule</span>
+              <h3>Sires Stakes schedule posted</h3>
+              <p>
+                The current Sires Stakes schedule is now available, outlining
+                series race nights and key dates for eligible standardbreds.
+              </p>
+              <div class="csx-news-divider"></div>
+            </article>
+
+            <article class="csx-news-card csx-reveal" style="--d: 0.14s">
+              <span class="csx-news-date">Stallion Register</span>
+              <h3>Stallion registration open</h3>
+              <p>
+                Owners standing a stallion in California can register for the
+                Stallion Register to establish Sires Stakes eligibility for
+                their progeny.
+              </p>
+              <div class="csx-news-divider"></div>
+            </article>
+
+            <article class="csx-news-card csx-reveal" style="--d: 0.23s">
+              <span class="csx-news-date">Reminder</span>
+              <h3>Report ownership and address changes</h3>
+              <p>
+                Sold a stakes-eligible horse or changed your address? Notify the
+                CSSSC promptly — the committee does not track ownership changes
+                automatically.
+              </p>
+              <div class="csx-news-divider"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 7. PARTNERS ===================== -->
+      <section class="csx-section csx-partners" id="csx-partners">
+        <div class="csx-wrap">
+          <div class="csx-section-head csx-reveal">
+            <span class="csx-kicker">Partners &amp; Stakeholders</span>
+            <h2>Working together for California harness racing</h2>
+          </div>
+
+          <div class="csx-partner-row">
+            <div class="csx-partner csx-reveal" style="--d: 0.04s">
+              <strong>CHHA</strong>
+              <span>California Harness Horsemen's Association</span>
+            </div>
+            <div class="csx-partner csx-reveal" style="--d: 0.12s">
+              <strong>Cal Expo</strong>
+              <span>Host venue for Sires Stakes race nights</span>
+            </div>
+            <div class="csx-partner csx-reveal" style="--d: 0.2s">
+              <strong>Breeders &amp; Owners</strong>
+              <span>California standardbred stallion and horse owners</span>
+            </div>
+            <div class="csx-partner csx-reveal" style="--d: 0.28s">
+              <strong>Trainers &amp; Drivers</strong>
+              <span>Horsemen competing in the Sires Stakes series</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 8. IMPACT ===================== -->
+      <section class="csx-section csx-impact">
+        <div class="csx-wrap">
+          <div class="csx-impact-grid">
+            <div class="csx-reveal">
+              <p class="csx-impact-quote">
+                "A well-run Sires Stakes program is what gives California
+                breeders the confidence to keep
+                <em>investing in the sport</em> — generation after generation."
+              </p>
+              <p class="csx-impact-attr">— The mission behind the CSSSC</p>
+            </div>
+            <div class="csx-impact-stats">
+              <div class="csx-stat csx-reveal" style="--d: 0.06s">
+                <strong>1 Fund</strong>
+                <span
+                  >The Sires Stakes Fund, administered with full oversight</span
+                >
+              </div>
+              <div class="csx-stat csx-reveal" style="--d: 0.14s">
+                <strong>4 Programs</strong>
+                <span
+                  >Register, eligibility, series races, purses &amp;
+                  awards</span
+                >
+              </div>
+              <div class="csx-stat csx-reveal" style="--d: 0.22s">
+                <strong>Year-Round</strong>
+                <span
+                  >Continuous board governance and program administration</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 9. CONTACT ===================== -->
+      <section class="csx-section csx-contact" id="csx-contact">
+        <div class="csx-wrap">
+          <div class="csx-contact-grid">
+            <div class="csx-contact-text csx-reveal">
+              <span class="csx-kicker">Get in Touch</span>
+              <h2>Questions about the program? We're here to help.</h2>
+              <p>
+                Whether you're registering a stallion, confirming eligibility,
+                or reporting a change of ownership, the CSSSC administrator can
+                guide you through it. Reach out by email, phone, or in person on
+                race nights.
+              </p>
+              <a
+                class="csx-btn csx-btn-primary"
+                href="mailto:csssc@chhaonline.com"
+              >
+                Email the Administrator
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="csx-contact-cards">
+              <div class="csx-cc csx-reveal" style="--d: 0.05s">
+                <div class="csx-cc-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <span class="csx-cc-label">Office</span>
+                  <strong
+                    >Room 80, Cal Expo Grandstand — open Sires Stakes race
+                    nights</strong
+                  >
+                </div>
+              </div>
+              <div class="csx-cc csx-reveal" style="--d: 0.12s">
+                <div class="csx-cc-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 4h16v16H4zM4 4l8 7 8-7" />
+                  </svg>
+                </div>
+                <div>
+                  <span class="csx-cc-label">Mailing Address</span>
+                  <strong>P.O. Box 254509, Sacramento, CA 95865</strong>
+                </div>
+              </div>
+              <div class="csx-cc csx-reveal" style="--d: 0.19s">
+                <div class="csx-cc-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <span class="csx-cc-label">Administrator — Donna Newman</span>
+                  <strong
+                    ><a href="tel:19169197469">916-919-7469</a> ·
+                    <a href="mailto:csssc@chhaonline.com"
+                      >csssc@chhaonline.com</a
+                    ></strong
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="csx-footer">
+      <div class="csx-wrap">
+        <div class="csx-footer-top">
+          <div class="csx-footer-about">
+            <div class="csx-footer-brand">
+              <img
+                src="https://calsired.chhaonline.com/img/logo.png"
+                alt="CSSSC logo"
+              />
+              <strong>CSSSC</strong>
+            </div>
+            <p>
+              California Standardbred Sires Stakes Committee, Inc. — providing
+              statutory oversight and administration of the Sires Stakes Fund
+              and all related programs for California harness racing.
+            </p>
+          </div>
+          <div class="csx-footer-col">
+            <h4>Explore</h4>
+            <a href="#csx-about">About the Committee</a>
+            <a href="#csx-programs">Programs &amp; Services</a>
+            <a href="#csx-events">Events &amp; Racing</a>
+            <a href="#csx-news">News &amp; Updates</a>
+            <a href="#csx-partners">Partners</a>
+          </div>
+          <div class="csx-footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:csssc@chhaonline.com">csssc@chhaonline.com</a>
+            <a href="tel:19169197469">916-919-7469</a>
+            <a href="#csx-contact">P.O. Box 254509, Sacramento, CA 95865</a>
+            <a href="#csx-join">Register a Sire</a>
+          </div>
+        </div>
+        <div class="csx-footer-bottom">
+          <span>© 2026 CSSSC, Inc. — All rights reserved.</span>
+          <span
+            >Website questions:
+            <a href="mailto:webmaster@chhaonline.com"
+              >webmaster@chhaonline.com</a
+            ></span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        /* ---- Sticky header shadow on scroll ---- */
+        var header = document.getElementById("csx-header");
+        var onScroll = function () {
+          header.classList.toggle("csx-scrolled", window.scrollY > 12);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        /* ---- Mobile menu ---- */
+        var burger = document.getElementById("csx-burger");
+        var mobile = document.getElementById("csx-mobile");
+        var overlay = document.getElementById("csx-overlay");
+
+        function setMenu(open) {
+          burger.classList.toggle("csx-open", open);
+          mobile.classList.toggle("csx-open", open);
+          overlay.classList.toggle("csx-open", open);
+          burger.setAttribute("aria-expanded", open ? "true" : "false");
+          document.body.style.overflow = open ? "hidden" : "";
+        }
+        burger.addEventListener("click", function () {
+          setMenu(!mobile.classList.contains("csx-open"));
+        });
+        overlay.addEventListener("click", function () {
+          setMenu(false);
+        });
+        mobile.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            setMenu(false);
+          });
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setMenu(false);
+        });
+
+        /* ---- Scroll reveal ---- */
+        var reveals = document.querySelectorAll(".csx-reveal");
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("csx-revealed");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+          );
+          reveals.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          reveals.forEach(function (el) {
+            el.classList.add("csx-revealed");
+          });
+        }
+
+        /* ---- Hero slideshow ---- */
+        (function () {
+          var slides = Array.prototype.slice.call(
+            document.querySelectorAll("#csx-hero-slides .csx-hero-slide"),
+          );
+          var dots = Array.prototype.slice.call(
+            document.querySelectorAll("#csx-hero-dots .csx-hero-dot"),
+          );
+          if (slides.length < 2) return;
+
+          var INTERVAL = 6000; // matches the dot-fill animation
+          var current = 0;
+          var timer = null;
+          var reduce =
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          function show(next) {
+            next = (next + slides.length) % slides.length;
+            if (next === current) return;
+            slides[current].classList.remove("csx-active");
+            dots[current].classList.remove("csx-active");
+            slides[next].classList.add("csx-active");
+            dots[next].classList.add("csx-active");
+            current = next;
+          }
+
+          function restartDot() {
+            /* re-trigger the dot progress animation */
+            var active = dots[current];
+            active.classList.remove("csx-active");
+            void active.offsetWidth;
+            active.classList.add("csx-active");
+          }
+
+          function start() {
+            if (reduce) return;
+            stop();
+            timer = setInterval(function () {
+              show(current + 1);
+            }, INTERVAL);
+          }
+          function stop() {
+            if (timer) {
+              clearInterval(timer);
+              timer = null;
+            }
+          }
+
+          dots.forEach(function (dot, i) {
+            dot.addEventListener("click", function () {
+              show(i);
+              restartDot();
+              start();
+            });
+          });
+
+          var hero = document.querySelector(".csx-hero");
+          hero.addEventListener("mouseenter", stop);
+          hero.addEventListener("mouseleave", start);
+          document.addEventListener("visibilitychange", function () {
+            if (document.hidden) {
+              stop();
+            } else {
+              start();
+            }
+          });
+
+          start();
+        })();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>California Institute for Rural Studies — Research for Rural Justice</title>
+<meta name="description" content="Since 1977, the California Institute for Rural Studies has produced rigorous, community-rooted research that fuels rural justice across California — from farmworker health to land, water, and labor." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ Design Tokens ============ */
+  :root {
+    --cirs-navy: #1a2347;
+    --cirs-navy-deep: #11183a;
+    --cirs-navy-soft: #2b3563;
+    --cirs-sun: #f4c542;
+    --cirs-sun-soft: #fde9a8;
+    --cirs-earth: #5a6b3b;
+    --cirs-earth-soft: #8a9c66;
+    --cirs-clay: #c44d3b;
+    --cirs-cream: #faf6ee;
+    --cirs-cream-deep: #f1ead9;
+    --cirs-ink: #1a1a1a;
+    --cirs-muted: #5b5b5b;
+    --cirs-line: #e5dfd0;
+    --cirs-white: #ffffff;
+
+    --serif: "Fraunces", "Cormorant Garamond", Georgia, serif;
+    --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    --maxw: 1240px;
+    --gutter: clamp(20px, 4vw, 56px);
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 24px;
+  }
+
+  /* ============ Reset / Base ============ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--cirs-ink);
+    background: var(--cirs-cream);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--cirs-navy);
+    font-variation-settings: "opsz" 144;
+  }
+
+  p { margin: 0; }
+
+  .cirs-wrap {
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  .cirs-eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cirs-clay);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cirs-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--cirs-clay);
+  }
+
+  /* ============ Buttons ============ */
+  .cirs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+  }
+  .cirs-btn-primary {
+    background: var(--cirs-navy);
+    color: var(--cirs-cream);
+  }
+  .cirs-btn-primary:hover {
+    background: var(--cirs-navy-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -12px rgba(26,35,71,0.5);
+  }
+  .cirs-btn-sun {
+    background: var(--cirs-sun);
+    color: var(--cirs-navy);
+  }
+  .cirs-btn-sun:hover {
+    background: #ebb930;
+    transform: translateY(-2px);
+  }
+  .cirs-btn-ghost {
+    color: var(--cirs-navy);
+    border: 1.5px solid var(--cirs-navy);
+    background: transparent;
+  }
+  .cirs-btn-ghost:hover {
+    background: var(--cirs-navy);
+    color: var(--cirs-cream);
+  }
+  .cirs-btn .cirs-arrow {
+    transition: transform 0.25s ease;
+  }
+  .cirs-btn:hover .cirs-arrow { transform: translateX(4px); }
+
+  /* ============ Header / Nav ============ */
+  .cirs-topbar {
+    background: var(--cirs-navy);
+    color: var(--cirs-cream);
+    font-size: 13px;
+    padding: 10px 0;
+  }
+  .cirs-topbar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .cirs-topbar a:hover { color: var(--cirs-sun); }
+  .cirs-topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.9;
+  }
+  .cirs-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .cirs-social {
+    display: flex;
+    gap: 14px;
+  }
+  .cirs-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(250,246,238,0.3);
+    transition: all 0.2s ease;
+  }
+  .cirs-social a:hover {
+    background: var(--cirs-sun);
+    color: var(--cirs-navy);
+    border-color: var(--cirs-sun);
+  }
+  .cirs-social svg { width: 13px; height: 13px; }
+
+  .cirs-header {
+    position: sticky;
+    top: 0;
+    background: var(--cirs-cream);
+    z-index: 100;
+    border-bottom: 1px solid var(--cirs-line);
+    backdrop-filter: blur(10px);
+  }
+  .cirs-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    gap: 24px;
+  }
+  .cirs-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .cirs-brand-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--cirs-cream-deep);
+  }
+  .cirs-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+  }
+  .cirs-brand-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--cirs-navy);
+    letter-spacing: -0.01em;
+  }
+  .cirs-brand-sub {
+    font-size: 11px;
+    color: var(--cirs-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  .cirs-menu {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cirs-menu-item {
+    position: relative;
+  }
+  .cirs-menu-link {
+    padding: 10px 14px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--cirs-navy);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+  .cirs-menu-link:hover { background: var(--cirs-cream-deep); }
+  .cirs-menu-link svg { width: 10px; height: 10px; opacity: 0.6; }
+
+  .cirs-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 240px;
+    background: white;
+    border: 1px solid var(--cirs-line);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    box-shadow: 0 24px 48px -20px rgba(26,35,71,0.25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: all 0.2s ease;
+    list-style: none;
+    margin: 0;
+  }
+  .cirs-menu-item:hover > .cirs-dropdown,
+  .cirs-menu-item:focus-within > .cirs-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .cirs-dropdown li a {
+    display: block;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--cirs-navy);
+    border-radius: 8px;
+    transition: background 0.15s ease;
+  }
+  .cirs-dropdown li a:hover { background: var(--cirs-cream); color: var(--cirs-clay); }
+
+  .cirs-nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cirs-burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    background: var(--cirs-navy);
+    color: var(--cirs-cream);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .cirs-burger svg { width: 20px; height: 20px; }
+
+  /* ============ Hero ============ */
+  .cirs-hero {
+    position: relative;
+    padding: clamp(60px, 8vw, 120px) 0 clamp(80px, 10vw, 140px);
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at top right, rgba(244,197,66,0.18), transparent 55%),
+      radial-gradient(ellipse at bottom left, rgba(90,107,59,0.12), transparent 60%),
+      var(--cirs-cream);
+  }
+  .cirs-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(26,35,71,0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(180deg, transparent, black 25%, black 75%, transparent);
+    pointer-events: none;
+  }
+  .cirs-hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  .cirs-hero-text { position: relative; z-index: 2; }
+  .cirs-hero-since {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 8px;
+    background: var(--cirs-white);
+    border: 1px solid var(--cirs-line);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cirs-navy);
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px -4px rgba(26,35,71,0.08);
+  }
+  .cirs-hero-since-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--cirs-sun);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cirs-navy);
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .cirs-hero h1 {
+    font-size: clamp(40px, 6.2vw, 78px);
+    line-height: 1.02;
+    margin-bottom: 24px;
+    color: var(--cirs-navy);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+  .cirs-hero h1 .cirs-hl {
+    position: relative;
+    display: inline-block;
+    color: var(--cirs-navy);
+  }
+  .cirs-hero h1 .cirs-hl::after {
+    content: "";
+    position: absolute;
+    left: -2px; right: -2px; bottom: 0.06em; height: 0.22em;
+    background: var(--cirs-sun);
+    z-index: -1;
+    border-radius: 4px;
+  }
+  .cirs-hero-lead {
+    font-size: clamp(16px, 1.4vw, 19px);
+    color: var(--cirs-muted);
+    max-width: 540px;
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+  .cirs-hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cirs-hero-visual {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--cirs-navy);
+    box-shadow: 0 40px 80px -30px rgba(26,35,71,0.5);
+  }
+  .cirs-hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cirs-hero-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(17,24,58,0.85) 100%);
+  }
+  .cirs-hero-card {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    color: var(--cirs-cream);
+  }
+  .cirs-hero-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cirs-sun);
+    margin-bottom: 8px;
+  }
+  .cirs-hero-card-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--cirs-cream);
+    font-weight: 500;
+  }
+  .cirs-hero-stat {
+    position: absolute;
+    top: -28px;
+    right: -28px;
+    width: 150px;
+    height: 150px;
+    background: var(--cirs-sun);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--cirs-navy);
+    text-align: center;
+    box-shadow: 0 20px 40px -15px rgba(244,197,66,0.6);
+    transform: rotate(-8deg);
+  }
+  .cirs-hero-stat-num {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .cirs-hero-stat-lbl {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    padding: 0 12px;
+    line-height: 1.3;
+  }
+
+  /* ============ Marquee / Trust strip ============ */
+  .cirs-marquee {
+    background: var(--cirs-navy);
+    color: var(--cirs-cream);
+    padding: 18px 0;
+    overflow: hidden;
+    border-top: 1px solid var(--cirs-navy-soft);
+    border-bottom: 1px solid var(--cirs-navy-soft);
+  }
+  .cirs-marquee-track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: cirs-scroll 40s linear infinite;
+  }
+  .cirs-marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--serif);
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cirs-sun-soft);
+  }
+  .cirs-marquee-item::before {
+    content: "✦";
+    color: var(--cirs-sun);
+    font-style: normal;
+  }
+  @keyframes cirs-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ============ Section base ============ */
+  .cirs-section {
+    padding: clamp(70px, 9vw, 130px) 0;
+  }
+  .cirs-section-head {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 60px;
+  }
+  .cirs-section-head h2 {
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.05;
+    color: var(--cirs-navy);
+    margin-top: 16px;
+    font-weight: 500;
+  }
+  .cirs-section-intro {
+    font-size: 17px;
+    color: var(--cirs-muted);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  /* ============ About ============ */
+  .cirs-about {
+    background: var(--cirs-cream);
+    position: relative;
+  }
+  .cirs-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .cirs-about-visual {
+    position: relative;
+  }
+  .cirs-about-img-main {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--cirs-navy);
+  }
+  .cirs-about-img-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cirs-about-img-accent {
+    position: absolute;
+    bottom: -40px;
+    right: -20px;
+    width: 50%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 8px solid var(--cirs-cream);
+    background: var(--cirs-earth);
+  }
+  .cirs-about-img-accent img { width: 100%; height: 100%; object-fit: cover; }
+  .cirs-about-deco {
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 130px;
+    height: 130px;
+    background: var(--cirs-sun);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.6;
+  }
+  .cirs-about-text h2 {
+    font-size: clamp(32px, 4.2vw, 52px);
+    margin-bottom: 24px;
+    line-height: 1.08;
+    font-weight: 500;
+  }
+  .cirs-about-text p {
+    font-size: 17px;
+    color: var(--cirs-muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .cirs-about-text p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-size: 4.4em;
+    float: left;
+    line-height: 0.85;
+    padding: 6px 12px 0 0;
+    color: var(--cirs-clay);
+    font-weight: 500;
+  }
+  .cirs-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .cirs-pillar {
+    padding: 18px 20px;
+    background: var(--cirs-white);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--cirs-sun);
+  }
+  .cirs-pillar-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--cirs-navy);
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .cirs-pillar-desc {
+    font-size: 13px;
+    color: var(--cirs-muted);
+    line-height: 1.5;
+  }
+
+  /* ============ Programs ============ */
+  .cirs-programs {
+    background: var(--cirs-navy);
+    color: var(--cirs-cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .cirs-programs::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--cirs-sun) 0%, transparent 70%);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .cirs-programs .cirs-section-head h2 {
+    color: var(--cirs-cream);
+  }
+  .cirs-programs .cirs-section-intro {
+    color: rgba(250,246,238,0.75);
+  }
+  .cirs-programs .cirs-eyebrow {
+    color: var(--cirs-sun);
+  }
+  .cirs-programs .cirs-eyebrow::before {
+    background: var(--cirs-sun);
+  }
+  .cirs-program-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .cirs-program {
+    background: var(--cirs-navy-deep);
+    border: 1px solid var(--cirs-navy-soft);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .cirs-program::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--cirs-sun);
+    transition: width 0.4s ease;
+  }
+  .cirs-program:hover { transform: translateY(-6px); border-color: var(--cirs-sun); }
+  .cirs-program:hover::after { width: 100%; }
+  .cirs-program-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(244,197,66,0.15);
+    color: var(--cirs-sun);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cirs-program-icon svg { width: 26px; height: 26px; }
+  .cirs-program-num {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    font-family: var(--serif);
+    font-size: 60px;
+    font-weight: 500;
+    color: rgba(244,197,66,0.12);
+    line-height: 1;
+    font-style: italic;
+  }
+  .cirs-program h3 {
+    color: var(--cirs-cream);
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .cirs-program-desc {
+    color: rgba(250,246,238,0.7);
+    font-size: 15px;
+    line-height: 1.65;
+    flex-grow: 1;
+  }
+  .cirs-program-link {
+    color: var(--cirs-sun);
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  .cirs-program-link:hover { border-color: var(--cirs-sun); }
+
+  /* ============ Impact / Stats ============ */
+  .cirs-impact {
+    background: var(--cirs-cream-deep);
+    padding: clamp(60px, 7vw, 100px) 0;
+  }
+  .cirs-impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .cirs-stat {
+    padding: 8px 0;
+    border-top: 1px solid var(--cirs-line);
+    padding-top: 24px;
+  }
+  .cirs-stat-num {
+    font-family: var(--serif);
+    font-size: clamp(48px, 5vw, 68px);
+    font-weight: 500;
+    color: var(--cirs-navy);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 10px;
+  }
+  .cirs-stat-num .cirs-stat-plus {
+    color: var(--cirs-clay);
+    font-style: italic;
+  }
+  .cirs-stat-label {
+    font-size: 14px;
+    color: var(--cirs-muted);
+    line-height: 1.5;
+    max-width: 200px;
+  }
+
+  /* ============ News / Storytelling ============ */
+  .cirs-news {
+    background: var(--cirs-cream);
+  }
+  .cirs-news-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 32px;
+  }
+  .cirs-news-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--cirs-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--cirs-line);
+  }
+  .cirs-news-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -25px rgba(26,35,71,0.2);
+  }
+  .cirs-news-card-img {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--cirs-earth-soft);
+  }
+  .cirs-news-card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .cirs-news-card:hover .cirs-news-card-img img { transform: scale(1.05); }
+  .cirs-news-card-body {
+    padding: 26px 26px 28px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .cirs-news-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .cirs-news-tag {
+    color: var(--cirs-clay);
+  }
+  .cirs-news-date {
+    color: var(--cirs-muted);
+  }
+  .cirs-news-divider {
+    width: 4px; height: 4px;
+    background: var(--cirs-line);
+    border-radius: 50%;
+  }
+  .cirs-news-card h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  .cirs-news-card-featured h3 { font-size: 28px; }
+  .cirs-news-card p {
+    font-size: 15px;
+    color: var(--cirs-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  .cirs-read {
+    color: var(--cirs-navy);
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+  }
+  .cirs-read:hover { color: var(--cirs-clay); }
+  .cirs-read .cirs-arrow { transition: transform 0.25s ease; }
+  .cirs-read:hover .cirs-arrow { transform: translateX(4px); }
+
+  /* ============ Testimonial ============ */
+  .cirs-testimonial {
+    background: var(--cirs-sun);
+    padding: clamp(70px, 8vw, 110px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cirs-testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .cirs-quote-mark {
+    font-family: var(--serif);
+    font-size: 200px;
+    line-height: 0.8;
+    color: var(--cirs-navy);
+    opacity: 0.15;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .cirs-quote-body {
+    font-family: var(--serif);
+    font-size: clamp(24px, 2.6vw, 36px);
+    line-height: 1.25;
+    color: var(--cirs-navy);
+    margin-bottom: 32px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .cirs-quote-attr {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cirs-quote-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--cirs-navy);
+    color: var(--cirs-sun);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .cirs-quote-name {
+    font-weight: 700;
+    color: var(--cirs-navy);
+    font-size: 16px;
+  }
+  .cirs-quote-role {
+    font-size: 13px;
+    color: var(--cirs-navy);
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+
+  /* ============ Get Involved / CTA ============ */
+  .cirs-cta {
+    background: var(--cirs-cream);
+    padding: clamp(70px, 8vw, 110px) 0;
+  }
+  .cirs-cta-card {
+    background: var(--cirs-navy);
+    border-radius: var(--radius-lg);
+    padding: clamp(40px, 6vw, 80px);
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .cirs-cta-card::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: var(--cirs-sun);
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .cirs-cta-card::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: 30%;
+    width: 200px;
+    height: 200px;
+    background: var(--cirs-clay);
+    border-radius: 50%;
+    opacity: 0.1;
+  }
+  .cirs-cta-card h2 {
+    color: var(--cirs-cream);
+    font-size: clamp(30px, 4vw, 48px);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    font-weight: 500;
+  }
+  .cirs-cta-card p {
+    color: rgba(250,246,238,0.8);
+    font-size: 17px;
+    line-height: 1.65;
+    margin-bottom: 32px;
+  }
+  .cirs-cta-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+  .cirs-cta-list {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .cirs-cta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 22px;
+    background: rgba(250,246,238,0.06);
+    border: 1px solid rgba(250,246,238,0.12);
+    border-radius: var(--radius-md);
+    color: var(--cirs-cream);
+    transition: background 0.2s ease;
+  }
+  .cirs-cta-item:hover {
+    background: rgba(244,197,66,0.12);
+    border-color: var(--cirs-sun);
+  }
+  .cirs-cta-item-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--cirs-sun);
+    color: var(--cirs-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cirs-cta-item-icon svg { width: 18px; height: 18px; }
+  .cirs-cta-item-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--cirs-cream);
+  }
+  .cirs-cta-item-desc {
+    font-size: 13px;
+    color: rgba(250,246,238,0.7);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+
+  /* ============ Partners ============ */
+  .cirs-partners {
+    background: var(--cirs-cream);
+    padding: 60px 0 80px;
+    border-top: 1px solid var(--cirs-line);
+  }
+  .cirs-partners-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cirs-muted);
+    margin-bottom: 36px;
+  }
+  .cirs-partners-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(28px, 5vw, 60px) clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  .cirs-partner-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--cirs-navy);
+    opacity: 0.55;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: opacity 0.2s ease;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .cirs-partner-logo small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.7;
+  }
+  .cirs-partner-logo:hover { opacity: 1; }
+
+  /* ============ Footer ============ */
+  .cirs-footer {
+    background: var(--cirs-navy-deep);
+    color: var(--cirs-cream);
+    padding: 80px 0 0;
+  }
+  .cirs-footer-top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+    gap: 50px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(250,246,238,0.12);
+  }
+  .cirs-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .cirs-footer-brand img {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--cirs-cream);
+  }
+  .cirs-footer-brand-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.2;
+    color: var(--cirs-cream);
+    font-weight: 500;
+  }
+  .cirs-footer-tag {
+    color: rgba(250,246,238,0.7);
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 320px;
+    margin-bottom: 24px;
+  }
+  .cirs-footer h4 {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cirs-sun);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cirs-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cirs-footer li a {
+    color: rgba(250,246,238,0.75);
+    font-size: 14.5px;
+    transition: color 0.2s ease;
+  }
+  .cirs-footer li a:hover { color: var(--cirs-sun); }
+
+  .cirs-newsletter {
+    margin-top: 8px;
+  }
+  .cirs-newsletter-form {
+    display: flex;
+    background: rgba(250,246,238,0.08);
+    border: 1px solid rgba(250,246,238,0.15);
+    border-radius: 999px;
+    padding: 4px;
+    margin-top: 16px;
+  }
+  .cirs-newsletter-form input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--cirs-cream);
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+  .cirs-newsletter-form input::placeholder { color: rgba(250,246,238,0.5); }
+  .cirs-newsletter-form button {
+    background: var(--cirs-sun);
+    color: var(--cirs-navy);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+  .cirs-newsletter-form button:hover { background: #ebb930; }
+  .cirs-newsletter p {
+    font-size: 13px;
+    color: rgba(250,246,238,0.6);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  .cirs-footer-bottom {
+    padding: 28px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    color: rgba(250,246,238,0.55);
+  }
+  .cirs-footer-bottom-links {
+    display: flex;
+    gap: 24px;
+  }
+  .cirs-footer-bottom-links a:hover { color: var(--cirs-sun); }
+
+  /* ============ Responsive ============ */
+  @media (max-width: 1024px) {
+    .cirs-hero-grid,
+    .cirs-about-grid,
+    .cirs-testimonial-grid,
+    .cirs-cta-card { grid-template-columns: 1fr; gap: 48px; }
+    .cirs-program-grid { grid-template-columns: repeat(2, 1fr); }
+    .cirs-news-grid { grid-template-columns: 1fr 1fr; }
+    .cirs-impact-grid { grid-template-columns: repeat(2, 1fr); }
+    .cirs-footer-top { grid-template-columns: 1fr 1fr; }
+    .cirs-section-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
+    .cirs-menu { display: none; }
+    .cirs-burger { display: inline-flex; }
+    .cirs-nav-cta .cirs-btn { display: none; }
+    .cirs-hero-stat {
+      width: 110px; height: 110px;
+      top: -20px; right: -10px;
+    }
+    .cirs-hero-stat-num { font-size: 28px; }
+    .cirs-about-img-accent { width: 45%; bottom: -30px; right: -10px; }
+  }
+
+  @media (max-width: 700px) {
+    .cirs-topbar-left { display: none; }
+    .cirs-program-grid { grid-template-columns: 1fr; }
+    .cirs-news-grid { grid-template-columns: 1fr; }
+    .cirs-impact-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cirs-footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
+    .cirs-footer { padding-top: 60px; }
+    .cirs-pillars { grid-template-columns: 1fr; }
+    .cirs-brand-text { display: none; }
+    .cirs-brand-text-mobile { display: flex; }
+    .cirs-hero h1 { font-size: clamp(34px, 9vw, 50px); }
+    .cirs-news-card-featured h3 { font-size: 22px; }
+    .cirs-footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ Top Utility Bar ============ -->
+<div class="cirs-topbar">
+  <div class="cirs-wrap cirs-topbar-row">
+    <div class="cirs-topbar-left">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 L15 8 L22 9 L17 14 L18 21 L12 18 L6 21 L7 14 L2 9 L9 8 Z"/></svg>
+      <span>Independent research in service of California's rural communities since 1977</span>
+    </div>
+    <div class="cirs-topbar-right">
+      <a href="mailto:info@cirsinc.org">info@cirsinc.org</a>
+      <div class="cirs-social">
+        <a href="https://www.facebook.com/CIRSINC/" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9.5c0-.3.2-.5.5-.5z"/></svg>
+        </a>
+        <a href="https://twitter.com/CARuralStudies" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Header ============ -->
+<header class="cirs-header">
+  <div class="cirs-wrap cirs-nav">
+    <a href="/" class="cirs-brand" aria-label="CIRS home">
+      <img class="cirs-brand-logo" src="https://i0.wp.com/cirsinc.org/wp-content/uploads/2021/04/logo-01-01.png?fit=500%2C500&ssl=1" alt="California Institute for Rural Studies logo" />
+      <div class="cirs-brand-text">
+        <span class="cirs-brand-title">California Institute</span>
+        <span class="cirs-brand-sub">For Rural Studies</span>
+      </div>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="cirs-menu">
+        <li class="cirs-menu-item"><a class="cirs-menu-link" href="/">Home</a></li>
+        <li class="cirs-menu-item">
+          <a class="cirs-menu-link" href="#about">About
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 9L1.5 4h9z"/></svg>
+          </a>
+          <ul class="cirs-dropdown">
+            <li><a href="/history/">History of CIRS</a></li>
+            <li><a href="/principles-and-practices/">Principles & Practices</a></li>
+            <li><a href="/team-2/">Team</a></li>
+            <li><a href="/careers/">Careers</a></li>
+          </ul>
+        </li>
+        <li class="cirs-menu-item">
+          <a class="cirs-menu-link" href="/research-library/">Research
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 9L1.5 4h9z"/></svg>
+          </a>
+          <ul class="cirs-dropdown">
+            <li><a href="/publications/">Publications</a></li>
+            <li><a href="/survey-tools/">Survey Tools</a></li>
+            <li><a href="/current-projects/">Current Projects</a></li>
+            <li><a href="/covid-19-farmworker-study/">COVID-19 Farmworker Study</a></li>
+            <li><a href="/ecv/">Eastern Coachella Valley Data Project</a></li>
+          </ul>
+        </li>
+        <li class="cirs-menu-item">
+          <a class="cirs-menu-link" href="#storytelling">Storytelling
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 9L1.5 4h9z"/></svg>
+          </a>
+          <ul class="cirs-dropdown">
+            <li><a href="/cal-ag-roots-2/">Cal Ag Roots Podcast</a></li>
+            <li><a href="/rural-california-report/">Rural California Report</a></li>
+            <li><a href="/rural-justice-summit/">Rural Justice Summit</a></li>
+          </ul>
+        </li>
+        <li class="cirs-menu-item"><a class="cirs-menu-link" href="/community-partnerships/">Partnerships</a></li>
+      </ul>
+    </nav>
+
+    <div class="cirs-nav-cta">
+      <a href="/partner-with-us/" class="cirs-btn cirs-btn-sun">Partner With Us</a>
+      <button class="cirs-burger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ Hero ============ -->
+<section class="cirs-hero">
+  <div class="cirs-wrap cirs-hero-grid">
+    <div class="cirs-hero-text">
+      <div class="cirs-hero-since">
+        <span class="cirs-hero-since-badge">★</span>
+        Independent &amp; community-rooted since 1977
+      </div>
+      <h1>Research for <span class="cirs-hl">rural justice</span> across California.</h1>
+      <p class="cirs-hero-lead">
+        We produce rigorous, community-led research that surfaces what rural California knows and what policymakers need to hear — on farmworker health, land, labor, water, and the long fight for equity.
+      </p>
+      <div class="cirs-hero-cta">
+        <a href="/research-library/" class="cirs-btn cirs-btn-primary">
+          Explore our research
+          <svg class="cirs-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="cirs-hero-visual">
+      <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80" alt="Farmworkers in a California field at sunrise" />
+      <div class="cirs-hero-visual-overlay"></div>
+      <div class="cirs-hero-card">
+        <div class="cirs-hero-card-label">Featured Project</div>
+        <div class="cirs-hero-card-title">COVID-19 Farmworker Study — the only national data on essential agricultural workers during the pandemic.</div>
+      </div>
+      <div class="cirs-hero-stat">
+        <div class="cirs-hero-stat-num">48</div>
+        <div class="cirs-hero-stat-lbl">Years of rural research</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Trust marquee ============ -->
+<div class="cirs-marquee" aria-hidden="true">
+  <div class="cirs-marquee-track">
+    <span class="cirs-marquee-item">Farmworker health</span>
+    <span class="cirs-marquee-item">Land &amp; water justice</span>
+    <span class="cirs-marquee-item">Participatory research</span>
+    <span class="cirs-marquee-item">Storytelling for action</span>
+    <span class="cirs-marquee-item">Indigenous knowledge</span>
+    <span class="cirs-marquee-item">Policy advocacy</span>
+    <span class="cirs-marquee-item">Farmworker health</span>
+    <span class="cirs-marquee-item">Land &amp; water justice</span>
+    <span class="cirs-marquee-item">Participatory research</span>
+    <span class="cirs-marquee-item">Storytelling for action</span>
+    <span class="cirs-marquee-item">Indigenous knowledge</span>
+    <span class="cirs-marquee-item">Policy advocacy</span>
+  </div>
+</div>
+
+<!-- ============ About ============ -->
+<section class="cirs-section cirs-about" id="about">
+  <div class="cirs-wrap cirs-about-grid">
+    <div class="cirs-about-visual">
+      <div class="cirs-about-deco"></div>
+      <div class="cirs-about-img-main">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80" alt="Rural California landscape with rolling hills" />
+      </div>
+      <div class="cirs-about-img-accent">
+        <img src="https://images.unsplash.com/photo-1592982537447-7440770faa48?auto=format&fit=crop&w=500&q=80" alt="Community gathering in rural California" />
+      </div>
+    </div>
+
+    <div class="cirs-about-text">
+      <span class="cirs-eyebrow">Who we are</span>
+      <h2>A research home for rural California's hardest questions.</h2>
+      <p>
+        Born in 1977 in the wake of agriculture's mechanization upheaval, CIRS has spent nearly five decades feeding rigorous, ground-truthed data to the movements working toward rural justice. We bridge social science research with the wisdom of farmworkers, small farmers, and the communities most often unheard.
+      </p>
+      <p>
+        Today, we operate from a distributed network of rural offices, working in deep partnership with the communities we study — never about them, but with them.
+      </p>
+
+      <div class="cirs-pillars">
+        <div class="cirs-pillar">
+          <div class="cirs-pillar-title">Community-led</div>
+          <div class="cirs-pillar-desc">Research aligned with the priorities of impacted communities.</div>
+        </div>
+        <div class="cirs-pillar">
+          <div class="cirs-pillar-title">Research for action</div>
+          <div class="cirs-pillar-desc">Tools that fuel organizing, advocacy, and policy change.</div>
+        </div>
+        <div class="cirs-pillar">
+          <div class="cirs-pillar-title">Many ways of knowing</div>
+          <div class="cirs-pillar-desc">Pairing rigorous data with story, art, and lived experience.</div>
+        </div>
+        <div class="cirs-pillar">
+          <div class="cirs-pillar-title">Distributed leadership</div>
+          <div class="cirs-pillar-desc">Many voices, shared power, sustained movements.</div>
+        </div>
+      </div>
+
+      <a href="/history/" class="cirs-btn cirs-btn-ghost">
+        Read our story
+        <svg class="cirs-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Programs ============ -->
+<section class="cirs-section cirs-programs" id="programs">
+  <div class="cirs-wrap">
+    <div class="cirs-section-head">
+      <div>
+        <span class="cirs-eyebrow">What we do</span>
+        <h2>Programs that turn data into change.</h2>
+      </div>
+      <p class="cirs-section-intro">
+        From farmworker health studies to participatory storytelling, our work shows up wherever rural California needs evidence, voice, and advocacy.
+      </p>
+    </div>
+
+    <div class="cirs-program-grid">
+      <article class="cirs-program">
+        <span class="cirs-program-num">01</span>
+        <div class="cirs-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h6"/></svg>
+        </div>
+        <h3>Research &amp; Publications</h3>
+        <p class="cirs-program-desc">Rigorous studies on farmworker health, housing, food security, and the social determinants shaping rural California life.</p>
+        <a href="/publications/" class="cirs-program-link">Browse the library
+          <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="cirs-program">
+        <span class="cirs-program-num">02</span>
+        <div class="cirs-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <h3>COVID-19 Farmworker Study</h3>
+        <p class="cirs-program-desc">A multi-state collaboration producing the nation's first comprehensive data on how the pandemic reshaped agricultural labor.</p>
+        <a href="/covid-19-farmworker-study/" class="cirs-program-link">Read the findings
+          <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="cirs-program">
+        <span class="cirs-program-num">03</span>
+        <div class="cirs-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8M5 9l7 5 7-5M5 9v8l7 5 7-5V9M12 14v8"/></svg>
+        </div>
+        <h3>Eastern Coachella Valley Data Project</h3>
+        <p class="cirs-program-desc">Long-term partnership documenting household health and conditions in one of California's most underserved rural regions.</p>
+        <a href="/ecv/" class="cirs-program-link">Explore the project
+          <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="cirs-program">
+        <span class="cirs-program-num">04</span>
+        <div class="cirs-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4zM5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg>
+        </div>
+        <h3>Cal Ag Roots Podcast</h3>
+        <p class="cirs-program-desc">Storytelling project that brings California agricultural history to life through the voices of those who built — and feed — the state.</p>
+        <a href="/cal-ag-roots-2/" class="cirs-program-link">Listen to episodes
+          <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="cirs-program">
+        <span class="cirs-program-num">05</span>
+        <div class="cirs-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 6.1H3M21 12.1H3M15.1 18H3"/></svg>
+        </div>
+        <h3>Survey Tools &amp; Methods</h3>
+        <p class="cirs-program-desc">Free, open survey instruments developed through years of fieldwork, available for organizers and researchers to adapt and use.</p>
+        <a href="/survey-tools/" class="cirs-program-link">Get the tools
+          <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="cirs-program">
+        <span class="cirs-program-num">06</span>
+        <div class="cirs-program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Rural Justice Summit</h3>
+        <p class="cirs-program-desc">A convening that brings together rural advocates, researchers, and community leaders working toward systemic change.</p>
+        <a href="/rural-justice-summit/" class="cirs-program-link">Learn more
+          <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Impact ============ -->
+<section class="cirs-impact">
+  <div class="cirs-wrap">
+    <div class="cirs-section-head">
+      <div>
+        <span class="cirs-eyebrow">Our impact</span>
+        <h2>Five decades of evidence-driven change.</h2>
+      </div>
+      <p class="cirs-section-intro">
+        Research only matters when it moves. Here's some of what CIRS work has helped set in motion.
+      </p>
+    </div>
+
+    <div class="cirs-impact-grid">
+      <div class="cirs-stat">
+        <div class="cirs-stat-num">1977<span class="cirs-stat-plus">.</span></div>
+        <div class="cirs-stat-label">Founded after a Supreme Court win against UC's research priorities</div>
+      </div>
+      <div class="cirs-stat">
+        <div class="cirs-stat-num">40<span class="cirs-stat-plus">+</span></div>
+        <div class="cirs-stat-label">Researchers and organizations in our COVID Farmworker Study coalition</div>
+      </div>
+      <div class="cirs-stat">
+        <div class="cirs-stat-num">3<span class="cirs-stat-plus">×</span></div>
+        <div class="cirs-stat-label">States covered by our national pandemic farmworker dataset</div>
+      </div>
+      <div class="cirs-stat">
+        <div class="cirs-stat-num">100<span class="cirs-stat-plus">s</span></div>
+        <div class="cirs-stat-label">Of reports, studies, and survey tools available in our public archive</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Stories / Newsroom ============ -->
+<section class="cirs-section cirs-news" id="storytelling">
+  <div class="cirs-wrap">
+    <div class="cirs-section-head">
+      <div>
+        <span class="cirs-eyebrow">Stories &amp; updates</span>
+        <h2>Voices from the field.</h2>
+      </div>
+      <p class="cirs-section-intro">
+        From podcast episodes to research briefings, our newsroom keeps you close to the work — and the people behind it.
+      </p>
+    </div>
+
+    <div class="cirs-news-grid">
+      <article class="cirs-news-card cirs-news-card-featured">
+        <div class="cirs-news-card-img">
+          <img src="https://i0.wp.com/cirsinc.org/wp-content/uploads/2025/04/4a7df-cofs-e3-thumbnail.png?resize=600%2C450&ssl=1" alt="Voces del Campo Episodio 3 illustration" />
+        </div>
+        <div class="cirs-news-card-body">
+          <div class="cirs-news-meta">
+            <span class="cirs-news-tag">Voces del Campo</span>
+            <span class="cirs-news-divider"></span>
+            <span class="cirs-news-date">Podcast Episode</span>
+          </div>
+          <h3>Voces del Campo Episodio 3: La Tierra es Para Quien La Trabaja</h3>
+          <p>Written by Jennifer Martinez-Medina, PhD candidate at Portland State University, this episode traces how free-trade agreements displaced millions of farming families into industrial agriculture and food insecurity.</p>
+          <a href="/2023/03/21/voces-del-campo-episodio-3-la-tierra-es-para-quien-la-trabaja/" class="cirs-read">Listen now
+            <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="cirs-news-card">
+        <div class="cirs-news-card-img">
+          <img src="https://i0.wp.com/cirsinc.org/wp-content/uploads/2025/04/1bcca-young-famers-e3-image.png?resize=800%2C600&ssl=1" alt="Hands holding fresh greens" />
+        </div>
+        <div class="cirs-news-card-body">
+          <div class="cirs-news-meta">
+            <span class="cirs-news-tag">Cal Ag Roots</span>
+            <span class="cirs-news-divider"></span>
+            <span class="cirs-news-date">Podcast Episode</span>
+          </div>
+          <h3>An Ear to the Ground, Episode 3</h3>
+          <p>The National Young Farmers Coalition surveys young BIPOC farmers across the country to surface their brightest hopes, biggest challenges, and the policy solutions they need.</p>
+          <a href="/2023/02/24/un-oido-al-suelo-episodio-2-an-ear-to-the-ground-episode-2-spanish-episode-2/" class="cirs-read">Listen now
+            <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="cirs-news-card">
+        <div class="cirs-news-card-img">
+          <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80" alt="California agricultural fields" />
+        </div>
+        <div class="cirs-news-card-body">
+          <div class="cirs-news-meta">
+            <span class="cirs-news-tag">Strategic Compass</span>
+            <span class="cirs-news-divider"></span>
+            <span class="cirs-news-date">Featured Read</span>
+          </div>
+          <h3>Where we're going: a vision for rural California</h3>
+          <p>Our strategic compass outlines a radically transformed rural California — where systems of extraction give way to systems that are equitable, life-affirming, and reflective of the state's cultural depth.</p>
+          <a href="/history/" class="cirs-read">Download PDF
+            <svg class="cirs-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Testimonial ============ -->
+<section class="cirs-testimonial">
+  <div class="cirs-wrap cirs-testimonial-grid">
+    <div class="cirs-quote-mark">"</div>
+    <div>
+      <p class="cirs-quote-body">
+        So many things are possible, just as long as you don't know they're impossible — that's the spirit CIRS has carried into every fieldwork, every report, every coalition for nearly fifty years.
+      </p>
+      <div class="cirs-quote-attr">
+        <div class="cirs-quote-avatar">CR</div>
+        <div>
+          <div class="cirs-quote-name">Community Researcher</div>
+          <div class="cirs-quote-role">Eastern Coachella Valley Partner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Get Involved CTA ============ -->
+<section class="cirs-cta">
+  <div class="cirs-wrap">
+    <div class="cirs-cta-card">
+      <div>
+        <span class="cirs-eyebrow" style="color: var(--cirs-sun);">Get involved</span>
+        <h2>Partner with us. Power the next generation of rural research.</h2>
+        <p>CIRS thrives on partnership — with community organizations, researchers, funders, and individuals who believe rural California deserves serious investment. Find the way that fits you.</p>
+        <div class="cirs-cta-actions">
+          <a href="/partner-with-us/" class="cirs-btn cirs-btn-sun">
+            Partner with us
+            <svg class="cirs-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="/careers/" class="cirs-btn" style="color: var(--cirs-cream); border: 1.5px solid rgba(250,246,238,0.4);">View open roles</a>
+        </div>
+      </div>
+
+      <div class="cirs-cta-list">
+        <a href="/partner-with-us/" class="cirs-cta-item">
+          <div class="cirs-cta-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="cirs-cta-item-title">Community organizations</div>
+            <div class="cirs-cta-item-desc">Co-design research that supports your campaign</div>
+          </div>
+        </a>
+        <a href="#" class="cirs-cta-item">
+          <div class="cirs-cta-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 L15 8.5 L22 9.5 L17 14.5 L18 21.5 L12 18 L6 21.5 L7 14.5 L2 9.5 L9 8.5 Z"/></svg>
+          </div>
+          <div>
+            <div class="cirs-cta-item-title">Donors &amp; funders</div>
+            <div class="cirs-cta-item-desc">Invest in independent rural research</div>
+          </div>
+        </a>
+        <a href="/careers/" class="cirs-cta-item">
+          <div class="cirs-cta-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+          </div>
+          <div>
+            <div class="cirs-cta-item-title">Researchers &amp; students</div>
+            <div class="cirs-cta-item-desc">Use our data, tools, and publications</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Partners ============ -->
+<section class="cirs-partners">
+  <div class="cirs-wrap">
+    <div class="cirs-partners-label">In partnership with</div>
+    <div class="cirs-partners-row">
+      <div class="cirs-partner-logo">United Farm Workers<small>Labor</small></div>
+      <div class="cirs-partner-logo">CA Rural Legal Assistance<small>Legal</small></div>
+      <div class="cirs-partner-logo">UC Davis<small>Academic</small></div>
+      <div class="cirs-partner-logo">National Young Farmers<small>Coalition</small></div>
+      <div class="cirs-partner-logo">Pan Valley Institute<small>Cultural</small></div>
+      <div class="cirs-partner-logo">Community Alliance with Family Farmers<small>Advocacy</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="cirs-footer">
+  <div class="cirs-wrap">
+    <div class="cirs-footer-top">
+      <div>
+        <div class="cirs-footer-brand">
+          <img src="https://i0.wp.com/cirsinc.org/wp-content/uploads/2021/04/logo-01-01.png?fit=500%2C500&ssl=1" alt="CIRS logo" />
+          <div class="cirs-footer-brand-title">California Institute<br/>for Rural Studies</div>
+        </div>
+        <p class="cirs-footer-tag">
+          Independent, community-rooted research in service of rural California since 1977. A 501(c)(3) nonprofit organization.
+        </p>
+        <div class="cirs-social">
+          <a href="https://www.facebook.com/CIRSINC/" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9.5c0-.3.2-.5.5-.5z"/></svg>
+          </a>
+          <a href="https://twitter.com/CARuralStudies" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="/history/">Our history</a></li>
+          <li><a href="/principles-and-practices/">Principles &amp; practices</a></li>
+          <li><a href="/team-2/">Team</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/history-looking-forward/">Looking forward</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Research</h4>
+        <ul>
+          <li><a href="/publications/">Publications</a></li>
+          <li><a href="/survey-tools/">Survey tools</a></li>
+          <li><a href="/current-projects/">Current projects</a></li>
+          <li><a href="/covid-19-farmworker-study/">COVID-19 Farmworker Study</a></li>
+          <li><a href="/ecv/">Eastern Coachella Valley</a></li>
+        </ul>
+      </div>
+
+      <div class="cirs-newsletter">
+        <h4>Stay connected</h4>
+        <p style="color: rgba(250,246,238,0.75); margin-bottom: 8px; font-size: 14.5px;">Get rural California research, stories, and updates in your inbox.</p>
+        <div class="cirs-newsletter-form">
+          <input type="email" placeholder="your@email.com" aria-label="Email address" />
+          <button type="submit">Subscribe</button>
+        </div>
+        <p>info@cirsinc.org &nbsp;·&nbsp; California, USA</p>
+      </div>
+    </div>
+
+    <div class="cirs-footer-bottom">
+      <div>© 1977–2026 California Institute for Rural Studies. All rights reserved.</div>
+      <div class="cirs-footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

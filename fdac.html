@@ -1,0 +1,2714 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FDAC – Fire Districts Association of California</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --red: #b91c1c;
+        --red-dark: #991b1b;
+        --red-light: #fef2f2;
+        --red-mid: #dc2626;
+        --charcoal: #1c1c1e;
+        --charcoal-2: #2c2c2e;
+        --gray-1: #f5f4f1;
+        --gray-2: #eceae5;
+        --gray-3: #d4d2cb;
+        --gray-4: #9b9a94;
+        --gray-5: #5c5b56;
+        --white: #ffffff;
+        --text-primary: #1c1c1e;
+        --text-secondary: #5c5b56;
+        --text-muted: #9b9a94;
+        --nav-h: 72px;
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 16px;
+        --radius-xl: 24px;
+        --shadow-sm:
+          0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --shadow-md:
+          0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+        --shadow-lg:
+          0 12px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+        --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text-primary);
+        background: var(--white);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* ─── NAV ─── */
+      .nav {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        transition:
+          background var(--transition),
+          box-shadow var(--transition);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        border-bottom-color: var(--gray-2);
+        box-shadow: var(--shadow-sm);
+        top: 0;
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+      .nav-logo img {
+        height: 42px;
+        width: auto;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .nav-links a {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        padding: 0.5rem 0.875rem;
+        border-radius: var(--radius-sm);
+        transition:
+          color var(--transition),
+          background var(--transition);
+      }
+      .nav-links a:hover {
+        color: var(--text-primary);
+        background: var(--gray-1);
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .btn-outline-sm {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-sm);
+        border: 1.5px solid var(--gray-3);
+        color: var(--text-secondary);
+        background: transparent;
+        cursor: pointer;
+        transition:
+          border-color var(--transition),
+          color var(--transition),
+          background var(--transition);
+        font-family: inherit;
+      }
+      .btn-outline-sm:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .btn-solid-sm {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        padding: 0.5rem 1.125rem;
+        border-radius: var(--radius-sm);
+        border: none;
+        color: #fff;
+        background: var(--red);
+        cursor: pointer;
+        transition: background var(--transition);
+        font-family: inherit;
+      }
+      .btn-solid-sm:hover {
+        background: var(--red-dark);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        gap: 5px;
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 4px;
+        border-radius: var(--radius-sm);
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition:
+          transform var(--transition),
+          opacity var(--transition);
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* Mobile drawer */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        pointer-events: none;
+      }
+      .mobile-menu.open {
+        pointer-events: all;
+      }
+      .mm-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0);
+        transition: background 0.3s;
+      }
+      .mobile-menu.open .mm-overlay {
+        background: rgba(0, 0, 0, 0.4);
+      }
+      .mm-drawer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(320px, 88vw);
+        background: #fff;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: calc(var(--nav-h) + 1.5rem) 1.75rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .mobile-menu.open .mm-drawer {
+        transform: translateX(0);
+      }
+      .mm-drawer a {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--gray-2);
+        display: block;
+        transition: color var(--transition);
+      }
+      .mm-drawer a:last-of-type {
+        border-bottom: none;
+      }
+      .mm-drawer a:hover {
+        color: var(--red);
+      }
+      .mm-actions {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .mm-btn-outline {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        padding: 0.875rem;
+        border-radius: var(--radius-md);
+        border: 1.5px solid var(--gray-3);
+        color: var(--text-secondary);
+        background: transparent;
+        cursor: pointer;
+        font-family: inherit;
+        text-align: center;
+        transition:
+          border-color var(--transition),
+          color var(--transition);
+      }
+      .mm-btn-solid {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        padding: 0.875rem;
+        border-radius: var(--radius-md);
+        border: none;
+        color: #fff;
+        background: var(--red);
+        cursor: pointer;
+        font-family: inherit;
+        text-align: center;
+      }
+
+      /* ─── HERO CAROUSEL ─── */
+      .hero {
+        position: relative;
+        height: 60vh;
+        min-height: 600px;
+        overflow: hidden;
+        background: var(--charcoal);
+        margin-top: var(--nav-h);
+      }
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+      .hero-slide.active {
+        opacity: 1;
+      }
+      .hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .hero-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          rgba(10, 10, 10, 0.72) 0%,
+          rgba(10, 10, 10, 0.38) 55%,
+          rgba(10, 10, 10, 0.12) 100%
+        );
+      }
+      .hero-content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .hero-text {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        width: 100%;
+      }
+      .hero-text-inner {
+        max-width: 600px;
+        pointer-events: all;
+      }
+      .hero-tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.72);
+        margin-bottom: 1.25rem;
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.7s 0.2s,
+          transform 0.7s 0.2s;
+      }
+      .hero-slide.active .hero-tag {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-h1 {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2rem, 4.5vw, 3.25rem);
+        font-weight: 700;
+        line-height: 1.18;
+        color: #fff;
+        margin-bottom: 1.25rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.7s 0.35s,
+          transform 0.7s 0.35s;
+      }
+      .hero-slide.active .hero-h1 {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-p {
+        font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+        font-weight: 400;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 2rem;
+        max-width: 480px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.7s 0.5s,
+          transform 0.7s 0.5s;
+      }
+      .hero-slide.active .hero-p {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: #fff;
+        background: var(--red);
+        padding: 0.875rem 1.75rem;
+        border-radius: var(--radius-md);
+        transition:
+          background var(--transition),
+          transform var(--transition);
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.7s 0.65s,
+          transform 0.7s 0.65s,
+          background 0.22s,
+          box-shadow 0.22s;
+      }
+      .hero-slide.active .hero-cta {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-cta:hover {
+        background: var(--red-dark);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(185, 28, 28, 0.35);
+      }
+      .hero-cta svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+      .hero-indicators {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.5rem;
+        z-index: 3;
+      }
+      .hero-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        border: none;
+        cursor: pointer;
+        transition:
+          background var(--transition),
+          transform var(--transition);
+      }
+      .hero-dot.active {
+        background: #fff;
+        transform: scale(1.25);
+      }
+      .hero-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        cursor: pointer;
+        color: #fff;
+        transition: background var(--transition);
+      }
+      .hero-arrow:hover {
+        background: rgba(255, 255, 255, 0.22);
+      }
+      .hero-arrow.prev {
+        left: 1.5rem;
+      }
+      .hero-arrow.next {
+        right: 1.5rem;
+      }
+      .hero-arrow svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* ─── SECTIONS SHARED ─── */
+      .section-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .section-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 0.875rem;
+      }
+      .section-title {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.625rem, 3vw, 2.25rem);
+        font-weight: 700;
+        line-height: 1.22;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+      }
+      .section-body {
+        font-size: 1rem;
+        line-height: 1.72;
+        color: var(--text-secondary);
+        max-width: 56ch;
+      }
+
+      /* ─── MISSION BAND ─── */
+      .mission-band {
+        background: var(--red);
+        padding: 3.5rem 0;
+      }
+      .mission-band-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 3rem;
+      }
+      .mission-quote {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.125rem, 2vw, 1.5rem);
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.4;
+        max-width: 700px;
+      }
+      .mission-sub {
+        font-size: 0.9375rem;
+        color: rgba(255, 255, 255, 0.75);
+        margin-top: 0.625rem;
+        font-weight: 400;
+      }
+      .mission-logo-wrap img {
+        height: 72px;
+        width: auto;
+        opacity: 0.9;
+      }
+
+      /* ─── ABOUT ─── */
+      .about-section {
+        padding: 6rem 0;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .about-img-wrap {
+        position: relative;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        aspect-ratio: 4/3;
+      }
+      .about-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .about-img-badge {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-radius: var(--radius-md);
+        padding: 1rem 1.25rem;
+        box-shadow: var(--shadow-md);
+      }
+      .badge-year {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--red);
+        line-height: 1;
+      }
+      .badge-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+        margin-top: 0.25rem;
+      }
+      .about-text .section-body {
+        max-width: 100%;
+      }
+      .about-features {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .about-feat {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.875rem;
+      }
+      .feat-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-sm);
+        background: var(--red-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .feat-icon svg {
+        width: 18px;
+        height: 18px;
+        color: var(--red);
+      }
+      .feat-text strong {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        display: block;
+        line-height: 1.4;
+      }
+      .feat-text span {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      /* ─── PRIORITIES ─── */
+      .priorities-section {
+        padding: 6rem 0;
+        background: var(--gray-1);
+      }
+      .priorities-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .priorities-header .section-body {
+        margin: 0 auto;
+      }
+      .priorities-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .priority-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        border: 1px solid var(--gray-2);
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+      .priority-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+      .pcard-num {
+        font-family: "Manrope", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--gray-2);
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .pcard-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-md);
+        background: var(--red-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.25rem;
+      }
+      .pcard-icon svg {
+        width: 22px;
+        height: 22px;
+        color: var(--red);
+      }
+      .pcard-title {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.0625rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.625rem;
+      }
+      .pcard-body {
+        font-size: 0.875rem;
+        line-height: 1.68;
+        color: var(--text-secondary);
+      }
+
+      /* ─── NEWS ─── */
+      .news-section {
+        padding: 6rem 0;
+      }
+      .news-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+        gap: 1rem;
+      }
+      .view-all {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        white-space: nowrap;
+        transition: gap var(--transition);
+      }
+      .view-all:hover {
+        gap: 0.625rem;
+      }
+      .view-all svg {
+        width: 14px;
+        height: 14px;
+      }
+      .news-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .news-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--gray-2);
+        overflow: hidden;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .news-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+      .news-card-img {
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        background: var(--gray-2);
+      }
+      .news-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .news-card:hover .news-card-img img {
+        transform: scale(1.04);
+      }
+      .news-card-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .news-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        margin-bottom: 0.75rem;
+      }
+      .news-tag {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--red);
+        background: var(--red-light);
+        padding: 0.25rem 0.625rem;
+        border-radius: 4px;
+      }
+      .news-date {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+      .news-title {
+        font-family: "Manrope", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.4;
+        color: var(--text-primary);
+        margin-bottom: 0.625rem;
+      }
+      .news-card.featured .news-title {
+        font-size: 1.1875rem;
+      }
+      .news-excerpt {
+        font-size: 0.875rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+        flex: 1;
+      }
+      .news-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--red);
+        margin-top: 1rem;
+        transition: gap var(--transition);
+      }
+      .news-link:hover {
+        gap: 0.625rem;
+      }
+      .news-link svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      /* ─── WHITE PAPER CALLOUT ─── */
+      .paper-section {
+        padding: 6rem 0;
+        background: var(--gray-1);
+      }
+      .paper-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .paper-img-wrap {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+      }
+      .paper-img-wrap img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .paper-text .section-body {
+        max-width: 100%;
+      }
+      .paper-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--text-muted);
+      }
+      .paper-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+      }
+      .paper-meta svg {
+        width: 14px;
+        height: 14px;
+      }
+      .paper-divider {
+        width: 48px;
+        height: 3px;
+        background: var(--red);
+        border-radius: 2px;
+        margin: 1.5rem 0;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: #fff;
+        background: var(--red);
+        padding: 0.875rem 1.75rem;
+        border-radius: var(--radius-md);
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        transition:
+          background var(--transition),
+          transform var(--transition),
+          box-shadow var(--transition);
+        margin-top: 2rem;
+      }
+      .btn-primary:hover {
+        background: var(--red-dark);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(185, 28, 28, 0.28);
+      }
+      .btn-primary svg {
+        width: 16px;
+        height: 16px;
+      }
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        background: transparent;
+        padding: 0.875rem 1.75rem;
+        border-radius: var(--radius-md);
+        border: 1.5px solid var(--gray-3);
+        cursor: pointer;
+        font-family: inherit;
+        transition:
+          border-color var(--transition),
+          color var(--transition);
+        margin-top: 1rem;
+        margin-left: 0.75rem;
+      }
+      .btn-secondary:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+
+      /* ─── MEMBERSHIP ─── */
+      .membership-section {
+        padding: 6rem 0;
+      }
+      .membership-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+      .mem-card {
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        border: 1px solid var(--gray-2);
+        transition:
+          border-color var(--transition),
+          box-shadow var(--transition);
+      }
+      .mem-card:hover {
+        border-color: var(--gray-3);
+        box-shadow: var(--shadow-sm);
+      }
+      .mem-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--radius-md);
+        background: var(--red-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      .mem-icon svg {
+        width: 26px;
+        height: 26px;
+        color: var(--red);
+      }
+      .mem-title {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-bottom: 0.625rem;
+      }
+      .mem-body {
+        font-size: 0.875rem;
+        line-height: 1.68;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+      .mem-link {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--red);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        transition: gap var(--transition);
+      }
+      .mem-link:hover {
+        gap: 0.625rem;
+      }
+      .mem-link svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      /* ─── STATS STRIP ─── */
+      .stats-strip {
+        background: var(--charcoal);
+        padding: 4rem 0;
+      }
+      .stats-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2rem, 3.5vw, 2.75rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 0.5rem;
+        font-weight: 400;
+      }
+      .stat-divider {
+        width: 32px;
+        height: 2px;
+        background: var(--red);
+        margin: 0.625rem auto 0;
+        border-radius: 2px;
+      }
+
+      /* ─── RESOURCES ─── */
+      .resources-section {
+        padding: 6rem 0;
+        background: var(--gray-1);
+      }
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-top: 3rem;
+      }
+      .res-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        border: 1px solid var(--gray-2);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+      .res-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      .res-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm);
+        background: var(--gray-1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .res-icon svg {
+        width: 20px;
+        height: 20px;
+        color: var(--gray-5);
+      }
+      .res-name {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        line-height: 1.35;
+      }
+      .res-desc {
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        line-height: 1.55;
+        flex: 1;
+      }
+      .res-link {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--red);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3125rem;
+        transition: gap var(--transition);
+      }
+      .res-link:hover {
+        gap: 0.5rem;
+      }
+      .res-link svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      /* ─── NEWSLETTER ─── */
+      .newsletter-section {
+        padding: 5rem 0;
+        background: var(--white);
+      }
+      .newsletter-inner {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+      }
+      .newsletter-inner .section-title {
+        margin-bottom: 0.75rem;
+      }
+      .newsletter-inner .section-body {
+        margin: 0 auto 2rem;
+      }
+      .nl-form {
+        display: flex;
+        gap: 0.75rem;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .nl-input {
+        flex: 1;
+        height: 48px;
+        padding: 0 1rem;
+        border: 1.5px solid var(--gray-3);
+        border-radius: var(--radius-md);
+        font-size: 0.9375rem;
+        font-family: inherit;
+        color: var(--text-primary);
+        outline: none;
+        transition: border-color var(--transition);
+      }
+      .nl-input:focus {
+        border-color: var(--red);
+      }
+      .nl-input::placeholder {
+        color: var(--text-muted);
+      }
+      .nl-btn {
+        height: 48px;
+        padding: 0 1.5rem;
+        background: var(--red);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: 0.9375rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        white-space: nowrap;
+        transition: background var(--transition);
+      }
+      .nl-btn:hover {
+        background: var(--red-dark);
+      }
+      .nl-note {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 0.875rem;
+      }
+
+      /* ─── FOOTER ─── */
+      .site-footer {
+        background: var(--charcoal-2);
+        padding: 4rem 0 0;
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+      }
+      .footer-brand img {
+        height: 52px;
+        width: auto;
+        margin-bottom: 1.25rem;
+        opacity: 0.9;
+      }
+      .footer-brand p {
+        font-size: 0.875rem;
+        line-height: 1.68;
+        max-width: 280px;
+      }
+      .footer-brand address {
+        font-style: normal;
+        font-size: 0.8125rem;
+        margin-top: 1.25rem;
+        line-height: 1.7;
+      }
+      .footer-col h4 {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 1.25rem;
+      }
+      .footer-col ul li {
+        margin-bottom: 0.625rem;
+      }
+      .footer-col ul li a {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.6);
+        transition: color var(--transition);
+      }
+      .footer-col ul li a:hover {
+        color: #fff;
+      }
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        gap: 1rem;
+      }
+      .footer-bottom p {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .footer-bottom a {
+        color: rgba(255, 255, 255, 0.45);
+        transition: color var(--transition);
+      }
+      .footer-bottom a:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .footer-social {
+        display: flex;
+        gap: 0.75rem;
+      }
+      .social-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-sm);
+        background: rgba(255, 255, 255, 0.07);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.5);
+        transition:
+          background var(--transition),
+          color var(--transition);
+      }
+      .social-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+      .social-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ─── SCROLL REVEAL ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.65s,
+          transform 0.65s;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 1024px) {
+        .priorities-grid,
+        .membership-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .news-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .news-card.featured {
+          grid-column: span 2;
+        }
+        .resources-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
+        }
+        .stats-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        :root {
+          --nav-h: 64px;
+        }
+        .nav-links,
+        .nav-actions .btn-outline-sm {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .mobile-menu {
+          display: block;
+        }
+        .hero {
+          min-height: 520px;
+          max-height: 680px;
+        }
+        .mission-band-inner {
+          grid-template-columns: 1fr;
+        }
+        .mission-logo-wrap {
+          display: none;
+        }
+        .about-grid,
+        .paper-grid {
+          grid-template-columns: 1fr;
+        }
+        .about-img-wrap {
+          aspect-ratio: 16/10;
+        }
+        .priorities-grid,
+        .membership-grid,
+        .resources-grid {
+          grid-template-columns: 1fr;
+        }
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+        .news-card.featured {
+          grid-column: span 1;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-brand {
+          grid-column: span 1;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-arrow {
+          display: none;
+        }
+        .nl-form {
+          flex-direction: column;
+        }
+        .nl-btn {
+          width: 100%;
+        }
+        .stats-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .section-wrap {
+          padding: 0 1.25rem;
+        }
+        .about-section,
+        .priorities-section,
+        .news-section,
+        .paper-section,
+        .membership-section,
+        .resources-section {
+          padding: 4rem 0;
+        }
+        .stats-strip {
+          padding: 3rem 0;
+        }
+        .stats-inner {
+          padding: 0 1.25rem;
+        }
+        .footer-grid {
+          padding: 0 1.25rem;
+        }
+        .footer-bottom {
+          padding: 1.25rem;
+        }
+        .mission-band {
+          padding: 2.5rem 0;
+        }
+        .mission-band-inner {
+          padding: 0 1.25rem;
+        }
+        .newsletter-inner {
+          padding: 0 1.25rem;
+        }
+      }
+
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+    <!-- NAV -->
+    <nav
+      class="nav"
+      id="mainNav"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div class="nav-inner">
+        <a href="#" class="nav-logo" aria-label="FDAC Home">
+          <img
+            src="https://www.fdac.org/resource/resmgr/imgs/fdac_logo2.gif"
+            alt="Fire Districts Association of California"
+            onerror="
+              this.onerror = null;
+              this.src = '';
+              this.parentElement.innerHTML =
+                '<span style=\'font-family:Manrope,sans-serif;font-size:1.25rem;font-weight:700;color:#B91C1C\'>FDAC</span>';
+            "
+          />
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="#">Membership</a></li>
+          <li><a href="#">Legislative</a></li>
+          <li><a href="#">Media Coverage</a></li>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Resources</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn-outline-sm" onclick="void 0">Sign In</button>
+          <button class="btn-solid-sm" onclick="void 0">Join FDAC</button>
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation menu"
+    >
+      <div class="mm-overlay" id="mmOverlay"></div>
+      <div class="mm-drawer">
+        <a href="#">Membership</a>
+        <a href="#">Legislative</a>
+        <a href="#">Media Coverage</a>
+        <a href="#">Education</a>
+        <a href="#">About Us</a>
+        <a href="#">Resources</a>
+        <div class="mm-actions">
+          <button class="mm-btn-outline">Sign In</button>
+          <button class="mm-btn-solid">Join FDAC</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO CAROUSEL -->
+    <section class="hero" aria-label="Hero carousel">
+      <div class="hero-slide active" data-slide="0">
+        <img
+          src="https://images.unsplash.com/photo-1576707995936-a6cffe26ef7b?w=1600&auto=format&fit=crop&q=80"
+          alt="Firefighter battling a large blaze"
+        />
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-text-inner">
+              <p class="hero-tag">Serving California Since 1972</p>
+              <h1 class="hero-h1">
+                Advocating for Fire&nbsp;Districts Across&nbsp;California
+              </h1>
+              <p class="hero-p">
+                The Fire Districts Association of California represents
+                independent fire agencies statewide, fighting for the funding
+                and resources communities depend on for fire protection.
+              </p>
+              <a href="#" class="hero-cta">
+                Explore Our Advocacy
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slide" data-slide="1">
+        <img
+          src="https://images.unsplash.com/photo-1618609252884-c29e29b32205?w=1600&auto=format&fit=crop&q=80"
+          alt="Firefighters at work in hazardous conditions"
+        />
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-text-inner">
+              <p class="hero-tag">Legislative Action</p>
+              <h1 class="hero-h1">Fighting Fire With Funding</h1>
+              <p class="hero-p">
+                FDAC's latest white paper outlines the critical funding
+                shortfall facing fire protection districts as local government
+                fire agencies struggle to keep up with growing service demands.
+              </p>
+              <a href="#white-paper" class="hero-cta">
+                Read the White Paper
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slide" data-slide="2">
+        <img
+          src="https://images.unsplash.com/photo-1633092228879-d6a88c22e7bc?w=1600&auto=format&fit=crop&q=80"
+          alt="Fire district personnel on duty"
+        />
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-text-inner">
+              <p class="hero-tag">Education & Training</p>
+              <h1 class="hero-h1">
+                Building Stronger Fire&nbsp;Districts Together
+              </h1>
+              <p class="hero-p">
+                From professional development programs to the FDAC Annual
+                Conference, we provide the education, tools, and community that
+                fire district leaders need to succeed.
+              </p>
+              <a href="#" class="hero-cta">
+                View Programs
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="hero-arrow prev" id="heroPrev" aria-label="Previous slide">
+        <svg
+          viewBox="0 0 18 18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M11 4L6 9l5 5" />
+        </svg>
+      </button>
+      <button class="hero-arrow next" id="heroNext" aria-label="Next slide">
+        <svg
+          viewBox="0 0 18 18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M7 4l5 5-5 5" />
+        </svg>
+      </button>
+      <div
+        class="hero-indicators"
+        role="tablist"
+        aria-label="Carousel indicators"
+      >
+        <button
+          class="hero-dot active"
+          role="tab"
+          aria-selected="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          class="hero-dot"
+          role="tab"
+          aria-selected="false"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          class="hero-dot"
+          role="tab"
+          aria-selected="false"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+    </section>
+
+    <!-- MISSION BAND -->
+    <div class="mission-band">
+      <div class="mission-band-inner">
+        <div>
+          <p class="mission-quote">
+            Representing fire districts as the voice of local fire protection
+            across California.
+          </p>
+          <p class="mission-sub">
+            Advocating for adequate resources, fair funding, and effective
+            governance since 1972.
+          </p>
+        </div>
+        <div class="mission-logo-wrap">
+          <img
+            src="https://www.fdac.org/resource/resmgr/imgs/fdac_logo2.gif"
+            alt="FDAC"
+            onerror="this.style.display = 'none'"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+      <div class="section-wrap">
+        <div class="about-grid">
+          <div class="about-img-wrap reveal">
+            <img
+              src="https://images.unsplash.com/photo-1692085654422-92e3688956ff?w=900&auto=format&fit=crop&q=80"
+              alt="FDAC fire district leadership meeting"
+            />
+            <div class="about-img-badge">
+              <div class="badge-year">1972</div>
+              <div class="badge-label">Year Established</div>
+            </div>
+          </div>
+          <div class="about-text reveal" style="transition-delay: 0.12s">
+            <p class="section-label">Who We Are</p>
+            <h2 class="section-title">
+              California's Statewide Voice for Fire Districts
+            </h2>
+            <p class="section-body">
+              FDAC is the only statewide association dedicated exclusively to
+              representing California's independent fire districts and fire
+              protection districts. We work at the local, state, and federal
+              levels to ensure that fire districts have the funding, legal
+              framework, and operational support they need to protect their
+              communities.
+            </p>
+            <div class="about-features">
+              <div class="about-feat">
+                <div class="feat-icon">
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M10 2L12.5 7H18l-4.5 3.5 1.5 5.5L10 13l-5 3 1.5-5.5L2 7h5.5z"
+                    />
+                  </svg>
+                </div>
+                <div class="feat-text">
+                  <strong>Legislative Advocacy</strong>
+                  <span
+                    >Monitoring and influencing legislation that affects fire
+                    districts throughout the state capitol.</span
+                  >
+                </div>
+              </div>
+              <div class="about-feat">
+                <div class="feat-icon">
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M17 9H7M17 5H7M17 13H7M4 9a.5.5 0 110-1 .5.5 0 010 1zM4 5a.5.5 0 110-1 .5.5 0 010 1zM4 13a.5.5 0 110-1 .5.5 0 010 1z"
+                    />
+                  </svg>
+                </div>
+                <div class="feat-text">
+                  <strong>Professional Development</strong>
+                  <span
+                    >Training programs, workshops, and the annual conference to
+                    strengthen district leadership.</span
+                  >
+                </div>
+              </div>
+              <div class="about-feat">
+                <div class="feat-icon">
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="10" cy="10" r="8" />
+                    <path d="M10 6v4l3 2" />
+                  </svg>
+                </div>
+                <div class="feat-text">
+                  <strong>Timely Resources & Guidance</strong>
+                  <span
+                    >Administrative handbooks, legislative status reports, and
+                    grant information when districts need it most.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEGISLATIVE PRIORITIES -->
+    <section class="priorities-section" id="priorities">
+      <div class="section-wrap">
+        <div class="priorities-header reveal">
+          <p class="section-label">Legislative Priorities</p>
+          <h2 class="section-title">Shaping Policy for Fire Protection</h2>
+          <p class="section-body">
+            FDAC actively monitors and engages on the legislation that matters
+            most to California's fire districts, from funding reform to labor
+            relations and climate preparedness.
+          </p>
+        </div>
+        <div class="priorities-grid">
+          <div class="priority-card reveal">
+            <div class="pcard-icon">
+              <svg
+                viewBox="0 0 22 22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="16" height="16" rx="2" />
+                <path d="M7 7h8M7 11h8M7 15h5" />
+              </svg>
+            </div>
+            <p class="pcard-title">Fire District Funding Reform</p>
+            <p class="pcard-body">
+              Advocating for equitable allocation of property tax revenue and
+              state funding to ensure fire districts can meet growing service
+              demands without compromising community safety.
+            </p>
+          </div>
+          <div class="priority-card reveal" style="transition-delay: 0.1s">
+            <div class="pcard-icon">
+              <svg
+                viewBox="0 0 22 22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3c-1 3-4 5-4 9a4 4 0 008 0c0-4-3-6-4-9z" />
+                <path d="M8.5 14a3.5 3.5 0 005 0" />
+              </svg>
+            </div>
+            <p class="pcard-title">Wildfire Preparedness</p>
+            <p class="pcard-body">
+              Championing legislation that strengthens California's wildfire
+              response capacity, including grants, pre-positioning resources,
+              and cross-agency coordination frameworks.
+            </p>
+          </div>
+          <div class="priority-card reveal" style="transition-delay: 0.2s">
+            <div class="pcard-icon">
+              <svg
+                viewBox="0 0 22 22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="M11 7v4l3 2" />
+              </svg>
+            </div>
+            <p class="pcard-title">Governance & Administration</p>
+            <p class="pcard-body">
+              Supporting sound governance practices, board training, and
+              administrative tools that help fire district leaders fulfill their
+              fiduciary and operational responsibilities.
+            </p>
+          </div>
+          <div class="priority-card reveal" style="transition-delay: 0.3s">
+            <div class="pcard-icon">
+              <svg
+                viewBox="0 0 22 22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 11H5M13 7l4 4-4 4" />
+              </svg>
+            </div>
+            <p class="pcard-title">BAER SAFER Grants</p>
+            <p class="pcard-body">
+              Providing guidance and support for fire districts pursuing federal
+              SAFER grants and Burn Area Emergency Response funding to expand
+              staffing and equipment resources.
+            </p>
+          </div>
+          <div class="priority-card reveal" style="transition-delay: 0.1s">
+            <div class="pcard-icon">
+              <svg
+                viewBox="0 0 22 22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 11a6 6 0 1012 0 6 6 0 00-12 0zM11 8v3l2 1" />
+              </svg>
+            </div>
+            <p class="pcard-title">Labor Relations Support</p>
+            <p class="pcard-body">
+              Helping fire district boards navigate collective bargaining,
+              employment law, and labor relations with practical guidance
+              through FDAC's member resources and legal network.
+            </p>
+          </div>
+          <div class="priority-card reveal" style="transition-delay: 0.2s">
+            <div class="pcard-icon">
+              <svg
+                viewBox="0 0 22 22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="5" width="16" height="14" rx="2" />
+                <path d="M16 3v4M8 3v4M3 11h16" />
+              </svg>
+            </div>
+            <p class="pcard-title">Annual Legislative Updates</p>
+            <p class="pcard-body">
+              Publishing timely legislative status reports throughout the
+              session, keeping member districts informed on bills that could
+              affect operations, budgets, and authority.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST NEWS -->
+    <section class="news-section" id="news">
+      <div class="section-wrap">
+        <div class="news-header reveal">
+          <div>
+            <p class="section-label">Latest News</p>
+            <h2 class="section-title" style="margin-bottom: 0">
+              Updates from FDAC
+            </h2>
+          </div>
+          <a href="#" class="view-all">
+            View All News
+            <svg
+              viewBox="0 0 14 14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M2 7h10M8 3l4 4-4 4" />
+            </svg>
+          </a>
+        </div>
+        <div class="news-grid">
+          <article class="news-card featured reveal">
+            <div class="news-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1692085654422-92e3688956ff?w=800&auto=format&fit=crop&q=80"
+                alt="FDAC white paper on fire district funding"
+              />
+            </div>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-tag">Legislative</span>
+                <span class="news-date">February 2025</span>
+              </div>
+              <h3 class="news-title">
+                FDAC Releases White Paper on Fire District Funding Shortfalls
+              </h3>
+              <p class="news-excerpt">
+                FDAC submitted "Fighting Fire with Funding: The Urgent Need for
+                Adequate Fire Service Resources in California" to Governor
+                Newsom and the Legislature, outlining the critical funding
+                shortfall facing fire protection districts as local government
+                fire agencies struggle to meet growing service demands.
+              </p>
+              <a href="#" class="news-link">
+                Read More
+                <svg
+                  viewBox="0 0 13 13"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article class="news-card reveal" style="transition-delay: 0.1s">
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-tag">Member News</span>
+                <span class="news-date">January 5, 2026</span>
+              </div>
+              <h3 class="news-title">
+                CALGRU Launches as California's Newest State Group in the Drone
+                Responders Network
+              </h3>
+              <p class="news-excerpt">
+                California Ground Rescue Unit becomes the latest member of the
+                statewide drone responders network, expanding aerial support
+                capabilities for fire districts across the region.
+              </p>
+              <a href="#" class="news-link">
+                Read More
+                <svg
+                  viewBox="0 0 13 13"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article class="news-card reveal" style="transition-delay: 0.2s">
+            <div class="news-card-body">
+              <div class="news-meta">
+                <span class="news-tag">Conference</span>
+                <span class="news-date">October 2025</span>
+              </div>
+              <h3 class="news-title">
+                Registration Open for the FDAC Annual Conference
+              </h3>
+              <p class="news-excerpt">
+                Join fire district board members, administrators, and staff for
+                FDAC's premier annual gathering featuring educational sessions,
+                peer networking, and legislative briefings.
+              </p>
+              <a href="#" class="news-link">
+                Read More
+                <svg
+                  viewBox="0 0 13 13"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHITE PAPER CALLOUT -->
+    <section class="paper-section" id="white-paper">
+      <div class="section-wrap">
+        <div class="paper-grid">
+          <div class="paper-img-wrap reveal">
+            <img
+              src="https://images.unsplash.com/photo-1735107673037-1e3a17c47d7c?w=900&auto=format&fit=crop&q=80"
+              alt="Fighting Fire with Funding white paper"
+            />
+          </div>
+          <div class="paper-text reveal" style="transition-delay: 0.12s">
+            <p class="section-label">Featured Publication</p>
+            <h2 class="section-title">Fighting Fire with Funding</h2>
+            <p class="paper-meta">
+              <span>
+                <svg
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="10" height="10" rx="1.5" />
+                  <path d="M5 2v10M9 5H5" />
+                </svg>
+                White Paper
+              </span>
+              <span>
+                <svg
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="3" width="10" height="9" rx="1" />
+                  <path d="M9 2v2M5 2v2M2 7h10" />
+                </svg>
+                February 2025
+              </span>
+            </p>
+            <p class="section-body">
+              This white paper documents the urgent and growing gap between the
+              resources available to California's independent fire districts and
+              the service demands they face. Endorsed by leading fire service
+              and local government organizations, it was submitted directly to
+              Governor Newsom and the Legislature.
+            </p>
+            <div class="paper-divider"></div>
+            <p class="section-body">
+              The report calls on state leaders to address structural inequities
+              in how fire protection is funded at the local level — before the
+              crisis deepens further.
+            </p>
+            <a href="#" class="btn-primary">
+              Download the White Paper
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M8 3v8M5 8l3 3 3-3M3 13h10" />
+              </svg>
+            </a>
+            <a href="#" class="btn-secondary">
+              View Full Report
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+      <div class="stats-inner">
+        <div class="stat-item reveal">
+          <div class="stat-num">350+</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Member Districts</div>
+        </div>
+        <div class="stat-item reveal" style="transition-delay: 0.1s">
+          <div class="stat-num">50+</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Years of Advocacy</div>
+        </div>
+        <div class="stat-item reveal" style="transition-delay: 0.2s">
+          <div class="stat-num">58</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">California Counties Served</div>
+        </div>
+        <div class="stat-item reveal" style="transition-delay: 0.3s">
+          <div class="stat-num">100+</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Annual Education Programs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEMBERSHIP -->
+    <section class="membership-section" id="membership">
+      <div class="section-wrap">
+        <div class="reveal">
+          <p class="section-label">Membership</p>
+          <h2 class="section-title">
+            Built for Fire Districts, By Fire Districts
+          </h2>
+          <p class="section-body">
+            FDAC membership connects your district with the advocacy, education,
+            and peer network needed to lead effectively. Every membership tier
+            provides access to FDAC's full suite of resources.
+          </p>
+        </div>
+        <div class="membership-grid">
+          <div class="mem-card reveal">
+            <div class="mem-icon">
+              <svg
+                viewBox="0 0 26 26"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13 3L15.5 9H22l-5.5 4 2 6L13 16l-5.5 3.5 2-6L4 9h6.5z"
+                />
+              </svg>
+            </div>
+            <h3 class="mem-title">Legislative Representation</h3>
+            <p class="mem-body">
+              FDAC's lobbyists and policy team actively monitor the California
+              Legislature, representing your district's interests and providing
+              timely updates on bills affecting fire service operations and
+              funding.
+            </p>
+            <a href="#" class="mem-link">
+              Learn More
+              <svg
+                viewBox="0 0 13 13"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" />
+              </svg>
+            </a>
+          </div>
+          <div class="mem-card reveal" style="transition-delay: 0.1s">
+            <div class="mem-icon">
+              <svg
+                viewBox="0 0 26 26"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="4" y="4" width="18" height="18" rx="2" />
+                <path d="M9 4v18M9 12h13" />
+              </svg>
+            </div>
+            <h3 class="mem-title">Education & Training</h3>
+            <p class="mem-body">
+              Access FDAC's professional development programs, board orientation
+              workshops, and the annual conference — providing practical
+              training for board members, chiefs, and administrative staff.
+            </p>
+            <a href="#" class="mem-link">
+              Learn More
+              <svg
+                viewBox="0 0 13 13"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" />
+              </svg>
+            </a>
+          </div>
+          <div class="mem-card reveal" style="transition-delay: 0.2s">
+            <div class="mem-icon">
+              <svg
+                viewBox="0 0 26 26"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="13" cy="10" r="4" />
+                <path d="M5 22c0-4 3.5-7 8-7s8 3 8 7" />
+              </svg>
+            </div>
+            <h3 class="mem-title">Peer Network & Community</h3>
+            <p class="mem-body">
+              Connect with fire district leaders from across California through
+              FDAC's online community forum, regional meetings, and
+              collaborative events — sharing knowledge, solutions, and best
+              practices.
+            </p>
+            <a href="#" class="mem-link">
+              Learn More
+              <svg
+                viewBox="0 0 13 13"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div style="margin-top: 2.5rem; text-align: center" class="reveal">
+          <a href="#" class="btn-primary" style="display: inline-flex">
+            Become a Member
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section class="resources-section" id="resources">
+      <div class="section-wrap">
+        <div class="reveal">
+          <p class="section-label">Key Resources</p>
+          <h2 class="section-title">Tools and Reference for Fire Districts</h2>
+        </div>
+        <div class="resources-grid">
+          <a href="#" class="res-card reveal">
+            <div class="res-icon">
+              <svg
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="2" width="14" height="16" rx="2" />
+                <path d="M7 6h6M7 10h6M7 14h4" />
+              </svg>
+            </div>
+            <p class="res-name">Fire District Administrative Handbook</p>
+            <p class="res-desc">
+              The comprehensive reference guide for fire district governance,
+              operations, and legal compliance in California.
+            </p>
+            <span class="res-link"
+              >Access Resource
+              <svg
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 6h8M6.5 3l3 3-3 3" /></svg
+            ></span>
+          </a>
+          <a href="#" class="res-card reveal" style="transition-delay: 0.08s">
+            <div class="res-icon">
+              <svg
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 5h14M3 10h14M3 15h8" />
+              </svg>
+            </div>
+            <p class="res-name">Legislative Status Reports</p>
+            <p class="res-desc">
+              Updated summaries of active legislation affecting fire districts,
+              published throughout the California legislative session.
+            </p>
+            <span class="res-link"
+              >View Reports
+              <svg
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 6h8M6.5 3l3 3-3 3" /></svg
+            ></span>
+          </a>
+          <a href="#" class="res-card reveal" style="transition-delay: 0.16s">
+            <div class="res-icon">
+              <svg
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="14" height="14" rx="2" />
+                <path d="M7 3v14M3 10h14" />
+              </svg>
+            </div>
+            <p class="res-name">FDAC Annual Conference</p>
+            <p class="res-desc">
+              Registration and program details for FDAC's premier annual
+              gathering for fire district leadership throughout California.
+            </p>
+            <span class="res-link"
+              >View Details
+              <svg
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 6h8M6.5 3l3 3-3 3" /></svg
+            ></span>
+          </a>
+          <a href="#" class="res-card reveal" style="transition-delay: 0.24s">
+            <div class="res-icon">
+              <svg
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="10" cy="10" r="7" />
+                <path d="M10 7v4M10 13v1" />
+              </svg>
+            </div>
+            <p class="res-name">BAER SAFER Grants</p>
+            <p class="res-desc">
+              Information and support for applying to federal SAFER grants and
+              Burn Area Emergency Response funding programs.
+            </p>
+            <span class="res-link"
+              >Learn More
+              <svg
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 6h8M6.5 3l3 3-3 3" /></svg
+            ></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+      <div class="newsletter-inner reveal">
+        <p class="section-label" style="text-align: center">Stay Informed</p>
+        <h2 class="section-title">Subscribe to FDAC Updates</h2>
+        <p class="section-body" style="text-align: center">
+          Receive legislative alerts, FDAC news, and upcoming event notices
+          directly in your inbox.
+        </p>
+        <div class="nl-form">
+          <input
+            class="nl-input"
+            type="email"
+            placeholder="Your email address"
+            aria-label="Email address"
+          />
+          <button class="nl-btn" type="button">Subscribe</button>
+        </div>
+        <p class="nl-note">We respect your privacy. Unsubscribe at any time.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img
+            src="https://www.fdac.org/resource/resmgr/imgs/fdac_logo2.gif"
+            alt="FDAC"
+            onerror="
+              this.onerror = null;
+              this.style.display = 'none';
+              this.parentElement.insertAdjacentHTML(
+                'afterbegin',
+                '<span style=\'font-family:Manrope,sans-serif;font-size:1.25rem;font-weight:700;color:#fff;display:block;margin-bottom:1.25rem\'>FDAC</span>',
+              );
+            "
+          />
+          <p>
+            The Fire Districts Association of California is the statewide voice
+            for California's independent fire protection districts, serving
+            members since 1972.
+          </p>
+          <address>
+            808 R Street, Suite 209<br />
+            Sacramento, CA 95811<br />
+            p: (916) 231-2941 &nbsp;|&nbsp; f: (916) 231-2141
+          </address>
+        </div>
+        <div class="footer-col">
+          <h4>Membership</h4>
+          <ul>
+            <li><a href="#">Join FDAC</a></li>
+            <li><a href="#">Member Benefits</a></li>
+            <li><a href="#">Renew Membership</a></li>
+            <li><a href="#">FDAC Store</a></li>
+            <li><a href="#">Job Board</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legislative</h4>
+          <ul>
+            <li><a href="#">Legislative Updates</a></li>
+            <li><a href="#">Status Reports</a></li>
+            <li><a href="#">FDAC Reports</a></li>
+            <li><a href="#">FAIRA</a></li>
+            <li><a href="#">FRMS</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Administrative Handbook</a></li>
+            <li><a href="#">BAER SAFER Grants</a></li>
+            <li><a href="#">Annual Conference</a></li>
+            <li><a href="#">Community Forum</a></li>
+            <li><a href="#">Career Center</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 Fire Districts Association of California. All rights reserved.
+          &nbsp;<a href="#">Privacy Policy</a>
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M8 1a7 7 0 100 14A7 7 0 008 1zm1.5 4.5h-1c-.3 0-.5.2-.5.5v1h1.5l-.2 1.5H8V11H6.5V8.5H5.5V7h1V6c0-1.1.9-2 2-2h1.5v1.5z"
+              />
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M12.5 1h-9A2.5 2.5 0 001 3.5v9A2.5 2.5 0 003.5 15h9a2.5 2.5 0 002.5-2.5v-9A2.5 2.5 0 0012.5 1zM5.5 12h-2V6.5h2V12zm-1-6.2a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm8 6.2h-2V9c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6V12h-2V6.5h1.9v.7c.4-.6 1.1-1 1.8-1 1.9 0 2.4 1.3 2.4 2.9V12z"
+              />
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Twitter / X">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M12.6 1.5h2.3L9.8 7l5.9 7.5h-4.3L8.1 10 4.4 14.5H2.1l5.4-6.2L1.5 1.5h4.4l3 4 3.7-4zm-.8 11.7h1.3L4.3 2.8H2.9l9 10.4z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ─── NAV SCROLL
+      const nav = document.getElementById("mainNav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", window.scrollY > 20);
+        },
+        { passive: true },
+      );
+
+      // ─── MOBILE MENU
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mmOverlay = document.getElementById("mmOverlay");
+      function toggleMenu(open) {
+        hamburger.classList.toggle("open", open);
+        hamburger.setAttribute("aria-expanded", open);
+        mobileMenu.classList.toggle("open", open);
+        document.body.style.overflow = open ? "hidden" : "";
+      }
+      hamburger.addEventListener("click", () =>
+        toggleMenu(!mobileMenu.classList.contains("open")),
+      );
+      mmOverlay.addEventListener("click", () => toggleMenu(false));
+
+      // ─── HERO CAROUSEL
+      const slides = document.querySelectorAll(".hero-slide");
+      const dots = document.querySelectorAll(".hero-dot");
+      let current = 0,
+        timer;
+      function goTo(n) {
+        slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+        dots[current].setAttribute("aria-selected", "false");
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
+        dots[current].setAttribute("aria-selected", "true");
+      }
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 5500);
+      }
+      document.getElementById("heroPrev").addEventListener("click", () => {
+        goTo(current - 1);
+        startTimer();
+      });
+      document.getElementById("heroNext").addEventListener("click", () => {
+        goTo(current + 1);
+        startTimer();
+      });
+      dots.forEach((d, i) =>
+        d.addEventListener("click", () => {
+          goTo(i);
+          startTimer();
+        }),
+      );
+      startTimer();
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      // ─── SCROLL REVEAL
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1877 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daughters of Zion Enterpryz — Touching the Heart of People</title>
+    <meta
+      name="description"
+      content="DOZ Enterpryz is a 501(c)(3) nonprofit dedicated to building healthy families in South Sacramento — fighting food deprivation, homelessness, and empowering the next generation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <style>
+      /* ============================================
+   DOZ ENTERPRYZ — Refined Nonprofit Design
+   ============================================ */
+
+      :root {
+        /* Brand colors derived from the DOZ logo */
+        --brand-blue: #0ba5e6;
+        --brand-blue-dark: #0788c0;
+        --brand-blue-deep: #064c6c;
+        --ink: #0e1418;
+        --ink-soft: #2a323a;
+        --ink-muted: #5a6470;
+        --line: #e5e2dc;
+        --line-soft: #efede7;
+        --bg: #faf8f4;
+        --bg-warm: #f5f1ea;
+        --bg-card: #ffffff;
+        --bg-dark: #0e1418;
+
+        /* Typography */
+        --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
+        --font-display: "Fraunces", Georgia, serif;
+
+        /* Layout */
+        --Zion-container: 1240px;
+        --radius-sm: 6px;
+        --radius: 12px;
+        --radius-lg: 20px;
+
+        /* Easing */
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.6;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .Zion-container {
+        max-width: var(--Zion-container);
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      /* ============================================
+   BUTTONS
+   ============================================ */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: -0.01em;
+        padding: 14px 28px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all 0.35s var(--ease);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background: var(--brand-blue);
+        color: #fff;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.2) inset,
+          0 6px 18px -8px rgba(11, 165, 230, 0.7);
+      }
+      .btn-primary:hover {
+        background: var(--brand-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px -8px rgba(11, 165, 230, 0.55);
+      }
+
+      .btn-sm {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+      .btn-lg {
+        padding: 17px 34px;
+        font-size: 16px;
+      }
+      .btn-block {
+        width: 100%;
+      }
+
+      /* ============================================
+   TYPOGRAPHY HELPERS
+   ============================================ */
+      .section-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand-blue);
+        margin-bottom: 20px;
+      }
+      .section-eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--brand-blue);
+      }
+      .section-eyebrow.light {
+        color: var(--brand-blue);
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      .section-title.light {
+        color: #fff;
+      }
+      .section-title em {
+        font-style: italic;
+        font-weight: 300;
+        color: var(--brand-blue);
+      }
+
+      .link-arrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--ink);
+        border-bottom: 1px solid transparent;
+        padding-bottom: 2px;
+        transition: all 0.3s var(--ease);
+      }
+      .link-arrow span {
+        transition: transform 0.3s var(--ease);
+      }
+      .link-arrow:hover {
+        color: var(--brand-blue);
+        border-bottom-color: var(--brand-blue);
+      }
+      .link-arrow:hover span {
+        transform: translateX(4px);
+      }
+
+      /* ============================================
+   HEADER / NAV
+   ============================================ */
+      .site-header {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 18px 0;
+        background: rgba(250, 248, 244, 0.92);
+        transition: all 0.4s var(--ease);
+      }
+      .site-header.scrolled {
+        background: rgba(250, 248, 244, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+        padding: 12px 0;
+        top: 0;
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+      }
+      .brand-logo {
+        height: 48px;
+        width: auto;
+        transition: height 0.3s var(--ease);
+      }
+      .site-header.scrolled .brand-logo {
+        height: 40px;
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+      }
+      .primary-nav a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink-soft);
+        letter-spacing: -0.005em;
+        position: relative;
+        transition: color 0.3s var(--ease);
+      }
+      .primary-nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: var(--brand-blue);
+        transition: width 0.35s var(--ease);
+      }
+      .primary-nav a:hover {
+        color: var(--ink);
+      }
+      .primary-nav a:hover::after {
+        width: 100%;
+      }
+
+      .nav-cta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        width: 40px;
+        height: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        padding: 0;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--ink);
+        transition: all 0.35s var(--ease);
+      }
+
+      /* Mobile menu */
+      .mobile-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(14, 20, 24, 0.4);
+        z-index: 109;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s var(--ease);
+      }
+      .mobile-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 340px;
+        max-width: 90vw;
+        height: 100vh;
+        background: var(--bg);
+        z-index: 110;
+        transform: translateX(100%);
+        transition: transform 0.45s var(--ease);
+        padding: 28px 28px;
+        display: flex;
+        flex-direction: column;
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+      .mobile-menu-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+      }
+      .mobile-logo {
+        height: 44px;
+      }
+      .mobile-close {
+        background: none;
+        border: none;
+        font-size: 32px;
+        cursor: pointer;
+        color: var(--ink);
+        width: 40px;
+        height: 40px;
+        line-height: 1;
+      }
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 28px;
+        flex-grow: 1;
+      }
+      .mobile-nav a {
+        font-family: var(--font-display);
+        font-size: 26px;
+        font-weight: 400;
+        padding: 12px 0;
+        color: var(--ink);
+        border-bottom: 1px solid var(--line-soft);
+        transition: color 0.3s var(--ease);
+      }
+      .mobile-nav a:hover {
+        color: var(--brand-blue);
+      }
+      .mobile-contact {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 14px;
+        color: var(--ink-muted);
+      }
+      .mobile-contact p {
+        margin: 4px 0;
+      }
+
+      /* ============================================
+   HERO
+   ============================================ */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 140px 0 20px;
+        overflow: hidden;
+        
+      }
+
+      .hero-video-wrap {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(14, 20, 24, 0.55) 0%,
+            rgba(14, 20, 24, 0.45) 40%,
+            rgba(14, 20, 24, 0.75) 100%
+          ),
+          linear-gradient(
+            90deg,
+            rgba(14, 20, 24, 0.6) 0%,
+            rgba(14, 20, 24, 0.25) 60%,
+            rgba(14, 20, 24, 0.2) 100%
+          );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        color: #fff;
+        
+        animation: heroFadeIn 1s var(--ease) 0.1s both;
+      }
+
+      @keyframes heroFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-eyebrow {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 28px;
+        padding-left: 36px;
+        position: relative;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 24px;
+        height: 1px;
+        background: var(--brand-blue);
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        color: #fff;
+        margin-bottom: 28px;
+      }
+      .hero-title em {
+        font-style: italic;
+        font-weight: 300;
+        color: var(--brand-blue) ;
+        font-family: var(--font-display);
+      }
+
+      .hero-lead {
+        font-size: clamp(1rem, 1.2vw, 1.15rem);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.88);
+        max-width: 620px;
+        margin-bottom: 40px;
+        font-weight: 400;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+      }
+
+      @keyframes scrollLine {
+        0% {
+          top: -40px;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+
+      /* ============================================
+   MISSION
+   ============================================ */
+      .mission {
+        padding: 120px 0;
+        background: var(--bg);
+      }
+      .mission-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 100px;
+        align-items: center;
+      }
+
+      .mission-text {
+        max-width: 540px;
+      }
+      .mission-body {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--ink-soft);
+        margin-top: 24px;
+      }
+      .mission-text .section-title {
+        margin-bottom: 8px;
+      }
+      .mission-text .link-arrow {
+        margin-top: 36px;
+      }
+
+      .mission-visual {
+        position: relative;
+        height: 600px;
+      }
+      .mission-image-1 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 78%;
+        height: 70%;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 30px 60px -20px rgba(14, 20, 24, 0.25);
+      }
+      .mission-image-1 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1.2s var(--ease);
+      }
+      .mission-image-1:hover img {
+        transform: scale(1.04);
+      }
+
+      .mission-image-2 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 56%;
+        height: 50%;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 30px 60px -20px rgba(14, 20, 24, 0.3);
+        border: 8px solid var(--bg);
+      }
+      .mission-image-2 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1.2s var(--ease);
+      }
+      .mission-image-2:hover img {
+        transform: scale(1.04);
+      }
+
+      .mission-badge {
+        position: absolute;
+        top: 56%;
+        right: -20px;
+        background: var(--bg-dark);
+        color: #fff;
+        border-radius: 50%;
+        width: 140px;
+        height: 140px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: 0 20px 40px -10px rgba(14, 20, 24, 0.4);
+        animation: gentleFloat 6s ease-in-out infinite;
+      }
+      .badge-num {
+        font-family: var(--font-display);
+        font-size: 38px;
+        font-weight: 400;
+        color: var(--brand-blue);
+        line-height: 1;
+      }
+      .badge-text {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-top: 6px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      @keyframes gentleFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* ============================================
+   IMPACT
+   ============================================ */
+      .impact {
+        padding: 120px 0;
+        background: var(--bg-dark);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .impact::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(11, 165, 230, 0.12) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .impact-head {
+        text-align: center;
+        margin-bottom: 80px;
+        position: relative;
+      }
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        position: relative;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .impact-stat {
+        padding: 56px 32px;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: left;
+        transition: background 0.4s var(--ease);
+      }
+      .impact-stat:last-child {
+        border-right: none;
+      }
+      .impact-stat:hover {
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .stat-num {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: clamp(3rem, 5.5vw, 4.5rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: #fff;
+        margin-bottom: 18px;
+      }
+      .stat-c {
+        font-size: 0.5em;
+        color: var(--brand-blue);
+        vertical-align: super;
+        font-weight: 300;
+      }
+      .stat-label {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+      }
+
+      /* ============================================
+   PROGRAMS
+   ============================================ */
+      .programs {
+        padding: 120px 0;
+        background: var(--bg-warm);
+      }
+      .programs-head {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+        align-items: end;
+        margin-bottom: 70px;
+      }
+      .programs-intro {
+        font-size: 1.05rem;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        max-width: 440px;
+      }
+
+      .programs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+
+      .program-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--line-soft);
+        transition: all 0.5s var(--ease);
+        display: flex;
+        flex-direction: column;
+      }
+      .program-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 30px 60px -25px rgba(14, 20, 24, 0.2);
+        border-color: var(--line);
+      }
+      .program-image {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+      }
+      .program-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1s var(--ease);
+      }
+      .program-card:hover .program-image img {
+        transform: scale(1.06);
+      }
+
+      .program-body {
+        padding: 32px 30px 34px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      .program-tag {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand-blue);
+        margin-bottom: 14px;
+      }
+      .program-title {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        margin-bottom: 14px;
+      }
+      .program-text {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        margin-bottom: 18px;
+        flex-grow: 1;
+      }
+      .program-meta {
+        font-size: 13px;
+        color: var(--ink-muted);
+        padding: 12px 0;
+        border-top: 1px solid var(--line-soft);
+        margin-bottom: 18px;
+      }
+
+      /* ============================================
+   STORY / QUOTE
+   ============================================ */
+      .story {
+        padding: 130px 0;
+        background: var(--bg);
+      }
+      .story-inner {
+        max-width: 880px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .story-quote {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: clamp(1.5rem, 3vw, 2.4rem);
+        line-height: 1.3;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        margin: 32px 0 50px;
+        position: relative;
+      }
+      .story-quote::before {
+        content: '"';
+        font-size: 6rem;
+        font-family: var(--font-display);
+        color: var(--brand-blue);
+        position: absolute;
+        top: -30px;
+        left: -40px;
+        opacity: 0.3;
+        line-height: 1;
+      }
+      .story-attrib {
+        display: inline-flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .story-line {
+        width: 50px;
+        height: 1px;
+        background: var(--brand-blue);
+      }
+      .story-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 2px;
+      }
+      .story-role {
+        font-size: 13px;
+        color: var(--ink-muted);
+      }
+
+      /* ============================================
+   INVOLVE
+   ============================================ */
+      .involve {
+        padding: 120px 0;
+        background: var(--bg);
+      }
+      .involve-head {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 70px;
+      }
+      .involve-head .section-eyebrow {
+        justify-content: center;
+      }
+      .involve-head .section-eyebrow::before,
+      .involve-head .section-eyebrow::after {
+        display: none;
+      }
+      .involve-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+      .involve-card {
+        background: var(--bg-card);
+        padding: 44px 36px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--line-soft);
+        transition: all 0.5s var(--ease);
+        position: relative;
+        overflow: hidden;
+      }
+      .involve-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(11, 165, 230, 0.04),
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.4s var(--ease);
+      }
+      .involve-card:hover {
+        border-color: var(--brand-blue);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px -20px rgba(11, 165, 230, 0.25);
+      }
+      .involve-card:hover::before {
+        opacity: 1;
+      }
+      .involve-card > * {
+        position: relative;
+      }
+
+      .involve-num {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: 2rem;
+        color: var(--brand-blue);
+        margin-bottom: 22px;
+        letter-spacing: -0.02em;
+      }
+      .involve-title {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: 1.6rem;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        margin-bottom: 14px;
+      }
+      .involve-text {
+        font-size: 0.97rem;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        margin-bottom: 24px;
+      }
+
+      /* ============================================
+   CTA BAND
+   ============================================ */
+      .cta-band {
+        padding: 70px 0;
+        background: var(--brand-blue);
+        color: #fff;
+      }
+      .cta-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+      }
+      .cta-title {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+        color: #fff;
+      }
+      .cta-text {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .cta-band .btn-primary {
+        background: #fff;
+        color: var(--brand-blue);
+      }
+      .cta-band .btn-primary:hover {
+        background: var(--ink);
+        color: #fff;
+      }
+
+      /* ============================================
+   FOOTER
+   ============================================ */
+      .site-footer {
+        background: var(--bg-dark);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 80px 0 32px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+      .footer-brand {
+        max-width: 320px;
+      }
+      .footer-logo {
+        height: 56px;
+        width: auto;
+        margin-bottom: 24px;
+        background: #fff;
+        padding: 8px 14px;
+        border-radius: 8px;
+      }
+      .footer-tagline {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .footer-col h4 {
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand-blue);
+        margin-bottom: 22px;
+      }
+      .footer-col a,
+      .footer-col p {
+        display: block;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+        margin-bottom: 10px;
+        transition: color 0.3s var(--ease);
+      }
+      .footer-col a:hover {
+        color: #fff;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .footer-social {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-social a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        transition: color 0.3s var(--ease);
+      }
+      .footer-social a:hover {
+        color: var(--brand-blue);
+      }
+
+      /* ============================================
+   REVEAL ANIMATIONS
+   ============================================ */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.9s var(--ease),
+          transform 0.9s var(--ease);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ============================================
+   RESPONSIVE
+   ============================================ */
+      @media (max-width: 1024px) {
+        .Zion-container {
+          padding: 0 24px;
+        }
+        .primary-nav {
+          display: none;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+
+        .mission-grid {
+          grid-template-columns: 1fr;
+          gap: 60px;
+        }
+        .mission-visual {
+          height: 520px;
+        }
+
+        .programs-grid,
+        .involve-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .impact-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .impact-stat:nth-child(2) {
+          border-right: none;
+        }
+        .impact-stat:nth-child(1),
+        .impact-stat:nth-child(2) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .programs-head {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          align-items: start;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .mission {
+          padding: 80px 0;
+        }
+        .impact {
+          padding: 80px 0;
+        }
+        .programs {
+          padding: 80px 0;
+        }
+        .story {
+          padding: 90px 0;
+        }
+        .involve {
+          padding: 80px 0;
+        }
+
+        .hero {
+          min-height: 90vh;
+          padding-top: 120px;
+        }
+        .hero-content {
+          padding-right: 0;
+        }
+
+        .mission-visual {
+          height: 420px;
+        }
+        .mission-badge {
+          width: 110px;
+          height: 110px;
+          right: 0;
+        }
+        .badge-num {
+          font-size: 30px;
+        }
+
+        .programs-grid,
+        .involve-grid {
+          grid-template-columns: 1fr;
+        }
+        .impact-grid {
+          grid-template-columns: 1fr;
+        }
+        .impact-stat {
+          border-right: none !important;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 36px 24px;
+        }
+        .impact-stat:last-child {
+          border-bottom: none;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+
+        .cta-inner {
+          flex-direction: column;
+          text-align: center;
+          align-items: stretch;
+        }
+        .cta-inner > div {
+          text-align: center;
+        }
+
+        .story-quote::before {
+          left: 0;
+          top: -50px;
+          font-size: 4.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .Zion-container {
+          padding: 0 20px;
+        }
+        .hero-title {
+          font-size: 2.2rem;
+        }
+        .btn-lg {
+          padding: 14px 26px;
+          font-size: 15px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+       #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+    </style>
+    <header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+    <!-- ===================== HEADER / NAV ===================== -->
+    <header class="site-header" id="siteHeader">
+      <div class="Zion-container nav-inner">
+        <a href="#" class="brand" aria-label="Daughters of Zion Enterpryz home">
+          <img
+            src="https://static.wixstatic.com/media/82035a_e30bd4de786f49139b8fef4878e62888~mv2.png/v1/fill/w_256,h_194,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/DOZ%20logo%20blue%20and%20black.png"
+            alt="Daughters of Zion Enterpryz"
+            class="brand-logo"
+          />
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#impact">Impact</a>
+          <a href="#volunteer">Volunteer</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-cta">
+          <a href="#" class="btn btn-primary btn-sm">Donate</a>
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile off-canvas menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <div class="mobile-menu-head">
+          <img
+            src="https://static.wixstatic.com/media/82035a_e30bd4de786f49139b8fef4878e62888~mv2.png/v1/fill/w_256,h_194,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/DOZ%20logo%20blue%20and%20black.png"
+            alt="DOZ"
+            class="mobile-logo"
+          />
+          <button class="mobile-close" id="mobileClose" aria-label="Close menu">
+            &times;
+          </button>
+        </div>
+        <nav class="mobile-nav">
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#impact">Impact</a>
+          <a href="#volunteer">Volunteer</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a href="#" class="btn btn-primary btn-block">Donate Now</a>
+        <div class="mobile-contact">
+          <p>info@dozenterpryz.org</p>
+          <p>916-422-3875</p>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="hero-video-wrap">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="https://static.wixstatic.com/media/4ca5e5_f3676aca062b48a5a11a412cc820d83af000.jpg/v1/fill/w_1600,h_900,al_c,q_85,enc_avif,quality_auto/4ca5e5_f3676aca062b48a5a11a412cc820d83af000.jpg"
+        >
+          <source
+            src="https://video.wixstatic.com/video/4ca5e5_f3676aca062b48a5a11a412cc820d83a/480p/mp4/file.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="Zion-container hero-content">
+        <p class="hero-eyebrow">Daughters of Zion Enterpryz · Since 1998</p>
+        <h1 class="hero-title">
+          Touching the heart of God,<br />
+          by touching <em>the heart of people.</em>
+        </h1>
+        <p class="hero-lead">
+          A 501(c)(3) nonprofit serving South Sacramento for over 25 years —
+          feeding families, empowering youth, and closing the gap on
+          homelessness and food deprivation.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg">Donate Today</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MISSION / ABOUT ===================== -->
+    <section class="mission" id="about">
+      <div class="Zion-container">
+        <div class="mission-grid">
+          <div class="mission-text">
+            <p class="section-eyebrow">Who We Are</p>
+            <h2 class="section-title">
+              A cornerstone of the<br />South Sacramento community.
+            </h2>
+            <p class="mission-body">
+              For over 25 years, Daughters of Zion Enterpryz has stood as a
+              vital part of the impoverished communities we serve. Our mission
+              is to prepare youth and adults to become leaders and change agents
+              — reducing homelessness, fighting food deprivation, and rebuilding
+              families from the ground up.
+            </p>
+            <p class="mission-body">
+              Through weekly, monthly, and quarterly learning programs, we equip
+              youth to succeed academically and adults to succeed
+              professionally. It's a holistic approach that strengthens families
+              and, ultimately, our communities.
+            </p>
+            <a href="#" class="link-arrow"
+              >Read our full story <span aria-hidden="true">→</span></a
+            >
+          </div>
+          <div class="mission-visual">
+            <div class="mission-image-1">
+              <img
+                src="https://static.wixstatic.com/media/4ca5e5_f3676aca062b48a5a11a412cc820d83af000.jpg/v1/fill/w_900,h_1100,al_c,q_85,enc_avif,quality_auto/4ca5e5_f3676aca062b48a5a11a412cc820d83af000.jpg"
+                alt="Volunteer at DOZ food closet"
+                loading="lazy"
+              />
+            </div>
+            <div class="mission-image-2">
+              <img
+                src="https://static.wixstatic.com/media/82035a_9b5ca8c369a241ea8536094ee05d9c36~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/82035a_9b5ca8c369a241ea8536094ee05d9c36~mv2.jpg"
+                alt="DOZ team gathering"
+                loading="lazy"
+              />
+            </div>
+            <div class="mission-badge">
+              <span class="badge-num">25+</span>
+              <span class="badge-text">Years of Service</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== IMPACT / STATS ===================== -->
+    <section class="impact" id="impact">
+      <div class="Zion-container">
+        <div class="impact-head">
+          <p class="section-eyebrow light">Our Impact</p>
+          <h2 class="section-title light">
+            Real numbers. Real families.<br />Real change in Sacramento.
+          </h2>
+        </div>
+        <div class="impact-grid">
+          <div class="impact-stat">
+            <div class="stat-num" data-target="65000">0</div>
+            <p class="stat-label">Families served last year</p>
+          </div>
+          <div class="impact-stat">
+            <div class="stat-num" data-target="25">0</div>
+            <p class="stat-label">Years serving Sacramento</p>
+          </div>
+          <div class="impact-stat">
+            <div class="stat-num" data-target="52">0</div>
+            <p class="stat-label">Weekly food distributions a year</p>
+          </div>
+          <div class="impact-stat">
+            <div class="stat-num">501<span class="stat-c">(c)(3)</span></div>
+            <p class="stat-label">Registered nonprofit</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROGRAMS ===================== -->
+    <section class="programs" id="programs">
+      <div class="Zion-container">
+        <div class="programs-head">
+          <div>
+            <p class="section-eyebrow">What We Do</p>
+            <h2 class="section-title">
+              Programs designed to<br />uplift entire communities.
+            </h2>
+          </div>
+          <p class="programs-intro">
+            Three core initiatives anchor our work — meeting urgent needs today
+            while investing in the leaders of tomorrow.
+          </p>
+        </div>
+
+        <div class="programs-grid">
+          <article class="program-card">
+            <div class="program-image">
+              <img
+                src="https://static.wixstatic.com/media/82035a_9b5ca8c369a241ea8536094ee05d9c36~mv2.jpg/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/82035a_9b5ca8c369a241ea8536094ee05d9c36~mv2.jpg"
+                alt="Food and Clothes Closet"
+                loading="lazy"
+              />
+            </div>
+            <div class="program-body">
+              <p class="program-tag">Weekly Service</p>
+              <h3 class="program-title">Food &amp; Clothes Closet</h3>
+              <p class="program-text">
+                For more than ten years, DOZ has partnered with Sacramento Food
+                Bank and Family Services and The Emergency Food Assistance
+                Program to provide nutritious food, clothing, and diapers to
+                underserved families across the Sacramento region.
+              </p>
+              <p class="program-meta">
+                Wednesdays · 4:30 – 6:30 PM · Drive-through
+              </p>
+              <a href="#" class="link-arrow"
+                >Learn more <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </article>
+
+          <article class="program-card">
+            <div class="program-image">
+              <img
+                src="https://static.wixstatic.com/media/4ca5e5_f3676aca062b48a5a11a412cc820d83af000.jpg/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/4ca5e5_f3676aca062b48a5a11a412cc820d83af000.jpg"
+                alt="Space of Grace Youth Academy"
+                loading="lazy"
+              />
+            </div>
+            <div class="program-body">
+              <p class="program-tag">Youth Development</p>
+              <h3 class="program-title">Space of Grace Youth Academy</h3>
+              <p class="program-text">
+                A subdivision of DOZ Enterpryz embracing the talent, wit, and
+                enthusiasm of our next generation. Through programs and events,
+                we channel and refine our youth's capabilities — empowering them
+                to lead successful lives.
+              </p>
+              <p class="program-meta">Ongoing programs for ages 6 – 18</p>
+              <a href="#" class="link-arrow"
+                >Learn more <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </article>
+
+          <article class="program-card">
+            <div class="program-image">
+              <img
+                src="https://static.wixstatic.com/media/4ca5e5_10db596da0584ceba363f899db416ffc~mv2.png/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/4ca5e5_10db596da0584ceba363f899db416ffc~mv2.png"
+                alt="Catalina Island Trip"
+                loading="lazy"
+              />
+            </div>
+            <div class="program-body">
+              <p class="program-tag">Annual Trip</p>
+              <h3 class="program-title">Catalina Island Trip</h3>
+              <p class="program-text">
+                An annual immersive experience that takes youth out of their
+                everyday environment and into a place of reflection, leadership
+                development, and new perspective — building confidence that
+                lasts a lifetime.
+              </p>
+              <p class="program-meta">Annual · Summer departures</p>
+              <a href="#" class="link-arrow"
+                >Learn more <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STORY / QUOTE ===================== -->
+    <section class="story">
+      <div class="Zion-container">
+        <div class="story-inner">
+          <p class="section-eyebrow">Our Founder</p>
+          <blockquote class="story-quote">
+            Daughters of Zion was founded on a simple belief — that every
+            person, no matter their circumstance, deserves to be seen, fed, and
+            given the tools to lead a meaningful life.
+          </blockquote>
+          <div class="story-attrib">
+            <div class="story-line"></div>
+            <div>
+              <p class="story-name">Dr. Tamara Bennett</p>
+              <p class="story-role">Founder &amp; CEO — Since 1998</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GET INVOLVED ===================== -->
+    <section class="involve" id="volunteer">
+      <div class="Zion-container">
+        <div class="involve-head">
+          <p class="section-eyebrow">Get Involved</p>
+          <h2 class="section-title">
+            Three ways to make<br />an immediate impact.
+          </h2>
+        </div>
+        <div class="involve-grid">
+          <div class="involve-card">
+            <p class="involve-num">01</p>
+            <h3 class="involve-title">Donate</h3>
+            <p class="involve-text">
+              Every gift directly funds our weekly Food &amp; Clothes Closet,
+              youth academy, and outreach programs across South Sacramento.
+            </p>
+            <a href="#" class="link-arrow"
+              >Give now <span aria-hidden="true">→</span></a
+            >
+          </div>
+          <div class="involve-card">
+            <p class="involve-num">02</p>
+            <h3 class="involve-title">Volunteer</h3>
+            <p class="involve-text">
+              Join our weekly distributions, mentor young people, or lend your
+              professional skills. Every hour matters to the families we serve.
+            </p>
+            <a href="#" class="link-arrow"
+              >Sign up <span aria-hidden="true">→</span></a
+            >
+          </div>
+          <div class="involve-card">
+            <p class="involve-num">03</p>
+            <h3 class="involve-title">Partner</h3>
+            <p class="involve-text">
+              Bring your organization, church, or business into community with
+              us. Together we can multiply impact across the region.
+            </p>
+            <a href="#" class="link-arrow"
+              >Contact us <span aria-hidden="true">→</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA BAND ===================== -->
+    <section class="cta-band">
+      <div class="Zion-container">
+        <div class="cta-inner">
+          <div>
+            <h2 class="cta-title">Your gift feeds a family this week.</h2>
+            <p class="cta-text">
+              100% of donations go directly to programs serving Sacramento's
+              underserved communities.
+            </p>
+          </div>
+          <a href="#" class="btn btn-primary btn-lg">Donate Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" id="contact">
+      <div class="Zion-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img
+              src="https://static.wixstatic.com/media/82035a_e30bd4de786f49139b8fef4878e62888~mv2.png/v1/fill/w_256,h_194,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/DOZ%20logo%20blue%20and%20black.png"
+              alt="DOZ Logo"
+              class="footer-logo"
+            />
+            <p class="footer-tagline">
+              "Touching the Heart of God, by Touching the Heart of People."
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="#about">About Us</a>
+            <a href="#programs">Programs</a>
+            <a href="#impact">Our Impact</a>
+            <a href="#volunteer">Volunteer</a>
+          </div>
+          <div class="footer-col">
+            <h4>Programs</h4>
+            <a href="#">Food &amp; Clothes Closet</a>
+            <a href="#">Space of Grace Youth Academy</a>
+            <a href="#">Catalina Island Trip</a>
+            <a href="#">Donate</a>
+          </div>
+          <div class="footer-col">
+            <h4>Visit &amp; Contact</h4>
+            <p>6524 44th Street STE. 208<br />Sacramento, CA 95823</p>
+            <p>
+              <a href="mailto:info@dozenterpryz.org">info@dozenterpryz.org</a>
+            </p>
+            <p><a href="tel:9164223875">916-422-3875</a></p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            © 2026 Daughters of Zion Enterpryz. A 501(c)(3) nonprofit
+            organization.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="YouTube">YouTube</a>
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="Instagram">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* ============================================
+   DOZ Enterpryz — Interactions
+   ============================================ */
+      (function () {
+        "use strict";
+
+        // ----- Sticky header on scroll -----
+        const header = document.getElementById("siteHeader");
+        let lastScrollY = 0;
+        function onScroll() {
+          const y = window.scrollY;
+          if (y > 40) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+          lastScrollY = y;
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        // ----- Mobile menu -----
+        const navToggle = document.getElementById("navToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileClose = document.getElementById("mobileClose");
+        const mobileOverlay = document.getElementById("mobileOverlay");
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+
+        function openMenu() {
+          mobileMenu.classList.add("open");
+          mobileOverlay.classList.add("open");
+          mobileMenu.setAttribute("aria-hidden", "false");
+          navToggle.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+        }
+        function closeMenu() {
+          mobileMenu.classList.remove("open");
+          mobileOverlay.classList.remove("open");
+          mobileMenu.setAttribute("aria-hidden", "true");
+          navToggle.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        }
+        navToggle.addEventListener("click", openMenu);
+        mobileClose.addEventListener("click", closeMenu);
+        mobileOverlay.addEventListener("click", closeMenu);
+        mobileLinks.forEach((link) =>
+          link.addEventListener("click", closeMenu),
+        );
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && mobileMenu.classList.contains("open"))
+            closeMenu();
+        });
+
+        // ----- Reveal on scroll -----
+        const revealTargets = document.querySelectorAll(
+          ".mission-text, .mission-visual, .impact-head, .impact-stat, " +
+            ".programs-head, .program-card, .story-inner, " +
+            ".involve-head, .involve-card, .cta-inner",
+        );
+        revealTargets.forEach((el) => el.classList.add("reveal"));
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, i) => {
+              if (entry.isIntersecting) {
+                // Subtle stagger when multiple targets in view
+                const delay = Math.min(i * 60, 240);
+                setTimeout(() => entry.target.classList.add("in"), delay);
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14, rootMargin: "0px 0px -50px 0px" },
+        );
+
+        revealTargets.forEach((el) => io.observe(el));
+
+        // ----- Animated stat counters -----
+        const statEls = document.querySelectorAll(".stat-num[data-target]");
+        const formatNum = (n) => {
+          if (n >= 1000) return n.toLocaleString("en-US");
+          return String(n);
+        };
+
+        const statIO = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target;
+              const target = parseInt(el.dataset.target, 10);
+              const duration = 1800;
+              const start = performance.now();
+              const initial = 0;
+
+              function tick(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                // easeOutExpo
+                const eased =
+                  progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const value = Math.round(initial + (target - initial) * eased);
+                el.textContent = formatNum(value) + (target >= 1000 ? "+" : "");
+                if (progress < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
+              statIO.unobserve(el);
+            });
+          },
+          { threshold: 0.4 },
+        );
+
+        statEls.forEach((el) => statIO.observe(el));
+
+        // ----- Smooth-scroll handling for in-page links -----
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", (e) => {
+            const id = anchor.getAttribute("href");
+            if (id.length <= 1) return;
+            const target = document.querySelector(id);
+            if (!target) return;
+            e.preventDefault();
+            const offset = 80;
+            const top =
+              target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: "smooth" });
+          });
+        });
+
+        // ----- Subtle video fallback handling -----
+        // If video fails to load, ensure poster is shown gracefully.
+        const heroVideo = document.querySelector(".hero-video");
+        if (heroVideo) {
+          heroVideo.addEventListener("error", () => {
+            heroVideo.style.display = "none";
+          });
+          // Some browsers block autoplay; try a play() prompt with sound muted
+          const tryPlay = () => {
+            const p = heroVideo.play();
+            if (p && typeof p.catch === "function")
+              p.catch(() => {
+                /* silent */
+              });
+          };
+          tryPlay();
+        }
+      })();
+       //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+    </script>
+  </body>
+</html>
