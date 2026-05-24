@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IASD — International Association for the Study of Dreams</title>
+<style>
+/* ===========================
+   DESIGN TOKENS
+=========================== */
+:root {
+  --iasd-ink: #0d1117;
+  --iasd-ink-soft: #374151;
+  --iasd-ink-muted: #6b7280;
+  --iasd-surface: #ffffff;
+  --iasd-surface-2: #f8f7f5;
+  --iasd-surface-3: #f0ede8;
+  --iasd-border: #e5e0d8;
+  --iasd-accent: #1a3a5c;
+  --iasd-accent-mid: #2d5f8a;
+  --iasd-accent-light: #e8f0f8;
+  --iasd-gold: #b8860b;
+  --iasd-gold-light: #fdf6e3;
+  --iasd-radius: 4px;
+  --iasd-radius-lg: 12px;
+  --iasd-shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
+  --iasd-shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+  --iasd-shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+  --iasd-font: 'Georgia', 'Times New Roman', serif;
+  --iasd-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --iasd-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --iasd-max: 1200px;
+}
+
+/* ===========================
+   RESET & BASE
+=========================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--iasd-sans);
+  background: var(--iasd-surface);
+  color: var(--iasd-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+/* ===========================
+   NAV
+=========================== */
+.iasd-nav {
+  position: fixed;
+  top: auto; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--iasd-border);
+  transition: box-shadow var(--iasd-transition);
+}
+
+.iasd-nav.scrolled {
+  box-shadow: var(--iasd-shadow-sm);
+  top: 0;
+}
+
+.iasd-nav-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.iasd-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.iasd-nav-logo-img {
+  height: 50px !important;
+  width: auto;
+  max-width: 120px !important;
+  object-fit: contain;
+}
+
+.iasd-nav-logo-text {
+  font-family: var(--iasd-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--iasd-accent);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  display: none;
+}
+
+.iasd-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+}
+
+.iasd-nav-links a {
+  display: block;
+  padding: 8px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--iasd-ink-soft);
+  letter-spacing: 0.01em;
+  transition: color var(--iasd-transition);
+  white-space: nowrap;
+}
+
+.iasd-nav-links a:hover { color: var(--iasd-accent); }
+
+.iasd-nav-cta {
+  background: var(--iasd-accent);
+  color: #fff !important;
+  padding: 8px 18px !important;
+  border-radius: 0px;
+  font-weight: 600 !important;
+  transition: background var(--iasd-transition) !important;
+}
+
+.iasd-nav-cta:hover { background: var(--iasd-accent-mid) !important; color: #fff !important; }
+
+.iasd-nav-mobile-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--iasd-ink);
+}
+
+.iasd-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0; bottom: 0;
+  background: var(--iasd-surface);
+  z-index: 99;
+  overflow-y: auto;
+  padding: 24px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.iasd-mobile-menu.open { display: flex; }
+
+.iasd-mobile-menu a {
+  display: block;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--iasd-ink-soft);
+  border-bottom: 1px solid var(--iasd-border);
+  transition: color var(--iasd-transition);
+}
+
+.iasd-mobile-menu a:hover { color: var(--iasd-accent); }
+
+.iasd-mobile-cta-wrap {
+  margin-top: 24px;
+}
+
+.iasd-mobile-cta-wrap a {
+  display: block;
+  text-align: center;
+  background: var(--iasd-accent);
+  color: #fff !important;
+  padding: 14px !important;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+/* ===========================
+   HERO — FULL BLEED IMAGE
+=========================== */
+.iasd-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.iasd-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.iasd-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 18, 32, 0.92) 0%,
+    rgba(8, 18, 32, 0.6) 45%,
+    rgba(8, 18, 32, 0.15) 100%
+  );
+}
+
+.iasd-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 64px 80px 180px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.iasd-hero-left-inner {
+  max-width: 1200px;
+}
+
+.iasd-hero-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--iasd-gold);
+  margin-bottom: 20px;
+}
+
+.iasd-hero-title {
+  font-family: var(--iasd-font);
+  font-size: clamp(38px, 4.5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.iasd-hero-title em {
+  font-style: italic;
+  color: #f5d96a;
+}
+
+.iasd-hero-desc {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 36px;
+  max-width: 460px;
+}
+
+.iasd-hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.iasd-btn-primary {
+  display: inline-block;
+  background: #fff;
+  color: var(--iasd-accent);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 0px;
+  letter-spacing: 0.01em;
+  transition: background var(--iasd-transition), transform var(--iasd-transition), box-shadow var(--iasd-transition);
+}
+
+.iasd-btn-primary:hover {
+  background: var(--iasd-accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.iasd-btn-secondary {
+  display: inline-block;
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 4px;
+  border-bottom: 1.5px solid rgba(255,255,255,0.4);
+  transition: border-color var(--iasd-transition), color var(--iasd-transition);
+}
+
+.iasd-btn-secondary:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.9);
+}
+
+.iasd-hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+}
+
+.iasd-stat-item {
+  border-left: 2px solid rgba(255,255,255,0.2);
+  padding-left: 20px;
+}
+
+.iasd-stat-num {
+  font-family: var(--iasd-font);
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.iasd-stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .iasd-nav-links { display: none; }
+  .iasd-nav-mobile-btn { display: flex; }
+  .iasd-nav-logo-text { display: block; }
+
+  .iasd-nav-inner {
+    padding: 0 16px; /* tighten from 24px */
+    gap: 12px;       /* tighten from 32px */
+  }
+
+  /* ADD — cap logo image on tablet/mobile */
+  .iasd-nav-logo-img {
+    height: 34px;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .iasd-nav-logo-img {
+    max-width: 110px;
+    height: 60px !important;
+  }
+}
+
+/* ===========================
+   CONFERENCE BANNER
+=========================== */
+.iasd-conference-band {
+  background: var(--iasd-gold-light);
+  border-top: 3px solid var(--iasd-gold);
+  border-bottom: 1px solid #e8d8a0;
+  padding: 20px 24px;
+}
+
+.iasd-conference-band-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.iasd-conf-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--iasd-gold);
+  margin-bottom: 4px;
+}
+
+.iasd-conf-title {
+  font-family: var(--iasd-font);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--iasd-ink);
+}
+
+.iasd-conf-meta {
+  font-size: 13px;
+  color: var(--iasd-ink-muted);
+  margin-top: 2px;
+}
+
+.iasd-conf-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--iasd-gold);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0px;
+  white-space: nowrap;
+  transition: background var(--iasd-transition);
+  flex-shrink: 0;
+}
+
+.iasd-conf-cta:hover { background: #9a7009; }
+
+/* ===========================
+   ABOUT / MISSION SPLIT
+=========================== */
+.iasd-about {
+  padding: 96px 24px;
+  background: var(--iasd-surface);
+}
+
+.iasd-about-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.iasd-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--iasd-accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iasd-section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--iasd-accent);
+}
+
+.iasd-section-heading {
+  font-family: var(--iasd-font);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--iasd-ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.iasd-about-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--iasd-ink-soft);
+  margin-bottom: 32px;
+}
+
+.iasd-about-body a {
+  color: var(--iasd-accent);
+  border-bottom: 1px solid rgba(26,58,92,0.3);
+  transition: border-color var(--iasd-transition);
+}
+
+.iasd-about-body a:hover { border-color: var(--iasd-accent); }
+
+.iasd-mission-block {
+  background: var(--iasd-accent);
+  border-radius: var(--iasd-radius-lg);
+  padding: 40px;
+  color: #fff;
+}
+
+.iasd-mission-block .iasd-section-label {
+  color: rgba(255,255,255,0.6);
+}
+
+.iasd-mission-block .iasd-section-label::before {
+  background: rgba(255,255,255,0.4);
+}
+
+.iasd-mission-block p {
+  font-family: var(--iasd-font);
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.85);
+  font-style: italic;
+}
+
+/* ===========================
+   PILLARS / EXPLORE GRID
+=========================== */
+.iasd-pillars {
+  padding: 96px 24px;
+  background: var(--iasd-surface-2);
+}
+
+.iasd-pillars-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+}
+
+.iasd-section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.iasd-section-header .iasd-section-label {
+  justify-content: center;
+}
+
+.iasd-section-header .iasd-section-label::before { display: none; }
+
+.iasd-section-header .iasd-section-heading { margin-bottom: 12px; }
+
+.iasd-section-header p {
+  font-size: 16px;
+  color: var(--iasd-ink-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.iasd-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--iasd-border);
+  border-radius: var(--iasd-radius-lg);
+  overflow: hidden;
+}
+
+.iasd-pillar-card {
+  background: var(--iasd-surface);
+  padding: 40px 36px;
+  transition: background var(--iasd-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.iasd-pillar-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--iasd-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--iasd-transition);
+}
+
+.iasd-pillar-card:hover { background: var(--iasd-accent-light); }
+.iasd-pillar-card:hover::after { transform: scaleX(1); }
+
+.iasd-pillar-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--iasd-accent-light);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: background var(--iasd-transition);
+}
+
+.iasd-pillar-card:hover .iasd-pillar-icon {
+  background: var(--iasd-accent);
+}
+
+.iasd-pillar-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--iasd-accent);
+  transition: stroke var(--iasd-transition);
+}
+
+.iasd-pillar-card:hover .iasd-pillar-icon svg { stroke: #fff; }
+
+.iasd-pillar-title {
+  font-family: var(--iasd-font);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--iasd-ink);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.iasd-pillar-desc {
+  font-size: 14px;
+  color: var(--iasd-ink-muted);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.iasd-pillar-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--iasd-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap var(--iasd-transition);
+}
+
+.iasd-pillar-link:hover { gap: 8px; }
+
+/* ===========================
+   ARTICLES — EDITORIAL ROWS
+=========================== */
+.iasd-articles {
+  padding: 96px 24px;
+  background: var(--iasd-surface);
+}
+
+.iasd-articles-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+}
+
+.iasd-articles-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 24px;
+}
+
+.iasd-articles-header a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--iasd-accent);
+  border-bottom: 1.5px solid var(--iasd-accent);
+  padding-bottom: 2px;
+  transition: opacity var(--iasd-transition);
+  white-space: nowrap;
+}
+
+.iasd-articles-header a:hover { opacity: 0.7; }
+
+.iasd-articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--iasd-border);
+}
+
+.iasd-article-row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 24px;
+  align-items: start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--iasd-border);
+  transition: background var(--iasd-transition);
+  cursor: pointer;
+}
+
+.iasd-article-row:hover .iasd-article-title { color: var(--iasd-accent); }
+
+.iasd-article-num {
+  font-family: var(--iasd-font);
+  font-size: 13px;
+  color: var(--iasd-ink-muted);
+  padding-top: 4px;
+  font-style: italic;
+}
+
+.iasd-article-title {
+  font-family: var(--iasd-font);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--iasd-ink);
+  line-height: 1.4;
+  margin-bottom: 4px;
+  transition: color var(--iasd-transition);
+}
+
+.iasd-article-tag {
+  font-size: 11px;
+  color: var(--iasd-ink-muted);
+  letter-spacing: 0.04em;
+}
+
+.iasd-article-arrow {
+  color: var(--iasd-ink-muted);
+  padding-top: 2px;
+  transition: transform var(--iasd-transition), color var(--iasd-transition);
+}
+
+.iasd-article-row:hover .iasd-article-arrow {
+  transform: translateX(4px);
+  color: var(--iasd-accent);
+}
+
+/* ===========================
+   PUBLICATIONS SHOWCASE
+=========================== */
+.iasd-pubs {
+  padding: 96px 24px;
+  background: var(--iasd-surface-2);
+}
+
+.iasd-pubs-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+}
+
+.iasd-pubs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.iasd-pub-card {
+  background: var(--iasd-surface);
+  border: 1px solid var(--iasd-border);
+  border-radius: var(--iasd-radius-lg);
+  overflow: hidden;
+  transition: transform var(--iasd-transition), box-shadow var(--iasd-transition);
+}
+
+.iasd-pub-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--iasd-shadow-md);
+}
+
+.iasd-pub-card-thumb {
+  height: 180px;
+  background: var(--iasd-surface-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.iasd-pub-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.iasd-pub-card-body {
+  padding: 24px;
+}
+
+.iasd-pub-type {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--iasd-gold);
+  margin-bottom: 8px;
+}
+
+.iasd-pub-title {
+  font-family: var(--iasd-font);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--iasd-ink);
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.iasd-pub-desc {
+  font-size: 13px;
+  color: var(--iasd-ink-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.iasd-pub-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--iasd-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap var(--iasd-transition);
+}
+
+.iasd-pub-link:hover { gap: 8px; }
+
+/* ===========================
+   DREAM ART + ETHNICITY — EDITORIAL SPLIT
+=========================== */
+.iasd-editorial {
+  padding: 96px 24px;
+  background: var(--iasd-surface);
+}
+
+.iasd-editorial-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--iasd-border);
+  border-radius: var(--iasd-radius-lg);
+  overflow: hidden;
+}
+
+.iasd-editorial-block {
+  background: var(--iasd-surface);
+  padding: 56px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.iasd-editorial-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--iasd-accent);
+}
+
+.iasd-editorial-block:nth-child(2)::before {
+  background: var(--iasd-gold);
+}
+
+.iasd-editorial-block-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 28px;
+}
+
+.iasd-editorial-block-title {
+  font-family: var(--iasd-font);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--iasd-ink);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.iasd-editorial-block-desc {
+  font-size: 14px;
+  color: var(--iasd-ink-muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* ===========================
+   DONATE / CTA BAND
+=========================== */
+.iasd-donate {
+  padding: 80px 24px;
+  background: var(--iasd-accent);
+  text-align: center;
+}
+
+.iasd-donate-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.iasd-donate-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 16px;
+}
+
+.iasd-donate-title {
+  font-family: var(--iasd-font);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.iasd-donate-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+
+.iasd-btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--iasd-accent);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 8px;
+  transition: background var(--iasd-transition), transform var(--iasd-transition);
+}
+
+.iasd-btn-white:hover {
+  background: var(--iasd-accent-light);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   MEMBERSHIP
+=========================== */
+.iasd-membership {
+  padding: 96px 24px;
+  background: var(--iasd-surface-2);
+}
+
+.iasd-membership-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.iasd-membership-visual {
+  background: var(--iasd-surface-3);
+  border-radius: var(--iasd-radius-lg);
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+}
+
+.iasd-membership-visual-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0d2744 0%, #2d5f8a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px;
+  text-align: center;
+}
+
+.iasd-membership-visual-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.iasd-membership-visual-logo img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: brightness(10);
+}
+
+.iasd-membership-visual p {
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  font-style: italic;
+  font-family: var(--iasd-font);
+  line-height: 1.6;
+}
+
+.iasd-membership-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+  margin-bottom: 36px;
+}
+
+.iasd-perk {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.iasd-perk-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--iasd-accent);
+}
+
+.iasd-perk-text {
+  font-size: 14px;
+  color: var(--iasd-ink-soft);
+  line-height: 1.5;
+}
+
+/* ===========================
+   SOCIAL / COMMUNITY
+=========================== */
+.iasd-community {
+  padding: 64px 24px;
+  background: var(--iasd-surface);
+  border-top: 1px solid var(--iasd-border);
+}
+
+.iasd-community-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.iasd-community-text .iasd-section-heading {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.iasd-community-text p {
+  font-size: 15px;
+  color: var(--iasd-ink-muted);
+  max-width: 380px;
+}
+
+.iasd-social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.iasd-social-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--iasd-surface-2);
+  border: 1px solid var(--iasd-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--iasd-transition), border-color var(--iasd-transition), transform var(--iasd-transition);
+}
+
+.iasd-social-link:hover {
+  background: var(--iasd-accent);
+  border-color: var(--iasd-accent);
+  transform: translateY(-2px);
+}
+
+.iasd-social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--iasd-ink-soft);
+  transition: fill var(--iasd-transition);
+}
+
+.iasd-social-link:hover svg { fill: #fff; }
+
+/* ===========================
+   FOOTER
+=========================== */
+.iasd-footer {
+  background: var(--iasd-ink);
+  color: rgba(255,255,255,0.6);
+  padding: 64px 24px 40px;
+}
+
+.iasd-footer-inner {
+  max-width: var(--iasd-max);
+  margin: 0 auto;
+}
+
+.iasd-footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.iasd-footer-brand img {
+  height: 36px;
+  width: auto;
+  margin-bottom: 16px;
+  filter: brightness(0) invert(1) opacity(0.5);
+}
+
+.iasd-footer-brand p {
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 240px;
+}
+
+.iasd-footer-brand address {
+  font-style: normal;
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.iasd-footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 16px;
+}
+
+.iasd-footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iasd-footer-col a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  transition: color var(--iasd-transition);
+}
+
+.iasd-footer-col a:hover { color: rgba(255,255,255,0.9); }
+
+.iasd-footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.iasd-footer-bottom-left {
+  font-size: 12px;
+}
+
+.iasd-footer-bottom-right {
+  display: flex;
+  gap: 24px;
+}
+
+.iasd-footer-bottom-right a {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  transition: color var(--iasd-transition);
+}
+
+.iasd-footer-bottom-right a:hover { color: rgba(255,255,255,0.7); }
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+.iasd-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.iasd-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.iasd-fade-up:nth-child(2) { transition-delay: 0.1s; }
+.iasd-fade-up:nth-child(3) { transition-delay: 0.2s; }
+.iasd-fade-up:nth-child(4) { transition-delay: 0.3s; }
+.iasd-fade-up:nth-child(5) { transition-delay: 0.4s; }
+.iasd-fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1024px) {
+  .iasd-nav-links { display: none; }
+  .iasd-nav-mobile-btn { display: flex; }
+  .iasd-nav-logo-text { display: block; }
+
+  .iasd-hero { min-height: 100svh; }
+  .iasd-hero-content {
+    padding: 0 32px 64px;
+  }
+
+  .iasd-about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .iasd-pillars-grid { grid-template-columns: 1fr 1fr; }
+  .iasd-pubs-grid { grid-template-columns: 1fr 1fr; }
+  .iasd-editorial-inner { grid-template-columns: 1fr; }
+  .iasd-membership-inner { grid-template-columns: 1fr; }
+  .iasd-footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 640px) {
+  .iasd-hero-left { padding: 48px 20px; }
+  .iasd-hero-stats { gap: 24px; }
+  .iasd-pillars-grid { grid-template-columns: 1fr; }
+  .iasd-pubs-grid { grid-template-columns: 1fr; }
+  .iasd-articles-header { flex-direction: column; align-items: flex-start; }
+  .iasd-article-row { grid-template-columns: 36px 1fr auto; gap: 12px; }
+  .iasd-editorial-block { padding: 40px 24px; }
+  .iasd-community-inner { flex-direction: column; align-items: flex-start; }
+  .iasd-footer-top { grid-template-columns: 1fr; }
+  .iasd-conference-band-inner { flex-direction: column; align-items: flex-start; }
+  .iasd-footer-bottom { flex-direction: column; }
+  .iasd-membership-visual { aspect-ratio: 16/9; }
+}
+
+ #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+</style>
+</head>
+<body>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+<!-- NAV -->
+<nav class="iasd-nav" id="iasd-nav">
+  <div class="iasd-nav-inner">
+    <a href="https://asdreams.org" class="iasd-nav-logo">
+      <img src="https://asdreams.org/wp-content/uploads/2013/03/iasd_masthead_new2013.jpg"
+           alt="IASD — International Association for the Study of Dreams"
+           class="iasd-nav-logo-img">
+    </a>
+    <ul class="iasd-nav-links">
+      <li><a href="https://iasdconferences.org/2026">Conference</a></li>
+      <li><a href="https://asdreams.org/articles/">Articles</a></li>
+      <li><a href="https://asdreams.org/dreaming-journal/">Journal</a></li>
+      <li><a href="https://asdreams.org/research-grants/">Research</a></li>
+      <li><a href="https://iasdconferences.org/dreamart/">Dream Art</a></li>
+      <li><a href="https://asdreams.org/about-iasd/">About</a></li>
+      <li><a href="https://www.asdreams.org/membershipbenefits1/" class="iasd-nav-cta">Join IASD</a></li>
+    </ul>
+    <button class="iasd-nav-mobile-btn" id="iasd-mobile-btn" aria-label="Open menu">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="iasd-mobile-menu" id="iasd-mobile-menu" role="dialog" aria-modal="true">
+  <a href="https://iasdconferences.org/2026">Conference / Events</a>
+  <a href="https://www.asdreams.org/membership-to-iasd/">Membership</a>
+  <a href="https://asdreams.org/articles/">Articles &amp; Publications</a>
+  <a href="https://asdreams.org/about-dreams/">Research &amp; Grants</a>
+  <a href="https://iasdconferences.org/dreamart/">Dream Art</a>
+  <a href="https://asdreams.org/about-iasd/">About IASD</a>
+  <div class="iasd-mobile-cta-wrap">
+    <a href="https://www.asdreams.org/membershipbenefits1/">Join IASD — Become a Member</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="iasd-hero">
+  <img
+    src="https://i.ytimg.com/vi/l9Tmy268P6U/maxresdefault.jpg"
+    alt=""
+    class="iasd-hero-bg"
+    aria-hidden="true"
+  >
+
+  <div class="iasd-hero-overlay"></div>
+  <div class="iasd-hero-content">
+    <div class="iasd-hero-left-inner">
+      <p class="iasd-hero-kicker">Founded 1983 &nbsp;·&nbsp; Worldwide</p>
+      <h1 class="iasd-hero-title">
+        The world's premier<br>
+        <em>dream research</em><br>
+        organization.
+      </h1>
+      <p class="iasd-hero-desc">
+        A nonprofit, international, multidisciplinary community dedicated to the scientific, psychological, spiritual, and cultural investigation of dreams and dreaming.
+      </p>
+      <div class="iasd-hero-actions">
+        <a href="https://www.asdreams.org/membershipbenefits1/" class="iasd-btn-primary">Become a Member</a>
+        <a href="https://asdreams.org/about-dreams/" class="iasd-btn-secondary">Explore Dreams FAQ &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONFERENCE BANNER -->
+<div class="iasd-conference-band">
+  <div class="iasd-conference-band-inner">
+    <div>
+      <p class="iasd-conf-label">43rd Annual Conference · 2026</p>
+      <p class="iasd-conf-title">Dreaming, Health &amp; Wellness — Ashland, Oregon</p>
+      <p class="iasd-conf-meta">World-renowned keynote speakers · 100+ presenters · Workshops &amp; Morning Dream Groups</p>
+    </div>
+    <a href="https://iasdconferences.org/2026" class="iasd-conf-cta">Register Now &rarr;</a>
+  </div>
+</div>
+
+<!-- ABOUT / MISSION -->
+<section class="iasd-about">
+  <div class="iasd-about-inner">
+    <div class="iasd-fade-up">
+      <p class="iasd-section-label">About IASD</p>
+      <h2 class="iasd-section-heading">A community of dreamers, researchers, and healers.</h2>
+      <p class="iasd-about-body">
+        Do you have a question about dreams or nightmares? IASD connects you to a global network of experts. Explore articles on <a href="https://asdreams.org/about-dreams/">lucid dreaming</a>, dream telepathy, dream films, and more through our <a href="https://asdreams.org/about-dreams/">Dream FAQ</a>. Connect with peers on our <a href="https://www.facebook.com/groups/5493995967">Facebook Group</a> and attend a <a href="https://www.asdreams.org/regionals/">Regional</a> or <a href="https://iasdconferences.org/2026">International Conference</a>.
+      </p>
+      <p class="iasd-about-body">
+        IASD publishes the peer-reviewed <em>Dreaming</em> journal, the <em>DreamTime</em> magazine, and the <em>Dream News</em> newsletter — providing the deepest, most current scholarship on dreams available anywhere.
+      </p>
+    </div>
+    <div class="iasd-fade-up">
+      <div class="iasd-mission-block">
+        <p class="iasd-section-label">Our Mission</p>
+        <p>
+          IASD is a non-profit, international, multidisciplinary organization dedicated to the pure and applied investigation of dreams and dreaming. We promote awareness and appreciation of dreams in professional and public arenas; encourage research into the nature, function, and significance of dreaming; and provide a forum for eclectic and interdisciplinary exchange.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE PILLARS -->
+<section class="iasd-pillars">
+  <div class="iasd-pillars-inner">
+    <div class="iasd-section-header iasd-fade-up">
+      <p class="iasd-section-label">What We Offer</p>
+      <h2 class="iasd-section-heading">Explore the science and soul of dreaming.</h2>
+      <p>From peer-reviewed research to transformative dreamwork, IASD bridges every dimension of the dream world.</p>
+    </div>
+    <div class="iasd-pillars-grid">
+      <a href="https://asdreams.org/about-dreams/" class="iasd-pillar-card iasd-fade-up">
+        <h3 class="iasd-pillar-title">Dream Science &amp; Research</h3>
+        <p class="iasd-pillar-desc">Explore the biological, psychological, and neuroscientific foundations of dreaming, including lucid dreams, nightmares, and sleep phenomena.</p>
+        <span class="iasd-pillar-link">Learn more &rarr;</span>
+      </a>
+      <a href="https://asdreams.org/articles/" class="iasd-pillar-card iasd-fade-up">
+        <h3 class="iasd-pillar-title">Articles &amp; Publications</h3>
+        <p class="iasd-pillar-desc">Access the <em>Dreaming</em> journal, <em>DreamTime</em> magazine, expert articles, book reviews, and the Dream News newsletter.</p>
+        <span class="iasd-pillar-link">Read articles &rarr;</span>
+      </a>
+      <a href="https://iasdconferences.org/2026" class="iasd-pillar-card iasd-fade-up">
+        <h3 class="iasd-pillar-title">Conferences &amp; Events</h3>
+        <p class="iasd-pillar-desc">Join the annual international conference, regional gatherings, and the PsiberDreaming Online Conference — connecting dreamers worldwide.</p>
+        <span class="iasd-pillar-link">View events &rarr;</span>
+      </a>
+      <a href="https://asdreams.org/guidelines_for_ethical_dreamwork/" class="iasd-pillar-card iasd-fade-up">
+        <h3 class="iasd-pillar-title">Education &amp; Ethics</h3>
+        <p class="iasd-pillar-desc">Guidelines for ethical dreamwork, K–12 science projects, graduate school offerings, and the DreamTime Radio archive for educators.</p>
+        <span class="iasd-pillar-link">Explore education &rarr;</span>
+      </a>
+      <a href="http://www.dreamscience.org/grant-opportunity/" class="iasd-pillar-card iasd-fade-up">
+        <h3 class="iasd-pillar-title">Grants &amp; Awards</h3>
+        <p class="iasd-pillar-desc">The Dream Science Foundation funds original research. The Ernest Hartmann Award supports emerging student researchers in the field.</p>
+        <span class="iasd-pillar-link">Apply for grants &rarr;</span>
+      </a>
+      <a href="https://iasdconferences.org/dreamart/" class="iasd-pillar-card iasd-fade-up">
+        <h3 class="iasd-pillar-title">Dream Art Exhibition</h3>
+        <p class="iasd-pillar-desc">Celebrating visionary creativity rooted in the dream world — honoring artists who give form to the inner imagination at every annual conference.</p>
+        <span class="iasd-pillar-link">View exhibitions &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="iasd-articles">
+  <div class="iasd-articles-inner">
+    <div class="iasd-articles-header iasd-fade-up">
+      <div>
+        <p class="iasd-section-label">Featured Reading</p>
+        <h2 class="iasd-section-heading">Articles for Dreamers</h2>
+      </div>
+      <a href="https://asdreams.org/articles/">View all articles</a>
+    </div>
+    <div class="iasd-articles-list">
+      <a href="https://asdreams.org/article-can-dreams-change-our-lives/" class="iasd-article-row iasd-fade-up">
+        <span class="iasd-article-num">01</span>
+        <div>
+          <p class="iasd-article-title">Can Dreams Change Our Lives?</p>
+          <p class="iasd-article-tag">Dream Research · Featured</p>
+        </div>
+        <span class="iasd-article-arrow">&rarr;</span>
+      </a>
+      <a href="https://asdreams.org/article-death-dreams-where-reality-and-identity-become-fluid/" class="iasd-article-row iasd-fade-up">
+        <span class="iasd-article-num">02</span>
+        <div>
+          <p class="iasd-article-title">Death Dreams: Where Reality and Identity Become Fluid</p>
+          <p class="iasd-article-tag">Psychology · Identity</p>
+        </div>
+        <span class="iasd-article-arrow">&rarr;</span>
+      </a>
+      <a href="https://asdreams.org/article-post-traumatic-stress-disorder-nightmares/" class="iasd-article-row iasd-fade-up">
+        <span class="iasd-article-num">03</span>
+        <div>
+          <p class="iasd-article-title">Post-Traumatic Stress Disorder Nightmares</p>
+          <p class="iasd-article-tag">Trauma · Clinical Research</p>
+        </div>
+        <span class="iasd-article-arrow">&rarr;</span>
+      </a>
+      <a href="https://asdreams.org/baw-themindneversleeps/" class="iasd-article-row iasd-fade-up">
+        <span class="iasd-article-num">04</span>
+        <div>
+          <p class="iasd-article-title">Lucid Dreaming: The Mind Never Sleeps</p>
+          <p class="iasd-article-tag">Lucid Dreaming · Neuroscience</p>
+        </div>
+        <span class="iasd-article-arrow">&rarr;</span>
+      </a>
+      <a href="https://asdreams.org/article-community-dreams-it-takes-a-village-to-understand-a-dream/" class="iasd-article-row iasd-fade-up">
+        <span class="iasd-article-num">05</span>
+        <div>
+          <p class="iasd-article-title">Community Dreams: It Takes a Village to Understand a Dream</p>
+          <p class="iasd-article-tag">Community · Culture</p>
+        </div>
+        <span class="iasd-article-arrow">&rarr;</span>
+      </a>
+      <a href="https://asdreams.org/covid-19-dreams/" class="iasd-article-row iasd-fade-up">
+        <span class="iasd-article-num">06</span>
+        <div>
+          <p class="iasd-article-title">Covid-19 Dreams: Research &amp; Interviews from IASD Members</p>
+          <p class="iasd-article-tag">Contemporary Research · Pandemic</p>
+        </div>
+        <span class="iasd-article-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="iasd-pubs">
+  <div class="iasd-pubs-inner">
+    <div class="iasd-section-header iasd-fade-up">
+      <p class="iasd-section-label">IASD Publications</p>
+      <h2 class="iasd-section-heading">Scholarship at the frontier of dream science.</h2>
+    </div>
+    <div class="iasd-pubs-grid">
+      <a href="https://asdreams.org/dreaming-journal/" class="iasd-pub-card iasd-fade-up">
+        <div class="iasd-pub-card-thumb" style="background: linear-gradient(135deg, #0d2744 0%, #2d5f8a 100%); align-items: center; justify-content: center;">
+          <div style="color: rgba(255,255,255,0.8); font-family: Georgia, serif; font-size: 22px; font-weight: 700; text-align: center; padding: 20px; font-style: italic; line-height: 1.3;">Dreaming<br><span style="font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6;">APA Journal</span></div>
+        </div>
+        <div class="iasd-pub-card-body">
+          <p class="iasd-pub-type">Peer-Reviewed Journal</p>
+          <h3 class="iasd-pub-title">Dreaming — APA Journal</h3>
+          <p class="iasd-pub-desc">The official journal of IASD, published by the American Psychological Association. The definitive peer-reviewed publication for dream science.</p>
+          <span class="iasd-pub-link">Access journal &rarr;</span>
+        </div>
+      </a>
+      <a href="https://asdreams.org/dreamtime-magazine-info/" class="iasd-pub-card iasd-fade-up">
+        <div class="iasd-pub-card-thumb" style="background: linear-gradient(135deg, #2a1a0d 0%, #8b5e1a 100%); align-items: center; justify-content: center;">
+          <div style="color: rgba(255,255,255,0.85); font-family: Georgia, serif; font-size: 22px; font-weight: 700; text-align: center; padding: 20px; font-style: italic; line-height: 1.3;">DreamTime<br><span style="font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6;">Magazine</span></div>
+        </div>
+        <div class="iasd-pub-card-body">
+          <p class="iasd-pub-type">Member Magazine</p>
+          <h3 class="iasd-pub-title">DreamTime Magazine</h3>
+          <p class="iasd-pub-desc">Accessible, engaging dream content for members and the public — featuring interviews, book reviews, practice guides, and dream art.</p>
+          <span class="iasd-pub-link">Read more &rarr;</span>
+        </div>
+      </a>
+      <a href="https://asdreams.org/dreams-that-change-our-lives/" class="iasd-pub-card iasd-fade-up">
+        <div class="iasd-pub-card-thumb">
+          <img src="https://asdreams.org/wp-content/uploads/2025/10/Dreams-That-Change-Our-Lives-for-Web.jpg"
+               alt="Dreams That Change Our Lives — IASD Book"
+               loading="lazy">
+        </div>
+        <div class="iasd-pub-card-body">
+          <p class="iasd-pub-type">IASD Book Project</p>
+          <h3 class="iasd-pub-title">Dreams That Change Our Lives</h3>
+          <p class="iasd-pub-desc">A landmark IASD anthology exploring transformative dream experiences. Available via Chiron Publications and Amazon.</p>
+          <span class="iasd-pub-link">Order book &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL — DREAM ART + DIVERSITY -->
+<section class="iasd-editorial">
+  <div class="iasd-editorial-inner">
+    <div class="iasd-editorial-block iasd-fade-up">
+      <img src="https://asdreams.org/wp-content/uploads/2026/05/dream-art-banner-2026-1024x390.jpg"
+           alt="Dream Art Exhibition 2026"
+           class="iasd-editorial-block-img"
+           loading="lazy">
+      <p class="iasd-section-label">Dream Art</p>
+      <h3 class="iasd-editorial-block-title">Art that gives form to the inner world.</h3>
+      <p class="iasd-editorial-block-desc">
+        IASD elevates dream-based creative expression through annual exhibitions celebrating artists who honor the visionary imagination. Our mission: enrich the cultural experience of the dream community.
+      </p>
+      <a href="https://iasdconferences.org/dreamart/" class="iasd-btn-primary" style="font-size: 14px; padding: 12px 24px;">
+        Explore Dream Art <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="iasd-editorial-block iasd-fade-up">
+      <img src="https://asdreams.org/wp-content/uploads/2021/02/de-portal-1024x390.jpg"
+           alt="Dreams and Ethnicity Community"
+           class="iasd-editorial-block-img"
+           loading="lazy">
+      <p class="iasd-section-label" style="color: var(--iasd-gold);">Diversity &amp; Community</p>
+      <h3 class="iasd-editorial-block-title">Dreams &amp; Ethnicity — A Community Portal.</h3>
+      <p class="iasd-editorial-block-desc">
+        The Dreams and Ethnicity Community portal features bios, diversity resources, podcasts, publications, and culturally-rooted dreamwork exercises fostering healing and inclusion.
+      </p>
+      <a href="https://asdreams.org/dreams-and-ethnicity-portal/" class="iasd-btn-primary" style="font-size: 14px; padding: 12px 24px; background: var(--iasd-gold);">
+        Visit Portal <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="iasd-donate">
+  <div class="iasd-donate-inner iasd-fade-up">
+    <p class="iasd-donate-label">Support IASD</p>
+    <h2 class="iasd-donate-title">Keep IASD Strong — Give Year-Round</h2>
+    <p class="iasd-donate-desc">
+      Your support sustains our research grants, publications, educational programs, and global community of dreamers. Every contribution keeps the world's premier dream organization thriving.
+    </p>
+    <a href="https://asdreams.org/donate-year-round/" class="iasd-btn-white">
+      Make a Donation
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="iasd-membership">
+  <div class="iasd-membership-inner">
+    <div class="iasd-membership-visual iasd-fade-up">
+      <div class="iasd-membership-visual-bg">
+        <div class="iasd-membership-visual-logo">
+          <img src="https://www.asdreams.org/IASD/wp-content/uploads/2013/03/iasd_masthead_new2013.jpg"
+               alt="IASD logo"
+               loading="lazy">
+        </div>
+        <p style="color: rgba(255,255,255,0.9); font-size: 18px; font-family: Georgia, serif; font-style: italic;">Join a global community of dreamers, researchers, educators, and healers.</p>
+        <p style="color: rgba(255,255,255,0.5); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Members from around the world</p>
+      </div>
+    </div>
+    <div class="iasd-fade-up">
+      <p class="iasd-section-label">Membership</p>
+      <h2 class="iasd-section-heading">Join the IASD community.</h2>
+      <p style="font-size: 15px; color: var(--iasd-ink-muted); margin-bottom: 8px;">Become part of the world's leading multidisciplinary dream organization — connecting scientists, therapists, educators, artists, and enthusiastic dreamers worldwide.</p>
+      <div class="iasd-membership-perks">
+        <div class="iasd-perk">
+          <svg class="iasd-perk-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <p class="iasd-perk-text">Access to the <em>Dreaming</em> journal and <em>DreamTime</em> magazine</p>
+        </div>
+        <div class="iasd-perk">
+          <svg class="iasd-perk-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <p class="iasd-perk-text">Discounted conference registration for annual and regional events</p>
+        </div>
+        <div class="iasd-perk">
+          <svg class="iasd-perk-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <p class="iasd-perk-text">Members-only directory and global networking opportunities</p>
+        </div>
+        <div class="iasd-perk">
+          <svg class="iasd-perk-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <p class="iasd-perk-text">Dream News newsletter and access to session recordings</p>
+        </div>
+        <div class="iasd-perk">
+          <svg class="iasd-perk-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <p class="iasd-perk-text">Eligibility for research grants and student awards</p>
+        </div>
+      </div>
+      <a href="https://www.asdreams.org/membershipbenefits1/" class="iasd-btn-primary">
+        Become a Member
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL / COMMUNITY -->
+<div class="iasd-community">
+  <div class="iasd-community-inner">
+    <div class="iasd-community-text">
+      <p class="iasd-section-label">Follow IASD</p>
+      <h2 class="iasd-section-heading">Stay connected with the dream community.</h2>
+      <p>Join the conversation on social media and connect with thousands of dreamers, researchers, and practitioners worldwide.</p>
+    </div>
+    <div class="iasd-social-links">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/pages/International-Association-for-the-Study-of-Dreams/118109938248168" class="iasd-social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <!-- YouTube -->
+      <a href="http://www.youtube.com/iasdreams" class="iasd-social-link" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/iasddream/" class="iasd-social-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </a>
+      <!-- Pinterest -->
+      <a href="http://pinterest.com/studyofdreams/" class="iasd-social-link" aria-label="Pinterest">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      </a>
+      <!-- Twitter / X -->
+      <a href="http://www.twitter.com/DreamScholars" class="iasd-social-link" aria-label="Twitter">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="iasd-footer">
+  <div class="iasd-footer-inner">
+    <div class="iasd-footer-top">
+      <div class="iasd-footer-brand">
+        <img src="https://www.asdreams.org/IASD/wp-content/uploads/2013/03/iasd_masthead_new2013.jpg"
+             alt="IASD"
+             loading="lazy">
+        <p>A nonprofit, international, multidisciplinary organization dedicated to the investigation of dreams and dreaming since 1983.</p>
+        <address>
+          IASD · P.O. Box 582<br>
+          Folsom, CA 95763<br>
+          <a href="mailto:office@asdreams.org" style="color: rgba(255,255,255,0.4); transition: color 0.2s;">office@asdreams.org</a><br>
+          1-209-724-0889
+        </address>
+      </div>
+      <div class="iasd-footer-col">
+        <p class="iasd-footer-col-title">Explore</p>
+        <ul>
+          <li><a href="https://asdreams.org/about-dreams/">Dream FAQ</a></li>
+          <li><a href="https://asdreams.org/articles/">Articles</a></li>
+          <li><a href="https://asdreams.org/dreamlinks/">DreamLinks</a></li>
+          <li><a href="https://asdreams.org/books-a-z/">Book List A–Z</a></li>
+          <li><a href="https://asdreams.org/dreaming-journal/">Dreaming Journal</a></li>
+        </ul>
+      </div>
+      <div class="iasd-footer-col">
+        <p class="iasd-footer-col-title">Organization</p>
+        <ul>
+          <li><a href="https://asdreams.org/about-iasd/">About IASD</a></li>
+          <li><a href="https://www.asdreams.org/membershipbenefits1/">Membership</a></li>
+          <li><a href="https://asdreams.org/iasdcommittees/">Committees</a></li>
+          <li><a href="https://asdreams.org/heritage-fund/">Heritage Fund</a></li>
+          <li><a href="https://asdreams.org/donate-year-round/">Donate</a></li>
+        </ul>
+      </div>
+      <div class="iasd-footer-col">
+        <p class="iasd-footer-col-title">Events</p>
+        <ul>
+          <li><a href="https://iasdconferences.org/2026">2026 Conference</a></li>
+          <li><a href="https://asdreams.org/regionals/">Regional Events</a></li>
+          <li><a href="https://asdreams.org/psiberdreaming-conferences/">PsiberDreaming</a></li>
+          <li><a href="https://iasdconferences.org/dreamart/">Dream Art</a></li>
+          <li><a href="https://www.asdreams.org/student-awards/">Student Awards</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="iasd-footer-bottom">
+      <p class="iasd-footer-bottom-left">© 2026 International Association for the Study of Dreams. All rights reserved.</p>
+      <div class="iasd-footer-bottom-right">
+        <a href="https://asdreams.org/privacy-cookie-policy/">Privacy Policy</a>
+        <a href="https://asdreams.org/ethics-and-confidentiality/">Ethics</a>
+        <a href="https://asdreams.org/newsletter-sign-up/">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===========================
+// NAV SCROLL BEHAVIOR
+// ===========================
+const nav = document.getElementById('iasd-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+// ===========================
+// MOBILE MENU
+// ===========================
+const mobileBtn = document.getElementById('iasd-mobile-btn');
+const mobileMenu = document.getElementById('iasd-mobile-menu');
+let menuOpen = false;
+
+mobileBtn.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mobileMenu.classList.toggle('open', menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+  mobileBtn.innerHTML = menuOpen
+    ? `<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>`
+    : `<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+});
+
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    mobileBtn.innerHTML = `<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+  });
+});
+
+// ===========================
+// STAR FIELD
+// ===========================
+const starfield = document.getElementById('iasd-starfield');
+if (starfield) {
+  const count = 60;
+  for (let i = 0; i < count; i++) {
+    const star = document.createElement('div');
+    star.className = 'iasd-star';
+    const size = Math.random() * 2 + 1;
+    star.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 85}%;
+      width: ${size}px;
+      height: ${size}px;
+      animation-delay: ${Math.random() * 4}s;
+      animation-duration: ${2 + Math.random() * 3}s;
+      opacity: ${0.3 + Math.random() * 0.7};
+    `;
+    starfield.appendChild(star);
+  }
+}
+
+// ===========================
+// INTERSECTION OBSERVER — FADE UP
+// ===========================
+const fadeEls = document.querySelectorAll('.iasd-fade-up');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+fadeEls.forEach(el => observer.observe(el));
+
+// ===========================
+// HERO FADE IN ON LOAD
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+  const heroLeft = document.querySelector('.iasd-hero-left-inner');
+  if (heroLeft) {
+    heroLeft.style.opacity = '0';
+    heroLeft.style.transform = 'translateY(20px)';
+    heroLeft.style.transition = 'opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s';
+    requestAnimationFrame(() => {
+      heroLeft.style.opacity = '1';
+      heroLeft.style.transform = 'translateY(0)';
+    });
+  }
+});
+//glad heade
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+</script>
+</body>
+</html>

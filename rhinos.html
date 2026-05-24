@@ -1,0 +1,3262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Twelve Bridges Jr. Rhinos — Youth Football & Cheer | Lincoln, CA
+    </title>
+    <meta
+      name="description"
+      content="Twelve Bridges Jr. Rhinos is a youth football, cheer, and STUNT organization based in Lincoln, California, building character, teamwork, and athletic excellence."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --rhino-green: #1f5132;
+        --rhino-green-dark: #143620;
+        --rhino-green-deep: #0d2916;
+        --rhino-ink: #0a0f0c;
+        --rhino-charcoal: #1a1f1c;
+        --rhino-text: #1f2a23;
+        --rhino-text-muted: #5a6760;
+        --rhino-line: #e5e9e7;
+        --rhino-bg: #ffffff;
+        --rhino-bg-soft: #f6f7f6;
+        --rhino-bg-cream: #f1efea;
+        --rhino-accent: #c8a64b;
+        --rhino-radius: 0;
+        --rhino-shadow-sm: 0 1px 2px rgba(13, 41, 22, 0.06);
+        --rhino-shadow-md: 0 8px 24px rgba(13, 41, 22, 0.08);
+        --rhino-shadow-lg: 0 20px 50px rgba(13, 41, 22, 0.12);
+        --rhino-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      body {
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        color: var(--rhino-text);
+        background: var(--rhino-bg);
+        line-height: 1.6;
+        font-size: 16px;
+        overflow-x: hidden;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+        height: auto;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* ===================== NAVBAR ===================== */
+      .rhino-nav {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: white;
+        backdrop-filter: saturate(180%) blur(14px);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s var(--rhino-ease);
+      }
+      .rhino-nav.is-scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom-color: var(--rhino-line);
+        box-shadow: var(--rhino-shadow-sm);
+        top: 0;
+      }
+      .rhino-nav-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 14px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+      .rhino-nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        color: var(--rhino-green-dark);
+      }
+      .rhino-nav-brand-mark {
+        width: 42px;
+        height: 42px;
+        background: var(--rhino-green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        border: 2px solid var(--rhino-green-dark);
+      }
+      .rhino-nav-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+      }
+      .rhino-nav-brand-text small {
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--rhino-text-muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+      .rhino-nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+      }
+      .rhino-nav-item {
+        position: relative;
+      }
+      .rhino-nav-link {
+        padding: 10px 14px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--rhino-text);
+        position: relative;
+        transition: color 0.2s var(--rhino-ease);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+      }
+      .rhino-nav-link:hover {
+        color: var(--rhino-green);
+      }
+      .rhino-nav-link::after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 4px;
+        height: 2px;
+        background: var(--rhino-green);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s var(--rhino-ease);
+      }
+      .rhino-nav-link:hover::after,
+      .rhino-nav-item.is-open .rhino-nav-link::after {
+        transform: scaleX(1);
+      }
+      .rhino-nav-caret {
+        width: 10px;
+        height: 10px;
+        transition: transform 0.25s var(--rhino-ease);
+        flex-shrink: 0;
+      }
+      .rhino-nav-item.is-open .rhino-nav-caret {
+        transform: rotate(180deg);
+      }
+
+      .rhino-nav-panel {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        min-width: 300px;
+        background: #fff;
+        border: 1px solid var(--rhino-line);
+        box-shadow: var(--rhino-shadow-lg);
+        padding: 14px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.2s var(--rhino-ease),
+          transform 0.25s var(--rhino-ease),
+          visibility 0.2s;
+        z-index: 50;
+      }
+      .rhino-nav-item.is-open .rhino-nav-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .rhino-nav-panel::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 0;
+        right: 0;
+        height: 14px;
+      }
+      .rhino-nav-panel a {
+        display: block;
+        padding: 10px 14px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--rhino-text);
+        border-left: 2px solid transparent;
+        transition: all 0.15s var(--rhino-ease);
+      }
+      .rhino-nav-panel a:hover {
+        background: var(--rhino-bg-soft);
+        color: var(--rhino-green-dark);
+        border-left-color: var(--rhino-green);
+      }
+      .rhino-nav-panel a small {
+        display: block;
+        font-size: 11px;
+        color: var(--rhino-text-muted);
+        font-weight: 400;
+        margin-top: 2px;
+      }
+      .rhino-nav-panel-wide {
+        min-width: 420px;
+      }
+
+      .rhino-nav-utility {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-left: 14px;
+        margin-left: 6px;
+        border-left: 1px solid var(--rhino-line);
+      }
+      .rhino-nav-util {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--rhino-text-muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s var(--rhino-ease);
+      }
+      .rhino-nav-util:hover {
+        color: var(--rhino-green);
+      }
+      .rhino-nav-util svg {
+        width: 14px;
+        height: 14px;
+      }
+      .rhino-nav-cart {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--rhino-text-muted);
+        position: relative;
+      }
+      .rhino-nav-cart:hover {
+        color: var(--rhino-green);
+      }
+      .rhino-nav-cart svg {
+        width: 18px;
+        height: 18px;
+      }
+      .rhino-nav-cart-count {
+        background: var(--rhino-green);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 1px 6px;
+        min-width: 18px;
+        text-align: center;
+      }
+      .rhino-nav-cta {
+        padding: 10px 20px;
+        background: var(--rhino-green);
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        transition:
+          background 0.2s var(--rhino-ease),
+          transform 0.2s var(--rhino-ease);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: 6px;
+      }
+      .rhino-nav-cta:hover {
+        background: var(--rhino-green-dark);
+        transform: translateY(-1px);
+      }
+      .rhino-nav-toggle {
+        display: none;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        color: var(--rhino-green-dark);
+      }
+      .rhino-nav-toggle svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      /* ===================== MOBILE OFFCANVAS ===================== */
+      .rhino-mobile {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 88%;
+        max-width: 380px;
+        height: 100vh;
+        background: #fff;
+        z-index: 200;
+        padding: 24px 24px 40px;
+        overflow-y: auto;
+        transition: right 0.35s var(--rhino-ease);
+        box-shadow: -20px 0 50px rgba(0, 0, 0, 0.15);
+      }
+      .rhino-mobile.is-open {
+        right: 0;
+      }
+      .rhino-mobile-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 15, 12, 0.5);
+        z-index: 150;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s var(--rhino-ease);
+      }
+      .rhino-mobile-backdrop.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .rhino-mobile-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--rhino-line);
+      }
+      .rhino-mobile-close {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--rhino-green-dark);
+      }
+      .rhino-mobile-list {
+        display: flex;
+        flex-direction: column;
+        margin-top: 12px;
+      }
+      .rhino-mobile-item {
+        border-bottom: 1px solid var(--rhino-line);
+      }
+      .rhino-mobile-link {
+        width: 100%;
+        padding: 16px 4px;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--rhino-text);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        transition: color 0.2s var(--rhino-ease);
+      }
+      .rhino-mobile-link:hover {
+        color: var(--rhino-green);
+      }
+      .rhino-mobile-link svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.25s var(--rhino-ease);
+        flex-shrink: 0;
+      }
+      .rhino-mobile-item.is-open .rhino-mobile-link svg {
+        transform: rotate(180deg);
+      }
+      .rhino-mobile-sub {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s var(--rhino-ease);
+      }
+      .rhino-mobile-item.is-open .rhino-mobile-sub {
+        max-height: 600px;
+      }
+      .rhino-mobile-sub-inner {
+        padding: 4px 0 16px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        border-left: 2px solid var(--rhino-line);
+        margin-left: 4px;
+      }
+      .rhino-mobile-sub-inner a {
+        padding: 10px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--rhino-text-muted);
+        border: none;
+        display: block;
+      }
+      .rhino-mobile-sub-inner a:hover {
+        color: var(--rhino-green);
+      }
+      .rhino-mobile-utility {
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rhino-line);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .rhino-mobile-utility a {
+        font-size: 14px;
+        color: var(--rhino-text-muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .rhino-mobile-utility a:hover {
+        color: var(--rhino-green);
+      }
+      .rhino-mobile-utility svg {
+        width: 16px;
+        height: 16px;
+      }
+      .rhino-mobile-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 24px;
+        padding: 16px;
+        background: var(--rhino-green);
+        color: #fff;
+        font-weight: 600;
+      }
+      .rhino-mobile-cta svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ===================== HERO ===================== */
+      .rhino-hero {
+        position: relative;
+        min-height: auto;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        overflow: hidden;
+        padding: 140px 0 40px;
+      }
+      .rhino-hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .rhino-hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        transform: scale(1.05);
+        animation: rhinoSlowZoom 18s var(--rhino-ease) forwards;
+      }
+      @keyframes rhinoSlowZoom {
+        to {
+          transform: scale(1);
+        }
+      }
+      .rhino-hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(4, 6, 5, 0.785) 0%,
+          rgba(3, 15, 7, 0.812) 50%,
+          rgb(10, 15, 12) 100%
+        );
+      }
+      .rhino-hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 28px;
+        width: 100%;
+      }
+      .rhino-hero-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .rhino-hero-title {
+        font-size: clamp(34px, 5vw, 62px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 24px;
+        color: #fff;
+      }
+      .rhino-hero-title span {
+        display: block;
+        color: #a8c9b5;
+        font-weight: 500;
+        font-style: italic;
+        font-size: 0.45em;
+        letter-spacing: 0;
+        margin-top: 14px;
+        line-height: 1.3;
+      }
+      .rhino-hero-lede {
+        font-size: 18px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.82);
+        max-width: 560px;
+        margin-bottom: 40px;
+      }
+      .rhino-hero-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 32px;
+        background: #fff;
+        color: var(--rhino-green-dark);
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.01em;
+        transition:
+          transform 0.25s var(--rhino-ease),
+          background 0.2s var(--rhino-ease),
+          color 0.2s var(--rhino-ease);
+      }
+      .rhino-hero-action:hover {
+        background: var(--rhino-accent);
+        color: var(--rhino-ink);
+        transform: translateY(-2px);
+      }
+      .rhino-hero-action svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.25s var(--rhino-ease);
+      }
+      .rhino-hero-action:hover svg {
+        transform: translateX(4px);
+      }
+
+      .rhino-hero-side {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+      .rhino-hero-emblem {
+        width: 100%;
+        max-width: 340px;
+        aspect-ratio: 1;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+        position: relative;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      }
+      .rhino-hero-emblem::before {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        border: 1px solid rgba(31, 81, 50, 0.15);
+      }
+      .rhino-hero-emblem img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .rhino-hero-meta {
+        margin-top: 64px;
+        position: relative;
+        z-index: 2;
+      }
+      .rhino-hero-meta-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .rhino-hero-meta-loc {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .rhino-hero-meta-loc svg {
+        width: 16px;
+        height: 16px;
+        color: rgba(255, 255, 255, 0.55);
+        flex-shrink: 0;
+      }
+
+      /* ===================== ANNOUNCE BAR ===================== */
+      .rhino-announce {
+        background: var(--rhino-green-deep);
+        color: #fff;
+        padding: 18px 28px;
+      }
+      .rhino-announce-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .rhino-announce-msg {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+      }
+      .rhino-announce-tag {
+        font-weight: 700;
+        color: var(--rhino-accent);
+        letter-spacing: 0.12em;
+        font-size: 12px;
+        text-transform: uppercase;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        padding-right: 14px;
+      }
+      .rhino-announce-link {
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--rhino-accent);
+        transition: gap 0.2s var(--rhino-ease);
+      }
+      .rhino-announce-link:hover {
+        gap: 10px;
+      }
+
+      /* ===================== MISSION SECTION ===================== */
+      .rhino-mission {
+        padding: 120px 28px;
+        background: var(--rhino-bg);
+      }
+      .rhino-mission-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .rhino-mission-eye {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rhino-green);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .rhino-mission-eye::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: var(--rhino-green);
+      }
+      .rhino-mission-title {
+        font-size: clamp(32px, 3.6vw, 48px);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--rhino-ink);
+        margin-bottom: 28px;
+      }
+      .rhino-mission-text {
+        font-size: 17px;
+        line-height: 1.7;
+        color: var(--rhino-text-muted);
+        margin-bottom: 20px;
+      }
+      .rhino-mission-image {
+        position: relative;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+      }
+      .rhino-mission-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1s var(--rhino-ease);
+      }
+      .rhino-mission-image:hover img {
+        transform: scale(1.04);
+      }
+      .rhino-mission-values {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin-top: 40px;
+        border-top: 1px solid var(--rhino-line);
+        padding-top: 32px;
+      }
+      .rhino-mission-val {
+        padding: 0 16px;
+        border-right: 1px solid var(--rhino-line);
+      }
+      .rhino-mission-val:first-child {
+        padding-left: 0;
+      }
+      .rhino-mission-val:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
+      .rhino-mission-val-num {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--rhino-green);
+        margin-bottom: 8px;
+        letter-spacing: 0.04em;
+      }
+      .rhino-mission-val-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--rhino-ink);
+        margin-bottom: 6px;
+      }
+      .rhino-mission-val-desc {
+        font-size: 13px;
+        color: var(--rhino-text-muted);
+        line-height: 1.5;
+      }
+
+      /* ===================== PROGRAMS ===================== */
+      .rhino-programs {
+        padding: 120px 28px;
+        background: var(--rhino-bg-soft);
+        border-top: 1px solid var(--rhino-line);
+        border-bottom: 1px solid var(--rhino-line);
+      }
+      .rhino-programs-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .rhino-programs-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 40px;
+        margin-bottom: 64px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--rhino-line);
+      }
+      .rhino-programs-head-left {
+        max-width: 640px;
+      }
+      .rhino-programs-head h2 {
+        font-size: clamp(32px, 3.6vw, 46px);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--rhino-ink);
+        margin: 16px 0 0;
+      }
+      .rhino-programs-head p {
+        font-size: 16px;
+        color: var(--rhino-text-muted);
+        max-width: 380px;
+        line-height: 1.6;
+      }
+
+      .rhino-programs-list {
+        display: flex;
+        flex-direction: column;
+      }
+      .rhino-program-item {
+        display: grid;
+        grid-template-columns: 140px 1fr 380px auto;
+        gap: 48px;
+        align-items: center;
+        padding: 40px 0;
+        border-bottom: 1px solid var(--rhino-line);
+        transition: background 0.25s var(--rhino-ease);
+      }
+      .rhino-program-item:hover {
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .rhino-program-item:last-child {
+        border-bottom: none;
+      }
+      .rhino-program-num {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--rhino-green);
+        letter-spacing: 0.04em;
+      }
+      .rhino-program-num span {
+        display: block;
+        color: var(--rhino-text-muted);
+        font-weight: 500;
+        font-size: 12px;
+        margin-top: 6px;
+        letter-spacing: 0;
+      }
+      .rhino-program-body h3 {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--rhino-ink);
+        letter-spacing: -0.015em;
+        margin-bottom: 10px;
+      }
+      .rhino-program-body p {
+        font-size: 15px;
+        color: var(--rhino-text-muted);
+        line-height: 1.6;
+        max-width: 480px;
+      }
+      .rhino-program-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 13px;
+      }
+      .rhino-program-meta-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        border-bottom: 1px dotted var(--rhino-line);
+      }
+      .rhino-program-meta-row:last-child {
+        border: none;
+      }
+      .rhino-program-meta-label {
+        color: var(--rhino-text-muted);
+        font-weight: 500;
+      }
+      .rhino-program-meta-val {
+        color: var(--rhino-ink);
+        font-weight: 600;
+      }
+      .rhino-program-arrow {
+        width: 54px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--rhino-bg);
+        border: 1px solid var(--rhino-line);
+        transition: all 0.25s var(--rhino-ease);
+        color: var(--rhino-green-dark);
+      }
+      .rhino-program-arrow svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.25s var(--rhino-ease);
+      }
+      .rhino-program-item:hover .rhino-program-arrow {
+        background: var(--rhino-green);
+        color: #fff;
+        border-color: var(--rhino-green);
+      }
+      .rhino-program-item:hover .rhino-program-arrow svg {
+        transform: translate(2px, -2px);
+      }
+
+      /* ===================== CHAMPIONS ===================== */
+      .rhino-champions {
+        padding: 120px 28px;
+        background: var(--rhino-ink);
+        color: #fff;
+      }
+      .rhino-champions-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .rhino-champions-head {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+      .rhino-champions-eye {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--rhino-accent);
+        margin-bottom: 18px;
+      }
+      .rhino-champions-head h2 {
+        font-size: clamp(32px, 3.6vw, 46px);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 18px;
+      }
+      .rhino-champions-head p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      .rhino-champions-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 18px;
+      }
+      .rhino-champion {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1;
+      }
+      .rhino-champion img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s var(--rhino-ease);
+        filter: saturate(0.9);
+      }
+      .rhino-champion:hover img {
+        transform: scale(1.06);
+        filter: saturate(1.05);
+      }
+      .rhino-champion::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 40%,
+          rgba(10, 15, 12, 0.85) 100%
+        );
+      }
+      .rhino-champion-meta {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 24px;
+        z-index: 2;
+      }
+      .rhino-champion-meta small {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rhino-accent);
+        display: block;
+        margin-bottom: 6px;
+      }
+      .rhino-champion-meta h4 {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .rhino-champion-tall {
+        grid-column: span 6;
+        grid-row: span 2;
+        aspect-ratio: auto;
+      }
+      .rhino-champion-wide {
+        grid-column: span 6;
+      }
+      .rhino-champion-half {
+        grid-column: span 3;
+      }
+
+      /* ===================== STATS ===================== */
+      .rhino-stats {
+        padding: 100px 28px;
+        background: var(--rhino-bg-cream);
+      }
+      .rhino-stats-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+      .rhino-stat {
+        padding: 24px 32px;
+        border-right: 1px solid rgba(31, 81, 50, 0.15);
+      }
+      .rhino-stat:first-child {
+        padding-left: 0;
+      }
+      .rhino-stat:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
+      .rhino-stat-num {
+        font-size: clamp(40px, 5vw, 60px);
+        font-weight: 800;
+        line-height: 1;
+        color: var(--rhino-green-dark);
+        letter-spacing: -0.03em;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: baseline;
+      }
+      .rhino-stat-num sup {
+        font-size: 0.4em;
+        color: var(--rhino-green);
+        margin-left: 4px;
+        font-weight: 700;
+      }
+      .rhino-stat-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--rhino-ink);
+        margin-bottom: 4px;
+      }
+      .rhino-stat-sub {
+        font-size: 13px;
+        color: var(--rhino-text-muted);
+      }
+
+      /* ===================== EVENT FEATURE ===================== */
+      .rhino-event {
+        padding: 120px 28px;
+        background: var(--rhino-bg);
+      }
+      .rhino-event-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        align-items: stretch;
+        border: 1px solid var(--rhino-line);
+      }
+      .rhino-event-image {
+        position: relative;
+        overflow: hidden;
+        min-height: 480px;
+      }
+      .rhino-event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+      }
+      .rhino-event-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(13, 41, 22, 0.2) 0%,
+          rgba(13, 41, 22, 0) 60%
+        );
+      }
+      .rhino-event-date {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        z-index: 2;
+        background: #fff;
+        padding: 14px 18px;
+        color: var(--rhino-green-dark);
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .rhino-event-date span {
+        font-size: 28px;
+        margin-bottom: 4px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .rhino-event-body {
+        padding: 60px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .rhino-event-tag {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rhino-green);
+        margin-bottom: 20px;
+      }
+      .rhino-event-body h2 {
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--rhino-ink);
+        margin-bottom: 20px;
+      }
+      .rhino-event-body p {
+        font-size: 16px;
+        color: var(--rhino-text-muted);
+        line-height: 1.7;
+        margin-bottom: 32px;
+      }
+      .rhino-event-details {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 24px 0;
+        border-top: 1px solid var(--rhino-line);
+        border-bottom: 1px solid var(--rhino-line);
+        margin-bottom: 32px;
+      }
+      .rhino-event-detail {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+      }
+      .rhino-event-detail svg {
+        width: 18px;
+        height: 18px;
+        color: var(--rhino-green);
+        flex-shrink: 0;
+      }
+      .rhino-event-detail strong {
+        color: var(--rhino-ink);
+        font-weight: 600;
+        min-width: 88px;
+        display: inline-block;
+      }
+      .rhino-event-detail span {
+        color: var(--rhino-text-muted);
+      }
+      .rhino-event-btn {
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 28px;
+        background: var(--rhino-green);
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        transition:
+          background 0.2s var(--rhino-ease),
+          transform 0.2s var(--rhino-ease);
+      }
+      .rhino-event-btn:hover {
+        background: var(--rhino-green-dark);
+        transform: translateY(-1px);
+      }
+      .rhino-event-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ===================== SPONSORS / MARQUEE ===================== */
+      .rhino-sponsors {
+        padding: 100px 0;
+        background: var(--rhino-bg-soft);
+        overflow: hidden;
+        border-top: 1px solid var(--rhino-line);
+      }
+      .rhino-sponsors-head {
+        max-width: 1280px;
+        margin: 0 auto 56px;
+        padding: 0 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .rhino-sponsors-head-left {
+        max-width: 540px;
+      }
+      .rhino-sponsors-head h2 {
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--rhino-ink);
+        margin: 14px 0 12px;
+      }
+      .rhino-sponsors-head p {
+        font-size: 15px;
+        color: var(--rhino-text-muted);
+      }
+      .rhino-sponsors-link {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--rhino-green);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--rhino-green);
+        transition: gap 0.2s var(--rhino-ease);
+      }
+      .rhino-sponsors-link:hover {
+        gap: 12px;
+      }
+
+      .rhino-marquee {
+        position: relative;
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #000 8%,
+          #000 92%,
+          transparent
+        );
+        mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #000 8%,
+          #000 92%,
+          transparent
+        );
+      }
+      .rhino-marquee-track {
+        display: flex;
+        gap: 48px;
+        animation: rhinoMarquee 40s linear infinite;
+        width: max-content;
+      }
+      .rhino-marquee:hover .rhino-marquee-track {
+        animation-play-state: paused;
+      }
+      @keyframes rhinoMarquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .rhino-sponsor {
+        flex-shrink: 0;
+        width: 200px;
+        height: 130px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        border: 1px solid var(--rhino-line);
+        transition:
+          transform 0.3s var(--rhino-ease),
+          box-shadow 0.3s var(--rhino-ease);
+      }
+      .rhino-sponsor:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--rhino-shadow-md);
+      }
+      .rhino-sponsor img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: grayscale(0.3);
+        transition: filter 0.3s var(--rhino-ease);
+      }
+      .rhino-sponsor:hover img {
+        filter: grayscale(0);
+      }
+
+      /* ===================== CTA STRIP ===================== */
+      .rhino-cta {
+        padding: 100px 28px;
+        background: var(--rhino-green-deep);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .rhino-cta-bg {
+        position: absolute;
+        inset: 0;
+        opacity: 0.08;
+      }
+      .rhino-cta-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .rhino-cta-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 980px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.4fr auto;
+        gap: 60px;
+        align-items: center;
+      }
+      .rhino-cta-inner h2 {
+        font-size: clamp(28px, 3.4vw, 42px);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+      }
+      .rhino-cta-inner p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 520px;
+        line-height: 1.6;
+      }
+      .rhino-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 32px;
+        background: #fff;
+        color: var(--rhino-green-dark);
+        font-weight: 700;
+        font-size: 14px;
+        transition:
+          background 0.2s var(--rhino-ease),
+          transform 0.2s var(--rhino-ease);
+      }
+      .rhino-cta-btn:hover {
+        background: var(--rhino-accent);
+        transform: translateY(-2px);
+      }
+      .rhino-cta-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ===================== FOOTER ===================== */
+      .rhino-footer {
+        background: var(--rhino-ink);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 80px 28px 32px;
+      }
+      .rhino-footer-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .rhino-footer-top {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 56px;
+        padding-bottom: 56px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .rhino-footer-brand {
+        display: flex;
+        flex-direction: column;
+      }
+      .rhino-footer-mark {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: #fff;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+      .rhino-footer-mark span {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .rhino-footer-mark span small {
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+      .rhino-footer-mark-emblem {
+        width: 48px;
+        height: 48px;
+        background: var(--rhino-green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 16px;
+        border: 2px solid var(--rhino-green-dark);
+      }
+      .rhino-footer-about {
+        font-size: 14px;
+        line-height: 1.65;
+        max-width: 380px;
+        margin-bottom: 24px;
+      }
+      .rhino-footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .rhino-footer-social a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.7);
+        transition:
+          background 0.2s var(--rhino-ease),
+          color 0.2s var(--rhino-ease);
+      }
+      .rhino-footer-social a:hover {
+        background: var(--rhino-green);
+        color: #fff;
+      }
+      .rhino-footer-social svg {
+        width: 18px;
+        height: 18px;
+      }
+      .rhino-footer-col h4 {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .rhino-footer-col ul li {
+        margin-bottom: 12px;
+      }
+      .rhino-footer-col a {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+        transition: color 0.2s var(--rhino-ease);
+      }
+      .rhino-footer-col a:hover {
+        color: #fff;
+      }
+      .rhino-footer-bot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 18px;
+        padding-top: 32px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .rhino-footer-bot-links {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .rhino-footer-bot-links a:hover {
+        color: #fff;
+      }
+
+      /* ===================== ANIMATIONS ===================== */
+      .rhino-fade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.8s var(--rhino-ease),
+          transform 0.8s var(--rhino-ease);
+      }
+      .rhino-fade.is-in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ===================== RESPONSIVE ===================== */
+      @media (max-width: 1180px) {
+        .rhino-nav-menu {
+          display: none;
+        }
+        .rhino-nav-toggle {
+          display: flex;
+        }
+      }
+      @media (max-width: 1024px) {
+        .rhino-hero {
+          padding: 120px 0 80px;
+        }
+        .rhino-hero-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+          text-align: left;
+        }
+        .rhino-hero-side {
+          order: -1;
+          justify-content: flex-start;
+        }
+        .rhino-hero-emblem {
+          max-width: 200px;
+        }
+        .rhino-hero-lede {
+          max-width: 100%;
+        }
+        .rhino-hero-meta {
+          margin-top: 48px;
+        }
+
+        .rhino-mission-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .rhino-mission-image {
+          aspect-ratio: 16/10;
+        }
+
+        .rhino-programs-head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+        .rhino-program-item {
+          grid-template-columns: 64px 1fr auto;
+          gap: 24px;
+          align-items: start;
+          padding: 32px 0;
+        }
+        .rhino-program-num {
+          padding-top: 6px;
+        }
+        .rhino-program-body {
+          grid-column: 2/3;
+        }
+        .rhino-program-meta {
+          grid-column: 2/3;
+          grid-row: 2;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-top: 16px;
+        }
+        .rhino-program-meta-row {
+          border: 1px solid var(--rhino-line);
+          padding: 6px 12px;
+          background: #fff;
+          gap: 8px;
+        }
+        .rhino-program-arrow {
+          grid-column: 3/4;
+          grid-row: 1;
+          align-self: start;
+        }
+
+        .rhino-champions-grid {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .rhino-champion-tall {
+          grid-column: span 6;
+          grid-row: auto;
+          aspect-ratio: 16/10;
+        }
+        .rhino-champion-wide {
+          grid-column: span 6;
+        }
+        .rhino-champion-half {
+          grid-column: span 3;
+        }
+
+        .rhino-stats-inner {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0;
+        }
+        .rhino-stat {
+          padding: 24px;
+        }
+        .rhino-stat:nth-child(1) {
+          padding-left: 0;
+        }
+        .rhino-stat:nth-child(2) {
+          border-right: none;
+          padding-right: 0;
+        }
+        .rhino-stat:nth-child(3) {
+          border-top: 1px solid rgba(31, 81, 50, 0.15);
+          padding-top: 32px;
+          padding-left: 0;
+        }
+        .rhino-stat:nth-child(4) {
+          border-top: 1px solid rgba(31, 81, 50, 0.15);
+          padding-top: 32px;
+          padding-right: 0;
+        }
+
+        .rhino-event-inner {
+          grid-template-columns: 1fr;
+        }
+        .rhino-event-image {
+          min-height: 340px;
+        }
+        .rhino-event-body {
+          padding: 48px 40px;
+        }
+
+        .rhino-cta-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          text-align: left;
+        }
+
+        .rhino-footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .rhino-nav-inner {
+          padding: 12px 20px;
+          gap: 16px;
+        }
+        .rhino-hero {
+          padding: 110px 0 64px;
+        }
+        .rhino-hero-inner {
+          padding: 0 20px;
+        }
+        .rhino-hero-grid {
+          gap: 32px;
+        }
+        .rhino-hero-emblem {
+          max-width: 160px;
+          padding: 20px;
+        }
+        .rhino-hero-title {
+          margin-bottom: 18px;
+        }
+        .rhino-hero-title span {
+          font-size: 0.5em;
+          margin-top: 12px;
+          font-style: normal;
+          color: #cfdcd3;
+          font-weight: 400;
+        }
+        .rhino-hero-lede {
+          font-size: 15px;
+          line-height: 1.55;
+          margin-bottom: 28px;
+        }
+        .rhino-hero-action {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          padding: 16px 24px;
+          font-size: 14px;
+        }
+        .rhino-hero-meta {
+          margin-top: 40px;
+        }
+        .rhino-hero-meta-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          font-size: 12px;
+          padding-top: 20px;
+        }
+
+        .rhino-announce-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .rhino-announce-msg {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .rhino-announce-tag {
+          border-right: none;
+          padding-right: 0;
+        }
+
+        .rhino-mission,
+        .rhino-programs,
+        .rhino-champions,
+        .rhino-event,
+        .rhino-cta {
+          padding: 80px 20px;
+        }
+
+        .rhino-mission-values {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .rhino-mission-val {
+          border-right: none;
+          border-bottom: 1px solid var(--rhino-line);
+          padding: 20px 0;
+        }
+        .rhino-mission-val:first-child {
+          padding-top: 0;
+        }
+        .rhino-mission-val:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+
+        .rhino-program-item {
+          grid-template-columns: 1fr;
+          gap: 14px;
+          padding: 28px 0;
+        }
+        .rhino-program-num {
+          display: flex;
+          align-items: baseline;
+          gap: 14px;
+          padding-top: 0;
+        }
+        .rhino-program-num span {
+          margin-top: 0;
+        }
+        .rhino-program-body {
+          grid-column: auto;
+        }
+        .rhino-program-meta {
+          grid-column: auto;
+          grid-row: auto;
+          margin-top: 8px;
+        }
+        .rhino-program-arrow {
+          grid-column: auto;
+          grid-row: auto;
+          align-self: flex-start;
+          margin-top: 8px;
+        }
+
+        .rhino-champions-head {
+          margin-bottom: 40px;
+        }
+        .rhino-champions-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+        .rhino-champion-tall,
+        .rhino-champion-wide,
+        .rhino-champion-half {
+          grid-column: span 2;
+          grid-row: auto;
+          aspect-ratio: 1;
+        }
+
+        .rhino-stats {
+          padding: 80px 20px;
+        }
+        .rhino-stats-inner {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .rhino-stat {
+          padding: 24px 0;
+          border-right: none;
+          border-top: none !important;
+          border-bottom: 1px solid rgba(31, 81, 50, 0.15);
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        .rhino-stat:last-child {
+          border-bottom: none;
+        }
+
+        .rhino-event-body {
+          padding: 32px 24px;
+        }
+        .rhino-event-details {
+          padding: 20px 0;
+        }
+        .rhino-event-detail {
+          flex-wrap: wrap;
+        }
+        .rhino-event-detail strong {
+          min-width: auto;
+        }
+
+        .rhino-sponsors {
+          padding: 80px 0;
+        }
+        .rhino-sponsors-head {
+          padding: 0 20px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          margin-bottom: 40px;
+        }
+        .rhino-sponsor {
+          width: 160px;
+          height: 110px;
+          padding: 18px;
+        }
+
+        .rhino-footer {
+          padding: 60px 20px 24px;
+        }
+        .rhino-footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+          padding-bottom: 40px;
+        }
+        .rhino-footer-brand {
+          grid-column: 1/-1;
+        }
+        .rhino-footer-bot {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 14px;
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .rhino-nav-brand-text {
+          display: none;
+        }
+        .rhino-hero-emblem {
+          max-width: 140px;
+          padding: 16px;
+        }
+        .rhino-footer-top {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .rhino-footer-brand {
+          grid-column: auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+    <!-- ===================== NAV ===================== -->
+    <nav class="rhino-nav" id="rhinoNav">
+      <div class="rhino-nav-inner">
+        <a
+          href="#"
+          class="rhino-nav-brand"
+          aria-label="Twelve Bridges Jr. Rhinos"
+        >
+          <div class="rhino-nav-brand-mark">JR</div>
+          <div class="rhino-nav-brand-text">
+            Jr. Rhinos
+            <small>Twelve Bridges</small>
+          </div>
+        </a>
+        <ul class="rhino-nav-menu">
+          <li class="rhino-nav-item">
+            <a class="rhino-nav-link" href="#">Home</a>
+          </li>
+
+          <li class="rhino-nav-item" data-dropdown>
+            <button
+              class="rhino-nav-link"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Football
+              <svg
+                class="rhino-nav-caret"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div class="rhino-nav-panel">
+              <a href="#"
+                >2026 Football Information Packet<small
+                  >Everything you need for the season</small
+                ></a
+              >
+              <a href="#"
+                >2026 Football Calendar<small
+                  >Key dates & practice schedule</small
+                ></a
+              >
+              <a href="#"
+                >2025 SAC Rulebook v2.0<small
+                  >League rules & regulations</small
+                ></a
+              >
+              <a href="#"
+                >Age, Grade & Weight Limits<small
+                  >Division eligibility</small
+                ></a
+              >
+              <a href="#">Coaching Staff<small>Meet the coaches</small></a>
+            </div>
+          </li>
+
+          <li class="rhino-nav-item" data-dropdown>
+            <button
+              class="rhino-nav-link"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              STUNT
+              <svg
+                class="rhino-nav-caret"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div class="rhino-nav-panel">
+              <a href="#"
+                >2026 STUNT Information Packet<small
+                  >Program details & registration info</small
+                ></a
+              >
+              <a href="#"
+                >2025 STUNT Schedule<small>Competition calendar</small></a
+              >
+              <a href="#"
+                >Stunt Coaching Staff<small>Meet the coaches</small></a
+              >
+            </div>
+          </li>
+
+          <li class="rhino-nav-item" data-dropdown>
+            <button
+              class="rhino-nav-link"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Sideline Cheer
+              <svg
+                class="rhino-nav-caret"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div class="rhino-nav-panel">
+              <a href="#"
+                >2026 Sideline Cheer Calendar<small
+                  >Key dates for the season</small
+                ></a
+              >
+              <a href="#"
+                >2026 Sideline Cheer Information Packet<small
+                  >Program details & registration</small
+                ></a
+              >
+              <a href="#"
+                >2025 SAC Cheer Rulebook<small
+                  >League rules & regulations</small
+                ></a
+              >
+              <a href="#"
+                >Cheer Coaching Staff<small>Meet the coaches</small></a
+              >
+            </div>
+          </li>
+
+          <li class="rhino-nav-item">
+            <a class="rhino-nav-link" href="#sponsors">Sponsors</a>
+          </li>
+
+          <li class="rhino-nav-item" data-dropdown>
+            <button
+              class="rhino-nav-link"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              More
+              <svg
+                class="rhino-nav-caret"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div class="rhino-nav-panel rhino-nav-panel-wide">
+              <a href="#"
+                >Volunteer Info<small
+                  >Family volunteer hours & opportunities</small
+                ></a
+              >
+              <a href="#"
+                >Forms / Applications<small>Downloads & paperwork</small></a
+              >
+              <a href="#"
+                >Sponsorships & Donations<small
+                  >Support the Jr. Rhinos</small
+                ></a
+              >
+              <a href="#"
+                >Game Schedules<small>Upcoming games & results</small></a
+              >
+              <a href="#">Calendar<small>All organization events</small></a>
+              <a href="#">Locations<small>Fields & facilities</small></a>
+              <a href="#">Mission Statement<small>What we stand for</small></a>
+              <a href="#">Board of Directors<small>Leadership team</small></a>
+              <a href="#">Board Bios<small>Meet our board members</small></a>
+            </div>
+          </li>
+
+          <li class="rhino-nav-utility">
+            <a href="#" class="rhino-nav-util">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              Sign In
+            </a>
+            <a href="#" class="rhino-nav-cart" aria-label="Cart">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                <path d="M3 6h18M16 10a4 4 0 01-8 0" />
+              </svg>
+              <span class="rhino-nav-cart-count">0</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="rhino-nav-cta" href="#programs"
+              >Register
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <button
+          class="rhino-nav-toggle"
+          id="rhinoToggle"
+          aria-label="Open menu"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- mobile -->
+    <div class="rhino-mobile-backdrop" id="rhinoBackdrop"></div>
+    <aside class="rhino-mobile" id="rhinoMobile" aria-hidden="true">
+      <div class="rhino-mobile-top">
+        <a href="#" class="rhino-nav-brand">
+          <div class="rhino-nav-brand-mark">JR</div>
+          <div class="rhino-nav-brand-text">
+            Jr. Rhinos<small>Twelve Bridges</small>
+          </div>
+        </a>
+        <button
+          class="rhino-mobile-close"
+          id="rhinoClose"
+          aria-label="Close menu"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="rhino-mobile-list">
+        <div class="rhino-mobile-item">
+          <a href="#" class="rhino-mobile-link" style="border: none">Home</a>
+        </div>
+
+        <div class="rhino-mobile-item" data-mobile-dropdown>
+          <button class="rhino-mobile-link">
+            Football
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          <div class="rhino-mobile-sub">
+            <div class="rhino-mobile-sub-inner">
+              <a href="#">2026 Football Information Packet</a>
+              <a href="#">2026 Football Calendar</a>
+              <a href="#">2025 SAC Rulebook v2.0</a>
+              <a href="#">Age, Grade & Weight Limits</a>
+              <a href="#">Coaching Staff</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="rhino-mobile-item" data-mobile-dropdown>
+          <button class="rhino-mobile-link">
+            STUNT
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          <div class="rhino-mobile-sub">
+            <div class="rhino-mobile-sub-inner">
+              <a href="#">2026 STUNT Information Packet</a>
+              <a href="#">2025 STUNT Schedule</a>
+              <a href="#">Stunt Coaching Staff</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="rhino-mobile-item" data-mobile-dropdown>
+          <button class="rhino-mobile-link">
+            Sideline Cheer
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          <div class="rhino-mobile-sub">
+            <div class="rhino-mobile-sub-inner">
+              <a href="#">2026 Sideline Cheer Calendar</a>
+              <a href="#">2026 Sideline Cheer Information Packet</a>
+              <a href="#">2025 SAC Cheer Rulebook</a>
+              <a href="#">Cheer Coaching Staff</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="rhino-mobile-item">
+          <a href="#sponsors" class="rhino-mobile-link">Sponsors</a>
+        </div>
+
+        <div class="rhino-mobile-item">
+          <a href="#" class="rhino-mobile-link">Volunteer Info</a>
+        </div>
+
+        <div class="rhino-mobile-item">
+          <a href="#" class="rhino-mobile-link">Forms / Applications</a>
+        </div>
+
+        <div class="rhino-mobile-item">
+          <a href="#" class="rhino-mobile-link">Sponsorships & Donations</a>
+        </div>
+
+        <div class="rhino-mobile-item">
+          <a href="#" class="rhino-mobile-link">Game Schedules</a>
+        </div>
+
+        <div class="rhino-mobile-item">
+          <a href="#" class="rhino-mobile-link">Calendar</a>
+        </div>
+
+        <div class="rhino-mobile-item">
+          <a href="#" class="rhino-mobile-link">Locations</a>
+        </div>
+
+        <div class="rhino-mobile-item" data-mobile-dropdown>
+          <button class="rhino-mobile-link">
+            About Us
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          <div class="rhino-mobile-sub">
+            <div class="rhino-mobile-sub-inner">
+              <a href="#">Mission Statement</a>
+              <a href="#">Board of Directors</a>
+              <a href="#">Board Bios</a>
+              <a href="#">Financial Sponsorships</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rhino-mobile-utility">
+        <a href="#">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Sign In
+        </a>
+        <a href="#">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+            <path d="M3 6h18M16 10a4 4 0 01-8 0" />
+          </svg>
+          Cart (0)
+        </a>
+      </div>
+
+      <a href="#programs" class="rhino-mobile-cta">
+        Register Now
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </a>
+    </aside>
+
+    <!-- ===================== HERO ===================== -->
+    <header class="rhino-hero">
+      <div class="rhino-hero-bg">
+        <img
+          src="https://d2jqoimos5um40.cloudfront.net/site_1991/20e634.png"
+          alt="Jr. Rhinos players and cheer squad on the sideline"
+        />
+      </div>
+      <div class="rhino-hero-inner">
+        <div class="rhino-hero-grid">
+          <div>
+            <h1 class="rhino-hero-title">
+              Building athletes.<br />Building character.
+              <span
+                >Youth football, sideline cheer, and STUNT for the Twelve
+                Bridges community.</span
+              >
+            </h1>
+            <p class="rhino-hero-lede">
+              A non-profit youth athletics organization developing the next
+              generation of Twelve Bridges High School Rhinos — on the field, on
+              the sideline, and in the classroom.
+            </p>
+            <a href="#programs" class="rhino-hero-action">
+              Register for the 2026 Season
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+          <div class="rhino-hero-side">
+            <div class="rhino-hero-emblem">
+              <img
+                src="https://d2jqoimos5um40.cloudfront.net/site_1991/1c589c.png"
+                alt="Twelve Bridges Jr. Rhinos emblem"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="rhino-hero-meta">
+          <div class="rhino-hero-meta-inner">
+            <div class="rhino-hero-meta-loc">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Lincoln, California · Sierra Athletic Conference
+            </div>
+            <div>Registration Now Open · Football · Cheer · STUNT</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== ANNOUNCE ===================== -->
+    <div class="rhino-announce">
+      <div class="rhino-announce-inner">
+        <div class="rhino-announce-msg">
+          <span class="rhino-announce-tag">Now Open</span>
+          <span
+            >TBHS Football Camp 2026 · June 24–25 at the TBHS football field ·
+            Free shirt with registration by 6/17/26</span
+          >
+        </div>
+        <a href="#event" class="rhino-announce-link">
+          View details
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ===================== MISSION ===================== -->
+    <section class="rhino-mission" id="mission">
+      <div class="rhino-mission-inner">
+        <div class="rhino-mission-image rhino-fade">
+          <img
+            src="https://d2jqoimos5um40.cloudfront.net/site_1991/39491f.jpeg"
+            alt="Jr. Rhinos team in action"
+          />
+        </div>
+        <div class="rhino-fade">
+          <div class="rhino-mission-eye">Our Mission</div>
+          <h2 class="rhino-mission-title">
+            More than a game. A community that grows together.
+          </h2>
+          <p class="rhino-mission-text">
+            The Twelve Bridges Jr. Rhinos exist to develop young athletes
+            through football, cheer, and STUNT — instilling discipline, respect,
+            and confidence that lasts well beyond the final whistle.
+          </p>
+          <p class="rhino-mission-text">
+            As a feeder program for Twelve Bridges High School, we prepare every
+            athlete to compete with pride and integrity at the next level, while
+            building lifelong friendships along the way.
+          </p>
+          <div class="rhino-mission-values">
+            <div class="rhino-mission-val">
+              <div class="rhino-mission-val-num">01</div>
+              <div class="rhino-mission-val-name">Teamwork</div>
+              <div class="rhino-mission-val-desc">
+                Every athlete plays a part in a stronger whole.
+              </div>
+            </div>
+            <div class="rhino-mission-val">
+              <div class="rhino-mission-val-num">02</div>
+              <div class="rhino-mission-val-name">Discipline</div>
+              <div class="rhino-mission-val-desc">
+                Consistent effort builds lasting character.
+              </div>
+            </div>
+            <div class="rhino-mission-val">
+              <div class="rhino-mission-val-num">03</div>
+              <div class="rhino-mission-val-name">Pride</div>
+              <div class="rhino-mission-val-desc">
+                Representing Lincoln and Twelve Bridges with honor.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROGRAMS ===================== -->
+    <section class="rhino-programs" id="programs">
+      <div class="rhino-programs-inner">
+        <div class="rhino-programs-head rhino-fade">
+          <div class="rhino-programs-head-left">
+            <div class="rhino-mission-eye" style="margin-bottom: 0">
+              Programs · 2026 Season
+            </div>
+            <h2>Find your place on the field — or on the sideline.</h2>
+          </div>
+          <p>
+            Three programs, one community. Built for athletes ages 5–14 in the
+            Lincoln area.
+          </p>
+        </div>
+
+        <div class="rhino-programs-list">
+          <a href="#" class="rhino-program-item rhino-fade">
+            <div class="rhino-program-num">01<span>Football</span></div>
+            <div class="rhino-program-body">
+              <h3>Tackle Football</h3>
+              <p>
+                Full-pads tackle football for ages 7–14 across four age
+                divisions: Jr. Pee Wee, Pee Wee, Jr. Midgets, and Midgets.
+                Helmet, pads, and game uniform included.
+              </p>
+            </div>
+            <div class="rhino-program-meta">
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Ages</span
+                ><span class="rhino-program-meta-val">7–14</span>
+              </div>
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Season</span
+                ><span class="rhino-program-meta-val">Jul–Nov 2026</span>
+              </div>
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Cost</span
+                ><span class="rhino-program-meta-val">$500</span>
+              </div>
+            </div>
+            <div class="rhino-program-arrow">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg>
+            </div>
+          </a>
+
+          <a href="#" class="rhino-program-item rhino-fade">
+            <div class="rhino-program-num">02<span>Cheer</span></div>
+            <div class="rhino-program-body">
+              <h3>Sideline Cheer</h3>
+              <p>
+                From Mascots to Midgets, our cheer program builds skills,
+                performance, and team spirit. Includes Jamz Camp, TBHS Clinic,
+                league competition, and spirit pack.
+              </p>
+            </div>
+            <div class="rhino-program-meta">
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Ages</span
+                ><span class="rhino-program-meta-val">5–14</span>
+              </div>
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Season</span
+                ><span class="rhino-program-meta-val">Jul–Nov 2026</span>
+              </div>
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Cost</span
+                ><span class="rhino-program-meta-val">$200–$500</span>
+              </div>
+            </div>
+            <div class="rhino-program-arrow">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg>
+            </div>
+          </a>
+
+          <a href="#" class="rhino-program-item rhino-fade">
+            <div class="rhino-program-num">03<span>STUNT</span></div>
+            <div class="rhino-program-body">
+              <h3>Competitive STUNT</h3>
+              <p>
+                Fast-growing competitive sport that takes cheerleading skills to
+                the next level. Athletes compete head-to-head in partner stunts,
+                pyramids, jumps, tumbling, and team performance.
+              </p>
+            </div>
+            <div class="rhino-program-meta">
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Ages</span
+                ><span class="rhino-program-meta-val">9–14</span>
+              </div>
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Season</span
+                ><span class="rhino-program-meta-val">Spring 2026</span>
+              </div>
+              <div class="rhino-program-meta-row">
+                <span class="rhino-program-meta-label">Info</span
+                ><span class="rhino-program-meta-val">Packet Available</span>
+              </div>
+            </div>
+            <div class="rhino-program-arrow">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CHAMPIONS ===================== -->
+    <section class="rhino-champions">
+      <div class="rhino-champions-inner">
+        <div class="rhino-champions-head rhino-fade">
+          <div class="rhino-champions-eye">2025 Season Recap</div>
+          <h2>A championship year for the Rhino family.</h2>
+          <p>
+            Honoring our 2025 Pacific League Champions and competition cheer
+            teams who represented Lincoln with pride.
+          </p>
+        </div>
+        <div class="rhino-champions-grid">
+          <div class="rhino-champion rhino-champion-tall rhino-fade">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/2ca882.jpeg"
+              alt="2025 Jr. Midget Pacific League Champions"
+            />
+            <div class="rhino-champion-meta">
+              <small>Champions · 2025</small>
+              <h4>Jr. Midget Pacific League Champions</h4>
+            </div>
+          </div>
+          <div class="rhino-champion rhino-champion-half rhino-fade">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/2fa68e.jpeg"
+              alt="Competition cheer 2025"
+            />
+            <div class="rhino-champion-meta">
+              <small>Cheer · 2025</small>
+              <h4>Competition Team</h4>
+            </div>
+          </div>
+          <div class="rhino-champion rhino-champion-half rhino-fade">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/2fa68f.jpeg"
+              alt="Competition cheer 2025"
+            />
+            <div class="rhino-champion-meta">
+              <small>Cheer · 2025</small>
+              <h4>Sideline Showcase</h4>
+            </div>
+          </div>
+          <div class="rhino-champion rhino-champion-wide rhino-fade">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/2ca883.jpeg"
+              alt="2025 Jr. Pee Wee Pacific League Champions"
+            />
+            <div class="rhino-champion-meta">
+              <small>Champions · 2025</small>
+              <h4>Jr. Pee Wee Pacific League Champions</h4>
+            </div>
+          </div>
+          <div class="rhino-champion rhino-champion-half rhino-fade">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/2fa690.jpeg"
+              alt="Competition cheer 2025"
+            />
+            <div class="rhino-champion-meta">
+              <small>Cheer · 2025</small>
+              <h4>Squad Performance</h4>
+            </div>
+          </div>
+          <div class="rhino-champion rhino-champion-half rhino-fade">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/37db0f.jpeg"
+              alt="Game day moment"
+            />
+            <div class="rhino-champion-meta">
+              <small>Game Day · 2025</small>
+              <h4>Friday Night Rhinos</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATS ===================== -->
+    <section class="rhino-stats">
+      <div class="rhino-stats-inner">
+        <div class="rhino-stat rhino-fade">
+          <div class="rhino-stat-num" data-target="350">0<sup>+</sup></div>
+          <div class="rhino-stat-label">Active Athletes</div>
+          <div class="rhino-stat-sub">Across all programs</div>
+        </div>
+        <div class="rhino-stat rhino-fade">
+          <div class="rhino-stat-num" data-target="3">0</div>
+          <div class="rhino-stat-label">Programs</div>
+          <div class="rhino-stat-sub">Football · Cheer · STUNT</div>
+        </div>
+        <div class="rhino-stat rhino-fade">
+          <div class="rhino-stat-num" data-target="2">0</div>
+          <div class="rhino-stat-label">League Titles</div>
+          <div class="rhino-stat-sub">2025 Pacific League</div>
+        </div>
+        <div class="rhino-stat rhino-fade">
+          <div class="rhino-stat-num" data-target="15">0<sup>+</sup></div>
+          <div class="rhino-stat-label">Years Strong</div>
+          <div class="rhino-stat-sub">Serving Lincoln, CA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EVENT ===================== -->
+    <section class="rhino-event" id="event">
+      <div class="rhino-event-inner rhino-fade">
+        <div class="rhino-event-image">
+          <div class="rhino-event-date">
+            <span>24</span>
+            JUN · 2026
+          </div>
+          <img
+            src="https://d2jqoimos5um40.cloudfront.net/site_1991/3146b8.png"
+            alt="TBHS Football Camp 2026"
+          />
+        </div>
+        <div class="rhino-event-body">
+          <div class="rhino-event-tag">Upcoming Event · Fundraiser</div>
+          <h2>TBHS Football Camp 2026</h2>
+          <p>
+            Support the Twelve Bridges High School football program with a
+            two-day summer camp. Build skills, meet the coaches, and prep for
+            the upcoming season — all on the TBHS field.
+          </p>
+          <div class="rhino-event-details">
+            <div class="rhino-event-detail">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
+              <strong>Dates</strong><span>June 24–25, 2026 · 6:00–8:00 PM</span>
+            </div>
+            <div class="rhino-event-detail">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <strong>Location</strong
+              ><span>TBHS Football Field, Lincoln, CA</span>
+            </div>
+            <div class="rhino-event-detail">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+              <strong>Register by</strong
+              ><span>June 17, 2026 (to receive free camp shirt)</span>
+            </div>
+            <div class="rhino-event-detail">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"
+                />
+              </svg>
+              <strong>Cost</strong
+              ><span>$50 · Includes clinic, shirt, and pizza</span>
+            </div>
+          </div>
+          <a href="#" class="rhino-event-btn">
+            Enroll Now
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPONSORS / MARQUEE ===================== -->
+    <section class="rhino-sponsors" id="sponsors">
+      <div class="rhino-sponsors-head">
+        <div class="rhino-sponsors-head-left">
+          <div class="rhino-mission-eye" style="margin-bottom: 0">
+            Our Partners
+          </div>
+          <h2>Powered by our community.</h2>
+          <p>
+            The local businesses and families who make every season possible.
+          </p>
+        </div>
+        <a href="#" class="rhino-sponsors-link">
+          Become a sponsor
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      <div class="rhino-marquee">
+        <div class="rhino-marquee-track" id="rhinoMarquee">
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/35d8e8.png"
+              alt="Crawford Orthodontics"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/1061f6.png"
+              alt="Lincoln Community Foundation"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/32e939.png"
+              alt="Vasco Electric"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/334fe2.png"
+              alt="Mike Wolfe & Family"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/259be2.png"
+              alt="Sunbelt Rentals"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/35ac48.png"
+              alt="Fresh Press Ink"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/32e956.png"
+              alt="Weintraub Tobin"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/3350c0.png"
+              alt="Lincoln Urgent Care"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/26509c.png"
+              alt="Thompson Construction"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/25fe5d.png"
+              alt="Titan Realty"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/35d8ff.png"
+              alt="Valley View Ranch Coffee"
+            />
+          </div>
+          <div class="rhino-sponsor">
+            <img
+              src="https://d2jqoimos5um40.cloudfront.net/site_1991/35c3da.png"
+              alt="Old Town Pizza"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="rhino-cta" id="contact">
+      <div class="rhino-cta-bg">
+        <img
+          src="https://d2jqoimos5um40.cloudfront.net/site_1991/20e634.png"
+          alt=""
+        />
+      </div>
+      <div class="rhino-cta-inner">
+        <div>
+          <h2>Ready to join the Rhino family?</h2>
+          <p>
+            Registration for the 2026 season is now open. Find the program that
+            fits your athlete and become part of something bigger than the game.
+          </p>
+        </div>
+        <a href="#programs" class="rhino-cta-btn">
+          Start Registration
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="rhino-footer">
+      <div class="rhino-footer-inner">
+        <div class="rhino-footer-top">
+          <div class="rhino-footer-brand">
+            <div class="rhino-footer-mark">
+              <div class="rhino-footer-mark-emblem">JR</div>
+              <span
+                >Twelve Bridges Jr. Rhinos<small
+                  >Youth Athletics · Lincoln, CA</small
+                ></span
+              >
+            </div>
+            <p class="rhino-footer-about">
+              A non-profit youth football, cheer, and STUNT organization serving
+              the Twelve Bridges community. Proud feeder program for Twelve
+              Bridges High School Rhinos.
+            </p>
+            <div class="rhino-footer-social">
+              <a
+                href="https://www.facebook.com/12-Bridges-Jr-Rhinos-106184974283798"
+                aria-label="Facebook"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M22 12a10 10 0 10-11.6 9.9V14.9H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.5 2.9h-2.3v7A10 10 0 0022 12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/tb_jrrhinos/"
+                aria-label="Instagram"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.youtube.com/@DanielleSellers-ed8gq"
+                aria-label="YouTube"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23 7s-.2-1.5-.9-2.2c-.8-.9-1.8-.9-2.2-1C16.7 3.5 12 3.5 12 3.5s-4.7 0-7.9.3c-.4.1-1.4.1-2.2 1C1.2 5.5 1 7 1 7S.8 8.8.8 10.6v1.7C.8 14.1 1 16 1 16s.2 1.5.9 2.2c.8.9 1.9.8 2.4.9 1.7.2 7.7.3 7.7.3s4.7 0 7.9-.3c.4-.1 1.4-.1 2.2-1 .7-.7.9-2.2.9-2.2s.2-1.8.2-3.7v-1.7C23.2 8.8 23 7 23 7zM9.7 14.6V8.3l6.1 3.2-6.1 3.1z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="rhino-footer-col">
+            <h4>Programs</h4>
+            <ul>
+              <li><a href="#">Tackle Football</a></li>
+              <li><a href="#">Sideline Cheer</a></li>
+              <li><a href="#">STUNT</a></li>
+              <li><a href="#">Coaching Staff</a></li>
+            </ul>
+          </div>
+          <div class="rhino-footer-col">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Registration</a></li>
+              <li><a href="#">Forms & Apps</a></li>
+              <li><a href="#">Game Schedules</a></li>
+              <li><a href="#">Locations</a></li>
+            </ul>
+          </div>
+          <div class="rhino-footer-col">
+            <h4>Organization</h4>
+            <ul>
+              <li><a href="#">Mission</a></li>
+              <li><a href="#">Board of Directors</a></li>
+              <li><a href="#">Sponsorships</a></li>
+              <li><a href="#">Volunteer</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="rhino-footer-bot">
+          <div>
+            © 2026 Twelve Bridges Jr. Rhinos · PO Box 337, Lincoln, CA 95648
+          </div>
+          <div class="rhino-footer-bot-links">
+            <a href="#">Terms of Service</a>
+            <a href="#">Refund Policy</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("rhinoNav");
+        const onScroll = () => {
+          if (window.scrollY > 20) nav.classList.add("is-scrolled");
+          else nav.classList.remove("is-scrolled");
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        const navItems = document.querySelectorAll(
+          ".rhino-nav-item[data-dropdown]",
+        );
+        navItems.forEach((item) => {
+          const btn = item.querySelector(".rhino-nav-link");
+          let hoverTimer;
+
+          const open = () => {
+            navItems.forEach((i) => {
+              if (i !== item) i.classList.remove("is-open");
+            });
+            item.classList.add("is-open");
+            btn.setAttribute("aria-expanded", "true");
+          };
+          const close = () => {
+            item.classList.remove("is-open");
+            btn.setAttribute("aria-expanded", "false");
+          };
+
+          item.addEventListener("mouseenter", () => {
+            clearTimeout(hoverTimer);
+            open();
+          });
+          item.addEventListener("mouseleave", () => {
+            hoverTimer = setTimeout(close, 120);
+          });
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (item.classList.contains("is-open")) close();
+            else open();
+          });
+          btn.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") close();
+          });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".rhino-nav-item[data-dropdown]")) {
+            navItems.forEach((i) => {
+              i.classList.remove("is-open");
+              const b = i.querySelector(".rhino-nav-link");
+              if (b) b.setAttribute("aria-expanded", "false");
+            });
+          }
+        });
+
+        document
+          .querySelectorAll(".rhino-mobile-item[data-mobile-dropdown]")
+          .forEach((item) => {
+            const btn = item.querySelector(".rhino-mobile-link");
+            btn.addEventListener("click", () => {
+              item.classList.toggle("is-open");
+            });
+          });
+
+        const toggle = document.getElementById("rhinoToggle");
+        const close = document.getElementById("rhinoClose");
+        const mobile = document.getElementById("rhinoMobile");
+        const backdrop = document.getElementById("rhinoBackdrop");
+        const openMenu = () => {
+          mobile.classList.add("is-open");
+          backdrop.classList.add("is-open");
+          mobile.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        };
+        const closeMenu = () => {
+          mobile.classList.remove("is-open");
+          backdrop.classList.remove("is-open");
+          mobile.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+        };
+        toggle.addEventListener("click", openMenu);
+        close.addEventListener("click", closeMenu);
+        backdrop.addEventListener("click", closeMenu);
+        mobile
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", closeMenu));
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+        );
+        document
+          .querySelectorAll(".rhino-fade")
+          .forEach((el) => io.observe(el));
+
+        const counters = document.querySelectorAll(".rhino-stat-num");
+        const counterIo = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              const el = e.target;
+              const target = parseInt(el.dataset.target, 10);
+              const sup = el.querySelector("sup");
+              const supHtml = sup ? sup.outerHTML : "";
+              let cur = 0;
+              const dur = 1400;
+              const start = performance.now();
+              const step = (now) => {
+                const t = Math.min((now - start) / dur, 1);
+                const eased = 1 - Math.pow(1 - t, 3);
+                cur = Math.floor(target * eased);
+                el.innerHTML = cur + supHtml;
+                if (t < 1) requestAnimationFrame(step);
+                else el.innerHTML = target + supHtml;
+              };
+              requestAnimationFrame(step);
+              counterIo.unobserve(el);
+            });
+          },
+          { threshold: 0.5 },
+        );
+        counters.forEach((c) => counterIo.observe(c));
+
+        const marquee = document.getElementById("rhinoMarquee");
+        if (marquee) {
+          marquee.innerHTML = marquee.innerHTML + marquee.innerHTML;
+        }
+      })();
+
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>

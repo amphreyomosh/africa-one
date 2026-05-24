@@ -1,0 +1,2624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italian Cultural Society of Northern California</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ===========================
+   CSS CUSTOM PROPERTIES
+   =========================== */
+:root {
+  --ics-green: #1a4a2e;
+  --ics-green-mid: #2d6b47;
+  --ics-green-light: #3d8a5c;
+  --ics-red: #c0392b;
+  --ics-red-soft: #d44637;
+  --ics-gold: #b8962e;
+  --ics-gold-light: #d4af50;
+  --ics-cream: #faf7f2;
+  --ics-cream-dark: #f0ebe0;
+  --ics-stone: #e8e0d0;
+  --ics-charcoal: #1e1e1e;
+  --ics-text: #2c2c2c;
+  --ics-text-mid: #4a4a4a;
+  --ics-text-light: #6b6b6b;
+  --ics-border: #ddd5c4;
+  --ics-white: #ffffff;
+  --ics-nav-height: 72px;
+  --ics-font-body: 'DM Sans', sans-serif;
+  --ics-font-display: 'Cormorant', serif;
+  --ics-radius: 4px;
+  --ics-radius-md: 8px;
+  --ics-shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --ics-shadow-md: 0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+  --ics-shadow-lg: 0 12px 40px rgba(0,0,0,0.14), 0 4px 12px rgba(0,0,0,0.08);
+  --ics-transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===========================
+   RESET & BASE
+   =========================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--ics-font-body);
+  color: var(--ics-text);
+  background: var(--ics-cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ===========================
+   SKIP LINK
+   =========================== */
+.ics-skip-link {
+  position: absolute;
+  top: -60px;
+  left: 16px;
+  background: var(--ics-green);
+  color: var(--ics-white);
+  padding: 10px 18px;
+  border-radius: var(--ics-radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top var(--ics-transition);
+}
+.ics-skip-link:focus { top: 16px; }
+
+/* ===========================
+   TOPBAR
+   =========================== */
+.ics-topbar {
+  background: var(--ics-green);
+  color: rgba(255,255,255,0.82);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  padding: 7px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ics-topbar-inner {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.ics-topbar-address {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ics-topbar-address svg { opacity: 0.7; }
+.ics-topbar-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.ics-topbar-links a {
+  color: rgba(255,255,255,0.82);
+  transition: color var(--ics-transition);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ics-topbar-links a:hover { color: var(--ics-gold-light); }
+
+/* ===========================
+   NAVIGATION
+   =========================== */
+.ics-navigation {
+  position: sticky;
+  top: auto;
+  z-index: 1000;
+  background: var(--ics-white);
+  border-bottom: 1px solid var(--ics-border);
+  height: var(--ics-nav-height);
+  transition: box-shadow var(--ics-transition);
+}
+.ics-navigation.ics-nav-scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.10);
+  top: 0;
+}
+.ics-nav-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.ics-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.ics-nav-brand-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--ics-stone);
+}
+.ics-nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.ics-nav-brand-name {
+  font-family: var(--ics-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ics-green);
+  letter-spacing: 0.01em;
+}
+.ics-nav-brand-tagline {
+  font-size: 0.68rem;
+  color: var(--ics-text-light);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ics-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+}
+.ics-nav-item {
+  position: relative;
+}
+.ics-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 11px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ics-text-mid);
+  border-radius: var(--ics-radius);
+  transition: color var(--ics-transition), background var(--ics-transition);
+  white-space: nowrap;
+}
+.ics-nav-link:hover, .ics-nav-link.ics-active {
+  color: var(--ics-green);
+  background: rgba(26,74,46,0.06);
+}
+.ics-nav-link svg { transition: transform var(--ics-transition); }
+.ics-nav-item:hover .ics-nav-link svg { transform: rotate(180deg); }
+.ics-nav-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  background: var(--ics-white);
+  border: 1px solid var(--ics-border);
+  border-radius: var(--ics-radius-md);
+  box-shadow: var(--ics-shadow-lg);
+  padding: 6px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--ics-transition), visibility var(--ics-transition), transform var(--ics-transition);
+  z-index: 200;
+}
+.ics-nav-item:hover .ics-nav-dropdown,
+.ics-nav-item:focus-within .ics-nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.ics-nav-dropdown a {
+  display: block;
+  padding: 9px 18px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--ics-text-mid);
+  transition: background var(--ics-transition), color var(--ics-transition);
+}
+.ics-nav-dropdown a:hover {
+  background: var(--ics-cream);
+  color: var(--ics-green);
+}
+.ics-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.ics-btn-nav-donate {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ics-red);
+  color: var(--ics-white);
+  padding: 9px 18px;
+  border-radius: var(--ics-radius);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background var(--ics-transition), transform var(--ics-transition);
+}
+.ics-btn-nav-donate:hover { background: var(--ics-red-soft); transform: translateY(-1px); }
+.ics-btn-nav-member {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--ics-green);
+  padding: 8px 16px;
+  border-radius: var(--ics-radius);
+  border: 1.5px solid var(--ics-green);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background var(--ics-transition), color var(--ics-transition), transform var(--ics-transition);
+}
+.ics-btn-nav-member:hover {
+  background: var(--ics-green);
+  color: var(--ics-white);
+  transform: translateY(-1px);
+}
+.ics-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  border-radius: var(--ics-radius);
+  transition: background var(--ics-transition);
+}
+.ics-hamburger:hover { background: var(--ics-cream); }
+.ics-hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ics-charcoal);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.ics-hamburger.ics-open .ics-hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.ics-hamburger.ics-open .ics-hamburger-bar:nth-child(2) { opacity: 0; }
+.ics-hamburger.ics-open .ics-hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile drawer */
+.ics-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 900;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.ics-mobile-overlay.ics-visible { opacity: 1; }
+.ics-mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(340px, 85vw);
+  height: 100dvh;
+  background: var(--ics-white);
+  z-index: 950;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  padding: 24px 0 40px;
+  flex-direction: column;
+  box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+}
+.ics-mobile-drawer.ics-open { transform: translateX(0); }
+.ics-mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 20px;
+  border-bottom: 1px solid var(--ics-border);
+  margin-bottom: 8px;
+}
+.ics-mobile-drawer-logo {
+  font-family: var(--ics-font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ics-green);
+}
+.ics-mobile-close {
+  padding: 6px;
+  color: var(--ics-text-light);
+  border-radius: var(--ics-radius);
+  transition: background var(--ics-transition);
+}
+.ics-mobile-close:hover { background: var(--ics-cream); color: var(--ics-text); }
+.ics-mobile-nav-item {}
+.ics-mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ics-text);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ics-stone);
+  transition: color var(--ics-transition), background var(--ics-transition);
+}
+.ics-mobile-nav-link:hover { color: var(--ics-green); background: var(--ics-cream); }
+.ics-mobile-sub {
+  display: none;
+  background: var(--ics-cream);
+}
+.ics-mobile-sub.ics-sub-open { display: block; }
+.ics-mobile-sub a {
+  display: block;
+  padding: 10px 24px 10px 36px;
+  font-size: 0.82rem;
+  color: var(--ics-text-mid);
+  border-bottom: 1px solid var(--ics-border);
+  transition: color var(--ics-transition);
+}
+.ics-mobile-sub a:hover { color: var(--ics-green); }
+.ics-mobile-drawer-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 24px 0;
+}
+.ics-mobile-drawer-ctas a {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: var(--ics-radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.ics-mobile-cta-donate { background: var(--ics-red); color: var(--ics-white); }
+.ics-mobile-cta-member { background: var(--ics-green); color: var(--ics-white); }
+
+/* ===========================
+   HERO CAROUSEL
+   =========================== */
+.ics-hero-carousel {
+  position: relative;
+  height: clamp(480px, 80vh, 780px);
+  overflow: hidden;
+  background: var(--ics-charcoal);
+}
+.ics-hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  background-size: cover;
+  background-position: center;
+}
+.ics-hero-slide.ics-slide-active { opacity: 1; }
+.ics-hero-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(15,35,20,0.72) 0%,
+    rgba(15,35,20,0.45) 50%,
+    rgba(0,0,0,0.20) 100%
+  );
+}
+.ics-hero-slide-1 {
+  background-image: url('https://www.italiancenter.net/images/Valley%20of%20Temples%20ICS%20Group%202022%20(002).jpg');
+}
+.ics-hero-slide-2 {
+  background-image: url('https://www.italiancenter.net/images/IC-68.jpg');
+}
+.ics-hero-slide-3 {
+  background-image: url('https://www.italiancenter.net/images/COSTA.png');
+}
+.ics-hero-slide-4 {
+  background-image: url('https://www.italiancenter.net/images/TOUR-ART.jpg');
+}
+.ics-hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 clamp(20px, 5vw, 80px);
+}
+.ics-hero-text-block {
+  max-width: 640px;
+  animation: ics-fadeUp 0.8s ease both;
+}
+@keyframes ics-fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ics-hero-pretitle {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ics-gold-light);
+  margin-bottom: 16px;
+  position: relative;
+  padding-left: 28px;
+}
+.ics-hero-pretitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 1.5px;
+  background: var(--ics-gold-light);
+}
+.ics-hero-title {
+  font-family: var(--ics-font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 500;
+  color: var(--ics-white);
+  line-height: 1.12;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.ics-hero-title em {
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+}
+.ics-hero-body {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+.ics-hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.ics-btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ics-red);
+  color: var(--ics-white);
+  padding: 14px 28px;
+  border-radius: var(--ics-radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background var(--ics-transition), transform var(--ics-transition), box-shadow var(--ics-transition);
+  box-shadow: 0 4px 16px rgba(192,57,43,0.35);
+}
+.ics-btn-hero-primary:hover {
+  background: var(--ics-red-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(192,57,43,0.45);
+}
+.ics-btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  color: var(--ics-white);
+  padding: 13px 24px;
+  border-radius: var(--ics-radius);
+  border: 1.5px solid rgba(255,255,255,0.40);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  transition: background var(--ics-transition), border-color var(--ics-transition), transform var(--ics-transition);
+}
+.ics-btn-hero-secondary:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.65);
+  transform: translateY(-2px);
+}
+/* Carousel controls */
+.ics-carousel-controls {
+  position: absolute;
+  bottom: 28px;
+  left: clamp(20px, 5vw, 80px);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ics-carousel-dot {
+  width: 28px;
+  height: 3px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: background var(--ics-transition), width var(--ics-transition);
+  padding: 0;
+}
+.ics-carousel-dot.ics-dot-active {
+  background: var(--ics-white);
+  width: 44px;
+}
+.ics-carousel-arrows {
+  position: absolute;
+  right: clamp(20px, 5vw, 60px);
+  bottom: 24px;
+  z-index: 20;
+  display: flex;
+  gap: 10px;
+}
+.ics-carousel-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: var(--ics-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background var(--ics-transition), transform var(--ics-transition);
+}
+.ics-carousel-arrow:hover {
+  background: rgba(255,255,255,0.28);
+  transform: scale(1.08);
+}
+/* Italian flag stripe accent */
+.ics-hero-flag-stripe {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 20;
+  display: flex;
+}
+.ics-hero-flag-stripe span {
+  flex: 1;
+  height: 100%;
+}
+.ics-hero-flag-stripe span:nth-child(1) { background: var(--ics-green); }
+.ics-hero-flag-stripe span:nth-child(2) { background: var(--ics-white); }
+.ics-hero-flag-stripe span:nth-child(3) { background: var(--ics-red); }
+
+/* ===========================
+   MISSION STRIP
+   =========================== */
+.ics-mission-strip {
+  background: var(--ics-green);
+  padding: 36px 24px;
+}
+.ics-mission-strip-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+}
+.ics-mission-strip-text {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 760px;
+}
+.ics-mission-strip-text strong {
+  color: var(--ics-white);
+  font-weight: 600;
+}
+.ics-mission-strip-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ics-gold);
+  color: var(--ics-charcoal);
+  padding: 12px 24px;
+  border-radius: var(--ics-radius);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background var(--ics-transition), transform var(--ics-transition);
+}
+.ics-mission-strip-cta:hover {
+  background: var(--ics-gold-light);
+  transform: translateY(-1px);
+}
+
+/* ===========================
+   STATS ROW
+   =========================== */
+.ics-stats-row {
+  background: var(--ics-white);
+  border-bottom: 1px solid var(--ics-border);
+  padding: 40px 24px;
+}
+.ics-stats-row-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.ics-stat-item {
+  padding: 8px 24px;
+  text-align: center;
+  border-right: 1px solid var(--ics-border);
+}
+.ics-stat-item:first-child { padding-left: 0; }
+.ics-stat-item:last-child { border-right: none; padding-right: 0; }
+.ics-stat-number {
+  font-family: var(--ics-font-display);
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: var(--ics-green);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.ics-stat-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ics-text-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   PROGRAMS GRID
+   =========================== */
+.ics-programs-area {
+  padding: 80px 24px;
+  background: var(--ics-cream);
+}
+.ics-programs-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.ics-area-header {
+  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 20px;
+}
+.ics-area-pretitle {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ics-red);
+  margin-bottom: 10px;
+}
+.ics-area-title {
+  font-family: var(--ics-font-display);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 500;
+  color: var(--ics-green);
+  line-height: 1.15;
+}
+.ics-area-title em { font-style: italic; }
+.ics-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: 1.5px solid var(--ics-green);
+  border-radius: var(--ics-radius);
+  color: var(--ics-green);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background var(--ics-transition), color var(--ics-transition);
+  white-space: nowrap;
+}
+.ics-btn-outline:hover { background: var(--ics-green); color: var(--ics-white); }
+.ics-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.ics-program-tile {
+  background: var(--ics-white);
+  border: 1px solid var(--ics-border);
+  border-radius: var(--ics-radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--ics-transition), box-shadow var(--ics-transition);
+}
+.ics-program-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ics-shadow-lg);
+}
+.ics-program-tile-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.ics-program-tile:hover .ics-program-tile-image {
+  transform: scale(1.03);
+}
+.ics-program-tile-image-wrap {
+  overflow: hidden;
+  height: 200px;
+}
+.ics-program-tile-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.ics-program-tile-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ics-red);
+  margin-bottom: 10px;
+}
+.ics-program-tile-title {
+  font-family: var(--ics-font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ics-charcoal);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.ics-program-tile-text {
+  font-size: 0.88rem;
+  color: var(--ics-text-mid);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 20px;
+}
+.ics-program-tile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ics-green);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: gap var(--ics-transition);
+}
+.ics-program-tile:hover .ics-program-tile-link { gap: 10px; }
+
+/* ===========================
+   EVENTS SECTION
+   =========================== */
+.ics-events-area {
+  padding: 80px 24px;
+  background: var(--ics-cream-dark);
+}
+.ics-events-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.ics-events-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: start;
+}
+.ics-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ics-event-entry {
+  background: var(--ics-white);
+  border: 1px solid var(--ics-border);
+  border-radius: var(--ics-radius-md);
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  transition: box-shadow var(--ics-transition), transform var(--ics-transition);
+  text-decoration: none;
+  color: inherit;
+}
+.ics-event-entry:hover {
+  box-shadow: var(--ics-shadow-md);
+  transform: translateX(4px);
+}
+.ics-event-date-block {
+  text-align: center;
+  background: var(--ics-green);
+  border-radius: var(--ics-radius);
+  padding: 10px 6px;
+  flex-shrink: 0;
+}
+.ics-event-date-month {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 2px;
+}
+.ics-event-date-day {
+  display: block;
+  font-family: var(--ics-font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--ics-white);
+  line-height: 1;
+}
+.ics-event-info {}
+.ics-event-category {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ics-red);
+  margin-bottom: 4px;
+}
+.ics-event-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ics-charcoal);
+  margin-bottom: 4px;
+}
+.ics-event-meta {
+  font-size: 0.8rem;
+  color: var(--ics-text-light);
+}
+.ics-event-arrow {
+  color: var(--ics-green);
+  opacity: 0.5;
+  transition: opacity var(--ics-transition), transform var(--ics-transition);
+}
+.ics-event-entry:hover .ics-event-arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+.ics-events-sidebar {}
+.ics-venue-card {
+  background: var(--ics-white);
+  border: 1px solid var(--ics-border);
+  border-radius: var(--ics-radius-md);
+  overflow: hidden;
+}
+.ics-venue-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.ics-venue-card-body { padding: 20px; }
+.ics-venue-card-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ics-red);
+  margin-bottom: 8px;
+}
+.ics-venue-card-title {
+  font-family: var(--ics-font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ics-charcoal);
+  margin-bottom: 8px;
+}
+.ics-venue-card-address {
+  font-size: 0.85rem;
+  color: var(--ics-text-mid);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.ics-venue-card-note {
+  font-size: 0.8rem;
+  color: var(--ics-text-light);
+  font-style: italic;
+  padding-top: 12px;
+  border-top: 1px solid var(--ics-border);
+}
+
+/* ===========================
+   TRAVEL SECTION
+   =========================== */
+.ics-travel-area {
+  padding: 0;
+  background: var(--ics-charcoal);
+  position: relative;
+  overflow: hidden;
+  min-height: 460px;
+  display: flex;
+  align-items: stretch;
+}
+.ics-travel-image-half {
+  flex: 1;
+  background-image: url('https://www.italiancenter.net/images/Valley%20of%20Temples%20ICS%20Group%202022%20(002).jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  min-height: 400px;
+}
+.ics-travel-image-half::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(15,30,20,0.3), rgba(15,30,20,0.0));
+}
+.ics-travel-content-half {
+  flex: 1;
+  background: var(--ics-green);
+  padding: 64px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ics-travel-pretitle {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ics-gold-light);
+  margin-bottom: 14px;
+  padding-left: 28px;
+  position: relative;
+}
+.ics-travel-pretitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 1.5px;
+  background: var(--ics-gold-light);
+}
+.ics-travel-title {
+  font-family: var(--ics-font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 500;
+  color: var(--ics-white);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.ics-travel-text {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.ics-travel-tours {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.ics-travel-tour-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.9);
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--ics-radius);
+  border-left: 3px solid var(--ics-gold);
+  transition: background var(--ics-transition);
+}
+.ics-travel-tour-item:hover { background: rgba(255,255,255,0.14); }
+.ics-travel-tour-item.ics-sold-out {
+  opacity: 0.55;
+  border-left-color: rgba(255,255,255,0.3);
+}
+.ics-travel-tour-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(192,57,43,0.85);
+  color: var(--ics-white);
+  padding: 2px 7px;
+  border-radius: 2px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.ics-btn-travel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ics-white);
+  color: var(--ics-green);
+  padding: 13px 26px;
+  border-radius: var(--ics-radius);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  transition: background var(--ics-transition), transform var(--ics-transition);
+}
+.ics-btn-travel:hover {
+  background: var(--ics-cream);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   LANGUAGE SCHOOL
+   =========================== */
+.ics-language-area {
+  padding: 80px 24px;
+  background: var(--ics-white);
+}
+.ics-language-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.ics-language-visual {
+  position: relative;
+}
+.ics-language-main-image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: var(--ics-radius-md);
+  display: block;
+}
+.ics-language-flag-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--ics-white);
+  box-shadow: var(--ics-shadow-md);
+}
+.ics-language-flag-badge img { width: 100%; height: 100%; object-fit: cover; }
+.ics-language-content {}
+.ics-language-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.ics-language-highlight-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.ics-language-highlight-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(26,74,46,0.08);
+  border-radius: var(--ics-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--ics-green);
+}
+.ics-language-highlight-text h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ics-charcoal);
+  margin-bottom: 3px;
+}
+.ics-language-highlight-text p {
+  font-size: 0.83rem;
+  color: var(--ics-text-light);
+  line-height: 1.5;
+}
+.ics-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ics-green);
+  color: var(--ics-white);
+  padding: 13px 26px;
+  border-radius: var(--ics-radius);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background var(--ics-transition), transform var(--ics-transition), box-shadow var(--ics-transition);
+  box-shadow: 0 4px 14px rgba(26,74,46,0.25);
+}
+.ics-btn-primary:hover {
+  background: var(--ics-green-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(26,74,46,0.32);
+}
+
+/* ===========================
+   ADVOCACY SECTION
+   =========================== */
+.ics-advocacy-area {
+  padding: 80px 24px;
+  background: var(--ics-cream);
+}
+.ics-advocacy-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.ics-advocacy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.ics-advocacy-block {
+  background: var(--ics-white);
+  border: 1px solid var(--ics-border);
+  border-radius: var(--ics-radius-md);
+  padding: 28px;
+  transition: box-shadow var(--ics-transition), transform var(--ics-transition);
+}
+.ics-advocacy-block:hover {
+  box-shadow: var(--ics-shadow-md);
+  transform: translateY(-3px);
+}
+.ics-advocacy-block-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ics-radius);
+  background: rgba(26,74,46,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ics-green);
+  margin-bottom: 16px;
+}
+.ics-advocacy-block-title {
+  font-family: var(--ics-font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--ics-charcoal);
+  margin-bottom: 10px;
+}
+.ics-advocacy-block-text {
+  font-size: 0.85rem;
+  color: var(--ics-text-mid);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+.ics-advocacy-block-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ics-green);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap var(--ics-transition);
+}
+.ics-advocacy-block:hover .ics-advocacy-block-link { gap: 9px; }
+
+/* ===========================
+   MEMBERSHIP / DONATE BAND
+   =========================== */
+.ics-support-band {
+  background: var(--ics-white);
+  border-top: 1px solid var(--ics-border);
+  border-bottom: 1px solid var(--ics-border);
+  padding: 64px 24px;
+}
+.ics-support-band-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.ics-support-divider {
+  background: var(--ics-border);
+  width: 1px;
+  align-self: stretch;
+}
+.ics-support-block-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ics-red);
+  margin-bottom: 12px;
+}
+.ics-support-block-title {
+  font-family: var(--ics-font-display);
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: var(--ics-green);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.ics-support-block-text {
+  font-size: 0.9rem;
+  color: var(--ics-text-mid);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.ics-donate-amounts {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.ics-donate-amount-btn {
+  padding: 9px 18px;
+  border: 1.5px solid var(--ics-border);
+  border-radius: var(--ics-radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ics-text-mid);
+  cursor: pointer;
+  transition: border-color var(--ics-transition), color var(--ics-transition), background var(--ics-transition);
+  background: var(--ics-white);
+}
+.ics-donate-amount-btn:hover,
+.ics-donate-amount-btn.ics-selected {
+  border-color: var(--ics-green);
+  color: var(--ics-green);
+  background: rgba(26,74,46,0.05);
+}
+.ics-btn-donate-full {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ics-red);
+  color: var(--ics-white);
+  padding: 13px 26px;
+  border-radius: var(--ics-radius);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background var(--ics-transition), transform var(--ics-transition);
+  box-shadow: 0 4px 14px rgba(192,57,43,0.25);
+}
+.ics-btn-donate-full:hover { background: var(--ics-red-soft); transform: translateY(-1px); }
+.ics-membership-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.ics-membership-tier {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--ics-border);
+  border-radius: var(--ics-radius);
+  cursor: pointer;
+  transition: border-color var(--ics-transition), background var(--ics-transition);
+}
+.ics-membership-tier:hover { border-color: var(--ics-green); background: rgba(26,74,46,0.03); }
+.ics-membership-tier-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ics-tier-bronze .ics-membership-tier-dot { background: #cd7f32; }
+.ics-tier-silver .ics-membership-tier-dot { background: #a8a9ad; }
+.ics-tier-gold .ics-membership-tier-dot { background: var(--ics-gold); }
+.ics-membership-tier-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ics-charcoal);
+  flex: 1;
+}
+.ics-membership-tier-price {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ics-green);
+}
+.ics-btn-member-full {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ics-green);
+  color: var(--ics-white);
+  padding: 13px 26px;
+  border-radius: var(--ics-radius);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background var(--ics-transition), transform var(--ics-transition);
+  box-shadow: 0 4px 14px rgba(26,74,46,0.25);
+}
+.ics-btn-member-full:hover { background: var(--ics-green-mid); transform: translateY(-1px); }
+
+/* ===========================
+   NEWSLETTER BAND
+   =========================== */
+.ics-newsletter-band {
+  background: var(--ics-cream-dark);
+  padding: 56px 24px;
+  border-top: 1px solid var(--ics-border);
+}
+.ics-newsletter-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.ics-newsletter-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ics-red);
+  margin-bottom: 10px;
+}
+.ics-newsletter-title {
+  font-family: var(--ics-font-display);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--ics-green);
+  margin-bottom: 12px;
+}
+.ics-newsletter-text {
+  font-size: 0.9rem;
+  color: var(--ics-text-mid);
+  margin-bottom: 24px;
+}
+.ics-newsletter-form {
+  display: flex;
+  gap: 10px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.ics-newsletter-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid var(--ics-border);
+  border-radius: var(--ics-radius);
+  font-family: var(--ics-font-body);
+  font-size: 0.9rem;
+  background: var(--ics-white);
+  color: var(--ics-text);
+  outline: none;
+  transition: border-color var(--ics-transition);
+}
+.ics-newsletter-input:focus { border-color: var(--ics-green); }
+.ics-newsletter-input::placeholder { color: var(--ics-text-light); }
+.ics-btn-newsletter {
+  background: var(--ics-green);
+  color: var(--ics-white);
+  padding: 12px 22px;
+  border-radius: var(--ics-radius);
+  font-family: var(--ics-font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background var(--ics-transition);
+  white-space: nowrap;
+}
+.ics-btn-newsletter:hover { background: var(--ics-green-mid); }
+
+/* ===========================
+   FOOTER
+   =========================== */
+.ics-footer {
+  background: var(--ics-charcoal);
+  color: rgba(255,255,255,0.75);
+  padding: 60px 24px 32px;
+}
+.ics-footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.ics-footer-top {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 32px;
+}
+.ics-footer-brand {}
+.ics-footer-brand-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+.ics-footer-brand-name {
+  font-family: var(--ics-font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ics-white);
+  margin-bottom: 10px;
+}
+.ics-footer-brand-desc {
+  font-size: 0.83rem;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.6);
+}
+.ics-footer-social {
+  display: flex;
+  gap: 10px;
+}
+.ics-footer-social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.7);
+  transition: background var(--ics-transition), color var(--ics-transition);
+}
+.ics-footer-social-link:hover { background: var(--ics-green-light); color: var(--ics-white); }
+.ics-footer-col-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 16px;
+}
+.ics-footer-col-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ics-footer-col-links a {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.68);
+  transition: color var(--ics-transition);
+  line-height: 1.4;
+}
+.ics-footer-col-links a:hover { color: var(--ics-white); }
+.ics-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.ics-footer-bottom-left {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+}
+.ics-footer-bottom-left strong { color: rgba(255,255,255,0.55); }
+.ics-footer-flag {
+  display: flex;
+  gap: 0;
+  border-radius: 2px;
+  overflow: hidden;
+  height: 14px;
+}
+.ics-footer-flag span {
+  width: 20px;
+  height: 14px;
+}
+.ics-footer-flag span:nth-child(1) { background: var(--ics-green); }
+.ics-footer-flag span:nth-child(2) { background: var(--ics-white); }
+.ics-footer-flag span:nth-child(3) { background: var(--ics-red); }
+.ics-footer-nonprofit {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.38);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 1100px) {
+  .ics-nav-menu { display: none; }
+  .ics-nav-actions { display: none; }
+  .ics-hamburger { display: flex; }
+  .ics-mobile-overlay { display: block; }
+  .ics-mobile-drawer { display: flex; }
+  .ics-footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .ics-stats-row-inner { grid-template-columns: repeat(2, 1fr); }
+  .ics-stat-item:nth-child(2) { border-right: none; }
+  .ics-stat-item:nth-child(3) { border-right: 1px solid var(--ics-border); padding-left: 24px; }
+  .ics-stat-item:nth-child(3), .ics-stat-item:nth-child(4) { border-top: 1px solid var(--ics-border); padding-top: 24px; margin-top: 8px; }
+  .ics-programs-grid { grid-template-columns: 1fr 1fr; }
+  .ics-events-layout { grid-template-columns: 1fr; }
+  .ics-events-sidebar { display: none; }
+  .ics-travel-area { flex-direction: column; }
+  .ics-travel-image-half { min-height: 280px; }
+  .ics-travel-content-half { padding: 44px 32px; }
+  .ics-language-inner { grid-template-columns: 1fr; gap: 40px; }
+  .ics-language-main-image { height: 300px; }
+  .ics-advocacy-grid { grid-template-columns: 1fr 1fr; }
+  .ics-support-band-inner { grid-template-columns: 1fr; }
+  .ics-support-divider { display: none; }
+  .ics-mission-strip-inner { grid-template-columns: 1fr; gap: 20px; }
+  .ics-footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .ics-topbar-links { display: none; }
+  .ics-hero-carousel { height: clamp(420px, 90vw, 560px); }
+  .ics-hero-cta-group { flex-direction: column; align-items: flex-start; }
+  .ics-programs-grid { grid-template-columns: 1fr; }
+  .ics-advocacy-grid { grid-template-columns: 1fr; }
+  .ics-newsletter-form { flex-direction: column; }
+  .ics-footer-top { grid-template-columns: 1fr; }
+  .ics-footer-bottom { flex-direction: column; align-items: flex-start; }
+  .ics-stats-row-inner { grid-template-columns: 1fr 1fr; }
+  .ics-area-header { grid-template-columns: 1fr; }
+  .ics-travel-content-half { padding: 36px 24px; }
+  .ics-carousel-arrows { display: none; }
+}
+
+/* Animations */
+@keyframes ics-slideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ics-animate-in {
+  animation: ics-slideIn 0.6s ease both;
+}
+.ics-animate-delay-1 { animation-delay: 0.1s; }
+.ics-animate-delay-2 { animation-delay: 0.2s; }
+.ics-animate-delay-3 { animation-delay: 0.3s; }
+
+ #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<a href="#ics-main" class="ics-skip-link">Skip to main content</a>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+<!-- TOPBAR -->
+<div class="ics-topbar" role="banner">
+  <div class="ics-topbar-inner">
+    <div class="ics-topbar-address">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      6821 Fair Oaks Blvd., Carmichael, CA 95608
+    </div>
+    <div class="ics-topbar-links">
+      <a href="https://www.italiancenter.net/news-center.html">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        News Center
+      </a>
+      <a href="https://www.italiancenter.net/membrship-donate.html">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Support Us
+      </a>
+      <a href="https://www.italiancenter.net/benvenuti/new-page-3.html">Volunteer</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="ics-navigation" id="ics-navigation" role="navigation" aria-label="Main navigation">
+  <div class="ics-nav-inner">
+    <a href="https://www.italiancenter.net/" class="ics-nav-brand" aria-label="Italian Cultural Society home">
+      <img src="https://www.italiancenter.net/images/ICS%20MBRSHIP%20LINK.png" alt="Italian Cultural Society logo" class="ics-nav-brand-logo" onerror="this.style.display='none'">
+      <div class="ics-nav-brand-text">
+        <span class="ics-nav-brand-name">Italian Cultural Society</span>
+        <span class="ics-nav-brand-tagline">of Northern California</span>
+      </div>
+    </a>
+
+    <ul class="ics-nav-menu" role="list">
+      <li class="ics-nav-item">
+        <a href="https://www.italiancenter.net/benvenuti.html" class="ics-nav-link">
+          Benvenuti
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="ics-nav-dropdown">
+          <a href="https://www.italiancenter.net/benvenuti/new-page.html">The Italian Center</a>
+          <a href="https://www.italiancenter.net/benvenuti/new-page-2.html">Exhibits at the IC</a>
+          <a href="https://www.italiancenter.net/benvenuti/our-mission.html">Our Mission</a>
+          <a href="https://www.italiancenter.net/benvenuti/new-page-3.html">Become A Volunteer</a>
+        </div>
+      </li>
+      <li class="ics-nav-item">
+        <a href="https://www.italiancenter.net/learn-italian.html" class="ics-nav-link">
+          Learn Italian
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="ics-nav-dropdown">
+          <a href="https://www.italiancenter.net/learn-italian/start-here.html">Start Here</a>
+          <a href="https://www.italiancenter.net/learn-italian/get-textbooks.html">Get Textbooks</a>
+          <a href="https://www.italiancenter.net/learn-italian/italian-cset.html">Italian CSET</a>
+        </div>
+      </li>
+      <li class="ics-nav-item">
+        <a href="https://www.italiancenter.net/events.html" class="ics-nav-link">
+          Events
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="ics-nav-dropdown">
+          <a href="https://www.italiancenter.net/events/italian-auto-motorcycle-show.html">Italian Auto & Moto Show</a>
+          <a href="https://www.italiancenter.net/events/columbus-day-festival.html">Columbus Day Festival</a>
+        </div>
+      </li>
+      <li class="ics-nav-item">
+        <a href="https://www.italiancenter.net/programs.html" class="ics-nav-link">
+          Programs
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="ics-nav-dropdown">
+          <a href="https://www.italiancenter.net/programs/friday-night-films.html">Friday Night Films</a>
+          <a href="https://www.italiancenter.net/programs/balliamo-dance-troupe.html">Balliamo! Dance Troupe</a>
+          <a href="https://www.italiancenter.net/programs/italian-american-radio.html">Italian American Radio</a>
+        </div>
+      </li>
+      <li class="ics-nav-item">
+        <a href="https://www.italiancenter.net/children.html" class="ics-nav-link">Children</a>
+      </li>
+      <li class="ics-nav-item">
+        <a href="https://www.italiancenter.net/see-italy.html" class="ics-nav-link">See Italy</a>
+      </li>
+      <li class="ics-nav-item">
+        <a href="https://www.italiancenter.net/advocacy.html" class="ics-nav-link">
+          Advocacy
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="ics-nav-dropdown">
+          <a href="https://www.italiancenter.net/advocacy/saving-columbus-day.html">Saving Columbus Day</a>
+          <a href="https://www.italiancenter.net/advocacy/ca-italian-american-task-force.html">CA Italian American Task Force</a>
+          <a href="https://www.italiancenter.net/advocacy/italians-in-curriculum.html">Italians In Curriculum</a>
+          <a href="https://www.italiancenter.net/advocacy/carmichael-park-bocce.html">Carmichael Park Bocce</a>
+        </div>
+      </li>
+      <li class="ics-nav-item">
+        <a href="https://www.italiancenter.net/little-italy-sac.html" class="ics-nav-link">Little Italy</a>
+      </li>
+    </ul>
+
+    <div class="ics-nav-actions">
+      <a href="https://www.italiancenter.net/membrship-donate/become-a-member.html" class="ics-btn-nav-member">Join</a>
+      <a href="https://www.italiancenter.net/membrship-donate.html" class="ics-btn-nav-donate">Donate</a>
+    </div>
+
+    <button class="ics-hamburger" id="ics-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="ics-mobile-drawer">
+      <span class="ics-hamburger-bar"></span>
+      <span class="ics-hamburger-bar"></span>
+      <span class="ics-hamburger-bar"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE OVERLAY -->
+<div class="ics-mobile-overlay" id="ics-mobile-overlay" aria-hidden="true"></div>
+
+<!-- MOBILE DRAWER -->
+<div class="ics-mobile-drawer" id="ics-mobile-drawer" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+  <div class="ics-mobile-drawer-header">
+    <span class="ics-mobile-drawer-logo">Italian Cultural Society</span>
+    <button class="ics-mobile-close" id="ics-mobile-close" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li class="ics-mobile-nav-item">
+      <button class="ics-mobile-nav-link" data-target="mob-benvenuti" aria-expanded="false">
+        Benvenuti
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ics-mobile-sub" id="mob-benvenuti">
+        <a href="https://www.italiancenter.net/benvenuti/new-page.html">The Italian Center</a>
+        <a href="https://www.italiancenter.net/benvenuti/new-page-2.html">Exhibits at the IC</a>
+        <a href="https://www.italiancenter.net/benvenuti/our-mission.html">Our Mission</a>
+        <a href="https://www.italiancenter.net/benvenuti/new-page-3.html">Become A Volunteer</a>
+      </div>
+    </li>
+    <li class="ics-mobile-nav-item">
+      <button class="ics-mobile-nav-link" data-target="mob-learn" aria-expanded="false">
+        Learn Italian
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ics-mobile-sub" id="mob-learn">
+        <a href="https://www.italiancenter.net/learn-italian/start-here.html">Start Here</a>
+        <a href="https://www.italiancenter.net/learn-italian/get-textbooks.html">Get Textbooks</a>
+        <a href="https://www.italiancenter.net/learn-italian/italian-cset.html">Italian CSET</a>
+      </div>
+    </li>
+    <li class="ics-mobile-nav-item">
+      <button class="ics-mobile-nav-link" data-target="mob-events" aria-expanded="false">
+        Events
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ics-mobile-sub" id="mob-events">
+        <a href="https://www.italiancenter.net/events/italian-auto-motorcycle-show.html">Italian Auto & Moto Show</a>
+        <a href="https://www.italiancenter.net/events/columbus-day-festival.html">Columbus Day Festival</a>
+      </div>
+    </li>
+    <li class="ics-mobile-nav-item">
+      <a href="https://www.italiancenter.net/programs.html" class="ics-mobile-nav-link" style="display:block;justify-content:flex-start;">Programs</a>
+    </li>
+    <li class="ics-mobile-nav-item">
+      <a href="https://www.italiancenter.net/children.html" class="ics-mobile-nav-link" style="display:block;">Children</a>
+    </li>
+    <li class="ics-mobile-nav-item">
+      <a href="https://www.italiancenter.net/see-italy.html" class="ics-mobile-nav-link" style="display:block;">See Italy</a>
+    </li>
+    <li class="ics-mobile-nav-item">
+      <button class="ics-mobile-nav-link" data-target="mob-advocacy" aria-expanded="false">
+        Advocacy
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ics-mobile-sub" id="mob-advocacy">
+        <a href="https://www.italiancenter.net/advocacy/saving-columbus-day.html">Saving Columbus Day</a>
+        <a href="https://www.italiancenter.net/advocacy/ca-italian-american-task-force.html">CA Italian American Task Force</a>
+        <a href="https://www.italiancenter.net/advocacy/italians-in-curriculum.html">Italians In Curriculum</a>
+      </div>
+    </li>
+    <li class="ics-mobile-nav-item">
+      <a href="https://www.italiancenter.net/little-italy-sac.html" class="ics-mobile-nav-link" style="display:block;">Little Italy</a>
+    </li>
+  </ul>
+  <div class="ics-mobile-drawer-ctas">
+    <a href="https://www.italiancenter.net/membrship-donate.html" class="ics-mobile-cta-donate">Donate Now</a>
+    <a href="https://www.italiancenter.net/membrship-donate/become-a-member.html" class="ics-mobile-cta-member">Become a Member</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main id="ics-main">
+
+  <!-- HERO CAROUSEL -->
+  <section class="ics-hero-carousel" aria-label="Italian Cultural Society hero slideshow">
+    <div class="ics-hero-slide ics-slide-active ics-hero-slide-1" role="img" aria-label="ICS group tour at Valley of Temples, Sicily 2022"></div>
+    <div class="ics-hero-slide ics-hero-slide-2" role="img" aria-label="The Italian Center building in Carmichael"></div>
+    <div class="ics-hero-slide ics-hero-slide-3" role="img" aria-label="Italian Amalfi Coast scenic view"></div>
+    <div class="ics-hero-slide ics-hero-slide-4" role="img" aria-label="Italy group tour scenery"></div>
+
+    <div class="ics-hero-content">
+      <div class="ics-hero-text-block">
+        <span class="ics-hero-pretitle">Italian Cultural Society of Northern California</span>
+        <h1 class="ics-hero-title">Preserving Italian Culture<br><em>for Every Generation</em></h1>
+        <p class="ics-hero-body">A nonprofit 501(c)(3) organization dedicated to promoting Italian language, culture, heritage, and community in the Sacramento region — for over 36 years.</p>
+        <div class="ics-hero-cta-group">
+          <a href="https://www.italiancenter.net/membrship-donate/become-a-member.html" class="ics-btn-hero-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Become a Member
+          </a>
+          <a href="https://www.italiancenter.net/events.html" class="ics-btn-hero-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Upcoming Events
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ics-carousel-controls" aria-label="Carousel navigation">
+      <button class="ics-carousel-dot ics-dot-active" data-index="0" aria-label="Go to slide 1"></button>
+      <button class="ics-carousel-dot" data-index="1" aria-label="Go to slide 2"></button>
+      <button class="ics-carousel-dot" data-index="2" aria-label="Go to slide 3"></button>
+      <button class="ics-carousel-dot" data-index="3" aria-label="Go to slide 4"></button>
+    </div>
+
+    <div class="ics-carousel-arrows" aria-label="Slide controls">
+      <button class="ics-carousel-arrow" id="ics-prev-slide" aria-label="Previous slide">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="ics-carousel-arrow" id="ics-next-slide" aria-label="Next slide">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <div class="ics-hero-flag-stripe" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <!-- MISSION STRIP -->
+  <section class="ics-mission-strip" aria-label="Organization mission">
+    <div class="ics-mission-strip-inner">
+      <p class="ics-mission-strip-text">
+        <strong>Our Mission:</strong> The Italian Cultural Society serves the cultural needs of our community, promoting and preserving the study of Italian language and culture through programs and activities found nowhere else in our region. We are a nonprofit 501(c)(3) organization.
+      </p>
+      <a href="https://www.italiancenter.net/benvenuti/our-mission.html" class="ics-mission-strip-cta">
+        Learn More
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS ROW -->
+  <section class="ics-stats-row" aria-label="Organization highlights">
+    <div class="ics-stats-row-inner">
+      <div class="ics-stat-item">
+        <div class="ics-stat-number">36+</div>
+        <div class="ics-stat-label">Years of Service</div>
+      </div>
+      <div class="ics-stat-item">
+        <div class="ics-stat-number">2026</div>
+        <div class="ics-stat-label">Italy Tours Open</div>
+      </div>
+      <div class="ics-stat-item">
+        <div class="ics-stat-number">All</div>
+        <div class="ics-stat-label">Levels Welcome</div>
+      </div>
+      <div class="ics-stat-item">
+        <div class="ics-stat-number">501c3</div>
+        <div class="ics-stat-label">Nonprofit Organization</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="ics-programs-area" aria-labelledby="ics-programs-title">
+    <div class="ics-programs-inner">
+      <div class="ics-area-header">
+        <div>
+          <span class="ics-area-pretitle">What We Offer</span>
+          <h2 class="ics-area-title" id="ics-programs-title">Programs &amp; <em>Community</em></h2>
+        </div>
+        <a href="https://www.italiancenter.net/programs.html" class="ics-btn-outline">
+          All Programs
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <div class="ics-programs-grid">
+        <article class="ics-program-tile">
+          <div class="ics-program-tile-image-wrap">
+            <img src="https://www.italiancenter.net/images/flag-of-italy.png" alt="Italian flag representing Italian language classes" class="ics-program-tile-image" loading="lazy" onerror="this.parentElement.style.background='#e8e0d0';this.style.display='none'">
+          </div>
+          <div class="ics-program-tile-body">
+            <span class="ics-program-tile-tag">Education</span>
+            <h3 class="ics-program-tile-title">Accredited Italian Language School</h3>
+            <p class="ics-program-tile-text">For over 36 years our Language School has taught Italian using a proven curriculum in a fun, no-stress atmosphere. Day and evening classes offered in-person and online — all levels welcome.</p>
+            <a href="https://www.italiancenter.net/learn-italian/start-here.html" class="ics-program-tile-link">
+              See Schedule
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="ics-program-tile">
+          <div class="ics-program-tile-image-wrap">
+            <img src="https://www.italiancenter.net/images/IC-68.jpg" alt="The Italian Center in Carmichael" class="ics-program-tile-image" loading="lazy" onerror="this.parentElement.style.background='#e8e0d0';this.style.display='none'">
+          </div>
+          <div class="ics-program-tile-body">
+            <span class="ics-program-tile-tag">Heritage</span>
+            <h3 class="ics-program-tile-title">Italian-American Experience Exhibits</h3>
+            <p class="ics-program-tile-text">Explore the rich history and heritage of Italian Americans through compelling exhibits at the Italian Center — the cultural heart of our region's Italian-American community.</p>
+            <a href="https://www.italiancenter.net/benvenuti/new-page-2.html" class="ics-program-tile-link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="ics-program-tile">
+          <div class="ics-program-tile-image-wrap">
+            <img src="https://www.italiancenter.net/images/nota%20bene%20RE%20NEWSLETTER-01.jpg" alt="Nota Bene newsletter" class="ics-program-tile-image" loading="lazy" onerror="this.parentElement.style.background='#e8e0d0';this.style.display='none'">
+          </div>
+          <div class="ics-program-tile-body">
+            <span class="ics-program-tile-tag">Community</span>
+            <h3 class="ics-program-tile-title">Films, Dance &amp; Radio</h3>
+            <p class="ics-program-tile-text">Friday Night Films, the Balliamo! Dance Troupe, and Italian American Radio bring our community together through culture, performance, and shared Italian-American identity.</p>
+            <a href="https://www.italiancenter.net/programs.html" class="ics-program-tile-link">
+              Explore Programs
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="ics-events-area" aria-labelledby="ics-events-title">
+    <div class="ics-events-inner">
+      <div class="ics-area-header" style="margin-bottom:36px;">
+        <div>
+          <span class="ics-area-pretitle">Everyone's Invited</span>
+          <h2 class="ics-area-title" id="ics-events-title">Upcoming <em>Events</em></h2>
+        </div>
+        <a href="https://www.italiancenter.net/events.html" class="ics-btn-outline">
+          All Events
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <div class="ics-events-layout">
+        <div class="ics-events-list">
+          <a href="https://www.italiancenter.net/events/columbus-day-festival.html" class="ics-event-entry">
+            <div class="ics-event-date-block">
+              <span class="ics-event-date-month">Oct</span>
+              <span class="ics-event-date-day">13</span>
+            </div>
+            <div class="ics-event-info">
+              <div class="ics-event-category">Annual Festival</div>
+              <div class="ics-event-name">Columbus Day Festival</div>
+              <div class="ics-event-meta">Italian Center, Carmichael &middot; Doors open 30 min early</div>
+            </div>
+            <svg class="ics-event-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+
+          <a href="https://www.italiancenter.net/events/italian-auto-motorcycle-show.html" class="ics-event-entry">
+            <div class="ics-event-date-block">
+              <span class="ics-event-date-month">Jun</span>
+              <span class="ics-event-date-day">07</span>
+            </div>
+            <div class="ics-event-info">
+              <div class="ics-event-category">Annual Show</div>
+              <div class="ics-event-name">Italian Auto &amp; Motorcycle Show</div>
+              <div class="ics-event-meta">Italian Center, Carmichael &middot; Refreshments included</div>
+            </div>
+            <svg class="ics-event-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+
+          <a href="https://www.italiancenter.net/programs/friday-night-films.html" class="ics-event-entry">
+            <div class="ics-event-date-block" style="background:var(--ics-red);">
+              <span class="ics-event-date-month">Fri</span>
+              <span class="ics-event-date-day">—</span>
+            </div>
+            <div class="ics-event-info">
+              <div class="ics-event-category">Recurring Program</div>
+              <div class="ics-event-name">Friday Night Italian Films</div>
+              <div class="ics-event-meta">Italian Center, Carmichael &middot; Check schedule for dates</div>
+            </div>
+            <svg class="ics-event-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+
+          <a href="https://www.italiancenter.net/children/festa-della-befana.html" class="ics-event-entry">
+            <div class="ics-event-date-block" style="background:var(--ics-gold);">
+              <span class="ics-event-date-month">Jan</span>
+              <span class="ics-event-date-day">6</span>
+            </div>
+            <div class="ics-event-info">
+              <div class="ics-event-category">Children's Event</div>
+              <div class="ics-event-name">Festa della Befana</div>
+              <div class="ics-event-meta">Italian Center, Carmichael &middot; Family-friendly celebration</div>
+            </div>
+            <svg class="ics-event-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+
+        <aside class="ics-events-sidebar" aria-label="Venue information">
+          <div class="ics-venue-card">
+            <img src="https://www.italiancenter.net/images/IC-68.jpg" alt="The Italian Center" class="ics-venue-card-image" loading="lazy" onerror="this.style.display='none'">
+            <div class="ics-venue-card-body">
+              <div class="ics-venue-card-label">Our Home</div>
+              <div class="ics-venue-card-title">The Italian Center</div>
+              <div class="ics-venue-card-address">
+                6821 Fair Oaks Blvd.<br>
+                Carmichael, CA 95608
+              </div>
+              <a href="https://www.italiancenter.net/benvenuti/new-page.html" class="ics-btn-outline" style="width:100%;justify-content:center;font-size:0.75rem;">
+                About the Center
+              </a>
+              <div class="ics-venue-card-note">Doors open 30 minutes before all events. Refreshments included.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOURS TO ITALY -->
+  <section class="ics-travel-area" aria-labelledby="ics-travel-title">
+    <div class="ics-travel-image-half" role="img" aria-label="ICS group at Valley of Temples, Sicily"></div>
+    <div class="ics-travel-content-half">
+      <span class="ics-travel-pretitle">Small Group Tours</span>
+      <h2 class="ics-travel-title" id="ics-travel-title">See Italy with Us in 2026</h2>
+      <p class="ics-travel-text">Italy captures the heart like nowhere else in the world. Experience the very best small group tours to Italy with the number one name in travel to Italy. Our 2025 tours sold out quickly — apply early for 2026.</p>
+
+      <div class="ics-travel-tours">
+        <div class="ics-travel-tour-item ics-sold-out">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Sicily, Sorrento &amp; The Amalfi Coast
+          <span class="ics-travel-tour-badge">Sold Out</span>
+        </div>
+        <a href="https://www.italiancenter.net/see-italy.html" class="ics-travel-tour-item" style="text-decoration:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Italy, The Beautiful Tour
+        </a>
+        <a href="https://www.italiancenter.net/see-italy.html" class="ics-travel-tour-item" style="text-decoration:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Tuscan Treasures &amp; the Cinque Terre
+        </a>
+      </div>
+
+      <a href="https://www.italiancenter.net/see-italy.html" class="ics-btn-travel">
+        View 2026 Tours
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- LANGUAGE SCHOOL (DETAIL) -->
+  <section class="ics-language-area" aria-labelledby="ics-language-title">
+    <div class="ics-language-inner">
+      <div class="ics-language-visual">
+        <img src="https://www.italiancenter.net/images/IC-68.jpg" alt="Italian Cultural Society language school" class="ics-language-main-image" loading="lazy">
+        <div class="ics-language-flag-badge">
+          <img src="https://www.italiancenter.net/images/flag-of-italy.png" alt="Flag of Italy" loading="lazy">
+        </div>
+      </div>
+      <div class="ics-language-content">
+        <span class="ics-area-pretitle">Accredited Language School</span>
+        <h2 class="ics-area-title" id="ics-language-title" style="margin-bottom:16px;">Learn <em>Italian</em></h2>
+        <p style="font-size:0.93rem;color:var(--ics-text-mid);line-height:1.75;margin-bottom:28px;">Our approach gives students an understanding of Italian culture, customs, food, and people, while emphasizing the pleasure and beauty of the Italian language — in a fun, no-stress atmosphere.</p>
+
+        <div class="ics-language-highlights">
+          <div class="ics-language-highlight-item">
+            <div class="ics-language-highlight-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div class="ics-language-highlight-text">
+              <h4>All Levels Welcome</h4>
+              <p>From complete beginners to advanced speakers — we meet you where you are.</p>
+            </div>
+          </div>
+          <div class="ics-language-highlight-item">
+            <div class="ics-language-highlight-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="ics-language-highlight-text">
+              <h4>Year-Round Day &amp; Evening Courses</h4>
+              <p>Flexible scheduling in-person at the Italian Center or online from anywhere.</p>
+            </div>
+          </div>
+          <div class="ics-language-highlight-item">
+            <div class="ics-language-highlight-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="ics-language-highlight-text">
+              <h4>Proven Curriculum Since 1988</h4>
+              <p>Over 36 years of teaching Italian with a curriculum designed for real communication.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://www.italiancenter.net/learn-italian/start-here.html" class="ics-btn-primary">
+          See Current Schedule
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVOCACY -->
+  <section class="ics-advocacy-area" aria-labelledby="ics-advocacy-title">
+    <div class="ics-advocacy-inner">
+      <div class="ics-area-header" style="margin-bottom:40px;">
+        <div>
+          <span class="ics-area-pretitle">Standing Up for Our Heritage</span>
+          <h2 class="ics-area-title" id="ics-advocacy-title">Our <em>Advocacy</em> Work</h2>
+        </div>
+        <a href="https://www.italiancenter.net/advocacy.html" class="ics-btn-outline">
+          Full Advocacy
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <div class="ics-advocacy-grid">
+        <article class="ics-advocacy-block">
+          <div class="ics-advocacy-block-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 class="ics-advocacy-block-title">Saving Columbus Day</h3>
+          <p class="ics-advocacy-block-text">We are actively working to preserve the recognition of Columbus Day, celebrating the contributions of Italian Americans to the United States and their place in our national story.</p>
+          <a href="https://www.italiancenter.net/advocacy/saving-columbus-day.html" class="ics-advocacy-block-link">
+            Read More
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </article>
+
+        <article class="ics-advocacy-block">
+          <div class="ics-advocacy-block-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 class="ics-advocacy-block-title">Italians in Curriculum</h3>
+          <p class="ics-advocacy-block-text">Advocating for the inclusion of Italian and Italian-American history, contributions, and culture in California's public school curriculum — ensuring future generations know this heritage.</p>
+          <a href="https://www.italiancenter.net/advocacy/italians-in-curriculum.html" class="ics-advocacy-block-link">
+            Read More
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </article>
+
+        <article class="ics-advocacy-block">
+          <div class="ics-advocacy-block-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3 class="ics-advocacy-block-title">CA Italian American Task Force</h3>
+          <p class="ics-advocacy-block-text">The Society actively participates in the California Italian American Task Force, working at the state level to promote and protect the interests and heritage of Italian Americans across California.</p>
+          <a href="https://www.italiancenter.net/advocacy/ca-italian-american-task-force.html" class="ics-advocacy-block-link">
+            Read More
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP & DONATE -->
+  <section class="ics-support-band" aria-labelledby="ics-support-title">
+    <div class="ics-support-band-inner">
+      <!-- Donate -->
+      <div>
+        <div class="ics-support-block-label">Support Our Mission</div>
+        <h2 class="ics-support-block-title" id="ics-support-title">Donate to Renaissance Circles</h2>
+        <p class="ics-support-block-text">Your contribution supports the Italian Center Fund, maintaining the heart of Italian culture in our region. Every donation, in any amount, makes a difference.</p>
+        <div class="ics-donate-amounts">
+          <button class="ics-donate-amount-btn">$25</button>
+          <button class="ics-donate-amount-btn ics-selected">$50</button>
+          <button class="ics-donate-amount-btn">$100</button>
+          <button class="ics-donate-amount-btn">$250</button>
+          <button class="ics-donate-amount-btn">Other</button>
+        </div>
+        <a href="https://www.italiancenter.net/membrship-donate.html" class="ics-btn-donate-full">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Donate Now
+        </a>
+      </div>
+
+      <div class="ics-support-divider" aria-hidden="true"></div>
+
+      <!-- Membership -->
+      <div>
+        <div class="ics-support-block-label">Join the Society</div>
+        <h2 class="ics-support-block-title">Become a Member</h2>
+        <p class="ics-support-block-text">Membership supports all Society programs while connecting you with a vibrant community celebrating Italian language, culture, and heritage throughout Northern California.</p>
+        <div class="ics-membership-tiers">
+          <div class="ics-membership-tier ics-tier-bronze">
+            <span class="ics-membership-tier-dot"></span>
+            <span class="ics-membership-tier-name">Individual Membership</span>
+            <span class="ics-membership-tier-price">Join Today</span>
+          </div>
+          <div class="ics-membership-tier ics-tier-silver">
+            <span class="ics-membership-tier-dot"></span>
+            <span class="ics-membership-tier-name">Family Membership</span>
+            <span class="ics-membership-tier-price">Join Today</span>
+          </div>
+          <div class="ics-membership-tier ics-tier-gold">
+            <span class="ics-membership-tier-dot"></span>
+            <span class="ics-membership-tier-name">Heritage Society</span>
+            <span class="ics-membership-tier-price">Learn More</span>
+          </div>
+        </div>
+        <a href="https://www.italiancenter.net/membrship-donate/become-a-member.html" class="ics-btn-member-full">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Become a Member
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="ics-newsletter-band" aria-labelledby="ics-newsletter-title">
+    <div class="ics-newsletter-inner">
+      <div class="ics-newsletter-label">Stay Connected</div>
+      <h2 class="ics-newsletter-title" id="ics-newsletter-title">Nota Bene — Our Newsletter</h2>
+      <p class="ics-newsletter-text">Stay informed about Society events, Italian language tips, cultural news, and advocacy updates from the Italian Center in Carmichael.</p>
+      <form class="ics-newsletter-form" onsubmit="return false;" aria-label="Newsletter signup">
+        <label for="ics-email-input" class="ics-skip-link">Email address</label>
+        <input type="email" id="ics-email-input" class="ics-newsletter-input" placeholder="Your email address" autocomplete="email" required>
+        <button type="submit" class="ics-btn-newsletter">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="ics-footer" role="contentinfo">
+  <div class="ics-footer-inner">
+    <div class="ics-footer-top">
+      <div class="ics-footer-brand">
+        <img src="https://www.italiancenter.net/images/ICS%20MBRSHIP%20LINK.png" alt="Italian Cultural Society" class="ics-footer-brand-logo" loading="lazy" onerror="this.style.display='none'">
+        <div class="ics-footer-brand-name">Italian Cultural Society of Northern California</div>
+        <p class="ics-footer-brand-desc">A nonprofit 501(c)(3) organization serving the Italian-American community of the Sacramento region since 1988.</p>
+        <div class="ics-footer-social">
+          <a href="https://www.italiancenter.net/" class="ics-footer-social-link" aria-label="Italian Cultural Society on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.italiancenter.net/" class="ics-footer-social-link" aria-label="Italian Cultural Society on Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.italiancenter.net/programs/italian-american-radio.html" class="ics-footer-social-link" aria-label="Italian American Radio">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="ics-footer-col-title">Programs</div>
+        <ul class="ics-footer-col-links">
+          <li><a href="https://www.italiancenter.net/learn-italian.html">Learn Italian</a></li>
+          <li><a href="https://www.italiancenter.net/programs/friday-night-films.html">Friday Night Films</a></li>
+          <li><a href="https://www.italiancenter.net/programs/balliamo-dance-troupe.html">Balliamo! Dance Troupe</a></li>
+          <li><a href="https://www.italiancenter.net/programs/italian-american-radio.html">Italian American Radio</a></li>
+          <li><a href="https://www.italiancenter.net/children.html">Children's Programs</a></li>
+          <li><a href="https://www.italiancenter.net/see-italy.html">Tours to Italy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ics-footer-col-title">Advocacy</div>
+        <ul class="ics-footer-col-links">
+          <li><a href="https://www.italiancenter.net/advocacy/saving-columbus-day.html">Saving Columbus Day</a></li>
+          <li><a href="https://www.italiancenter.net/advocacy/italians-in-curriculum.html">Italians In Curriculum</a></li>
+          <li><a href="https://www.italiancenter.net/advocacy/ca-italian-american-task-force.html">CA Task Force</a></li>
+          <li><a href="https://www.italiancenter.net/advocacy/carmichael-park-bocce.html">Carmichael Park Bocce</a></li>
+          <li><a href="https://www.italiancenter.net/italian-america/history-and-heritage.html">History &amp; Heritage</a></li>
+          <li><a href="https://www.italiancenter.net/little-italy-sac.html">Little Italy Sacramento</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ics-footer-col-title">Visit Us</div>
+        <ul class="ics-footer-col-links">
+          <li><a href="https://www.italiancenter.net/benvenuti/new-page.html">The Italian Center</a></li>
+          <li><a href="https://www.italiancenter.net/benvenuti/new-page-2.html">Exhibits at the IC</a></li>
+          <li><a href="https://www.italiancenter.net/events.html">Upcoming Events</a></li>
+          <li><a href="https://www.italiancenter.net/news-center.html">News Center</a></li>
+          <li><a href="https://www.italiancenter.net/membrship-donate/become-a-member.html">Become a Member</a></li>
+          <li><a href="https://www.italiancenter.net/membrship-donate.html">Donate</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ics-footer-bottom">
+      <div class="ics-footer-bottom-left">
+        &copy; 2026 <strong>Italian Cultural Society of Northern California</strong> &mdash; 6821 Fair Oaks Blvd., Carmichael, CA 95608
+      </div>
+      <div class="ics-footer-flag" aria-label="Italian flag">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="ics-footer-nonprofit">
+        Nonprofit 501(c)(3) Organization
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================
+     SCROLL: sticky nav shadow
+     ============================ */
+  const nav = document.getElementById('ics-navigation');
+  const onScroll = () => {
+    nav.classList.toggle('ics-nav-scrolled', window.scrollY > 12);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ============================
+     MOBILE DRAWER
+     ============================ */
+  const hamburger = document.getElementById('ics-hamburger');
+  const drawer = document.getElementById('ics-mobile-drawer');
+  const overlay = document.getElementById('ics-mobile-overlay');
+  const closeBtn = document.getElementById('ics-mobile-close');
+
+  function openDrawer() {
+    drawer.style.display = 'flex';
+    overlay.style.display = 'block';
+    requestAnimationFrame(() => {
+      drawer.classList.add('ics-open');
+      overlay.classList.add('ics-visible');
+    });
+    hamburger.classList.add('ics-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('ics-open');
+    overlay.classList.remove('ics-visible');
+    hamburger.classList.remove('ics-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      drawer.style.display = 'none';
+      overlay.style.display = 'none';
+    }, 350);
+    hamburger.focus();
+  }
+
+  hamburger.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('ics-open')) closeDrawer();
+  });
+
+  /* Mobile sub-menus */
+  document.querySelectorAll('.ics-mobile-nav-link[data-target]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      const open = target.classList.toggle('ics-sub-open');
+      btn.setAttribute('aria-expanded', open.toString());
+    });
+  });
+
+  /* ============================
+     HERO CAROUSEL
+     ============================ */
+  const slides = document.querySelectorAll('.ics-hero-slide');
+  const dots = document.querySelectorAll('.ics-carousel-dot');
+  let current = 0;
+  let autoTimer = null;
+
+  function goToSlide(index) {
+    slides[current].classList.remove('ics-slide-active');
+    dots[current].classList.remove('ics-dot-active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('ics-slide-active');
+    dots[current].classList.add('ics-dot-active');
+  }
+
+  function nextSlide() { goToSlide(current + 1); }
+  function prevSlide() { goToSlide(current - 1); }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(nextSlide, 5500);
+  }
+
+  function resetAuto() {
+    startAuto();
+  }
+
+  document.getElementById('ics-next-slide').addEventListener('click', () => { nextSlide(); resetAuto(); });
+  document.getElementById('ics-prev-slide').addEventListener('click', () => { prevSlide(); resetAuto(); });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goToSlide(i); resetAuto(); });
+  });
+
+  /* Pause on hover */
+  const carousel = document.querySelector('.ics-hero-carousel');
+  carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  carousel.addEventListener('mouseleave', startAuto);
+  carousel.addEventListener('focusin', () => clearInterval(autoTimer));
+  carousel.addEventListener('focusout', startAuto);
+
+  startAuto();
+
+  /* ============================
+     DONATE AMOUNT BUTTONS
+     ============================ */
+  document.querySelectorAll('.ics-donate-amount-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ics-donate-amount-btn').forEach(b => b.classList.remove('ics-selected'));
+      btn.classList.add('ics-selected');
+    });
+  });
+
+  /* ============================
+     INTERSECTION OBSERVER: animate in
+     ============================ */
+  if ('IntersectionObserver' in window) {
+    const targets = document.querySelectorAll('.ics-program-tile, .ics-event-entry, .ics-advocacy-block, .ics-stat-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '0';
+          entry.target.style.transform = 'translateY(16px)';
+          entry.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          entry.target.style.transitionDelay = `${(idx % 4) * 0.07}s`;
+          requestAnimationFrame(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'none';
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    targets.forEach(el => observer.observe(el));
+  }
+
+  /* ============================
+     NEWSLETTER FORM
+     ============================ */
+  const form = document.querySelector('.ics-newsletter-form');
+  const input = document.getElementById('ics-email-input');
+  if (form && input) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value && input.validity.valid) {
+        const btn = form.querySelector('.ics-btn-newsletter');
+        btn.textContent = 'Subscribed!';
+        btn.style.background = 'var(--ics-gold)';
+        btn.style.color = 'var(--ics-charcoal)';
+        input.value = '';
+        setTimeout(() => {
+          btn.textContent = 'Subscribe';
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 3000);
+      }
+    });
+  }
+
+})();
+  //glad heade
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+</body>
+</html>

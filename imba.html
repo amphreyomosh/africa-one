@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMBA Sacramento — Ballet Folklórico & Performing Arts</title>
+<meta name="description" content="A Non-Profit Performing Arts Dance Studio providing affordable dance & music lessons in the Sacramento area since 1994.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --imba-ink:       #1a1510;
+    --imba-earth:     #2c1f0e;
+    --imba-sienna:    #8b3a1a;
+    --imba-gold:      #c8922a;
+    --imba-gold-lt:   #e4b96a;
+    --imba-cream:     #f9f5ef;
+    --imba-sand:      #ede6d8;
+    --imba-warm-mid:  #d4c4a8;
+    --imba-white:     #ffffff;
+    --imba-muted:     #6b5c47;
+    --imba-border:    rgba(200,146,42,0.18);
+    --imba-overlay:   rgba(26,21,16,0.55);
+    --imba-radius:    4px;
+    --imba-radius-lg: 8px;
+    --imba-transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+    --imba-max:       1180px;
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--imba-cream);
+    color: var(--imba-ink);
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+  ul { list-style: none; }
+
+  /* ─── UTILITY ─────────────────────────────────────────────────── */
+  .imba-visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+  }
+  .imba-inner {
+    width: 100%; max-width: var(--imba-max);
+    margin: 0 auto; padding: 0 24px;
+  }
+
+  /* ─── TOPBAR ──────────────────────────────────────────────────── */
+  .imba-topbar {
+    background: var(--imba-earth);
+    color: var(--imba-warm-mid);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    padding: 6px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .imba-topbar a {
+    color: var(--imba-gold-lt);
+    transition: color var(--imba-transition);
+  }
+  .imba-topbar a:hover { color: var(--imba-white); }
+  .imba-topbar-address { display: flex; align-items: center; gap: 6px; }
+
+  /* ─── NAVBAR ──────────────────────────────────────────────────── */
+  .imba-navbar {
+    position: sticky; top: 56px; z-index: 900;
+    background: var(--imba-white);
+    border-bottom: 1px solid var(--imba-border);
+    transition: box-shadow var(--imba-transition), top 0.3s ease;
+  }
+  .imba-navbar.imba-nav-top-zero {
+    top: 0;
+  }
+  .imba-navbar.imba-scrolled {
+    box-shadow: 0 2px 20px rgba(26,21,16,0.09);
+  }
+  .imba-navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    padding: 0 24px;
+    max-width: var(--imba-max);
+    margin: 0 auto;
+  }
+  .imba-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .imba-brand-monogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--imba-sienna);
+    border-radius: var(--imba-radius);
+    flex-shrink: 0;
+  }
+  .imba-brand-monogram span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--imba-white);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .imba-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .imba-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--imba-earth);
+    letter-spacing: 0.01em;
+  }
+  .imba-brand-tagline {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--imba-sienna);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .imba-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .imba-nav-item {
+    position: relative;
+  }
+  .imba-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 13px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--imba-earth);
+    border-radius: var(--imba-radius);
+    border: none;
+    background: transparent;
+    transition: color var(--imba-transition), background var(--imba-transition);
+    white-space: nowrap;
+    outline: none;
+  }
+  .imba-nav-link:hover, .imba-nav-link[aria-expanded="true"] {
+    color: var(--imba-sienna);
+    background: var(--imba-sand);
+  }
+  .imba-nav-chevron {
+    width: 10px; height: 10px;
+    stroke: currentColor; stroke-width: 2;
+    fill: none; flex-shrink: 0;
+    transition: transform var(--imba-transition);
+  }
+  .imba-nav-link[aria-expanded="true"] .imba-nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdown */
+  .imba-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background: var(--imba-white);
+    border: 1px solid var(--imba-border);
+    border-radius: var(--imba-radius-lg);
+    box-shadow: 0 8px 32px rgba(26,21,16,0.12);
+    min-width: 200px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity var(--imba-transition), transform var(--imba-transition);
+    z-index: 100;
+  }
+  .imba-nav-item:hover .imba-dropdown,
+  .imba-nav-item:focus-within .imba-dropdown {
+    opacity: 1; transform: translateY(0); pointer-events: all;
+  }
+  .imba-dropdown-link {
+    display: block;
+    padding: 10px 18px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--imba-earth);
+    border-bottom: 1px solid var(--imba-sand);
+    transition: background var(--imba-transition), color var(--imba-transition);
+  }
+  .imba-dropdown-link:last-child { border-bottom: none; }
+  .imba-dropdown-link:hover {
+    background: var(--imba-sand);
+    color: var(--imba-sienna);
+  }
+
+  /* CTA button in nav */
+  .imba-nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 20px;
+    background: var(--imba-sienna);
+    color: var(--imba-white);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    transition: background var(--imba-transition), transform var(--imba-transition);
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+  .imba-nav-cta:hover {
+    background: var(--imba-earth);
+    transform: translateY(-1px);
+  }
+
+  /* Hamburger */
+  .imba-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px; height: 40px;
+    border: none;
+    background: transparent;
+    padding: 6px;
+    border-radius: var(--imba-radius);
+    transition: background var(--imba-transition);
+    cursor: pointer;
+  }
+  .imba-hamburger:hover { background: var(--imba-sand); }
+  .imba-hamburger-bar {
+    display: block;
+    width: 100%; height: 2px;
+    background: var(--imba-earth);
+    border-radius: 2px;
+    transition: transform var(--imba-transition), opacity var(--imba-transition);
+    transform-origin: center;
+  }
+  .imba-hamburger[aria-expanded="true"] .imba-hamburger-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .imba-hamburger[aria-expanded="true"] .imba-hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .imba-hamburger[aria-expanded="true"] .imba-hamburger-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Off-canvas menu */
+  .imba-offcanvas {
+    position: fixed; top: 0; right: 0;
+    width: min(320px, 85vw); height: 100vh;
+    background: var(--imba-white);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column;
+    box-shadow: -4px 0 40px rgba(26,21,16,0.18);
+    overflow-y: auto;
+  }
+  .imba-offcanvas.imba-open { transform: translateX(0); }
+
+  .imba-offcanvas-overlay {
+    position: fixed; inset: 0;
+    background: rgba(26,21,16,0.5);
+    z-index: 999;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s;
+  }
+  .imba-offcanvas-overlay.imba-open { opacity: 1; pointer-events: all; }
+
+  .imba-offcanvas-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--imba-sand);
+  }
+  .imba-offcanvas-close {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    background: var(--imba-sand);
+    border: none; border-radius: var(--imba-radius);
+    cursor: pointer; color: var(--imba-earth);
+    transition: background var(--imba-transition);
+  }
+  .imba-offcanvas-close:hover { background: var(--imba-warm-mid); }
+  .imba-offcanvas-body { padding: 12px 0; flex: 1; }
+  .imba-offcanvas-link {
+    display: block;
+    padding: 13px 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--imba-earth);
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--imba-sand);
+    transition: background var(--imba-transition), color var(--imba-transition);
+  }
+  .imba-offcanvas-link:hover { background: var(--imba-sand); color: var(--imba-sienna); }
+  .imba-offcanvas-sublabel {
+    display: block;
+    padding: 8px 24px 4px 36px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--imba-muted);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  .imba-offcanvas-sublink {
+    display: block;
+    padding: 9px 24px 9px 36px;
+    font-size: 0.83rem;
+    color: var(--imba-muted);
+    border-bottom: 1px solid var(--imba-sand);
+    transition: background var(--imba-transition), color var(--imba-transition);
+  }
+  .imba-offcanvas-sublink:hover { background: var(--imba-sand); color: var(--imba-sienna); }
+  .imba-offcanvas-foot {
+    padding: 20px 24px;
+    border-top: 1px solid var(--imba-sand);
+  }
+  .imba-offcanvas-enroll {
+    display: block; text-align: center;
+    padding: 12px;
+    background: var(--imba-sienna);
+    color: var(--imba-white);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    transition: background var(--imba-transition);
+  }
+  .imba-offcanvas-enroll:hover { background: var(--imba-earth); }
+
+  /* ─── HERO ────────────────────────────────────────────────────── */
+  .imba-hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .imba-hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://static.wixstatic.com/media/60c8d0_22e7aa8bd4f04315952699cc17d0a5a5~mv2.png/v1/crop/x_253,y_380,w_2020,h_1106/fill/w_1600,h_900,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/banner%20-%20grupo%20imba.png');
+    background-size: cover;
+    background-position: center top;
+    transform: scale(1.03);
+    animation: imba-hero-zoom 18s ease-out forwards;
+  }
+  @keyframes imba-hero-zoom {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.0); }
+  }
+  .imba-hero-scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(26,21,16,0.72) 0%,
+      rgba(44,31,14,0.48) 55%,
+      rgba(26,21,16,0.18) 100%
+    );
+  }
+  .imba-hero-body {
+    position: relative; z-index: 2;
+    padding: 80px 24px 80px;
+    max-width: var(--imba-max);
+    margin: 0 auto;
+    width: 100%;
+  }
+  .imba-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--imba-gold-lt);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: imba-fade-up 0.7s 0.2s forwards;
+  }
+  .imba-hero-eyebrow-line {
+    display: inline-block;
+    width: 36px; height: 1px;
+    background: var(--imba-gold);
+  }
+  .imba-hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--imba-white);
+    max-width: 680px;
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: imba-fade-up 0.7s 0.38s forwards;
+  }
+  .imba-hero-headline em {
+    font-style: italic;
+    color: var(--imba-gold-lt);
+  }
+  .imba-hero-subline {
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    max-width: 520px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: imba-fade-up 0.7s 0.52s forwards;
+  }
+  .imba-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    opacity: 0;
+    animation: imba-fade-up 0.7s 0.66s forwards;
+  }
+  .imba-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: var(--imba-sienna);
+    color: var(--imba-white);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    border: 2px solid var(--imba-sienna);
+    transition: background var(--imba-transition), border-color var(--imba-transition), transform var(--imba-transition);
+  }
+  .imba-btn-primary:hover {
+    background: #a64520;
+    border-color: #a64520;
+    transform: translateY(-2px);
+  }
+  .imba-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--imba-white);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    border: 2px solid rgba(255,255,255,0.45);
+    transition: border-color var(--imba-transition), background var(--imba-transition), transform var(--imba-transition);
+  }
+  .imba-btn-ghost:hover {
+    border-color: var(--imba-white);
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-2px);
+  }
+
+  .imba-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 52px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 28px;
+    max-width: 520px;
+    opacity: 0;
+    animation: imba-fade-up 0.7s 0.82s forwards;
+  }
+  .imba-hero-stat {
+    flex: 1 1 140px;
+    padding-right: 24px;
+  }
+  .imba-hero-stat + .imba-hero-stat {
+    padding-left: 24px;
+    padding-right: 0;
+    border-left: 1px solid rgba(255,255,255,0.15);
+  }
+  .imba-hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--imba-gold-lt);
+    line-height: 1;
+  }
+  .imba-hero-stat-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+
+  @keyframes imba-fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── MISSION STRIP ───────────────────────────────────────────── */
+  .imba-mission-strip {
+    background: var(--imba-earth);
+    padding: 36px 24px;
+  }
+  .imba-mission-strip-inner {
+    max-width: var(--imba-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  .imba-mission-line {
+    width: 40px; height: 1px;
+    background: var(--imba-gold);
+    flex-shrink: 0;
+  }
+  .imba-mission-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    color: var(--imba-cream);
+    max-width: 680px;
+    line-height: 1.6;
+  }
+
+  /* ─── SECTION SHARED ──────────────────────────────────────────── */
+  .imba-sec {
+    padding: 80px 24px;
+  }
+  .imba-sec-alt {
+    background: var(--imba-sand);
+  }
+  .imba-sec-header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+  .imba-sec-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--imba-sienna);
+    margin-bottom: 12px;
+  }
+  .imba-sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 600;
+    color: var(--imba-earth);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .imba-sec-desc {
+    font-size: 1rem;
+    color: var(--imba-muted);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .imba-divider {
+    width: 48px; height: 2px;
+    background: var(--imba-gold);
+    margin: 18px auto 0;
+    border-radius: 2px;
+  }
+
+  /* ─── PROGRAMS ────────────────────────────────────────────────── */
+  .imba-programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: var(--imba-max);
+    margin: 0 auto;
+  }
+  .imba-program-tile {
+    background: var(--imba-white);
+    border: 1px solid var(--imba-border);
+    border-radius: var(--imba-radius-lg);
+    overflow: hidden;
+    transition: transform var(--imba-transition), box-shadow var(--imba-transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .imba-program-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(26,21,16,0.1);
+  }
+  .imba-program-img-wrap {
+    height: 220px;
+    overflow: hidden;
+    background: var(--imba-sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .imba-program-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 20px;
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+  }
+  .imba-program-tile:hover .imba-program-img-wrap img {
+    transform: scale(1.04);
+  }
+  .imba-program-body {
+    padding: 24px 24px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .imba-program-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--imba-sienna);
+    margin-bottom: 8px;
+  }
+  .imba-program-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--imba-earth);
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .imba-program-desc {
+    font-size: 0.88rem;
+    color: var(--imba-muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .imba-program-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--imba-sienna);
+    transition: gap var(--imba-transition);
+    margin-top: auto;
+  }
+  .imba-program-link:hover { gap: 10px; }
+  .imba-program-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ─── ABOUT SPLIT ─────────────────────────────────────────────── */
+  .imba-about-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: var(--imba-max);
+    margin: 0 auto;
+  }
+  .imba-about-media {
+    position: relative;
+  }
+  .imba-about-img-main {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: var(--imba-radius-lg);
+  }
+  .imba-about-img-accent {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    width: 52%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--imba-radius-lg);
+    border: 5px solid var(--imba-cream);
+    box-shadow: 0 8px 32px rgba(26,21,16,0.14);
+  }
+  .imba-about-badge {
+    position: absolute;
+    top: 24px;
+    left: -20px;
+    background: var(--imba-sienna);
+    color: var(--imba-white);
+    padding: 14px 18px;
+    border-radius: var(--imba-radius-lg);
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(139,58,26,0.35);
+  }
+  .imba-about-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    display: block;
+    line-height: 1;
+  }
+  .imba-about-badge-text {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    display: block;
+    margin-top: 2px;
+  }
+  .imba-about-copy { }
+  .imba-about-copy .imba-sec-eyebrow { text-align: left; }
+  .imba-about-copy .imba-sec-title { text-align: left; }
+  .imba-about-copy .imba-divider { margin-left: 0; }
+  .imba-about-body {
+    font-size: 0.96rem;
+    color: var(--imba-muted);
+    line-height: 1.75;
+    margin-top: 20px;
+    margin-bottom: 28px;
+  }
+  .imba-about-values {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .imba-about-value {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .imba-about-value-icon {
+    width: 36px; height: 36px;
+    border-radius: var(--imba-radius);
+    background: var(--imba-sand);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .imba-about-value-icon svg { width: 16px; height: 16px; color: var(--imba-sienna); }
+  .imba-about-value-body h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--imba-earth);
+    margin-bottom: 2px;
+  }
+  .imba-about-value-body p {
+    font-size: 0.82rem;
+    color: var(--imba-muted);
+    line-height: 1.55;
+  }
+  .imba-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--imba-sienna);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    border: 2px solid var(--imba-sienna);
+    transition: background var(--imba-transition), color var(--imba-transition), transform var(--imba-transition);
+  }
+  .imba-btn-outline:hover {
+    background: var(--imba-sienna);
+    color: var(--imba-white);
+    transform: translateY(-2px);
+  }
+
+  /* ─── GALLERY ─────────────────────────────────────────────────── */
+  .imba-gallery-wrap {
+    max-width: var(--imba-max);
+    margin: 0 auto;
+  }
+
+  /* Filter tabs */
+  .imba-gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .imba-gallery-filter-btn {
+    padding: 7px 18px;
+    font-size: 0.77rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--imba-border);
+    border-radius: var(--imba-radius);
+    background: var(--imba-white);
+    color: var(--imba-muted);
+    transition: all var(--imba-transition);
+    cursor: pointer;
+  }
+  .imba-gallery-filter-btn:hover,
+  .imba-gallery-filter-btn.imba-active {
+    background: var(--imba-sienna);
+    border-color: var(--imba-sienna);
+    color: var(--imba-white);
+  }
+
+  /* Masonry-style tight grid */
+  .imba-gallery-grid {
+    columns: 4;
+    column-gap: 10px;
+  }
+  .imba-gallery-item {
+    display: block;
+    break-inside: avoid;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-radius: var(--imba-radius);
+    cursor: pointer;
+    position: relative;
+  }
+  .imba-gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    filter: brightness(0.97);
+  }
+  .imba-gallery-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.04);
+  }
+  .imba-gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,21,16,0);
+    transition: background var(--imba-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .imba-gallery-item:hover .imba-gallery-item-overlay {
+    background: rgba(26,21,16,0.25);
+  }
+  .imba-gallery-item-overlay svg {
+    color: var(--imba-white);
+    width: 28px; height: 28px;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity var(--imba-transition), transform var(--imba-transition);
+  }
+  .imba-gallery-item:hover .imba-gallery-item-overlay svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .imba-gallery-more {
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  /* Lightbox */
+  .imba-lightbox {
+    position: fixed; inset: 0;
+    background: rgba(10,8,5,0.94);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .imba-lightbox.imba-open {
+    opacity: 1; pointer-events: all;
+  }
+  .imba-lightbox-img {
+    max-width: 90vw;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: var(--imba-radius);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    transform: scale(0.9);
+    transition: transform 0.3s;
+  }
+  .imba-lightbox.imba-open .imba-lightbox-img {
+    transform: scale(1);
+  }
+  .imba-lightbox-close {
+    position: absolute; top: 20px; right: 20px;
+    width: 42px; height: 42px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: var(--imba-radius);
+    background: transparent;
+    color: var(--imba-white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background var(--imba-transition), border-color var(--imba-transition);
+  }
+  .imba-lightbox-close:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+  .imba-lightbox-close svg { width: 18px; height: 18px; }
+  .imba-lightbox-prev, .imba-lightbox-next {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: var(--imba-radius);
+    background: rgba(0,0,0,0.3);
+    color: var(--imba-white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background var(--imba-transition);
+  }
+  .imba-lightbox-prev { left: 16px; }
+  .imba-lightbox-next { right: 16px; }
+  .imba-lightbox-prev:hover, .imba-lightbox-next:hover { background: rgba(255,255,255,0.12); }
+  .imba-lightbox-prev svg, .imba-lightbox-next svg { width: 18px; height: 18px; }
+  .imba-lightbox-counter {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    font-size: 0.78rem; color: rgba(255,255,255,0.55); letter-spacing: 0.08em;
+  }
+
+  /* ─── HALL RENTAL ─────────────────────────────────────────────── */
+  .imba-hall-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: var(--imba-max);
+    margin: 0 auto;
+    border-radius: var(--imba-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(26,21,16,0.1);
+  }
+  .imba-hall-images {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+  }
+  .imba-hall-img {
+    width: 100%; height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  .imba-hall-body {
+    background: var(--imba-earth);
+    padding: 52px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .imba-hall-body .imba-sec-eyebrow { text-align: left; color: var(--imba-gold-lt); }
+  .imba-hall-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    color: var(--imba-white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .imba-hall-desc {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .imba-hall-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .imba-hall-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.75);
+  }
+  .imba-hall-feature svg { width: 15px; height: 15px; color: var(--imba-gold); flex-shrink: 0; }
+  .imba-btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--imba-gold);
+    color: var(--imba-earth);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    border: none;
+    transition: background var(--imba-transition), transform var(--imba-transition);
+    align-self: flex-start;
+  }
+  .imba-btn-gold:hover { background: var(--imba-gold-lt); transform: translateY(-2px); }
+
+  /* ─── EVENTS ──────────────────────────────────────────────────── */
+  .imba-events-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    max-width: var(--imba-max);
+    margin: 0 auto;
+    align-items: start;
+  }
+  .imba-event-featured {
+    position: relative;
+    border-radius: var(--imba-radius-lg);
+    overflow: hidden;
+    background: var(--imba-earth);
+  }
+  .imba-event-feat-img {
+    width: 100%; height: 340px;
+    object-fit: cover;
+    opacity: 0.65;
+    display: block;
+  }
+  .imba-event-feat-body {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 32px;
+    background: linear-gradient(to top, rgba(26,21,16,0.95) 0%, transparent 100%);
+  }
+  .imba-event-date-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--imba-sienna);
+    color: var(--imba-white);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    margin-bottom: 10px;
+  }
+  .imba-event-feat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--imba-white);
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .imba-event-feat-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+  }
+  .imba-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .imba-event-item {
+    background: var(--imba-white);
+    border: 1px solid var(--imba-border);
+    border-radius: var(--imba-radius-lg);
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: box-shadow var(--imba-transition), transform var(--imba-transition);
+  }
+  .imba-event-item:hover {
+    box-shadow: 0 6px 24px rgba(26,21,16,0.09);
+    transform: translateY(-2px);
+  }
+  .imba-event-cal {
+    flex-shrink: 0;
+    width: 48px;
+    background: var(--imba-sand);
+    border-radius: var(--imba-radius);
+    text-align: center;
+    padding: 6px 4px;
+  }
+  .imba-event-cal-month {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--imba-sienna);
+    display: block;
+  }
+  .imba-event-cal-day {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--imba-earth);
+    display: block;
+    line-height: 1;
+  }
+  .imba-event-info h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--imba-earth);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .imba-event-info p {
+    font-size: 0.78rem;
+    color: var(--imba-muted);
+    line-height: 1.5;
+  }
+
+  /* ─── CTA BAND ────────────────────────────────────────────────── */
+  .imba-cta-band {
+    background: var(--imba-sienna);
+    padding: 64px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .imba-cta-band::before {
+    content: '';
+    position: absolute;
+    top: -60%; left: -10%;
+    width: 50%; height: 200%;
+    background: rgba(255,255,255,0.03);
+    transform: rotate(-12deg);
+    pointer-events: none;
+  }
+  .imba-cta-band-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .imba-cta-band-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--imba-white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .imba-cta-band-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.65;
+  }
+  .imba-cta-band-actions {
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+  }
+  .imba-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 30px;
+    background: var(--imba-white);
+    color: var(--imba-sienna);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    border: 2px solid var(--imba-white);
+    transition: background var(--imba-transition), color var(--imba-transition), transform var(--imba-transition);
+  }
+  .imba-btn-white:hover {
+    background: transparent;
+    color: var(--imba-white);
+    transform: translateY(-2px);
+  }
+  .imba-btn-ghost-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 30px;
+    background: transparent;
+    color: var(--imba-white);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--imba-radius);
+    border: 2px solid rgba(255,255,255,0.45);
+    transition: border-color var(--imba-transition), transform var(--imba-transition);
+  }
+  .imba-btn-ghost-white:hover {
+    border-color: var(--imba-white);
+    transform: translateY(-2px);
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────────────────── */
+  .imba-footer {
+    background: var(--imba-ink);
+    color: rgba(255,255,255,0.65);
+    padding: 64px 24px 28px;
+  }
+  .imba-footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 48px;
+    max-width: var(--imba-max);
+    margin: 0 auto 48px;
+  }
+  .imba-footer-brand-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 14px;
+    filter: brightness(0) invert(1) opacity(0.9);
+  }
+  .imba-footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--imba-white);
+    margin-bottom: 4px;
+  }
+  .imba-footer-brand-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--imba-gold);
+    margin-bottom: 16px;
+  }
+  .imba-footer-desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px;
+  }
+  .imba-footer-socials {
+    display: flex;
+    gap: 10px;
+  }
+  .imba-footer-social-link {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--imba-radius);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5);
+    transition: border-color var(--imba-transition), color var(--imba-transition), background var(--imba-transition);
+  }
+  .imba-footer-social-link:hover {
+    border-color: var(--imba-gold);
+    color: var(--imba-gold);
+    background: rgba(200,146,42,0.08);
+  }
+  .imba-footer-social-link svg { width: 16px; height: 16px; }
+  .imba-footer-col-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--imba-white);
+    margin-bottom: 18px;
+  }
+  .imba-footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .imba-footer-link {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    transition: color var(--imba-transition);
+  }
+  .imba-footer-link:hover { color: var(--imba-gold-lt); }
+  .imba-footer-contact-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .imba-footer-contact-item svg {
+    width: 15px; height: 15px;
+    color: var(--imba-gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .imba-footer-contact-text {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.55;
+  }
+  .imba-footer-contact-text a { color: rgba(255,255,255,0.65); transition: color var(--imba-transition); }
+  .imba-footer-contact-text a:hover { color: var(--imba-gold-lt); }
+  .imba-footer-bottom {
+    max-width: var(--imba-max);
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+  }
+  .imba-footer-bottom a { color: rgba(255,255,255,0.35); }
+  .imba-footer-bottom a:hover { color: var(--imba-gold); }
+
+  /* ─── SCROLL REVEAL ───────────────────────────────────────────── */
+  .imba-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+  }
+  .imba-reveal.imba-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .imba-reveal-delay-1 { transition-delay: 0.1s; }
+  .imba-reveal-delay-2 { transition-delay: 0.2s; }
+  .imba-reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .imba-programs-grid { grid-template-columns: 1fr 1fr; }
+    .imba-about-split { grid-template-columns: 1fr; gap: 48px; }
+    .imba-about-img-accent { display: none; }
+    .imba-about-badge { left: 16px; }
+    .imba-about-img-main { height: 380px; }
+    .imba-hall-grid { grid-template-columns: 1fr; }
+    .imba-hall-body { padding: 36px 32px; }
+    .imba-events-row { grid-template-columns: 1fr; }
+    .imba-footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .imba-gallery-grid { columns: 3; }
+  }
+  @media (max-width: 768px) {
+    .imba-topbar { font-size: 0.68rem; }
+    .imba-topbar-address { display: none; }
+    .imba-nav-links, .imba-nav-cta { display: none; }
+    .imba-hamburger { display: flex; }
+    .imba-hero { min-height: 80vh; }
+    .imba-hero-stats { display: none; }
+    .imba-sec { padding: 60px 20px; }
+    .imba-programs-grid { grid-template-columns: 1fr; }
+    .imba-about-img-main { height: 280px; }
+    .imba-about-badge { display: none; }
+    .imba-hall-images { grid-template-rows: auto; }
+    .imba-hall-img { height: 180px; }
+    .imba-hall-body { padding: 28px 24px; }
+    .imba-event-feat-img { height: 260px; }
+    .imba-footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .imba-footer-bottom { flex-direction: column; text-align: center; }
+    .imba-gallery-grid { columns: 2; }
+    .imba-brand-tagline { display: none; }
+  }
+  @media (max-width: 480px) {
+    .imba-hero-actions { flex-direction: column; align-items: flex-start; }
+    .imba-cta-band-actions { flex-direction: column; align-items: center; }
+    .imba-hall-images { display: none; }
+    .imba-gallery-grid { columns: 2; }
+  }
+  /* ─── GLAD HEADER ─────────────────────────────────────────────── */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--imba-max);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .glad-logo img {
+    height: 34px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label { display: none; }
+    .glad-back-btn { padding: 7px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GLAD HEADER -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#fff" stroke-width="2.2" width="14" height="14">
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- TOPBAR -->
+<div class="imba-topbar" role="banner">
+  <div class="imba-topbar-address">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    4300 Stockton Blvd, Sacramento, CA 95820
+  </div>
+  <div style="display:flex;align-items:center;gap:18px;">
+    <a href="tel:+19163917500">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;vertical-align:-1px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      (916) 391-7500
+    </a>
+    <a href="tel:+19168799469">(916) 879-9469</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="imba-navbar" id="imba-main-nav" aria-label="Main navigation">
+  <div class="imba-navbar-inner">
+    <a href="https://www.imbasac.com" class="imba-brand" aria-label="IMBA Sacramento Home">
+      <div class="imba-brand-monogram" aria-hidden="true">
+        <span>IB</span>
+      </div>
+      <div class="imba-brand-text">
+        <span class="imba-brand-name">IMBA Sacramento</span>
+        <span class="imba-brand-tagline">Performing Arts &amp; Culture</span>
+      </div>
+    </a>
+
+    <ul class="imba-nav-links" role="list">
+      <li class="imba-nav-item">
+        <a href="https://www.imbasac.com" class="imba-nav-link">Home</a>
+      </li>
+      <li class="imba-nav-item">
+        <a href="https://www.imbasac.com/events/ofrenda-dia-de-los-muertos-3" class="imba-nav-link">Events</a>
+      </li>
+      <li class="imba-nav-item">
+        <button class="imba-nav-link" aria-expanded="false" aria-haspopup="true" type="button" onclick="toggleDropdown(this)">
+          About
+          <svg class="imba-nav-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="imba-dropdown" role="menu">
+          <a href="https://www.imbasac.com/about" class="imba-dropdown-link" role="menuitem">About IMBA</a>
+          <a href="https://www.imbasac.com/blank" class="imba-dropdown-link" role="menuitem">Our History</a>
+          <a href="https://www.imbasac.com/photo-gallery" class="imba-dropdown-link" role="menuitem">Gallery</a>
+        </div>
+      </li>
+      <li class="imba-nav-item">
+        <button class="imba-nav-link" aria-expanded="false" aria-haspopup="true" type="button" onclick="toggleDropdown(this)">
+          Classes
+          <svg class="imba-nav-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="imba-dropdown" role="menu">
+          <a href="https://www.imbasac.com/academy-schedules" class="imba-dropdown-link" role="menuitem">Schedules</a>
+          <a href="https://www.imbasac.com/cost" class="imba-dropdown-link" role="menuitem">Cost &amp; Tuition</a>
+          <a href="https://www.imbasac.com/student-application" class="imba-dropdown-link" role="menuitem">Student Enrollment</a>
+          <a href="https://www.imbasac.com/folklorico-for-everyone" class="imba-dropdown-link" role="menuitem">Folklórico for Everyone</a>
+          <a href="https://www.imbasac.com/classical-ballet" class="imba-dropdown-link" role="menuitem">Classical Ballet</a>
+          <a href="https://www.imbasac.com/music" class="imba-dropdown-link" role="menuitem">Music</a>
+        </div>
+      </li>
+      <li class="imba-nav-item">
+        <a href="https://www.imbasac.com/about-3" class="imba-nav-link">Programs</a>
+      </li>
+      <li class="imba-nav-item">
+        <a href="https://www.imbasac.com/contact" class="imba-nav-link">Contact</a>
+      </li>
+      <li class="imba-nav-item">
+        <a href="https://www.imbasac.com/shop-2" class="imba-nav-link">Shop</a>
+      </li>
+    </ul>
+
+    <a href="https://www.imbasac.com/student-application" class="imba-nav-cta">Enroll Now</a>
+
+    <button class="imba-hamburger" id="imba-menu-btn" aria-expanded="false" aria-controls="imba-offcanvas" aria-label="Open menu">
+      <span class="imba-hamburger-bar"></span>
+      <span class="imba-hamburger-bar"></span>
+      <span class="imba-hamburger-bar"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- OFF-CANVAS OVERLAY -->
+<div class="imba-offcanvas-overlay" id="imba-oc-overlay" aria-hidden="true"></div>
+
+<!-- OFF-CANVAS MENU -->
+<div class="imba-offcanvas" id="imba-offcanvas" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <div class="imba-offcanvas-head">
+    <div class="imba-brand-text">
+      <span class="imba-brand-name" style="color:var(--imba-earth)">IMBA Sacramento</span>
+      <span class="imba-brand-tagline">Performing Arts</span>
+    </div>
+    <button class="imba-offcanvas-close" id="imba-oc-close" aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="imba-offcanvas-body">
+    <a href="https://www.imbasac.com" class="imba-offcanvas-link">Home</a>
+    <a href="https://www.imbasac.com/events/ofrenda-dia-de-los-muertos-3" class="imba-offcanvas-link">Events</a>
+    <span class="imba-offcanvas-sublabel">About</span>
+    <a href="https://www.imbasac.com/about" class="imba-offcanvas-sublink">About IMBA</a>
+    <a href="https://www.imbasac.com/blank" class="imba-offcanvas-sublink">Our History</a>
+    <a href="https://www.imbasac.com/photo-gallery" class="imba-offcanvas-sublink">Gallery</a>
+    <span class="imba-offcanvas-sublabel">Classes</span>
+    <a href="https://www.imbasac.com/academy-schedules" class="imba-offcanvas-sublink">Schedules</a>
+    <a href="https://www.imbasac.com/cost" class="imba-offcanvas-sublink">Cost &amp; Tuition</a>
+    <a href="https://www.imbasac.com/student-application" class="imba-offcanvas-sublink">Student Enrollment</a>
+    <a href="https://www.imbasac.com/folklorico-for-everyone" class="imba-offcanvas-sublink">Folklórico for Everyone</a>
+    <a href="https://www.imbasac.com/classical-ballet" class="imba-offcanvas-sublink">Classical Ballet</a>
+    <a href="https://www.imbasac.com/music" class="imba-offcanvas-sublink">Music</a>
+    <a href="https://www.imbasac.com/about-3" class="imba-offcanvas-link">Programs</a>
+    <a href="https://www.imbasac.com/contact" class="imba-offcanvas-link">Contact</a>
+    <a href="https://www.imbasac.com/shop-2" class="imba-offcanvas-link">Shop</a>
+  </div>
+  <div class="imba-offcanvas-foot">
+    <a href="https://www.imbasac.com/student-application" class="imba-offcanvas-enroll">Enroll Now</a>
+  </div>
+</div>
+
+<!-- ─── HERO ───────────────────────────────────────────────────────── -->
+<section class="imba-hero" aria-label="Welcome to IMBA Sacramento">
+  <div class="imba-hero-bg" role="img" aria-label="IMBA performers in colorful folklórico costumes"></div>
+  <div class="imba-hero-scrim"></div>
+  <div class="imba-hero-body">
+    <div class="imba-hero-eyebrow">
+      <span class="imba-hero-eyebrow-line"></span>
+      Non-Profit · Sacramento, CA · Est. 1994
+    </div>
+    <h1 class="imba-hero-headline">
+      Where <em>Culture, Dance</em><br>& Community Meet
+    </h1>
+    <p class="imba-hero-subline">
+      IMBA — Instituto Mazatlán de Bellas Artes — provides affordable Folklórico, Ballet, and Music education to Sacramento's youth, honoring Mexican heritage through the art of performance.
+    </p>
+    <div class="imba-hero-actions">
+      <a href="https://www.imbasac.com/student-application" class="imba-btn-primary">
+        Enroll Today
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="https://www.imbasac.com/about" class="imba-btn-ghost">Learn About IMBA</a>
+    </div>
+    <div class="imba-hero-stats">
+      <div class="imba-hero-stat">
+        <div class="imba-hero-stat-num">30+</div>
+        <div class="imba-hero-stat-label">Years of Service</div>
+      </div>
+      <div class="imba-hero-stat">
+        <div class="imba-hero-stat-num">3</div>
+        <div class="imba-hero-stat-label">Program Disciplines</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION STRIP -->
+<div class="imba-mission-strip" aria-label="Our guiding principle">
+  <div class="imba-mission-strip-inner">
+    <span class="imba-mission-line" aria-hidden="true"></span>
+    <p class="imba-mission-text">"At IMBA, we dance with passion and emotion — inspiring every individual to embrace the richness of Mexican culture."</p>
+    <span class="imba-mission-line" aria-hidden="true"></span>
+  </div>
+</div>
+
+<!-- ─── PROGRAMS ───────────────────────────────────────────────────── -->
+<section class="imba-sec" aria-labelledby="imba-programs-title">
+  <div class="imba-sec-header imba-reveal">
+    <span class="imba-sec-eyebrow">What We Offer</span>
+    <h2 class="imba-sec-title" id="imba-programs-title">Our Programs</h2>
+    <div class="imba-divider" aria-hidden="true"></div>
+    <p class="imba-sec-desc">Explore your artistic potential through our expertly taught disciplines — welcoming beginners through advanced performers of all ages.</p>
+  </div>
+  <div class="imba-programs-grid">
+    <article class="imba-program-tile imba-reveal imba-reveal-delay-1">
+      <div class="imba-program-img-wrap">
+        <img
+          src="https://static.wixstatic.com/media/60c8d0_ec006369900b4271acd39368641afeb9~mv2.png/v1/fill/w_400,h_400,al_c,q_85,enc_avif,quality_auto/Recurso%202.png"
+          alt="Folklórico dancer in colorful traditional dress"
+          loading="lazy"
+          width="400" height="400"
+        >
+      </div>
+      <div class="imba-program-body">
+        <span class="imba-program-label">Dance</span>
+        <h3 class="imba-program-name">Folklórico Dances</h3>
+        <p class="imba-program-desc">Celebrate Mexico's vibrant regional traditions through authentic movement, colorful costumes, and cultural storytelling — open to all skill levels.</p>
+        <a href="https://www.imbasac.com/folklorico-for-everyone" class="imba-program-link">
+          Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="imba-program-tile imba-reveal imba-reveal-delay-2">
+      <div class="imba-program-img-wrap">
+        <img
+          src="https://static.wixstatic.com/media/e52c76_99c6a2df6076417fbcaf4991810a164f~mv2.png/v1/fill/w_400,h_400,al_c,q_85,enc_avif,quality_auto/e52c76_99c6a2df6076417fbcaf4991810a164f~mv2.png"
+          alt="Music class with instruments"
+          loading="lazy"
+          width="400" height="400"
+        >
+      </div>
+      <div class="imba-program-body">
+        <span class="imba-program-label">Music</span>
+        <h3 class="imba-program-name">Music Classes</h3>
+        <p class="imba-program-desc">Training in traditional and contemporary musical instruments and voice, led by passionate instructors dedicated to nurturing musical talent.</p>
+        <a href="https://www.imbasac.com/music" class="imba-program-link">
+          Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="imba-program-tile imba-reveal imba-reveal-delay-3">
+      <div class="imba-program-img-wrap">
+        <img
+          src="https://static.wixstatic.com/media/e52c76_804ededcbf4d4d519326e85807bdb386~mv2.png/v1/fill/w_400,h_400,al_c,q_85,enc_avif,quality_auto/e52c76_804ededcbf4d4d519326e85807bdb386~mv2.png"
+          alt="Classical ballet dancer"
+          loading="lazy"
+          width="400" height="400"
+        >
+      </div>
+      <div class="imba-program-body">
+        <span class="imba-program-label">Ballet</span>
+        <h3 class="imba-program-name">Classical Ballet</h3>
+        <p class="imba-program-desc">Build discipline, grace, and technical excellence through structured classical ballet training in a welcoming, supportive studio environment.</p>
+        <a href="https://www.imbasac.com/classical-ballet" class="imba-program-link">
+          Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </article>
+  </div>
+  <div style="text-align:center;margin-top:40px;" class="imba-reveal">
+    <a href="https://www.imbasac.com/cost" class="imba-btn-outline">View Schedules &amp; Tuition</a>
+  </div>
+</section>
+
+<!-- ─── ABOUT ────────────────────────────────────────────────────────── -->
+<section class="imba-sec imba-sec-alt" aria-labelledby="imba-about-title">
+  <div class="imba-about-split">
+    <div class="imba-about-media imba-reveal">
+      <img
+        class="imba-about-img-main"
+        src="https://static.wixstatic.com/media/60c8d0_22e7aa8bd4f04315952699cc17d0a5a5~mv2.png/v1/crop/x_253,y_380,w_2020,h_1106/fill/w_900,h_600,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/banner%20-%20grupo%20imba.png"
+        alt="IMBA dancers in performance"
+        loading="lazy"
+        width="900" height="600"
+      >
+      <div class="imba-about-badge">
+        <span class="imba-about-badge-num">1994</span>
+        <span class="imba-about-badge-text">Founded</span>
+      </div>
+      <img
+        class="imba-about-img-accent"
+        src="https://static.wixstatic.com/media/60c8d0_6b26a8d0fdc94e1dadb1f71622f80113~mv2.jpg/v1/fill/w_500,h_375,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_4526.jpg"
+        alt="Studio performance detail"
+        loading="lazy"
+        width="500" height="375"
+      >
+    </div>
+    <div class="imba-about-copy imba-reveal imba-reveal-delay-1">
+      <span class="imba-sec-eyebrow">We Are IMBA</span>
+      <h2 class="imba-sec-title" id="imba-about-title">Rooted in Heritage,<br>Driven by Community</h2>
+      <div class="imba-divider"></div>
+      <p class="imba-about-body">
+        Founded in 1994 by Yolanda Ramos-Colosio in Sacramento, IMBA — Instituto Mazatlán de Bellas Artes — has been a distinguished school of dance and performing arts for over 30 years. IMBA quickly emerged as a vibrant platform, inviting Sacramento's youth to explore their Mexican heritage and unleash their kinetic and artistic talents.
+      </p>
+      <div class="imba-about-values">
+        <div class="imba-about-value">
+          <div class="imba-about-value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="imba-about-value-body">
+            <h4>Community First</h4>
+            <p>Providing the most affordable performing arts education in the Sacramento area to ensure accessibility for all.</p>
+          </div>
+        </div>
+        <div class="imba-about-value">
+          <div class="imba-about-value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="imba-about-value-body">
+            <h4>Cultural Preservation</h4>
+            <p>Honoring the richness of Mexican heritage by passing traditions of dance and music to each new generation.</p>
+          </div>
+        </div>
+        <div class="imba-about-value">
+          <div class="imba-about-value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="imba-about-value-body">
+            <h4>Inclusive Artistic Growth</h4>
+            <p>A welcoming environment for all ages and backgrounds — from first-time learners to experienced performers.</p>
+          </div>
+        </div>
+      </div>
+      <a href="https://www.imbasac.com/about" class="imba-btn-outline">Our Full Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ────────────────────────────────────────────────────── -->
+<section class="imba-sec" aria-labelledby="imba-gallery-title">
+  <div class="imba-sec-header imba-reveal">
+    <span class="imba-sec-eyebrow">Photo Gallery</span>
+    <h2 class="imba-sec-title" id="imba-gallery-title">Life at IMBA</h2>
+    <div class="imba-divider" aria-hidden="true"></div>
+    <p class="imba-sec-desc">Colorful snapshots from our performances, workshops, and community events.</p>
+  </div>
+
+  <div class="imba-gallery-wrap">
+    <div class="imba-gallery-filters" role="group" aria-label="Filter gallery images">
+      <button class="imba-gallery-filter-btn imba-active" data-filter="all" type="button">All</button>
+      <button class="imba-gallery-filter-btn" data-filter="performance" type="button">Performances</button>
+      <button class="imba-gallery-filter-btn" data-filter="studio" type="button">Studio</button>
+      <button class="imba-gallery-filter-btn" data-filter="community" type="button">Community</button>
+    </div>
+
+    <div class="imba-gallery-grid" id="imba-gallery-grid">
+
+      <a href="#" class="imba-gallery-item" data-category="performance" data-full="https://static.wixstatic.com/media/60c8d0_bc0e3f24d2594e15b7e8b89e8e7b2713~mv2.jpg/v1/fill/w_900,h_600,q_90,enc_avif,quality_auto/60c8d0_bc0e3f24d2594e15b7e8b89e8e7b2713~mv2.jpg" aria-label="View performance photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_bc0e3f24d2594e15b7e8b89e8e7b2713~mv2.jpg/v1/fill/w_440,h_280,q_85,enc_avif,quality_auto/60c8d0_bc0e3f24d2594e15b7e8b89e8e7b2713~mv2.jpg" alt="IMBA folklórico performance" loading="lazy" width="440" height="280">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="performance" data-full="https://static.wixstatic.com/media/60c8d0_856f4d7a1e594ec98143829d0c12219c~mv2.jpg/v1/fill/w_900,h_600,q_90,enc_avif,quality_auto/60c8d0_856f4d7a1e594ec98143829d0c12219c~mv2.jpg" aria-label="View performance photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_856f4d7a1e594ec98143829d0c12219c~mv2.jpg/v1/fill/w_440,h_300,q_85,enc_avif,quality_auto/60c8d0_856f4d7a1e594ec98143829d0c12219c~mv2.jpg" alt="IMBA group performance on stage" loading="lazy" width="440" height="300">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="studio" data-full="https://static.wixstatic.com/media/60c8d0_f287d9a0050b4607a0c69502217b9b47~mv2.jpg/v1/fill/w_600,h_900,q_90,enc_avif,quality_auto/60c8d0_f287d9a0050b4607a0c69502217b9b47~mv2.jpg" aria-label="View studio photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_f287d9a0050b4607a0c69502217b9b47~mv2.jpg/v1/fill/w_220,h_320,q_85,enc_avif,quality_auto/60c8d0_f287d9a0050b4607a0c69502217b9b47~mv2.jpg" alt="Dancer in studio" loading="lazy" width="220" height="320">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="community" data-full="https://static.wixstatic.com/media/60c8d0_cb2728ad252b47308d3294f4dbe7b99f~mv2.jpg/v1/fill/w_900,h_600,q_90,enc_avif,quality_auto/60c8d0_cb2728ad252b47308d3294f4dbe7b99f~mv2.jpg" aria-label="View community photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_cb2728ad252b47308d3294f4dbe7b99f~mv2.jpg/v1/fill/w_440,h_300,q_85,enc_avif,quality_auto/60c8d0_cb2728ad252b47308d3294f4dbe7b99f~mv2.jpg" alt="Community event at IMBA" loading="lazy" width="440" height="300">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="performance" data-full="https://static.wixstatic.com/media/60c8d0_46b6652995aa40d8b852a320f1ee46cd~mv2.jpg/v1/fill/w_600,h_900,q_90,enc_avif,quality_auto/60c8d0_46b6652995aa40d8b852a320f1ee46cd~mv2.jpg" aria-label="View performance photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_46b6652995aa40d8b852a320f1ee46cd~mv2.jpg/v1/fill/w_220,h_320,q_85,enc_avif,quality_auto/60c8d0_46b6652995aa40d8b852a320f1ee46cd~mv2.jpg" alt="Performer in traditional costume" loading="lazy" width="220" height="320">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="performance" data-full="https://static.wixstatic.com/media/60c8d0_bef8fa0cf7924eb59ba51ab257256d64~mv2.jpg/v1/fill/w_900,h_600,q_90,enc_avif,quality_auto/60c8d0_bef8fa0cf7924eb59ba51ab257256d64~mv2.jpg" aria-label="View performance photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_bef8fa0cf7924eb59ba51ab257256d64~mv2.jpg/v1/fill/w_440,h_300,q_85,enc_avif,quality_auto/60c8d0_bef8fa0cf7924eb59ba51ab257256d64~mv2.jpg" alt="IMBA stage performance" loading="lazy" width="440" height="300">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="performance" data-full="https://static.wixstatic.com/media/60c8d0_f59e2587a8d74164a75d4ff6142830c2~mv2.jpg/v1/fill/w_900,h_600,q_90,enc_avif,quality_auto/60c8d0_f59e2587a8d74164a75d4ff6142830c2~mv2.jpg" aria-label="View performance photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_f59e2587a8d74164a75d4ff6142830c2~mv2.jpg/v1/fill/w_440,h_280,q_85,enc_avif,quality_auto/60c8d0_f59e2587a8d74164a75d4ff6142830c2~mv2.jpg" alt="Folklórico performance group" loading="lazy" width="440" height="280">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="studio" data-full="https://static.wixstatic.com/media/60c8d0_4f51d7cd374a453bbc0a75c4db740dcd~mv2.jpg/v1/fill/w_600,h_900,q_90,enc_avif,quality_auto/60c8d0_4f51d7cd374a453bbc0a75c4db740dcd~mv2.jpg" aria-label="View studio photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_4f51d7cd374a453bbc0a75c4db740dcd~mv2.jpg/v1/fill/w_220,h_320,q_85,enc_avif,quality_auto/60c8d0_4f51d7cd374a453bbc0a75c4db740dcd~mv2.jpg" alt="Studio rehearsal" loading="lazy" width="220" height="320">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="community" data-full="https://static.wixstatic.com/media/60c8d0_7c695ab770d046c48f9aac65c063c299~mv2.jpg/v1/fill/w_900,h_600,q_90,enc_avif,quality_auto/60c8d0_7c695ab770d046c48f9aac65c063c299~mv2.jpg" aria-label="View community photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_7c695ab770d046c48f9aac65c063c299~mv2.jpg/v1/fill/w_440,h_280,q_85,enc_avif,quality_auto/60c8d0_7c695ab770d046c48f9aac65c063c299~mv2.jpg" alt="Community gathering" loading="lazy" width="440" height="280">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="performance" data-full="https://static.wixstatic.com/media/60c8d0_300b200829794447b15891f3a9e219c3~mv2.jpg/v1/fill/w_900,h_600,q_90,enc_avif,quality_auto/60c8d0_300b200829794447b15891f3a9e219c3~mv2.jpg" aria-label="View performance photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_300b200829794447b15891f3a9e219c3~mv2.jpg/v1/fill/w_440,h_280,q_85,enc_avif,quality_auto/60c8d0_300b200829794447b15891f3a9e219c3~mv2.jpg" alt="Large ensemble performance" loading="lazy" width="440" height="280">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="studio" data-full="https://static.wixstatic.com/media/60c8d0_dd7dfbc679144d7f898958fb3faed311~mv2.jpg/v1/fill/w_900,h_600,q_90,enc_avif,quality_auto/60c8d0_dd7dfbc679144d7f898958fb3faed311~mv2.jpg" aria-label="View studio photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_dd7dfbc679144d7f898958fb3faed311~mv2.jpg/v1/fill/w_440,h_280,q_85,enc_avif,quality_auto/60c8d0_dd7dfbc679144d7f898958fb3faed311~mv2.jpg" alt="Rehearsal in studio" loading="lazy" width="440" height="280">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+      <a href="#" class="imba-gallery-item" data-category="community" data-full="https://static.wixstatic.com/media/60c8d0_2e02f9c25fbe4f45bfa8c66498a92684~mv2.jpg/v1/fill/w_600,h_900,q_90,enc_avif,quality_auto/60c8d0_2e02f9c25fbe4f45bfa8c66498a92684~mv2.jpg" aria-label="View community photo">
+        <img src="https://static.wixstatic.com/media/60c8d0_2e02f9c25fbe4f45bfa8c66498a92684~mv2.jpg/v1/fill/w_220,h_320,q_85,enc_avif,quality_auto/60c8d0_2e02f9c25fbe4f45bfa8c66498a92684~mv2.jpg" alt="Community dancer portrait" loading="lazy" width="220" height="320">
+        <div class="imba-gallery-item-overlay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </a>
+
+    </div>
+
+    <div class="imba-gallery-more imba-reveal">
+      <a href="https://www.imbasac.com/photo-gallery" class="imba-btn-outline">View Full Gallery</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HALL RENTAL ───────────────────────────────────────────────── -->
+<section class="imba-sec imba-sec-alt" aria-labelledby="imba-hall-title">
+  <div class="imba-hall-grid imba-reveal">
+    <div class="imba-hall-images">
+      <img
+        class="imba-hall-img"
+        src="https://static.wixstatic.com/media/60c8d0_6b26a8d0fdc94e1dadb1f71622f80113~mv2.jpg/v1/fill/w_700,h_280,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_4526.jpg"
+        alt="IMBA hall space for events"
+        loading="lazy" width="700" height="280"
+      >
+      <img
+        class="imba-hall-img"
+        src="https://static.wixstatic.com/media/60c8d0_d82486b9aead468aaa36b2aed5889cb1~mv2.png/v1/fill/w_700,h_280,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_4524.png"
+        alt="IMBA hall interior"
+        loading="lazy" width="700" height="280"
+      >
+    </div>
+    <div class="imba-hall-body">
+      <span class="imba-sec-eyebrow">Facility</span>
+      <h2 class="imba-hall-title" id="imba-hall-title">Hall Rental Available</h2>
+      <p class="imba-hall-desc">Our multipurpose hall is available for community events, private celebrations, rehearsals, and performances. Spacious, accessible, and centrally located in Sacramento.</p>
+      <ul class="imba-hall-features">
+        <li class="imba-hall-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Flexible event space for all occasions
+        </li>
+        <li class="imba-hall-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Conveniently located at 4300 Stockton Blvd
+        </li>
+        <li class="imba-hall-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Community-friendly non-profit rates
+        </li>
+        <li class="imba-hall-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Available on select dates — contact office
+        </li>
+      </ul>
+      <a href="https://www.imbasac.com/contact" class="imba-btn-gold">
+        Contact for Availability
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EVENTS ─────────────────────────────────────────────────────── -->
+<section class="imba-sec" aria-labelledby="imba-events-title">
+  <div class="imba-sec-header imba-reveal">
+    <span class="imba-sec-eyebrow">What's On</span>
+    <h2 class="imba-sec-title" id="imba-events-title">Upcoming Events</h2>
+    <div class="imba-divider" aria-hidden="true"></div>
+  </div>
+  <div class="imba-events-row">
+    <div class="imba-event-featured imba-reveal">
+      <img
+        class="imba-event-feat-img"
+        src="https://static.wixstatic.com/media/60c8d0_03ba56505d41499ebc743d31c664f59cf001.jpg/v1/fill/w_900,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/60c8d0_03ba56505d41499ebc743d31c664f59cf001.jpg"
+        alt="Folklórico Workshop June 2026 promotional image"
+        loading="lazy" width="900" height="500"
+      >
+      <div class="imba-event-feat-body">
+        <span class="imba-event-date-tag">June 2026</span>
+        <h3 class="imba-event-feat-title">Folklórico Workshop June 2026</h3>
+        <p class="imba-event-feat-desc">A special workshop celebrating traditional Mexican dance — open to students and community members of all levels.</p>
+      </div>
+    </div>
+    <div class="imba-events-list imba-reveal imba-reveal-delay-1">
+      <article class="imba-event-item">
+        <div class="imba-event-cal" aria-label="October">
+          <span class="imba-event-cal-month">Oct</span>
+          <span class="imba-event-cal-day">—</span>
+        </div>
+        <div class="imba-event-info">
+          <h4>Ofrenda — Día de los Muertos</h4>
+          <p>Our annual cultural celebration honoring ancestors through traditional dance and altars.</p>
+        </div>
+      </article>
+      <article class="imba-event-item">
+        <div class="imba-event-cal" aria-label="Ongoing">
+          <span class="imba-event-cal-month">Ongoing</span>
+          <span class="imba-event-cal-day" style="font-size:1rem">Classes</span>
+        </div>
+        <div class="imba-event-info">
+          <h4>Weekly Classes — All Disciplines</h4>
+          <p>Folklórico, Classical Ballet, and Music classes running throughout the year.</p>
+        </div>
+      </article>
+      <article class="imba-event-item">
+        <div class="imba-event-cal" aria-label="Year-round">
+          <span class="imba-event-cal-month">Year</span>
+          <span class="imba-event-cal-day" style="font-size:1rem">Round</span>
+        </div>
+        <div class="imba-event-info">
+          <h4>Community Outreach Performances</h4>
+          <p>IMBA performs at schools, festivals, and community events throughout Sacramento.</p>
+        </div>
+      </article>
+      <div style="padding:4px 0;">
+        <a href="https://www.imbasac.com/events/ofrenda-dia-de-los-muertos-3" class="imba-program-link" style="font-size:0.8rem;">
+          View All Events
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BAND ──────────────────────────────────────────────────── -->
+<section class="imba-cta-band" aria-labelledby="imba-cta-title">
+  <span class="imba-cta-band-eyebrow">Join the IMBA Family</span>
+  <h2 class="imba-cta-band-title" id="imba-cta-title">Be Part of Something Meaningful</h2>
+  <p class="imba-cta-band-sub">Enroll today and take your first steps into a community built on cultural pride, artistic excellence, and belonging. All ages and backgrounds welcome.</p>
+  <div class="imba-cta-band-actions">
+    <a href="https://www.imbasac.com/student-application" class="imba-btn-white">
+      Enroll Now
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <a href="https://www.imbasac.com/contact" class="imba-btn-ghost-white">Contact Us</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────────── -->
+<footer class="imba-footer" aria-label="Site footer">
+  <div class="imba-footer-grid">
+    <!-- Brand -->
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:40px;height:40px;background:var(--imba-sienna);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true">
+          <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#fff;letter-spacing:-0.03em;line-height:1;">IB</span>
+        </div>
+        <div>
+          <div class="imba-footer-brand-name">IMBA Sacramento</div>
+          <div class="imba-footer-brand-sub">Instituto Mazatlán de Bellas Artes</div>
+        </div>
+      </div>
+      <p class="imba-footer-desc">A non-profit performing arts organization celebrating Mexican heritage through dance and music since 1994.</p>
+      <div class="imba-footer-socials">
+        <a href="http://instagram.com/imbasac/" class="imba-footer-social-link" aria-label="Instagram" rel="noopener noreferrer" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@imba.sac" class="imba-footer-social-link" aria-label="TikTok" rel="noopener noreferrer" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.29 6.29 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/?ref=tn_tnmn" class="imba-footer-social-link" aria-label="Facebook" rel="noopener noreferrer" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <div class="imba-footer-col-title">Quick Links</div>
+      <ul class="imba-footer-links" role="list">
+        <li><a href="https://www.imbasac.com" class="imba-footer-link">Home</a></li>
+        <li><a href="https://www.imbasac.com/about" class="imba-footer-link">About IMBA</a></li>
+        <li><a href="https://www.imbasac.com/about-3" class="imba-footer-link">Programs</a></li>
+        <li><a href="https://www.imbasac.com/events/ofrenda-dia-de-los-muertos-3" class="imba-footer-link">Events</a></li>
+        <li><a href="https://www.imbasac.com/photo-gallery" class="imba-footer-link">Gallery</a></li>
+        <li><a href="https://www.imbasac.com/shop-2" class="imba-footer-link">Shop</a></li>
+      </ul>
+    </div>
+
+    <!-- Classes -->
+    <div>
+      <div class="imba-footer-col-title">Classes</div>
+      <ul class="imba-footer-links" role="list">
+        <li><a href="https://www.imbasac.com/folklorico-for-everyone" class="imba-footer-link">Folklórico for Everyone</a></li>
+        <li><a href="https://www.imbasac.com/classical-ballet" class="imba-footer-link">Classical Ballet</a></li>
+        <li><a href="https://www.imbasac.com/music" class="imba-footer-link">Music Classes</a></li>
+        <li><a href="https://www.imbasac.com/academy-schedules" class="imba-footer-link">Class Schedules</a></li>
+        <li><a href="https://www.imbasac.com/cost" class="imba-footer-link">Tuition &amp; Cost</a></li>
+        <li><a href="https://www.imbasac.com/student-application" class="imba-footer-link">Student Enrollment</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <div class="imba-footer-col-title">Contact</div>
+      <div class="imba-footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="imba-footer-contact-text">4300 Stockton Blvd<br>Sacramento, CA 95820</span>
+      </div>
+      <div class="imba-footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        <span class="imba-footer-contact-text">
+          <a href="tel:+19163917500">(916) 391-7500</a><br>
+          <a href="tel:+19168799469">(916) 879-9469</a>
+        </span>
+      </div>
+      <div class="imba-footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="imba-footer-contact-text">Mon–Sat<br>By appointment &amp; class schedule</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="imba-footer-bottom">
+    <span>&copy; 2024 IMBA Sacramento — Instituto Mazatlán de Bellas Artes. All rights reserved.</span>
+    <span>Non-Profit Performing Arts Organization &middot; Sacramento, CA</span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="imba-lightbox" id="imba-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="imba-lightbox-close" id="imba-lb-close" aria-label="Close image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <button class="imba-lightbox-prev" id="imba-lb-prev" aria-label="Previous image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <img src="" alt="" class="imba-lightbox-img" id="imba-lb-img">
+  <button class="imba-lightbox-next" id="imba-lb-next" aria-label="Next image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div class="imba-lightbox-counter" id="imba-lb-counter" aria-live="polite"></div>
+</div>
+
+<script>
+/* ── GLAD header hide/show + coordinate IMBA navbar top ── */
+const gladHeader = document.getElementById('glad-header');
+const imbaNav    = document.getElementById('imba-main-nav');
+let gladLastY  = window.scrollY;
+let gladVisible = true;
+
+function syncNavTop() {
+  if (gladVisible) {
+    imbaNav.classList.remove('imba-nav-top-zero');
+  } else {
+    imbaNav.classList.add('imba-nav-top-zero');
+  }
+}
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y > 80 && y > gladLastY) {
+    if (gladVisible) {
+      gladHeader.classList.add('hidden');
+      gladVisible = false;
+      syncNavTop();
+    }
+  } else if (y < gladLastY && y < 40) {
+    if (!gladVisible) {
+      gladHeader.classList.remove('hidden');
+      gladVisible = true;
+      syncNavTop();
+    }
+  }
+  gladLastY = y;
+}, { passive: true });
+
+/* ── Navbar scroll shadow ── */
+const nav = document.getElementById('imba-main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('imba-scrolled', window.scrollY > 10);
+}, { passive: true });
+
+/* ── Dropdown toggle (keyboard nav) ── */
+function toggleDropdown(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  // Close all
+  document.querySelectorAll('.imba-nav-link[aria-expanded]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+  if (!expanded) btn.setAttribute('aria-expanded', 'true');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.imba-nav-item')) {
+    document.querySelectorAll('.imba-nav-link[aria-expanded]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+  }
+});
+
+/* ── Off-canvas menu ── */
+const menuBtn = document.getElementById('imba-menu-btn');
+const offcanvas = document.getElementById('imba-offcanvas');
+const ocOverlay = document.getElementById('imba-oc-overlay');
+const ocClose = document.getElementById('imba-oc-close');
+
+function openMenu() {
+  offcanvas.classList.add('imba-open');
+  ocOverlay.classList.add('imba-open');
+  menuBtn.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  ocClose.focus();
+}
+function closeMenu() {
+  offcanvas.classList.remove('imba-open');
+  ocOverlay.classList.remove('imba-open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  menuBtn.focus();
+}
+menuBtn.addEventListener('click', openMenu);
+ocClose.addEventListener('click', closeMenu);
+ocOverlay.addEventListener('click', closeMenu);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* ── Scroll reveal ── */
+const reveals = document.querySelectorAll('.imba-reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('imba-visible');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObs.observe(el));
+
+/* ── Gallery filter ── */
+const filterBtns = document.querySelectorAll('.imba-gallery-filter-btn');
+const galleryItems = document.querySelectorAll('.imba-gallery-item');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('imba-active'));
+    btn.classList.add('imba-active');
+    const filter = btn.dataset.filter;
+    galleryItems.forEach(item => {
+      const show = filter === 'all' || item.dataset.category === filter;
+      item.style.display = show ? 'block' : 'none';
+    });
+  });
+});
+
+/* ── Lightbox ── */
+const lightbox = document.getElementById('imba-lightbox');
+const lbImg = document.getElementById('imba-lb-img');
+const lbClose = document.getElementById('imba-lb-close');
+const lbPrev = document.getElementById('imba-lb-prev');
+const lbNext = document.getElementById('imba-lb-next');
+const lbCounter = document.getElementById('imba-lb-counter');
+
+let currentLbIndex = 0;
+let visibleItems = [];
+
+function getVisibleItems() {
+  return Array.from(galleryItems).filter(i => i.style.display !== 'none');
+}
+
+function openLightbox(index) {
+  visibleItems = getVisibleItems();
+  currentLbIndex = index;
+  const item = visibleItems[currentLbIndex];
+  lbImg.src = item.dataset.full;
+  lbImg.alt = item.querySelector('img').alt;
+  lbCounter.textContent = (currentLbIndex + 1) + ' / ' + visibleItems.length;
+  lightbox.classList.add('imba-open');
+  document.body.style.overflow = 'hidden';
+  lbClose.focus();
+}
+function closeLightbox() {
+  lightbox.classList.remove('imba-open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+}
+function navLightbox(dir) {
+  currentLbIndex = (currentLbIndex + dir + visibleItems.length) % visibleItems.length;
+  const item = visibleItems[currentLbIndex];
+  lbImg.style.opacity = '0';
+  setTimeout(() => {
+    lbImg.src = item.dataset.full;
+    lbImg.alt = item.querySelector('img').alt;
+    lbCounter.textContent = (currentLbIndex + 1) + ' / ' + visibleItems.length;
+    lbImg.style.opacity = '1';
+  }, 120);
+}
+lbImg.style.transition = 'opacity 0.18s';
+
+galleryItems.forEach((item, i) => {
+  item.addEventListener('click', e => {
+    e.preventDefault();
+    const vis = getVisibleItems();
+    const visIndex = vis.indexOf(item);
+    if (visIndex !== -1) openLightbox(visIndex);
+  });
+});
+
+lbClose.addEventListener('click', closeLightbox);
+lbPrev.addEventListener('click', () => navLightbox(-1));
+lbNext.addEventListener('click', () => navLightbox(1));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('imba-open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+</script>
+</body>
+</html>

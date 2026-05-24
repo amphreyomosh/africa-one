@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Golden Empire Basset Rescue — a volunteer nonprofit finding loving homes for abandoned, abused, and unwanted basset hounds across Central California." />
+<title>Golden Empire Basset Rescue — Homes, Hope &amp; Hounds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gebr-cream: #faf6ee;
+    --gebr-sand: #f1eadb;
+    --gebr-paper: #fffdf8;
+    --gebr-ink: #2a1f17;
+    --gebr-ink-soft: #5a4a3e;
+    --gebr-ink-mute: #8a7a6c;
+    --gebr-burgundy: #6b2a25;
+    --gebr-burgundy-deep: #4f1f1c;
+    --gebr-amber: #c08a3e;
+    --gebr-amber-soft: #e8c98a;
+    --gebr-line: #e6dcc7;
+    --gebr-line-soft: #efe7d3;
+    --gebr-shadow: 0 1px 2px rgba(42, 31, 23, 0.04), 0 8px 24px rgba(42, 31, 23, 0.06);
+    --gebr-shadow-lg: 0 4px 12px rgba(42, 31, 23, 0.06), 0 24px 48px rgba(42, 31, 23, 0.10);
+    --gebr-radius: 14px;
+    --gebr-radius-sm: 10px;
+    --gebr-max: 1200px;
+    --gebr-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gebr-ink);
+    background: var(--gebr-cream);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+
+  a { color: var(--gebr-burgundy); text-decoration: none; transition: color .2s ease; }
+  a:hover { color: var(--gebr-burgundy-deep); }
+
+  h1, h2, h3, h4 {
+    font-family: 'Manrope', -apple-system, sans-serif;
+    color: var(--gebr-ink);
+    margin: 0 0 .5em;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+  }
+
+  p { margin: 0 0 1em; }
+
+  /* ============ LAYOUT SHELL ============ */
+  .gebr-shell { width: 100%; max-width: var(--gebr-max); margin: 0 auto; padding: 0 24px; }
+
+  /* ============ ANNOUNCEMENT BAR ============ */
+  .gebr-announce {
+    background: var(--gebr-burgundy-deep);
+    color: #f3e6d0;
+    font-size: 13px;
+    text-align: center;
+    padding: 9px 24px;
+    letter-spacing: 0.01em;
+  }
+  .gebr-announce strong { color: #fff; font-weight: 600; }
+  .gebr-announce a { color: var(--gebr-amber-soft); text-decoration: underline; text-underline-offset: 3px; }
+  .gebr-announce a:hover { color: #fff; }
+
+  /* ============ NAVBAR ============ */
+  .gebr-navbar {
+    position: sticky;
+    top: auto;
+    z-index: 50;
+    background: rgba(20, 12, 9, 0.25);
+    backdrop-filter: saturate(160%) blur(10px);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid rgba(255, 253, 248, 0.08);
+    transition: background .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease;
+  }
+  .gebr-navbar.is-scrolled {
+    background: rgba(255, 253, 248, 0.92);
+    border-bottom-color: var(--gebr-line);
+    box-shadow: 0 1px 0 rgba(42, 31, 23, 0.02);
+    top: 0;
+  }
+  .gebr-navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 0;
+  }
+  .gebr-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #fff;
+    flex-shrink: 0;
+    transition: color .3s ease;
+  }
+  .gebr-navbar.is-scrolled .gebr-brand { color: var(--gebr-ink); }
+  .gebr-brand__mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--gebr-paper);
+    border: 1px solid var(--gebr-line);
+    padding: 4px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .gebr-brand__mark img { width: 100%; height: 100%; object-fit: contain; }
+  .gebr-brand__name {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .gebr-brand__tag {
+    font-size: 11px;
+    color: rgba(255, 253, 248, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    margin-top: 2px;
+    transition: color .3s ease;
+  }
+  .gebr-navbar.is-scrolled .gebr-brand__tag { color: var(--gebr-ink-mute); }
+
+  .gebr-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .gebr-nav-links a {
+    display: block;
+    padding: 8px 14px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: rgba(255, 253, 248, 0.85);
+    border-radius: 8px;
+    transition: color .2s ease, background .2s ease;
+  }
+  .gebr-nav-links a:hover { color: #fff; background: rgba(255, 253, 248, 0.1); }
+  .gebr-navbar.is-scrolled .gebr-nav-links a { color: var(--gebr-ink-soft); }
+  .gebr-navbar.is-scrolled .gebr-nav-links a:hover { color: var(--gebr-burgundy); background: var(--gebr-sand); }
+
+  .gebr-nav-actions { display: flex; align-items: center; gap: 10px; }
+
+  /* ===== SEARCH (desktop, in navbar) ===== */
+  .gebr-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .gebr-search__toggle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 253, 248, 0.35);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    transition: background .2s ease, border-color .2s ease, color .3s ease;
+  }
+  .gebr-search__toggle svg { width: 16px; height: 16px; }
+  .gebr-search__toggle:hover { background: rgba(255, 253, 248, 0.1); border-color: rgba(255, 253, 248, 0.7); }
+  .gebr-navbar.is-scrolled .gebr-search__toggle {
+    color: var(--gebr-ink);
+    border-color: var(--gebr-line);
+  }
+  .gebr-navbar.is-scrolled .gebr-search__toggle:hover {
+    background: var(--gebr-paper);
+    border-color: var(--gebr-ink);
+  }
+
+  .gebr-search__panel {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 340px;
+    background: var(--gebr-paper);
+    border: 1px solid var(--gebr-line);
+    border-radius: 14px;
+    box-shadow: var(--gebr-shadow-lg);
+    padding: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity .2s ease, transform .2s var(--gebr-ease);
+    z-index: 55;
+  }
+  .gebr-search.is-open .gebr-search__panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+  .gebr-search__field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gebr-cream);
+    border: 1px solid var(--gebr-line);
+    border-radius: 999px;
+    padding: 10px 16px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .gebr-search__field:focus-within {
+    border-color: var(--gebr-burgundy);
+    background: #fff;
+  }
+  .gebr-search__field svg {
+    width: 16px; height: 16px;
+    color: var(--gebr-ink-mute);
+    flex-shrink: 0;
+  }
+  .gebr-search__input {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    font-size: 14.5px;
+    color: var(--gebr-ink);
+    min-width: 0;
+  }
+  .gebr-search__input::placeholder { color: var(--gebr-ink-mute); }
+  .gebr-search__hint {
+    font-size: 11.5px;
+    color: var(--gebr-ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 10px 4px 4px;
+  }
+  .gebr-search__results {
+    margin-top: 4px;
+    max-height: 280px;
+    overflow-y: auto;
+  }
+  .gebr-search__results ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .gebr-search__result {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--gebr-ink);
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .gebr-search__result:hover,
+  .gebr-search__result.is-focused {
+    background: var(--gebr-sand);
+    color: var(--gebr-burgundy);
+  }
+  .gebr-search__result-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    display: block;
+  }
+  .gebr-search__result-snippet {
+    display: block;
+    font-size: 12.5px;
+    color: var(--gebr-ink-mute);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+  .gebr-search__empty {
+    padding: 14px 12px;
+    font-size: 13.5px;
+    color: var(--gebr-ink-mute);
+    text-align: center;
+  }
+
+  .gebr-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 20px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .gebr-btn--primary {
+    background: var(--gebr-burgundy);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(75, 30, 28, 0.2), 0 6px 16px rgba(75, 30, 28, 0.18);
+  }
+  .gebr-btn--primary:hover { background: var(--gebr-burgundy-deep); color: #fff; transform: translateY(-1px); box-shadow: 0 2px 4px rgba(75, 30, 28, 0.24), 0 10px 22px rgba(75, 30, 28, 0.22); }
+  .gebr-btn--ghost {
+    background: transparent;
+    color: var(--gebr-ink);
+    border-color: var(--gebr-line);
+  }
+  .gebr-btn--ghost:hover { border-color: var(--gebr-ink); color: var(--gebr-ink); background: var(--gebr-paper); }
+  .gebr-btn--lg { padding: 14px 26px; font-size: 15.5px; }
+  .gebr-btn svg { width: 16px; height: 16px; }
+
+  /* Nav-bar ghost button — light on dark over hero, swaps with navbar */
+  .gebr-navbar .gebr-btn--ghost {
+    color: #fff;
+    border-color: rgba(255, 253, 248, 0.4);
+  }
+  .gebr-navbar .gebr-btn--ghost:hover {
+    background: rgba(255, 253, 248, 0.12);
+    border-color: rgba(255, 253, 248, 0.7);
+    color: #fff;
+  }
+  .gebr-navbar.is-scrolled .gebr-btn--ghost {
+    color: var(--gebr-ink);
+    border-color: var(--gebr-line);
+  }
+  .gebr-navbar.is-scrolled .gebr-btn--ghost:hover {
+    background: var(--gebr-paper);
+    border-color: var(--gebr-ink);
+  }
+
+  .gebr-burger {
+    display: none;
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: 1px solid rgba(255, 253, 248, 0.4);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    transition: border-color .3s ease;
+  }
+  .gebr-navbar.is-scrolled .gebr-burger { border-color: var(--gebr-line); }
+  .gebr-burger span {
+    position: absolute;
+    left: 11px; right: 11px;
+    height: 1.5px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform .25s ease, opacity .15s ease, top .25s ease, background .3s ease;
+  }
+  .gebr-navbar.is-scrolled .gebr-burger span { background: var(--gebr-ink); }
+  .gebr-burger span:nth-child(1) { top: 14px; }
+  .gebr-burger span:nth-child(2) { top: 20px; }
+  .gebr-burger span:nth-child(3) { top: 26px; }
+  body.gebr-menu-open .gebr-burger span:nth-child(1) { top: 20px; transform: rotate(45deg); }
+  body.gebr-menu-open .gebr-burger span:nth-child(2) { opacity: 0; }
+  body.gebr-menu-open .gebr-burger span:nth-child(3) { top: 20px; transform: rotate(-45deg); }
+
+  /* ============ OFF-CANVAS MOBILE MENU ============ */
+  .gebr-offcanvas {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .gebr-offcanvas.is-open { opacity: 1; pointer-events: auto; }
+  .gebr-offcanvas__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(42, 31, 23, 0.4);
+    backdrop-filter: blur(2px);
+  }
+  .gebr-offcanvas__panel {
+    position: absolute;
+    top: 0; right: 0;
+    height: 100%;
+    width: min(360px, 88vw);
+    background: var(--gebr-paper);
+    box-shadow: var(--gebr-shadow-lg);
+    transform: translateX(100%);
+    transition: transform .3s var(--gebr-ease);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    overflow-y: auto;
+  }
+  .gebr-offcanvas.is-open .gebr-offcanvas__panel { transform: translateX(0); }
+  .gebr-offcanvas__head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--gebr-line);
+  }
+  .gebr-offcanvas__close {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--gebr-line);
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--gebr-ink);
+    line-height: 1;
+  }
+  /* Mobile search inside off-canvas */
+  .gebr-offcanvas__search {
+    margin-bottom: 18px;
+  }
+  .gebr-offcanvas__search .gebr-search__field {
+    background: var(--gebr-cream);
+  }
+  .gebr-offcanvas__search-results {
+    margin-top: 10px;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+  .gebr-offcanvas__search-results ul { list-style: none; margin: 0; padding: 0; }
+
+  .gebr-offcanvas__nav { list-style: none; padding: 0; margin: 0 0 24px; }
+  .gebr-offcanvas__nav li { border-bottom: 1px solid var(--gebr-line-soft); }
+  .gebr-offcanvas__nav a {
+    display: block;
+    padding: 16px 4px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gebr-ink);
+  }
+  .gebr-offcanvas__nav a:hover { color: var(--gebr-burgundy); }
+  .gebr-offcanvas__cta { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+  .gebr-offcanvas__cta .gebr-btn { width: 100%; }
+
+  /* ============ HERO (full-bleed) ============ */
+  .gebr-hero {
+    position: relative;
+    width: 100%;
+    min-height: clamp(560px, 88vh, 820px);
+    overflow: hidden;
+    background: #1f1612;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    isolation: isolate;
+  }
+
+  .gebr-hero__slider {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--gebr-burgundy-deep);
+  }
+  .gebr-hero__track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  .gebr-hero__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s var(--gebr-ease), visibility 0s linear 1s, transform 1.2s var(--gebr-ease);
+    transform: scale(1.06);
+  }
+  .gebr-hero__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s var(--gebr-ease), visibility 0s linear, transform 8s linear;
+    transform: scale(1);
+  }
+  .gebr-hero__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gebr-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg,
+        rgba(20, 12, 9, 0.78) 0%,
+        rgba(20, 12, 9, 0.62) 32%,
+        rgba(20, 12, 9, 0.32) 60%,
+        rgba(20, 12, 9, 0.15) 100%),
+      linear-gradient(180deg,
+        rgba(20, 12, 9, 0.20) 0%,
+        rgba(20, 12, 9, 0) 35%,
+        rgba(20, 12, 9, 0) 65%,
+        rgba(20, 12, 9, 0.55) 100%);
+  }
+
+  .gebr-hero__inner {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: var(--gebr-max);
+    margin: 0 auto;
+    padding: 96px 24px 120px;
+  }
+  .gebr-hero__copy {
+    max-width: 640px;
+  }
+
+  .gebr-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gebr-amber-soft);
+    margin-bottom: 24px;
+  }
+  .gebr-hero__eyebrow::before {
+    content: '';
+    width: 32px; height: 1.5px;
+    background: var(--gebr-amber-soft);
+  }
+  .gebr-hero__title {
+    font-size: clamp(40px, 5.2vw, 68px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+    margin-bottom: 24px;
+    color: #fff;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+  }
+  .gebr-hero__title em {
+    font-style: normal;
+    color: var(--gebr-amber-soft);
+    position: relative;
+    white-space: nowrap;
+  }
+  .gebr-hero__title em::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 6px;
+    height: 10px;
+    background: rgba(192, 138, 62, 0.28);
+    z-index: -1;
+    border-radius: 2px;
+  }
+  .gebr-hero__lede {
+    font-size: clamp(16px, 1.4vw, 18.5px);
+    line-height: 1.6;
+    color: rgba(255, 253, 248, 0.88);
+    margin-bottom: 36px;
+    max-width: 540px;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.2);
+  }
+  .gebr-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .gebr-hero__actions .gebr-btn--ghost {
+    background: rgba(255, 253, 248, 0.08);
+    color: #fff;
+    border-color: rgba(255, 253, 248, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .gebr-hero__actions .gebr-btn--ghost:hover {
+    background: rgba(255, 253, 248, 0.16);
+    color: #fff;
+    border-color: rgba(255, 253, 248, 0.6);
+  }
+
+  /* Arrows */
+  .gebr-hero__slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 253, 248, 0.35);
+    background: rgba(31, 22, 18, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    opacity: 0.55;
+    transition: opacity .25s ease, background .2s ease, transform .2s ease, border-color .2s ease;
+    z-index: 4;
+  }
+  .gebr-hero__slider-arrow svg { width: 20px; height: 20px; }
+  .gebr-hero:hover .gebr-hero__slider-arrow,
+  .gebr-hero:focus-within .gebr-hero__slider-arrow { opacity: 1; }
+  .gebr-hero__slider-arrow:hover {
+    background: rgba(255, 253, 248, 0.95);
+    color: var(--gebr-burgundy);
+    border-color: transparent;
+  }
+  .gebr-hero__slider-arrow--prev { left: 28px; }
+  .gebr-hero__slider-arrow--next { right: 28px; }
+  .gebr-hero__slider-arrow:focus-visible { opacity: 1; outline: 2px solid var(--gebr-amber-soft); outline-offset: 3px; }
+
+  /* Dots */
+  .gebr-hero__slider-dots {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 36px;
+    display: flex;
+    gap: 8px;
+  }
+  .gebr-hero__slider-dot {
+    width: 28px;
+    height: 4px;
+    border-radius: 3px;
+    border: 0;
+    padding: 0;
+    background: rgba(255, 253, 248, 0.35);
+    cursor: pointer;
+    transition: background .25s ease, width .35s var(--gebr-ease);
+  }
+  .gebr-hero__slider-dot:hover { background: rgba(255, 253, 248, 0.7); }
+  .gebr-hero__slider-dot.is-active {
+    background: var(--gebr-amber-soft);
+    width: 48px;
+  }
+  .gebr-hero__slider-dot:focus-visible { outline: 2px solid var(--gebr-amber-soft); outline-offset: 4px; }
+
+  /* ============ INTRO / MISSION ============ */
+  .gebr-mission {
+    padding: 72px 0;
+    background: var(--gebr-paper);
+    border-top: 1px solid var(--gebr-line);
+    border-bottom: 1px solid var(--gebr-line);
+  }
+  .gebr-mission__grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .gebr-mission__head h2 {
+    font-size: clamp(28px, 3.2vw, 38px);
+    margin-bottom: 18px;
+  }
+  .gebr-mission__head p {
+    color: var(--gebr-ink-soft);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .gebr-mission__body p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--gebr-ink-soft);
+    margin-bottom: 18px;
+  }
+  .gebr-mission__body p:first-child::first-letter {
+    font-family: 'Manrope', sans-serif;
+    font-size: 56px;
+    float: left;
+    line-height: 0.9;
+    padding: 6px 10px 0 0;
+    font-weight: 700;
+    color: var(--gebr-burgundy);
+  }
+
+  .gebr-eyebrow {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--gebr-burgundy);
+    margin-bottom: 14px;
+  }
+
+  /* ============ HELP / WAYS TO HELP ============ */
+  .gebr-help { padding: 88px 0; }
+  .gebr-help__head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+  .gebr-help__head h2 {
+    font-size: clamp(28px, 3.4vw, 40px);
+    margin-bottom: 16px;
+  }
+  .gebr-help__head p { color: var(--gebr-ink-soft); font-size: 17px; }
+
+  .gebr-help__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .gebr-help-item {
+    background: var(--gebr-paper);
+    border: 1px solid var(--gebr-line);
+    border-radius: var(--gebr-radius);
+    padding: 36px 30px 32px;
+    transition: transform .3s var(--gebr-ease), box-shadow .3s var(--gebr-ease), border-color .3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .gebr-help-item::before {
+    /* small decorative top accent that replaces the icon */
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 30px;
+    width: 28px;
+    height: 2px;
+    background: var(--gebr-burgundy);
+    border-radius: 2px;
+    transition: width .35s var(--gebr-ease);
+  }
+  .gebr-help-item::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3px;
+    background: var(--gebr-burgundy);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .35s var(--gebr-ease);
+  }
+  .gebr-help-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--gebr-shadow-lg);
+    border-color: var(--gebr-line-soft);
+  }
+  .gebr-help-item:hover::before { width: 48px; }
+  .gebr-help-item:hover::after { transform: scaleX(1); }
+
+  .gebr-help-item h3 {
+    font-size: 20px;
+    margin: 28px 0 10px;
+  }
+  .gebr-help-item p {
+    font-size: 14.5px;
+    color: var(--gebr-ink-soft);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .gebr-help-item__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--gebr-burgundy);
+  }
+  .gebr-help-item__link svg { width: 14px; height: 14px; transition: transform .2s ease; }
+  .gebr-help-item__link:hover svg { transform: translateX(4px); }
+
+  /* ============ ABOUT / FOUNDER ============ */
+  .gebr-about {
+    padding: 88px 0;
+    background: var(--gebr-paper);
+    border-top: 1px solid var(--gebr-line);
+    border-bottom: 1px solid var(--gebr-line);
+  }
+  .gebr-about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .gebr-about__visual {
+    position: relative;
+    aspect-ratio: 5 / 4;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--gebr-sand);
+    box-shadow: var(--gebr-shadow);
+  }
+  .gebr-about__visual img { width: 100%; height: 100%; object-fit: cover; }
+
+  .gebr-about__body h2 {
+    font-size: clamp(28px, 3.2vw, 38px);
+    margin-bottom: 20px;
+  }
+  .gebr-about__body p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--gebr-ink-soft);
+    margin-bottom: 18px;
+  }
+  .gebr-about__board {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--gebr-line);
+  }
+  .gebr-about__board h4 {
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gebr-ink-mute);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .gebr-about__board-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+  }
+  .gebr-about__board-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 14.5px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--gebr-line);
+  }
+  .gebr-about__board-list span:first-child { color: var(--gebr-ink-mute); font-size: 13px; }
+  .gebr-about__board-list span:last-child { font-family: 'Manrope', sans-serif; font-weight: 600; color: var(--gebr-ink); }
+
+  /* ============ STATS BAND ============ */
+  .gebr-stats {
+    padding: 64px 0;
+    background: var(--gebr-burgundy-deep);
+    color: #f3e6d0;
+  }
+  .gebr-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+  .gebr-stats__num {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .gebr-stats__num span { color: var(--gebr-amber-soft); }
+  .gebr-stats__label {
+    font-size: 13.5px;
+    color: rgba(243, 230, 208, 0.7);
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ ADOPT JOURNEY ============ */
+  .gebr-journey { padding: 88px 0; }
+  .gebr-journey__head { max-width: 660px; margin-bottom: 56px; }
+  .gebr-journey__head h2 {
+    font-size: clamp(28px, 3.4vw, 40px);
+    margin-bottom: 16px;
+  }
+  .gebr-journey__head p { color: var(--gebr-ink-soft); font-size: 17px; }
+
+  .gebr-journey__steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    counter-reset: step;
+  }
+  .gebr-journey-step {
+    position: relative;
+    padding: 32px 24px 28px;
+    border-radius: var(--gebr-radius);
+    background: var(--gebr-paper);
+    border: 1px solid var(--gebr-line);
+    counter-increment: step;
+    transition: border-color .3s ease, transform .3s var(--gebr-ease);
+  }
+  .gebr-journey-step:hover { border-color: var(--gebr-amber); transform: translateY(-2px); }
+  .gebr-journey-step::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gebr-amber);
+    letter-spacing: 0.05em;
+  }
+  .gebr-journey-step h4 {
+    font-size: 18px;
+    margin: 12px 0 8px;
+    padding-right: 36px;
+  }
+  .gebr-journey-step p {
+    font-size: 14px;
+    color: var(--gebr-ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .gebr-journey-step__dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gebr-burgundy);
+    box-shadow: 0 0 0 4px var(--gebr-sand);
+  }
+
+  /* ============ CTA BAND ============ */
+  .gebr-cta-band {
+    padding: 72px 0;
+    background: linear-gradient(180deg, var(--gebr-cream) 0%, var(--gebr-sand) 100%);
+    border-top: 1px solid var(--gebr-line);
+  }
+  .gebr-cta-band__inner {
+    background: var(--gebr-paper);
+    border-radius: 20px;
+    padding: 56px 48px;
+    border: 1px solid var(--gebr-line);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: center;
+    box-shadow: var(--gebr-shadow);
+  }
+  .gebr-cta-band__body h2 {
+    font-size: clamp(26px, 3vw, 34px);
+    margin-bottom: 14px;
+  }
+  .gebr-cta-band__body p {
+    color: var(--gebr-ink-soft);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .gebr-cta-band__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .gebr-cta-band__note {
+    font-size: 13px;
+    color: var(--gebr-ink-mute);
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* ============ FOOTER ============ */
+  .gebr-foot {
+    background: #1f1612;
+    color: #cdbfae;
+    padding: 64px 0 28px;
+  }
+  .gebr-foot__top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(205, 191, 174, 0.12);
+  }
+  .gebr-foot__brand-block { max-width: 320px; }
+  .gebr-foot__brand-block .gebr-brand__name { color: #fff; }
+  .gebr-foot__brand-block .gebr-brand__tag { color: rgba(205, 191, 174, 0.6); }
+  .gebr-foot__brand-block p {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-top: 18px;
+    color: rgba(205, 191, 174, 0.78);
+  }
+  .gebr-foot__col h4 {
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .gebr-foot__col ul { list-style: none; padding: 0; margin: 0; }
+  .gebr-foot__col li { margin-bottom: 10px; }
+  .gebr-foot__col a {
+    color: rgba(205, 191, 174, 0.78);
+    font-size: 14px;
+    transition: color .2s ease;
+  }
+  .gebr-foot__col a:hover { color: #fff; }
+  .gebr-foot__col address {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(205, 191, 174, 0.78);
+  }
+  .gebr-foot__socials {
+    display: flex; gap: 10px;
+    margin-top: 22px;
+  }
+  .gebr-foot__socials a {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(205, 191, 174, 0.08);
+    display: grid;
+    place-items: center;
+    color: rgba(205, 191, 174, 0.78);
+    transition: background .2s ease, color .2s ease;
+  }
+  .gebr-foot__socials a:hover { background: var(--gebr-burgundy); color: #fff; }
+  .gebr-foot__socials svg { width: 16px; height: 16px; }
+
+  .gebr-foot__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 28px;
+    font-size: 13px;
+    color: rgba(205, 191, 174, 0.5);
+  }
+  .gebr-foot__bottom a { color: rgba(205, 191, 174, 0.7); }
+  .gebr-foot__bottom a:hover { color: #fff; }
+
+  /* ============ ANIMATIONS ============ */
+  .gebr-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .8s var(--gebr-ease), transform .8s var(--gebr-ease);
+  }
+  .gebr-reveal.is-visible { opacity: 1; transform: none; }
+  .gebr-reveal[data-delay="1"] { transition-delay: 0.08s; }
+  .gebr-reveal[data-delay="2"] { transition-delay: 0.16s; }
+  .gebr-reveal[data-delay="3"] { transition-delay: 0.24s; }
+  .gebr-reveal[data-delay="4"] { transition-delay: 0.32s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gebr-reveal, .gebr-reveal.is-visible { opacity: 1; transform: none; transition: none; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .gebr-hero__inner { padding: 80px 24px 110px; }
+    .gebr-mission__grid { grid-template-columns: 1fr; gap: 32px; }
+    .gebr-about__grid { grid-template-columns: 1fr; gap: 40px; }
+    .gebr-journey__steps { grid-template-columns: repeat(2, 1fr); }
+    .gebr-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
+    .gebr-cta-band__inner { grid-template-columns: 1fr; padding: 40px 32px; gap: 28px; }
+  }
+
+  @media (max-width: 820px) {
+    .gebr-nav-links, .gebr-nav-actions .gebr-btn, .gebr-search { display: none; }
+    .gebr-burger { display: block; }
+    .gebr-hero { min-height: clamp(540px, 78vh, 720px); }
+    .gebr-hero__inner { padding: 72px 24px 110px; }
+    .gebr-hero__overlay {
+      background:
+        linear-gradient(180deg,
+          rgba(20, 12, 9, 0.55) 0%,
+          rgba(20, 12, 9, 0.30) 40%,
+          rgba(20, 12, 9, 0.55) 80%,
+          rgba(20, 12, 9, 0.85) 100%);
+    }
+    .gebr-hero__slider-arrow { width: 40px; height: 40px; }
+    .gebr-hero__slider-arrow--prev { left: 14px; }
+    .gebr-hero__slider-arrow--next { right: 14px; }
+    .gebr-help__grid { grid-template-columns: 1fr; }
+    .gebr-help, .gebr-about, .gebr-journey { padding: 64px 0; }
+    .gebr-foot__top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .gebr-foot__brand-block { grid-column: 1 / -1; max-width: none; }
+  }
+
+  @media (max-width: 540px) {
+    .gebr-shell { padding: 0 18px; }
+    .gebr-announce { font-size: 12px; padding: 8px 16px; }
+    .gebr-hero__inner { padding: 60px 18px 100px; }
+    .gebr-hero__slider-arrow { display: none; }
+    .gebr-hero__slider-dots { bottom: 28px; }
+    .gebr-stats__grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+    .gebr-journey__steps { grid-template-columns: 1fr; }
+    .gebr-about__board-list { grid-template-columns: 1fr; }
+    .gebr-foot__top { grid-template-columns: 1fr; gap: 32px; }
+    .gebr-foot__bottom { justify-content: center; text-align: center; }
+    .gebr-cta-band__inner { padding: 32px 22px; }
+    .gebr-mission__body p:first-child::first-letter { font-size: 44px; }
+  }
+
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+</style>
+</head>
+<body>
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+<!-- Announcement bar -->
+<div class="gebr-announce" role="region" aria-label="Important notice">
+  <span><strong>Notice:</strong> Due to a scheduling conflict, the GEBR Basset Hound Waddle will not be at the Kingsburg Parade this year. We hope to be back next year &mdash; <a href="#contact">stay in touch</a>.</span>
+</div>
+
+<!-- Navbar -->
+<header class="gebr-navbar" id="gebr-navbar">
+  <div class="gebr-shell">
+    <div class="gebr-navbar__inner">
+      <a href="#" class="gebr-brand" aria-label="Golden Empire Basset Rescue — home">
+        <span class="gebr-brand__mark">
+          <img src="https://s3.amazonaws.com/imagesroot.rescuegroups.org/logos/s3383logo20160521145310.jpg" alt="" />
+        </span>
+        <span>
+          <span class="gebr-brand__name">Golden Empire</span><br />
+          <span class="gebr-brand__tag">Basset Rescue</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="gebr-nav-links">
+          <li><a href="#mission">About</a></li>
+          <li><a href="#bassets">Adopt</a></li>
+          <li><a href="#help">Help Out</a></li>
+          <li><a href="#journey">Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="gebr-nav-actions">
+        <!-- Desktop search -->
+        <div class="gebr-search" id="gebr-search">
+          <button type="button" class="gebr-search__toggle" id="gebr-search-toggle" aria-label="Open search" aria-expanded="false" aria-controls="gebr-search-panel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+          <div class="gebr-search__panel" id="gebr-search-panel" role="dialog" aria-label="Search site">
+            <div class="gebr-search__field">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <input type="text" class="gebr-search__input" id="gebr-search-input" placeholder="Search the site…" autocomplete="off" />
+            </div>
+            <div class="gebr-search__hint" id="gebr-search-hint">Try “adopt”, “foster”, or “donate”</div>
+            <div class="gebr-search__results" id="gebr-search-results"></div>
+          </div>
+        </div>
+
+        <a href="#donate" class="gebr-btn gebr-btn--ghost">Donate</a>
+        <a href="#bassets" class="gebr-btn gebr-btn--primary">
+          Meet the Hounds
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <button class="gebr-burger" id="gebr-burger" aria-label="Open menu" aria-expanded="false" aria-controls="gebr-offcanvas">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Off-canvas mobile menu -->
+<div class="gebr-offcanvas" id="gebr-offcanvas" aria-hidden="true">
+  <div class="gebr-offcanvas__backdrop" data-gebr-close></div>
+  <aside class="gebr-offcanvas__panel" role="dialog" aria-label="Mobile navigation">
+    <div class="gebr-offcanvas__head">
+      <a href="#" class="gebr-brand">
+        <span class="gebr-brand__mark">
+          <img src="https://s3.amazonaws.com/imagesroot.rescuegroups.org/logos/s3383logo20160521145310.jpg" alt="" />
+        </span>
+        <span class="gebr-brand__name">GEBR</span>
+      </a>
+      <button class="gebr-offcanvas__close" data-gebr-close aria-label="Close menu">&times;</button>
+    </div>
+
+    <!-- Mobile search -->
+    <div class="gebr-offcanvas__search">
+      <div class="gebr-search__field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" class="gebr-search__input" id="gebr-search-input-mobile" placeholder="Search the site…" autocomplete="off" />
+      </div>
+      <div class="gebr-offcanvas__search-results" id="gebr-search-results-mobile"></div>
+    </div>
+
+    <ul class="gebr-offcanvas__nav">
+      <li><a href="#mission" data-gebr-close>About Us</a></li>
+      <li><a href="#bassets" data-gebr-close>Adoptable Hounds</a></li>
+      <li><a href="#help" data-gebr-close>Ways to Help</a></li>
+      <li><a href="#journey" data-gebr-close>Adoption Process</a></li>
+      <li><a href="#stories" data-gebr-close>Happy Tails</a></li>
+      <li><a href="#contact" data-gebr-close>Contact</a></li>
+    </ul>
+    <div class="gebr-offcanvas__cta">
+      <a href="#donate" class="gebr-btn gebr-btn--ghost">Donate</a>
+      <a href="#bassets" class="gebr-btn gebr-btn--primary">Meet the Hounds</a>
+    </div>
+  </aside>
+</div>
+
+<!-- Hero -->
+<section class="gebr-hero">
+  <!-- Background slider -->
+  <div class="gebr-hero__slider" id="gebr-slider" aria-roledescription="carousel" aria-label="Featured rescue hounds">
+    <ul class="gebr-hero__track" id="gebr-slider-track">
+      <li class="gebr-hero__slide is-active" aria-roledescription="slide" aria-label="1 of 3">
+        <img src="https://images.unsplash.com/photo-1619754226841-99b374dccbc0?auto=format&fit=crop&w=2000&q=80" alt="" />
+      </li>
+      <li class="gebr-hero__slide" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1557146156-5299a8972ecf?auto=format&fit=crop&w=2000&q=80" alt="" />
+      </li>
+      <li class="gebr-hero__slide" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1552248239-37121e7bd7ca?auto=format&fit=crop&w=2000&q=80" alt="" />
+      </li>
+    </ul>
+  </div>
+
+  <!-- Dark overlay for legibility -->
+  <div class="gebr-hero__overlay" aria-hidden="true"></div>
+
+  <!-- Arrow controls -->
+  <button type="button" class="gebr-hero__slider-arrow gebr-hero__slider-arrow--prev" id="gebr-slider-prev" aria-label="Previous hound">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button type="button" class="gebr-hero__slider-arrow gebr-hero__slider-arrow--next" id="gebr-slider-next" aria-label="Next hound">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+
+  <!-- Foreground copy -->
+  <div class="gebr-hero__inner">
+    <div class="gebr-hero__copy">
+      <div class="gebr-hero__eyebrow gebr-reveal">A Central California Nonprofit &mdash; Since 2007</div>
+      <h1 class="gebr-hero__title gebr-reveal" data-delay="1">
+        Every basset hound<br />deserves a <em>second chapter.</em>
+      </h1>
+      <p class="gebr-hero__lede gebr-reveal" data-delay="2">
+        Golden Empire Basset Rescue is a volunteer-run nonprofit finding loving homes for
+        abandoned, abused, and unwanted basset hounds across Kern, Tulare, San Luis Obispo,
+        and Inyo counties.
+      </p>
+      <div class="gebr-hero__actions gebr-reveal" data-delay="3">
+        <a href="#bassets" class="gebr-btn gebr-btn--primary gebr-btn--lg">
+          Adopt a Basset
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#donate" class="gebr-btn gebr-btn--ghost gebr-btn--lg">Make a Donation</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide indicator dots, centered bottom -->
+  <div class="gebr-hero__slider-dots" role="tablist" aria-label="Choose a slide">
+    <button type="button" class="gebr-hero__slider-dot is-active" data-gebr-slide="0" role="tab" aria-selected="true" aria-label="Show slide 1"></button>
+    <button type="button" class="gebr-hero__slider-dot" data-gebr-slide="1" role="tab" aria-selected="false" aria-label="Show slide 2"></button>
+    <button type="button" class="gebr-hero__slider-dot" data-gebr-slide="2" role="tab" aria-selected="false" aria-label="Show slide 3"></button>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="gebr-mission" id="mission">
+  <div class="gebr-shell">
+    <div class="gebr-mission__grid">
+      <div class="gebr-mission__head gebr-reveal">
+        <span class="gebr-eyebrow">Our Mission</span>
+        <h2>Compassion turned into community service.</h2>
+        <p>
+          Founded in 2007 by lifelong animal lover Jill Peterson, GEBR has spent nearly two
+          decades finding forever homes for the breed she adored most.
+        </p>
+      </div>
+      <div class="gebr-mission__body gebr-reveal" data-delay="1">
+        <p>
+          Our hounds come to us from shelters and owner relinquishments. They receive
+          veterinary care that includes necessary vaccinations, heartworm testing, and
+          spay/neuter procedures &mdash; often at significant cost to our small nonprofit.
+        </p>
+        <p>
+          Each basset is typically placed into a volunteer foster home where their
+          temperament, social needs, and any behavioral quirks are gently observed. From
+          there, we work to match each hound with the right family &mdash; one where the
+          special bond between companion animal and household can truly blossom.
+        </p>
+        <p>
+          Today, the Board of Directors continues the work Jill began, honoring her legacy
+          one wagging tail at a time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ways to help -->
+<section class="gebr-help" id="help">
+  <div class="gebr-shell">
+    <div class="gebr-help__head gebr-reveal">
+      <span class="gebr-eyebrow">How You Can Help</span>
+      <h2>Help comes in many forms.</h2>
+      <p>The average vet bill for a rescued hound runs around $375 &mdash; and often more for medical cases. There are several meaningful ways to support our work.</p>
+    </div>
+
+    <div class="gebr-help__grid">
+      <article class="gebr-help-item gebr-reveal">
+        <h3>Make a Donation</h3>
+        <p>Tax-deductible donations cover vaccinations, heartworm testing, spay/neuter, and lifesaving medical care for the hounds in our program.</p>
+        <a href="#donate" class="gebr-help-item__link">
+          Give now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="gebr-help-item gebr-reveal" data-delay="1">
+        <h3>Foster a Hound</h3>
+        <p>Open your home to a basset in transition. Foster families care for and evaluate hounds, helping us place each one in the right forever home.</p>
+        <a href="#contact" class="gebr-help-item__link">
+          Become a foster
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="gebr-help-item gebr-reveal" data-delay="2">
+        <h3>Sponsor a Hound</h3>
+        <p>Some hounds won&rsquo;t leave foster care due to health or social needs. Ongoing sponsorships go directly to the specific dog you choose.</p>
+        <a href="#contact" class="gebr-help-item__link">
+          Sponsor a basset
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="gebr-help-item gebr-reveal">
+        <h3>Volunteer Your Time</h3>
+        <p>Every nonprofit runs on people who plan and carry out activities. Reach out to find out where your skills and schedule fit best.</p>
+        <a href="#contact" class="gebr-help-item__link">
+          Get involved
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="gebr-help-item gebr-reveal" data-delay="1">
+        <h3>In Memoriam</h3>
+        <p>Honor a beloved pet who has crossed the Rainbow Bridge with a meaningful gift that supports a hound still searching for home.</p>
+        <a href="#donate" class="gebr-help-item__link">
+          Give in memory
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="gebr-help-item gebr-reveal" data-delay="2">
+        <h3>Shop With Impact</h3>
+        <p>Shopping at AmazonSmile? Choose GEBR as your nonprofit and Amazon donates a percentage of your purchases &mdash; free to use, always.</p>
+        <a href="http://smile.amazon.com/ch/32-0198167" target="_blank" rel="noopener" class="gebr-help-item__link">
+          Set up AmazonSmile
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- About / Founder -->
+<section class="gebr-about" id="about">
+  <div class="gebr-shell">
+    <div class="gebr-about__grid">
+      <div class="gebr-about__visual gebr-reveal">
+        <img src="https://images.unsplash.com/photo-1552248239-37121e7bd7ca?auto=format&fit=crop&w=1200&q=80" alt="" />
+      </div>
+      <div class="gebr-about__body gebr-reveal" data-delay="1">
+        <span class="gebr-eyebrow">About GEBR</span>
+        <h2>Carrying on a founder&rsquo;s legacy.</h2>
+        <p>
+          Jill Peterson, the founder and president of Golden Empire Basset Rescue, passed
+          away on May 31, 2014. Jill was a lifelong animal lover, and her compassion turned
+          into community service when she launched GEBR &mdash; a nonprofit serving the
+          Central California area.
+        </p>
+        <p>
+          The current Board of Directors has pledged to continue the rescue of these
+          remarkable, long-eared hounds. We&rsquo;re proud to be a member of West Coast
+          BROAD (Basset Rescue Organizations Allied Division), a network of 501(c)(3)
+          organizations working together to ensure every possible hound is rescued.
+        </p>
+        <div class="gebr-about__board">
+          <h4>Board of Directors</h4>
+          <ul class="gebr-about__board-list">
+            <li><span>President</span><span>Judy Brubaker</span></li>
+            <li><span>Secretary</span><span>Nancy Carpenter</span></li>
+            <li><span>Treasurer</span><span>Nancy Carpenter</span></li>
+            <li><span>Board Member</span><span>Vicki Sherlock</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats band -->
+<section class="gebr-stats">
+  <div class="gebr-shell">
+    <div class="gebr-stats__grid">
+      <div class="gebr-reveal">
+        <div class="gebr-stats__num">2007<span>.</span></div>
+        <div class="gebr-stats__label">Founded</div>
+      </div>
+      <div class="gebr-reveal" data-delay="1">
+        <div class="gebr-stats__num">$375<span>+</span></div>
+        <div class="gebr-stats__label">Avg. vet cost per hound</div>
+      </div>
+      <div class="gebr-reveal" data-delay="2">
+        <div class="gebr-stats__num">100<span>%</span></div>
+        <div class="gebr-stats__label">Volunteer-run</div>
+      </div>
+      <div class="gebr-reveal" data-delay="3">
+        <div class="gebr-stats__num">4<span>.</span></div>
+        <div class="gebr-stats__label">Counties served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Adoption journey -->
+<section class="gebr-journey" id="journey">
+  <div class="gebr-shell">
+    <div class="gebr-journey__head gebr-reveal">
+      <span class="gebr-eyebrow">The Adoption Journey</span>
+      <h2>From shelter intake to forever home.</h2>
+      <p>Each hound moves through a careful process designed to find the right match &mdash; for the dog and the family.</p>
+    </div>
+
+    <div class="gebr-journey__steps">
+      <article class="gebr-journey-step gebr-reveal">
+        <span class="gebr-journey-step__dot"></span>
+        <h4>Intake</h4>
+        <p>Hounds come to us from shelters and owner relinquishments across Central California.</p>
+      </article>
+      <article class="gebr-journey-step gebr-reveal" data-delay="1">
+        <span class="gebr-journey-step__dot"></span>
+        <h4>Vet Care</h4>
+        <p>Vaccinations, heartworm testing, and spay/neuter &mdash; plus any medical care needed.</p>
+      </article>
+      <article class="gebr-journey-step gebr-reveal" data-delay="2">
+        <span class="gebr-journey-step__dot"></span>
+        <h4>Foster Home</h4>
+        <p>Volunteers evaluate temperament, social needs, and how each hound does with kids, cats, or other dogs.</p>
+      </article>
+      <article class="gebr-journey-step gebr-reveal" data-delay="3">
+        <span class="gebr-journey-step__dot"></span>
+        <h4>Forever Family</h4>
+        <p>We thoughtfully match each hound with the right home &mdash; one where the bond can truly grow.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band / Donate -->
+<section class="gebr-cta-band" id="donate">
+  <div class="gebr-shell">
+    <div class="gebr-cta-band__inner">
+      <div class="gebr-cta-band__body gebr-reveal">
+        <span class="gebr-eyebrow">Make a Tax-Deductible Gift</span>
+        <h2>Your donation gives a hound a second chance.</h2>
+        <p>
+          Mail a check made out to GEBR, P.O. Box 5575, Bakersfield CA 93388 &mdash; or give
+          securely online through PayPal. Every dollar goes directly to veterinary care,
+          foster supplies, and bringing more basset hounds home.
+        </p>
+      </div>
+      <div class="gebr-cta-band__actions gebr-reveal" data-delay="1">
+        <a href="#" class="gebr-btn gebr-btn--primary gebr-btn--lg">
+          Donate via PayPal
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="mailto:goldenempirebassetrescue@gmail.com" class="gebr-btn gebr-btn--ghost gebr-btn--lg">Email Us</a>
+        <span class="gebr-cta-band__note">501(c)(3) &middot; EIN 32&#8209;0198167</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="gebr-foot" id="contact">
+  <div class="gebr-shell">
+    <div class="gebr-foot__top">
+      <div class="gebr-foot__brand-block">
+        <a href="#" class="gebr-brand">
+          <span class="gebr-brand__mark">
+            <img src="https://s3.amazonaws.com/imagesroot.rescuegroups.org/logos/s3383logo20160521145310.jpg" alt="" />
+          </span>
+          <span>
+            <span class="gebr-brand__name">Golden Empire</span><br />
+            <span class="gebr-brand__tag">Basset Rescue, Inc.</span>
+          </span>
+        </a>
+        <p>A volunteer-run nonprofit finding loving homes for abandoned, abused, and unwanted basset hounds across Central California since 2007.</p>
+        <div class="gebr-foot__socials">
+          <a href="https://www.facebook.com/golden-empire-Basset-rescue" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54v-2.2c0-2.51 1.49-3.9 3.78-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.77l-.44 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+          </a>
+          <a href="mailto:goldenempirebassetrescue@gmail.com" aria-label="Email us">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="gebr-foot__col">
+        <h4>Adopt</h4>
+        <ul>
+          <li><a href="#bassets">Available Bassets</a></li>
+          <li><a href="#journey">Adoption Process</a></li>
+          <li><a href="#stories">Happy Tails</a></li>
+          <li><a href="#">Surrender Information</a></li>
+        </ul>
+      </div>
+
+      <div class="gebr-foot__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#donate">Donate</a></li>
+          <li><a href="#help">Become a Foster</a></li>
+          <li><a href="#help">Sponsor a Hound</a></li>
+          <li><a href="#help">Volunteer</a></li>
+        </ul>
+      </div>
+
+      <div class="gebr-foot__col">
+        <h4>Contact</h4>
+        <address>
+          P.O. Box 2205<br />
+          Citrus Heights, CA 95611<br />
+          <br />
+          <a href="mailto:goldenempirebassetrescue@gmail.com">goldenempirebassetrescue@gmail.com</a>
+        </address>
+      </div>
+    </div>
+
+    <div class="gebr-foot__bottom">
+      <span>&copy; 2026 Golden Empire Basset Rescue, Inc. &middot; All rights reserved.</span>
+      <span>EIN 32&#8209;0198167 &middot; A 501(c)(3) nonprofit &middot; Member of West Coast BROAD</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    'use strict';
+
+    // ===== Sticky navbar shadow on scroll =====
+    var navbar = document.getElementById('gebr-navbar');
+    function onScroll() {
+      var y = window.scrollY || window.pageYOffset;
+      if (y > 8) navbar.classList.add('is-scrolled');
+      else navbar.classList.remove('is-scrolled');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ===== Mobile off-canvas menu =====
+    var burger = document.getElementById('gebr-burger');
+    var offcanvas = document.getElementById('gebr-offcanvas');
+    var body = document.body;
+
+    function openMenu() {
+      offcanvas.classList.add('is-open');
+      offcanvas.setAttribute('aria-hidden', 'false');
+      burger.setAttribute('aria-expanded', 'true');
+      body.classList.add('gebr-menu-open');
+      body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      offcanvas.classList.remove('is-open');
+      offcanvas.setAttribute('aria-hidden', 'true');
+      burger.setAttribute('aria-expanded', 'false');
+      body.classList.remove('gebr-menu-open');
+      body.style.overflow = '';
+    }
+    burger.addEventListener('click', function () {
+      if (offcanvas.classList.contains('is-open')) closeMenu();
+      else openMenu();
+    });
+    offcanvas.querySelectorAll('[data-gebr-close]').forEach(function (el) {
+      el.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && offcanvas.classList.contains('is-open')) closeMenu();
+    });
+
+    // ===== Reveal-on-scroll =====
+    var revealEls = document.querySelectorAll('.gebr-reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      revealEls.forEach(function (el) { io.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+
+    // ===== Smooth-scroll offset for sticky navbar (anchor links) =====
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        if (id.length > 1 && document.querySelector(id)) {
+          e.preventDefault();
+          var target = document.querySelector(id);
+          var top = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ===== Hero slider =====
+    (function () {
+      var slider = document.getElementById('gebr-slider');
+      if (!slider) return;
+      var slides = Array.prototype.slice.call(slider.querySelectorAll('.gebr-hero__slide'));
+      var dots = Array.prototype.slice.call(document.querySelectorAll('.gebr-hero__slider-dot'));
+      var prevBtn = document.getElementById('gebr-slider-prev');
+      var nextBtn = document.getElementById('gebr-slider-next');
+      var current = 0;
+      var total = slides.length;
+      var timer = null;
+      var INTERVAL = 5500;
+
+      function goTo(index) {
+        index = (index + total) % total;
+        slides[current].classList.remove('is-active');
+        slides[current].setAttribute('aria-hidden', 'true');
+        if (dots[current]) {
+          dots[current].classList.remove('is-active');
+          dots[current].setAttribute('aria-selected', 'false');
+        }
+
+        current = index;
+        slides[current].classList.add('is-active');
+        slides[current].setAttribute('aria-hidden', 'false');
+        if (dots[current]) {
+          dots[current].classList.add('is-active');
+          dots[current].setAttribute('aria-selected', 'true');
+        }
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function startAuto() {
+        stopAuto();
+        timer = window.setInterval(next, INTERVAL);
+      }
+      function stopAuto() {
+        if (timer) { window.clearInterval(timer); timer = null; }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', function () { prev(); startAuto(); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { next(); startAuto(); });
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          goTo(parseInt(dot.getAttribute('data-gebr-slide'), 10));
+          startAuto();
+        });
+      });
+
+      slider.addEventListener('mouseenter', stopAuto);
+      slider.addEventListener('mouseleave', startAuto);
+      slider.addEventListener('focusin', stopAuto);
+      slider.addEventListener('focusout', startAuto);
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stopAuto();
+        else startAuto();
+      });
+
+      slider.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { prev(); startAuto(); }
+        else if (e.key === 'ArrowRight') { next(); startAuto(); }
+      });
+
+      var touchStartX = 0;
+      var touchEndX = 0;
+      slider.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAuto();
+      }, { passive: true });
+      slider.addEventListener('touchend', function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) next(); else prev();
+        }
+        startAuto();
+      }, { passive: true });
+
+      var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) startAuto();
+    })();
+
+    // ===== Search (desktop + mobile) =====
+    (function () {
+      // Tiny in-page search index. Each entry maps a section to keywords and a target anchor.
+      var INDEX = [
+        { title: 'About Us & Mission', anchor: '#mission',
+          snippet: 'Founded in 2007 by Jill Peterson — our mission and history.',
+          keywords: 'about mission history jill peterson founder 2007 nonprofit central california who we are' },
+        { title: 'Adopt a Basset', anchor: '#bassets',
+          snippet: 'Meet our adoptable hounds and start the adoption process.',
+          keywords: 'adopt adoption available bassets hounds dogs meet hounds rescue' },
+        { title: 'Make a Donation', anchor: '#donate',
+          snippet: 'Tax-deductible gifts via PayPal or mail — 501(c)(3).',
+          keywords: 'donate donation give giving paypal money check tax deductible 501c3 support fundraise' },
+        { title: 'Foster a Hound', anchor: '#help',
+          snippet: 'Open your home to a basset in transition.',
+          keywords: 'foster fostering temporary home transition evaluate help volunteer host' },
+        { title: 'Sponsor a Hound', anchor: '#help',
+          snippet: 'Support a specific dog in long-term foster care.',
+          keywords: 'sponsor sponsorship long term medical care specific dog hound monthly recurring help' },
+        { title: 'Volunteer Your Time', anchor: '#help',
+          snippet: 'Help out where your skills and schedule fit.',
+          keywords: 'volunteer time help out get involved skills events activities' },
+        { title: 'In Memoriam Gifts', anchor: '#donate',
+          snippet: 'Honor a beloved pet with a meaningful gift.',
+          keywords: 'memorial in memoriam honor remember rainbow bridge tribute donation' },
+        { title: 'AmazonSmile Shopping', anchor: '#help',
+          snippet: 'Choose GEBR on AmazonSmile when you shop.',
+          keywords: 'amazon amazonsmile smile shop shopping purchases percentage free' },
+        { title: 'Adoption Process', anchor: '#journey',
+          snippet: 'From shelter intake to forever home — how it works.',
+          keywords: 'adoption process journey steps intake vet care foster forever family how it works application' },
+        { title: 'Board of Directors', anchor: '#about',
+          snippet: 'Meet the volunteers leading GEBR today.',
+          keywords: 'board directors president secretary treasurer judy brubaker nancy carpenter vicki sherlock leadership' },
+        { title: 'Contact Us', anchor: '#contact',
+          snippet: 'Email, mailing address, and social links.',
+          keywords: 'contact email phone address mailing po box citrus heights bakersfield facebook reach out get in touch' },
+        { title: 'Veterinary Care', anchor: '#mission',
+          snippet: 'Vaccinations, heartworm testing, spay and neuter.',
+          keywords: 'vet veterinary care vaccinations heartworm spay neuter medical health cost 375' }
+      ];
+
+      function search(query) {
+        query = (query || '').trim().toLowerCase();
+        if (!query) return [];
+        var terms = query.split(/\s+/).filter(Boolean);
+        var scored = INDEX.map(function (entry) {
+          var hay = (entry.title + ' ' + entry.keywords + ' ' + entry.snippet).toLowerCase();
+          var score = 0;
+          terms.forEach(function (t) {
+            // Word-start match scores higher than substring.
+            var titleHits = (entry.title.toLowerCase().match(new RegExp('\\b' + escapeRe(t), 'g')) || []).length;
+            score += titleHits * 5;
+            var kwHits = (entry.keywords.toLowerCase().match(new RegExp('\\b' + escapeRe(t), 'g')) || []).length;
+            score += kwHits * 2;
+            if (hay.indexOf(t) !== -1) score += 1;
+          });
+          return { entry: entry, score: score };
+        }).filter(function (s) { return s.score > 0; });
+
+        scored.sort(function (a, b) { return b.score - a.score; });
+        return scored.slice(0, 6).map(function (s) { return s.entry; });
+      }
+      function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+      function renderResults(container, query, results, onPick) {
+        if (!query) {
+          container.innerHTML = '';
+          return;
+        }
+        if (!results.length) {
+          container.innerHTML = '<div class="gebr-search__empty">No matches for &ldquo;' + escapeHtml(query) + '&rdquo;. Try a different word.</div>';
+          return;
+        }
+        var html = '<ul>';
+        results.forEach(function (r, i) {
+          html += '<li>' +
+            '<a class="gebr-search__result" href="' + r.anchor + '" data-idx="' + i + '">' +
+              '<span class="gebr-search__result-title">' + escapeHtml(r.title) + '</span>' +
+              '<span class="gebr-search__result-snippet">' + escapeHtml(r.snippet) + '</span>' +
+            '</a>' +
+          '</li>';
+        });
+        html += '</ul>';
+        container.innerHTML = html;
+        container.querySelectorAll('.gebr-search__result').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            // Let smooth-scroll handler take it; just close after.
+            if (typeof onPick === 'function') onPick();
+          });
+        });
+      }
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      }
+
+      // ----- Desktop search -----
+      var searchWrap   = document.getElementById('gebr-search');
+      var toggleBtn    = document.getElementById('gebr-search-toggle');
+      var panel        = document.getElementById('gebr-search-panel');
+      var input        = document.getElementById('gebr-search-input');
+      var resultsEl    = document.getElementById('gebr-search-results');
+      var hintEl       = document.getElementById('gebr-search-hint');
+
+      function openSearch() {
+        searchWrap.classList.add('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        setTimeout(function () { input.focus(); }, 60);
+      }
+      function closeSearch() {
+        searchWrap.classList.remove('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (searchWrap.classList.contains('is-open')) closeSearch();
+          else openSearch();
+        });
+      }
+      // Close when clicking outside the panel
+      document.addEventListener('click', function (e) {
+        if (!searchWrap) return;
+        if (searchWrap.classList.contains('is-open') && !searchWrap.contains(e.target)) {
+          closeSearch();
+        }
+      });
+      // ESC closes the search dropdown
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && searchWrap && searchWrap.classList.contains('is-open')) {
+          closeSearch();
+        }
+      });
+
+      if (input) {
+        input.addEventListener('input', function () {
+          var q = input.value;
+          if (hintEl) hintEl.style.display = q ? 'none' : '';
+          renderResults(resultsEl, q, search(q), function () {
+            input.value = '';
+            renderResults(resultsEl, '', [], null);
+            if (hintEl) hintEl.style.display = '';
+            closeSearch();
+          });
+        });
+      }
+
+      // ----- Mobile search (inside off-canvas) -----
+      var inputM   = document.getElementById('gebr-search-input-mobile');
+      var resultsM = document.getElementById('gebr-search-results-mobile');
+      if (inputM) {
+        inputM.addEventListener('input', function () {
+          var q = inputM.value;
+          renderResults(resultsM, q, search(q), function () {
+            inputM.value = '';
+            renderResults(resultsM, '', [], null);
+            closeMenu();
+          });
+        });
+      }
+    })();
+
+  })();
+  //glad heade
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

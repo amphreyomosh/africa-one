@@ -1,0 +1,3612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Star Lodge No. 20 | Independent Order of Odd Fellows</title>
+<meta name="description" content="Morning Star Lodge No. 20 — A fraternal order dedicated to friendship, love, and truth. Serving our community through charitable works, fellowship, and civic engagement since 1852.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   CSS CUSTOM PROPERTIES
+======================================== */
+:root {
+  --ioof-navy: #1a2744;
+  --ioof-navy-deep: #111b33;
+  --ioof-navy-mid: #243158;
+  --ioof-slate: #3c4f72;
+  --ioof-gold: #b8973a;
+  --ioof-gold-light: #d4af5a;
+  --ioof-gold-pale: #f5eddb;
+  --ioof-cream: #faf8f4;
+  --ioof-warm-white: #f7f5f0;
+  --ioof-stone: #e8e3d8;
+  --ioof-stone-mid: #c8c0b0;
+  --ioof-text-dark: #1e2535;
+  --ioof-text-body: #3a3f50;
+  --ioof-text-mid: #5a607a;
+  --ioof-text-light: #8890a8;
+  --ioof-border: #ddd8ce;
+  --ioof-border-light: #eeebe4;
+  --ioof-red-accent: #8b2635;
+  --ioof-green-accent: #2d5a3d;
+  --font-display: 'Libre Baskerville', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --transition-base: 0.22s ease;
+  --transition-slow: 0.4s ease;
+  --shadow-sm: 0 1px 4px rgba(26,39,68,0.08);
+  --shadow-md: 0 4px 16px rgba(26,39,68,0.12);
+  --shadow-lg: 0 8px 32px rgba(26,39,68,0.14);
+  --shadow-xl: 0 16px 48px rgba(26,39,68,0.16);
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+}
+
+/* ========================================
+   RESET & BASE
+======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--ioof-text-body);
+  background: var(--ioof-cream);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ========================================
+   TYPOGRAPHY SCALE
+======================================== */
+.ioof-display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+.ioof-display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+.ioof-display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+.ioof-label-caps {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.ioof-body-lg {
+  font-size: 1.075rem;
+  line-height: 1.72;
+  font-weight: 300;
+}
+.ioof-body-md {
+  font-size: 0.97rem;
+  line-height: 1.68;
+}
+.ioof-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* ========================================
+   LAYOUT UTILITIES
+======================================== */
+.ioof-page-bound {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
+}
+.ioof-page-bound--wide {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
+}
+.ioof-page-bound--narrow {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
+}
+.ioof-section-gap {
+  padding: clamp(3rem, 7vw, 7rem) 0;
+}
+.ioof-section-gap--sm {
+  padding: clamp(2rem, 4vw, 4.5rem) 0;
+}
+.ioof-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--ioof-gold);
+  margin-bottom: 1.5rem;
+}
+.ioof-section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--ioof-gold);
+}
+.ioof-section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--ioof-gold);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+.ioof-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.82rem 1.9rem;
+  background: var(--ioof-gold);
+  color: var(--ioof-navy-deep);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+}
+.ioof-btn-primary:hover {
+  background: var(--ioof-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(184,151,58,0.32);
+}
+.ioof-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.78rem 1.8rem;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: 1.5px solid rgba(255,255,255,0.45);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+.ioof-btn-secondary:hover {
+  border-color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.08);
+}
+.ioof-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.6rem;
+  background: transparent;
+  color: var(--ioof-navy);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1.5px solid var(--ioof-navy);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-base), color var(--transition-base);
+}
+.ioof-btn-outline:hover {
+  background: var(--ioof-navy);
+  color: #fff;
+}
+.ioof-btn-ghost-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.68rem 1.4rem;
+  color: var(--ioof-gold);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color var(--transition-base);
+}
+.ioof-btn-ghost-gold:hover { border-color: var(--ioof-gold); }
+
+/* ========================================
+   NAVIGATION
+======================================== */
+.ioof-topbar {
+  background: var(--ioof-navy-deep);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ioof-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.ioof-topbar-contact {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.ioof-topbar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.8rem;
+  transition: color var(--transition-base);
+}
+.ioof-topbar-link:hover { color: rgba(255,255,255,0.9); }
+.ioof-topbar-link svg { flex-shrink: 0; }
+.ioof-topbar-social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.ioof-topbar-social a {
+  color: rgba(255,255,255,0.5);
+  transition: color var(--transition-base);
+}
+.ioof-topbar-social a:hover { color: var(--ioof-gold); }
+
+.ioof-navigation {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: var(--ioof-navy);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0.75rem 0 0;
+  transition: box-shadow var(--transition-base);
+}
+.ioof-navigation.ioof-nav-scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.28);
+}
+.ioof-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+}
+.ioof-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  min-width: 0;
+}
+.ioof-nav-emblem {
+  width: 46px;
+  height: 46px;
+  background: var(--ioof-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.ioof-nav-emblem-inner {
+  width: 38px;
+  height: 38px;
+  background: var(--ioof-navy-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ioof-gold);
+}
+.ioof-nav-emblem-text {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ioof-gold);
+  line-height: 1;
+}
+.ioof-nav-brand-text { flex: 1; min-width: 0; overflow: hidden; }
+.ioof-nav-brand-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ioof-nav-brand-sub {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ioof-gold);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+.ioof-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+}
+.ioof-nav-item { position: relative; }
+.ioof-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.55rem 0.75rem;
+  color: rgba(255,255,255,0.82);
+  font-size: 0.855rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-base), background var(--transition-base);
+  white-space: nowrap;
+}
+.ioof-nav-link:hover,
+.ioof-nav-item:focus-within .ioof-nav-link {
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+.ioof-nav-link svg { opacity: 0.6; transition: transform var(--transition-base); }
+.ioof-nav-item:focus-within .ioof-nav-link svg,
+.ioof-nav-link:hover svg { transform: rotate(180deg); opacity: 1; }
+
+/* Dropdown */
+.ioof-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--ioof-border);
+  box-shadow: var(--shadow-xl);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 100;
+  overflow: hidden;
+}
+.ioof-dropdown--wide {
+  min-width: 520px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.ioof-nav-item:focus-within .ioof-dropdown,
+.ioof-nav-item:hover .ioof-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.ioof-dropdown-col { padding: 1.25rem 1rem; }
+.ioof-dropdown-col-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ioof-text-light);
+  padding: 0 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--ioof-border-light);
+  margin-bottom: 0.5rem;
+}
+.ioof-dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-base);
+  cursor: pointer;
+}
+.ioof-dropdown-item:hover { background: var(--ioof-warm-white); }
+.ioof-dropdown-item-icon {
+  width: 30px;
+  height: 30px;
+  background: var(--ioof-gold-pale);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.ioof-dropdown-item-icon svg { color: var(--ioof-gold); }
+.ioof-dropdown-item-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ioof-text-dark);
+  line-height: 1.3;
+}
+.ioof-dropdown-item-desc {
+  font-size: 0.78rem;
+  color: var(--ioof-text-light);
+  margin-top: 1px;
+  line-height: 1.4;
+}
+
+.ioof-nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0;
+  flex-shrink: 0;
+}
+.ioof-nav-member-btn {
+  padding: 0.52rem 1.2rem;
+  background: var(--ioof-gold);
+  color: var(--ioof-navy-deep);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-base);
+}
+.ioof-nav-member-btn:hover { background: var(--ioof-gold-light); }
+
+.ioof-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-base);
+}
+.ioof-hamburger:hover { background: rgba(255,255,255,0.1); }
+.ioof-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.ioof-hamburger.ioof-is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.ioof-hamburger.ioof-is-open span:nth-child(2) { opacity: 0; }
+.ioof-hamburger.ioof-is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Off-canvas menu */
+.ioof-offcanvas-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,27,51,0.7);
+  z-index: 800;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+.ioof-offcanvas-overlay.ioof-is-open { opacity: 1; pointer-events: auto; }
+.ioof-offcanvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(88vw, 360px);
+  background: var(--ioof-navy-deep);
+  z-index: 850;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.ioof-offcanvas.ioof-is-open { transform: translateX(0); }
+.ioof-offcanvas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+.ioof-offcanvas-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+}
+.ioof-close-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  transition: color var(--transition-base), background var(--transition-base);
+}
+.ioof-close-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.ioof-mobile-nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+.ioof-mobile-nav-section {
+  padding: 0.75rem 1.5rem 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ioof-gold);
+}
+.ioof-mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.78rem 1.5rem;
+  color: rgba(255,255,255,0.82);
+  font-size: 0.93rem;
+  font-weight: 400;
+  transition: color var(--transition-base), background var(--transition-base), border-color var(--transition-base);
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  background: none;
+  font-family: var(--font-body);
+}
+.ioof-mobile-nav-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+  border-left-color: var(--ioof-gold);
+}
+.ioof-mobile-nav-link svg {
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+  color: rgba(255,255,255,0.45);
+}
+.ioof-mobile-nav-link.ioof-sub-open svg {
+  transform: rotate(180deg);
+  color: var(--ioof-gold);
+}
+.ioof-mobile-sub {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+  background: rgba(0,0,0,0.15);
+}
+.ioof-mobile-sub.ioof-is-open {
+  max-height: 400px;
+}
+.ioof-mobile-sub-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.62rem 1.5rem 0.62rem 2.75rem;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  transition: color var(--transition-base), background var(--transition-base);
+  border-left: 2px solid transparent;
+  position: relative;
+}
+.ioof-mobile-sub-link::before {
+  content: '';
+  position: absolute;
+  left: 1.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(184,151,58,0.4);
+  flex-shrink: 0;
+}
+.ioof-mobile-sub-link:hover {
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.04);
+}
+.ioof-offcanvas-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.ioof-offcanvas-footer .ioof-btn-primary {
+  width: 100%;
+  justify-content: center;
+}
+.ioof-offcanvas-footer .ioof-btn-secondary {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ========================================
+   HERO AREA
+======================================== */
+.ioof-hero-area {
+  position: relative;
+  background: var(--ioof-navy-deep);
+  min-height: clamp(560px, 80vh, 780px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+}
+.ioof-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=75&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0.22;
+}
+.ioof-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(17,27,51,0.92) 35%, rgba(17,27,51,0.6) 70%, rgba(17,27,51,0.3) 100%);
+}
+.ioof-hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(184,151,58,0.07) 1px, transparent 0);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+.ioof-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(3rem, 7vw, 7rem) 0;
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ioof-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.ioof-hero-text { max-width: 600px; }
+.ioof-hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.ioof-hero-kicker-line {
+  width: 32px;
+  height: 1.5px;
+  background: var(--ioof-gold);
+}
+.ioof-hero-kicker-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ioof-gold);
+}
+.ioof-hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.4rem;
+}
+.ioof-hero-headline em {
+  font-style: italic;
+  color: var(--ioof-gold-light);
+}
+.ioof-hero-body {
+  font-size: 1.01rem;
+  line-height: 1.72;
+  color: rgba(255,255,255,0.68);
+  font-weight: 300;
+  max-width: 480px;
+  margin-bottom: 1.75rem;
+}
+.ioof-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+
+.ioof-hero-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.ioof-hero-img-primary {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 2px solid rgba(184,151,58,0.25);
+  box-shadow: var(--shadow-xl);
+}
+.ioof-hero-img-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.ioof-hero-img-sm {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(184,151,58,0.2);
+  box-shadow: var(--shadow-md);
+}
+.ioof-hero-badge {
+  position: absolute;
+  bottom: -1.5rem;
+  left: -1.5rem;
+  background: var(--ioof-gold);
+  color: var(--ioof-navy-deep);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  z-index: 3;
+}
+.ioof-hero-badge-year {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.ioof-hero-badge-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-top: 3px;
+  opacity: 0.75;
+}
+
+/* ========================================
+   MISSION BAND
+======================================== */
+.ioof-mission-band {
+  background: var(--ioof-navy);
+  padding: 1.8rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ioof-mission-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.ioof-mission-pillar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-right: 1px solid rgba(255,255,255,0.09);
+  text-align: center;
+}
+.ioof-mission-pillar:last-child { border-right: none; }
+.ioof-mission-pillar-icon {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ioof-gold);
+  font-style: italic;
+  flex-shrink: 0;
+}
+.ioof-mission-pillar-text {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.ioof-mission-pillar-subtext {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* ========================================
+   OVERVIEW SECTION
+======================================== */
+.ioof-overview-section {
+  background: var(--ioof-cream);
+}
+.ioof-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: center;
+}
+.ioof-overview-media { position: relative; }
+.ioof-overview-img-main {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+.ioof-overview-img-inset {
+  position: absolute;
+  bottom: -2rem;
+  right: -2rem;
+  width: 55%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 4px solid var(--ioof-cream);
+  box-shadow: var(--shadow-lg);
+}
+.ioof-overview-text {}
+.ioof-overview-intro {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  color: var(--ioof-gold);
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.ioof-overview-body {
+  font-size: 1.01rem;
+  line-height: 1.78;
+  color: var(--ioof-text-body);
+  margin-bottom: 1.4rem;
+}
+.ioof-principle-list {
+  margin: 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.ioof-principle-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+.ioof-principle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ioof-gold);
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+.ioof-principle-text {
+  font-size: 0.935rem;
+  color: var(--ioof-text-body);
+  line-height: 1.55;
+}
+.ioof-principle-text strong {
+  font-weight: 600;
+  color: var(--ioof-text-dark);
+}
+
+/* ========================================
+   PROGRAMS SECTION
+======================================== */
+.ioof-programs-section {
+  background: var(--ioof-warm-white);
+  border-top: 1px solid var(--ioof-border-light);
+  border-bottom: 1px solid var(--ioof-border-light);
+}
+.ioof-programs-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: end;
+  margin-bottom: 3rem;
+}
+.ioof-programs-intro-right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.ioof-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.ioof-program-panel {
+  background: #fff;
+  border: 1px solid var(--ioof-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+}
+.ioof-program-panel:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+.ioof-program-panel-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.ioof-program-panel-body { padding: 1.5rem 1.5rem 1.75rem; }
+.ioof-program-panel-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ioof-gold);
+  margin-bottom: 0.6rem;
+}
+.ioof-program-panel-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ioof-text-dark);
+  line-height: 1.3;
+  margin-bottom: 0.7rem;
+}
+.ioof-program-panel-desc {
+  font-size: 0.895rem;
+  color: var(--ioof-text-mid);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+.ioof-program-panel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ioof-navy);
+  letter-spacing: 0.02em;
+  transition: gap var(--transition-base), color var(--transition-base);
+}
+.ioof-program-panel-link:hover { gap: 0.65rem; color: var(--ioof-gold); }
+
+/* Featured program */
+.ioof-program-panel--featured {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.ioof-program-panel--featured .ioof-program-panel-img {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 260px;
+}
+.ioof-program-panel--featured .ioof-program-panel-body {
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ioof-program-panel--featured .ioof-program-panel-title {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+}
+
+/* ========================================
+   IMPACT SECTION
+======================================== */
+.ioof-impact-section {
+  background: var(--ioof-navy);
+  position: relative;
+  overflow: hidden;
+}
+.ioof-impact-section::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=60&auto=format&fit=crop') center/cover;
+  opacity: 0.12;
+}
+.ioof-impact-content { position: relative; z-index: 2; }
+.ioof-impact-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.ioof-impact-heading { color: #fff; }
+.ioof-impact-heading .ioof-section-eyebrow { color: var(--ioof-gold-light); }
+.ioof-impact-heading .ioof-section-eyebrow::before { background: var(--ioof-gold-light); }
+.ioof-impact-body {
+  color: rgba(255,255,255,0.68);
+  font-size: 1.01rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+.ioof-impact-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.ioof-impact-stat {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.25rem;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+.ioof-impact-stat:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(184,151,58,0.3);
+}
+.ioof-impact-stat-num {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--ioof-gold);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.ioof-impact-stat-label {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.4;
+}
+
+/* ========================================
+   HISTORY SECTION
+======================================== */
+.ioof-history-section { background: var(--ioof-cream); }
+.ioof-history-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.ioof-timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+.ioof-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.45rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ioof-gold), var(--ioof-stone));
+}
+.ioof-timeline-item {
+  position: relative;
+  margin-bottom: 2.25rem;
+}
+.ioof-timeline-item:last-child { margin-bottom: 0; }
+.ioof-timeline-dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.35rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ioof-gold);
+  border: 3px solid var(--ioof-cream);
+  box-shadow: 0 0 0 2px var(--ioof-gold);
+}
+.ioof-timeline-year {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ioof-gold);
+  margin-bottom: 0.3rem;
+}
+.ioof-timeline-heading {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ioof-text-dark);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.ioof-timeline-text {
+  font-size: 0.9rem;
+  color: var(--ioof-text-mid);
+  line-height: 1.65;
+}
+
+.ioof-history-text {}
+.ioof-history-quote {
+  background: var(--ioof-navy);
+  color: #fff;
+  padding: 2.25rem 2rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 2rem;
+  position: relative;
+}
+.ioof-history-quote::before {
+  content: '"';
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--ioof-gold);
+  opacity: 0.4;
+  line-height: 1;
+}
+.ioof-history-quote-text {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.9);
+  padding-top: 1rem;
+}
+.ioof-history-quote-attr {
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--ioof-gold);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.ioof-history-body {
+  font-size: 0.97rem;
+  line-height: 1.78;
+  color: var(--ioof-text-body);
+  margin-bottom: 1.2rem;
+}
+
+/* ========================================
+   EVENTS SECTION
+======================================== */
+.ioof-events-section {
+  background: var(--ioof-warm-white);
+  border-top: 1px solid var(--ioof-border-light);
+  border-bottom: 1px solid var(--ioof-border-light);
+}
+.ioof-events-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 3rem;
+}
+.ioof-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.ioof-event-row {
+  display: flex;
+  gap: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--ioof-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: box-shadow var(--transition-base), border-color var(--transition-base);
+  cursor: pointer;
+}
+.ioof-event-row:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--ioof-stone-mid);
+}
+.ioof-event-date-block {
+  flex-shrink: 0;
+  width: 56px;
+  text-align: center;
+  background: var(--ioof-navy);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ioof-event-date-month {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ioof-gold);
+}
+.ioof-event-date-day {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.ioof-event-info { flex: 1; min-width: 0; }
+.ioof-event-category {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ioof-gold);
+  margin-bottom: 0.25rem;
+}
+.ioof-event-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ioof-text-dark);
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+.ioof-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.ioof-event-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--ioof-text-light);
+}
+.ioof-event-meta-item svg { flex-shrink: 0; }
+
+.ioof-announcement-panel {
+  background: var(--ioof-navy-deep);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  color: #fff;
+  height: fit-content;
+}
+.ioof-announcement-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.ioof-announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.ioof-announcement-item {}
+.ioof-announcement-date {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ioof-gold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.ioof-announcement-text {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.55;
+}
+.ioof-announcement-sep {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  margin-top: 1.25rem;
+}
+
+/* ========================================
+   LEADERSHIP SECTION
+======================================== */
+.ioof-leadership-section { background: var(--ioof-cream); }
+.ioof-leadership-intro {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+.ioof-leadership-intro .ioof-section-eyebrow { justify-content: center; }
+.ioof-leadership-intro .ioof-section-eyebrow::before { display: none; }
+.ioof-leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.ioof-leader-card {
+  background: #fff;
+  border: 1px solid var(--ioof-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-align: center;
+  transition: box-shadow var(--transition-slow);
+}
+.ioof-leader-card:hover { box-shadow: var(--shadow-md); }
+.ioof-leader-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: top;
+}
+.ioof-leader-info { padding: 1.2rem 1rem; }
+.ioof-leader-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ioof-text-dark);
+  margin-bottom: 0.2rem;
+}
+.ioof-leader-role {
+  font-size: 0.78rem;
+  color: var(--ioof-gold);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.ioof-leader-tenure {
+  font-size: 0.75rem;
+  color: var(--ioof-text-light);
+  margin-top: 0.2rem;
+}
+
+/* Past Nobles Row */
+.ioof-past-nobles {
+  background: var(--ioof-warm-white);
+  border: 1px solid var(--ioof-border);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.ioof-past-nobles-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ioof-text-mid);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.ioof-past-nobles-list {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.ioof-past-noble-chip {
+  font-size: 0.84rem;
+  color: var(--ioof-text-body);
+}
+.ioof-past-noble-chip span {
+  color: var(--ioof-text-light);
+  font-size: 0.78rem;
+  margin-left: 0.3rem;
+}
+
+/* ========================================
+   TESTIMONIALS
+======================================== */
+.ioof-voices-section {
+  background: var(--ioof-navy-deep);
+  position: relative;
+  overflow: hidden;
+}
+.ioof-voices-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(184,151,58,0.06) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+.ioof-voices-content { position: relative; z-index: 2; }
+.ioof-voices-intro { text-align: center; margin-bottom: 3rem; }
+.ioof-voices-intro .ioof-section-eyebrow { justify-content: center; }
+.ioof-voices-intro .ioof-section-eyebrow::before { display: none; }
+.ioof-voices-intro h2 { color: #fff; }
+.ioof-voices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.ioof-voice-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  position: relative;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+.ioof-voice-card:hover {
+  border-color: rgba(184,151,58,0.25);
+  background: rgba(255,255,255,0.07);
+}
+.ioof-voice-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 1rem;
+}
+.ioof-voice-star {
+  width: 14px;
+  height: 14px;
+  background: var(--ioof-gold);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.ioof-voice-quote {
+  font-family: var(--font-display);
+  font-size: 0.97rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.ioof-voice-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.ioof-voice-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(184,151,58,0.3);
+  flex-shrink: 0;
+}
+.ioof-voice-author-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+}
+.ioof-voice-author-role {
+  font-size: 0.78rem;
+  color: var(--ioof-gold);
+}
+
+/* ========================================
+   NEWS / ADVOCACY
+======================================== */
+.ioof-news-section {
+  background: var(--ioof-cream);
+}
+.ioof-news-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+.ioof-news-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 1.5rem;
+}
+.ioof-news-article {
+  background: #fff;
+  border: 1px solid var(--ioof-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow var(--transition-slow);
+}
+.ioof-news-article:hover { box-shadow: var(--shadow-md); }
+.ioof-news-article-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.ioof-news-article--featured .ioof-news-article-img {
+  aspect-ratio: 16/9;
+}
+.ioof-news-article-body { padding: 1.4rem; }
+.ioof-news-article-cat {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ioof-red-accent);
+  margin-bottom: 0.5rem;
+}
+.ioof-news-article-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ioof-text-dark);
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+}
+.ioof-news-article--featured .ioof-news-article-title { font-size: 1.25rem; }
+.ioof-news-article-excerpt {
+  font-size: 0.875rem;
+  color: var(--ioof-text-mid);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+.ioof-news-article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+.ioof-news-article-date {
+  font-size: 0.78rem;
+  color: var(--ioof-text-light);
+}
+.ioof-news-article-author {
+  font-size: 0.78rem;
+  color: var(--ioof-text-light);
+}
+
+/* ========================================
+   MEMBERSHIP SECTION
+======================================== */
+.ioof-membership-section {
+  background: var(--ioof-warm-white);
+  border-top: 1px solid var(--ioof-border-light);
+}
+.ioof-membership-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.ioof-membership-visual { position: relative; }
+.ioof-membership-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+.ioof-membership-badge {
+  position: absolute;
+  top: -1.5rem;
+  right: -1.5rem;
+  width: 100px;
+  height: 100px;
+  background: var(--ioof-gold);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.ioof-membership-badge-top {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ioof-navy-deep);
+  line-height: 1.2;
+}
+.ioof-membership-badge-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ioof-navy-deep);
+  line-height: 1;
+}
+.ioof-membership-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.ioof-membership-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.ioof-membership-step-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ioof-navy);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ioof-membership-step-content {}
+.ioof-membership-step-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ioof-text-dark);
+  margin-bottom: 0.2rem;
+}
+.ioof-membership-step-text {
+  font-size: 0.875rem;
+  color: var(--ioof-text-mid);
+  line-height: 1.55;
+}
+.ioof-membership-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ========================================
+   PARTNERS SECTION
+======================================== */
+.ioof-partners-section {
+  background: var(--ioof-cream);
+  border-top: 1px solid var(--ioof-border-light);
+  border-bottom: 1px solid var(--ioof-border-light);
+  padding: 3rem 0;
+}
+.ioof-partners-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+.ioof-partners-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ioof-text-light);
+}
+.ioof-partners-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  flex-wrap: wrap;
+}
+.ioof-partner-item {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ioof-stone-mid);
+  transition: color var(--transition-base);
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.ioof-partner-item:hover { color: var(--ioof-navy); }
+.ioof-partner-item span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ioof-stone-mid);
+}
+
+/* ========================================
+   RESOURCES SECTION
+======================================== */
+.ioof-resources-section {
+  background: var(--ioof-warm-white);
+}
+.ioof-resources-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.ioof-resource-tile {
+  background: #fff;
+  border: 1px solid var(--ioof-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: box-shadow var(--transition-base), border-color var(--transition-base);
+  cursor: pointer;
+}
+.ioof-resource-tile:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--ioof-stone-mid);
+}
+.ioof-resource-tile-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--ioof-gold-pale);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+  color: var(--ioof-gold);
+}
+.ioof-resource-tile-title {
+  font-family: var(--font-display);
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--ioof-text-dark);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.ioof-resource-tile-desc {
+  font-size: 0.84rem;
+  color: var(--ioof-text-mid);
+  line-height: 1.58;
+}
+
+/* ========================================
+   DONATION SECTION
+======================================== */
+.ioof-donate-section {
+  background: linear-gradient(135deg, var(--ioof-navy-deep) 0%, var(--ioof-navy-mid) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.ioof-donate-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(184,151,58,0.08);
+  border-radius: 50%;
+}
+.ioof-donate-section::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: 5%;
+  width: 400px;
+  height: 400px;
+  border: 1px solid rgba(184,151,58,0.05);
+  border-radius: 50%;
+}
+.ioof-donate-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.ioof-donate-text {}
+.ioof-donate-heading { color: #fff; }
+.ioof-donate-heading .ioof-section-eyebrow { color: var(--ioof-gold); }
+.ioof-donate-heading .ioof-section-eyebrow::before { background: var(--ioof-gold); }
+.ioof-donate-body {
+  color: rgba(255,255,255,0.68);
+  font-size: 1.01rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+.ioof-donate-impact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.ioof-donate-impact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.ioof-donate-impact-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ioof-gold);
+  flex-shrink: 0;
+  margin-top: 0.55rem;
+}
+.ioof-donate-impact-text {
+  font-size: 0.915rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+.ioof-donate-form-area {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+}
+.ioof-donate-form-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.ioof-amount-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.ioof-amount-btn {
+  padding: 0.75rem;
+  text-align: center;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.ioof-amount-btn:hover,
+.ioof-amount-btn.ioof-is-active {
+  background: var(--ioof-gold);
+  border-color: var(--ioof-gold);
+  color: var(--ioof-navy-deep);
+}
+.ioof-donate-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  outline: none;
+  transition: border-color var(--transition-base);
+  margin-bottom: 1rem;
+}
+.ioof-donate-input::placeholder { color: rgba(255,255,255,0.35); }
+.ioof-donate-input:focus { border-color: var(--ioof-gold); }
+.ioof-donate-submit {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--ioof-gold);
+  color: var(--ioof-navy-deep);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+.ioof-donate-submit:hover {
+  background: var(--ioof-gold-light);
+  transform: translateY(-1px);
+}
+.ioof-donate-secure {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ========================================
+   CONTACT / FOOTER
+======================================== */
+.ioof-pre-footer {
+  background: var(--ioof-navy);
+  padding: 3.5rem 0;
+}
+.ioof-pre-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+.ioof-footer-brand {}
+.ioof-footer-emblem {
+  width: 52px;
+  height: 52px;
+  background: var(--ioof-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.ioof-footer-emblem-inner {
+  width: 42px;
+  height: 42px;
+  background: var(--ioof-navy-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ioof-gold);
+}
+.ioof-footer-org-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+.ioof-footer-org-sub {
+  font-size: 0.78rem;
+  color: var(--ioof-gold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.ioof-footer-tagline {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 260px;
+}
+.ioof-footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.ioof-footer-contact-item svg { color: var(--ioof-gold); flex-shrink: 0; margin-top: 2px; }
+.ioof-footer-contact-text {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+}
+
+.ioof-footer-col {}
+.ioof-footer-col-heading {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ioof-gold);
+  margin-bottom: 1.1rem;
+}
+.ioof-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.ioof-footer-link {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  transition: color var(--transition-base);
+}
+.ioof-footer-link:hover { color: rgba(255,255,255,0.9); }
+
+.ioof-footer-base {
+  background: var(--ioof-navy-deep);
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.ioof-footer-base-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.ioof-footer-copyright {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+}
+.ioof-footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.ioof-footer-legal-link {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  transition: color var(--transition-base);
+}
+.ioof-footer-legal-link:hover { color: rgba(255,255,255,0.65); }
+.ioof-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.ioof-footer-social a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+.ioof-footer-social a:hover {
+  border-color: var(--ioof-gold);
+  color: var(--ioof-gold);
+}
+
+/* ========================================
+   SCROLL ANIMATIONS
+======================================== */
+.ioof-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.ioof-fade-up.ioof-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ioof-fade-up:nth-child(2) { transition-delay: 0.1s; }
+.ioof-fade-up:nth-child(3) { transition-delay: 0.2s; }
+.ioof-fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+======================================== */
+
+/* ---- Large tablets / small laptops: nav starts compressing ---- */
+@media (max-width: 1180px) {
+  .ioof-nav-link {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.83rem;
+  }
+  .ioof-nav-member-btn {
+    padding: 0.48rem 0.9rem;
+    font-size: 0.8rem;
+  }
+  .ioof-nav-emblem { width: 40px; height: 40px; }
+  .ioof-nav-emblem-inner { width: 32px; height: 32px; }
+  .ioof-nav-brand-name { font-size: 0.92rem; }
+  .ioof-nav-brand-sub { font-size: 0.68rem; }
+}
+
+/* ---- Tablet landscape: hide some topbar items ---- */
+@media (max-width: 1060px) {
+  .ioof-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .ioof-hero-visual { display: none; }
+  .ioof-hero-text { max-width: 680px; }
+  .ioof-programs-grid { grid-template-columns: repeat(2, 1fr); }
+  .ioof-program-panel--featured { grid-column: span 2; }
+  .ioof-leadership-grid { grid-template-columns: repeat(3, 1fr); }
+  .ioof-news-grid { grid-template-columns: 1fr 1fr; }
+  .ioof-news-article--featured { grid-column: span 2; }
+  .ioof-pre-footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .ioof-resources-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Topbar: hide address on mid screens to save space */
+  .ioof-topbar-contact span.ioof-topbar-link { display: none; }
+}
+
+/* ---- Tablet portrait: collapse to hamburger ---- */
+@media (max-width: 900px) {
+  /* Nav collapses */
+  .ioof-topbar { display: none; }
+  .ioof-nav-menu { display: none; }
+  .ioof-nav-cta { display: none; }
+  .ioof-hamburger { display: flex; }
+
+  /* Nav inner: only brand + hamburger, full height, proper breathing */
+  .ioof-nav-inner {
+    gap: 0;
+    justify-content: space-between;
+  }
+  .ioof-nav-brand { gap: 0.75rem; }
+  .ioof-nav-brand-name { font-size: 0.97rem; }
+  .ioof-nav-emblem { width: 42px; height: 42px; }
+  .ioof-nav-emblem-inner { width: 34px; height: 34px; }
+
+  /* Content stacking */
+  .ioof-overview-grid { grid-template-columns: 1fr; }
+  .ioof-overview-img-inset { display: none; }
+  .ioof-overview-img-main { aspect-ratio: 16/9; }
+  .ioof-impact-layout { grid-template-columns: 1fr; }
+  .ioof-history-layout { grid-template-columns: 1fr; }
+  .ioof-events-layout { grid-template-columns: 1fr; }
+  .ioof-membership-layout { grid-template-columns: 1fr; }
+  .ioof-donate-content { grid-template-columns: 1fr; }
+  .ioof-voices-grid { grid-template-columns: 1fr 1fr; }
+  .ioof-leadership-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* News narrower layout */
+  .ioof-news-grid { grid-template-columns: 1fr; }
+  .ioof-news-article--featured { grid-column: span 1; }
+
+  /* Programs */
+  .ioof-programs-intro { grid-template-columns: 1fr; gap: 1rem; }
+  .ioof-programs-intro-right { justify-content: flex-start; }
+}
+
+/* ---- Mobile landscape / large phones ---- */
+@media (max-width: 680px) {
+  /* Nav emblem and brand */
+  .ioof-nav-emblem { width: 38px; height: 38px; }
+  .ioof-nav-emblem-inner { width: 30px; height: 30px; }
+  .ioof-nav-brand-name { font-size: 0.88rem; }
+  .ioof-nav-brand-sub { font-size: 0.64rem; }
+
+  /* Mission pillars stack */
+  .ioof-mission-pillars { grid-template-columns: 1fr; }
+  .ioof-mission-pillar {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.09);
+    justify-content: flex-start;
+    padding-left: 1.5rem;
+  }
+  .ioof-mission-pillar:last-child { border-bottom: none; }
+
+  /* Programs */
+  .ioof-programs-grid { grid-template-columns: 1fr; }
+  .ioof-program-panel--featured { grid-column: span 1; display: block; }
+  .ioof-program-panel--featured .ioof-program-panel-img { aspect-ratio: 16/9; min-height: unset; }
+  .ioof-program-panel--featured .ioof-program-panel-body { padding: 1.5rem; }
+
+  /* Voices */
+  .ioof-voices-grid { grid-template-columns: 1fr; }
+
+  /* Leadership */
+  .ioof-leadership-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Impact stats */
+  .ioof-impact-stats { grid-template-columns: 1fr 1fr; }
+
+  /* Footer */
+  .ioof-pre-footer-grid { grid-template-columns: 1fr; }
+  .ioof-resources-grid { grid-template-columns: 1fr 1fr; }
+  .ioof-amount-grid { grid-template-columns: repeat(3, 1fr); }
+  .ioof-footer-base-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .ioof-footer-legal { gap: 1rem; }
+
+  /* Hero */
+  .ioof-hero-actions { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+
+  /* Membership */
+  .ioof-membership-badge { top: 1rem; right: 1rem; width: 80px; height: 80px; }
+  .ioof-membership-badge-num { font-size: 1.2rem; }
+
+  /* Past nobles */
+  .ioof-past-nobles { flex-direction: column; align-items: flex-start; }
+  .ioof-past-nobles-list { gap: 0.75rem; }
+
+  /* Events */
+  .ioof-event-row { flex-direction: row; }
+
+  /* Donate form */
+  .ioof-donate-form-area { padding: 1.5rem; }
+}
+
+/* ---- Small phones ---- */
+@media (max-width: 480px) {
+
+  /* Brand: hide subtitle on very small screens */
+  .ioof-nav-brand-sub { display: none; }
+  .ioof-nav-brand-name { font-size: 0.92rem; }
+  .ioof-nav-emblem { width: 36px; height: 36px; }
+  .ioof-nav-emblem-inner { width: 28px; height: 28px; }
+  .ioof-nav-emblem-text { font-size: 0.7rem; }
+
+  /* Content */
+  .ioof-resources-grid { grid-template-columns: 1fr; }
+  .ioof-leadership-grid { grid-template-columns: 1fr 1fr; }
+  .ioof-impact-stats { grid-template-columns: 1fr 1fr; }
+  .ioof-amount-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Events: keep date block same size */
+  .ioof-event-date-block { width: 48px; }
+  .ioof-event-date-day { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================
+     TOPBAR
+================================ -->
+<div class="ioof-topbar">
+  <div class="ioof-page-bound">
+    <div class="ioof-topbar-inner">
+      <div class="ioof-topbar-contact">
+        <a href="tel:+15551234567" class="ioof-topbar-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (555) 123-4567
+        </a>
+        <a href="mailto:lodge@morningstarioof20.org" class="ioof-topbar-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          lodge@morningstarioof20.org
+        </a>
+        <span class="ioof-topbar-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          124 Fraternal Hall Dr., Springfield, ST 00001
+        </span>
+      </div>
+      <div class="ioof-topbar-social">
+        <a href="#" aria-label="Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter/X">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================
+     NAVIGATION
+================================ -->
+<nav class="ioof-navigation" id="ioof-main-nav" role="navigation" aria-label="Main navigation">
+  <div class="ioof-page-bound">
+    <div class="ioof-nav-inner">
+      <!-- Brand -->
+      <a href="#" class="ioof-nav-brand" aria-label="Morning Star Lodge 20 Home">
+        <div class="ioof-nav-emblem">
+          <div class="ioof-nav-emblem-inner">
+            <span class="ioof-nav-emblem-text">FLT</span>
+          </div>
+        </div>
+        <div class="ioof-nav-brand-text">
+          <span class="ioof-nav-brand-name">Morning Star Lodge No. 20</span>
+          <span class="ioof-nav-brand-sub">I.O.O.F. — Est. 1852</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="ioof-nav-menu" role="menubar">
+        <li class="ioof-nav-item" role="none">
+          <a href="#about" class="ioof-nav-link" role="menuitem">About
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="ioof-dropdown ioof-dropdown--wide" role="menu">
+            <div class="ioof-dropdown-col">
+              <div class="ioof-dropdown-col-title">Our Lodge</div>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Lodge History</div><div class="ioof-dropdown-item-desc">170 years of community service</div></div>
+              </a>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Our Officers</div><div class="ioof-dropdown-item-desc">Meet the leadership team</div></div>
+              </a>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Bylaws & Governance</div><div class="ioof-dropdown-item-desc">Lodge rules and procedures</div></div>
+              </a>
+            </div>
+            <div class="ioof-dropdown-col">
+              <div class="ioof-dropdown-col-title">The Order</div>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">IOOF Overview</div><div class="ioof-dropdown-item-desc">The worldwide Odd Fellows order</div></div>
+              </a>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Our Principles</div><div class="ioof-dropdown-item-desc">Friendship, Love &amp; Truth</div></div>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="ioof-nav-item" role="none">
+          <a href="#programs" class="ioof-nav-link" role="menuitem">Programs
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="ioof-dropdown ioof-dropdown--wide" role="menu">
+            <div class="ioof-dropdown-col">
+              <div class="ioof-dropdown-col-title">Community Programs</div>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Food Pantry Network</div><div class="ioof-dropdown-item-desc">Weekly food distribution</div></div>
+              </a>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Youth Scholarships</div><div class="ioof-dropdown-item-desc">Annual merit awards for students</div></div>
+              </a>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Senior Assistance</div><div class="ioof-dropdown-item-desc">Support for elderly neighbors</div></div>
+              </a>
+            </div>
+            <div class="ioof-dropdown-col">
+              <div class="ioof-dropdown-col-title">Civic Engagement</div>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Volunteer Corps</div><div class="ioof-dropdown-item-desc">Organized community service</div></div>
+              </a>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Neighborhood Projects</div><div class="ioof-dropdown-item-desc">Local beautification &amp; repair</div></div>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="ioof-nav-item" role="none">
+          <a href="#events" class="ioof-nav-link" role="menuitem">Events</a>
+        </li>
+        <li class="ioof-nav-item" role="none">
+          <a href="#news" class="ioof-nav-link" role="menuitem">News</a>
+        </li>
+        <li class="ioof-nav-item" role="none">
+          <a href="#" class="ioof-nav-link" role="menuitem">Resources
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="ioof-dropdown" role="menu" style="min-width:200px;">
+            <div class="ioof-dropdown-col">
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Lodge Publications</div></div>
+              </a>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Ritual Manuals</div></div>
+              </a>
+              <a href="#" class="ioof-dropdown-item" role="menuitem">
+                <div class="ioof-dropdown-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                <div><div class="ioof-dropdown-item-label">Forms &amp; Applications</div></div>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="ioof-nav-item" role="none">
+          <a href="#contact" class="ioof-nav-link" role="menuitem">Contact</a>
+        </li>
+      </ul>
+
+      <!-- CTA -->
+      <div class="ioof-nav-cta">
+        <a href="#membership" class="ioof-nav-member-btn">Become a Member</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="ioof-hamburger" id="ioof-hamburger-btn" aria-expanded="false" aria-label="Open menu" aria-controls="ioof-offcanvas-panel">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Off-Canvas Overlay -->
+<div class="ioof-offcanvas-overlay" id="ioof-overlay" role="presentation"></div>
+
+<!-- Off-Canvas Panel -->
+<div class="ioof-offcanvas" id="ioof-offcanvas-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="ioof-offcanvas-head">
+    <span class="ioof-offcanvas-title">Morning Star Lodge No. 20</span>
+    <button class="ioof-close-btn" id="ioof-close-btn" aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="ioof-mobile-nav" aria-label="Mobile navigation">
+    <div class="ioof-mobile-nav-section">Main</div>
+
+    <!-- About accordion -->
+    <button class="ioof-mobile-nav-link ioof-mobile-toggle" aria-expanded="false" aria-controls="mob-about" type="button">
+      About the Lodge
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="ioof-mobile-sub" id="mob-about" role="region">
+      <a href="#about" class="ioof-mobile-sub-link">Lodge History</a>
+      <a href="#about" class="ioof-mobile-sub-link">Our Officers</a>
+      <a href="#" class="ioof-mobile-sub-link">Bylaws &amp; Governance</a>
+      <a href="#" class="ioof-mobile-sub-link">About IOOF</a>
+    </div>
+
+    <!-- Programs accordion -->
+    <button class="ioof-mobile-nav-link ioof-mobile-toggle" aria-expanded="false" aria-controls="mob-programs" type="button">
+      Programs &amp; Initiatives
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="ioof-mobile-sub" id="mob-programs" role="region">
+      <a href="#programs" class="ioof-mobile-sub-link">Food Pantry Network</a>
+      <a href="#programs" class="ioof-mobile-sub-link">Youth Scholarships</a>
+      <a href="#programs" class="ioof-mobile-sub-link">Senior Assistance</a>
+      <a href="#programs" class="ioof-mobile-sub-link">Volunteer Corps</a>
+      <a href="#programs" class="ioof-mobile-sub-link">Neighborhood Projects</a>
+    </div>
+
+    <!-- Resources accordion -->
+    <button class="ioof-mobile-nav-link ioof-mobile-toggle" aria-expanded="false" aria-controls="mob-resources" type="button">
+      Resources
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="ioof-mobile-sub" id="mob-resources" role="region">
+      <a href="#" class="ioof-mobile-sub-link">Lodge Bulletin</a>
+      <a href="#" class="ioof-mobile-sub-link">Ritual Manuals</a>
+      <a href="#" class="ioof-mobile-sub-link">Forms &amp; Applications</a>
+      <a href="#" class="ioof-mobile-sub-link">Member Portal</a>
+    </div>
+
+    <a href="#events" class="ioof-mobile-nav-link">Events &amp; Calendar</a>
+    <a href="#news" class="ioof-mobile-nav-link">News &amp; Advocacy</a>
+    <a href="#contact" class="ioof-mobile-nav-link">Contact &amp; Directions</a>
+
+    <div class="ioof-mobile-nav-section">Get Involved</div>
+    <a href="#membership" class="ioof-mobile-nav-link">Become a Member</a>
+    <a href="#donate" class="ioof-mobile-nav-link">Make a Donation</a>
+    <a href="#" class="ioof-mobile-nav-link">Volunteer</a>
+  </nav>
+  <div class="ioof-offcanvas-footer">
+    <a href="#membership" class="ioof-btn-primary">Join the Lodge</a>
+    <a href="#donate" class="ioof-btn-secondary">Donate Today</a>
+  </div>
+</div>
+
+<!-- ================================
+     HERO AREA
+================================ -->
+<section class="ioof-hero-area" aria-labelledby="ioof-hero-heading">
+  <div class="ioof-hero-bg" role="presentation"></div>
+  <div class="ioof-hero-pattern" role="presentation"></div>
+  <div class="ioof-hero-content">
+    <div class="ioof-page-bound--wide">
+      <div class="ioof-hero-inner">
+      <div class="ioof-hero-text">
+        <div class="ioof-hero-kicker">
+          <div class="ioof-hero-kicker-line"></div>
+          <span class="ioof-hero-kicker-text">Est. 1852 — Springfield, ST</span>
+        </div>
+        <h1 class="ioof-hero-headline" id="ioof-hero-heading">
+          Bound by <em>Friendship,</em><br>
+          Guided by <em>Love,</em><br>
+          Serving in <em>Truth.</em>
+        </h1>
+        <p class="ioof-hero-body">
+          Morning Star Lodge No. 20 is a chapter of the Independent Order of Odd Fellows — one of the oldest fraternal organizations in the world. For over 170 years, we have gathered to improve ourselves, support our neighbors, and strengthen the bonds that sustain our community.
+        </p>
+        <div class="ioof-hero-actions">
+          <a href="#membership" class="ioof-btn-primary">
+            Join the Lodge
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#about" class="ioof-btn-secondary">
+            Learn Our Story
+          </a>
+        </div>
+
+      </div>
+      <div class="ioof-hero-visual" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=75&auto=format&fit=crop"
+          alt="Community members gathering"
+          class="ioof-hero-img-primary"
+          loading="eager"
+        >
+        <div class="ioof-hero-img-row">
+          <img
+            src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&q=70&auto=format&fit=crop"
+            alt="Lodge hall interior"
+            class="ioof-hero-img-sm"
+            loading="eager"
+          >
+          <img
+            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&q=70&auto=format&fit=crop"
+            alt="Community volunteers"
+            class="ioof-hero-img-sm"
+            loading="eager"
+          >
+        </div>
+        <div class="ioof-hero-badge">
+          <span class="ioof-hero-badge-year">1852</span>
+          <span class="ioof-hero-badge-label">Founded</span>
+        </div>
+      </div>
+    </div><!-- /.ioof-hero-inner -->
+    </div><!-- /.ioof-page-bound--wide -->
+  </div><!-- /.ioof-hero-content -->
+</section>
+
+<!-- ================================
+     MISSION PILLARS BAND
+================================ -->
+<div class="ioof-mission-band" aria-label="Core values">
+  <div class="ioof-page-bound">
+    <div class="ioof-mission-pillars">
+      <div class="ioof-mission-pillar">
+        <div class="ioof-mission-pillar-icon">F</div>
+        <div>
+          <div class="ioof-mission-pillar-text">Friendship</div>
+          <div class="ioof-mission-pillar-subtext">The First Principle</div>
+        </div>
+      </div>
+      <div class="ioof-mission-pillar">
+        <div class="ioof-mission-pillar-icon">L</div>
+        <div>
+          <div class="ioof-mission-pillar-text">Love</div>
+          <div class="ioof-mission-pillar-subtext">The Second Principle</div>
+        </div>
+      </div>
+      <div class="ioof-mission-pillar">
+        <div class="ioof-mission-pillar-icon">T</div>
+        <div>
+          <div class="ioof-mission-pillar-text">Truth</div>
+          <div class="ioof-mission-pillar-subtext">The Third Principle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================
+     ORGANIZATION OVERVIEW
+================================ -->
+<section id="about" class="ioof-overview-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div class="ioof-overview-grid">
+      <div class="ioof-overview-media ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=600&q=75&auto=format&fit=crop"
+          alt="Historic lodge building exterior"
+          class="ioof-overview-img-main"
+          loading="lazy"
+        >
+        <img
+          src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=400&q=70&auto=format&fit=crop"
+          alt="Members at a lodge meeting"
+          class="ioof-overview-img-inset"
+          loading="lazy"
+        >
+      </div>
+      <div class="ioof-overview-text ioof-fade-up">
+        <div class="ioof-section-eyebrow">
+          <span class="ioof-label-caps">Who We Are</span>
+        </div>
+        <h2 class="ioof-display-lg" style="color: var(--ioof-text-dark); margin-bottom: 1rem;">A Fraternal Order Built on Character and Community</h2>
+        <p class="ioof-overview-intro">"We exist to make good men better, and to be a visible force of goodness in this community."</p>
+        <p class="ioof-overview-body">
+          The Independent Order of Odd Fellows is a non-political, non-sectarian fraternal organization that traces its American roots to Baltimore in 1819. Morning Star Lodge No. 20 was chartered in 1852 and has maintained an unbroken record of fellowship and charitable service in Springfield and the surrounding region.
+        </p>
+        <p class="ioof-overview-body">
+          We are a diverse group of men and women united by shared values: a commitment to caring for one another, a dedication to improving our community, and a belief that together, ordinary people can accomplish extraordinary things. Our lodge hall is a gathering place for people who want to live with intention.
+        </p>
+        <div class="ioof-principle-list">
+          <div class="ioof-principle-item">
+            <div class="ioof-principle-dot"></div>
+            <div class="ioof-principle-text"><strong>Visit the sick</strong> — We care for members and community neighbors in times of illness and hardship.</div>
+          </div>
+          <div class="ioof-principle-item">
+            <div class="ioof-principle-dot"></div>
+            <div class="ioof-principle-text"><strong>Relieve the distressed</strong> — We mobilize resources to aid families facing difficult circumstances.</div>
+          </div>
+          <div class="ioof-principle-item">
+            <div class="ioof-principle-dot"></div>
+            <div class="ioof-principle-text"><strong>Bury the dead</strong> — We honor the memory of those who have passed with dignity and reverence.</div>
+          </div>
+          <div class="ioof-principle-item">
+            <div class="ioof-principle-dot"></div>
+            <div class="ioof-principle-text"><strong>Educate the orphan</strong> — We invest in young people who need a path forward, regardless of their origins.</div>
+          </div>
+        </div>
+        <a href="#" class="ioof-btn-outline">Read Our Full History</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     PROGRAMS
+================================ -->
+<section id="programs" class="ioof-programs-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div class="ioof-programs-intro">
+      <div>
+        <div class="ioof-section-eyebrow">
+          <span class="ioof-label-caps">Programs &amp; Initiatives</span>
+        </div>
+        <h2 class="ioof-display-lg" style="color: var(--ioof-text-dark);">Putting Our Principles Into Action</h2>
+      </div>
+      <div class="ioof-programs-intro-right">
+        <p style="max-width: 340px; font-size: 0.95rem; color: var(--ioof-text-mid); line-height: 1.7;">From weekly food distribution to annual scholarship awards, our programs serve hundreds of neighbors every year — fueled entirely by member volunteers and community support.</p>
+      </div>
+    </div>
+
+    <div class="ioof-programs-grid">
+      <!-- Featured -->
+      <div class="ioof-program-panel ioof-program-panel--featured ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=75&auto=format&fit=crop"
+          alt="Volunteers at food pantry"
+          class="ioof-program-panel-img"
+          loading="lazy"
+        >
+        <div class="ioof-program-panel-body">
+          <span class="ioof-program-panel-tag">Flagship Initiative</span>
+          <h3 class="ioof-program-panel-title">Springfield Community Food Pantry</h3>
+          <p class="ioof-program-panel-desc">Every Thursday, our members operate a free food pantry serving more than 180 local families. What began in 1987 as a modest donation drive has grown into one of the region's most reliable emergency food resources, distributing over 22,000 pounds of food annually. All residents are welcome, no questions asked.</p>
+          <a href="#" class="ioof-program-panel-link">
+            Learn about the pantry
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="ioof-program-panel ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=70&auto=format&fit=crop"
+          alt="Student receiving scholarship"
+          class="ioof-program-panel-img"
+          loading="lazy"
+        >
+        <div class="ioof-program-panel-body">
+          <span class="ioof-program-panel-tag">Education</span>
+          <h3 class="ioof-program-panel-title">Youth Excellence Scholarship Program</h3>
+          <p class="ioof-program-panel-desc">Since 1965, Morning Star Lodge has awarded annual college scholarships to deserving students in Springfield County based on academic merit, community service, and financial need. This year we awarded six scholarships totaling $18,000.</p>
+          <a href="#" class="ioof-program-panel-link">
+            Apply for a scholarship
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="ioof-program-panel ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=70&auto=format&fit=crop"
+          alt="Senior care volunteer"
+          class="ioof-program-panel-img"
+          loading="lazy"
+        >
+        <div class="ioof-program-panel-body">
+          <span class="ioof-program-panel-tag">Senior Services</span>
+          <h3 class="ioof-program-panel-title">Neighbors in Need Senior Assistance</h3>
+          <p class="ioof-program-panel-desc">Our volunteer corps provides home visits, transportation to medical appointments, grocery delivery, and friendly companionship to isolated seniors in our community. We currently serve 62 enrolled seniors across Springfield.</p>
+          <a href="#" class="ioof-program-panel-link">
+            Request assistance
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="ioof-program-panel ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=70&auto=format&fit=crop"
+          alt="Community garden project"
+          class="ioof-program-panel-img"
+          loading="lazy"
+        >
+        <div class="ioof-program-panel-body">
+          <span class="ioof-program-panel-tag">Civic Improvement</span>
+          <h3 class="ioof-program-panel-title">Springfield Neighborhood Revitalization</h3>
+          <p class="ioof-program-panel-desc">Twice yearly, our members organize neighborhood cleanup and beautification days, partnering with local schools, churches, and civic clubs to restore public spaces throughout the city.</p>
+          <a href="#" class="ioof-program-panel-link">
+            Get involved
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     COMMUNITY IMPACT
+================================ -->
+<section class="ioof-impact-section ioof-section-gap">
+  <div class="ioof-page-bound ioof-impact-content">
+    <div class="ioof-impact-layout">
+      <div>
+        <div class="ioof-section-eyebrow">
+          <span class="ioof-label-caps">Our Impact</span>
+        </div>
+        <h2 class="ioof-display-lg ioof-impact-heading" style="color: #fff; margin-bottom: 1.25rem;">A Measurable Difference in Springfield</h2>
+        <p class="ioof-impact-body">
+          Our impact isn't measured in ceremony or tradition alone — it's measured in meals delivered, families stabilized, and futures opened to young people who needed a hand. Every year, our members contribute thousands of hours and dollars to make Springfield a better place to live.
+        </p>
+        <a href="#" class="ioof-btn-primary">View Our Annual Report</a>
+      </div>
+      <div class="ioof-impact-stats">
+        <div class="ioof-impact-stat">
+          <div class="ioof-impact-stat-num">22,400</div>
+          <div class="ioof-impact-stat-label">Pounds of food distributed in 2024</div>
+        </div>
+        <div class="ioof-impact-stat">
+          <div class="ioof-impact-stat-num">$86k</div>
+          <div class="ioof-impact-stat-label">Donated to community programs last year</div>
+        </div>
+        <div class="ioof-impact-stat">
+          <div class="ioof-impact-stat-num">2,400</div>
+          <div class="ioof-impact-stat-label">Volunteer hours logged in 2024</div>
+        </div>
+        <div class="ioof-impact-stat">
+          <div class="ioof-impact-stat-num">180+</div>
+          <div class="ioof-impact-stat-label">Families served each week</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     LODGE HISTORY
+================================ -->
+<section class="ioof-history-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div class="ioof-page-bound--narrow" style="padding: 0; margin-bottom: 3rem;">
+      <div class="ioof-section-eyebrow">
+        <span class="ioof-label-caps">Our History</span>
+      </div>
+      <h2 class="ioof-display-lg" style="color: var(--ioof-text-dark);">172 Years of Fellowship and Service</h2>
+    </div>
+    <div class="ioof-history-layout">
+      <div>
+        <div class="ioof-timeline">
+          <div class="ioof-timeline-item ioof-fade-up">
+            <div class="ioof-timeline-dot"></div>
+            <div class="ioof-timeline-year">1852</div>
+            <div class="ioof-timeline-heading">Charter Granted</div>
+            <div class="ioof-timeline-text">Morning Star Lodge No. 20 receives its charter from the Sovereign Grand Lodge, with 14 founding members meeting in the back room of a local merchant's store on Main Street.</div>
+          </div>
+          <div class="ioof-timeline-item ioof-fade-up">
+            <div class="ioof-timeline-dot"></div>
+            <div class="ioof-timeline-year">1878</div>
+            <div class="ioof-timeline-heading">The Lodge Hall Is Built</div>
+            <div class="ioof-timeline-text">After years of rented quarters, members fund and build the original Fraternal Hall on Dewey Avenue, which still stands today as a historic landmark.</div>
+          </div>
+          <div class="ioof-timeline-item ioof-fade-up">
+            <div class="ioof-timeline-dot"></div>
+            <div class="ioof-timeline-year">1919</div>
+            <div class="ioof-timeline-heading">Centennial of IOOF in America</div>
+            <div class="ioof-timeline-text">Morning Star Lodge plays host to a statewide centennial observance, welcoming delegates from over 40 lodges and raising funds to establish a local orphanage trust.</div>
+          </div>
+          <div class="ioof-timeline-item ioof-fade-up">
+            <div class="ioof-timeline-dot"></div>
+            <div class="ioof-timeline-year">1965</div>
+            <div class="ioof-timeline-heading">Scholarship Fund Established</div>
+            <div class="ioof-timeline-text">The Youth Excellence Scholarship Program is created to support first-generation college students in the community, a tradition that continues to this day.</div>
+          </div>
+          <div class="ioof-timeline-item ioof-fade-up">
+            <div class="ioof-timeline-dot"></div>
+            <div class="ioof-timeline-year">2002</div>
+            <div class="ioof-timeline-heading">Lodge Hall Restoration</div>
+            <div class="ioof-timeline-text">A major renovation of the historic Fraternal Hall preserves the building for the next century, with members contributing labor and funds for the project.</div>
+          </div>
+          <div class="ioof-timeline-item ioof-fade-up">
+            <div class="ioof-timeline-dot"></div>
+            <div class="ioof-timeline-year">Today</div>
+            <div class="ioof-timeline-heading">A Living Tradition</div>
+            <div class="ioof-timeline-text">With over 340 active members and a robust program calendar, Morning Star Lodge continues its mission with the same spirit that animated its founders in 1852.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="ioof-history-quote">
+          <p class="ioof-history-quote-text">We meet upon the level, part upon the square, and part to meet again as brothers and sisters. This is not merely a saying — it is how we live with each other and with our neighbors.</p>
+          <div class="ioof-history-quote-attr">— Noble Grand Elaine Hoffmann, Annual Address 2023</div>
+        </div>
+        <p class="ioof-history-body">
+          The Odd Fellows emerged in 18th-century England as a mutual aid society for working people who were outside the established trade guilds. They were "odd" because it was considered unusual for ordinary people — laborers, tradesmen, craftsmen — to organize for mutual benefit and social uplift.
+        </p>
+        <p class="ioof-history-body">
+          Thomas Wildey brought the order to America in 1819, and it spread rapidly through a young nation hungry for community and solidarity. Morning Star Lodge No. 20 was among the hundreds chartered during the order's great expansion in the mid-19th century.
+        </p>
+        <p class="ioof-history-body">
+          Today, IOOF lodges exist in more than 30 countries. Morning Star Lodge is proud to carry that international tradition of service forward, rooted firmly in the soil of Springfield.
+        </p>
+        <a href="#" class="ioof-btn-outline" style="margin-top: 0.5rem;">Explore Full Lodge History</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     LEADERSHIP
+================================ -->
+<section class="ioof-leadership-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div class="ioof-leadership-intro">
+      <div class="ioof-section-eyebrow">
+        <span class="ioof-label-caps">Our Officers</span>
+      </div>
+      <h2 class="ioof-display-lg" style="color: var(--ioof-text-dark);">Lodge Leadership 2024–2025</h2>
+      <p style="font-size: 0.97rem; color: var(--ioof-text-mid); margin-top: 0.75rem; line-height: 1.7;">Elected annually by the full membership, our officers serve voluntarily and reflect the Lodge's commitment to democratic, community-led governance.</p>
+    </div>
+    <div class="ioof-leadership-grid">
+      <div class="ioof-leader-card ioof-fade-up">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=70&auto=format&fit=crop&facepad=3&face=1" alt="Noble Grand" class="ioof-leader-photo" loading="lazy">
+        <div class="ioof-leader-info">
+          <div class="ioof-leader-name">Elaine Hoffmann</div>
+          <div class="ioof-leader-role">Noble Grand</div>
+          <div class="ioof-leader-tenure">Term: 2024–2025</div>
+        </div>
+      </div>
+      <div class="ioof-leader-card ioof-fade-up">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=70&auto=format&fit=crop&facepad=3" alt="Vice Grand" class="ioof-leader-photo" loading="lazy">
+        <div class="ioof-leader-info">
+          <div class="ioof-leader-name">Marcus Delgado</div>
+          <div class="ioof-leader-role">Vice Grand</div>
+          <div class="ioof-leader-tenure">Term: 2024–2025</div>
+        </div>
+      </div>
+      <div class="ioof-leader-card ioof-fade-up">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=70&auto=format&fit=crop&facepad=3" alt="Financial Secretary" class="ioof-leader-photo" loading="lazy">
+        <div class="ioof-leader-info">
+          <div class="ioof-leader-name">Priya Nataraj</div>
+          <div class="ioof-leader-role">Financial Secretary</div>
+          <div class="ioof-leader-tenure">Term: 2022–Present</div>
+        </div>
+      </div>
+      <div class="ioof-leader-card ioof-fade-up">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=70&auto=format&fit=crop&facepad=3" alt="Recording Secretary" class="ioof-leader-photo" loading="lazy">
+        <div class="ioof-leader-info">
+          <div class="ioof-leader-name">Howard Birch</div>
+          <div class="ioof-leader-role">Recording Secretary</div>
+          <div class="ioof-leader-tenure">Term: 2024–2025</div>
+        </div>
+      </div>
+    </div>
+    <div class="ioof-past-nobles" style="margin-top: 1.5rem;">
+      <span class="ioof-past-nobles-label">Recent Past Nobles:</span>
+      <div class="ioof-past-nobles-list">
+        <span class="ioof-past-noble-chip">Gerald Fenton <span>2023–24</span></span>
+        <span class="ioof-past-noble-chip">Anastasia Park <span>2022–23</span></span>
+        <span class="ioof-past-noble-chip">Bill Carver <span>2021–22</span></span>
+        <span class="ioof-past-noble-chip">Yolanda Reyes <span>2020–21</span></span>
+        <span class="ioof-past-noble-chip">Dr. Samuel Chen <span>2019–20</span></span>
+      </div>
+      <a href="#" style="font-size: 0.84rem; font-weight: 600; color: var(--ioof-gold); margin-left: auto; white-space: nowrap;">Full officer list</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     EVENTS
+================================ -->
+<section id="events" class="ioof-events-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1.5rem;">
+      <div>
+        <div class="ioof-section-eyebrow">
+          <span class="ioof-label-caps">Events &amp; Calendar</span>
+        </div>
+        <h2 class="ioof-display-lg" style="color: var(--ioof-text-dark);">Upcoming Gatherings</h2>
+      </div>
+      <a href="#" class="ioof-btn-outline">View Full Calendar</a>
+    </div>
+    <div class="ioof-events-layout">
+      <div class="ioof-events-list">
+        <div class="ioof-event-row">
+          <div class="ioof-event-date-block">
+            <span class="ioof-event-date-month">Jun</span>
+            <span class="ioof-event-date-day">04</span>
+          </div>
+          <div class="ioof-event-info">
+            <div class="ioof-event-category">Regular Meeting</div>
+            <div class="ioof-event-title">Lodge Stated Communication — June</div>
+            <div class="ioof-event-meta">
+              <span class="ioof-event-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                7:00 PM
+              </span>
+              <span class="ioof-event-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Fraternal Hall, 124 Dewey Ave.
+              </span>
+              <span class="ioof-event-meta-item" style="color: var(--ioof-green-accent); font-weight: 600;">Members Only</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ioof-event-row">
+          <div class="ioof-event-date-block">
+            <span class="ioof-event-date-month">Jun</span>
+            <span class="ioof-event-date-day">12</span>
+          </div>
+          <div class="ioof-event-info">
+            <div class="ioof-event-category">Community Service</div>
+            <div class="ioof-event-title">Summer Neighborhood Cleanup &amp; Beautification Day</div>
+            <div class="ioof-event-meta">
+              <span class="ioof-event-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                8:00 AM – 1:00 PM
+              </span>
+              <span class="ioof-event-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                City Park, Springfield
+              </span>
+              <span class="ioof-event-meta-item" style="color: var(--ioof-gold); font-weight: 600;">Open to All</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ioof-event-row">
+          <div class="ioof-event-date-block">
+            <span class="ioof-event-date-month">Jun</span>
+            <span class="ioof-event-date-day">21</span>
+          </div>
+          <div class="ioof-event-info">
+            <div class="ioof-event-category">Scholarship</div>
+            <div class="ioof-event-title">Youth Excellence Scholarship Award Banquet 2025</div>
+            <div class="ioof-event-meta">
+              <span class="ioof-event-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                6:00 PM
+              </span>
+              <span class="ioof-event-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Fraternal Hall, Banquet Room
+              </span>
+              <span class="ioof-event-meta-item" style="color: var(--ioof-gold); font-weight: 600;">RSVP Required</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ioof-event-row">
+          <div class="ioof-event-date-block">
+            <span class="ioof-event-date-month">Jul</span>
+            <span class="ioof-event-date-day">04</span>
+          </div>
+          <div class="ioof-event-info">
+            <div class="ioof-event-category">Community Event</div>
+            <div class="ioof-event-title">Annual Independence Day Parade &amp; Family Picnic</div>
+            <div class="ioof-event-meta">
+              <span class="ioof-event-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                10:00 AM
+              </span>
+              <span class="ioof-event-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Downtown Springfield
+              </span>
+              <span class="ioof-event-meta-item" style="color: var(--ioof-gold); font-weight: 600;">Open to All</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ioof-announcement-panel">
+        <div class="ioof-announcement-title">Lodge Announcements</div>
+        <div class="ioof-announcement-list">
+          <div class="ioof-announcement-item">
+            <div class="ioof-announcement-date">May 28, 2025</div>
+            <div class="ioof-announcement-text">The June scholarship application deadline has been extended to June 7th. Applications available at the lodge office.</div>
+            <div class="ioof-announcement-sep"></div>
+          </div>
+          <div class="ioof-announcement-item">
+            <div class="ioof-announcement-date">May 20, 2025</div>
+            <div class="ioof-announcement-text">Our food pantry is seeking donations of canned goods and non-perishables for the summer drive. Drop-off at Fraternal Hall weekdays 9–5.</div>
+            <div class="ioof-announcement-sep"></div>
+          </div>
+          <div class="ioof-announcement-item">
+            <div class="ioof-announcement-date">May 15, 2025</div>
+            <div class="ioof-announcement-text">Congratulations to Brother Robert Keene on receiving the Grand Lodge Decoration of Chivalry at the Spring Session.</div>
+            <div class="ioof-announcement-sep"></div>
+          </div>
+          <div class="ioof-announcement-item">
+            <div class="ioof-announcement-date">May 7, 2025</div>
+            <div class="ioof-announcement-text">The lodge hall will be closed for maintenance May 30–31. Regular meetings resume June 4.</div>
+          </div>
+        </div>
+        <a href="#" class="ioof-btn-ghost-gold" style="display: block; text-align: center; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem;">All announcements</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     NEWS / ADVOCACY
+================================ -->
+<section id="news" class="ioof-news-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div class="ioof-news-header">
+      <div>
+        <div class="ioof-section-eyebrow">
+          <span class="ioof-label-caps">News &amp; Advocacy</span>
+        </div>
+        <h2 class="ioof-display-lg" style="color: var(--ioof-text-dark);">From the Lodge &amp; the Community</h2>
+      </div>
+      <a href="#" class="ioof-btn-outline">All News</a>
+    </div>
+    <div class="ioof-news-grid">
+      <div class="ioof-news-article ioof-news-article--featured ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=70&auto=format&fit=crop"
+          alt="Lodge members at community event"
+          class="ioof-news-article-img"
+          loading="lazy"
+        >
+        <div class="ioof-news-article-body">
+          <div class="ioof-news-article-cat">Community Report</div>
+          <h3 class="ioof-news-article-title">Morning Star Lodge Marks 172nd Charter Anniversary with Day of Service</h3>
+          <p class="ioof-news-article-excerpt">On May 3, members of Morning Star Lodge No. 20 gathered at Fraternal Hall for the lodge's annual charter anniversary observance — but this year, they paired the ceremony with a day of hands-on service across three Springfield neighborhoods. More than 80 volunteers participated in park restoration, senior home repairs, and a record-setting food pantry donation drive.</p>
+          <div class="ioof-news-article-meta">
+            <span class="ioof-news-article-date">May 5, 2025</span>
+            <span style="color: var(--ioof-border);">·</span>
+            <span class="ioof-news-article-author">By Howard Birch, Recording Secretary</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ioof-news-article ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&q=70&auto=format&fit=crop"
+          alt="Scholarship award ceremony"
+          class="ioof-news-article-img"
+          loading="lazy"
+        >
+        <div class="ioof-news-article-body">
+          <div class="ioof-news-article-cat">Scholarships</div>
+          <h3 class="ioof-news-article-title">Six Students Awarded 2025 Youth Excellence Scholarships</h3>
+          <p class="ioof-news-article-excerpt">Morning Star Lodge announced this year's scholarship recipients, awarding $18,000 to six outstanding Springfield County students heading to college this fall.</p>
+          <div class="ioof-news-article-meta">
+            <span class="ioof-news-article-date">April 28, 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ioof-news-article ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=70&auto=format&fit=crop"
+          alt="Food pantry volunteers"
+          class="ioof-news-article-img"
+          loading="lazy"
+        >
+        <div class="ioof-news-article-body">
+          <div class="ioof-news-article-cat">Advocacy</div>
+          <h3 class="ioof-news-article-title">Lodge Joins Coalition Urging Expanded Senior Transportation Funding</h3>
+          <p class="ioof-news-article-excerpt">Noble Grand Hoffmann testified before the city council in support of increased funding for senior mobility programs, citing the Lodge's firsthand experience with the unmet need.</p>
+          <div class="ioof-news-article-meta">
+            <span class="ioof-news-article-date">April 14, 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     VOICES / TESTIMONIALS
+================================ -->
+<section class="ioof-voices-section ioof-section-gap">
+  <div class="ioof-page-bound ioof-voices-content">
+    <div class="ioof-voices-intro">
+      <div class="ioof-section-eyebrow">
+        <span class="ioof-label-caps" style="color: var(--ioof-gold);">Community Voices</span>
+      </div>
+      <h2 class="ioof-display-lg" style="color: #fff; margin-top: 0.5rem;">What Our Members &amp; Neighbors Say</h2>
+    </div>
+    <div class="ioof-voices-grid">
+      <div class="ioof-voice-card ioof-fade-up">
+        <div class="ioof-voice-stars">
+          <div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div>
+        </div>
+        <p class="ioof-voice-quote">"I joined the lodge at 26, not really knowing what to expect. What I found was a community of people who genuinely looked out for each other. Twenty years later, I've made my closest friends here and contributed to work I'm truly proud of."</p>
+        <div class="ioof-voice-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=70&auto=format&fit=crop&facepad=3" alt="" class="ioof-voice-avatar" loading="lazy">
+          <div>
+            <div class="ioof-voice-author-name">Daniel Marsh</div>
+            <div class="ioof-voice-author-role">Member since 2005, 3rd Degree</div>
+          </div>
+        </div>
+      </div>
+      <div class="ioof-voice-card ioof-fade-up">
+        <div class="ioof-voice-stars">
+          <div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div>
+        </div>
+        <p class="ioof-voice-quote">"The food pantry has been a lifeline for our family during a really hard stretch. No judgment, just kindness. These volunteers reminded me that people are still willing to show up for each other."</p>
+        <div class="ioof-voice-author">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=70&auto=format&fit=crop&facepad=3" alt="" class="ioof-voice-avatar" loading="lazy">
+          <div>
+            <div class="ioof-voice-author-name">Carolyn Reeves</div>
+            <div class="ioof-voice-author-role">Pantry recipient, Springfield</div>
+          </div>
+        </div>
+      </div>
+      <div class="ioof-voice-card ioof-fade-up">
+        <div class="ioof-voice-stars">
+          <div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div><div class="ioof-voice-star"></div>
+        </div>
+        <p class="ioof-voice-quote">"Receiving the Morning Star scholarship changed my trajectory. It wasn't just the money — it was the message that someone in my community believed in me enough to invest in my future."</p>
+        <div class="ioof-voice-author">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=70&auto=format&fit=crop&facepad=3" alt="" class="ioof-voice-avatar" loading="lazy">
+          <div>
+            <div class="ioof-voice-author-name">Tasha Okonkwo</div>
+            <div class="ioof-voice-author-role">2022 Scholarship Recipient</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     MEMBERSHIP
+================================ -->
+<section id="membership" class="ioof-membership-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div class="ioof-membership-layout">
+      <div class="ioof-membership-visual ioof-fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=700&q=75&auto=format&fit=crop"
+          alt="Lodge members at a meeting"
+          class="ioof-membership-img"
+          loading="lazy"
+        >
+        <div class="ioof-membership-badge">
+          <span class="ioof-membership-badge-top">Active</span>
+          <span class="ioof-membership-badge-num">340+</span>
+          <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ioof-navy-deep);">Members</span>
+        </div>
+      </div>
+      <div>
+        <div class="ioof-section-eyebrow">
+          <span class="ioof-label-caps">Join Us</span>
+        </div>
+        <h2 class="ioof-display-lg" style="color: var(--ioof-text-dark); margin-bottom: 1rem;">Membership Is Open to All People of Good Character</h2>
+        <p style="font-size: 0.97rem; color: var(--ioof-text-mid); line-height: 1.75; margin-bottom: 1.5rem;">
+          The IOOF welcomes men and women of all backgrounds who share a belief in the value of community, mutual aid, and personal integrity. Membership in Morning Star Lodge is a commitment to something larger than yourself.
+        </p>
+        <div class="ioof-membership-steps">
+          <div class="ioof-membership-step">
+            <div class="ioof-membership-step-num">1</div>
+            <div class="ioof-membership-step-content">
+              <div class="ioof-membership-step-title">Attend a Visitor's Night</div>
+              <div class="ioof-membership-step-text">We host open houses on the first Wednesday of each month. Come meet our members, tour the hall, and ask questions. No commitment required.</div>
+            </div>
+          </div>
+          <div class="ioof-membership-step">
+            <div class="ioof-membership-step-num">2</div>
+            <div class="ioof-membership-step-content">
+              <div class="ioof-membership-step-title">Submit a Petition</div>
+              <div class="ioof-membership-step-text">Complete a brief petition form, available at the lodge or by mail. You'll be sponsored by one current member who has come to know you.</div>
+            </div>
+          </div>
+          <div class="ioof-membership-step">
+            <div class="ioof-membership-step-num">3</div>
+            <div class="ioof-membership-step-content">
+              <div class="ioof-membership-step-title">Be Balloted &amp; Initiated</div>
+              <div class="ioof-membership-step-text">The lodge votes on all petitions at a stated meeting. If accepted, you'll receive the First Degree in a brief, meaningful initiation ceremony.</div>
+            </div>
+          </div>
+        </div>
+        <div class="ioof-membership-actions">
+          <a href="#" class="ioof-btn-primary">Request Membership Information</a>
+          <a href="#" class="ioof-btn-outline">Download Petition Form</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     RESOURCES
+================================ -->
+<section class="ioof-resources-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div style="margin-bottom: 2.5rem; display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+      <div>
+        <div class="ioof-section-eyebrow">
+          <span class="ioof-label-caps">Member Resources</span>
+        </div>
+        <h2 class="ioof-display-lg" style="color: var(--ioof-text-dark);">Publications &amp; Documents</h2>
+      </div>
+      <a href="#" class="ioof-btn-outline">Member Portal Login</a>
+    </div>
+    <div class="ioof-resources-grid">
+      <div class="ioof-resource-tile">
+        <div class="ioof-resource-tile-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+        </div>
+        <div class="ioof-resource-tile-title">The Morning Star Bulletin</div>
+        <div class="ioof-resource-tile-desc">Our monthly lodge newsletter with meeting minutes, program updates, member news, and community announcements. Published since 1921.</div>
+      </div>
+      <div class="ioof-resource-tile">
+        <div class="ioof-resource-tile-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div class="ioof-resource-tile-title">Lodge Bylaws &amp; Standing Rules</div>
+        <div class="ioof-resource-tile-desc">The governing documents of Morning Star Lodge No. 20, last revised at the 2023 Annual Communication. Available to all members.</div>
+      </div>
+      <div class="ioof-resource-tile">
+        <div class="ioof-resource-tile-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="ioof-resource-tile-title">Lodge Calendar of Events</div>
+        <div class="ioof-resource-tile-desc">Download the current year's full event calendar including stated communications, degree work, and community program schedules.</div>
+      </div>
+      <div class="ioof-resource-tile">
+        <div class="ioof-resource-tile-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="ioof-resource-tile-title">Forms &amp; Applications</div>
+        <div class="ioof-resource-tile-desc">Download petition forms, scholarship applications, volunteer enrollment forms, and administrative documents for lodge use.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     PARTNERS
+================================ -->
+<div class="ioof-partners-section">
+  <div class="ioof-page-bound">
+    <div class="ioof-partners-header">
+      <div class="ioof-partners-label">Community Partners &amp; Supporters</div>
+    </div>
+    <div class="ioof-partners-row">
+      <div class="ioof-partner-item">
+        Springfield Area<br><span>Community Foundation</span>
+      </div>
+      <div class="ioof-partner-item">
+        First National<br><span>Bank of Springfield</span>
+      </div>
+      <div class="ioof-partner-item">
+        Sovereign Grand Lodge<br><span>IOOF</span>
+      </div>
+      <div class="ioof-partner-item">
+        Springfield County<br><span>School District</span>
+      </div>
+      <div class="ioof-partner-item">
+        Meals on Wheels<br><span>Central Region</span>
+      </div>
+      <div class="ioof-partner-item">
+        Springfield<br><span>City Council</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================
+     DONATION CTA
+================================ -->
+<section id="donate" class="ioof-donate-section ioof-section-gap">
+  <div class="ioof-page-bound">
+    <div class="ioof-donate-content">
+      <div class="ioof-donate-text">
+        <div class="ioof-section-eyebrow">
+          <span class="ioof-label-caps">Support Our Work</span>
+        </div>
+        <h2 class="ioof-display-lg ioof-donate-heading" style="color: #fff; margin-bottom: 1.25rem;">Your Gift Sustains Our Mission</h2>
+        <p class="ioof-donate-body">Morning Star Lodge is a 501(c)(8) fraternal nonprofit. Charitable donations to our community programs fund the work that reaches hundreds of Springfield families each year. Every gift — large or small — makes a direct difference.</p>
+        <div class="ioof-donate-impact-list">
+          <div class="ioof-donate-impact-item">
+            <div class="ioof-donate-impact-dot"></div>
+            <div class="ioof-donate-impact-text">$25 provides groceries for one family for a week through our food pantry</div>
+          </div>
+          <div class="ioof-donate-impact-item">
+            <div class="ioof-donate-impact-dot"></div>
+            <div class="ioof-donate-impact-text">$100 covers one month of transportation assistance for a senior neighbor</div>
+          </div>
+          <div class="ioof-donate-impact-item">
+            <div class="ioof-donate-impact-dot"></div>
+            <div class="ioof-donate-impact-text">$500 contributes to a student scholarship that changes a life's trajectory</div>
+          </div>
+          <div class="ioof-donate-impact-item">
+            <div class="ioof-donate-impact-dot"></div>
+            <div class="ioof-donate-impact-text">$1,000 sustains our volunteer coordinator program for one full month</div>
+          </div>
+        </div>
+      </div>
+      <div class="ioof-donate-form-area">
+        <div class="ioof-donate-form-title">Make a Donation</div>
+        <div class="ioof-amount-grid">
+          <button class="ioof-amount-btn" onclick="selectAmount(this)">$25</button>
+          <button class="ioof-amount-btn ioof-is-active" onclick="selectAmount(this)">$50</button>
+          <button class="ioof-amount-btn" onclick="selectAmount(this)">$100</button>
+          <button class="ioof-amount-btn" onclick="selectAmount(this)">$250</button>
+          <button class="ioof-amount-btn" onclick="selectAmount(this)">$500</button>
+          <button class="ioof-amount-btn" onclick="selectAmount(this)">Other</button>
+        </div>
+        <input type="text" class="ioof-donate-input" placeholder="Custom amount (e.g. $75)" id="ioof-custom-amount">
+        <input type="text" class="ioof-donate-input" placeholder="Your name">
+        <input type="email" class="ioof-donate-input" placeholder="Email address">
+        <button class="ioof-donate-submit" onclick="handleDonate()">Proceed to Secure Checkout</button>
+        <div class="ioof-donate-secure">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Secured &amp; encrypted — processed by a certified payment provider
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     PRE-FOOTER / CONTACT
+================================ -->
+<footer id="contact" class="ioof-pre-footer" aria-label="Footer">
+  <div class="ioof-page-bound">
+    <div class="ioof-pre-footer-grid">
+      <div class="ioof-footer-brand">
+        <div class="ioof-footer-emblem">
+          <div class="ioof-footer-emblem-inner">
+            <span style="font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--ioof-gold);">FLT</span>
+          </div>
+        </div>
+        <div class="ioof-footer-org-name">Morning Star Lodge No. 20</div>
+        <div class="ioof-footer-org-sub">Independent Order of Odd Fellows</div>
+        <p class="ioof-footer-tagline">Dedicated to Friendship, Love, and Truth since 1852. Serving Springfield and its people.</p>
+        <div class="ioof-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="ioof-footer-contact-text">124 Fraternal Hall Drive<br>Springfield, ST 00001</span>
+        </div>
+        <div class="ioof-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="ioof-footer-contact-text">(555) 123-4567</span>
+        </div>
+        <div class="ioof-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="ioof-footer-contact-text">lodge@morningstarioof20.org</span>
+        </div>
+        <div class="ioof-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span class="ioof-footer-contact-text">Office: Mon–Fri, 9 AM – 5 PM</span>
+        </div>
+      </div>
+
+      <div class="ioof-footer-col">
+        <div class="ioof-footer-col-heading">About</div>
+        <ul class="ioof-footer-links">
+          <li><a href="#" class="ioof-footer-link">Lodge History</a></li>
+          <li><a href="#" class="ioof-footer-link">Our Officers</a></li>
+          <li><a href="#" class="ioof-footer-link">Bylaws &amp; Governance</a></li>
+          <li><a href="#" class="ioof-footer-link">About the IOOF</a></li>
+          <li><a href="#" class="ioof-footer-link">Photo Gallery</a></li>
+          <li><a href="#" class="ioof-footer-link">In Memoriam</a></li>
+        </ul>
+      </div>
+
+      <div class="ioof-footer-col">
+        <div class="ioof-footer-col-heading">Programs</div>
+        <ul class="ioof-footer-links">
+          <li><a href="#" class="ioof-footer-link">Food Pantry</a></li>
+          <li><a href="#" class="ioof-footer-link">Youth Scholarships</a></li>
+          <li><a href="#" class="ioof-footer-link">Senior Assistance</a></li>
+          <li><a href="#" class="ioof-footer-link">Neighborhood Projects</a></li>
+          <li><a href="#" class="ioof-footer-link">Volunteer Corps</a></li>
+          <li><a href="#" class="ioof-footer-link">All Programs</a></li>
+        </ul>
+      </div>
+
+      <div class="ioof-footer-col">
+        <div class="ioof-footer-col-heading">Get Involved</div>
+        <ul class="ioof-footer-links">
+          <li><a href="#" class="ioof-footer-link">Join the Lodge</a></li>
+          <li><a href="#" class="ioof-footer-link">Volunteer Opportunities</a></li>
+          <li><a href="#" class="ioof-footer-link">Make a Donation</a></li>
+          <li><a href="#" class="ioof-footer-link">Host an Event</a></li>
+          <li><a href="#" class="ioof-footer-link">Partnerships</a></li>
+        </ul>
+        <div class="ioof-footer-col-heading" style="margin-top: 1.75rem;">Resources</div>
+        <ul class="ioof-footer-links">
+          <li><a href="#" class="ioof-footer-link">Lodge Bulletin</a></li>
+          <li><a href="#" class="ioof-footer-link">Forms &amp; Applications</a></li>
+          <li><a href="#" class="ioof-footer-link">Member Portal</a></li>
+          <li><a href="#" class="ioof-footer-link">Event Calendar</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="ioof-footer-base">
+  <div class="ioof-page-bound">
+    <div class="ioof-footer-base-inner">
+      <span class="ioof-footer-copyright">&copy; 2025 Morning Star Lodge No. 20, I.O.O.F. All rights reserved.</span>
+      <div class="ioof-footer-legal">
+        <a href="#" class="ioof-footer-legal-link">Privacy Policy</a>
+        <a href="#" class="ioof-footer-legal-link">Terms of Use</a>
+        <a href="#" class="ioof-footer-legal-link">Accessibility</a>
+        <a href="#" class="ioof-footer-legal-link">Sitemap</a>
+      </div>
+      <div class="ioof-footer-social">
+        <a href="#" aria-label="Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="X / Twitter">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l16 16M20 4 4 20"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="white"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================
+     JAVASCRIPT
+================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ================================================
+     STICKY NAV SHADOW
+  ================================================ */
+  const nav = document.getElementById('ioof-main-nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('ioof-nav-scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  /* ================================================
+     OFF-CANVAS MENU
+  ================================================ */
+  const hamburger  = document.getElementById('ioof-hamburger-btn');
+  const overlay    = document.getElementById('ioof-overlay');
+  const offcanvas  = document.getElementById('ioof-offcanvas-panel');
+  const closeBtn   = document.getElementById('ioof-close-btn');
+
+  function openMenu() {
+    offcanvas.classList.add('ioof-is-open');
+    overlay.classList.add('ioof-is-open');
+    hamburger.classList.add('ioof-is-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    // Move focus inside panel for accessibility
+    setTimeout(function () { closeBtn.focus(); }, 50);
+  }
+
+  function closeMenu() {
+    offcanvas.classList.remove('ioof-is-open');
+    overlay.classList.remove('ioof-is-open');
+    hamburger.classList.remove('ioof-is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    hamburger.focus();
+  }
+
+  hamburger.addEventListener('click', function () {
+    offcanvas.classList.contains('ioof-is-open') ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+  closeBtn.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && offcanvas.classList.contains('ioof-is-open')) closeMenu();
+  });
+
+  /* ================================================
+     MOBILE ACCORDION SUBMENUS
+     Works on <button class="ioof-mobile-toggle">
+     with aria-controls="id-of-sub-panel"
+  ================================================ */
+  offcanvas.querySelectorAll('.ioof-mobile-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var targetId  = btn.getAttribute('aria-controls');
+      var subPanel  = document.getElementById(targetId);
+      if (!subPanel) return;
+
+      var isOpen = subPanel.classList.contains('ioof-is-open');
+
+      // Close all other open panels first
+      offcanvas.querySelectorAll('.ioof-mobile-sub.ioof-is-open').forEach(function (panel) {
+        panel.classList.remove('ioof-is-open');
+      });
+      offcanvas.querySelectorAll('.ioof-mobile-toggle.ioof-sub-open').forEach(function (b) {
+        b.classList.remove('ioof-sub-open');
+        b.setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle the clicked one
+      if (!isOpen) {
+        subPanel.classList.add('ioof-is-open');
+        btn.classList.add('ioof-sub-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ================================================
+     CLOSE MENU WHEN A SECTION LINK IS TAPPED
+     Only close for anchor links, not accordion triggers
+  ================================================ */
+  offcanvas.querySelectorAll('a.ioof-mobile-nav-link, a.ioof-mobile-sub-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      closeMenu();
+    });
+  });
+  // Also close on the CTA buttons in footer
+  offcanvas.querySelectorAll('.ioof-offcanvas-footer a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      closeMenu();
+    });
+  });
+
+  /* ================================================
+     SMOOTH SCROLL FOR ALL ANCHOR LINKS
+     Skip accordion buttons (they're <button> not <a>)
+  ================================================ */
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      var href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+      var target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      var offset = nav.offsetHeight + 16;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  /* ================================================
+     DESKTOP DROPDOWN — mouse & keyboard
+  ================================================ */
+  document.querySelectorAll('.ioof-nav-item').forEach(function (item) {
+    var dropdown = item.querySelector('.ioof-dropdown');
+    if (!dropdown) return;
+
+    function show() {
+      dropdown.style.opacity = '1';
+      dropdown.style.pointerEvents = 'auto';
+      dropdown.style.transform = 'translateX(-50%) translateY(0)';
+    }
+    function hide() {
+      dropdown.style.opacity = '';
+      dropdown.style.pointerEvents = '';
+      dropdown.style.transform = '';
+    }
+
+    item.addEventListener('mouseenter', show);
+    item.addEventListener('mouseleave', hide);
+    item.addEventListener('focusin', show);
+    item.addEventListener('focusout', function (e) {
+      if (!item.contains(e.relatedTarget)) hide();
+    });
+  });
+
+  /* ================================================
+     SCROLL ANIMATIONS
+  ================================================ */
+  var fadeEls = document.querySelectorAll('.ioof-fade-up');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ioof-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    fadeEls.forEach(function (el) { el.classList.add('ioof-visible'); });
+  }
+
+})();
+
+/* ================================================
+   DONATION WIDGET
+================================================ */
+function selectAmount(btn) {
+  document.querySelectorAll('.ioof-amount-btn').forEach(function (b) {
+    b.classList.remove('ioof-is-active');
+  });
+  btn.classList.add('ioof-is-active');
+  var input = document.getElementById('ioof-custom-amount');
+  if (btn.textContent.trim() === 'Other') {
+    input.style.display = 'block';
+    input.focus();
+  } else {
+    input.style.display = '';
+    input.value = '';
+  }
+}
+
+function handleDonate() {
+  var activeBtn = document.querySelector('.ioof-amount-btn.ioof-is-active');
+  var amount = activeBtn ? activeBtn.textContent.trim() : '';
+  if (amount && amount !== 'Other') {
+    alert('Thank you for your generosity! In production this proceeds to a secure payment gateway.\n\nSelected amount: ' + amount);
+  } else {
+    var custom = document.getElementById('ioof-custom-amount').value;
+    alert('Thank you! Amount: ' + (custom || 'not entered') + '. In production this proceeds to secure checkout.');
+  }
+}
+</script>
+
+</body>
+</html>

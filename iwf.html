@@ -1,0 +1,3109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      IWF Northern California — Leadership. Inclusion. Community. Friendship.
+      Inspiration.
+    </title>
+    <meta
+      name="description"
+      content="IWF Northern California cultivates a vibrant community of accomplished women leaders to inspire, support, and shape what's next — across the Bay Area and globally."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+    <style>
+      /* ============================================================
+   IWF NorCal — Design Tokens
+   ============================================================ */
+      :root {
+        --iwfnc-bg: #f5f1ea; /* warm parchment (inspired by ref) */
+        --iwfnc-bg-2: #ede7dc;
+        --iwfnc-bg-soft: #faf7f1;
+        --iwfnc-surface: #ffffff;
+        --iwfnc-ink: #13202b; /* deep navy-ink */
+        --iwfnc-ink-2: #3a4856;
+        --iwfnc-ink-3: #6b7785;
+        --iwfnc-line: #dfd7c8;
+        --iwfnc-line-2: #c9bea9;
+        --iwfnc-brand: #c47a2a; /* IWF orange (logo) */
+        --iwfnc-brand-dark: #a8631e;
+        --iwfnc-navy: #1f2e4a; /* IWF navy (logo) */
+        --iwfnc-navy-dark: #0f1a2c;
+        --iwfnc-accent: #3e5870;
+
+        --iwfnc-radius: 14px;
+        --iwfnc-radius-lg: 22px;
+        --iwfnc-radius-xl: 32px;
+
+        --iwfnc-shadow:
+          0 1px 2px rgba(15, 26, 43, 0.04), 0 8px 24px rgba(15, 26, 43, 0.06);
+        --iwfnc-shadow-lg: 0 30px 60px rgba(15, 26, 43, 0.14);
+
+        --iwfnc-font:
+  "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+--iwfnc-font-heading:
+  "Playfair Display", Georgia, serif;
+
+        --iwfnc-max: 1240px;
+        --iwfnc-nav-h: 78px;
+        --iwfnc-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      /* ============================================================
+   Base
+   ============================================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--iwfnc-font);
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--iwfnc-ink);
+        background: var(--iwfnc-bg);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+        height: auto;
+      }
+      a {
+        color: var(--iwfnc-ink);
+        text-decoration: none;
+        transition: color 0.2s var(--iwfnc-ease);
+      }
+      a:hover {
+        color: var(--iwfnc-brand);
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: 0;
+        background: none;
+        color: inherit;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        color: var(--iwfnc-ink);
+        line-height: 1.1;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 5.5vw, 4.75rem);
+      }
+      h2 {
+        font-size: clamp(2rem, 3.6vw, 3.25rem);
+        letter-spacing: -0.03em;
+      }
+      h3 {
+        font-size: 1.125rem;
+        letter-spacing: -0.01em;
+      }
+      p {
+        margin: 0 0 1rem;
+        font-size: 15px;
+      }
+      body {
+  font-family: var(--iwfnc-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--iwfnc-font-heading) !important;
+}
+      :focus-visible {
+        outline: 2px solid var(--iwfnc-brand);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+
+      .iwfnc-shell {
+        max-width: var(--iwfnc-max);
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+      @media (max-width: 600px) {
+        .iwfnc-shell {
+          padding: 0 18px;
+        }
+      }
+
+      /* ============================================================
+   Capsule navigation (inspired by ref)
+   ============================================================ */
+      .iwfnc-nav-wrap {
+        position: sticky;
+        top: 18px;
+        z-index: 60;
+        padding: 0 22px;
+        transition: top 0.25s var(--iwfnc-ease);
+      }
+      .iwfnc-nav {
+        max-width: var(--iwfnc-max);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: var(--iwfnc-nav-h);
+        padding: 10px 14px 10px 22px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: saturate(180%) blur(18px);
+        -webkit-backdrop-filter: saturate(180%) blur(18px);
+        border: 1px solid rgba(15, 26, 43, 0.08);
+        border-radius: 999px;
+        box-shadow:
+          0 1px 2px rgba(15, 26, 43, 0.04),
+          0 12px 30px rgba(15, 26, 43, 0.06);
+        transition:
+          box-shadow 0.25s var(--iwfnc-ease),
+          background 0.25s var(--iwfnc-ease);
+      }
+      .iwfnc-nav.is-scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow:
+          0 1px 2px rgba(15, 26, 43, 0.05),
+          0 16px 40px rgba(15, 26, 43, 0.12);
+          
+      }
+      .iwfnc-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .iwfnc-brand-mark {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--iwfnc-brand);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.05rem;
+        letter-spacing: 0.01em;
+        font-style: italic;
+        box-shadow: 0 4px 12px rgba(196, 122, 42, 0.3);
+      }
+      .iwfnc-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.05;
+      }
+      .iwfnc-brand-name {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--iwfnc-navy);
+        text-transform: uppercase;
+      }
+      .iwfnc-brand-sub {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--iwfnc-brand);
+        font-style: italic;
+      }
+      .iwfnc-nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+      }
+      .iwfnc-nav-link {
+        padding: 10px 16px;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--iwfnc-ink-2);
+        border-radius: 999px;
+        transition:
+          background 0.2s var(--iwfnc-ease),
+          color 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-nav-link:hover {
+        background: var(--iwfnc-bg);
+        color: var(--iwfnc-ink);
+      }
+      .iwfnc-nav-link.is-active {
+        color: var(--iwfnc-ink);
+        font-weight: 600;
+      }
+      .iwfnc-nav-cta {
+        margin-left: 10px;
+        padding: 12px 24px;
+        background: var(--iwfnc-navy);
+        color: #fff;
+        border-radius: 999px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        transition:
+          background 0.2s var(--iwfnc-ease),
+          transform 0.2s var(--iwfnc-ease);
+        white-space: nowrap;
+      }
+      .iwfnc-nav-cta:hover {
+        background: var(--iwfnc-navy-dark);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+      .iwfnc-nav-burger {
+        display: none;
+        width: 46px;
+        height: 46px;
+        border-radius: 999px;
+        align-items: center;
+        justify-content: center;
+        color: var(--iwfnc-ink);
+        background: transparent;
+      }
+      .iwfnc-nav-burger:hover {
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-nav-burger svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      @media (max-width: 960px) {
+        .iwfnc-nav-wrap {
+          top: 12px;
+          padding: 0 14px;
+        }
+        .iwfnc-nav {
+          padding: 8px 8px 8px 18px;
+          height: 68px;
+        }
+        .iwfnc-nav-menu,
+        .iwfnc-nav > .iwfnc-nav-cta {
+          display: none;
+        }
+        .iwfnc-nav-burger {
+          display: inline-flex;
+        }
+        .iwfnc-brand-text {
+          display: none;
+        }
+        .iwfnc-brand-mark {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      /* ============================================================
+   Drawer
+   ============================================================ */
+      .iwfnc-drawer {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .iwfnc-drawer.is-open {
+        visibility: visible;
+        pointer-events: auto;
+      }
+      .iwfnc-drawer-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 26, 43, 0.55);
+        opacity: 0;
+        transition: opacity 0.25s var(--iwfnc-ease);
+      }
+      .iwfnc-drawer.is-open .iwfnc-drawer-overlay {
+        opacity: 1;
+      }
+      .iwfnc-drawer-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(380px, 88vw);
+        background: #fff;
+        box-shadow: var(--iwfnc-shadow-lg);
+        transform: translateX(100%);
+        transition: transform 0.3s var(--iwfnc-ease);
+        display: flex;
+        flex-direction: column;
+      }
+      .iwfnc-drawer.is-open .iwfnc-drawer-panel {
+        transform: translateX(0);
+      }
+      .iwfnc-drawer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--iwfnc-line);
+      }
+      .iwfnc-drawer-close {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--iwfnc-ink);
+      }
+      .iwfnc-drawer-close:hover {
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-drawer-list {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .iwfnc-drawer-list a {
+        padding: 16px 18px;
+        border-radius: 12px;
+        font-size: 1.0625rem;
+        font-weight: 500;
+        color: var(--iwfnc-ink);
+      }
+      .iwfnc-drawer-list a:hover {
+        background: var(--iwfnc-bg);
+        color: var(--iwfnc-brand);
+      }
+      .iwfnc-drawer-foot {
+        margin-top: auto;
+        padding: 20px 24px;
+        border-top: 1px solid var(--iwfnc-line);
+      }
+      .iwfnc-drawer-foot .iwfnc-nav-cta {
+        display: block;
+        text-align: center;
+        margin: 0;
+        padding: 14px 24px;
+      }
+
+      /* ============================================================
+   HERO — large editorial portrait, single CTA
+   ============================================================ */
+      .iwfnc-hero {
+        padding: 32px 0 0;
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-hero-stage {
+        position: relative;
+        border-radius: var(--iwfnc-radius-xl);
+        overflow: hidden;
+        min-height: min(78vh, 720px);
+        background: #0c1626;
+      }
+      .iwfnc-hero-bg {
+        position: absolute;
+        inset: 0;
+      }
+      .iwfnc-hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 28%;
+      }
+      .iwfnc-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(15, 26, 43, 0.45) 0%,
+            rgba(15, 26, 43, 0) 30%,
+            rgba(15, 26, 43, 0.8) 100%
+          ),
+          linear-gradient(
+            90deg,
+            rgba(15, 26, 43, 0.8) 0%,
+            rgba(15, 26, 43, 0.3) 55%,
+            rgba(15, 26, 43, 0) 100%
+          );
+      }
+      .iwfnc-hero-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        min-height: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 56px 56px 48px;
+        color: #fff;
+      }
+      .iwfnc-hero-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 32px;
+      }
+      .iwfnc-hero-tenets {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .iwfnc-hero-tenets span {
+        margin: 0 8px;
+        opacity: 0.45;
+      }
+      .iwfnc-hero-locale {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .iwfnc-hero-locale::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--iwfnc-brand);
+        box-shadow: 0 0 0 4px rgba(196, 122, 42, 0.25);
+      }
+      .iwfnc-hero-body {
+        max-width: 880px;
+      }
+      .iwfnc-hero h1 {
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        margin-bottom: 24px;
+      }
+      .iwfnc-hero h1 em {
+        font-style: italic;
+        font-weight: 400;
+        color: #f0d9b8;
+      }
+      .iwfnc-hero-lede {
+        font-size: clamp(1rem, 1.3vw, 1.1875rem);
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.88);
+        max-width: 560px;
+        margin-bottom: 36px;
+      }
+      .iwfnc-hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .iwfnc-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 30px;
+        background: var(--iwfnc-brand);
+        color: #fff;
+        border-radius: 999px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        transition:
+          background 0.2s var(--iwfnc-ease),
+          transform 0.2s var(--iwfnc-ease),
+          box-shadow 0.2s var(--iwfnc-ease);
+        box-shadow: 0 6px 20px rgba(196, 122, 42, 0.35);
+      }
+      .iwfnc-btn-primary:hover {
+        background: var(--iwfnc-brand-dark);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(196, 122, 42, 0.4);
+      }
+      .iwfnc-btn-ghost-light {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 26px;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 999px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        transition:
+          border-color 0.2s var(--iwfnc-ease),
+          background 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-btn-ghost-light:hover {
+        border-color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+      }
+
+      /* Marquee */
+      .iwfnc-marquee {
+        position: relative;
+        overflow: hidden;
+        background: var(--iwfnc-bg);
+        border-bottom: 1px solid var(--iwfnc-line);
+        padding: 26px 0;
+      }
+      .iwfnc-marquee-track {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        width: max-content;
+        animation: iwfncSlide 38s linear infinite;
+      }
+      .iwfnc-marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 24px;
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        color: var(--iwfnc-navy);
+        white-space: nowrap;
+      }
+      .iwfnc-marquee-item em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--iwfnc-brand);
+      }
+      .iwfnc-marquee-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--iwfnc-brand);
+        flex-shrink: 0;
+      }
+      @keyframes iwfncSlide {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .iwfnc-marquee-track {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 960px) {
+        .iwfnc-hero-stage {
+          min-height: auto;
+        }
+        .iwfnc-hero-content {
+          padding: 32px 28px 36px;
+          min-height: 560px;
+        }
+        .iwfnc-hero-top {
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+      @media (max-width: 600px) {
+        .iwfnc-hero {
+          padding: 18px 0 0;
+        }
+        .iwfnc-hero-stage {
+          border-radius: var(--iwfnc-radius-lg);
+        }
+        .iwfnc-hero-content {
+          padding: 24px 22px 28px;
+          min-height: 540px;
+        }
+        .iwfnc-hero-tenets {
+          font-size: 0.6875rem;
+          letter-spacing: 0.18em;
+        }
+        .iwfnc-hero-tenets span {
+          margin: 0 5px;
+        }
+        .iwfnc-hero-lede {
+          font-size: 1rem;
+        }
+        .iwfnc-hero-actions {
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+        }
+        .iwfnc-btn-primary,
+        .iwfnc-btn-ghost-light {
+          width: 100%;
+          justify-content: center;
+          padding: 15px 24px;
+          white-space: nowrap;
+        }
+      }
+
+      /* ============================================================
+   PURPOSE — large editorial type, asymmetric
+   ============================================================ */
+      .iwfnc-purpose {
+        padding: 120px 0 100px;
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-purpose-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .iwfnc-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--iwfnc-brand);
+        margin-bottom: 24px;
+      }
+      .iwfnc-eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--iwfnc-brand);
+      }
+      .iwfnc-purpose-side {
+        position: sticky;
+        top: 120px;
+      }
+      .iwfnc-purpose-side h2 {
+        font-size: clamp(1.875rem, 2.6vw, 2.5rem);
+        color: var(--iwfnc-navy);
+        letter-spacing: -0.025em;
+      }
+      .iwfnc-purpose-blocks {
+        display: grid;
+        gap: 48px;
+      }
+      .iwfnc-purpose-block {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 32px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid var(--iwfnc-line);
+      }
+      .iwfnc-purpose-block:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+      .iwfnc-purpose-num {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--iwfnc-brand);
+        letter-spacing: -0.04em;
+        line-height: 0.85;
+      }
+      .iwfnc-purpose-block h3 {
+        font-size: 1.5rem;
+        color: var(--iwfnc-navy);
+        margin-bottom: 12px;
+        letter-spacing: -0.015em;
+      }
+      .iwfnc-purpose-block p {
+        font-size: 1.0625rem;
+        line-height: 1.65;
+        color: var(--iwfnc-ink-2);
+        margin: 0;
+      }
+
+      @media (max-width: 960px) {
+        .iwfnc-purpose {
+          padding: 80px 0 70px;
+        }
+        .iwfnc-purpose-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .iwfnc-purpose-side {
+          position: static;
+        }
+      }
+      @media (max-width: 600px) {
+        .iwfnc-purpose-block {
+          grid-template-columns: 1fr;
+          gap: 14px;
+          padding-bottom: 36px;
+        }
+        .iwfnc-purpose-num {
+          font-size: 2rem;
+        }
+      }
+
+      /* ============================================================
+   PILLARS — horizontal scroll, big numbered tiles
+   ============================================================ */
+      .iwfnc-pillars {
+        padding: 0 0 120px;
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-pillars-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 48px;
+      }
+      .iwfnc-pillars-head h2 {
+        max-width: 600px;
+        color: var(--iwfnc-navy);
+      }
+      .iwfnc-pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+      }
+      .iwfnc-pillar {
+        position: relative;
+        padding: 36px 24px 28px;
+        background: var(--iwfnc-surface);
+        border: 1px solid var(--iwfnc-line);
+        border-radius: var(--iwfnc-radius);
+        min-height: 240px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition:
+          transform 0.3s var(--iwfnc-ease),
+          border-color 0.3s var(--iwfnc-ease),
+          background 0.3s var(--iwfnc-ease);
+        overflow: hidden;
+      }
+      .iwfnc-pillar:hover {
+        transform: translateY(-4px);
+        border-color: var(--iwfnc-brand);
+        background: #fffaf2;
+      }
+      .iwfnc-pillar-num {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        color: var(--iwfnc-brand);
+      }
+      .iwfnc-pillar-name {
+        font-size: 1.625rem;
+        font-weight: 700;
+        color: var(--iwfnc-navy);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      .iwfnc-pillar-desc {
+        font-size: 0.875rem;
+        line-height: 1.55;
+        color: var(--iwfnc-ink-3);
+        margin-top: 14px;
+      }
+
+      @media (max-width: 1000px) {
+        .iwfnc-pillars-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+        .iwfnc-pillar {
+          min-height: 200px;
+        }
+      }
+      @media (max-width: 520px) {
+        .iwfnc-pillars {
+          padding: 0 0 70px;
+        }
+        .iwfnc-pillars-grid {
+          grid-template-columns: 1fr;
+        }
+        .iwfnc-pillar {
+          min-height: auto;
+          padding: 28px 22px;
+        }
+        .iwfnc-pillars-head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          margin-bottom: 32px;
+        }
+      }
+
+      /* ============================================================
+   FEATURE / COMMUNITY BAND — dark, image-led split
+   ============================================================ */
+      .iwfnc-community {
+        padding: 0;
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-community-inner {
+        background: var(--iwfnc-navy-dark);
+        border-radius: var(--iwfnc-radius-xl);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        min-height: 560px;
+      }
+      .iwfnc-community-body {
+        padding: 80px 64px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .iwfnc-community-body .iwfnc-eyebrow {
+        color: #e3a865;
+      }
+      .iwfnc-community-body .iwfnc-eyebrow::before {
+        background: #e3a865;
+      }
+      .iwfnc-community-body h2 {
+        color: #fff;
+        margin-bottom: 24px;
+      }
+      .iwfnc-community-body p {
+        font-size: 1.0625rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.78);
+      }
+      .iwfnc-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 48px;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .iwfnc-stat-num {
+        font-size: clamp(2rem, 2.8vw, 2.75rem);
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .iwfnc-stat-num em {
+        font-style: normal;
+        color: var(--iwfnc-brand);
+      }
+      .iwfnc-stat-label {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.45;
+      }
+      .iwfnc-community-media {
+        position: relative;
+        min-height: 380px;
+        background: #1a2941;
+      }
+      .iwfnc-community-media img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @media (max-width: 960px) {
+        .iwfnc-community-inner {
+          grid-template-columns: 1fr;
+          border-radius: var(--iwfnc-radius-lg);
+        }
+        .iwfnc-community-body {
+          padding: 48px 32px;
+        }
+        .iwfnc-community-media {
+          min-height: 320px;
+          order: -1;
+        }
+      }
+      @media (max-width: 520px) {
+        .iwfnc-community-body {
+          padding: 40px 24px;
+        }
+        .iwfnc-stats {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+          margin-top: 36px;
+          padding-top: 28px;
+        }
+        .iwfnc-stat-num {
+          font-size: 1.5rem;
+        }
+        .iwfnc-stat-label {
+          font-size: 0.75rem;
+        }
+      }
+
+      /* ============================================================
+   PROGRAMS — featured + dense agenda list
+   ============================================================ */
+      .iwfnc-programs {
+        padding: 120px 0;
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 48px;
+      }
+      .iwfnc-section-head-left {
+        max-width: 680px;
+      }
+      .iwfnc-section-head h2 {
+        color: var(--iwfnc-navy);
+        margin-bottom: 16px;
+      }
+      .iwfnc-section-head p {
+        font-size: 1.0625rem;
+        color: var(--iwfnc-ink-2);
+        margin: 0;
+      }
+      .iwfnc-section-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 22px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--iwfnc-ink);
+        border: 1px solid var(--iwfnc-line-2);
+        border-radius: 999px;
+        white-space: nowrap;
+        transition:
+          background 0.2s var(--iwfnc-ease),
+          border-color 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-section-link:hover {
+        background: var(--iwfnc-surface);
+        border-color: var(--iwfnc-navy);
+        color: var(--iwfnc-navy);
+      }
+
+      .iwfnc-programs-feature {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 48px;
+        margin-bottom: 64px;
+      }
+      .iwfnc-programs-feature-media {
+        position: relative;
+        border-radius: var(--iwfnc-radius-lg);
+        overflow: hidden;
+        aspect-ratio: 5/4;
+        background: var(--iwfnc-bg-2);
+        box-shadow: var(--iwfnc-shadow);
+      }
+      .iwfnc-programs-feature-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s var(--iwfnc-ease);
+      }
+      .iwfnc-programs-feature:hover .iwfnc-programs-feature-media img {
+        transform: scale(1.04);
+      }
+      .iwfnc-programs-feature-badge {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--iwfnc-navy);
+      }
+      .iwfnc-programs-feature-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .iwfnc-feature-date {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--iwfnc-brand);
+        margin-bottom: 18px;
+      }
+      .iwfnc-feature-title {
+        font-size: clamp(1.625rem, 2.2vw, 2rem);
+        color: var(--iwfnc-navy);
+        margin-bottom: 18px;
+        letter-spacing: -0.02em;
+      }
+      .iwfnc-feature-desc {
+        color: var(--iwfnc-ink-2);
+        margin-bottom: 32px;
+        font-size: 1.0625rem;
+        line-height: 1.65;
+      }
+      .iwfnc-feature-meta {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 32px;
+        margin-bottom: 32px;
+        padding: 24px 0;
+        border-top: 1px solid var(--iwfnc-line);
+        border-bottom: 1px solid var(--iwfnc-line);
+      }
+      .iwfnc-feature-meta strong {
+        display: block;
+        color: var(--iwfnc-navy);
+        font-weight: 600;
+        font-size: 0.9375rem;
+        margin-bottom: 2px;
+      }
+      .iwfnc-feature-meta span {
+        font-size: 0.8125rem;
+        color: var(--iwfnc-ink-3);
+      }
+
+      .iwfnc-programs-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--iwfnc-line);
+      }
+      .iwfnc-program-item {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 24px;
+        align-items: center;
+        padding: 26px 8px;
+        border-bottom: 1px solid var(--iwfnc-line);
+        transition: background 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-program-item:nth-child(odd) {
+        border-right: 1px solid var(--iwfnc-line);
+      }
+      .iwfnc-program-item:nth-child(odd) {
+        padding-right: 32px;
+      }
+      .iwfnc-program-item:nth-child(even) {
+        padding-left: 32px;
+      }
+      .iwfnc-program-item:hover {
+        background: rgba(196, 122, 42, 0.04);
+      }
+      .iwfnc-program-item:hover .iwfnc-program-title {
+        color: var(--iwfnc-brand);
+      }
+      .iwfnc-program-date {
+        width: 64px;
+        text-align: center;
+        padding: 8px 0;
+        background: var(--iwfnc-surface);
+        border: 1px solid var(--iwfnc-line);
+        border-radius: 10px;
+      }
+      .iwfnc-program-date-month {
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--iwfnc-brand);
+        line-height: 1.4;
+      }
+      .iwfnc-program-date-day {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--iwfnc-navy);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+      .iwfnc-program-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .iwfnc-program-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--iwfnc-ink);
+        transition: color 0.2s var(--iwfnc-ease);
+        letter-spacing: -0.005em;
+      }
+      .iwfnc-program-time {
+        font-size: 0.8125rem;
+        color: var(--iwfnc-ink-3);
+      }
+      .iwfnc-program-arrow {
+        color: var(--iwfnc-ink-3);
+        transition:
+          transform 0.2s var(--iwfnc-ease),
+          color 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-program-item:hover .iwfnc-program-arrow {
+        transform: translateX(4px);
+        color: var(--iwfnc-brand);
+      }
+
+      @media (max-width: 960px) {
+        .iwfnc-programs {
+          padding: 80px 0;
+        }
+        .iwfnc-programs-feature {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          margin-bottom: 48px;
+        }
+        .iwfnc-programs-list {
+          grid-template-columns: 1fr;
+        }
+        .iwfnc-program-item,
+        .iwfnc-program-item:nth-child(odd),
+        .iwfnc-program-item:nth-child(even) {
+          border-right: 0 !important;
+          padding: 24px 8px !important;
+        }
+        .iwfnc-section-head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+        .iwfnc-feature-meta {
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+      }
+
+      /* ============================================================
+   NEW MEMBERS — modular cards with avatar initials
+   ============================================================ */
+      .iwfnc-members {
+        padding: 120px 0;
+        background: var(--iwfnc-bg-soft);
+        border-top: 1px solid var(--iwfnc-line);
+        border-bottom: 1px solid var(--iwfnc-line);
+      }
+      .iwfnc-members-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .iwfnc-member {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 32px 28px;
+        background: var(--iwfnc-surface);
+        border: 1px solid var(--iwfnc-line);
+        border-radius: var(--iwfnc-radius);
+        transition:
+          transform 0.25s var(--iwfnc-ease),
+          border-color 0.25s var(--iwfnc-ease),
+          box-shadow 0.25s var(--iwfnc-ease);
+      }
+      .iwfnc-member:hover {
+        transform: translateY(-3px);
+        border-color: var(--iwfnc-brand);
+        box-shadow: var(--iwfnc-shadow);
+      }
+      .iwfnc-member-head {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .iwfnc-member-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--iwfnc-brand) 0%,
+          #d89b5b 100%
+        );
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        flex-shrink: 0;
+      }
+      .iwfnc-member-name {
+        font-size: 1.0625rem;
+        font-weight: 600;
+        color: var(--iwfnc-navy);
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+      }
+      .iwfnc-member-role {
+        font-size: 0.875rem;
+        line-height: 1.55;
+        color: var(--iwfnc-ink-2);
+      }
+      .iwfnc-member-link {
+        margin-top: auto;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--iwfnc-brand);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      @media (max-width: 960px) {
+        .iwfnc-members {
+          padding: 80px 0;
+        }
+        .iwfnc-members-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 520px) {
+        .iwfnc-members-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============================================================
+   NEWS — editorial timeline
+   ============================================================ */
+      .iwfnc-news {
+        padding: 120px 0;
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-news-list {
+        display: grid;
+        gap: 0;
+        border-top: 1px solid var(--iwfnc-line);
+      }
+      .iwfnc-news-item {
+        display: grid;
+        grid-template-columns: 200px 1fr 60px;
+        gap: 40px;
+        align-items: center;
+        padding: 32px 4px;
+        border-bottom: 1px solid var(--iwfnc-line);
+        transition: padding 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-news-item:hover {
+        padding-left: 20px;
+      }
+      .iwfnc-news-item:hover .iwfnc-news-title {
+        color: var(--iwfnc-brand);
+      }
+      .iwfnc-news-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .iwfnc-news-date {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--iwfnc-brand);
+      }
+      .iwfnc-news-tag {
+        font-size: 0.75rem;
+        color: var(--iwfnc-ink-3);
+        letter-spacing: 0.06em;
+      }
+      .iwfnc-news-title {
+        font-size: 1.375rem;
+        color: var(--iwfnc-navy);
+        margin-bottom: 8px;
+        letter-spacing: -0.015em;
+        transition: color 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-news-desc {
+        font-size: 0.9375rem;
+        color: var(--iwfnc-ink-2);
+        margin: 0;
+        line-height: 1.6;
+        max-width: 680px;
+      }
+      .iwfnc-news-arrow {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--iwfnc-surface);
+        border: 1px solid var(--iwfnc-line-2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--iwfnc-ink);
+        transition:
+          background 0.2s var(--iwfnc-ease),
+          color 0.2s var(--iwfnc-ease),
+          border-color 0.2s var(--iwfnc-ease),
+          transform 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-news-item:hover .iwfnc-news-arrow {
+        background: var(--iwfnc-brand);
+        color: #fff;
+        border-color: var(--iwfnc-brand);
+        transform: rotate(-45deg);
+      }
+
+      @media (max-width: 760px) {
+        .iwfnc-news {
+          padding: 80px 0;
+        }
+        .iwfnc-news-item {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          padding: 24px 0;
+        }
+        .iwfnc-news-item:hover {
+          padding-left: 0;
+        }
+        .iwfnc-news-arrow {
+          display: none;
+        }
+        .iwfnc-news-title {
+          font-size: 1.1875rem;
+        }
+      }
+
+      /* ============================================================
+   JOIN CTA — big editorial
+   ============================================================ */
+      .iwfnc-join {
+        padding: 80px 0 120px;
+        background: var(--iwfnc-bg);
+      }
+      .iwfnc-join-inner {
+        position: relative;
+        border-radius: var(--iwfnc-radius-xl);
+        overflow: hidden;
+        padding: 96px 80px;
+        background: var(--iwfnc-navy);
+        color: #fff;
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .iwfnc-join-inner::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 560px;
+        height: 560px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(196, 122, 42, 0.25) 0%,
+          rgba(196, 122, 42, 0) 70%
+        );
+        pointer-events: none;
+      }
+      .iwfnc-join h2 {
+        color: #fff;
+        font-size: clamp(2rem, 3.4vw, 3rem);
+        margin-bottom: 20px;
+        letter-spacing: -0.03em;
+        max-width: 680px;
+      }
+      .iwfnc-join h2 em {
+        font-style: italic;
+        font-weight: 400;
+        color: #f0d9b8;
+      }
+      .iwfnc-join p {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 1.0625rem;
+        margin: 0;
+        max-width: 560px;
+      }
+      .iwfnc-join-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+      .iwfnc-btn-light {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 18px 30px;
+        background: #fff;
+        color: var(--iwfnc-navy);
+        border-radius: 999px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        transition:
+          background 0.2s var(--iwfnc-ease),
+          color 0.2s var(--iwfnc-ease),
+          transform 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-btn-light:hover {
+        background: var(--iwfnc-brand);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 960px) {
+        .iwfnc-join {
+          padding: 60px 0 80px;
+        }
+        .iwfnc-join-inner {
+          padding: 56px 32px;
+          grid-template-columns: 1fr;
+          gap: 36px;
+          border-radius: var(--iwfnc-radius-lg);
+        }
+      }
+      @media (max-width: 520px) {
+        .iwfnc-join-inner {
+          padding: 48px 24px;
+        }
+      }
+
+      /* ============================================================
+   FOOTER
+   ============================================================ */
+      .iwfnc-footer {
+        background: var(--iwfnc-navy-dark);
+        color: #a8b4c8;
+        padding: 80px 0 32px;
+      }
+      .iwfnc-footer-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 56px;
+        margin-bottom: 56px;
+      }
+      .iwfnc-footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+      .iwfnc-footer-brand .iwfnc-brand-mark {
+        width: 48px;
+        height: 48px;
+        font-size: 1.05rem;
+      }
+      .iwfnc-footer-brand .iwfnc-brand-name {
+        color: #fff;
+        font-size: 0.85rem;
+      }
+      .iwfnc-footer-brand .iwfnc-brand-sub {
+        color: #e3a865;
+        font-size: 0.9rem;
+      }
+      .iwfnc-footer-about {
+        color: #8090a8;
+        line-height: 1.65;
+        font-size: 0.9375rem;
+        margin-bottom: 28px;
+        max-width: 380px;
+      }
+      .iwfnc-footer-col h4 {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+      .iwfnc-footer-col ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+      }
+      .iwfnc-footer-col a {
+        color: #a8b4c8;
+        font-size: 0.9375rem;
+      }
+      .iwfnc-footer-col a:hover {
+        color: #fff;
+      }
+      .iwfnc-footer-contact {
+        display: grid;
+        gap: 10px;
+        font-size: 0.9375rem;
+        color: #8090a8;
+        line-height: 1.5;
+      }
+      .iwfnc-footer-contact a {
+        color: #a8b4c8;
+      }
+      .iwfnc-footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.8125rem;
+        color: #697791;
+      }
+      .iwfnc-social {
+        display: flex;
+        gap: 10px;
+      }
+      .iwfnc-social a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 50%;
+        color: #a8b4c8;
+        transition:
+          border-color 0.2s var(--iwfnc-ease),
+          color 0.2s var(--iwfnc-ease),
+          background 0.2s var(--iwfnc-ease),
+          transform 0.2s var(--iwfnc-ease);
+      }
+      .iwfnc-social a:hover {
+        border-color: var(--iwfnc-brand);
+        color: #fff;
+        background: var(--iwfnc-brand);
+        transform: translateY(-2px);
+      }
+      .iwfnc-social svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      @media (max-width: 860px) {
+        .iwfnc-footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+        }
+      }
+      @media (max-width: 520px) {
+        .iwfnc-footer-grid {
+          grid-template-columns: 1fr;
+          gap: 36px;
+          margin-bottom: 36px;
+        }
+        .iwfnc-footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          text-align: left;
+        }
+      }
+
+      /* ============================================================
+   Reveal-on-scroll
+   ============================================================ */
+      .iwfnc-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s var(--iwfnc-ease),
+          transform 0.7s var(--iwfnc-ease);
+      }
+      .iwfnc-reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .iwfnc-reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+
+      .iwfnc-member {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 10px;
+        padding: 24px;
+        min-height: 360px;
+        background: var(--iwfnc-surface);
+        border: 1px solid var(--iwfnc-line);
+        border-radius: var(--iwfnc-radius);
+        overflow: hidden;
+        transition:
+          transform 0.25s var(--iwfnc-ease),
+          border-color 0.25s var(--iwfnc-ease),
+          box-shadow 0.25s var(--iwfnc-ease);
+      }
+      .iwfnc-member::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--iwfnc-member-img);
+        background-size: cover;
+        background-position: center top;
+        transition: transform 0.6s var(--iwfnc-ease);
+        z-index: 0;
+      }
+      .iwfnc-member::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 26, 43, 0) 35%,
+          rgba(15, 26, 43, 0.55) 65%,
+          rgba(15, 26, 43, 0.92) 100%
+        );
+        z-index: 1;
+      }
+      .iwfnc-member:hover {
+        transform: translateY(-3px);
+        border-color: var(--iwfnc-brand);
+        box-shadow: var(--iwfnc-shadow);
+      }
+      .iwfnc-member:hover::before {
+        transform: scale(1.05);
+      }
+      .iwfnc-member > * {
+        position: relative;
+        z-index: 2;
+      }
+      .iwfnc-member-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+      .iwfnc-member-role {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.88);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+      .iwfnc-member-link {
+        margin-top: 6px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: #f0d9b8;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .iwfnc-member-link:hover {
+        color: #fff;
+      }
+
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+    <!-- ============ NAV ============ -->
+    <div class="iwfnc-nav-wrap">
+      <header class="iwfnc-nav" id="iwfnc-nav">
+        <a
+          href="#"
+          class="iwfnc-brand"
+          aria-label="IWF Northern California — Home"
+        >
+          <span class="iwfnc-brand-mark" aria-hidden="true">iwf</span>
+          <span class="iwfnc-brand-text">
+            <span class="iwfnc-brand-name">International Women's Forum</span>
+            <span class="iwfnc-brand-sub">Northern California</span>
+          </span>
+        </a>
+
+        <nav class="iwfnc-nav-menu" aria-label="Primary">
+          <a class="iwfnc-nav-link is-active" href="#">Home</a>
+          <a class="iwfnc-nav-link" href="#purpose">About</a>
+          <a class="iwfnc-nav-link" href="#programs">Programs</a>
+          <a class="iwfnc-nav-link" href="#members">Members</a>
+          <a class="iwfnc-nav-link" href="#news">News</a>
+        </nav>
+
+        <a class="iwfnc-nav-cta" href="#login">Member Login</a>
+
+        <button
+          class="iwfnc-nav-burger"
+          id="iwfnc-burger"
+          aria-label="Open menu"
+          aria-controls="iwfnc-drawer"
+          aria-expanded="false"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </button>
+      </header>
+    </div>
+
+    <!-- ============ DRAWER ============ -->
+    <div class="iwfnc-drawer" id="iwfnc-drawer" aria-hidden="true">
+      <div class="iwfnc-drawer-overlay" data-iwfnc-close></div>
+      <aside
+        class="iwfnc-drawer-panel"
+        role="dialog"
+        aria-label="Menu"
+        aria-modal="true"
+      >
+        <div class="iwfnc-drawer-head">
+          <span class="iwfnc-brand">
+            <span class="iwfnc-brand-mark" aria-hidden="true">iwf</span>
+            <span class="iwfnc-brand-text">
+              <span class="iwfnc-brand-name">IWF</span>
+              <span class="iwfnc-brand-sub">Northern California</span>
+            </span>
+          </span>
+          <button
+            class="iwfnc-drawer-close"
+            data-iwfnc-close
+            aria-label="Close menu"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="6" y1="18" x2="18" y2="6" />
+            </svg>
+          </button>
+        </div>
+        <nav class="iwfnc-drawer-list" aria-label="Mobile">
+          <a href="#" data-iwfnc-close>Home</a>
+          <a href="#purpose" data-iwfnc-close>About</a>
+          <a href="#programs" data-iwfnc-close>Programs</a>
+          <a href="#members" data-iwfnc-close>Members</a>
+          <a href="#news" data-iwfnc-close>News</a>
+          <a href="#contact" data-iwfnc-close>Contact</a>
+        </nav>
+        <div class="iwfnc-drawer-foot">
+          <a class="iwfnc-nav-cta" href="#login" data-iwfnc-close
+            >Member Login</a
+          >
+        </div>
+      </aside>
+    </div>
+
+    <!-- ============ HERO ============ -->
+    <section class="iwfnc-hero">
+      <div class="iwfnc-shell">
+        <div class="iwfnc-hero-stage">
+          <div class="iwfnc-hero-bg">
+            <img
+              src="https://iwfnorcal.org/resources/Pictures/Members/2024%20EC.png"
+              alt="IWF NorCal members gathered at a recent event"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="iwfnc-hero-overlay" aria-hidden="true"></div>
+          <div class="iwfnc-hero-content">
+            <div class="iwfnc-hero-body iwfnc-reveal">
+              <h1>The women shaping <em>what's next</em> together.</h1>
+              <p class="iwfnc-hero-lede">
+                IWF Northern California is an invitation-only community of
+                accomplished women leaders. We cultivate friendship, share
+                perspective, and create the relationships that move our work and
+                our world forward.
+              </p>
+              <div class="iwfnc-hero-actions">
+                <a class="iwfnc-btn-primary" href="#purpose">
+                  Discover IWF NorCal
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="13 6 19 12 13 18" />
+                  </svg>
+                </a>
+                <a class="iwfnc-btn-ghost-light" href="#programs"
+                  >Upcoming programs</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <section class="iwfnc-marquee" aria-hidden="true">
+      <div class="iwfnc-marquee-track">
+        <span class="iwfnc-marquee-item"
+          >Leadership<span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          ><em>Inclusion</em><span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          >Community<span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          ><em>Friendship</em><span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          >Inspiration<span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          >Leadership<span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          ><em>Inclusion</em><span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          >Community<span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          ><em>Friendship</em><span class="iwfnc-marquee-dot"></span
+        ></span>
+        <span class="iwfnc-marquee-item"
+          >Inspiration<span class="iwfnc-marquee-dot"></span
+        ></span>
+      </div>
+    </section>
+
+    <!-- ============ PURPOSE ============ -->
+    <section class="iwfnc-purpose" id="purpose">
+      <div class="iwfnc-shell iwfnc-purpose-grid">
+        <div class="iwfnc-purpose-side iwfnc-reveal">
+          <div class="iwfnc-eyebrow">Who we are</div>
+          <h2>Connecting the women who lead the Bay Area — and beyond.</h2>
+        </div>
+        <div class="iwfnc-purpose-blocks iwfnc-reveal">
+          <div class="iwfnc-purpose-block">
+            <div class="iwfnc-purpose-num">01</div>
+            <div>
+              <h3>Our Purpose</h3>
+              <p>
+                IWF Northern California provides unparalleled access to
+                extraordinary women leaders who come together to inspire,
+                support, and share every dimension of their lives.
+              </p>
+            </div>
+          </div>
+          <div class="iwfnc-purpose-block">
+            <div class="iwfnc-purpose-num">02</div>
+            <div>
+              <h3>Our Mission</h3>
+              <p>
+                We cultivate a vibrant community of accomplished and diverse
+                women leaders — building the relationships that fuel meaningful
+                conversations and create lasting impact.
+              </p>
+            </div>
+          </div>
+          <div class="iwfnc-purpose-block">
+            <div class="iwfnc-purpose-num">03</div>
+            <div>
+              <h3>Our Community</h3>
+              <p>
+                A true sisterhood serving both our IWF membership and the
+                broader communities where we live and work — with a shared
+                commitment to advancing the next generation of women leaders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PILLARS ============ -->
+    <section class="iwfnc-pillars">
+      <div class="iwfnc-shell">
+        <div class="iwfnc-pillars-head iwfnc-reveal">
+          <h2>Five tenets that ground everything we do.</h2>
+          <a class="iwfnc-section-link" href="#purpose"
+            >Read our story
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="13 6 19 12 13 18" />
+            </svg>
+          </a>
+        </div>
+        <div class="iwfnc-pillars-grid iwfnc-reveal">
+          <article class="iwfnc-pillar">
+            <div>
+              <div class="iwfnc-pillar-num">01</div>
+              <div class="iwfnc-pillar-name" style="margin-top: 14px">
+                Leadership
+              </div>
+            </div>
+            <p class="iwfnc-pillar-desc">
+              Investing in the leaders shaping industry, policy, and culture
+              today.
+            </p>
+          </article>
+          <article class="iwfnc-pillar">
+            <div>
+              <div class="iwfnc-pillar-num">02</div>
+              <div class="iwfnc-pillar-name" style="margin-top: 14px">
+                Inclusion
+              </div>
+            </div>
+            <p class="iwfnc-pillar-desc">
+              A diverse membership that reflects the breadth of women leading
+              today.
+            </p>
+          </article>
+          <article class="iwfnc-pillar">
+            <div>
+              <div class="iwfnc-pillar-num">03</div>
+              <div class="iwfnc-pillar-name" style="margin-top: 14px">
+                Community
+              </div>
+            </div>
+            <p class="iwfnc-pillar-desc">
+              Local roots and global reach — connection across the Bay Area and
+              worldwide.
+            </p>
+          </article>
+          <article class="iwfnc-pillar">
+            <div>
+              <div class="iwfnc-pillar-num">04</div>
+              <div class="iwfnc-pillar-name" style="margin-top: 14px">
+                Friendship
+              </div>
+            </div>
+            <p class="iwfnc-pillar-desc">
+              Relationships that endure beyond any board, office, or boardroom.
+            </p>
+          </article>
+          <article class="iwfnc-pillar">
+            <div>
+              <div class="iwfnc-pillar-num">05</div>
+              <div class="iwfnc-pillar-name" style="margin-top: 14px">
+                Inspiration
+              </div>
+            </div>
+            <p class="iwfnc-pillar-desc">
+              Conversations and ideas that spark the next generation of leaders.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMMUNITY + STATS (dark band) ============ -->
+    <section class="iwfnc-community">
+      <div class="iwfnc-shell">
+        <div class="iwfnc-community-inner iwfnc-reveal">
+          <div class="iwfnc-community-body">
+            <div class="iwfnc-eyebrow">Our reach</div>
+            <h2>A sisterhood that spans the Bay Area and the globe.</h2>
+            <p>
+              As an affiliate of the International Women's Forum, our members
+              are part of a worldwide community of 8,400+ accomplished women
+              across 77 local forums in 35 countries. Locally, we serve the
+              communities where we live and work — with a shared commitment to
+              giving back and advancing the next generation.
+            </p>
+            <div class="iwfnc-stats">
+              <div>
+                <div class="iwfnc-stat-num">
+                  <span data-iwfnc-count="8400" data-iwfnc-suffix="">0</span
+                  ><em>+</em>
+                </div>
+                <div class="iwfnc-stat-label">Members worldwide</div>
+              </div>
+              <div>
+                <div class="iwfnc-stat-num">
+                  <span data-iwfnc-count="77">0</span>
+                </div>
+                <div class="iwfnc-stat-label">Forums in 35 countries</div>
+              </div>
+              <div>
+                <div class="iwfnc-stat-num">
+                  <span data-iwfnc-count="40" data-iwfnc-suffix="">0</span
+                  ><em>+</em>
+                </div>
+                <div class="iwfnc-stat-label">Years championing leaders</div>
+              </div>
+            </div>
+          </div>
+          <div class="iwfnc-community-media">
+            <img
+              src="https://iwfnorcal.org/resources/Pictures/HOMEPAGE%20SLIDESHOW/0_24%2001.png"
+              alt="IWF NorCal members at a recent gathering"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROGRAMS ============ -->
+    <section class="iwfnc-programs" id="programs">
+      <div class="iwfnc-shell">
+        <div class="iwfnc-section-head iwfnc-reveal">
+          <div class="iwfnc-section-head-left">
+            <div class="iwfnc-eyebrow">Programs &amp; Events</div>
+            <h2>
+              Exclusive access. Shared experiences. By members, for members.
+            </h2>
+            <p>
+              Signature events, supper clubs, book groups, summer camp,
+              retreats, and global conferences — designed to spark conversation
+              and lasting connection.
+            </p>
+          </div>
+          <a class="iwfnc-section-link" href="#all-programs">
+            All programs
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="13 6 19 12 13 18" />
+            </svg>
+          </a>
+        </div>
+
+        <article class="iwfnc-programs-feature iwfnc-reveal">
+          <div class="iwfnc-programs-feature-media">
+            <div class="iwfnc-programs-feature-badge">Signature Event</div>
+            <img
+              src="https://iwfnorcal.org/resources/Pictures/HOMEPAGE%20SLIDESHOW/0_24%20Camp.png"
+              alt="New Connections Luncheon — featured event"
+              loading="lazy"
+            />
+          </div>
+          <div class="iwfnc-programs-feature-body">
+            <div class="iwfnc-feature-date">Saturday · June 13, 2026</div>
+            <h3 class="iwfnc-feature-title">New Connections Luncheon</h3>
+            <p class="iwfnc-feature-desc">
+              An afternoon designed for members and new connections to meet,
+              share, and build relationships in an intimate, curated setting
+              with leaders from across our community.
+            </p>
+            <div class="iwfnc-feature-meta">
+              <div>
+                <strong>11:00 AM</strong>
+                <span>Doors at 10:30</span>
+              </div>
+              <div>
+                <strong>San Francisco</strong>
+                <span>Venue on RSVP</span>
+              </div>
+              <div>
+                <strong>Members</strong>
+                <span>+ invited guests</span>
+              </div>
+            </div>
+            <a
+              class="iwfnc-btn-primary"
+              style="background: var(--iwfnc-navy); box-shadow: none"
+              href="#rsvp"
+            >
+              RSVP for this event
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <div class="iwfnc-programs-list iwfnc-reveal">
+          <a class="iwfnc-program-item" href="#evt1">
+            <div class="iwfnc-program-date">
+              <div class="iwfnc-program-date-month">May</div>
+              <div class="iwfnc-program-date-day">22</div>
+            </div>
+            <div class="iwfnc-program-info">
+              <div class="iwfnc-program-title">
+                Walk &amp; Talk: San Francisco Presidio
+              </div>
+              <div class="iwfnc-program-time">9:30 AM · Friday</div>
+            </div>
+            <div class="iwfnc-program-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-program-item" href="#evt2">
+            <div class="iwfnc-program-date">
+              <div class="iwfnc-program-date-month">May</div>
+              <div class="iwfnc-program-date-day">28</div>
+            </div>
+            <div class="iwfnc-program-info">
+              <div class="iwfnc-program-title">East Bay Book Club</div>
+              <div class="iwfnc-program-time">6:30 PM · Thursday</div>
+            </div>
+            <div class="iwfnc-program-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-program-item" href="#evt3">
+            <div class="iwfnc-program-date">
+              <div class="iwfnc-program-date-month">Jun</div>
+              <div class="iwfnc-program-date-day">02</div>
+            </div>
+            <div class="iwfnc-program-info">
+              <div class="iwfnc-program-title">
+                Women's Health: Hormones &amp; Transitions
+              </div>
+              <div class="iwfnc-program-time">4:00 PM · Tuesday</div>
+            </div>
+            <div class="iwfnc-program-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-program-item" href="#evt4">
+            <div class="iwfnc-program-date">
+              <div class="iwfnc-program-date-month">Jun</div>
+              <div class="iwfnc-program-date-day">17</div>
+            </div>
+            <div class="iwfnc-program-info">
+              <div class="iwfnc-program-title">East Bay Supper Club</div>
+              <div class="iwfnc-program-time">6:45 PM · Wednesday</div>
+            </div>
+            <div class="iwfnc-program-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-program-item" href="#evt5">
+            <div class="iwfnc-program-date">
+              <div class="iwfnc-program-date-month">Jun</div>
+              <div class="iwfnc-program-date-day">25</div>
+            </div>
+            <div class="iwfnc-program-info">
+              <div class="iwfnc-program-title">AI in Women's Health</div>
+              <div class="iwfnc-program-time">4:00 PM · Thursday</div>
+            </div>
+            <div class="iwfnc-program-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-program-item" href="#evt6">
+            <div class="iwfnc-program-date">
+              <div class="iwfnc-program-date-month">Jul</div>
+              <div class="iwfnc-program-date-day">10</div>
+            </div>
+            <div class="iwfnc-program-info">
+              <div class="iwfnc-program-title">IWF NorCal Summer Camp</div>
+              <div class="iwfnc-program-time">3-day · July 10–12</div>
+            </div>
+            <div class="iwfnc-program-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-program-item" href="#evt7">
+            <div class="iwfnc-program-date">
+              <div class="iwfnc-program-date-month">Jul</div>
+              <div class="iwfnc-program-date-day">31</div>
+            </div>
+            <div class="iwfnc-program-info">
+              <div class="iwfnc-program-title">IWF Western Region Retreat</div>
+              <div class="iwfnc-program-time">Weekend · July 31 – Aug 2</div>
+            </div>
+            <div class="iwfnc-program-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-program-item" href="#evt8">
+            <div class="iwfnc-program-date">
+              <div class="iwfnc-program-date-month">Sep</div>
+              <div class="iwfnc-program-date-day">17</div>
+            </div>
+            <div class="iwfnc-program-info">
+              <div class="iwfnc-program-title">
+                Reception with IWF Global CEO
+              </div>
+              <div class="iwfnc-program-time">6:00 PM · Thursday</div>
+            </div>
+            <div class="iwfnc-program-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEW MEMBERS ============ -->
+    <section class="iwfnc-members" id="members">
+      <div class="iwfnc-shell">
+        <div class="iwfnc-section-head iwfnc-reveal">
+          <div class="iwfnc-section-head-left">
+            <div class="iwfnc-eyebrow">New members</div>
+            <h2>Welcoming our newest leaders.</h2>
+            <p>
+              A snapshot of the accomplished women who recently joined IWF
+              Northern California.
+            </p>
+          </div>
+          <a class="iwfnc-section-link" href="#all-members">
+            Member directory
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="13 6 19 12 13 18" />
+            </svg>
+          </a>
+        </div>
+        <div class="iwfnc-members-grid iwfnc-reveal">
+          <a
+            class="iwfnc-member"
+            href="#m1"
+            style="
+              --iwfnc-member-img: url(&quot;https://iwfnorcal.org/resources/Pictures/Members/Cari%20Borja.png&quot;);
+            "
+          >
+            <div class="iwfnc-member-name">Cari Borja</div>
+            <div class="iwfnc-member-role">
+              Senior Advisor, Alice Waters Institute
+            </div>
+            <div class="iwfnc-member-link">
+              View profile
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a
+            class="iwfnc-member"
+            href="#m2"
+            style="
+              --iwfnc-member-img: url(&quot;https://iwfnorcal.org/resources/Pictures/Members/Molly%20Cooke.jpg&quot;);
+            "
+          >
+            <div class="iwfnc-member-name">Molly Cooke</div>
+            <div class="iwfnc-member-role">
+              Professor Emerita of Clinical Medicine, UCSF
+            </div>
+            <div class="iwfnc-member-link">
+              View profile
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a
+            class="iwfnc-member"
+            href="#m3"
+            style="
+              --iwfnc-member-img: url(&quot;https://iwfnorcal.org/resources/Pictures/Members/laura-martinez.jpeg&quot;);
+            "
+          >
+            <div class="iwfnc-member-name">Laura Martinez</div>
+            <div class="iwfnc-member-role">
+              Partner &amp; US Board Member, PricewaterhouseCoopers LLP
+            </div>
+            <div class="iwfnc-member-link">
+              View profile
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a
+            class="iwfnc-member"
+            href="#m4"
+            style="
+              --iwfnc-member-img: url(&quot;https://iwfnorcal.org/resources/Pictures/Members/Hamila%20Kownacki.jpeg&quot;);
+            "
+          >
+            <div class="iwfnc-member-name">Hamila Kownacki</div>
+            <div class="iwfnc-member-role">
+              CEO (retired), Sutter Health's California Pacific Medical Center
+            </div>
+            <div class="iwfnc-member-link">
+              View profile
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a
+            class="iwfnc-member"
+            href="#m5"
+            style="
+              --iwfnc-member-img: url(&quot;https://iwfnorcal.org/resources/Pictures/Members/Tanya%20Shadoan.png&quot;);
+            "
+          >
+            <div class="iwfnc-member-name">Tanya Shadoan</div>
+            <div class="iwfnc-member-role">
+              Chief Operating Officer, Jewish Federation Bay Area
+            </div>
+            <div class="iwfnc-member-link">
+              View profile
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a
+            class="iwfnc-member"
+            href="#m6"
+            style="
+              --iwfnc-member-img: url(&quot;https://iwfnorcal.org/resources/Pictures/Members/Mary-Jane%20Strom.png&quot;);
+            "
+          >
+            <div class="iwfnc-member-name">Mary-Jane Strom</div>
+            <div class="iwfnc-member-role">
+              CEO, Girl Scouts of Northern California
+            </div>
+            <div class="iwfnc-member-link">
+              View profile
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWS ============ -->
+    <section class="iwfnc-news" id="news">
+      <div class="iwfnc-shell">
+        <div class="iwfnc-section-head iwfnc-reveal">
+          <div class="iwfnc-section-head-left">
+            <div class="iwfnc-eyebrow">News &amp; highlights</div>
+            <h2>Recent moments from the community.</h2>
+          </div>
+          <a class="iwfnc-section-link" href="#all-news"
+            >All news
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="13 6 19 12 13 18" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="iwfnc-news-list iwfnc-reveal">
+          <a class="iwfnc-news-item" href="#n1">
+            <div class="iwfnc-news-meta">
+              <div class="iwfnc-news-date">May 13 – 15</div>
+              <div class="iwfnc-news-tag">Global Conference</div>
+            </div>
+            <div>
+              <h3 class="iwfnc-news-title">IWF Cornerstone Conference</h3>
+              <p class="iwfnc-news-desc">
+                An energizing gathering of more than 750 IWF leaders from over
+                40 countries — insightful discussions designed to inform
+                decisions in today's world.
+              </p>
+            </div>
+            <div class="iwfnc-news-arrow">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-news-item" href="#n2">
+            <div class="iwfnc-news-meta">
+              <div class="iwfnc-news-date">April 28</div>
+              <div class="iwfnc-news-tag">Member Conversation</div>
+            </div>
+            <div>
+              <h3 class="iwfnc-news-title">
+                Dying to Talk — A Conversation on Hospice &amp; Palliative Care
+              </h3>
+              <p class="iwfnc-news-desc">
+                Members Juli Betwee and Dawn Gross, MD, PhD, shared personal
+                stories and explored why end-of-life care remains a taboo
+                subject in healthcare.
+              </p>
+            </div>
+            <div class="iwfnc-news-arrow">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-news-item" href="#n3">
+            <div class="iwfnc-news-meta">
+              <div class="iwfnc-news-date">April 15</div>
+              <div class="iwfnc-news-tag">Leadership Session</div>
+            </div>
+            <div>
+              <h3 class="iwfnc-news-title">
+                Seat at the Table — Understanding Board Service
+              </h3>
+              <p class="iwfnc-news-desc">
+                Member Kim Box led a session on the path to the boardroom — what
+                it means to serve, and how accomplished leaders position
+                themselves for a seat at the table.
+              </p>
+            </div>
+            <div class="iwfnc-news-arrow">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+          <a class="iwfnc-news-item" href="#n4">
+            <div class="iwfnc-news-meta">
+              <div class="iwfnc-news-date">2025 Report</div>
+              <div class="iwfnc-news-tag">Annual Review</div>
+            </div>
+            <div>
+              <h3 class="iwfnc-news-title">
+                IWF NorCal Annual Report Released
+              </h3>
+              <p class="iwfnc-news-desc">
+                A celebration of a remarkable year — the programs, partnerships,
+                and leaders shaping the next chapter for IWF Northern
+                California.
+              </p>
+            </div>
+            <div class="iwfnc-news-arrow">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JOIN CTA ============ -->
+    <section class="iwfnc-join" id="join">
+      <div class="iwfnc-shell">
+        <div class="iwfnc-join-inner iwfnc-reveal">
+          <div>
+            <div class="iwfnc-eyebrow" style="color: #e3a865">Membership</div>
+            <h2>
+              Membership is by invitation.
+              <em>Connection begins with a conversation.</em>
+            </h2>
+            <p>
+              If you're an IWF member visiting the San Francisco Bay Area — or
+              interested in nominating a colleague — we'd love to hear from you.
+            </p>
+          </div>
+          <div class="iwfnc-join-actions">
+            <a class="iwfnc-btn-light" href="#nominate">
+              Nominate a member
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </a>
+            <a
+              class="iwfnc-btn-ghost-light"
+              style="justify-content: center"
+              href="#visit"
+              >Visiting members form</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="iwfnc-footer" id="contact">
+      <div class="iwfnc-shell">
+        <div class="iwfnc-footer-grid">
+          <div>
+            <div class="iwfnc-footer-brand">
+              <span class="iwfnc-brand-mark" aria-hidden="true">iwf</span>
+              <span class="iwfnc-brand-text">
+                <span class="iwfnc-brand-name"
+                  >International Women's Forum</span
+                >
+                <span class="iwfnc-brand-sub">Northern California</span>
+              </span>
+            </div>
+            <p class="iwfnc-footer-about">
+              An invitation-only member organization of accomplished and diverse
+              women leaders — building community, friendship, and inspiration
+              across the Bay Area and globally.
+            </p>
+            <div class="iwfnc-social" aria-label="Social media">
+              <a
+                href="https://www.facebook.com/profile.php?id=100013855054669"
+                aria-label="Facebook"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/iwf-northern-california/"
+                aria-label="LinkedIn"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.75h4v11H3v-11zm7 0h3.83v1.5h.05a4.2 4.2 0 0 1 3.78-2.07c4.04 0 4.78 2.66 4.78 6.12v5.45h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.84 1.25-1.84 2.55v4.91h-4v-11z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/iwfnorcal/"
+                aria-label="Instagram"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                </svg>
+              </a>
+              <a href="https://x.com/wildapricot" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M18.244 2H21.5l-7.5 8.57L23 22h-6.844l-5.36-7.01L4.5 22H1.24l8.04-9.18L1 2h7.02l4.84 6.4L18.244 2zm-1.2 18h1.81L7.05 4H5.15l11.894 16z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="iwfnc-footer-col">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#purpose">About</a></li>
+              <li><a href="#programs">Programs</a></li>
+              <li><a href="#members">Members</a></li>
+              <li><a href="#news">News</a></li>
+            </ul>
+          </div>
+
+          <div class="iwfnc-footer-col">
+            <h4>Membership</h4>
+            <ul>
+              <li><a href="#nominate">Nominate a Member</a></li>
+              <li><a href="#visit">Visiting Members</a></li>
+              <li><a href="#login">Member Login</a></li>
+              <li><a href="#directory">Member Directory</a></li>
+            </ul>
+          </div>
+
+          <div class="iwfnc-footer-col">
+            <h4>Contact</h4>
+            <div class="iwfnc-footer-contact">
+              <a href="mailto:iwfnorcal@gmail.com">iwfnorcal@gmail.com</a>
+              <a href="tel:+14152279987">415-227-9987</a>
+              <span>4580 Old Ranch Way<br />Folsom, CA 95630</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="iwfnc-footer-bottom">
+          <div>
+            © <span id="iwfnc-year"></span> International Women's Forum Northern
+            California. All rights reserved.
+          </div>
+          <div>An affiliate of the International Women's Forum.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        // Sticky nav shadow
+        var nav = document.getElementById("iwfnc-nav");
+        var onScroll = function () {
+          if (window.scrollY > 8) nav.classList.add("is-scrolled");
+          else nav.classList.remove("is-scrolled");
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        // Drawer
+        var drawer = document.getElementById("iwfnc-drawer");
+        var burger = document.getElementById("iwfnc-burger");
+        var openDrawer = function () {
+          drawer.classList.add("is-open");
+          drawer.setAttribute("aria-hidden", "false");
+          burger.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+        };
+        var closeDrawer = function () {
+          drawer.classList.remove("is-open");
+          drawer.setAttribute("aria-hidden", "true");
+          burger.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        };
+        burger.addEventListener("click", openDrawer);
+        drawer.querySelectorAll("[data-iwfnc-close]").forEach(function (el) {
+          el.addEventListener("click", closeDrawer);
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && drawer.classList.contains("is-open"))
+            closeDrawer();
+        });
+
+        // Reveal on scroll
+        var reveals = document.querySelectorAll(".iwfnc-reveal");
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (en) {
+                if (en.isIntersecting) {
+                  en.target.classList.add("is-visible");
+                  io.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+          );
+          reveals.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          reveals.forEach(function (el) {
+            el.classList.add("is-visible");
+          });
+        }
+
+        // Count-up stats
+        var counters = document.querySelectorAll("[data-iwfnc-count]");
+        var animateCount = function (el) {
+          var end = parseInt(el.getAttribute("data-iwfnc-count"), 10) || 0;
+          var dur = 1600,
+            start = performance.now();
+          var step = function (t) {
+            var p = Math.min(1, (t - start) / dur);
+            var eased = 1 - Math.pow(1 - p, 3);
+            var val = Math.floor(eased * end);
+            el.textContent = val.toLocaleString();
+            if (p < 1) requestAnimationFrame(step);
+            else el.textContent = end.toLocaleString();
+          };
+          requestAnimationFrame(step);
+        };
+        if ("IntersectionObserver" in window) {
+          var countIO = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (en) {
+                if (en.isIntersecting) {
+                  animateCount(en.target);
+                  countIO.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.4 },
+          );
+          counters.forEach(function (el) {
+            countIO.observe(el);
+          });
+        } else {
+          counters.forEach(animateCount);
+        }
+
+        // Year
+        var y = document.getElementById("iwfnc-year");
+        if (y) y.textContent = new Date().getFullYear();
+      })();
+
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>

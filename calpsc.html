@@ -99,8 +99,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{
    HEADER
    ============================================================ */
 .cpsc-header{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  background:rgba(255,255,255,.86);
+  position:fixed;top:auto;left:0;right:0;z-index:1000;
+  background: white;
   backdrop-filter:saturate(180%) blur(14px);
   -webkit-backdrop-filter:saturate(180%) blur(14px);
   border-bottom:1px solid transparent;
@@ -109,6 +109,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 .cpsc-header.cpsc-scrolled{
   border-bottom-color:var(--cpsc-line);
   box-shadow:0 6px 24px rgba(34,26,82,.06);
+  top: 0;
 }
 .cpsc-nav{
   display:flex;align-items:center;justify-content:space-between;
@@ -266,7 +267,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
    HERO
    ============================================================ */
 .cpsc-hero{
-  position:relative;padding:170px 0 110px;overflow:hidden;
+  position:relative;padding:120px 0 80px;overflow:hidden;
   background:linear-gradient(180deg,#f3f3fa 0%,#ffffff 100%);
 }
 .cpsc-hero-bg{
@@ -993,11 +994,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
     </div>
 
     <div class="cpsc-prog-grid">
-      <article class="cpsc-prog-card cpsc-reveal">
-        <div class="cpsc-prog-ico cpsc-c-forest" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="7" width="12" height="14" rx="2"/><path d="M9 7V4h6v3M10 12v4M14 12v4"/></svg>
-        </div>
-        <span class="cpsc-prog-tag cpsc-tag-epr">Producer Responsibility</span>
+      <article class="cpsc-prog-card cpsc-reveal">       
         <h3>Batteries</h3>
         <p>Safe collection and recycling of loose household batteries to keep fire hazards out of the waste stream.</p>
         <a class="cpsc-prog-link" href="https://www.calpsc.org/battery-stewardship">Learn more
@@ -1005,10 +1002,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
       </article>
 
       <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d1">
-        <div class="cpsc-prog-ico cpsc-c-navy" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M9 3h6M8 9h8l1 9a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3Z"/></svg>
-        </div>
-        <span class="cpsc-prog-tag cpsc-tag-epr">Producer Responsibility</span>
+        
         <h3>Pharmaceuticals &amp; Sharps</h3>
         <p>Convenient take-back of unused medicine and home-generated sharps to protect families and waterways.</p>
         <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_6be421b01b334f1bbabd89df65560382.pdf">Learn more
@@ -1016,10 +1010,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
       </article>
 
       <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d2">
-        <div class="cpsc-prog-ico cpsc-c-peri" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4-8 4-8-4ZM4 7v10l8 4M20 7v10l-8 4"/></svg>
-        </div>
-        <span class="cpsc-prog-tag cpsc-tag-epr">Producer Responsibility</span>
+      
         <h3>Textiles</h3>
         <p>First-in-the-nation textile EPR — building recovery, reuse, and repair systems for clothing and fabric.</p>
         <a class="cpsc-prog-link" href="https://www.calpsc.org/cpsc-textilestewardship">Learn more
@@ -1027,10 +1018,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
       </article>
 
       <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d3">
-        <div class="cpsc-prog-ico cpsc-c-sage" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
-        </div>
-        <span class="cpsc-prog-tag cpsc-tag-con">Emerging Program</span>
+       
         <h3>Solar Panels</h3>
         <p>Building collection pathways for end-of-life solar panels, with free pilot pickups and a reuse map.</p>
         <a class="cpsc-prog-link" href="https://www.calpsc.org/cpsc-solarstewardship">Learn more
@@ -1038,10 +1026,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
       </article>
 
       <article class="cpsc-prog-card cpsc-reveal">
-        <div class="cpsc-prog-ico cpsc-c-forest" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7l-1 12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 7M3 7h18M9 7V4h6v3"/><path d="M10 11v6M14 11v6"/></svg>
-        </div>
-        <span class="cpsc-prog-tag cpsc-tag-con">Consumer Responsibility</span>
+        
         <h3>Paint &amp; Carpet</h3>
         <p>Statewide recovery programs that divert leftover paint and used carpet from landfills into reuse.</p>
         <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_9254006802ab43db90e035c5f2ab65a6.pdf">Learn more
@@ -1049,10 +1034,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
       </article>
 
       <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d1">
-        <div class="cpsc-prog-ico cpsc-c-navy" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M6 7V5h12v2M6 19v2M18 19v2"/></svg>
-        </div>
-        <span class="cpsc-prog-tag cpsc-tag-con">Consumer Responsibility</span>
+       
         <h3>Mattresses &amp; Tires</h3>
         <p>Recovery and recycling systems that handle bulky, hard-to-dispose products responsibly statewide.</p>
         <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_b63826a5f56b463baeace608a47453a6.pdf">Learn more
@@ -1060,10 +1042,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
       </article>
 
       <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d2">
-        <div class="cpsc-prog-ico cpsc-c-peri" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <span class="cpsc-prog-tag cpsc-tag-con">Consumer Responsibility</span>
+       
         <h3>Electronics</h3>
         <p>Programs for e-waste recovery — keeping toxic electronics out of landfills and recovering valuable materials.</p>
         <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_6b8a992256674f98a144c55653f95ff1.pdf">Learn more
@@ -1071,10 +1050,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
       </article>
 
       <article class="cpsc-prog-card cpsc-reveal cpsc-reveal-d3">
-        <div class="cpsc-prog-ico cpsc-c-sage" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22V8a3 3 0 0 1 6 0v14M7 22h10M11 8V5a1 1 0 0 1 2 0v3"/></svg>
-        </div>
-        <span class="cpsc-prog-tag cpsc-tag-con">Emerging Program</span>
+        
         <h3>Gas Cylinders</h3>
         <p>Promoting refillable propane cylinders and safe reuse of single-use camping canisters.</p>
         <a class="cpsc-prog-link" href="https://www.calpsc.org/_files/ugd/ad724e_99dc468b9b0a4335b11745e506372133.pdf">Learn more
