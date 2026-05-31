@@ -116,7 +116,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   height:78px;max-width:var(--cpsc-max);margin:0 auto;padding:0 28px;
 }
 .cpsc-logo{display:flex;align-items:center;gap:12px;flex-shrink:0;}
-.cpsc-logo img{height:50px;width:auto;}
+.cpsc-logo img{height:50px !important;width:auto !important;}
 .cpsc-nav-links{display:flex;align-items:center;gap:6px;}
 .cpsc-nav-links a{
   font-weight:600;font-size:15px;color:var(--cpsc-slate);
@@ -800,8 +800,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   .cpsc-stat:nth-child(1),.cpsc-stat:nth-child(2){border-bottom:1px solid rgba(255,255,255,.1);}
 }
 @media (max-width:880px){
-  .cpsc-nav-links,.cpsc-nav-actions .cpsc-btn-ghost{display:none;}
+  .cpsc-nav-links,.cpsc-nav-actions .cpsc-btn-ghost,.cpsc-nav-actions .cpsc-btn-primary{display:none;}
   .cpsc-burger{display:block;}
+  .cpsc-logo img{height:38px !important;width:auto !important;}
   .cpsc-section{padding:76px 0;}
   .cpsc-impact-grid{grid-template-columns:1fr;}
   .cpsc-contact-grid{grid-template-columns:1fr;gap:44px;}
@@ -815,6 +816,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   body{font-size:16px;}
   .cpsc-wrap{padding:0 20px;}
   .cpsc-nav{padding:0 20px;}
+  .cpsc-logo img{height:32px !important;width:auto !important;}
   .cpsc-hero{padding:140px 0 84px;}
   .cpsc-prog-grid,.cpsc-news-grid,.cpsc-camp-grid{grid-template-columns:1fr;}
   .cpsc-stats{grid-template-columns:1fr;}
@@ -831,6 +833,71 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   *{animation:none!important;transition-duration:.01ms!important;}
   .cpsc-reveal,.cpsc-fade,.cpsc-drawer a{opacity:1!important;transform:none!important;}
 }
+
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
+  }
 </style>
 </head>
 <body>

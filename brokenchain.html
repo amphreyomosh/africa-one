@@ -593,8 +593,8 @@
       }
 
       .focus-card {
-        background: var(--bg-light);
-        border: 1px solid var(--border);
+        background: var(--primary-dark);
+        border: 1px solid rgba(255,255,255,0.12);
         border-radius: 8px;
         padding: 40px 32px;
         text-align: left;
@@ -606,13 +606,10 @@
       .focus-card::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 200px;
+        inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0.15;
+        opacity: 0.38;
         z-index: 0;
       }
 
@@ -629,17 +626,20 @@
       }
 
       .focus-card:hover {
-        background: var(--bg-white);
-        border-color: var(--primary);
-        box-shadow: 0 12px 40px rgba(74, 26, 111, 0.12);
+        border-color: rgba(255,255,255,0.3);
+        box-shadow: 0 12px 40px rgba(74, 26, 111, 0.4);
         transform: translateY(-4px);
+      }
+
+      .focus-card:hover::before {
+        opacity: 0.52;
       }
 
       .focus-card h3 {
         font-family: "Playfair Display", serif;
         font-size: 20px;
         font-weight: 700;
-        color: var(--text-dark);
+        color: #ffffff;
         margin-bottom: 14px;
         position: relative;
         z-index: 1;
@@ -647,7 +647,7 @@
 
       .focus-card p {
         font-size: 14px;
-        color: var(--text-gray);
+        color: rgba(255, 255, 255, 0.85);
         line-height: 1.75;
         position: relative;
         z-index: 1;
@@ -699,13 +699,10 @@
       .dream-item::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 160px;
+        inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0.1;
+        opacity: 0.32;
         z-index: 0;
       }
 
@@ -976,7 +973,110 @@
           gap: 12px;
         }
       }
-    </style>
+    
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── brokenchain: hero breathing room (medium ≤1024px) ─── */
+  @media (max-width: 1024px) {
+    .hero {
+      padding-bottom: 80px !important;
+      min-height: auto !important;
+      padding-top: calc(var(--glad-h) + 80px) !important;
+    }
+    .hero-content {
+      padding: 40px 0 !important;
+      gap: 24px !important;
+    }
+  }
+
+  /* ─── brokenchain: hero breathing room (small ≤640px) ─── */
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: calc(var(--glad-h) + 68px) !important;
+      padding-bottom: 60px !important;
+    }
+    .hero-content {
+      gap: 20px !important;
+    }
+    .hero-title {
+      font-size: clamp(30px, 9vw, 44px) !important;
+      line-height: 1.2 !important;
+    }
+    .hero-description {
+      font-size: 15px !important;
+      max-width: 100% !important;
+      line-height: 1.75 !important;
+    }
+    .btn-primary {
+      width: 100% !important;
+      text-align: center !important;
+      padding: 14px 20px !important;
+    }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
+  }
+</style>
   </head>
   <body>
     <!-- GLAD HEADER -->

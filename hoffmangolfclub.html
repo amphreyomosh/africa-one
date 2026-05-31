@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -1522,7 +1522,95 @@
           font-size: 54px;
         }
       }
-    </style>
+    
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── MOBILE: hoffmangolfclub layout fixes (≤640px) ─── */
+  @media (max-width: 640px) {
+    /* Hide nav CTA — hamburger covers navigation */
+    .nav-cta { display: none !important; }
+
+    /* Hero: shrink title, stretch action buttons */
+    .hero-title { font-size: 38px !important; line-height: 1.05 !important; }
+    .hero-subtitle { max-width: 100% !important; font-size: 14px !important; margin-bottom: 28px !important; }
+    .hero-content { padding-bottom: 48px !important; }
+    .hero-actions { flex-direction: column !important; align-items: stretch !important; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost-hero { text-align: center !important; padding: 14px 20px !important; }
+
+    /* Champions section — uses its own padding, not .section */
+    #champions { padding: 64px 5% !important; }
+
+    /* CTA band */
+    .cta-band { padding: 64px 5% !important; }
+    .cta-band-actions { flex-direction: column !important; align-items: stretch !important; }
+    .cta-band-actions a { text-align: center !important; }
+
+    /* Contact form: tighter padding on narrow screens */
+    .contact-form { padding: 20px !important; }
+
+    /* Site strip: stack links vertically */
+    .strip-links { flex-direction: column !important; }
+    .strip-link { justify-content: center !important; }
+
+    /* Membership badge: avoid overflow when image stacks */
+    .membership-badge { top: auto !important; bottom: -12px !important; right: 8px !important; }
+
+    /* Footer bottom: stack vertically */
+    .footer-bottom { flex-direction: column !important; gap: 6px !important; }
+  }
+</style>
   </head>
   <body>
     <!-- GLAD HEADER -->

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -106,8 +106,8 @@
         flex-shrink: 0;
       }
       .nav-logo img {
-        height: 42px;
-        width: auto;
+        height: 42px !important;
+        width: auto !important;
         display: block;
       }
       .nav-logo-text .org-name {
@@ -1190,7 +1190,104 @@
         text-align: center;
         border: none;
       }
-    </style>
+    
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── MEDIUM SCREENS: shrink nav logo (≤900px) ─── */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+
+  /* ─── MOBILE: aquamonter layout fixes (≤640px) ─── */
+  @media (max-width: 640px) {
+    /* Nav logo: further reduce on small screens */
+    .nav-logo img { height: 26px !important; width: auto !important; }
+
+    /* Hero: reduce padding and title, stack buttons */
+    .hero-left { padding: 48px 6% 60px !important; }
+    .hero-title { font-size: 44px !important; }
+    .hero-subtitle { max-width: 100% !important; }
+    .hero-actions { flex-direction: column !important; align-items: stretch !important; }
+    .hero-actions .btn-primary { text-align: center !important; }
+
+    /* About float card: prevent right-side overflow when stacked */
+    .about-float-card { right: 8px !important; bottom: -12px !important; padding: 16px 20px !important; }
+    .about-float-num { font-size: 32px !important; }
+
+    /* Reduce section padding */
+    .section { padding: 64px 5% !important; }
+    #commitment { padding: 64px 5% !important; }
+    #stories { padding: 64px 5% !important; }
+
+    /* CTA: stack buttons */
+    .cta-section { padding: 64px 5% !important; }
+    .cta-btns { flex-direction: column !important; align-items: stretch !important; }
+    .cta-btns a { text-align: center !important; }
+
+    /* Contact strip */
+    .contact-strip { padding: 48px 5% !important; }
+
+    /* Footer logo */
+    .footer-logo img { height: 28px !important; }
+    .footer-logo-text .org-name { font-size: 14px !important; }
+
+    /* Footer bottom: stack */
+    .footer-bottom { flex-direction: column !important; gap: 6px !important; }
+  }
+</style>
   </head>
   <body>
     <!-- GLAD HEADER -->

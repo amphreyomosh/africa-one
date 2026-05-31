@@ -1,4 +1,4 @@
-<header id="glad-header">
+﻿<header id="glad-header">
   <div class="glad-inner">
     <a
       href="https://www.gladtech.io/"
@@ -100,6 +100,25 @@
     .glad-back-btn {
       padding: 7px 10px;
     }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
   }
 </style>
 

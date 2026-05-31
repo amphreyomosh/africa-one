@@ -106,7 +106,7 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.08;letter
 }
 .csno-nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:var(--csno-s3);}
 .csno-brand{display:flex;align-items:center;gap:12px;flex-shrink:0;}
-.csno-brand-logo{height:52px;width:auto;display:block;}
+.csno-brand-logo{max-height:52px !important;max-width:180px !important;height:auto !important;width:auto !important;display:block;}
 .csno-brand-mark{
   width:46px;height:46px;border-radius:12px;
   background:var(--csno-navy);color:#fff;
@@ -163,6 +163,10 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.08;letter
 @media(max-width:1080px){
   .csno-menu,.csno-header-cta .csno-login,.csno-header-cta .csno-btn{display:none;}
   .csno-burger{display:flex;}
+  .csno-brand-logo{max-height:40px !important;max-width:140px !important;}
+}
+@media(max-width:640px){
+  .csno-brand-logo{max-height:32px !important;max-width:110px !important;}
 }
 
 /* ============================================================
@@ -572,6 +576,71 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.08;letter
 }
 .csno-skip:focus{left:0;}
 :focus-visible{outline:3px solid var(--csno-teal);outline-offset:2px;border-radius:4px;}
+
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
+  }
 </style>
 </head>
 <body>
@@ -678,6 +747,71 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.08;letter
     .glad-back-btn {
       padding: 7px 10px;
     }
+  }
+
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
   }
 </style>
 

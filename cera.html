@@ -75,7 +75,7 @@
       /* ─── NAV ─── */
       .cera-nav {
         position: fixed;
-        top: 0;
+        top: auto;
         left: 0;
         right: 0;
         z-index: 1000;
@@ -84,6 +84,7 @@
       }
       .cera-nav.scrolled {
         box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+        top: 0;
       }
       .cera-nav__inner {
         max-width: 1280px;
@@ -101,8 +102,8 @@
         flex-shrink: 0;
       }
       .cera-nav__logo img {
-        height: 44px;
-        width: auto;
+        height: 44px !important;
+        width: auto !important;
       }
       .cera-nav__links {
         display: flex;
@@ -1415,7 +1416,72 @@
           padding: 7px 10px;
         }
       }
-    </style>
+    
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
+  }
+</style>
   </head>
   <body>
     <header id="glad-header">
@@ -1643,10 +1709,7 @@
       <div class="cera-hero__inner">
         <div class="cera-hero__content">
           <div class="cera-hero__logo-lockup">
-            <img
-              src="https://static.wixstatic.com/media/5a29d8_a34cee88e8934b5d8f326dd319de377d~mv2.png/v1/fill/w_528,h_169,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20-%20no%20lower%20text%20-%20white.png"
-              alt="CERA — California Educational Research Association"
-            />
+            
           </div>
           <p class="cera-hero__founded">
             Bridging Research, Data, and Practice since 1921

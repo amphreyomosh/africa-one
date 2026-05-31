@@ -81,7 +81,7 @@ h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.0
    HEADER
    ============================================================ */
 .cif-header{
-  position:fixed;top:0;left:0;right:0;z-index:100;
+  position:fixed;top:auto;left:0;right:0;z-index:100;
   background:rgba(255,255,255,.0);
   transition:background .35s var(--cif-ease),box-shadow .35s var(--cif-ease),border-color .35s;
   border-bottom:1px solid transparent;
@@ -91,6 +91,7 @@ h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.0
   backdrop-filter:blur(14px);
   box-shadow:0 6px 30px -18px rgba(12,39,86,.4);
   border-bottom-color:var(--cif-line);
+  top: 0;
 }
 .cif-nav{
   display:flex;align-items:center;justify-content:space-between;
@@ -167,7 +168,7 @@ h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.0
    HERO
    ============================================================ */
 .cif-hero{
-  position:relative;padding:188px 0 130px;
+  position:relative;padding:140px 0 60px;
   background:
     radial-gradient(ellipse 70% 60% at 80% 0%,rgba(246,180,23,.16),transparent 60%),
     linear-gradient(160deg,var(--cif-navy) 0%,var(--cif-navy-deep) 60%,#06152f 100%);
@@ -186,7 +187,7 @@ h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.0
 }
 .cif-orb1{width:420px;height:420px;background:rgba(246,180,23,.34);top:-130px;right:-90px}
 .cif-orb2{width:380px;height:380px;background:rgba(40,90,180,.6);bottom:-160px;left:-110px}
-.cif-hero-inner{position:relative;max-width:830px}
+.cif-hero-inner{position:relative;max-width:1200px}
 .cif-hero h1{
   font-family:'Archivo Expanded','Archivo',sans-serif;
   font-size:clamp(2.5rem,5.6vw,4.5rem);color:var(--cif-white);
@@ -195,7 +196,7 @@ h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.0
 .cif-hero h1 em{font-style:normal;color:var(--cif-gold)}
 .cif-hero p{
   font-size:clamp(1.05rem,1.5vw,1.25rem);color:rgba(255,255,255,.82);
-  max-width:600px;margin-bottom:38px;
+  max-width:1200px;margin-bottom:38px;
 }
 .cif-hero-stats{
   display:flex;gap:48px;margin-top:74px;flex-wrap:wrap;
@@ -595,6 +596,71 @@ h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.0
   *{animation:none!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
 }
+
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
+  }
 </style>
 </head>
 <body>
@@ -702,6 +768,71 @@ h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.0
       padding: 7px 10px;
     }
   }
+
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
+  }
 </style>
 
 <script>
@@ -745,8 +876,7 @@ h1,h2,h3,h4{font-family:'Archivo',sans-serif;line-height:1.12;letter-spacing:-.0
         </svg>
       </span>
       <span class="cif-logo-txt">
-        <b>California Interscholastic Federation</b>
-        <span>Educational Athletics</span>
+       
       </span>
     </a>
     <nav class="cif-menu" aria-label="Primary">

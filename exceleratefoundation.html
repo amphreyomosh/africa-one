@@ -1217,7 +1217,72 @@
           padding: 7px 10px;
         }
       }
-    </style>
+    
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
+  }
+</style>
   </head>
   <body>
     <header id="glad-header">
@@ -1305,39 +1370,19 @@
       <section class="hero" aria-label="Hero">
         <div class="hero-carousel" id="heroCarousel">
           <div class="hero-slide active" data-slide="0">
-            <div
-              class="hero-image"
-              style="
-                background-image: url(&quot;http://excelerate-foundation.org/images/openhouse.jpg&quot;);
-              "
-            ></div>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1600&h=900&fit=crop&auto=format');"></div>
             <div class="hero-overlay"></div>
           </div>
           <div class="hero-slide" data-slide="1">
-            <div
-              class="hero-image"
-              style="
-                background-image: url(&quot;http://excelerate-foundation.org/images/youth_biz.jpg&quot;);
-              "
-            ></div>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop&auto=format');"></div>
             <div class="hero-overlay"></div>
           </div>
           <div class="hero-slide" data-slide="2">
-            <div
-              class="hero-image"
-              style="
-                background-image: url(&quot;http://excelerate-foundation.org/images/earthcorps.jpg&quot;);
-              "
-            ></div>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&h=900&fit=crop&auto=format');"></div>
             <div class="hero-overlay"></div>
           </div>
           <div class="hero-slide" data-slide="3">
-            <div
-              class="hero-image"
-              style="
-                background-image: url(&quot;http://excelerate-foundation.org/images/food_project.jpg&quot;);
-              "
-            ></div>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1600&h=900&fit=crop&auto=format');"></div>
             <div class="hero-overlay"></div>
           </div>
 
@@ -1597,27 +1642,15 @@
 
           <div class="grantee-grid" id="granteeGrid">
             <article class="grantee-card" data-cat="health">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/aids_lifecycle.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
-                <span class="grantee-tag tag-health"
-                  >Health &amp; Healthcare</span
-                >
+                <span class="grantee-tag tag-health">Health &amp; Healthcare</span>
                 <h3>AIDS/LifeCycle</h3>
               </div>
             </article>
 
             <article class="grantee-card" data-cat="env">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/arboretum.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-env">Environmental Education</span>
                 <h3>UC Davis Arboretum</h3>
@@ -1625,12 +1658,7 @@
             </article>
 
             <article class="grantee-card" data-cat="se">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/build_1.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-se">Social Entrepreneurship</span>
                 <h3>Build</h3>
@@ -1638,27 +1666,15 @@
             </article>
 
             <article class="grantee-card" data-cat="health">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/cho.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1576671081837-49000212a370?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
-                <span class="grantee-tag tag-health"
-                  >Health &amp; Healthcare</span
-                >
+                <span class="grantee-tag tag-health">Health &amp; Healthcare</span>
                 <h3>Children's Hospital of Oakland</h3>
               </div>
             </article>
 
             <article class="grantee-card" data-cat="comm">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/greenwich_comm_center_1.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-comm">Community Development</span>
                 <h3>Community Centers Inc. of Greenwich</h3>
@@ -1666,12 +1682,7 @@
             </article>
 
             <article class="grantee-card" data-cat="env">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/earth_force.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-env">Environmental Education</span>
                 <h3>Earth Force</h3>
@@ -1679,12 +1690,7 @@
             </article>
 
             <article class="grantee-card" data-cat="env">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/earthcorps.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-env">Environmental Education</span>
                 <h3>EarthCorps</h3>
@@ -1692,12 +1698,7 @@
             </article>
 
             <article class="grantee-card" data-cat="comm">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/food_project.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-comm">Community Development</span>
                 <h3>The Food Project</h3>
@@ -1705,27 +1706,15 @@
             </article>
 
             <article class="grantee-card" data-cat="health">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/greenwich_ems.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
-                <span class="grantee-tag tag-health"
-                  >Health &amp; Healthcare</span
-                >
+                <span class="grantee-tag tag-health">Health &amp; Healthcare</span>
                 <h3>Greenwich Emergency Medical Service</h3>
               </div>
             </article>
 
             <article class="grantee-card" data-cat="comm">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/grgr.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-comm">Community Development</span>
                 <h3>Grass Roots Gay Rights West</h3>
@@ -1733,72 +1722,39 @@
             </article>
 
             <article class="grantee-card" data-cat="health">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/healing_waters_1.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
-                <span class="grantee-tag tag-health"
-                  >Health &amp; Healthcare</span
-                >
+                <span class="grantee-tag tag-health">Health &amp; Healthcare</span>
                 <h3>Healing Waters</h3>
               </div>
             </article>
 
             <article class="grantee-card" data-cat="health">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/lymphoma_research_foundation.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
-                <span class="grantee-tag tag-health"
-                  >Health &amp; Healthcare</span
-                >
+                <span class="grantee-tag tag-health">Health &amp; Healthcare</span>
                 <h3>Lymphoma Research Foundation</h3>
               </div>
             </article>
 
             <article class="grantee-card" data-cat="health">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/openhouse.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1493723843671-1d655e66ac1c?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
-                <span class="grantee-tag tag-health"
-                  >Health &amp; Healthcare</span
-                >
+                <span class="grantee-tag tag-health">Health &amp; Healthcare</span>
                 <h3>Openhouse</h3>
               </div>
             </article>
 
             <article class="grantee-card" data-cat="health">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/sf_aids_foundation.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
-                <span class="grantee-tag tag-health"
-                  >Health &amp; Healthcare</span
-                >
+                <span class="grantee-tag tag-health">Health &amp; Healthcare</span>
                 <h3>San Francisco AIDS Foundation</h3>
               </div>
             </article>
 
             <article class="grantee-card" data-cat="se">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/startout.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-se">Social Entrepreneurship</span>
                 <h3>StartOut</h3>
@@ -1806,12 +1762,7 @@
             </article>
 
             <article class="grantee-card" data-cat="se">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/youth_biz.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-se">Social Entrepreneurship</span>
                 <h3>YouthBiz</h3>
@@ -1819,12 +1770,7 @@
             </article>
 
             <article class="grantee-card" data-cat="se">
-              <div
-                class="grantee-img"
-                style="
-                  background-image: url(&quot;http://excelerate-foundation.org/images/youth_ventures.jpg&quot;);
-                "
-              ></div>
+              <div class="grantee-img" style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=600&fit=crop&auto=format');"></div>
               <div class="grantee-body">
                 <span class="grantee-tag tag-se">Social Entrepreneurship</span>
                 <h3>Youth Ventures</h3>

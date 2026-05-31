@@ -754,7 +754,7 @@
       }
 
       /* ── SECTION BASE ── */
-      section {
+      .dot-section {
         padding: 6rem 0px;
       }
       .section-inner {
@@ -1408,7 +1408,7 @@
         .dot-hamburger {
           display: flex;
         }
-        section {
+        .dot-section {
           padding: 4rem 1.25rem;
         }
         .mission-strip {
@@ -1436,6 +1436,14 @@
         .dot-nav-logo-text small {
           display: none;
         }
+        /* Reduce logo mark on mobile */
+        .dot-nav-logo-mark {
+          width: 32px !important;
+          height: 32px !important;
+        }
+        .dot-nav-logo-text strong {
+          font-size: 13px !important;
+        }
         .carousel-bottom {
           padding: 0 1.25rem 1.5rem;
         }
@@ -1445,11 +1453,33 @@
         .carousel-thumbs {
           display: none;
         }
+        .slide-counter {
+          display: none;
+        }
         .hero-container {
           padding: 0 1.25rem;
         }
+        /* Hero breathing room — stack buttons, loosen spacing */
         .hero-content {
-          padding: 3rem 0 6rem;
+          padding: 3.5rem 0 6rem;
+        }
+        .hero-h1 {
+          margin-bottom: 1.25rem;
+          letter-spacing: -0.8px;
+        }
+        .hero-sub {
+          margin-bottom: 2rem;
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+          margin-bottom: 2.5rem;
+        }
+        .btn-primary,
+        .btn-ghost {
+          justify-content: center;
+          width: 100%;
         }
         .dot-nav-inner {
           padding: 0 1.25rem;
@@ -1463,7 +1493,93 @@
           align-items: flex-start;
         }
       }
-    </style>
+
+      @media (max-width: 480px) {
+        .dot-nav-logo-mark {
+          width: 26px !important;
+          height: 26px !important;
+        }
+        .dot-nav-logo-text strong {
+          font-size: 12px !important;
+        }
+        .hero-h1 {
+          font-size: 1.85rem;
+          margin-bottom: 1rem;
+        }
+        .hero-sub {
+          font-size: 14px;
+          margin-bottom: 1.75rem;
+        }
+        .hero-content {
+          padding: 3rem 0 5rem;
+        }
+      }
+    
+  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
+  @media (max-width: 640px) {
+    /* Override any inline style="text-align:center" */
+    [style*="text-align:center"],
+    [style*="text-align: center"] {
+      text-align: left !important;
+    }
+    /* Headings and paragraphs */
+    h1, h2, h3, h4, h5, h6, p {
+      text-align: left !important;
+    }
+    /* Common section block classes used across all pages */
+    .section-label, .section-heading, .section-subheading,
+    .section-header, .section-head, .section-title, .section-desc,
+    .section-subtitle, .section-body, .section-eyebrow,
+    .page-label, .page-heading, .page-title, .page-desc,
+    .eyebrow, .kicker, .tag-label,
+    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
+    .hero-heading, .hero-title, .hero-body, .hero-desc,
+    .hero-subtitle, .hero-text,
+    .impact-stat, .impact-num, .impact-label,
+    .stat-block, .stat-item, .stat-num, .stat-label,
+    .counter-block, .counter-item, .metric-item, .metric-block,
+    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
+    .footer-copy { text-align: left !important; }
+    /* Remove centering constraint on text-only subheading blocks */
+    .section-subheading, .section-desc, .hero-body {
+      max-width: 100% !important;
+    }
+    /* Prevent horizontal overflow */
+    img { max-width: 100% !important; height: auto !important; }
+    table { width: 100% !important; }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* --- NAV LOGO: size fix for medium & small screens --- */
+  @media (max-width: 900px) {
+    .nav-logo img { height: 32px !important; width: auto !important; }
+    .nav-logo-text .club-name,
+    .nav-logo-text .org-name { font-size: 14px !important; }
+    .nav-logo-text .club-sub,
+    .nav-logo-text .org-sub { font-size: 9px !important; }
+  }
+  @media (max-width: 640px) {
+    .nav-logo img { height: 26px !important; width: auto !important; }
+  }
+</style>
   </head>
   <body>
     <!-- GLAD HEADER (top bar) -->
@@ -1791,7 +1907,7 @@
     </div>
 
     <!-- CLASSES -->
-    <section class="classes-section">
+    <section class="dot-section classes-section">
       <div class="section-inner">
         <div class="classes-header">
           <div>
@@ -2011,7 +2127,7 @@
     </section>
 
     <!-- GALLERY -->
-    <section class="gallery-section">
+    <section class="dot-section gallery-section">
       <div class="section-inner">
         <div class="gallery-header">
           <div>
@@ -2104,7 +2220,7 @@
     </section>
 
     <!-- TESTIMONIALS -->
-    <section class="testimonials-section">
+    <section class="dot-section testimonials-section">
       <div class="section-inner">
         <div class="testimonials-header">
           <span class="section-label">Testimonials</span>
@@ -2188,7 +2304,7 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta-section">
+    <section class="dot-section cta-section">
       <div class="section-inner">
         <div class="cta-inner">
           <span class="section-label">Get Started</span>
