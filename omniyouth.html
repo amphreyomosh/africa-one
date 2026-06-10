@@ -1,0 +1,2148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omni Youth Programs — Empowering Youth, Supporting Families</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --oy-navy: #0d2340;
+        --oy-navy-mid: #163357;
+        --oy-blue: #1a5fa8;
+        --oy-blue-light: #2d7dd2;
+        --oy-accent: #e8861a;
+        --oy-accent-light: #f5a23a;
+        --oy-green: #2a7a4b;
+        --oy-green-light: #3a9e62;
+        --oy-bg: #f7f6f3;
+        --oy-bg-white: #ffffff;
+        --oy-bg-section: #f2f0ec;
+        --oy-text-primary: #1a1a1a;
+        --oy-text-secondary: #4a4a4a;
+        --oy-text-muted: #6e6e6e;
+        --oy-border: rgba(0, 0, 0, 0.08);
+        --oy-radius: 10px;
+        --oy-radius-lg: 16px;
+        --oy-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+        --oy-shadow-md: 0 4px 24px rgba(0, 0, 0, 0.1);
+        --oy-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --oy-nav-h: 68px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--oy-font);
+        color: var(--oy-text-primary);
+        background: var(--oy-bg-white);
+        line-height: 1.6;
+        font-size: 16px;
+        overflow-x: hidden;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ── NAVBAR ── */
+      .oy-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: var(--oy-nav-h);
+        background: rgba(255, 255, 255, 0.97);
+        border-bottom: 1px solid var(--oy-border);
+        backdrop-filter: blur(8px);
+        transition: box-shadow 0.3s;
+      }
+      .oy-navbar.oy-scrolled {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.09);
+      }
+      .oy-nav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .oy-nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .oy-nav-brand img {
+        height: 46px;
+        width: auto;
+      }
+      .oy-nav-brand-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--oy-navy);
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+      }
+      .oy-nav-brand-name span {
+        display: block;
+        font-weight: 400;
+        font-size: 12px;
+        color: var(--oy-text-muted);
+        letter-spacing: 0;
+      }
+      .oy-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        list-style: none;
+      }
+      .oy-nav-links a {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--oy-text-secondary);
+        padding: 6px 11px;
+        border-radius: 6px;
+        transition:
+          background 0.18s,
+          color 0.18s;
+        white-space: nowrap;
+      }
+      .oy-nav-links a:hover {
+        background: var(--oy-bg-section);
+        color: var(--oy-navy);
+      }
+      .oy-nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .oy-btn-donate {
+        background: var(--oy-accent);
+        color: #fff;
+        font-size: 13.5px;
+        font-weight: 700;
+        padding: 9px 20px;
+        border-radius: 0px;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        letter-spacing: 0.02em;
+      }
+      .oy-btn-donate:hover {
+        background: var(--oy-accent-light);
+        transform: translateY(-1px);
+      }
+      .oy-nav-hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        color: var(--oy-navy);
+      }
+      .oy-nav-hamburger svg {
+        width: 24px;
+        height: 24px;
+        display: block;
+      }
+
+      /* Off-canvas */
+      .oy-offcanvas {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(320px, 90vw);
+        height: 100%;
+        background: var(--oy-bg-white);
+        z-index: 1100;
+        box-shadow: -4px 0 30px rgba(0, 0, 0, 0.15);
+        transition: right 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      .oy-offcanvas.oy-open {
+        right: 0;
+      }
+      .oy-offcanvas-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--oy-border);
+      }
+      .oy-offcanvas-head img {
+        height: 40px;
+      }
+      .oy-offcanvas-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        color: var(--oy-text-secondary);
+        border-radius: 6px;
+      }
+      .oy-offcanvas-close:hover {
+        background: var(--oy-bg-section);
+      }
+      .oy-offcanvas-close svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+      }
+      .oy-offcanvas-links {
+        list-style: none;
+        padding: 16px 0;
+        flex: 1;
+      }
+      .oy-offcanvas-links li a {
+        display: block;
+        padding: 13px 24px;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--oy-text-primary);
+        border-left: 3px solid transparent;
+        transition:
+          background 0.15s,
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .oy-offcanvas-links li a:hover {
+        background: var(--oy-bg-section);
+        border-left-color: var(--oy-accent);
+        color: var(--oy-navy);
+      }
+      .oy-offcanvas-footer {
+        padding: 20px 24px;
+        border-top: 1px solid var(--oy-border);
+      }
+      .oy-offcanvas-footer .oy-btn-donate {
+        width: 100%;
+        text-align: center;
+        display: block;
+      }
+      .oy-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 1050;
+      }
+      .oy-overlay.oy-open {
+        display: block;
+      }
+
+      /* ── HERO ── */
+      .oy-hero {
+        min-height: 100svh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: var(--oy-navy);
+        padding-top: var(--oy-nav-h);
+      }
+      .oy-hero-bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("https://static.wixstatic.com/media/702183_63ec79df3f494800a2b4dd3e0f34d7cb~mv2.jpg");
+        background-size: cover;
+        background-position: center 30%;
+        background-repeat: no-repeat;
+        opacity: 0.28;
+      }
+      .oy-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(13, 35, 64, 0.8) 42%,
+          rgba(13, 35, 64, 0.051) 100%
+        );
+      }
+      .oy-hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 80px 24px;
+        width: 100%;
+      }
+      .oy-hero-content {
+        max-width: 560px;
+      }
+      .oy-hero-title {
+        font-size: clamp(2rem, 5vw, 3.25rem);
+        font-weight: 800;
+        line-height: 1.12;
+        color: #fff;
+        letter-spacing: -0.02em;
+        margin-bottom: 22px;
+        opacity: 0;
+        animation: oy-fade-up 0.7s ease 0.12s forwards;
+      }
+      .oy-hero-title em {
+        font-style: normal;
+        color: var(--oy-accent-light);
+      }
+      .oy-hero-sub {
+        font-size: 17px;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.78);
+        margin-bottom: 36px;
+        max-width: 460px;
+        opacity: 0;
+        animation: oy-fade-up 0.7s ease 0.24s forwards;
+      }
+      .oy-hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: oy-fade-up 0.7s ease 0.36s forwards;
+      }
+      .oy-btn-primary {
+        display: inline-block;
+        background: var(--oy-accent);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 14px 30px;
+        border-radius: 0px;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        letter-spacing: 0.01em;
+      }
+      .oy-btn-primary:hover {
+        background: var(--oy-accent-light);
+        transform: translateY(-2px);
+      }
+      .oy-btn-ghost {
+        display: inline-block;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 15px;
+        font-weight: 600;
+        padding: 13px 28px;
+        border-radius: 0px;
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          transform 0.15s;
+      }
+      .oy-btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.55);
+        transform: translateY(-2px);
+      }
+
+      @keyframes oy-fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── MISSION STRIP ── */
+      .oy-mission-strip {
+        background: var(--oy-blue);
+        padding: 28px 24px;
+      }
+      .oy-mission-strip-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        text-align: center;
+      }
+      .oy-mission-strip p {
+        font-size: 16px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.92);
+        line-height: 1.5;
+      }
+      .oy-mission-strip strong {
+        color: #fff;
+        font-weight: 700;
+      }
+
+      /* ── ABOUT SPLIT ── */
+      .oy-about {
+        padding: 96px 24px;
+        background: var(--oy-bg-white);
+      }
+      .oy-about-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .oy-about-visual {
+        position: relative;
+        border-radius: var(--oy-radius-lg);
+        overflow: hidden;
+        aspect-ratio: 4/3;
+      }
+      .oy-about-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .oy-about-visual:hover img {
+        transform: scale(1.03);
+      }
+      .oy-about-badge {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: var(--oy-accent);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 10px 16px;
+        border-radius: 8px;
+        letter-spacing: 0.02em;
+      }
+      .oy-section-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--oy-blue);
+        margin-bottom: 14px;
+      }
+      .oy-section-title {
+        font-size: clamp(1.6rem, 3vw, 2.25rem);
+        font-weight: 800;
+        color: var(--oy-navy);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 18px;
+      }
+      .oy-about-text p {
+        font-size: 16px;
+        line-height: 1.72;
+        color: var(--oy-text-secondary);
+        margin-bottom: 14px;
+      }
+      .oy-about-text p:last-of-type {
+        margin-bottom: 28px;
+      }
+      .oy-btn-solid {
+        display: inline-block;
+        background: var(--oy-navy);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 12px 26px;
+        border-radius: 0px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .oy-btn-solid:hover {
+        background: var(--oy-navy-mid);
+        transform: translateY(-1px);
+      }
+
+      /* ── IMPACT NUMBERS ── */
+      .oy-impact {
+        background: var(--oy-navy);
+        padding: 72px 24px;
+      }
+      .oy-impact-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .oy-impact-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: var(--oy-radius-lg);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .oy-impact-stat {
+        padding: 44px 32px;
+        background: rgba(255, 255, 255, 0.03);
+        text-align: center;
+        transition: background 0.2s;
+      }
+      .oy-impact-stat:hover {
+        background: rgba(255, 255, 255, 0.07);
+      }
+      .oy-impact-number {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--oy-accent-light);
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .oy-impact-label {
+        font-size: 13.5px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.4;
+      }
+
+      /* ── SERVICES ── */
+      .oy-services {
+        padding: 96px 24px;
+        background: var(--oy-bg-section);
+      }
+      .oy-services-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .oy-services-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: end;
+        margin-bottom: 56px;
+      }
+      .oy-services-head-right {
+        font-size: 15.5px;
+        color: var(--oy-text-secondary);
+        line-height: 1.65;
+      }
+      .oy-services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .oy-service-item {
+        background: var(--oy-bg-white);
+        border-radius: var(--oy-radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--oy-border);
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s;
+      }
+      .oy-service-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--oy-shadow-md);
+      }
+      .oy-service-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .oy-service-body {
+        padding: 24px 22px;
+      }
+      .oy-service-tag {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--oy-blue);
+        background: #e8f0fb;
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+      }
+      .oy-service-name {
+        font-size: 16.5px;
+        font-weight: 700;
+        color: var(--oy-navy);
+        line-height: 1.3;
+        margin-bottom: 10px;
+      }
+      .oy-service-desc {
+        font-size: 14px;
+        line-height: 1.65;
+        color: var(--oy-text-muted);
+        margin-bottom: 18px;
+      }
+      .oy-service-link {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--oy-blue-light);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition:
+          gap 0.2s,
+          color 0.2s;
+      }
+      .oy-service-link:hover {
+        gap: 9px;
+        color: var(--oy-blue);
+      }
+      .oy-service-link svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* Featured (large) service */
+      .oy-service-item.oy-featured {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+      .oy-service-item.oy-featured .oy-service-img {
+        height: 100%;
+        min-height: 280px;
+      }
+      .oy-service-item.oy-featured .oy-service-body {
+        padding: 40px 36px;
+      }
+      .oy-service-item.oy-featured .oy-service-name {
+        font-size: 20px;
+      }
+      .oy-service-item.oy-featured .oy-service-desc {
+        font-size: 15px;
+      }
+
+      /* ── FATAL VISION CTA STRIP ── */
+      .oy-fv-strip {
+        padding: 0 24px 96px;
+        background: var(--oy-bg-section);
+      }
+      .oy-fv-strip-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        background: var(--oy-navy);
+        border-radius: var(--oy-radius-lg);
+        padding: 56px 64px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 48px;
+        align-items: center;
+      }
+      .oy-fv-title {
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+      }
+      .oy-fv-desc {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.68);
+        line-height: 1.6;
+        max-width: 520px;
+      }
+      .oy-fv-strip .oy-btn-primary {
+        white-space: nowrap;
+        font-size: 14px;
+        padding: 13px 26px;
+      }
+
+      /* ── EVENTS / BLOG ── */
+      .oy-blog {
+        padding: 96px 24px;
+        background: var(--oy-bg-white);
+      }
+      .oy-blog-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .oy-blog-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 48px;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .oy-btn-outline {
+        display: inline-block;
+        color: var(--oy-navy);
+        font-size: 13.5px;
+        font-weight: 700;
+        padding: 10px 22px;
+        border-radius: 0px;
+        border: 1.5px solid var(--oy-navy);
+        transition:
+          background 0.2s,
+          color 0.2s;
+        white-space: nowrap;
+      }
+      .oy-btn-outline:hover {
+        background: var(--oy-navy);
+        color: #fff;
+      }
+      .oy-blog-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 20px;
+      }
+      .oy-blog-card {
+        background: var(--oy-bg-white);
+        border-radius: var(--oy-radius-lg);
+        border: 1px solid var(--oy-border);
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .oy-blog-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--oy-shadow-md);
+      }
+      .oy-blog-card-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .oy-blog-card-body {
+        padding: 22px 20px;
+      }
+      .oy-blog-card-meta {
+        font-size: 12px;
+        color: var(--oy-text-muted);
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      .oy-blog-card-title {
+        font-size: 15.5px;
+        font-weight: 700;
+        color: var(--oy-navy);
+        line-height: 1.35;
+        margin-bottom: 10px;
+      }
+      .oy-blog-card-excerpt {
+        font-size: 13.5px;
+        line-height: 1.6;
+        color: var(--oy-text-muted);
+      }
+      .oy-blog-card.oy-blog-featured .oy-blog-card-img {
+        height: 280px;
+      }
+      .oy-blog-card.oy-blog-featured .oy-blog-card-title {
+        font-size: 18px;
+      }
+
+      /* ── VIDEO SECTION ── */
+      .oy-media {
+        padding: 96px 24px;
+        background: var(--oy-bg-section);
+      }
+      .oy-media-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .oy-media-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 48px;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .oy-media-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .oy-video-thumb {
+        border-radius: var(--oy-radius-lg);
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 16/9;
+        background: var(--oy-navy);
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .oy-video-thumb:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--oy-shadow-md);
+      }
+      .oy-video-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.75;
+        transition: opacity 0.2s;
+      }
+      .oy-video-thumb:hover img {
+        opacity: 0.55;
+      }
+      .oy-video-play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .oy-video-play-btn {
+        width: 52px;
+        height: 52px;
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .oy-video-thumb:hover .oy-video-play-btn {
+        background: #fff;
+        transform: scale(1.1);
+      }
+      .oy-video-play-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: var(--oy-navy);
+        margin-left: 2px;
+      }
+      .oy-video-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 36px 16px 14px;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.75) 0%,
+          transparent 100%
+        );
+        font-size: 13px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.35;
+      }
+
+      /* ── WAYS TO HELP ── */
+      .oy-help {
+        padding: 96px 24px;
+        background: var(--oy-bg-white);
+      }
+      .oy-help-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .oy-help-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .oy-help-card {
+        border: 1px solid var(--oy-border);
+        border-radius: var(--oy-radius-lg);
+        padding: 36px 28px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .oy-help-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--oy-accent);
+        transform: scaleX(0);
+        transition: transform 0.25s;
+        transform-origin: left;
+      }
+      .oy-help-card:hover::before {
+        transform: scaleX(1);
+      }
+      .oy-help-card:hover {
+        border-color: rgba(0, 0, 0, 0.15);
+        transform: translateY(-3px);
+        box-shadow: var(--oy-shadow-md);
+      }
+      .oy-help-icon {
+        width: 48px;
+        height: 48px;
+        background: #e8f0fb;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .oy-help-icon svg {
+        width: 24px;
+        height: 24px;
+        stroke: var(--oy-blue);
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .oy-help-name {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--oy-navy);
+        margin-bottom: 10px;
+      }
+      .oy-help-desc {
+        font-size: 14.5px;
+        color: var(--oy-text-muted);
+        line-height: 1.65;
+        margin-bottom: 22px;
+      }
+      .oy-help-action {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--oy-blue-light);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: gap 0.2s;
+      }
+      .oy-help-action:hover {
+        gap: 9px;
+      }
+      .oy-help-action svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* ── FOOTER ── */
+      .oy-footer {
+        background: var(--oy-navy);
+        padding: 64px 24px 32px;
+      }
+      .oy-footer-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .oy-footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 48px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 32px;
+      }
+      .oy-footer-brand img {
+        height: 48px;
+        margin-bottom: 16px;
+        filter: brightness(0) invert(1);
+        opacity: 0.9;
+      }
+      .oy-footer-brand p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+      .oy-footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .oy-social-link {
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .oy-social-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .oy-social-link svg {
+        width: 16px;
+        height: 16px;
+        fill: rgba(255, 255, 255, 0.7);
+      }
+      .oy-footer-col-title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 18px;
+      }
+      .oy-footer-col-links {
+        list-style: none;
+      }
+      .oy-footer-col-links li {
+        margin-bottom: 10px;
+      }
+      .oy-footer-col-links a {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.62);
+        transition: color 0.2s;
+      }
+      .oy-footer-col-links a:hover {
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .oy-footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .oy-footer-copy {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.38);
+      }
+      .oy-footer-contact a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        transition: color 0.2s;
+      }
+      .oy-footer-contact a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      /* ── ANIMATIONS (intersection) ── */
+      .oy-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .oy-reveal.oy-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .oy-reveal-delay-1 {
+        transition-delay: 0.08s;
+      }
+      .oy-reveal-delay-2 {
+        transition-delay: 0.16s;
+      }
+      .oy-reveal-delay-3 {
+        transition-delay: 0.24s;
+      }
+      .oy-reveal-delay-4 {
+        transition-delay: 0.32s;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        .oy-services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .oy-service-item.oy-featured {
+          grid-column: auto;
+          grid-template-columns: 1fr;
+        }
+        .oy-service-item.oy-featured .oy-service-img {
+          height: 220px;
+        }
+        .oy-blog-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .oy-blog-card:last-child {
+          display: none;
+        }
+        .oy-footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+        .oy-impact-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .oy-nav-links,
+        .oy-btn-donate {
+          display: none;
+        }
+        .oy-nav-hamburger {
+          display: flex;
+        }
+        .oy-about-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .oy-services-grid {
+          grid-template-columns: 1fr;
+        }
+        .oy-services-head {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .oy-blog-grid {
+          grid-template-columns: 1fr;
+        }
+        .oy-blog-card:last-child {
+          display: block;
+        }
+        .oy-media-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .oy-media-grid .oy-video-thumb:last-child {
+          display: none;
+        }
+        .oy-help-grid {
+          grid-template-columns: 1fr;
+        }
+        .oy-fv-strip-inner {
+          grid-template-columns: 1fr;
+          padding: 40px 32px;
+          gap: 24px;
+        }
+        .oy-footer-top {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .oy-impact-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .oy-hero-actions {
+          flex-direction: column;
+        }
+        .oy-btn-primary,
+        .oy-btn-ghost {
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .oy-impact-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .oy-media-grid {
+          grid-template-columns: 1fr;
+        }
+        .oy-media-grid .oy-video-thumb:last-child {
+          display: block;
+        }
+      }
+    </style>
+    <style>
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+
+      /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+      @media (max-width: 640px) {
+        .glad-inner {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .glad-logo img {
+          margin-left: 0 !important;
+        }
+        .glad-back-btn {
+          margin-right: 0 !important;
+        }
+      }
+
+      /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+      @media (max-width: 640px) {
+        .glad-logo img {
+          height: 28px !important;
+          width: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- NAVBAR -->
+    <nav class="oy-navbar" id="oy-navbar" aria-label="Main navigation">
+      <div class="oy-nav-inner">
+        <a href="#" class="oy-nav-brand">
+          <img
+            src="https://static.wixstatic.com/media/a889eb_2402eeede1424a42b08fba7c10572ea9~mv2.png"
+            alt="Omni Youth Programs logo"
+          />
+          <div class="oy-nav-brand-name">
+            Omni Youth Programs
+            <span>Sacramento County, CA</span>
+          </div>
+        </a>
+        <ul class="oy-nav-links" role="list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="oy-nav-actions">
+          <a href="#" class="oy-btn-donate" role="button">Donate</a>
+          <button
+            class="oy-nav-hamburger"
+            id="oy-hamburger"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- OFF-CANVAS MENU -->
+    <div class="oy-overlay" id="oy-overlay" aria-hidden="true"></div>
+    <aside
+      class="oy-offcanvas"
+      id="oy-offcanvas"
+      aria-label="Mobile navigation"
+    >
+      <div class="oy-offcanvas-head">
+        <img
+          src="https://static.wixstatic.com/media/a889eb_2402eeede1424a42b08fba7c10572ea9~mv2.png"
+          alt="Omni Youth Programs logo"
+        />
+        <button
+          class="oy-offcanvas-close"
+          id="oy-close"
+          aria-label="Close menu"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <ul class="oy-offcanvas-links" role="list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Cultural Orientation Series</a></li>
+        <li><a href="#">Youth Opioid Prevention</a></li>
+        <li><a href="#">Teens in Action</a></li>
+        <li><a href="#">Active Parenting of Teens</a></li>
+        <li><a href="#">Family Matters</a></li>
+        <li><a href="#">Presentations &amp; Trainings</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+      <div class="oy-offcanvas-footer">
+        <a href="#" class="oy-btn-donate">Make a Donation</a>
+      </div>
+    </aside>
+
+    <!-- HERO -->
+    <section class="oy-hero" aria-label="Hero">
+      <div class="oy-hero-bg" aria-hidden="true"></div>
+      <div class="oy-hero-overlay" aria-hidden="true"></div>
+      <div class="oy-hero-inner">
+        <div class="oy-hero-content">
+          <h1 class="oy-hero-title">
+            Empowering Youth.<br /><em>Strengthening</em> Communities.
+          </h1>
+          <p class="oy-hero-sub">
+            We partner with youth, families, schools, and communities to provide
+            education, tools, and support that help young people stay safe, make
+            healthy choices, and thrive.
+          </p>
+          <div class="oy-hero-actions">
+            <a href="#" class="oy-btn-primary">Explore Our Programs</a>
+            <a href="#" class="oy-btn-ghost">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION STRIP -->
+    <div class="oy-mission-strip" aria-label="Mission statement">
+      <div class="oy-mission-strip-inner">
+        <p>
+          <strong>Prevention that connects, equips, and empowers.</strong> Free
+          services for teens, families, schools, and communities across
+          Sacramento County.
+        </p>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="oy-about" aria-labelledby="oy-about-heading">
+      <div class="oy-about-inner">
+        <div class="oy-about-visual oy-reveal">
+          <img
+            src="https://static.wixstatic.com/media/702183_7d04cd2aa3ae429093e27cd716bbe8ff~mv2.jpg"
+            alt="Youth program participants"
+            loading="lazy"
+          />
+          <div class="oy-about-badge">Serving Since 1991</div>
+        </div>
+        <div class="oy-about-text">
+          <p class="oy-section-label oy-reveal">Who We Are</p>
+          <h2
+            class="oy-section-title oy-reveal oy-reveal-delay-1"
+            id="oy-about-heading"
+          >
+            Prevention rooted in community
+          </h2>
+          <div class="oy-reveal oy-reveal-delay-2">
+            <p>
+              Omni Youth Programs is a Sacramento County-based nonprofit
+              dedicated to youth substance use prevention, family support, and
+              culturally responsive education. We believe every young person
+              deserves the information and tools to make healthy choices.
+            </p>
+            <p>
+              Our programs are free to teens, parents, educators, and community
+              members. From fentanyl awareness to parenting workshops, we show
+              up where communities need us most — online and in person.
+            </p>
+          </div>
+          <a href="#" class="oy-btn-solid oy-reveal oy-reveal-delay-3"
+            >Learn Our Story</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT NUMBERS -->
+    <section class="oy-impact" aria-label="Impact statistics">
+      <div class="oy-impact-inner">
+        <div class="oy-impact-grid">
+          <div class="oy-impact-stat oy-reveal">
+            <div class="oy-impact-number">30+</div>
+            <div class="oy-impact-label">Years Serving Sacramento County</div>
+          </div>
+          <div class="oy-impact-stat oy-reveal oy-reveal-delay-1">
+            <div class="oy-impact-number">100%</div>
+            <div class="oy-impact-label">Free Programs &amp; Services</div>
+          </div>
+          <div class="oy-impact-stat oy-reveal oy-reveal-delay-2">
+            <div class="oy-impact-number">8+</div>
+            <div class="oy-impact-label">Specialized Prevention Programs</div>
+          </div>
+          <div class="oy-impact-stat oy-reveal oy-reveal-delay-3">
+            <div class="oy-impact-number">Multi-</div>
+            <div class="oy-impact-label">
+              Cultural &amp; Multilingual Outreach
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="oy-services" aria-labelledby="oy-services-heading">
+      <div class="oy-services-inner">
+        <div class="oy-services-head">
+          <div>
+            <p class="oy-section-label oy-reveal">What We Offer</p>
+            <h2
+              class="oy-section-title oy-reveal oy-reveal-delay-1"
+              id="oy-services-heading"
+            >
+              Programs built for real community needs
+            </h2>
+          </div>
+          <p class="oy-services-head-right oy-reveal oy-reveal-delay-2">
+            All presentations and trainings are available both online and
+            in-person at no cost to schools, organizations, and community
+            groups.
+          </p>
+        </div>
+        <div class="oy-services-grid">
+          <!-- Featured -->
+          <article class="oy-service-item oy-featured oy-reveal">
+            <img
+              class="oy-service-img"
+              src="https://static.wixstatic.com/media/702183_54897b356ad847b6902746bf0bbad8cc~mv2.jpg"
+              alt="Presentations and trainings event"
+              loading="lazy"
+            />
+            <div class="oy-service-body">
+              <span class="oy-service-tag">Flagship Program</span>
+              <h3 class="oy-service-name">Presentations &amp; Trainings</h3>
+              <p class="oy-service-desc">
+                Free in-person and online presentations for schools,
+                organizations, and community members covering youth marijuana,
+                alcohol, opioid/fentanyl prevention, and the "Fatal Vision"
+                experience — an interactive activity simulating the cognitive
+                effects of substance use.
+              </p>
+              <a href="#" class="oy-service-link">
+                Request a Presentation
+                <svg
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M1 7h12M8 2l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <!-- Cards -->
+          <article class="oy-service-item oy-reveal oy-reveal-delay-1">
+            <img
+              class="oy-service-img"
+              src="https://static.wixstatic.com/media/702183_4a5e57b2ff0b4af2b9296b498f1262b0~mv2.jpg"
+              alt="Youth opioid and fentanyl prevention"
+              loading="lazy"
+            />
+            <div class="oy-service-body">
+              <span class="oy-service-tag">Prevention</span>
+              <h3 class="oy-service-name">
+                Youth Opioid &amp; Fentanyl Prevention
+              </h3>
+              <p class="oy-service-desc">
+                Free youth opioid and fentanyl prevention for immigrant
+                communities and groups with specialized needs through
+                community-wide collaboration.
+              </p>
+              <a href="#" class="oy-service-link">
+                Learn More
+                <svg
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M1 7h12M8 2l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article class="oy-service-item oy-reveal oy-reveal-delay-2">
+            <img
+              class="oy-service-img"
+              src="https://static.wixstatic.com/media/702183_f624c356683e4299bde963bc518f1566~mv2.jpg"
+              alt="Cultural Orientation Series"
+              loading="lazy"
+            />
+            <div class="oy-service-body">
+              <span class="oy-service-tag">Training</span>
+              <h3 class="oy-service-name">Cultural Orientation Series</h3>
+              <p class="oy-service-desc">
+                Free professional trainings that bridge the gap between agencies
+                and culture-specific groups to deliver culturally relevant,
+                effective services.
+              </p>
+              <a href="#" class="oy-service-link">
+                Learn More
+                <svg
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M1 7h12M8 2l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article class="oy-service-item oy-reveal oy-reveal-delay-1">
+            <img
+              class="oy-service-img"
+              src="https://static.wixstatic.com/media/702183_266ff3e4799347f9a2229f08b3f1a2b7~mv2.jpg"
+              alt="Prevention resources"
+              loading="lazy"
+            />
+            <div class="oy-service-body">
+              <span class="oy-service-tag">Resources</span>
+              <h3 class="oy-service-name">Active Parenting of Teens</h3>
+              <p class="oy-service-desc">
+                Evidence-based parenting program equipping parents with
+                communication skills and strategies to guide teens through
+                healthy decision-making.
+              </p>
+              <a href="#" class="oy-service-link">
+                Learn More
+                <svg
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M1 7h12M8 2l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article class="oy-service-item oy-reveal oy-reveal-delay-2">
+            <img
+              class="oy-service-img"
+              src="https://static.wixstatic.com/media/702183_0347fffdecc7417fa294ded09ee085b1~mv2.jpg"
+              alt="Family Matters program"
+              loading="lazy"
+            />
+            <div class="oy-service-body">
+              <span class="oy-service-tag">Family</span>
+              <h3 class="oy-service-name">Family Matters</h3>
+              <p class="oy-service-desc">
+                A family-focused program helping parents build protective
+                factors and strengthen connections that reduce youth substance
+                use risk.
+              </p>
+              <a href="#" class="oy-service-link">
+                Learn More
+                <svg
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M1 7h12M8 2l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FATAL VISION CTA -->
+    <div class="oy-fv-strip" aria-label="Fatal Vision experience callout">
+      <div class="oy-fv-strip-inner oy-reveal">
+        <div>
+          <h2 class="oy-fv-title">Experience the "Fatal Vision" Program</h2>
+          <p class="oy-fv-desc">
+            Through interactive activities, participants experience the
+            cognitive effects of marijuana or opioid use firsthand — a powerful,
+            evidence-based tool for schools and organizations. Contact us to
+            bring this experience to your community.
+          </p>
+        </div>
+        <a href="#" class="oy-btn-primary">Contact Us Today</a>
+      </div>
+    </div>
+
+    <!-- BLOG -->
+    <section class="oy-blog" aria-labelledby="oy-blog-heading">
+      <div class="oy-blog-inner">
+        <div class="oy-blog-head">
+          <div>
+            <p class="oy-section-label oy-reveal">Latest from Us</p>
+            <h2
+              class="oy-section-title oy-reveal oy-reveal-delay-1"
+              id="oy-blog-heading"
+            >
+              News, stories &amp; updates
+            </h2>
+          </div>
+          <a href="#" class="oy-btn-outline oy-reveal oy-reveal-delay-2"
+            >All Articles</a
+          >
+        </div>
+        <div class="oy-blog-grid">
+          <article class="oy-blog-card oy-blog-featured oy-reveal">
+            <img
+              class="oy-blog-card-img"
+              src="https://static.wixstatic.com/media/a889eb_84dcbf228508402da9853f7e95592992~mv2.jpg"
+              alt="Miss Sacramento article"
+              loading="lazy"
+            />
+            <div class="oy-blog-card-body">
+              <p class="oy-blog-card-meta">
+                January 28, 2025 &mdash; 3 min read
+              </p>
+              <h3 class="oy-blog-card-title">
+                Miss Sacramento: A Platform with Purpose — Empowering Youth to
+                Overcome Substance Use
+              </h3>
+              <p class="oy-blog-card-excerpt">
+                Brianna Ashley, Miss Sacramento County 2025, shares how her
+                community service initiative Power of Choice advocates for youth
+                prevention and healthy decision-making across Sacramento County.
+              </p>
+            </div>
+          </article>
+          <article class="oy-blog-card oy-reveal oy-reveal-delay-1">
+            <img
+              class="oy-blog-card-img"
+              src="https://static.wixstatic.com/media/702183_a97ea3c7d9254c45b355b59b4df20b0d~mv2.jpg"
+              alt="Youth stress and substance use"
+              loading="lazy"
+            />
+            <div class="oy-blog-card-body">
+              <p class="oy-blog-card-meta">Education &amp; Prevention</p>
+              <h3 class="oy-blog-card-title">
+                Stress, COVID-19, and Why Youth Are Turning to Alcohol
+              </h3>
+              <p class="oy-blog-card-excerpt">
+                Life is stressful — especially during periods of crisis. Learn
+                why alcohol and drugs pose unique dangers for young people whose
+                brains are still developing.
+              </p>
+            </div>
+          </article>
+          <article class="oy-blog-card oy-reveal oy-reveal-delay-2">
+            <img
+              class="oy-blog-card-img"
+              src="https://static.wixstatic.com/media/702183_f4ac775e80674df1a7b44b6638d58166~mv2.jpg"
+              alt="Let's talk pot"
+              loading="lazy"
+            />
+            <div class="oy-blog-card-body">
+              <p class="oy-blog-card-meta">Q&amp;A Series</p>
+              <h3 class="oy-blog-card-title">
+                Let's Talk Pot: Is Marijuana Addictive for Young People?
+              </h3>
+              <p class="oy-blog-card-excerpt">
+                There's a lot of information flying around about marijuana. We
+                answer the most commonly asked questions — including whether
+                it's more addictive for teens.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section class="oy-media" aria-labelledby="oy-media-heading">
+      <div class="oy-media-inner">
+        <div class="oy-media-head">
+          <div>
+            <p class="oy-section-label oy-reveal">On Screen</p>
+            <h2
+              class="oy-section-title oy-reveal oy-reveal-delay-1"
+              id="oy-media-heading"
+            >
+              Videos &amp; resources
+            </h2>
+          </div>
+          <a href="#" class="oy-btn-outline oy-reveal oy-reveal-delay-2"
+            >YouTube Channel</a
+          >
+        </div>
+        <div class="oy-media-grid">
+          <div
+            class="oy-video-thumb oy-reveal"
+            role="button"
+            tabindex="0"
+            aria-label="Play: Stress, COVID-19 and Youth Substance Use"
+          >
+            <img
+              src="https://static.wixstatic.com/media/702183_a97ea3c7d9254c45b355b59b4df20b0d~mv2.jpg"
+              alt="Video thumbnail: stress and substance use"
+              loading="lazy"
+            />
+            <div class="oy-video-play" aria-hidden="true">
+              <div class="oy-video-play-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 3l14 9-14 9V3z" />
+                </svg>
+              </div>
+            </div>
+            <div class="oy-video-title">
+              Stress, COVID-19 &amp; Why Young People Turn to Substances
+            </div>
+          </div>
+          <div
+            class="oy-video-thumb oy-reveal oy-reveal-delay-1"
+            role="button"
+            tabindex="0"
+            aria-label="Play: Let's Talk Pot"
+          >
+            <img
+              src="https://static.wixstatic.com/media/702183_f4ac775e80674df1a7b44b6638d58166~mv2.jpg"
+              alt="Video thumbnail: Let's Talk Pot"
+              loading="lazy"
+            />
+            <div class="oy-video-play" aria-hidden="true">
+              <div class="oy-video-play-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 3l14 9-14 9V3z" />
+                </svg>
+              </div>
+            </div>
+            <div class="oy-video-title">
+              Let's Talk Pot: Answering the Most Common Questions
+            </div>
+          </div>
+          <div
+            class="oy-video-thumb oy-reveal oy-reveal-delay-2"
+            role="button"
+            tabindex="0"
+            aria-label="Play: Fentanyl Awareness"
+          >
+            <img
+              src="https://static.wixstatic.com/media/702183_4a5e57b2ff0b4af2b9296b498f1262b0~mv2.jpg"
+              alt="Video thumbnail: fentanyl awareness"
+              loading="lazy"
+            />
+            <div class="oy-video-play" aria-hidden="true">
+              <div class="oy-video-play-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 3l14 9-14 9V3z" />
+                </svg>
+              </div>
+            </div>
+            <div class="oy-video-title">
+              Fentanyl Awareness: What Every Family Needs to Know
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAYS TO HELP -->
+    <section class="oy-help" aria-labelledby="oy-help-heading">
+      <div class="oy-help-inner">
+        <div style="text-align: center; max-width: 560px; margin: 0 auto 0">
+          <p class="oy-section-label oy-reveal">Get Involved</p>
+          <h2
+            class="oy-section-title oy-reveal oy-reveal-delay-1"
+            id="oy-help-heading"
+          >
+            Ways to support our work
+          </h2>
+          <p
+            class="oy-reveal oy-reveal-delay-2"
+            style="
+              font-size: 15.5px;
+              color: var(--oy-text-muted);
+              line-height: 1.65;
+            "
+          >
+            Your support allows us to keep all programs free and accessible to
+            every family and school in Sacramento County.
+          </p>
+        </div>
+        <div class="oy-help-grid">
+          <div class="oy-help-card oy-reveal oy-reveal-delay-1">
+            <div class="oy-help-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3 class="oy-help-name">Make a Donation</h3>
+            <p class="oy-help-desc">
+              Your financial contribution funds free programs, materials, and
+              community outreach that help keep youth safe and informed.
+            </p>
+            <a href="#" class="oy-help-action">
+              Donate via PayPal
+              <svg viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+          <div class="oy-help-card oy-reveal oy-reveal-delay-2">
+            <div class="oy-help-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h3 class="oy-help-name">Partner With Us</h3>
+            <p class="oy-help-desc">
+              Bring our programs to your school, organization, or faith
+              community. We collaborate with agencies, districts, and nonprofits
+              throughout Sacramento County.
+            </p>
+            <a href="#" class="oy-help-action">
+              Start a Partnership
+              <svg viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+          <div class="oy-help-card oy-reveal oy-reveal-delay-3">
+            <div class="oy-help-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+              </svg>
+            </div>
+            <h3 class="oy-help-name">Spread Awareness</h3>
+            <p class="oy-help-desc">
+              Follow and share our content on social media, attend community
+              events, or share our resources with parents, teens, and educators
+              in your network.
+            </p>
+            <a href="#" class="oy-help-action">
+              Follow on Social Media
+              <svg viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="oy-footer" aria-label="Footer">
+      <div class="oy-footer-inner">
+        <div class="oy-footer-top">
+          <div class="oy-footer-brand">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0sAAANLCAYAAACQRAZ2AAAACXBIWXMAAC4jAAAuIwF4pT92AAAgAElEQVR4nOzdf3Ad5Z3n+4fBC77BIPEjlgJBFtg44MW2uNgMiU1JJp7YAyKYH7sD8RQIdmbwMqnCMFUMW5VCOJWtm+UPIFUzROTOBJsaB3IXsB0EwQkB6xrnZsbO2eX5v9j5ZHDGbFEOQwIqdJq6/Pn/3u/TPMrKSqBtftVdYQ6iChUVBkVCxeHi6SliZlKfTHvP415oe4I4d2ecYZaI6fg98Xj4EAAECBAgQIECAAAEUAwCwC9kdTyc3L5Wl1U03I20+0HBc41xG/GcbRSDA0GWBomeU4YxUTve+7DX2iotHvjTkR3w2e8xW/iRzFWehjz8L5GvU5Fv4XflNLQImkZpt4B8bvv4Yn5jCxK3i3pDgAABAgQIECBAgACBzQLwH5NoytZ3f5rWS6zr+DXoPIAIGxAtx0pfiD5c3u1eoY67n8kIyV39+rsPQ68cBQIECBAgQIAAgSWeA0BOd/BVvm7w0zgkF8ZH4PqlsXjHjn8o7sf7Ds/8eAAECBAgQIECAAAECrgnALx6hMklX9rKGtMrGvEe5ECO1aANuQgQIECAAAECBAgQIECAQJzALAX0RnE6NxrOWtN1iMAoADrQnIMFwz5T6d4X8J3IAAQIECBAgQIAAgW7AFAs3nB8rVhoOzyKNBwPA4LIPqNszL3uB6x52IECAAAECBAgQIEDgFi0DAUIv1ClZ9d7Sr9akHg0Fh8H7aSyvgMAAAQIECBAgQIBAYsP6gFnd3ndys4EjzNw6EAMBgM+TIPKd0Q9CoVSq1Sr1qk8j8+Tw8mOxs5Hc2ROQ4AABAgQIECBAgAABAgQIECgHAQ0zf4hN1NdgQAE0rF+/psEzJwl/FuYsL6xw0IMCAQIECBAgQIAAgVkYGxMToy9DyCZ6Hbd2AIBAHnOJn/17j/8EAAQIECBAgQIAAgS+DhLz5WZXP5NtqR3P93veZycTJ0unE7sWAAQIECBAgQIAAwGOLg8GUfXs47l6fMxw8UIDCggLCwsLCwtif4QEAAQIECBAgQIBATSq3AsObT5Kn0kROq5j5qf8GOBxUOnx8fHV3t7e3t7e3t7e3t7+7i4uLk5Obm5uXl5eXl5eXn5+fny8vLy8vLw8PDw8PHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHwMDg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4OBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGAAAAAElFTkSuQmCC"
+              alt="Omni Youth Programs logo"
+            />
+            <p>
+              Empowering youth, supporting families, and strengthening
+              communities across Sacramento County through free, evidence-based
+              prevention programs.
+            </p>
+            <div class="oy-footer-social">
+              <!-- Facebook -->
+              <a href="#" class="oy-social-link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M13.5 22V13.5h3.5l.5-4h-4V7.5c0-1.1.3-1.5 1.5-1.5h2V2h-2.5C11.5 2 10 3 10 5.5V9H6.5v4H10V22h3.5z"
+                  />
+                </svg>
+              </a>
+              <!-- X / Twitter -->
+              <a href="#" class="oy-social-link" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M7 7l10 10M17 7L7 17"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </a>
+              <!-- YouTube -->
+              <a href="#" class="oy-social-link" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M21.8 7.1c-.2-.8-.8-1.4-1.5-1.6C18.3 5 12 5 12 5s-6.3 0-8.3.5c-.7.2-1.3.8-1.5 1.6C2 8.9 2 12 2 12s0 3.1.2 4.9c.2.8.8 1.4 1.5 1.6 2 .5 8.3.5 8.3.5s6.3 0 8.3-.5c.7-.2 1.3-.8 1.5-1.6.2-1.8.2-4.9.2-4.9s0-3.1-.2-4.9z"
+                  />
+                  <path d="M10 15.5l5.5-3.5L10 8.5v7z" />
+                </svg>
+              </a>
+              <!-- Instagram -->
+              <a href="#" class="oy-social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="3.5" />
+                  <circle cx="17.5" cy="6.5" r="1.5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="oy-footer-col-title">Programs</h3>
+            <ul class="oy-footer-col-links">
+              <li><a href="#">Cultural Orientation Series</a></li>
+              <li><a href="#">Youth Opioid Prevention</a></li>
+              <li><a href="#">Teens in Action</a></li>
+              <li><a href="#">Active Parenting of Teens</a></li>
+              <li><a href="#">Family Matters</a></li>
+              <li><a href="#">Exhibits</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="oy-footer-col-title">Organization</h3>
+            <ul class="oy-footer-col-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Videos &amp; Social Media</a></li>
+              <li><a href="#">Resources</a></li>
+              <li><a href="#">Ways to Help</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="oy-footer-col-title">Contact</h3>
+            <ul class="oy-footer-col-links">
+              <li><a href="#">Email Shari</a></li>
+              <li><a href="#">Register for a Program</a></li>
+              <li><a href="#">Request a Presentation</a></li>
+              <li><a href="#">Donate via PayPal</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="oy-footer-bottom">
+          <p class="oy-footer-copy">
+            &copy; 2025 Omni Youth Programs. All rights reserved. Sacramento
+            County, CA.
+          </p>
+          <div class="oy-footer-contact">
+            <a href="#">shari@omniyouth.net</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll shadow
+      const navbar = document.getElementById("oy-navbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          navbar.classList.toggle("oy-scrolled", window.scrollY > 16);
+        },
+        { passive: true },
+      );
+
+      // Off-canvas
+      const hamburger = document.getElementById("oy-hamburger");
+      const offcanvas = document.getElementById("oy-offcanvas");
+      const overlay = document.getElementById("oy-overlay");
+      const closeBtn = document.getElementById("oy-close");
+
+      function openMenu() {
+        offcanvas.classList.add("oy-open");
+        overlay.classList.add("oy-open");
+        overlay.setAttribute("aria-hidden", "false");
+        hamburger.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMenu() {
+        offcanvas.classList.remove("oy-open");
+        overlay.classList.remove("oy-open");
+        overlay.setAttribute("aria-hidden", "true");
+        hamburger.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      hamburger.addEventListener("click", openMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
+      });
+
+      // Intersection observer for reveal animations
+      const revealEls = document.querySelectorAll(".oy-reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("oy-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      );
+
+      revealEls.forEach((el) => observer.observe(el));
+    </script>
+    <script>
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const mainHeader = document.querySelector(
+        ".calbcc-header, .gcs-navbar, .oy-navbar, .pepa-navbar, .palm2-navbar, .ride-navbar, .ncb-nav",
+      );
+      let lastScrollY = window.scrollY;
+      let gladVisible = true;
+
+      if (window.scrollY > 80) {
+        gladHeader.classList.add("hidden");
+        gladVisible = false;
+        if (mainHeader) mainHeader.style.top = "0px";
+      } else {
+        if (mainHeader) mainHeader.style.top = "auto";
+      }
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+              if (mainHeader) mainHeader.style.top = "0px";
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+              if (mainHeader) mainHeader.style.top = "auto";
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horseback Riding Therapy | Project R.I.D.E., Inc.</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --ride-forest: #2c4a2e;
+        --ride-forest-dk: #1d3320;
+        --ride-sage: #6b8f71;
+        --ride-sage-lt: #a8c4ac;
+        --ride-cream: #f7f4ef;
+        --ride-warm-wht: #fdfcfa;
+        --ride-tan: #e8e0d0;
+        --ride-amber: #c17d3c;
+        --ride-amber-lt: #d4924f;
+        --ride-text: #1a1a1a;
+        --ride-text-md: #444444;
+        --ride-text-lt: #6b6b6b;
+        --ride-border: #ddd8d0;
+        --ride-nav-h: 72px;
+        --ride-font:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+          sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--ride-font);
+        color: var(--ride-text);
+        background: var(--ride-warm-wht);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ─── TOPBAR ─── */
+      .ride-topbar {
+        background: var(--ride-forest-dk);
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.78rem;
+        letter-spacing: 0.01em;
+        padding: 7px 0;
+      }
+      .ride-topbar-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .ride-topbar a {
+        color: rgba(255, 255, 255, 0.75);
+        transition: color 0.2s;
+      }
+      .ride-topbar a:hover {
+        color: #fff;
+      }
+      .ride-topbar-spacer {
+        margin-left: auto;
+      }
+
+      /* ─── NAVBAR ─── */
+      .ride-navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 253, 250, 0.97);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--ride-border);
+        height: var(--ride-nav-h);
+        transition: box-shadow 0.3s;
+      }
+      .ride-navbar.ride-scrolled {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+      }
+      .ride-navbar-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+      .ride-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .ride-brand-logo {
+        width: 46px;
+        height: 46px;
+        object-fit: contain;
+      }
+      .ride-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .ride-brand-name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--ride-forest);
+        letter-spacing: -0.01em;
+      }
+      .ride-brand-sub {
+        font-size: 0.68rem;
+        color: var(--ride-text-lt);
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .ride-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        list-style: none;
+        margin-left: auto;
+      }
+      .ride-nav-item {
+        position: relative;
+      }
+      .ride-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 8px 12px;
+        font-size: 0.87rem;
+        font-weight: 500;
+        color: var(--ride-text-md);
+        border-radius: 6px;
+        transition:
+          background 0.18s,
+          color 0.18s;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+      .ride-nav-link:hover,
+      .ride-nav-item:hover > .ride-nav-link {
+        background: var(--ride-cream);
+        color: var(--ride-forest);
+      }
+      .ride-nav-chevron {
+        width: 14px;
+        height: 14px;
+        opacity: 0.55;
+        transition: transform 0.2s;
+      }
+      .ride-nav-item:hover .ride-nav-chevron {
+        transform: rotate(180deg);
+      }
+
+      /* Dropdown */
+      .ride-dropdown {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        min-width: 200px;
+        background: #fff;
+        border: 1px solid var(--ride-border);
+        border-radius: 10px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 6px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-6px);
+        transition:
+          opacity 0.2s,
+          transform 0.2s,
+          visibility 0.2s;
+        z-index: 10;
+      }
+      .ride-nav-item:hover .ride-dropdown,
+      .ride-nav-item:focus-within .ride-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .ride-dropdown-link {
+        display: block;
+        padding: 8px 12px;
+        font-size: 0.84rem;
+        font-weight: 500;
+        color: var(--ride-text-md);
+        border-radius: 6px;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .ride-dropdown-link:hover {
+        background: var(--ride-cream);
+        color: var(--ride-forest);
+      }
+
+      .ride-nav-donate {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 18px;
+        background: var(--ride-amber);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 0px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        margin-left: 8px;
+        flex-shrink: 0;
+      }
+      .ride-nav-donate:hover {
+        background: var(--ride-amber-lt);
+        transform: translateY(-1px);
+      }
+
+      /* Hamburger */
+      .ride-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 26px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-left: auto;
+      }
+      .ride-hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--ride-text);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .ride-hamburger.ride-open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .ride-hamburger.ride-open span:nth-child(2) {
+        opacity: 0;
+      }
+      .ride-hamburger.ride-open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* Off-canvas */
+      .ride-offcanvas-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1100;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .ride-offcanvas-overlay.ride-active {
+        display: block;
+        opacity: 1;
+      }
+
+      .ride-offcanvas {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(340px, 92vw);
+        background: #fff;
+        z-index: 1200;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .ride-offcanvas.ride-active {
+        transform: translateX(0);
+      }
+
+      .ride-offcanvas-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--ride-border);
+      }
+      .ride-offcanvas-close {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ride-cream);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: var(--ride-text-md);
+        transition: background 0.2s;
+      }
+      .ride-offcanvas-close:hover {
+        background: var(--ride-tan);
+      }
+
+      .ride-offcanvas-nav {
+        list-style: none;
+        padding: 16px 0;
+        flex: 1;
+      }
+      .ride-offcanvas-nav li {
+        border-bottom: 1px solid var(--ride-cream);
+      }
+      .ride-offcanvas-nav a {
+        display: block;
+        padding: 13px 24px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--ride-text);
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .ride-offcanvas-nav a:hover {
+        background: var(--ride-cream);
+        color: var(--ride-forest);
+      }
+      .ride-offcanvas-nav .ride-sub {
+        font-size: 0.84rem;
+        font-weight: 400;
+        color: var(--ride-text-lt);
+        padding-left: 36px;
+      }
+      .ride-offcanvas-nav .ride-sub:hover {
+        color: var(--ride-forest);
+      }
+
+      .ride-offcanvas-footer {
+        padding: 20px 24px;
+        border-top: 1px solid var(--ride-border);
+      }
+      .ride-offcanvas-donate {
+        display: block;
+        width: 100%;
+        padding: 14px;
+        background: var(--ride-amber);
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-align: center;
+        border-radius: 0px;
+        transition: background 0.2s;
+      }
+      .ride-offcanvas-donate:hover {
+        background: var(--ride-amber-lt);
+      }
+
+      /* ─── HERO ─── */
+      .ride-hero {
+        position: relative;
+        height: 88vh;
+        min-height: 560px;
+        max-height: 820px;
+        overflow: hidden;
+        background: var(--ride-forest-dk);
+      }
+      .ride-hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        opacity: 0.55;
+        transform: scale(1.04);
+        transition: transform 8s ease-out;
+      }
+      .ride-hero-img.ride-loaded {
+        transform: scale(1);
+      }
+      .ride-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(29, 51, 32, 0.15) 0%,
+          rgba(29, 51, 32, 0.45) 50%,
+          rgba(29, 51, 32, 0.82) 100%
+        );
+      }
+      .ride-hero-body {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px 72px;
+      }
+      .ride-hero-path-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .ride-hero-path-badge img {
+        height: 28px;
+        width: auto;
+        filter: brightness(0) invert(1) opacity(0.85);
+      }
+      .ride-hero-path-badge span {
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.8);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .ride-hero-title {
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.12;
+        letter-spacing: -0.025em;
+        max-width: 680px;
+        margin-bottom: 18px;
+      }
+      .ride-hero-desc {
+        font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+        color: rgba(255, 255, 255, 0.82);
+        max-width: 520px;
+        margin-bottom: 36px;
+        line-height: 1.65;
+      }
+      .ride-hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 15px 32px;
+        background: var(--ride-amber);
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-radius: 0px;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        align-self: flex-start;
+        box-shadow: 0 4px 20px rgba(193, 125, 60, 0.4);
+      }
+      .ride-hero-cta:hover {
+        background: var(--ride-amber-lt);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(193, 125, 60, 0.45);
+      }
+      .ride-hero-scroll {
+        position: absolute;
+        bottom: 28px;
+        right: 36px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        z-index: 2;
+        opacity: 0.6;
+      }
+      .ride-hero-scroll span {
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        writing-mode: vertical-rl;
+      }
+      .ride-scroll-line {
+        width: 1px;
+        height: 40px;
+        background: #fff;
+        animation: ride-scroll-anim 1.6s ease-in-out infinite;
+      }
+      @keyframes ride-scroll-anim {
+        0%,
+        100% {
+          transform: scaleY(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: scaleY(0.5);
+          opacity: 0.2;
+        }
+      }
+
+      /* ─── TRUST STRIP ─── */
+      .ride-trust {
+        background: var(--ride-forest);
+        padding: 24px 0;
+      }
+      .ride-trust-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .ride-trust-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        text-align: center;
+      }
+      .ride-trust-number {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .ride-trust-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--ride-sage-lt);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .ride-trust-divider {
+        width: 1px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* ─── SECTION BASE ─── */
+      .ride-page-max {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ─── ABOUT SPLIT ─── */
+      .ride-about {
+        padding: 96px 0;
+        background: var(--ride-warm-wht);
+      }
+      .ride-about-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .ride-about-kicker {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ride-sage);
+        margin-bottom: 14px;
+      }
+      .ride-about-title {
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 700;
+        color: var(--ride-forest-dk);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+      }
+      .ride-about-text {
+        font-size: 1rem;
+        color: var(--ride-text-md);
+        line-height: 1.75;
+        margin-bottom: 16px;
+      }
+      .ride-about-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--ride-forest);
+        margin-top: 12px;
+        border-bottom: 2px solid var(--ride-sage-lt);
+        padding-bottom: 2px;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .ride-about-link:hover {
+        color: var(--ride-amber);
+        border-color: var(--ride-amber);
+      }
+      .ride-about-imagery {
+        position: relative;
+      }
+      .ride-about-img-main {
+        width: 100%;
+        height: 460px;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+      .ride-about-img-inset {
+        position: absolute;
+        bottom: -28px;
+        left: -28px;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 4px solid var(--ride-warm-wht);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+      }
+
+      /* ─── PROGRAMS ─── */
+      .ride-programs {
+        padding: 96px 0;
+        background: var(--ride-cream);
+      }
+      .ride-programs-head {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        margin-bottom: 52px;
+      }
+      .ride-section-kicker {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ride-sage);
+        margin-bottom: 14px;
+      }
+      .ride-section-title {
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 700;
+        color: var(--ride-forest-dk);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        max-width: 520px;
+      }
+      .ride-programs-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .ride-prog-card {
+        background: #fff;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--ride-border);
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s;
+      }
+      .ride-prog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px rgba(44, 74, 46, 0.1);
+      }
+      .ride-prog-card-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      .ride-prog-card-body {
+        padding: 24px;
+      }
+      .ride-prog-card-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--ride-forest-dk);
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+      .ride-prog-card-text {
+        font-size: 0.88rem;
+        color: var(--ride-text-md);
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+      .ride-prog-card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--ride-forest);
+        transition:
+          gap 0.2s,
+          color 0.2s;
+      }
+      .ride-prog-card-link:hover {
+        color: var(--ride-amber);
+        gap: 8px;
+      }
+
+      /* ─── HOW IT WORKS ─── */
+      .ride-steps {
+        padding: 96px 0;
+        background: var(--ride-warm-wht);
+      }
+      .ride-steps-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .ride-steps-head {
+        margin-bottom: 56px;
+      }
+      .ride-steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        position: relative;
+      }
+      .ride-steps-grid::before {
+        content: "";
+        position: absolute;
+        top: 28px;
+        left: calc(16.67% + 20px);
+        right: calc(16.67% + 20px);
+        height: 1px;
+        background: var(--ride-sage-lt);
+        z-index: 0;
+      }
+      .ride-step-item {
+        position: relative;
+        z-index: 1;
+        padding: 0 32px;
+        text-align: center;
+      }
+      .ride-step-item:first-child {
+        padding-left: 0;
+      }
+      .ride-step-item:last-child {
+        padding-right: 0;
+      }
+      .ride-step-num {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--ride-forest);
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        position: relative;
+        z-index: 1;
+      }
+      .ride-step-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--ride-forest-dk);
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+      .ride-step-text {
+        font-size: 0.88rem;
+        color: var(--ride-text-md);
+        line-height: 1.65;
+      }
+      .ride-steps-cta {
+        text-align: center;
+        margin-top: 52px;
+      }
+      .ride-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 30px;
+        background: var(--ride-forest);
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 0px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .ride-btn-primary:hover {
+        background: var(--ride-forest-dk);
+        transform: translateY(-1px);
+      }
+
+      /* ─── HORSES ─── */
+      .ride-horses {
+        padding: 96px 0;
+        background: var(--ride-forest-dk);
+      }
+      .ride-horses-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .ride-horses-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 240px;
+        gap: 12px;
+      }
+      .ride-horses-gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .ride-horses-gallery-img:first-child {
+        grid-row: span 2;
+        height: 100%;
+      }
+      .ride-horses-text .ride-section-kicker {
+        color: var(--ride-sage-lt);
+      }
+      .ride-horses-title {
+        font-size: clamp(1.6rem, 3vw, 2.3rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+      }
+      .ride-horses-desc {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.75;
+        margin-bottom: 32px;
+      }
+      .ride-btn-outline-white {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 28px;
+        border: 1.5px solid rgba(255, 255, 255, 0.45);
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 0px;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .ride-btn-outline-white:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ─── VOLUNTEER / GIVE ─── */
+      .ride-impact {
+        padding: 96px 0;
+        background: var(--ride-cream);
+      }
+      .ride-impact-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .ride-impact-head {
+        text-align: center;
+        margin-bottom: 52px;
+      }
+      .ride-impact-head .ride-section-title {
+        max-width: 100%;
+      }
+      .ride-impact-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .ride-impact-panel {
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        min-height: 340px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background: var(--ride-forest-dk);
+      }
+      .ride-impact-panel-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.45;
+        transition:
+          opacity 0.3s,
+          transform 0.4s;
+      }
+      .ride-impact-panel:hover .ride-impact-panel-img {
+        opacity: 0.55;
+        transform: scale(1.03);
+      }
+      .ride-impact-panel-body {
+        position: relative;
+        z-index: 1;
+        padding: 36px;
+        background: linear-gradient(
+          to top,
+          rgba(29, 51, 32, 0.92) 0%,
+          transparent 100%
+        );
+      }
+      .ride-impact-panel-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+      .ride-impact-panel-text {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .ride-btn-white {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 22px;
+        background: #fff;
+        color: var(--ride-forest-dk);
+        font-size: 0.84rem;
+        font-weight: 600;
+        border-radius: 0px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .ride-btn-white:hover {
+        background: var(--ride-cream);
+        transform: translateY(-1px);
+      }
+      .ride-btn-amber {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 22px;
+        background: var(--ride-amber);
+        color: #fff;
+        font-size: 0.84rem;
+        font-weight: 600;
+        border-radius: 0px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .ride-btn-amber:hover {
+        background: var(--ride-amber-lt);
+        transform: translateY(-1px);
+      }
+
+      /* ─── GALLERY STRIP ─── */
+      .ride-gallery-strip {
+        padding: 0;
+        background: var(--ride-warm-wht);
+        overflow: hidden;
+      }
+      .ride-gallery-row {
+        display: flex;
+        gap: 0;
+      }
+      .ride-gallery-row img {
+        flex: 1;
+        height: 280px;
+        object-fit: cover;
+        filter: saturate(0.88);
+        transition:
+          filter 0.3s,
+          flex 0.4s;
+      }
+      .ride-gallery-row img:hover {
+        flex: 1.4;
+        filter: saturate(1);
+      }
+
+      /* ─── CONTACT STRIP ─── */
+      .ride-contact-strip {
+        padding: 80px 0;
+        background: var(--ride-warm-wht);
+      }
+      .ride-contact-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: center;
+      }
+      .ride-contact-title {
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-weight: 700;
+        color: var(--ride-forest-dk);
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .ride-contact-meta {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .ride-contact-meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .ride-contact-meta-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ride-text-lt);
+      }
+      .ride-contact-meta-value {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--ride-text-md);
+      }
+      .ride-contact-meta-value a {
+        color: var(--ride-forest);
+        transition: color 0.2s;
+      }
+      .ride-contact-meta-value a:hover {
+        color: var(--ride-amber);
+      }
+      .ride-contact-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .ride-btn-forest {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 13px 28px;
+        background: var(--ride-forest);
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 0px;
+        white-space: nowrap;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .ride-btn-forest:hover {
+        background: var(--ride-forest-dk);
+        transform: translateY(-1px);
+      }
+
+      /* ─── FOOTER ─── */
+      .ride-footer {
+        background: var(--ride-forest-dk);
+        padding: 64px 0 0;
+      }
+      .ride-footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 48px;
+        padding-bottom: 56px;
+      }
+      .ride-footer-brand-logo {
+        width: 52px;
+        height: 52px;
+        object-fit: contain;
+        margin-bottom: 14px;
+        filter: brightness(0) invert(1) opacity(0.9);
+      }
+      .ride-footer-brand-name {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .ride-footer-brand-text {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+      .ride-footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .ride-footer-social a {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.65);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .ride-footer-social a:hover {
+        background: rgba(255, 255, 255, 0.18);
+        color: #fff;
+      }
+      .ride-footer-col-title {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 18px;
+      }
+      .ride-footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .ride-footer-links a {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        transition: color 0.2s;
+      }
+      .ride-footer-links a:hover {
+        color: #fff;
+      }
+      .ride-footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .ride-footer-legal {
+        font-size: 0.77rem;
+        color: rgba(255, 255, 255, 0.38);
+      }
+      .ride-footer-tax {
+        font-size: 0.77rem;
+        color: rgba(255, 255, 255, 0.38);
+      }
+
+      /* ─── FADE IN ANIMATIONS ─── */
+      .ride-fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .ride-fade-up.ride-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .ride-fade-up:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .ride-fade-up:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+      .ride-fade-up:nth-child(4) {
+        transition-delay: 0.3s;
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 900px) {
+        .ride-nav-links {
+          display: none;
+        }
+        .ride-nav-donate {
+          display: none;
+        }
+        .ride-hamburger {
+          display: flex;
+        }
+
+        .ride-about-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .ride-about-img-inset {
+          display: none;
+        }
+        .ride-about-img-main {
+          height: 320px;
+        }
+
+        .ride-programs-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .ride-steps-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .ride-steps-grid::before {
+          display: none;
+        }
+        .ride-step-item {
+          padding: 0;
+          text-align: left;
+          display: flex;
+          gap: 20px;
+          align-items: flex-start;
+        }
+        .ride-step-num {
+          flex-shrink: 0;
+          margin: 0;
+        }
+
+        .ride-horses-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .ride-horses-gallery {
+          order: -1;
+          grid-template-rows: 200px 200px;
+        }
+
+        .ride-impact-split {
+          grid-template-columns: 1fr;
+        }
+
+        .ride-footer-inner {
+          grid-template-columns: 1fr 1fr;
+          gap: 36px;
+        }
+
+        .ride-contact-inner {
+          grid-template-columns: 1fr;
+        }
+        .ride-contact-actions {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .ride-topbar {
+          display: none;
+        }
+        .ride-hero-body {
+          padding-bottom: 52px;
+        }
+        .ride-trust-divider {
+          display: none;
+        }
+        .ride-trust-inner {
+          gap: 24px 32px;
+        }
+        .ride-programs-grid {
+          grid-template-columns: 1fr;
+        }
+        .ride-gallery-row {
+          flex-wrap: wrap;
+        }
+        .ride-gallery-row img {
+          height: 180px;
+          flex: none;
+          width: 50%;
+        }
+        .ride-footer-inner {
+          grid-template-columns: 1fr;
+        }
+        .ride-about {
+          padding: 64px 0;
+        }
+        .ride-programs {
+          padding: 64px 0;
+        }
+        .ride-steps {
+          padding: 64px 0;
+        }
+        .ride-horses {
+          padding: 64px 0;
+        }
+        .ride-impact {
+          padding: 64px 0;
+        }
+        .ride-hero-scroll {
+          display: none;
+        }
+        .ride-horses-gallery {
+          grid-template-columns: 1fr;
+          grid-template-rows: 200px;
+        }
+        .ride-horses-gallery-img:not(:first-child) {
+          display: none;
+        }
+        .ride-horses-gallery-img:first-child {
+          grid-row: span 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ride-hero-img,
+        .ride-fade-up,
+        .ride-scroll-line {
+          transition: none;
+          animation: none;
+        }
+        .ride-fade-up {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+    <style>
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 0px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+
+      /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+      @media (max-width: 640px) {
+        .glad-inner {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .glad-logo img {
+          margin-left: 0 !important;
+        }
+        .glad-back-btn {
+          margin-right: 0 !important;
+        }
+      }
+
+      /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+      @media (max-width: 640px) {
+        .glad-logo img {
+          height: 28px !important;
+          width: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- TOPBAR -->
+    <div class="ride-topbar" role="banner">
+      <div class="ride-topbar-inner">
+        <span>PATH Intl. Premier Accredited Center</span>
+        <span
+          class="ride-trust-divider"
+          style="
+            width: 1px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+          "
+        ></span>
+        <a href="tel:+19166857433">(916) 685-7433</a>
+        <a href="mailto:ride@projectride.org">ride@projectride.org</a>
+        <span class="ride-topbar-spacer"></span>
+        <a href="#">8840 Southside Ave, Elk Grove, CA 95624</a>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="ride-navbar" role="navigation" aria-label="Main navigation">
+      <div class="ride-navbar-inner">
+        <a href="#" class="ride-brand" aria-label="Project R.I.D.E. Home">
+          <img
+            src="https://projectride.org/wp-content/uploads/2023/03/Project-RIDE_Logo_color-e340749.webp"
+            alt="Project R.I.D.E. Inc. logo"
+            class="ride-brand-logo"
+            loading="eager"
+          />
+          <div class="ride-brand-text">
+            <span class="ride-brand-name">Project R.I.D.E.</span>
+            <span class="ride-brand-sub">Horseback Riding Therapy</span>
+          </div>
+        </a>
+
+        <ul class="ride-nav-links" role="list">
+          <li class="ride-nav-item">
+            <a href="#" class="ride-nav-link"
+              >About
+              <svg
+                class="ride-nav-chevron"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 6l4 4 4-4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <div class="ride-dropdown" role="menu">
+              <a href="#" class="ride-dropdown-link" role="menuitem"
+                >Staff &amp; Board</a
+              >
+              <a href="#" class="ride-dropdown-link" role="menuitem"
+                >Our Horses</a
+              >
+              <a href="#" class="ride-dropdown-link" role="menuitem">History</a>
+            </div>
+          </li>
+          <li class="ride-nav-item">
+            <a href="#" class="ride-nav-link"
+              >Programs
+              <svg
+                class="ride-nav-chevron"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 6l4 4 4-4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <div class="ride-dropdown" role="menu">
+              <a href="#" class="ride-dropdown-link" role="menuitem"
+                >Ride With Us</a
+              >
+              <a href="#" class="ride-dropdown-link" role="menuitem"
+                >Programs &amp; Services</a
+              >
+            </div>
+          </li>
+          <li class="ride-nav-item">
+            <a href="#" class="ride-nav-link">Volunteer</a>
+          </li>
+          <li class="ride-nav-item">
+            <a href="#" class="ride-nav-link">Events</a>
+          </li>
+          <li class="ride-nav-item">
+            <a href="#" class="ride-nav-link"
+              >Give
+              <svg
+                class="ride-nav-chevron"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 6l4 4 4-4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <div class="ride-dropdown" role="menu">
+              <a href="#" class="ride-dropdown-link" role="menuitem">Donate</a>
+              <a href="#" class="ride-dropdown-link" role="menuitem"
+                >Wish List</a
+              >
+              <a href="#" class="ride-dropdown-link" role="menuitem"
+                >Think Pink Scholarship</a
+              >
+            </div>
+          </li>
+          <li class="ride-nav-item">
+            <a href="#" class="ride-nav-link">FAQ</a>
+          </li>
+          <li class="ride-nav-item">
+            <a href="#" class="ride-nav-link">Contact</a>
+          </li>
+        </ul>
+
+        <a href="#" class="ride-nav-donate">Donate</a>
+
+        <button
+          class="ride-hamburger"
+          id="rideHamburger"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="rideOffcanvas"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- OFF-CANVAS OVERLAY -->
+    <div
+      class="ride-offcanvas-overlay"
+      id="rideOverlay"
+      aria-hidden="true"
+    ></div>
+
+    <!-- OFF-CANVAS MENU -->
+    <aside
+      class="ride-offcanvas"
+      id="rideOffcanvas"
+      role="dialog"
+      aria-label="Navigation menu"
+      aria-modal="true"
+    >
+      <div class="ride-offcanvas-head">
+        <img
+          src="https://projectride.org/wp-content/uploads/2023/03/Project-RIDE_Logo_color-e340749.webp"
+          alt="Project R.I.D.E."
+          style="height: 40px; object-fit: contain"
+        />
+        <button
+          class="ride-offcanvas-close"
+          id="rideOffcanvasClose"
+          aria-label="Close menu"
+        >
+          &#x2715;
+        </button>
+      </div>
+      <ul class="ride-offcanvas-nav" role="list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#" class="ride-sub">Staff &amp; Board</a></li>
+        <li><a href="#" class="ride-sub">Our Horses</a></li>
+        <li><a href="#" class="ride-sub">History</a></li>
+        <li><a href="#">Programs</a></li>
+        <li><a href="#" class="ride-sub">Ride With Us</a></li>
+        <li><a href="#" class="ride-sub">Programs &amp; Services</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Give</a></li>
+        <li><a href="#" class="ride-sub">Donate</a></li>
+        <li><a href="#" class="ride-sub">Think Pink Scholarship</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="ride-offcanvas-footer">
+        <a href="#" class="ride-offcanvas-donate">Donate Now</a>
+      </div>
+    </aside>
+
+    <!-- HERO -->
+    <section class="ride-hero" aria-label="Hero">
+      <img
+        src="https://projectride.org/wp-content/uploads/2024/07/DSC00158-scaled.jpg"
+        alt="Child riding a horse at Project R.I.D.E."
+        class="ride-hero-img"
+        id="rideHeroImg"
+        loading="eager"
+      />
+      <div class="ride-hero-overlay" aria-hidden="true"></div>
+      <div class="ride-hero-body">
+        <div class="ride-hero-path-badge">
+          <span
+            >PATH Intl. Premier Accredited &nbsp;·&nbsp; 44 Years of
+            Service</span
+          >
+        </div>
+        <h1 class="ride-hero-title">
+          Harnessing the Magic<br />to Change Lives
+        </h1>
+        <p class="ride-hero-desc">
+          Project R.I.D.E. offers therapeutic horseback riding programs for
+          individuals with disabilities and special needs in the greater
+          Sacramento area.
+        </p>
+        <a href="#" class="ride-hero-cta">
+          Ride With Us
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 8h10M9 4l4 4-4 4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="ride-hero-scroll" aria-hidden="true">
+        <div class="ride-scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <div class="ride-trust" aria-label="Organization highlights">
+      <div class="ride-trust-inner">
+        <div class="ride-trust-item">
+          <span class="ride-trust-number">44</span>
+          <span class="ride-trust-label">Years of Service</span>
+        </div>
+        <div class="ride-trust-divider" aria-hidden="true"></div>
+        <div class="ride-trust-item">
+          <span class="ride-trust-number">3+</span>
+          <span class="ride-trust-label">Years Min. Age</span>
+        </div>
+        <div class="ride-trust-divider" aria-hidden="true"></div>
+        <div class="ride-trust-item">
+          <span class="ride-trust-number">PATH</span>
+          <span class="ride-trust-label">Premier Accredited</span>
+        </div>
+        <div class="ride-trust-divider" aria-hidden="true"></div>
+        <div class="ride-trust-item">
+          <span class="ride-trust-number">501(c)3</span>
+          <span class="ride-trust-label">Nonprofit Organization</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="ride-about" aria-labelledby="ride-about-title">
+      <div class="ride-about-inner">
+        <div class="ride-about-content ride-fade-up">
+          <p class="ride-about-kicker">Who We Are</p>
+          <h2 class="ride-about-title" id="ride-about-title">
+            Your Destination for Horseback Riding Therapy
+          </h2>
+          <p class="ride-about-text">
+            Project R.I.D.E., Inc. provides recreational horseback riding
+            instruction to a wide variety of individuals. Our sessions deliver
+            meaningful therapeutic effects for those with disabilities and
+            special needs — improving balance, coordination, focus, and
+            confidence through the unique bond between horse and rider.
+          </p>
+          <p class="ride-about-text">
+            There is a magic that occurs between horse and rider that no other
+            therapy can replicate. With 44 years of experience and PATH Intl.
+            premier accreditation, we are proud to serve riders of all ages and
+            abilities from the Sacramento region.
+          </p>
+          <a href="#" class="ride-about-link">
+            Learn our story
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="ride-about-imagery ride-fade-up">
+          <img
+            src="https://projectride.org/wp-content/uploads/2024/07/DSC01052-scaled.jpg"
+            alt="Rider with side-walker at Project R.I.D.E."
+            class="ride-about-img-main"
+            loading="lazy"
+          />
+          <img
+            src="https://projectride.org/wp-content/uploads/2024/07/DSC00225-scaled.jpg"
+            alt="Young rider with ball therapy exercise"
+            class="ride-about-img-inset"
+            loading="lazy"
+            aria-hidden="true"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="ride-programs" aria-labelledby="ride-programs-title">
+      <div class="ride-programs-head">
+        <p class="ride-section-kicker">What We Offer</p>
+        <h2 class="ride-section-title" id="ride-programs-title">
+          Programs Built Around Every Rider
+        </h2>
+      </div>
+      <div class="ride-programs-grid">
+        <article class="ride-prog-card ride-fade-up">
+          <img
+            src="https://projectride.org/wp-content/uploads/2024/07/DSC00583-scaled.jpg"
+            alt="Person in wheelchair connecting with a horse"
+            class="ride-prog-card-img"
+            loading="lazy"
+          />
+          <div class="ride-prog-card-body">
+            <h3 class="ride-prog-card-title">Therapeutic Riding</h3>
+            <p class="ride-prog-card-text">
+              Structured riding sessions designed to improve physical,
+              cognitive, and emotional well-being for individuals with a wide
+              range of disabilities and special needs.
+            </p>
+            <a href="#" class="ride-prog-card-link">
+              Learn more
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </article>
+        <article class="ride-prog-card ride-fade-up">
+          <img
+            src="https://projectride.org/wp-content/uploads/2023/03/Practice-Horseback-Riding-on-Fake-Horse-Projec.jpg"
+            alt="Learning horsemanship with instructors"
+            class="ride-prog-card-img"
+            loading="lazy"
+          />
+          <div class="ride-prog-card-body">
+            <h3 class="ride-prog-card-title">Equine-Assisted Activities</h3>
+            <p class="ride-prog-card-text">
+              Ground-based activities including grooming, leading, and
+              horsemanship education that build confidence and responsibility
+              alongside our experienced equines.
+            </p>
+            <a href="#" class="ride-prog-card-link">
+              Learn more
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </article>
+        <article class="ride-prog-card ride-fade-up">
+          <img
+            src="https://projectride.org/wp-content/uploads/2024/06/IMG_9360-scaled.jpg"
+            alt="Two riders celebrating together"
+            class="ride-prog-card-img"
+            loading="lazy"
+          />
+          <div class="ride-prog-card-body">
+            <h3 class="ride-prog-card-title">Skilled Student Riders</h3>
+            <p class="ride-prog-card-text">
+              Open to riders age 3 and up with a diagnosed challenge or special
+              need. Our instructors and certified volunteers ensure a safe,
+              supportive environment every session.
+            </p>
+            <a href="#" class="ride-prog-card-link">
+              Check eligibility
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="ride-steps" aria-labelledby="ride-steps-title">
+      <div class="ride-steps-inner">
+        <div class="ride-steps-head">
+          <p class="ride-section-kicker">Getting Started</p>
+          <h2 class="ride-section-title" id="ride-steps-title">
+            Three Steps to Your First Ride
+          </h2>
+        </div>
+        <div class="ride-steps-grid">
+          <div class="ride-step-item ride-fade-up">
+            <div class="ride-step-num" aria-label="Step 1">1</div>
+            <div>
+              <h3 class="ride-step-title">Submit the Form</h3>
+              <p class="ride-step-text">
+                Complete our online inquiry form with your rider's information,
+                diagnosis, and availability. Our team will follow up within a
+                few days.
+              </p>
+            </div>
+          </div>
+          <div class="ride-step-item ride-fade-up">
+            <div class="ride-step-num" aria-label="Step 2">2</div>
+            <div>
+              <h3 class="ride-step-title">Attend Assessment</h3>
+              <p class="ride-step-text">
+                A brief on-site assessment helps our certified instructors match
+                the rider to the right horse, program level, and support team.
+              </p>
+            </div>
+          </div>
+          <div class="ride-step-item ride-fade-up">
+            <div class="ride-step-num" aria-label="Step 3">3</div>
+            <div>
+              <h3 class="ride-step-title">Ride</h3>
+              <p class="ride-step-text">
+                Sessions run Monday through Friday at our Elk Grove facility.
+                Trained volunteers and certified instructors are with every
+                rider, every time.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="ride-steps-cta">
+          <a href="#" class="ride-btn-primary">
+            Start the Process
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HORSES -->
+    <section class="ride-horses" aria-labelledby="ride-horses-title">
+      <div class="ride-horses-inner">
+        <div class="ride-horses-gallery ride-fade-up">
+          <img
+            src="https://projectride.org/wp-content/uploads/2024/07/DSC00583-scaled.jpg"
+            alt="Person in wheelchair bonding with a black horse"
+            class="ride-horses-gallery-img"
+            loading="lazy"
+          />
+          <img
+            src="https://projectride.org/wp-content/uploads/2023/03/2192909079.jpeg"
+            alt="Young boy in helmet standing with a horse"
+            class="ride-horses-gallery-img"
+            loading="lazy"
+          />
+          <img
+            src="https://projectride.org/wp-content/uploads/2024/07/DSC00225-scaled.jpg"
+            alt="Child on horseback holding a ball"
+            class="ride-horses-gallery-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="ride-horses-text ride-fade-up">
+          <p class="ride-section-kicker">Our Equines</p>
+          <h2 class="ride-horses-title" id="ride-horses-title">
+            Amazing Horses, Carefully Chosen
+          </h2>
+          <p class="ride-horses-desc">
+            We would not be able to serve our riders without our gentle and
+            experienced horses. Each equine is carefully screened and trained to
+            ensure the safety and comfort of all riders — from first-timers to
+            experienced students.
+          </p>
+          <p class="ride-horses-desc">
+            We invite you to visit our barn in Elk Grove to meet the herd up
+            close and see the heart of what makes Project R.I.D.E. possible.
+          </p>
+          <a href="#" class="ride-btn-outline-white">
+            Meet the Horses
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY STRIP -->
+    <div class="ride-gallery-strip" aria-label="Photo gallery" role="img">
+      <div class="ride-gallery-row">
+        <img
+          src="https://projectride.org/wp-content/uploads/2024/07/DSC01052-scaled.jpg"
+          alt="Rider with side-walker"
+          loading="lazy"
+        />
+        <img
+          src="https://projectride.org/wp-content/uploads/2024/06/IMG_9360-scaled.jpg"
+          alt="Two riders celebrating"
+          loading="lazy"
+        />
+        <img
+          src="https://projectride.org/wp-content/uploads/2024/07/DSC00158-scaled.jpg"
+          alt="Girl riding brown horse"
+          loading="lazy"
+        />
+        <img
+          src="https://projectride.org/wp-content/uploads/2023/03/2192909079.jpeg"
+          alt="Young rider in helmet"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- IMPACT / VOLUNTEER + GIVE -->
+    <section class="ride-impact" aria-labelledby="ride-impact-title">
+      <div class="ride-impact-inner">
+        <div class="ride-impact-head">
+          <p class="ride-section-kicker">Get Involved</p>
+          <h2 class="ride-section-title" id="ride-impact-title">
+            Support the Mission
+          </h2>
+        </div>
+        <div class="ride-impact-split">
+          <div class="ride-impact-panel ride-fade-up">
+            <img
+              src="https://projectride.org/wp-content/uploads/2024/07/DSC01052-scaled.jpg"
+              alt="Volunteers guiding a rider"
+              class="ride-impact-panel-img"
+              loading="lazy"
+            />
+            <div class="ride-impact-panel-body">
+              <h3 class="ride-impact-panel-title">Volunteer With Us</h3>
+              <p class="ride-impact-panel-text">
+                Our volunteers are the backbone of every session — side-walkers,
+                horse leaders, and barn helpers make safe rides possible. No
+                experience required.
+              </p>
+              <a href="#" class="ride-btn-white">Become a Volunteer</a>
+            </div>
+          </div>
+          <div class="ride-impact-panel ride-fade-up">
+            <img
+              src="https://projectride.org/wp-content/uploads/2024/06/IMG_9360-scaled.jpg"
+              alt="Rider celebrating success"
+              class="ride-impact-panel-img"
+              loading="lazy"
+            />
+            <div class="ride-impact-panel-body">
+              <h3 class="ride-impact-panel-title">Make a Donation</h3>
+              <p class="ride-impact-panel-text">
+                Project R.I.D.E. is a 501(c)3 nonprofit. Your tax-deductible
+                gift supports horse care, equipment, scholarships, and expanded
+                programming for riders in need.
+              </p>
+              <a href="#" class="ride-btn-amber">Donate Today</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT STRIP -->
+    <section class="ride-contact-strip" aria-labelledby="ride-contact-title">
+      <div class="ride-contact-inner">
+        <div>
+          <h2 class="ride-contact-title" id="ride-contact-title">
+            Ready to Get Started?
+          </h2>
+          <p
+            style="
+              font-size: 0.9rem;
+              color: var(--ride-text-md);
+              max-width: 480px;
+              margin-top: 8px;
+              line-height: 1.65;
+            "
+          >
+            Call us, send an email, or visit our barn to learn more about
+            eligibility and upcoming sessions.
+          </p>
+          <div class="ride-contact-meta">
+            <div class="ride-contact-meta-item">
+              <span class="ride-contact-meta-label">Phone</span>
+              <span class="ride-contact-meta-value"
+                ><a href="tel:+19166857433">(916) 685-7433</a></span
+              >
+            </div>
+            <div class="ride-contact-meta-item">
+              <span class="ride-contact-meta-label">Email</span>
+              <span class="ride-contact-meta-value"
+                ><a href="mailto:ride@projectride.org"
+                  >ride@projectride.org</a
+                ></span
+              >
+            </div>
+            <div class="ride-contact-meta-item">
+              <span class="ride-contact-meta-label">Hours</span>
+              <span class="ride-contact-meta-value"
+                >Mon–Thu 8am–8pm &nbsp;·&nbsp; Fri 8am–5pm</span
+              >
+            </div>
+            <div class="ride-contact-meta-item">
+              <span class="ride-contact-meta-label">Location</span>
+              <span class="ride-contact-meta-value"
+                >8840 Southside Ave, Elk Grove, CA</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="ride-contact-actions">
+          <a href="#" class="ride-btn-forest">Contact Us</a>
+          <a
+            href="#"
+            class="ride-btn-primary"
+            style="background: var(--ride-amber)"
+            >Pay Session Fee</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="ride-footer" role="contentinfo">
+      <div class="ride-footer-inner">
+        <div>
+          <img
+            src="https://projectride.org/wp-content/uploads/2023/03/Project-RIDE_Logo_color-e340749.webp"
+            alt="Project R.I.D.E. Inc."
+            class="ride-footer-brand-logo"
+            loading="lazy"
+          />
+          <p class="ride-footer-brand-name">Project R.I.D.E., Inc.</p>
+          <p class="ride-footer-brand-text">
+            PATH Intl. Premier Accredited therapeutic horseback riding center
+            serving riders with disabilities in the greater Sacramento area
+            since 1981.
+          </p>
+          <p class="ride-footer-brand-text" style="margin-bottom: 16px">
+            Tax ID: 94-2778565 &nbsp;·&nbsp; 501(c)3 Nonprofit
+          </p>
+          <div class="ride-footer-social" aria-label="Social media links">
+            <a href="#" aria-label="Facebook">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <p class="ride-footer-col-title">Organization</p>
+          <ul class="ride-footer-links" role="list">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Staff &amp; Board</a></li>
+            <li><a href="#">Our Horses</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="ride-footer-col-title">Programs</p>
+          <ul class="ride-footer-links" role="list">
+            <li><a href="#">Ride With Us</a></li>
+            <li><a href="#">Programs &amp; Services</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Pay Session Fee</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="ride-footer-col-title">Give</p>
+          <ul class="ride-footer-links" role="list">
+            <li><a href="#">Donate</a></li>
+            <li><a href="#">Think Pink Scholarship</a></li>
+            <li><a href="#">Wish List</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ride-footer-bottom">
+        <span class="ride-footer-legal"
+          >© 2026 Project R.I.D.E., Inc. All Rights Reserved.</span
+        >
+        <span class="ride-footer-tax"
+          >Most donations are tax-deductible. Consult your tax
+          professional.</span
+        >
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        // ─── Navbar scroll state ───
+        var navbar = document.querySelector(".ride-navbar");
+        window.addEventListener(
+          "scroll",
+          function () {
+            navbar.classList.toggle("ride-scrolled", window.scrollY > 20);
+          },
+          { passive: true },
+        );
+
+        // ─── Hero image animate-in ───
+        var heroImg = document.getElementById("rideHeroImg");
+        if (heroImg) {
+          if (heroImg.complete) {
+            heroImg.classList.add("ride-loaded");
+          } else {
+            heroImg.addEventListener("load", function () {
+              heroImg.classList.add("ride-loaded");
+            });
+          }
+        }
+
+        // ─── Off-canvas menu ───
+        var hamburger = document.getElementById("rideHamburger");
+        var offcanvas = document.getElementById("rideOffcanvas");
+        var overlay = document.getElementById("rideOverlay");
+        var closeBtn = document.getElementById("rideOffcanvasClose");
+        var firstFocus = offcanvas
+          ? offcanvas.querySelector("a, button")
+          : null;
+
+        function openMenu() {
+          hamburger.classList.add("ride-open");
+          hamburger.setAttribute("aria-expanded", "true");
+          offcanvas.classList.add("ride-active");
+          overlay.classList.add("ride-active");
+          overlay.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+          if (firstFocus) firstFocus.focus();
+        }
+
+        function closeMenu() {
+          hamburger.classList.remove("ride-open");
+          hamburger.setAttribute("aria-expanded", "false");
+          offcanvas.classList.remove("ride-active");
+          overlay.classList.remove("ride-active");
+          overlay.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          hamburger.focus();
+        }
+
+        if (hamburger) hamburger.addEventListener("click", openMenu);
+        if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+        if (overlay) overlay.addEventListener("click", closeMenu);
+
+        document.addEventListener("keydown", function (e) {
+          if (
+            e.key === "Escape" &&
+            offcanvas &&
+            offcanvas.classList.contains("ride-active")
+          ) {
+            closeMenu();
+          }
+        });
+
+        // Trap focus inside off-canvas
+        if (offcanvas) {
+          offcanvas.addEventListener("keydown", function (e) {
+            if (e.key !== "Tab") return;
+            var focusable = offcanvas.querySelectorAll("a, button");
+            var first = focusable[0];
+            var last = focusable[focusable.length - 1];
+            if (e.shiftKey) {
+              if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+              }
+            } else {
+              if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+              }
+            }
+          });
+        }
+
+        // ─── Fade-up on scroll ───
+        var fadeEls = document.querySelectorAll(".ride-fade-up");
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("ride-visible");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12 },
+          );
+          fadeEls.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          fadeEls.forEach(function (el) {
+            el.classList.add("ride-visible");
+          });
+        }
+      })();
+    </script>
+    <script>
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const mainHeader = document.querySelector(
+        ".calbcc-header, .gcs-navbar, .oy-navbar, .pepa-navbar, .palm2-navbar, .ride-navbar, .ncb-nav",
+      );
+      let lastScrollY = window.scrollY;
+      let gladVisible = true;
+
+      if (window.scrollY > 80) {
+        gladHeader.classList.add("hidden");
+        gladVisible = false;
+        if (mainHeader) mainHeader.style.top = "0px";
+      } else {
+        if (mainHeader) mainHeader.style.top = "auto";
+      }
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+              if (mainHeader) mainHeader.style.top = "0px";
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+              if (mainHeader) mainHeader.style.top = "auto";
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>

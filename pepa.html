@@ -1,0 +1,1991 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PEPA – Pacific Egg and Poultry Association</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --pepa-navy: #1a2e4a;
+        --pepa-navy-deep: #122038;
+        --pepa-gold: #c8922a;
+        --pepa-gold-light: #e2a84b;
+        --pepa-cream: #faf8f4;
+        --pepa-warm-gray: #f3f1ed;
+        --pepa-mid-gray: #6b7280;
+        --pepa-text: #1e2a38;
+        --pepa-text-light: #4a5568;
+        --pepa-white: #ffffff;
+        --pepa-border: #e4e0d8;
+        --pepa-shadow: 0 2px 16px rgba(26, 46, 74, 0.08);
+        --pepa-shadow-md: 0 4px 28px rgba(26, 46, 74, 0.12);
+        --pepa-radius: 6px;
+        --pepa-radius-lg: 12px;
+        --pepa-transition: 0.22s ease;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        color: var(--pepa-text);
+        background: var(--pepa-white);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ─── TOPBAR ─── */
+      .pepa-topbar {
+        background: var(--pepa-navy-deep);
+        padding: 7px 0;
+      }
+      .pepa-topbar-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .pepa-topbar-contact {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .pepa-topbar-contact a:hover {
+        color: var(--pepa-gold-light);
+      }
+      .pepa-topbar-social {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .pepa-topbar-social a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.75);
+        transition:
+          background var(--pepa-transition),
+          color var(--pepa-transition);
+      }
+      .pepa-topbar-social a:hover {
+        background: var(--pepa-gold);
+        color: #fff;
+      }
+
+      /* ─── NAVBAR ─── */
+      .pepa-navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: var(--pepa-white);
+        border-bottom: 1px solid var(--pepa-border);
+        box-shadow: 0 1px 8px rgba(26, 46, 74, 0.06);
+        transition: box-shadow var(--pepa-transition);
+      }
+      .pepa-navbar.pepa-scrolled {
+        box-shadow: 0 2px 20px rgba(26, 46, 74, 0.12);
+      }
+      .pepa-navbar-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+      .pepa-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .pepa-brand-logo {
+        height: 54px;
+        width: auto;
+      }
+      .pepa-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .pepa-brand-abbr {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--pepa-navy);
+        letter-spacing: 0.03em;
+      }
+      .pepa-brand-full {
+        font-size: 11px;
+        color: var(--pepa-mid-gray);
+        font-weight: 400;
+        letter-spacing: 0.02em;
+      }
+
+      .pepa-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+      }
+      .pepa-nav-links li a {
+        display: block;
+        padding: 8px 13px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--pepa-text-light);
+        border-radius: var(--pepa-radius);
+        transition:
+          color var(--pepa-transition),
+          background var(--pepa-transition);
+        white-space: nowrap;
+      }
+      .pepa-nav-links li a:hover,
+      .pepa-nav-links li a.pepa-active {
+        color: var(--pepa-navy);
+        background: var(--pepa-warm-gray);
+      }
+      .pepa-nav-cta {
+        margin-left: 8px;
+        padding: 9px 18px !important;
+        background: var(--pepa-navy) !important;
+        color: var(--pepa-white) !important;
+        border-radius: 40px !important;
+        font-weight: 600 !important;
+        transition: background var(--pepa-transition) !important;
+      }
+      .pepa-nav-cta:hover {
+        background: var(--pepa-gold) !important;
+      }
+
+      .pepa-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 6px;
+      }
+      .pepa-hamburger span {
+        display: block;
+        height: 2px;
+        background: var(--pepa-navy);
+        border-radius: 2px;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+        transform-origin: center;
+      }
+      .pepa-hamburger.pepa-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .pepa-hamburger.pepa-open span:nth-child(2) {
+        opacity: 0;
+      }
+      .pepa-hamburger.pepa-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* Off-canvas */
+      .pepa-mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 280px;
+        background: var(--pepa-white);
+        z-index: 1100;
+        padding: 80px 28px 32px;
+        box-shadow: -4px 0 32px rgba(26, 46, 74, 0.16);
+        transform: translateX(100%);
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+      }
+      .pepa-mobile-menu.pepa-open {
+        transform: translateX(0);
+      }
+      .pepa-mobile-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(18, 32, 56, 0.5);
+        z-index: 1050;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .pepa-mobile-overlay.pepa-open {
+        opacity: 1;
+      }
+      .pepa-mobile-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: var(--pepa-text-light);
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pepa-mobile-links {
+        list-style: none;
+      }
+      .pepa-mobile-links li {
+        border-bottom: 1px solid var(--pepa-border);
+      }
+      .pepa-mobile-links li a {
+        display: block;
+        padding: 14px 0;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--pepa-text);
+      }
+      .pepa-mobile-links li a:hover {
+        color: var(--pepa-gold);
+      }
+      .pepa-mobile-cta-btn {
+        display: block;
+        margin-top: 24px;
+        padding: 14px;
+        background: var(--pepa-navy);
+        color: var(--pepa-white) !important;
+        text-align: center;
+        font-weight: 600;
+        border-radius: 40px;
+        font-size: 15px;
+      }
+
+      /* ─── HERO ─── */
+      .pepa-hero {
+        position: relative;
+        min-height: 520px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: var(--pepa-navy-deep);
+      }
+      .pepa-hero-bg {
+        position: absolute;
+        inset: 0;
+        /* reuse first pillar image (larger width) */
+        background-image: url("https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=1600&q=80");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.42;
+        transform: scale(1.04);
+        transition: transform 8s ease;
+      }
+      .pepa-hero-bg.pepa-loaded {
+        transform: scale(1);
+      }
+      .pepa-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          rgba(18, 32, 56, 0.22) 45%,
+          rgba(18, 32, 56, 0.3) 100%
+        );
+      }
+      .pepa-hero-inner {
+        position: relative;
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 80px 24px;
+        width: 100%;
+      }
+      .pepa-hero-eyecatch {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--pepa-gold-light);
+        margin-bottom: 20px;
+      }
+      .pepa-hero-headline {
+        font-family: "DM Sans", sans-serif;
+        font-size: clamp(28px, 4.5vw, 52px);
+        font-weight: 700;
+        color: var(--pepa-white);
+        line-height: 1.15;
+        max-width: 640px;
+        margin-bottom: 20px;
+        letter-spacing: -0.01em;
+      }
+      .pepa-hero-headline em {
+        color: var(--pepa-gold-light);
+        font-style: normal;
+      }
+      .pepa-hero-sub {
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.78);
+        max-width: 540px;
+        margin-bottom: 36px;
+        line-height: 1.65;
+        font-weight: 300;
+      }
+      .pepa-hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .pepa-btn-primary {
+        display: inline-block;
+        padding: 14px 28px;
+        background: var(--pepa-gold);
+        color: var(--pepa-white);
+        font-weight: 600;
+        font-size: 15px;
+        border-radius: 40px;
+        border: 2px solid var(--pepa-gold);
+        transition:
+          background var(--pepa-transition),
+          transform var(--pepa-transition);
+        cursor: pointer;
+      }
+      .pepa-btn-primary:hover {
+        background: var(--pepa-gold-light);
+        border-color: var(--pepa-gold-light);
+        transform: translateY(-1px);
+      }
+      .pepa-btn-outline {
+        display: inline-block;
+        padding: 13px 26px;
+        background: transparent;
+        color: var(--pepa-white);
+        font-weight: 600;
+        font-size: 15px;
+        border-radius: 40px;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        transition:
+          border-color var(--pepa-transition),
+          background var(--pepa-transition);
+      }
+      .pepa-btn-outline:hover {
+        border-color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .pepa-hero-stats {
+        display: flex;
+        gap: 36px;
+        margin-top: 56px;
+        padding-top: 36px;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+        flex-wrap: wrap;
+      }
+      .pepa-stat-item {
+        color: var(--pepa-white);
+      }
+      .pepa-stat-num {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--pepa-gold-light);
+        line-height: 1;
+      }
+      .pepa-stat-label {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        margin-top: 4px;
+        font-weight: 400;
+      }
+
+      /* ─── MISSION STRIP ─── */
+      .pepa-mission-strip {
+        background: var(--pepa-navy);
+        padding: 36px 0;
+      }
+      .pepa-mission-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .pepa-mission-bar {
+        width: 4px;
+        height: 56px;
+        background: var(--pepa-gold);
+        flex-shrink: 0;
+        border-radius: 2px;
+      }
+      .pepa-mission-text {
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.65;
+        font-weight: 300;
+        max-width: 860px;
+      }
+      .pepa-mission-text strong {
+        color: var(--pepa-white);
+        font-weight: 600;
+      }
+
+      /* ─── SECTION GENERIC ─── */
+      .pepa-section-label {
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--pepa-gold);
+        margin-bottom: 10px;
+      }
+      .pepa-section-title {
+        font-size: clamp(22px, 3vw, 30px);
+        font-weight: 700;
+        color: var(--pepa-navy);
+        line-height: 1.25;
+        margin-bottom: 14px;
+        letter-spacing: -0.01em;
+      }
+      .pepa-section-intro {
+        font-size: 16px;
+        color: var(--pepa-text-light);
+        line-height: 1.7;
+        max-width: 560px;
+      }
+
+      /* ─── WHAT WE DO ─── */
+      .pepa-pillars {
+        padding: 80px 0;
+        background: var(--pepa-cream);
+      }
+      .pepa-pillars-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .pepa-pillars-head {
+        margin-bottom: 48px;
+      }
+      .pepa-pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .pepa-pillar-item {
+        background: var(--pepa-white);
+        border: 1px solid var(--pepa-border);
+        border-radius: 20px;
+        padding: 32px 28px;
+        transition:
+          box-shadow var(--pepa-transition),
+          transform var(--pepa-transition);
+        position: relative;
+        overflow: hidden;
+      }
+      .pepa-pillar-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--pepa-gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .pepa-pillar-item:hover {
+        box-shadow: var(--pepa-shadow-md);
+        transform: translateY(-3px);
+      }
+      .pepa-pillar-item:hover::before {
+        transform: scaleX(1);
+      }
+      .pepa-pillar-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(200, 146, 42, 0.1);
+        border-radius: var(--pepa-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        color: var(--pepa-gold);
+      }
+      .pepa-pillar-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .pepa-pillar-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--pepa-navy);
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+      .pepa-pillar-desc {
+        font-size: 14px;
+        color: var(--pepa-text-light);
+        line-height: 1.65;
+      }
+
+      /* ─── CEQAP / FEATURE SPLIT ─── */
+      .pepa-feature-split {
+        padding: 80px 0;
+        background: var(--pepa-white);
+      }
+      .pepa-feature-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .pepa-feature-image {
+        position: relative;
+      }
+      .pepa-feature-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: var(--pepa-radius-lg);
+        box-shadow: var(--pepa-shadow-md);
+      }
+      /* Pillar card image */
+      .pepa-pillar-img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 18px;
+      }
+      .pepa-feature-badge {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: var(--pepa-navy);
+        color: var(--pepa-white);
+        padding: 12px 18px;
+        border-radius: var(--pepa-radius);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .pepa-feature-list {
+        list-style: none;
+        margin: 24px 0;
+      }
+      .pepa-feature-list li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--pepa-border);
+        font-size: 15px;
+        color: var(--pepa-text-light);
+        line-height: 1.5;
+      }
+      .pepa-feature-list li:last-child {
+        border-bottom: none;
+      }
+      .pepa-feature-list li svg {
+        flex-shrink: 0;
+        margin-top: 3px;
+        color: var(--pepa-gold);
+        width: 16px;
+        height: 16px;
+      }
+      .pepa-btn-navy {
+        display: inline-block;
+        padding: 13px 26px;
+        background: var(--pepa-navy);
+        color: var(--pepa-white);
+        font-weight: 600;
+        font-size: 14px;
+        border-radius: 40px;
+        border: 2px solid var(--pepa-navy);
+        transition:
+          background var(--pepa-transition),
+          border-color var(--pepa-transition);
+        margin-top: 10px;
+      }
+      .pepa-btn-navy:hover {
+        background: var(--pepa-gold);
+        border-color: var(--pepa-gold);
+      }
+
+      /* ─── NEWS ─── */
+      .pepa-news-section {
+        padding: 80px 0;
+        background: var(--pepa-warm-gray);
+      }
+      .pepa-news-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .pepa-news-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .pepa-news-link {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--pepa-gold);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: gap var(--pepa-transition);
+      }
+      .pepa-news-link:hover {
+        gap: 10px;
+      }
+      .pepa-news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .pepa-news-item {
+        background: var(--pepa-white);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid var(--pepa-border);
+        transition:
+          box-shadow var(--pepa-transition),
+          transform var(--pepa-transition);
+      }
+      .pepa-news-item:hover {
+        box-shadow: var(--pepa-shadow-md);
+        transform: translateY(-3px);
+      }
+      .pepa-news-item-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        background: var(--pepa-warm-gray);
+      }
+      .pepa-news-body {
+        padding: 22px 22px 24px;
+      }
+      .pepa-news-date {
+        font-size: 12px;
+        color: var(--pepa-mid-gray);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        margin-bottom: 8px;
+      }
+      .pepa-news-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--pepa-navy);
+        line-height: 1.4;
+        margin-bottom: 10px;
+      }
+      .pepa-news-excerpt {
+        font-size: 14px;
+        color: var(--pepa-text-light);
+        line-height: 1.6;
+      }
+
+      /* ─── MEMBERSHIP ─── */
+      .pepa-membership {
+        padding: 80px 0;
+        background: var(--pepa-white);
+      }
+      .pepa-membership-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .pepa-membership-reasons {
+        list-style: none;
+        counter-reset: reason-counter;
+        margin: 28px 0 32px;
+      }
+      .pepa-membership-reasons li {
+        counter-increment: reason-counter;
+        display: flex;
+        gap: 16px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--pepa-border);
+        font-size: 15px;
+        color: var(--pepa-text-light);
+        align-items: flex-start;
+      }
+      .pepa-membership-reasons li:last-child {
+        border-bottom: none;
+      }
+      .pepa-reason-num {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--pepa-gold);
+        background: rgba(200, 146, 42, 0.1);
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .pepa-membership-visual {
+        position: relative;
+      }
+      .pepa-membership-visual img {
+        width: 100%;
+        height: 440px;
+        object-fit: cover;
+        border-radius: var(--pepa-radius-lg);
+        box-shadow: var(--pepa-shadow-md);
+      }
+      .pepa-membership-callout {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        background: var(--pepa-gold);
+        color: var(--pepa-white);
+        padding: 20px 22px;
+        border-radius: var(--pepa-radius-lg);
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(200, 146, 42, 0.35);
+      }
+      .pepa-callout-num {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .pepa-callout-text {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        margin-top: 4px;
+        opacity: 0.92;
+      }
+
+      /* ─── SCHOLARSHIP BAND ─── */
+      .pepa-scholarship-band {
+        padding: 64px 0;
+        background: var(--pepa-navy);
+        position: relative;
+        overflow: hidden;
+      }
+      .pepa-scholarship-band::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: rgba(200, 146, 42, 0.06);
+        pointer-events: none;
+      }
+      .pepa-scholarship-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .pepa-scholarship-content {
+        max-width: 620px;
+      }
+      .pepa-scholarship-label {
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--pepa-gold-light);
+        margin-bottom: 10px;
+      }
+      .pepa-scholarship-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--pepa-white);
+        line-height: 1.25;
+        margin-bottom: 14px;
+      }
+      .pepa-scholarship-body {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.65;
+        font-weight: 300;
+      }
+
+      /* ─── CONTACT FOOTER ─── */
+      .pepa-site-footer {
+        background: var(--pepa-navy-deep);
+        padding: 64px 0 0;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .pepa-footer-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 24px 48px;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.4fr;
+        gap: 48px;
+      }
+      .pepa-footer-brand-logo {
+        height: 52px;
+        width: auto;
+        margin-bottom: 16px;
+        filter: brightness(1.2);
+      }
+      .pepa-footer-about {
+        font-size: 14px;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 20px;
+      }
+      .pepa-footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .pepa-footer-social a {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.65);
+        transition:
+          background var(--pepa-transition),
+          color var(--pepa-transition);
+      }
+      .pepa-footer-social a:hover {
+        background: var(--pepa-gold);
+        color: #fff;
+      }
+      .pepa-footer-col-title {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--pepa-white);
+        margin-bottom: 18px;
+      }
+      .pepa-footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .pepa-footer-links li a {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        transition: color var(--pepa-transition);
+      }
+      .pepa-footer-links li a:hover {
+        color: var(--pepa-gold-light);
+      }
+      .pepa-footer-contact-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        margin-bottom: 14px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.5;
+      }
+      .pepa-footer-contact-item svg {
+        flex-shrink: 0;
+        margin-top: 2px;
+        color: var(--pepa-gold);
+        width: 15px;
+        height: 15px;
+      }
+      .pepa-footer-bar {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 24px;
+        max-width: 1160px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      /* ─── ANIMATIONS ─── */
+      .pepa-fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .pepa-fade-up.pepa-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .pepa-fade-up:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+      .pepa-fade-up:nth-child(3) {
+        transition-delay: 0.16s;
+      }
+      .pepa-fade-up:nth-child(4) {
+        transition-delay: 0.24s;
+      }
+      .pepa-fade-up:nth-child(5) {
+        transition-delay: 0.32s;
+      }
+      .pepa-fade-up:nth-child(6) {
+        transition-delay: 0.4s;
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 1024px) {
+        .pepa-pillars-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .pepa-news-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .pepa-feature-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .pepa-membership-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .pepa-membership-visual {
+          display: none;
+        }
+        .pepa-footer-inner {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pepa-topbar-contact span:not(:first-child) {
+          display: none;
+        }
+        .pepa-nav-links {
+          display: none;
+        }
+        .pepa-hamburger {
+          display: flex;
+        }
+        .pepa-mobile-menu {
+          display: block;
+        }
+        .pepa-mobile-overlay {
+          display: block;
+        }
+        .pepa-pillars-grid {
+          grid-template-columns: 1fr;
+        }
+        .pepa-news-grid {
+          grid-template-columns: 1fr;
+        }
+        .pepa-news-item:last-child {
+          display: none;
+        }
+        .pepa-hero-stats {
+          gap: 24px;
+        }
+        .pepa-scholarship-inner {
+          flex-direction: column;
+        }
+        .pepa-footer-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .pepa-footer-bar {
+          flex-direction: column;
+          text-align: center;
+        }
+        .pepa-membership-callout {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .pepa-hero-inner {
+          padding: 56px 20px;
+        }
+        .pepa-btn-primary,
+        .pepa-btn-outline {
+          font-size: 14px;
+          padding: 12px 20px;
+        }
+        .pepa-stat-num {
+          font-size: 26px;
+        }
+      }
+    </style>
+    <style>
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+
+      /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+      @media (max-width: 640px) {
+        .glad-inner {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .glad-logo img {
+          margin-left: 0 !important;
+        }
+        .glad-back-btn {
+          margin-right: 0 !important;
+        }
+      }
+
+      /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+      @media (max-width: 640px) {
+        .glad-logo img {
+          height: 28px !important;
+          width: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- TOPBAR -->
+    <div class="pepa-topbar">
+      <div class="pepa-topbar-inner">
+        <div class="pepa-topbar-contact">
+          <span>Phone: (916) 441-0801</span>
+          <span>Fax: (916) 446-1063</span>
+          <a href="javascript:void(0)">dboggs@cgfa.org</a>
+        </div>
+        <div class="pepa-topbar-social">
+          <a href="javascript:void(0)" aria-label="Facebook">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="pepa-navbar" id="pepanav">
+      <div class="pepa-navbar-inner">
+        <a href="javascript:void(0)" class="pepa-brand">
+          <img
+            src="http://www.pacificegg.org/images/pepa_logo.gif"
+            alt="PEPA Logo"
+            class="pepa-brand-logo"
+            onerror="this.style.display = 'none'"
+          />
+          <div class="pepa-brand-text">
+            <span class="pepa-brand-abbr">PEPA</span>
+            <span class="pepa-brand-full"
+              >Pacific Egg &amp; Poultry Association</span
+            >
+          </div>
+        </a>
+        <ul class="pepa-nav-links">
+          <li><a href="javascript:void(0)" class="pepa-active">Home</a></li>
+          <li><a href="javascript:void(0)">About</a></li>
+          <li><a href="javascript:void(0)">News</a></li>
+          <li><a href="javascript:void(0)">Gov. Relations</a></li>
+          <li><a href="javascript:void(0)">Events</a></li>
+          <li><a href="javascript:void(0)">CEQAP</a></li>
+          <li><a href="javascript:void(0)">Scholarship</a></li>
+          <li>
+            <a href="javascript:void(0)" class="pepa-nav-cta">Join PEPA</a>
+          </li>
+        </ul>
+        <button
+          class="pepa-hamburger"
+          id="pepaHamburger"
+          aria-label="Open menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE OVERLAY -->
+    <div class="pepa-mobile-overlay" id="pepaOverlay"></div>
+
+    <!-- MOBILE MENU -->
+    <div class="pepa-mobile-menu" id="pepaMobileMenu">
+      <button
+        class="pepa-mobile-close"
+        id="pepaMobileClose"
+        aria-label="Close menu"
+      >
+        <svg
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <ul class="pepa-mobile-links">
+        <li><a href="javascript:void(0)">Home</a></li>
+        <li><a href="javascript:void(0)">About PEPA</a></li>
+        <li><a href="javascript:void(0)">PEPA News</a></li>
+        <li><a href="javascript:void(0)">Governmental Relations</a></li>
+        <li><a href="javascript:void(0)">Events</a></li>
+        <li><a href="javascript:void(0)">Publications</a></li>
+        <li><a href="javascript:void(0)">CEQAP Information</a></li>
+        <li><a href="javascript:void(0)">Scholarship</a></li>
+        <li><a href="javascript:void(0)">Classifieds</a></li>
+        <li><a href="javascript:void(0)">Members Only</a></li>
+      </ul>
+      <a href="javascript:void(0)" class="pepa-mobile-cta-btn"
+        >Membership Application</a
+      >
+    </div>
+
+    <!-- HERO -->
+    <section class="pepa-hero">
+      <div class="pepa-hero-bg" id="pepaBg"></div>
+      <div class="pepa-hero-overlay"></div>
+      <div class="pepa-hero-inner">
+        <div class="pepa-hero-eyecatch">Serving the West Since 1917</div>
+        <h1 class="pepa-hero-headline">
+          Advocating for <em>Western Egg &amp; Poultry</em> Producers
+        </h1>
+        <p class="pepa-hero-sub">
+          A regional nonprofit agricultural trade association uniting producers
+          across eleven Western States and Canada — fostering quality, safety,
+          and a strong collective voice.
+        </p>
+        <div class="pepa-hero-actions">
+          <a href="javascript:void(0)" class="pepa-btn-primary"
+            >Become a Member</a
+          >
+          <a href="javascript:void(0)" class="pepa-btn-outline"
+            >Learn About PEPA</a
+          >
+        </div>
+        <div class="pepa-hero-stats">
+          <div class="pepa-stat-item">
+            <div class="pepa-stat-num">100+</div>
+            <div class="pepa-stat-label">Years of Service</div>
+          </div>
+          <div class="pepa-stat-item">
+            <div class="pepa-stat-num">200</div>
+            <div class="pepa-stat-label">Member Organizations</div>
+          </div>
+          <div class="pepa-stat-item">
+            <div class="pepa-stat-num">11</div>
+            <div class="pepa-stat-label">Western States + Canada</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION STRIP -->
+    <div class="pepa-mission-strip">
+      <div class="pepa-mission-inner">
+        <div class="pepa-mission-bar"></div>
+        <p class="pepa-mission-text">
+          <strong>Our Mission:</strong> Through a united voice and cooperative
+          actions, PEPA enhances the viability of the poultry and egg industries
+          in the eleven Western States and Canada — and their ability to produce
+          and market the <strong>highest quality food products</strong> to
+          consumers in a competitive manner.
+        </p>
+      </div>
+    </div>
+
+    <!-- WHAT WE DO -->
+    <section class="pepa-pillars">
+      <div class="pepa-pillars-inner">
+        <div class="pepa-pillars-head">
+          <div class="pepa-section-label">What We Do</div>
+          <h2 class="pepa-section-title">
+            Six Ways PEPA Supports Your Business
+          </h2>
+          <p class="pepa-section-intro">
+            From legislative advocacy to insurance programs, PEPA delivers
+            tangible value to egg and poultry producers across the West.
+          </p>
+        </div>
+        <div class="pepa-pillars-grid">
+          <div class="pepa-pillar-item pepa-fade-up">
+            <img
+              class="pepa-pillar-img"
+              src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=600&q=80"
+              alt="Legislative advocacy"
+            />
+            <div class="pepa-pillar-icon">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 6h18M3 12h18M3 18h11" />
+                <path d="m16 18 2 2 4-4" />
+              </svg>
+            </div>
+            <div class="pepa-pillar-title">Legislative Representation</div>
+            <p class="pepa-pillar-desc">
+              PEPA monitors and represents industry interests on thousands of
+              bills each session — from agricultural marketing and trucking to
+              air pollution laws and farm animal welfare.
+            </p>
+          </div>
+
+          <div class="pepa-pillar-item pepa-fade-up">
+            <img
+              class="pepa-pillar-img"
+              src="https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?w=600&q=80"
+              alt="Poultry education"
+            />
+            <div class="pepa-pillar-icon">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                />
+              </svg>
+            </div>
+            <div class="pepa-pillar-title">Industry Education</div>
+            <p class="pepa-pillar-desc">
+              Seminars, conventions, and educational materials keep members
+              current on industry trends, regulations, and best practices.
+              PEPA's Scholarship Foundation funds future industry leaders.
+            </p>
+          </div>
+
+          <div class="pepa-pillar-item pepa-fade-up">
+            <img
+              class="pepa-pillar-img"
+              src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=600&q=80"
+              alt="Farm environment"
+            />
+            <div class="pepa-pillar-icon">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div class="pepa-pillar-title">
+              Environmental &amp; Safety Consultation
+            </div>
+            <p class="pepa-pillar-desc">
+              Expert staff assistance with environmental and safety compliance,
+              including Storm Water Run-Off Regulation, pertinent to egg and
+              poultry operations. Answers are a phone call away.
+            </p>
+          </div>
+
+          <div class="pepa-pillar-item pepa-fade-up">
+            <img
+              class="pepa-pillar-img"
+              src="https://images.unsplash.com/photo-1587486913049-53fc88980cfc?w=600&q=80"
+              alt="Egg food safety"
+            />
+            <div class="pepa-pillar-icon">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </div>
+            <div class="pepa-pillar-title">Food Safety Leadership</div>
+            <p class="pepa-pillar-desc">
+              California's Egg Quality Assurance Plan (CEQAP), administered by
+              PEPA, has served as the national model — helping reduce the risk
+              of foodborne illnesses across the supply chain.
+            </p>
+          </div>
+
+          <div class="pepa-pillar-item pepa-fade-up">
+            <img
+              class="pepa-pillar-img"
+              src="https://images.unsplash.com/photo-1569127959161-2b1297b2d9a6?w=600&q=80"
+              alt="Poultry farm"
+            />
+            <div class="pepa-pillar-icon">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" />
+              </svg>
+            </div>
+            <div class="pepa-pillar-title">Publications &amp; Directory</div>
+            <p class="pepa-pillar-desc">
+              Up-to-date industry news via newsletters and special mailings. An
+              annual directory of firms in 11 western states and British
+              Columbia keeps members connected and informed.
+            </p>
+          </div>
+
+          <div class="pepa-pillar-item pepa-fade-up">
+            <img
+              class="pepa-pillar-img"
+              src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=600&q=80"
+              alt="Chicken farm operations"
+            />
+            <div class="pepa-pillar-icon">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"
+                />
+                <path d="M15 9a3 3 0 0 0-6 0v3h6V9z" />
+                <path d="M9 12h6v5H9z" />
+              </svg>
+            </div>
+            <div class="pepa-pillar-title">Group Insurance Programs</div>
+            <p class="pepa-pillar-desc">
+              Money-saving group insurance options including Worker's
+              Compensation, Health &amp; Major Medical, Dental, Disability, Life
+              Insurance, and Property &amp; Casualty/General Liability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CEQAP FEATURE -->
+    <section class="pepa-feature-split">
+      <div class="pepa-feature-inner">
+        <div class="pepa-feature-image">
+          <img
+            src="http://www.pacificegg.org/images/eggs.jpg"
+            alt="Egg quality assurance"
+            onerror="
+              this.src = 'http://www.pacificegg.org/images/header_image.jpg'
+            "
+          />
+          <div class="pepa-feature-badge">CEQAP – National Model</div>
+        </div>
+        <div class="pepa-feature-content">
+          <div class="pepa-section-label">Food Safety Program</div>
+          <h2 class="pepa-section-title">
+            California Egg Quality Assurance Plan
+          </h2>
+          <p
+            style="
+              font-size: 15px;
+              color: var(--pepa-text-light);
+              line-height: 1.7;
+              margin-bottom: 8px;
+            "
+          >
+            CEQAP is a voluntary quality assurance program developed to reduce
+            the risk of Salmonella Enteritidis in shell eggs. California's
+            program has been recognized as the
+            <strong>national model</strong> for egg quality assurance.
+          </p>
+          <ul class="pepa-feature-list">
+            <li>
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="m5 12 5 5L20 7" />
+              </svg>
+              Reduces risk of Salmonella Enteritidis in shell eggs
+            </li>
+            <li>
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="m5 12 5 5L20 7" />
+              </svg>
+              Recognized as the national model for egg quality assurance plans
+            </li>
+            <li>
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="m5 12 5 5L20 7" />
+              </svg>
+              Voluntary program open to all California shell egg producers
+            </li>
+            <li>
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="m5 12 5 5L20 7" />
+              </svg>
+              Helps protect consumers and strengthen industry credibility
+            </li>
+          </ul>
+          <a href="javascript:void(0)" class="pepa-btn-navy"
+            >Learn About CEQAP</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="pepa-news-section">
+      <div class="pepa-news-inner">
+        <div class="pepa-news-head">
+          <div>
+            <div class="pepa-section-label">Latest Updates</div>
+            <h2 class="pepa-section-title">PEPA News</h2>
+          </div>
+          <a href="javascript:void(0)" class="pepa-news-link">
+            All News
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="pepa-news-grid">
+          <div class="pepa-news-item pepa-fade-up">
+            <img
+              class="pepa-news-item-img"
+              src="http://www.pacificegg.org/images/2025_awards/Glenn_Hickman_Industry_Person.jpg"
+              alt="Glenn Hickman Industry Person of the Year"
+              onerror="this.style.background = '#e4e0d8'"
+            />
+            <div class="pepa-news-body">
+              <div class="pepa-news-date">2025 Annual Recognition</div>
+              <div class="pepa-news-title">
+                Glenn Hickman Named 2025 PEPA Industry Person of the Year
+              </div>
+              <p class="pepa-news-excerpt">
+                The Pacific Egg and Poultry Association recognized Glenn Hickman
+                with its highest industry honor at this year's annual awards
+                ceremony.
+              </p>
+            </div>
+          </div>
+          <div class="pepa-news-item pepa-fade-up">
+            <img
+              class="pepa-news-item-img"
+              src="http://www.pacificegg.org/images/2025_awards/Dr_Corsiglia_Scientist.jpg"
+              alt="Dr. Charles Corsiglia Scientist of the Year"
+              onerror="this.style.background = '#e4e0d8'"
+            />
+            <div class="pepa-news-body">
+              <div class="pepa-news-date">2025 Annual Recognition</div>
+              <div class="pepa-news-title">
+                Dr. Charles Corsiglia Honored as 2025 PEPA Scientist of the Year
+              </div>
+              <p class="pepa-news-excerpt">
+                Dr. Corsiglia was recognized for his outstanding contributions
+                to poultry and egg science at PEPA's 2025 awards ceremony.
+              </p>
+            </div>
+          </div>
+          <div class="pepa-news-item pepa-fade-up">
+            <div
+              class="pepa-news-item-img"
+              style="
+                background: var(--pepa-navy);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <svg
+                width="48"
+                height="48"
+                fill="none"
+                stroke="rgba(200,146,42,0.7)"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 20h16M4 4h16v12H4zM9 9h6M9 12h4" />
+              </svg>
+            </div>
+            <div class="pepa-news-body">
+              <div class="pepa-news-date">Industry Update</div>
+              <div class="pepa-news-title">
+                PEPA Represents Industry Before California Legislature in 2025
+                Session
+              </div>
+              <p class="pepa-news-excerpt">
+                PEPA staff monitored and testified on multiple bills affecting
+                agricultural marketing, transportation, and farm animal welfare
+                in the current legislative session.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBERSHIP -->
+    <section class="pepa-membership">
+      <div class="pepa-membership-inner">
+        <div class="pepa-membership-content">
+          <div class="pepa-section-label">Why Join</div>
+          <h2 class="pepa-section-title">
+            Nearly 200 Members Strong — and Growing
+          </h2>
+          <p class="pepa-section-intro" style="max-width: 100%">
+            PEPA is shaping the future of your industry, and you need to be a
+            part of it. With over 100 years of experience, here is why you
+            should belong.
+          </p>
+          <ul class="pepa-membership-reasons">
+            <li>
+              <span class="pepa-reason-num">1</span>PEPA represents your
+              interests before the community and government — your voice, heard.
+            </li>
+            <li>
+              <span class="pepa-reason-num">2</span>Great seminars, conventions,
+              and educational materials for networking and staying current on
+              regulations.
+            </li>
+            <li>
+              <span class="pepa-reason-num">3</span>Group insurance benefits
+              including health, life, and Worker's Compensation at competitive
+              rates.
+            </li>
+            <li>
+              <span class="pepa-reason-num">4</span>An early warning system for
+              potential problems — PEPA is your eyes and ears in Sacramento and
+              beyond.
+            </li>
+            <li>
+              <span class="pepa-reason-num">5</span>Through the Scholarship
+              &amp; Research Foundation, PEPA invests in the next generation of
+              industry leaders.
+            </li>
+          </ul>
+          <a href="javascript:void(0)" class="pepa-btn-primary"
+            >Download Membership Application</a
+          >
+        </div>
+        <div class="pepa-membership-visual">
+          <img
+            src="http://www.pacificegg.org/images/poultry.jpg"
+            alt="Poultry industry"
+            onerror="
+              this.src = 'http://www.pacificegg.org/images/header_image.jpg'
+            "
+          />
+          <div class="pepa-membership-callout">
+            <div class="pepa-callout-num">200</div>
+            <div class="pepa-callout-text">Members Across<br />the West</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHOLARSHIP BAND -->
+    <section class="pepa-scholarship-band">
+      <div class="pepa-scholarship-inner">
+        <div class="pepa-scholarship-content">
+          <div class="pepa-scholarship-label">Western Poultry Scholarship</div>
+          <h2 class="pepa-scholarship-title">
+            Investing in the Future of Poultry &amp; Egg Science
+          </h2>
+          <p class="pepa-scholarship-body">
+            PEPA's Scholarship &amp; Research Foundation provides funding for
+            students pursuing careers in the poultry and egg industry, and
+            supports important research benefitting producers across the West.
+            Today's students become tomorrow's industry leaders.
+          </p>
+        </div>
+        <a href="javascript:void(0)" class="pepa-btn-primary"
+          >Scholarship Information</a
+        >
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pepa-site-footer">
+      <div class="pepa-footer-inner">
+        <div class="pepa-footer-col">
+          <img
+            src="http://www.pacificegg.org/images/pepa_logo.gif"
+            alt="PEPA Logo"
+            class="pepa-footer-brand-logo"
+            onerror="this.style.display = 'none'"
+          />
+          <p class="pepa-footer-about">
+            A regional nonprofit agricultural trade association serving the egg
+            and poultry industry across eleven Western States and Canada for
+            over 100 years.
+          </p>
+          <div class="pepa-footer-social">
+            <a href="javascript:void(0)" aria-label="Facebook">
+              <svg
+                width="15"
+                height="15"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="pepa-footer-col">
+          <div class="pepa-footer-col-title">Association</div>
+          <ul class="pepa-footer-links">
+            <li><a href="javascript:void(0)">About PEPA</a></li>
+            <li><a href="javascript:void(0)">PEPA Staff</a></li>
+            <li><a href="javascript:void(0)">PEPA PAC</a></li>
+            <li><a href="javascript:void(0)">Publications</a></li>
+            <li><a href="javascript:void(0)">Web Links</a></li>
+            <li><a href="javascript:void(0)">Classifieds</a></li>
+          </ul>
+        </div>
+        <div class="pepa-footer-col">
+          <div class="pepa-footer-col-title">Programs</div>
+          <ul class="pepa-footer-links">
+            <li><a href="javascript:void(0)">CEQAP</a></li>
+            <li><a href="javascript:void(0)">Scholarship Foundation</a></li>
+            <li><a href="javascript:void(0)">Governmental Relations</a></li>
+            <li><a href="javascript:void(0)">Events</a></li>
+            <li><a href="javascript:void(0)">PEPA News</a></li>
+            <li><a href="javascript:void(0)">Members Only</a></li>
+          </ul>
+        </div>
+        <div class="pepa-footer-col">
+          <div class="pepa-footer-col-title">Contact</div>
+          <div class="pepa-footer-contact-item">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"
+              />
+            </svg>
+            (916) 441-0801
+          </div>
+          <div class="pepa-footer-contact-item">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            dboggs@cgfa.org
+          </div>
+          <div class="pepa-footer-contact-item">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"
+              />
+            </svg>
+            Fax: (916) 446-1063
+          </div>
+          <a
+            href="javascript:void(0)"
+            class="pepa-btn-primary"
+            style="
+              margin-top: 4px;
+              font-size: 13px;
+              padding: 10px 18px;
+              display: inline-block;
+            "
+            >Membership Application</a
+          >
+        </div>
+      </div>
+      <div class="pepa-footer-bar">
+        <span
+          >&copy; 2025 Pacific Egg &amp; Poultry Association. All rights
+          reserved.</span
+        >
+        <span>Nonprofit Agricultural Trade Association</span>
+      </div>
+    </footer>
+
+    <script>
+      // Sticky nav scroll behavior
+      const nav = document.getElementById("pepanav");
+      window.addEventListener("scroll", () => {
+        nav.classList.toggle("pepa-scrolled", window.scrollY > 10);
+      });
+
+      // Hero bg load animation
+      const bg = document.getElementById("pepaBg");
+      setTimeout(() => bg.classList.add("pepa-loaded"), 100);
+
+      // Mobile menu
+      const hamburger = document.getElementById("pepaHamburger");
+      const mobileMenu = document.getElementById("pepaMobileMenu");
+      const overlay = document.getElementById("pepaOverlay");
+      const mobileClose = document.getElementById("pepaMobileClose");
+
+      function openMenu() {
+        hamburger.classList.add("pepa-open");
+        mobileMenu.classList.add("pepa-open");
+        overlay.classList.add("pepa-open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMenu() {
+        hamburger.classList.remove("pepa-open");
+        mobileMenu.classList.remove("pepa-open");
+        overlay.classList.remove("pepa-open");
+        document.body.style.overflow = "";
+      }
+      hamburger.addEventListener("click", openMenu);
+      mobileClose.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
+
+      // Scroll-based fade-up
+      const fadeEls = document.querySelectorAll(".pepa-fade-up");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("pepa-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      fadeEls.forEach((el) => observer.observe(el));
+    </script>
+    <script>
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const mainHeader = document.querySelector(
+        ".calbcc-header, .gcs-navbar, .oy-navbar, .pepa-navbar, .palm2-navbar, .ride-navbar, .ncb-nav",
+      );
+      let lastScrollY = window.scrollY;
+      let gladVisible = true;
+
+      if (window.scrollY > 80) {
+        gladHeader.classList.add("hidden");
+        gladVisible = false;
+        if (mainHeader) mainHeader.style.top = "0px";
+      } else {
+        if (mainHeader) mainHeader.style.top = "auto";
+      }
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+              if (mainHeader) mainHeader.style.top = "0px";
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+              if (mainHeader) mainHeader.style.top = "auto";
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>
