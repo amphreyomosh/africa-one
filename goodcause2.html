@@ -1,0 +1,2285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good Cause Sacramento | Life Transitions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --gcs-forest: #1b5e35;
+        --gcs-forest-dk: #133f25;
+        --gcs-forest-md: #2d7a50;
+        --gcs-forest-lt: #3a9463;
+        --gcs-gold: #c8972b;
+        --gcs-gold-lt: #e8b84b;
+        --gcs-cream: #f7f5f0;
+        --gcs-white: #ffffff;
+        --gcs-border: #e3dfd7;
+        --gcs-ink: #18180f;
+        --gcs-ink-2: #44443c;
+        --gcs-ink-3: #78786e;
+        --gcs-radius: 10px;
+        --gcs-radius-lg: 16px;
+        --gcs-ease: 0.22s ease;
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--gcs-white);
+        color: var(--gcs-ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ── GLAD HEADER ─────────────────────────────────── */
+      #glad-header {
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .glad-logo img {
+        height: 32px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+      @media (max-width: 640px) {
+        .glad-inner {
+          padding: 0 16px !important;
+        }
+        .glad-logo img {
+          height: 26px !important;
+        }
+      }
+
+      /* ── NAVBAR ──────────────────────────────────────── */
+      .gcs-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 900;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--gcs-border);
+        transition: box-shadow var(--gcs-ease);
+      }
+      .gcs-nav.gcs-scrolled {
+        box-shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
+      }
+      .gcs-nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 32px;
+        height: 66px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .gcs-nav-brand {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+        flex-shrink: 0;
+      }
+      .gcs-nav-brand-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--gcs-forest);
+        letter-spacing: -0.01em;
+      }
+      .gcs-nav-brand-sub {
+        font-size: 10.5px;
+        font-weight: 400;
+        color: var(--gcs-ink-3);
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+
+      .gcs-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        list-style: none;
+        flex: 1;
+        justify-content: center;
+      }
+      .gcs-nav-links a {
+        padding: 8px 13px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--gcs-ink-2);
+        border-radius: 20px;
+        white-space: nowrap;
+        transition:
+          color var(--gcs-ease),
+          background var(--gcs-ease);
+      }
+      .gcs-nav-links a:hover {
+        color: var(--gcs-forest);
+        background: rgba(27, 94, 53, 0.07);
+      }
+      .gcs-nav-links a.active {
+        color: var(--gcs-forest);
+        font-weight: 600;
+      }
+
+      .gcs-nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+      }
+      .gcs-nav-phone {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12.5px;
+        font-weight: 500;
+        color: var(--gcs-ink-2);
+      }
+      .gcs-nav-phone svg {
+        width: 13px;
+        height: 13px;
+      }
+      .gcs-nav-donate {
+        background: var(--gcs-forest);
+        color: #fff;
+        padding: 9px 20px;
+        border-radius: 40px;
+        font-size: 13px;
+        font-weight: 600;
+        transition: background var(--gcs-ease);
+      }
+      .gcs-nav-donate:hover {
+        background: var(--gcs-forest-md);
+        color: #fff;
+      }
+
+      .gcs-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+      }
+      .gcs-hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--gcs-ink);
+        border-radius: 2px;
+        transition:
+          transform var(--gcs-ease),
+          opacity var(--gcs-ease);
+      }
+      .gcs-hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .gcs-hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .gcs-hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* ── MOBILE MENU ─────────────────────────────────── */
+      .gcs-mobile-menu {
+        position: fixed;
+        top: 66px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--gcs-white);
+        z-index: 850;
+        padding: 28px 24px;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        visibility: hidden;
+      }
+      .gcs-mobile-menu.open {
+        transform: translateX(0);
+        visibility: visible;
+      }
+      .gcs-mobile-menu-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .gcs-mobile-menu-links a {
+        display: block;
+        padding: 14px 16px;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--gcs-ink);
+        border-bottom: 1px solid var(--gcs-border);
+        border-radius: var(--gcs-radius);
+        transition: background var(--gcs-ease);
+      }
+      .gcs-mobile-menu-links a:hover {
+        background: var(--gcs-cream);
+      }
+      .gcs-mobile-donate {
+        display: block;
+        margin-top: 24px;
+        text-align: center;
+        background: var(--gcs-forest);
+        color: #fff;
+        padding: 15px;
+        border-radius: var(--gcs-radius);
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      /* ── HERO ────────────────────────────────────────── */
+      .gcs-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        padding-top: 66px;
+      }
+      .gcs-hero-bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1600&q=80");
+        background-size: cover;
+        background-position: center 40%;
+        transform: scale(1.04);
+        transition: transform 9s ease;
+      }
+      .gcs-hero-bg.loaded {
+        transform: scale(1);
+      }
+      .gcs-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(8, 26, 14, 0.92) 0%,
+          rgba(10, 32, 18, 0.8) 40%,
+          rgba(14, 40, 22, 0.45) 70%,
+          transparent 100%
+        );
+      }
+      .gcs-hero-overlay-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 220px;
+        background: linear-gradient(
+          to top,
+          rgba(8, 26, 14, 0.7) 0%,
+          transparent 100%
+        );
+      }
+      .gcs-hero-body {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 32px 88px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .gcs-hero-eyeline {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+      .gcs-hero-eyeline-line {
+        width: 32px;
+        height: 2px;
+        background: var(--gcs-gold-lt);
+      }
+      .gcs-hero-eyeline-text {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gcs-gold-lt);
+      }
+      .gcs-hero-title {
+        font-size: clamp(38px, 5.5vw, 72px);
+        font-weight: 800;
+        color: #fff;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        max-width: 640px;
+        margin-bottom: 24px;
+      }
+      .gcs-hero-title em {
+        font-style: normal;
+        color: var(--gcs-gold-lt);
+      }
+      .gcs-hero-desc {
+        font-size: clamp(14px, 1.5vw, 16px);
+        color: rgba(255, 255, 255, 0.72);
+        max-width: 420px;
+        line-height: 1.75;
+        margin-bottom: 44px;
+      }
+      .gcs-hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--gcs-gold);
+        color: #fff;
+        padding: 15px 32px;
+        border-radius: 40px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        transition:
+          background var(--gcs-ease),
+          transform var(--gcs-ease);
+        width: fit-content;
+      }
+      .gcs-hero-cta:hover {
+        background: var(--gcs-gold-lt);
+        transform: translateY(-2px);
+      }
+      .gcs-hero-cta svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ── TRUST BAR ───────────────────────────────────── */
+      .gcs-trust {
+        background: var(--gcs-forest);
+        padding: 0 32px;
+      }
+      .gcs-trust-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .gcs-trust-item {
+        padding: 32px 28px;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .gcs-trust-num {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--gcs-gold-lt);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .gcs-trust-label {
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.4;
+      }
+
+      /* ── MISSION ─────────────────────────────────────── */
+      .gcs-mission {
+        padding: 96px 32px;
+        background: var(--gcs-cream);
+      }
+      .gcs-mission-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .gcs-mission-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gcs-forest-md);
+        margin-bottom: 14px;
+      }
+      .gcs-mission-quote {
+        font-size: clamp(22px, 2.8vw, 32px);
+        font-weight: 700;
+        color: var(--gcs-ink);
+        line-height: 1.25;
+        letter-spacing: -0.025em;
+        margin-bottom: 24px;
+      }
+      .gcs-mission-quote em {
+        font-style: italic;
+        color: var(--gcs-forest-md);
+      }
+      .gcs-mission-body {
+        font-size: 15px;
+        color: var(--gcs-ink-2);
+        line-height: 1.75;
+      }
+      .gcs-mission-body strong {
+        color: var(--gcs-ink);
+        font-weight: 600;
+      }
+      .gcs-mission-img-wrap {
+        position: relative;
+      }
+      .gcs-mission-img {
+        width: 100%;
+        height: 460px;
+        object-fit: cover;
+        border-radius: var(--gcs-radius-lg);
+      }
+      .gcs-mission-tag {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        background: var(--gcs-forest);
+        color: #fff;
+        padding: 14px 20px;
+        border-radius: var(--gcs-radius);
+      }
+      .gcs-mission-tag-num {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--gcs-gold-lt);
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+      .gcs-mission-tag-text {
+        font-size: 11.5px;
+        color: rgba(255, 255, 255, 0.65);
+        margin-top: 3px;
+      }
+
+      /* ── PROCESS ─────────────────────────────────────── */
+      .gcs-process {
+        padding: 96px 32px;
+        background: var(--gcs-white);
+      }
+      .gcs-process-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .gcs-sec-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gcs-forest-md);
+        margin-bottom: 10px;
+      }
+      .gcs-sec-title {
+        font-size: clamp(26px, 3.2vw, 40px);
+        font-weight: 800;
+        color: var(--gcs-ink);
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        max-width: 520px;
+        margin-bottom: 56px;
+      }
+      .gcs-process-track {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        position: relative;
+      }
+      .gcs-process-track::before {
+        content: "";
+        position: absolute;
+        top: 28px;
+        left: calc(1 / 6 * 100%);
+        right: calc(1 / 6 * 100%);
+        height: 1px;
+        background: var(--gcs-border);
+      }
+      .gcs-process-step {
+        padding: 0 32px 0 0;
+      }
+      .gcs-process-step:last-child {
+        padding-right: 0;
+      }
+      .gcs-process-dot {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--gcs-cream);
+        border: 2px solid var(--gcs-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 1;
+        transition:
+          border-color var(--gcs-ease),
+          background var(--gcs-ease);
+      }
+      .gcs-process-step:hover .gcs-process-dot {
+        background: rgba(27, 94, 53, 0.08);
+        border-color: var(--gcs-forest-md);
+      }
+      .gcs-process-dot svg {
+        width: 22px;
+        height: 22px;
+        color: var(--gcs-forest);
+      }
+      .gcs-process-step-num {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gcs-ink-3);
+        margin-bottom: 8px;
+      }
+      .gcs-process-step-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--gcs-ink);
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+      .gcs-process-step-text {
+        font-size: 14px;
+        color: var(--gcs-ink-2);
+        line-height: 1.7;
+      }
+
+      /* ── HOUSES ──────────────────────────────────────── */
+      .gcs-houses {
+        padding: 96px 32px;
+        background: var(--gcs-cream);
+      }
+      .gcs-houses-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .gcs-houses-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 56px;
+      }
+      .gcs-house-card {
+        position: relative;
+        border-radius: var(--gcs-radius-lg);
+        overflow: hidden;
+        min-height: 440px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .gcs-house-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.55s ease;
+      }
+      .gcs-house-card:hover .gcs-house-img {
+        transform: scale(1.04);
+      }
+      .gcs-house-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(8, 26, 14, 0.92) 0%,
+          rgba(8, 26, 14, 0.35) 55%,
+          transparent 100%
+        );
+      }
+      .gcs-house-body {
+        position: relative;
+        z-index: 2;
+        padding: 32px;
+      }
+      .gcs-house-tag {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+      .gcs-house-title {
+        font-size: 28px;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.025em;
+        margin-bottom: 10px;
+      }
+      .gcs-house-desc {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.65;
+        margin-bottom: 22px;
+        max-width: 360px;
+      }
+      .gcs-house-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gcs-gold-lt);
+        transition: gap var(--gcs-ease);
+      }
+      .gcs-house-link:hover {
+        gap: 10px;
+      }
+      .gcs-house-link svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ── IMPACT SPLIT ────────────────────────────────── */
+      .gcs-impact {
+        padding: 96px 32px;
+        background: var(--gcs-white);
+      }
+      .gcs-impact-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .gcs-impact-img-wrap {
+        position: relative;
+      }
+      .gcs-impact-img {
+        width: 100%;
+        height: 480px;
+        object-fit: cover;
+        border-radius: var(--gcs-radius-lg);
+      }
+      .gcs-impact-badge {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        background: var(--gcs-forest);
+        color: #fff;
+        padding: 20px 24px;
+        border-radius: var(--gcs-radius);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+      }
+      .gcs-impact-badge-num {
+        font-size: 34px;
+        font-weight: 800;
+        color: var(--gcs-gold-lt);
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+      .gcs-impact-badge-text {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+        margin-top: 4px;
+      }
+      .gcs-impact-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .gcs-impact-body {
+        font-size: 15.5px;
+        color: var(--gcs-ink-2);
+        line-height: 1.78;
+      }
+      .gcs-impact-pillars {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .gcs-impact-pillar {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 16px 18px;
+        background: var(--gcs-cream);
+        border-radius: var(--gcs-radius);
+        border-left: 3px solid var(--gcs-forest-md);
+      }
+      .gcs-pillar-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(27, 94, 53, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .gcs-pillar-icon svg {
+        width: 17px;
+        height: 17px;
+        color: var(--gcs-forest);
+      }
+      .gcs-pillar-text strong {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--gcs-ink);
+        margin-bottom: 2px;
+      }
+      .gcs-pillar-text span {
+        font-size: 13px;
+        color: var(--gcs-ink-3);
+      }
+
+      /* ── GALLERY STRIP ───────────────────────────────── */
+      .gcs-gallery {
+        padding: 80px 32px;
+        background: var(--gcs-cream);
+        overflow: hidden;
+      }
+      .gcs-gallery-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .gcs-gallery-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 240px 240px;
+        gap: 12px;
+        margin-top: 48px;
+      }
+      .gcs-gallery-item {
+        border-radius: var(--gcs-radius);
+        overflow: hidden;
+        position: relative;
+      }
+      .gcs-gallery-item:first-child {
+        grid-row: span 2;
+      }
+      .gcs-gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .gcs-gallery-item:hover img {
+        transform: scale(1.04);
+      }
+
+      /* ── INVOLVED ────────────────────────────────────── */
+      .gcs-involved {
+        padding: 96px 32px;
+        background: var(--gcs-white);
+      }
+      .gcs-involved-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .gcs-involved-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 56px;
+      }
+      .gcs-involved-card {
+        background: var(--gcs-cream);
+        border-radius: var(--gcs-radius-lg);
+        padding: 36px 28px;
+        border: 1px solid var(--gcs-border);
+        display: flex;
+        flex-direction: column;
+        transition:
+          box-shadow var(--gcs-ease),
+          transform var(--gcs-ease);
+      }
+      .gcs-involved-card:hover {
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.07);
+        transform: translateY(-3px);
+      }
+      .gcs-involved-icon {
+        width: 52px;
+        height: 52px;
+        background: rgba(27, 94, 53, 0.08);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 22px;
+      }
+      .gcs-involved-icon svg {
+        width: 24px;
+        height: 24px;
+        color: var(--gcs-forest);
+      }
+      .gcs-involved-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--gcs-ink);
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+      .gcs-involved-desc {
+        font-size: 14px;
+        color: var(--gcs-ink-2);
+        line-height: 1.68;
+        flex: 1;
+        margin-bottom: 26px;
+      }
+      .gcs-involved-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gcs-forest-md);
+        transition: gap var(--gcs-ease);
+      }
+      .gcs-involved-link:hover {
+        gap: 10px;
+      }
+      .gcs-involved-link svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ── CTA BAND ────────────────────────────────────── */
+      .gcs-cta-band {
+        background: var(--gcs-forest-dk);
+        padding: 80px 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .gcs-cta-band::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: rgba(200, 151, 43, 0.08);
+        pointer-events: none;
+      }
+      .gcs-cta-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 48px;
+        align-items: center;
+      }
+      .gcs-cta-headline {
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+        max-width: 560px;
+        margin-bottom: 12px;
+      }
+      .gcs-cta-sub {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.65;
+        max-width: 480px;
+      }
+      .gcs-cta-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-end;
+      }
+      .gcs-cta-phone {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .gcs-cta-phone strong {
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 15px;
+      }
+      .gcs-cta-phone svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ── CONTACT ─────────────────────────────────────── */
+      .gcs-contact {
+        padding: 96px 32px;
+        background: var(--gcs-cream);
+      }
+      .gcs-contact-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .gcs-contact-heading {
+        font-size: clamp(24px, 2.8vw, 34px);
+        font-weight: 800;
+        color: var(--gcs-ink);
+        letter-spacing: -0.025em;
+        margin-bottom: 8px;
+      }
+      .gcs-contact-sub {
+        font-size: 15px;
+        color: var(--gcs-ink-2);
+        line-height: 1.65;
+        margin-bottom: 36px;
+      }
+      .gcs-contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .gcs-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .gcs-contact-item-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(27, 94, 53, 0.08);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .gcs-contact-item-icon svg {
+        width: 17px;
+        height: 17px;
+        color: var(--gcs-forest);
+      }
+      .gcs-contact-item-lbl {
+        font-size: 10.5px;
+        font-weight: 600;
+        color: var(--gcs-ink-3);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 2px;
+      }
+      .gcs-contact-item-val {
+        font-size: 14.5px;
+        color: var(--gcs-ink);
+        font-weight: 500;
+      }
+      .gcs-social-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 28px;
+      }
+      .gcs-social-btn {
+        width: 40px;
+        height: 40px;
+        background: var(--gcs-white);
+        border: 1px solid var(--gcs-border);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background var(--gcs-ease),
+          border-color var(--gcs-ease);
+      }
+      .gcs-social-btn:hover {
+        background: var(--gcs-forest);
+        border-color: var(--gcs-forest);
+      }
+      .gcs-social-btn:hover svg {
+        color: #fff;
+      }
+      .gcs-social-btn svg {
+        width: 16px;
+        height: 16px;
+        color: var(--gcs-ink-2);
+      }
+
+      /* Form removed — styles omitted to simplify layout */
+
+      /* ── FOOTER ──────────────────────────────────────── */
+      .gcs-footer {
+        background: #0d1a10;
+        padding: 64px 32px 32px;
+      }
+      .gcs-footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .gcs-footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 48px;
+        padding-bottom: 44px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 28px;
+      }
+      .gcs-footer-brand-name {
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 3px;
+      }
+      .gcs-footer-brand-sub {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 16px;
+      }
+      .gcs-footer-mission {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.7;
+      }
+      .gcs-footer-col-title {
+        font-size: 10.5px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.35);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+      }
+      .gcs-footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .gcs-footer-links a {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.55);
+        transition: color var(--gcs-ease);
+      }
+      .gcs-footer-links a:hover {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .gcs-footer-links li.addr {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.6;
+      }
+      .gcs-footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .gcs-footer-copy {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .gcs-footer-tax {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* ── BTN UTIL ────────────────────────────────────── */
+      .gcs-btn-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gcs-gold);
+        color: #fff;
+        padding: 14px 28px;
+        border-radius: 40px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        transition:
+          background var(--gcs-ease),
+          transform var(--gcs-ease);
+      }
+      .gcs-btn-gold:hover {
+        background: var(--gcs-gold-lt);
+        transform: translateY(-1px);
+      }
+      .gcs-btn-gold svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      /* ── FADE ANIMATIONS ─────────────────────────────── */
+      .gcs-fade {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      .gcs-fade.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .gcs-fade:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .gcs-fade:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+      .gcs-fade:nth-child(4) {
+        transition-delay: 0.3s;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .gcs-fade {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .gcs-hero-bg {
+          transition: none;
+        }
+      }
+
+      /* ── RESPONSIVE ──────────────────────────────────── */
+      @media (max-width: 1024px) {
+        .gcs-trust-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gcs-mission-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .gcs-impact-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .gcs-contact-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .gcs-footer-top {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gcs-cta-inner {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .gcs-cta-actions {
+          align-items: flex-start;
+        }
+      }
+      @media (max-width: 768px) {
+        .gcs-nav-links,
+        .gcs-nav-actions {
+          display: none;
+        }
+        .gcs-hamburger {
+          display: flex;
+        }
+        .gcs-hero-body {
+          padding: 0 24px 72px;
+        }
+        .gcs-hero-title {
+          font-size: clamp(34px, 8vw, 48px);
+        }
+        .gcs-trust-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gcs-process-track {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .gcs-process-track::before {
+          display: none;
+        }
+        .gcs-houses-grid {
+          grid-template-columns: 1fr;
+        }
+        .gcs-involved-grid {
+          grid-template-columns: 1fr;
+        }
+        .gcs-gallery-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+        }
+        .gcs-gallery-item:first-child {
+          grid-row: span 1;
+        }
+        .gcs-impact-badge {
+          right: 0;
+          bottom: -16px;
+        }
+        .gcs-footer-top {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .gcs-footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .gcs-form-row {
+          grid-template-columns: 1fr;
+        }
+        .gcs-mission,
+        .gcs-process,
+        .gcs-houses,
+        .gcs-impact,
+        .gcs-gallery,
+        .gcs-involved,
+        .gcs-cta-band,
+        .gcs-contact {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .gcs-trust {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .gcs-nav-inner {
+          padding: 0 20px;
+        }
+      }
+      @media (max-width: 480px) {
+        .gcs-trust-inner {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gcs-trust-item {
+          padding: 24px 16px;
+        }
+        .gcs-trust-num {
+          font-size: 28px;
+        }
+      }
+    </style>
+
+    <!-- GLAD HEADER STYLES -->
+    <style>
+      #glad-header {
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GLAD HEADER -->
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- NAVBAR -->
+    <nav class="gcs-nav" id="gcs-nav" aria-label="Main navigation">
+      <div class="gcs-nav-inner">
+        <a
+          href="#"
+          class="gcs-nav-brand"
+          aria-label="Good Cause Sacramento home"
+        >
+          <span class="gcs-nav-brand-name">Good Cause Sacramento</span>
+          <span class="gcs-nav-brand-sub">Life Transitions</span>
+        </a>
+
+        <ul class="gcs-nav-links" role="list">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">The Process</a></li>
+          <li><a href="#">Beech House</a></li>
+          <li><a href="#">Sunrise House</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Volunteers</a></li>
+        </ul>
+
+        <div class="gcs-nav-actions">
+          <span class="gcs-nav-phone">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 01.1 2.38 2 2 0 012.07.18h3a2 2 0 012 1.72 12.66 12.66 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.66 12.66 0 002.81.7A2 2 0 0122 14.92z"
+              />
+            </svg>
+            (916) 913-1918
+          </span>
+          <a href="#" class="gcs-nav-donate">Donate</a>
+        </div>
+
+        <button
+          class="gcs-hamburger"
+          id="gcs-hamburger"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="gcs-mobile-menu" id="gcs-mobile-menu" aria-hidden="true">
+      <ul class="gcs-mobile-menu-links" role="list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">The Empowerment Process</a></li>
+        <li><a href="#">Beech House</a></li>
+        <li><a href="#">Sunrise House</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Volunteers</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+      <a href="#" class="gcs-mobile-donate">Donate Today</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="gcs-hero" aria-label="Hero">
+      <div class="gcs-hero-bg" id="gcs-hero-bg"></div>
+      <div class="gcs-hero-overlay" aria-hidden="true"></div>
+      <div class="gcs-hero-overlay-bottom" aria-hidden="true"></div>
+      <div class="gcs-hero-body">
+        <div class="gcs-hero-eyeline" aria-hidden="true">
+          <div class="gcs-hero-eyeline-line"></div>
+          <span class="gcs-hero-eyeline-text">Sacramento, CA — Since 2011</span>
+        </div>
+        <h1 class="gcs-hero-title">
+          Safe, Sober<br />Housing for<br /><em>Men &amp; Women</em>
+        </h1>
+        <p class="gcs-hero-desc">
+          Building stability, sobriety, and sustainability through the Life
+          Transitions Process — empowering individuals to become the best
+          version of themselves.
+        </p>
+        <a href="#" class="gcs-hero-cta">
+          Support Our Work
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="gcs-trust" role="region" aria-label="Key statistics">
+      <div class="gcs-trust-inner">
+        <div class="gcs-trust-item gcs-fade">
+          <div class="gcs-trust-num">13+</div>
+          <div class="gcs-trust-label">Years serving Sacramento</div>
+        </div>
+        <div class="gcs-trust-item gcs-fade">
+          <div class="gcs-trust-num">2</div>
+          <div class="gcs-trust-label">Residential homes in operation</div>
+        </div>
+        <div class="gcs-trust-item gcs-fade">
+          <div class="gcs-trust-num">3mo</div>
+          <div class="gcs-trust-label">Minimum stay — up to 2 years</div>
+        </div>
+        <div class="gcs-trust-item gcs-fade">
+          <div class="gcs-trust-num">501c3</div>
+          <div class="gcs-trust-label">Federally recognized nonprofit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSION -->
+    <section class="gcs-mission" aria-labelledby="gcs-mission-heading">
+      <div class="gcs-mission-inner">
+        <div>
+          <p class="gcs-mission-label">Our Mission</p>
+          <h2 class="gcs-mission-quote" id="gcs-mission-heading">
+            <em
+              >"To enhance the dignity and quality of life for individuals,
+              families and communities."</em
+            >
+          </h2>
+          <p class="gcs-mission-body">
+            Good Cause Sacramento is a conduit for positive change, operating
+            under Peacemakers Love Foundation, Inc. We believe in
+            <strong>People Helping People Help Themselves</strong> — a
+            philosophy of restoration, purpose, compassion, and faith that leads
+            to a brighter future for every individual in our care.
+          </p>
+        </div>
+        <div class="gcs-mission-img-wrap gcs-fade">
+          <img
+            src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=900&q=80"
+            alt="Community members supporting each other"
+            class="gcs-mission-img"
+            loading="lazy"
+          />
+          <div class="gcs-mission-tag" aria-hidden="true">
+            <div class="gcs-mission-tag-num">100%</div>
+            <div class="gcs-mission-tag-text">Volunteer-powered support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROCESS -->
+    <section class="gcs-process" aria-labelledby="gcs-process-heading">
+      <div class="gcs-process-inner">
+        <p class="gcs-sec-label">The Empowerment Process</p>
+        <h2 class="gcs-sec-title" id="gcs-process-heading">
+          A whole-person approach to lasting recovery
+        </h2>
+        <div class="gcs-process-track">
+          <div class="gcs-process-step gcs-fade">
+            <div class="gcs-process-dot" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <p class="gcs-process-step-num">Step 01</p>
+            <h3 class="gcs-process-step-title">Spiritual Foundation</h3>
+            <p class="gcs-process-step-text">
+              Rebuilding a sense of purpose, faith, and meaning that anchors
+              every step of the recovery journey.
+            </p>
+          </div>
+          <div class="gcs-process-step gcs-fade">
+            <div class="gcs-process-dot" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4l3 3" />
+              </svg>
+            </div>
+            <p class="gcs-process-step-num">Step 02</p>
+            <h3 class="gcs-process-step-title">Mental Wellness</h3>
+            <p class="gcs-process-step-text">
+              Developing the mindset, resilience, and coping skills to navigate
+              life's challenges with clarity and confidence.
+            </p>
+          </div>
+          <div class="gcs-process-step gcs-fade">
+            <div class="gcs-process-dot" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+              </svg>
+            </div>
+            <p class="gcs-process-step-num">Step 03</p>
+            <h3 class="gcs-process-step-title">Physical Stability</h3>
+            <p class="gcs-process-step-text">
+              Safe, sober, structured housing that provides the physical
+              security every person needs to heal and grow.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOUSES -->
+    <section class="gcs-houses" aria-labelledby="gcs-houses-heading">
+      <div class="gcs-houses-inner">
+        <p class="gcs-sec-label">Residential Programs</p>
+        <h2 class="gcs-sec-title" id="gcs-houses-heading">
+          Two homes. One mission.
+        </h2>
+        <div class="gcs-houses-grid">
+          <div class="gcs-house-card gcs-fade">
+            <img
+              src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80"
+              alt="Beech House — Citrus Heights"
+              class="gcs-house-img"
+              loading="lazy"
+            />
+            <div class="gcs-house-overlay" aria-hidden="true"></div>
+            <div class="gcs-house-body">
+              <span class="gcs-house-tag">Citrus Heights, CA</span>
+              <h3 class="gcs-house-title">Beech House</h3>
+              <p class="gcs-house-desc">
+                Our original sober living home providing a structured,
+                supportive environment for men committed to long-term recovery
+                and reintegration.
+              </p>
+              <a href="#" class="gcs-house-link">
+                Learn about Beech House
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="gcs-house-card gcs-fade">
+            <img
+              src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=900&q=80"
+              alt="Sunrise House — Sacramento"
+              class="gcs-house-img"
+              loading="lazy"
+              style="object-position: center 60%"
+            />
+            <div class="gcs-house-overlay" aria-hidden="true"></div>
+            <div class="gcs-house-body">
+              <span class="gcs-house-tag">Sacramento, CA</span>
+              <h3 class="gcs-house-title">Sunrise House</h3>
+              <p class="gcs-house-desc">
+                A safe and sober transitional home for women, providing
+                accountability, community, and the tools to build a sustainable,
+                independent life.
+              </p>
+              <a href="#" class="gcs-house-link">
+                Learn about Sunrise House
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="gcs-impact" aria-labelledby="gcs-impact-heading">
+      <div class="gcs-impact-inner">
+        <div class="gcs-impact-img-wrap gcs-fade">
+          <img
+            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80"
+            alt="People supporting each other through recovery"
+            class="gcs-impact-img"
+            loading="lazy"
+          />
+          <div
+            class="gcs-impact-badge"
+            aria-label="Serving Sacramento since 2011"
+          >
+            <div class="gcs-impact-badge-num">13+</div>
+            <div class="gcs-impact-badge-text">Years in Sacramento</div>
+          </div>
+        </div>
+        <div class="gcs-impact-content">
+          <div>
+            <p class="gcs-sec-label">Why We Do This</p>
+            <h2
+              class="gcs-sec-title"
+              id="gcs-impact-heading"
+              style="margin-bottom: 0"
+            >
+              Restoring unity to the community
+            </h2>
+          </div>
+          <p class="gcs-impact-body">
+            Since 2011, Good Cause Sacramento has established a self-help
+            process that promotes stability, sobriety, and sustainability. The
+            Life Transitions Process encourages individuals to become the best
+            versions of themselves — with a minimum stay of 3 months and an open
+            door for up to 2 years, or until ready.
+          </p>
+          <div class="gcs-impact-pillars">
+            <div class="gcs-impact-pillar gcs-fade">
+              <div class="gcs-pillar-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <div class="gcs-pillar-text">
+                <strong>Safe, Stable Housing</strong>
+                <span
+                  >A real home environment where recovery can take root and
+                  grow.</span
+                >
+              </div>
+            </div>
+            <div class="gcs-impact-pillar gcs-fade">
+              <div class="gcs-pillar-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
+              </div>
+              <div class="gcs-pillar-text">
+                <strong>Community Support</strong>
+                <span
+                  >A network of peers, mentors, and volunteers who walk the
+                  journey together.</span
+                >
+              </div>
+            </div>
+            <div class="gcs-impact-pillar gcs-fade">
+              <div class="gcs-pillar-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              <div class="gcs-pillar-text">
+                <strong>Long-term Empowerment</strong>
+                <span
+                  >Skills, accountability, and purpose to sustain independence
+                  after leaving our homes.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gcs-gallery" aria-label="Photo gallery">
+      <div class="gcs-gallery-inner">
+        <p class="gcs-sec-label">Our Community</p>
+        <h2 class="gcs-sec-title" style="margin-bottom: 0">
+          Life inside our homes
+        </h2>
+        <div class="gcs-gallery-grid">
+          <div class="gcs-gallery-item gcs-fade">
+            <img
+              src="https://images.unsplash.com/photo-1593113630400-ea4288922559?w=800&q=80"
+              alt="Community gathering"
+              loading="lazy"
+            />
+          </div>
+          <div class="gcs-gallery-item gcs-fade">
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80"
+              alt="Safe home environment"
+              loading="lazy"
+            />
+          </div>
+          <div class="gcs-gallery-item gcs-fade">
+            <img
+              src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=80"
+              alt="People connecting and supporting"
+              loading="lazy"
+            />
+          </div>
+          <div class="gcs-gallery-item gcs-fade">
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80"
+              alt="Team working together"
+              loading="lazy"
+            />
+          </div>
+          <div class="gcs-gallery-item gcs-fade">
+            <img
+              src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80"
+              alt="Community support"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section class="gcs-involved" aria-labelledby="gcs-involved-heading">
+      <div class="gcs-involved-inner">
+        <p class="gcs-sec-label">Get Involved</p>
+        <h2 class="gcs-sec-title" id="gcs-involved-heading">
+          Teamwork makes the dreamwork
+        </h2>
+        <div class="gcs-involved-grid">
+          <div class="gcs-involved-card gcs-fade">
+            <div class="gcs-involved-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                />
+              </svg>
+            </div>
+            <h3 class="gcs-involved-title">Make a Donation</h3>
+            <p class="gcs-involved-desc">
+              Your gift directly supports safe housing, empowerment programming,
+              and the day-to-day operations that help people rebuild their
+              lives.
+            </p>
+            <a href="#" class="gcs-involved-link">
+              Donate today
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+          <div class="gcs-involved-card gcs-fade">
+            <div class="gcs-involved-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+              </svg>
+            </div>
+            <h3 class="gcs-involved-title">Volunteer With Us</h3>
+            <p class="gcs-involved-desc">
+              Join our community of volunteers who give their time, skills, and
+              compassion to help restore unity in the Sacramento community.
+            </p>
+            <a href="#" class="gcs-involved-link">
+              Become a volunteer
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+          <div class="gcs-involved-card gcs-fade">
+            <div class="gcs-involved-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <h3 class="gcs-involved-title">Become a Sponsor</h3>
+            <p class="gcs-involved-desc">
+              Partner with Good Cause Sacramento to amplify our impact.
+              Corporate and individual sponsorship opportunities are available
+              year-round.
+            </p>
+            <a href="#" class="gcs-involved-link">
+              Sponsorship info
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="gcs-cta-band" aria-labelledby="gcs-cta-heading">
+      <div class="gcs-cta-inner">
+        <div>
+          <h2 class="gcs-cta-headline" id="gcs-cta-heading">
+            People helping people help themselves.
+          </h2>
+          <p class="gcs-cta-sub">
+            There are many ways to restore unity in our community. Every dollar,
+            every hour, and every act of kindness matters.
+          </p>
+        </div>
+        <div class="gcs-cta-actions">
+          <a href="#" class="gcs-btn-gold">
+            Donate Now
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <span class="gcs-cta-phone">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 01.1 2.38 2 2 0 012.07.18h3a2 2 0 012 1.72 12.66 12.66 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.66 12.66 0 002.81.7A2 2 0 0122 14.92z"
+              />
+            </svg>
+            Or call&nbsp;<strong>(916) 913-1918</strong>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="gcs-contact" aria-labelledby="gcs-contact-heading">
+      <div class="gcs-contact-inner">
+        <div>
+          <h2 class="gcs-contact-heading" id="gcs-contact-heading">
+            Reach Out to Us
+          </h2>
+          <p class="gcs-contact-sub">
+            We'd love to hear from you — whether you're seeking help, looking to
+            volunteer, or want to support our work.
+          </p>
+          <div class="gcs-contact-details">
+            <div class="gcs-contact-item">
+              <div class="gcs-contact-item-icon" aria-label="Address">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <p class="gcs-contact-item-lbl">Address</p>
+                <p class="gcs-contact-item-val">
+                  8016 Sunrise Blvd, Citrus Heights, CA 95610
+                </p>
+              </div>
+            </div>
+            <div class="gcs-contact-item">
+              <div class="gcs-contact-item-icon" aria-label="Phone">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 01.1 2.38 2 2 0 012.07.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.66 12.66 0 002.81.7A2 2 0 0122 14.92z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="gcs-contact-item-lbl">Phone</p>
+                <p class="gcs-contact-item-val">
+                  (916) 913-1918 &nbsp;/&nbsp; (916) 667-5656
+                </p>
+              </div>
+            </div>
+            <div class="gcs-contact-item">
+              <div class="gcs-contact-item-icon" aria-label="Tax ID">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+              </div>
+              <div>
+                <p class="gcs-contact-item-lbl">Federal Tax ID</p>
+                <p class="gcs-contact-item-val">
+                  47-4757475 — 501(c)(3) Nonprofit
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="gcs-social-row" aria-label="Social media links">
+            <a href="#" class="gcs-social-btn" aria-label="Facebook">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="gcs-social-btn" aria-label="Twitter / X">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <path
+                  d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="gcs-social-btn" aria-label="Instagram">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Form removed to simplify layout -->
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="gcs-footer" aria-label="Site footer">
+      <div class="gcs-footer-inner">
+        <div class="gcs-footer-top">
+          <div>
+            <p class="gcs-footer-brand-name">Good Cause Sacramento</p>
+            <p class="gcs-footer-brand-sub">Life Transitions</p>
+            <p class="gcs-footer-mission">
+              Restoring Unity to the Community. A division of Peacemakers Love
+              Foundation, Inc. — serving Sacramento since 2011.
+            </p>
+          </div>
+          <div>
+            <p class="gcs-footer-col-title">Navigation</p>
+            <ul class="gcs-footer-links" role="list">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">The Empowerment Process</a></li>
+              <li><a href="#">Beech House</a></li>
+              <li><a href="#">Sunrise House</a></li>
+              <li><a href="#">Gallery</a></li>
+              <li><a href="#">Volunteers</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="gcs-footer-col-title">Contact</p>
+            <ul class="gcs-footer-links" role="list">
+              <li class="addr">
+                8016 Sunrise Blvd<br />Citrus Heights, CA 95610
+              </li>
+              <li><a href="tel:9169131918">(916) 913-1918</a></li>
+              <li><a href="tel:9166675656">(916) 667-5656</a></li>
+              <li><a href="#">Donate via PayPal</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="gcs-footer-bottom">
+          <p class="gcs-footer-copy">
+            &copy; 2026 Good Cause Sacramento. All rights reserved.
+          </p>
+          <p class="gcs-footer-tax">
+            Tax ID: 47-4757475 &nbsp;&middot;&nbsp; A division of Peacemakers
+            Love Foundation, Inc.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll
+      const gcsNav = document.getElementById("gcs-nav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          gcsNav.classList.toggle("gcs-scrolled", window.scrollY > 20);
+        },
+        { passive: true },
+      );
+
+      // Hero bg zoom
+      const heroBg = document.getElementById("gcs-hero-bg");
+      window.addEventListener("load", () =>
+        setTimeout(() => heroBg.classList.add("loaded"), 80),
+      );
+
+      // Mobile menu
+      const hamburger = document.getElementById("gcs-hamburger");
+      const mobileMenu = document.getElementById("gcs-mobile-menu");
+      let menuOpen = false;
+      hamburger.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        hamburger.classList.toggle("open", menuOpen);
+        mobileMenu.classList.toggle("open", menuOpen);
+        hamburger.setAttribute("aria-expanded", menuOpen);
+        mobileMenu.setAttribute("aria-hidden", !menuOpen);
+        document.body.style.overflow = menuOpen ? "hidden" : "";
+      });
+      document.addEventListener("click", (e) => {
+        if (
+          menuOpen &&
+          !mobileMenu.contains(e.target) &&
+          !hamburger.contains(e.target)
+        ) {
+          menuOpen = false;
+          hamburger.classList.remove("open");
+          mobileMenu.classList.remove("open");
+          hamburger.setAttribute("aria-expanded", "false");
+          mobileMenu.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Fade animations
+      const fadeEls = document.querySelectorAll(".gcs-fade");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -32px 0px" },
+      );
+      fadeEls.forEach((el) => observer.observe(el));
+
+      // Prevent # links
+      document
+        .querySelectorAll('a[href="#"]')
+        .forEach((a) => a.addEventListener("click", (e) => e.preventDefault()));
+
+      // Form
+      const formSubmit = document.querySelector(".gcs-form-submit");
+      if (formSubmit) {
+        formSubmit.addEventListener("click", () => {
+          const fname = document.getElementById("gcs-fname").value.trim();
+          const email = document.getElementById("gcs-email").value.trim();
+          if (!fname || !email) {
+            formSubmit.textContent = "Please fill in required fields";
+            formSubmit.style.background = "#b45309";
+            setTimeout(() => {
+              formSubmit.textContent = "Send Message";
+              formSubmit.style.background = "";
+            }, 2500);
+            return;
+          }
+          formSubmit.textContent = "Message Sent ✓";
+          formSubmit.style.background = "#2d7a50";
+          setTimeout(() => {
+            formSubmit.textContent = "Send Message";
+            formSubmit.style.background = "";
+          }, 3000);
+        });
+      }
+    </script>
+
+    <script>
+      // GLAD header scroll behaviour
+      const gladHeader = document.getElementById("glad-header");
+      const mainNav = document.querySelector(".gcs-nav");
+      let lastY = window.scrollY;
+      let gladVisible = true;
+
+      if (window.scrollY > 80) {
+        gladHeader.classList.add("hidden");
+        gladVisible = false;
+        if (mainNav) mainNav.style.top = "0px";
+      } else {
+        if (mainNav) mainNav.style.top = "auto";
+      }
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+              if (mainNav) mainNav.style.top = "0px";
+            }
+          } else if (y < lastY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+              if (mainNav) mainNav.style.top = "auto";
+            }
+          }
+          lastY = y;
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>

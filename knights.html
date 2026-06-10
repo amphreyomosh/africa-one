@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knights of Columbus – California State Council</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --kofc-navy: #1a2744;
+    --kofc-navy-deep: #0f1a33;
+    --kofc-red: #c0392b;
+    --kofc-red-dark: #962d22;
+    --kofc-gold: #b8960c;
+    --kofc-gold-light: #d4a017;
+    --kofc-cream: #faf8f4;
+    --kofc-white: #ffffff;
+    --kofc-slate: #f1f0ed;
+    --kofc-text: #1e2a3a;
+    --kofc-text-mid: #4a5568;
+    --kofc-text-light: #718096;
+    --kofc-border: #e2ddd6;
+    --kofc-shadow-sm: 0 1px 4px rgba(26,39,68,0.08);
+    --kofc-shadow-md: 0 4px 20px rgba(26,39,68,0.12);
+    --kofc-shadow-lg: 0 12px 40px rgba(26,39,68,0.16);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --transition: 0.22s ease;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--kofc-cream);
+    color: var(--kofc-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── TOPBAR ── */
+  .kofc-topbar {
+    background: var(--kofc-navy-deep);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 7px 0;
+  }
+  .kofc-topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .kofc-topbar-left { display: flex; gap: 20px; flex-wrap: wrap; }
+  .kofc-topbar-social { display: flex; gap: 12px; }
+  .kofc-topbar-social a {
+    color: rgba(255,255,255,0.55);
+    transition: color var(--transition);
+    display: flex; align-items: center;
+  }
+  .kofc-topbar-social a:hover { color: var(--kofc-gold-light); }
+  .kofc-topbar-social svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* ── NAVBAR ── */
+  .kofc-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--kofc-white);
+    border-bottom: 1px solid var(--kofc-border);
+    box-shadow: var(--kofc-shadow-sm);
+    transition: box-shadow var(--transition);
+  }
+  .kofc-navbar.kofc-scrolled { box-shadow: var(--kofc-shadow-md); }
+  .kofc-navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 68px;
+    gap: 32px;
+  }
+  .kofc-navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .kofc-navbar-logo {
+    height: 46px;
+    width: auto;
+    object-fit: contain;
+  }
+  .kofc-navbar-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .kofc-navbar-title-main {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--kofc-navy);
+    letter-spacing: -0.01em;
+  }
+  .kofc-navbar-title-sub {
+    font-size: 0.7rem;
+    color: var(--kofc-red);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .kofc-nav-links {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    margin-left: auto;
+    align-items: center;
+  }
+  .kofc-nav-links > li { position: relative; }
+  .kofc-nav-links > li > a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--kofc-text-mid);
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+    white-space: nowrap;
+  }
+  .kofc-nav-links > li > a:hover,
+  .kofc-nav-links > li > a.kofc-active {
+    color: var(--kofc-navy);
+    background: var(--kofc-slate);
+  }
+  .kofc-nav-links > li > a svg { width: 10px; height: 10px; fill: currentColor; flex-shrink: 0; }
+  .kofc-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--kofc-white);
+    border: 1px solid var(--kofc-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--kofc-shadow-lg);
+    min-width: 220px;
+    padding: 8px 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity var(--transition), transform var(--transition);
+    z-index: 200;
+  }
+  .kofc-nav-links > li:hover .kofc-nav-dropdown {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .kofc-nav-dropdown a {
+    display: block;
+    padding: 9px 18px;
+    font-size: 0.82rem;
+    color: var(--kofc-text-mid);
+    transition: color var(--transition), background var(--transition);
+  }
+  .kofc-nav-dropdown a:hover {
+    color: var(--kofc-navy);
+    background: var(--kofc-slate);
+  }
+  .kofc-nav-cta {
+    background: var(--kofc-navy);
+    color: var(--kofc-white) !important;
+    border-radius: var(--radius-sm);
+    padding: 8px 16px !important;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    transition: background var(--transition) !important;
+  }
+  .kofc-nav-cta:hover { background: var(--kofc-red) !important; color: var(--kofc-white) !important; }
+  .kofc-mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: auto;
+    background: none;
+    border: none;
+  }
+  .kofc-mobile-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--kofc-navy);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    transform-origin: center;
+  }
+  .kofc-mobile-toggle.kofc-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .kofc-mobile-toggle.kofc-open span:nth-child(2) { opacity: 0; }
+  .kofc-mobile-toggle.kofc-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE MENU ── */
+  .kofc-mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: var(--kofc-white);
+    padding: 80px 28px 32px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .kofc-mobile-menu.kofc-open { transform: translateX(0); }
+  .kofc-mobile-menu-links { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .kofc-mobile-menu-links a {
+    display: block;
+    padding: 13px 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--kofc-text);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition), color var(--transition);
+  }
+  .kofc-mobile-menu-links a:hover { background: var(--kofc-slate); color: var(--kofc-navy); }
+  .kofc-mobile-menu-divider { height: 1px; background: var(--kofc-border); margin: 10px 0; }
+  .kofc-mobile-join-btn {
+    display: block;
+    margin-top: 20px;
+    background: var(--kofc-navy);
+    color: var(--kofc-white);
+    text-align: center;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* ── ANNOUNCEMENTS TICKER ── */
+  .kofc-announcements {
+    background: var(--kofc-navy);
+    padding: 10px 0;
+    overflow: hidden;
+  }
+  .kofc-announcements-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .kofc-announcements-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--kofc-gold-light);
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-right: 16px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .kofc-announcements-scroll {
+    display: flex;
+    gap: 40px;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0, black 60px, black calc(100% - 60px), transparent 100%);
+  }
+  .kofc-announcements-track {
+    display: flex;
+    gap: 40px;
+    animation: kofc-scroll 30s linear infinite;
+    white-space: nowrap;
+  }
+  .kofc-announcements-track a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+  .kofc-announcements-track a:hover { color: var(--kofc-gold-light); }
+  .kofc-announcements-sep { color: rgba(255,255,255,0.25); font-size: 0.8rem; }
+  @keyframes kofc-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── HERO ── */
+  .kofc-hero {
+    position: relative;
+    background: var(--kofc-navy-deep);
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .kofc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.californiaknights.org/wp-content/uploads/2025/08/cropped-Branding-header-v2.jpg');
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.18;
+  }
+  .kofc-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(15,26,51,0.97) 48%, rgba(15,26,51,0.6) 100%);
+  }
+  .kofc-hero-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+  }
+  .kofc-hero-content { max-width: 580px; }
+  .kofc-hero-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--kofc-gold-light);
+    margin-bottom: 20px;
+  }
+  .kofc-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--kofc-white);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .kofc-hero-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-weight: 400;
+    color: var(--kofc-red);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .kofc-hero-text {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+  .kofc-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .kofc-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--kofc-red);
+    color: var(--kofc-white);
+    padding: 13px 28px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    box-shadow: 0 4px 16px rgba(192,57,43,0.35);
+  }
+  .kofc-btn-primary:hover {
+    background: var(--kofc-red-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(192,57,43,0.45);
+  }
+  .kofc-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    padding: 13px 24px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+  }
+  .kofc-btn-secondary:hover {
+    background: rgba(255,255,255,0.08);
+    color: var(--kofc-white);
+    border-color: rgba(255,255,255,0.4);
+  }
+  .kofc-hero-year {
+    margin-top: 40px;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Hero side panel */
+  .kofc-hero-panel {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    backdrop-filter: blur(8px);
+  }
+  .kofc-hero-panel-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--kofc-gold-light);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .kofc-hero-event-list { display: flex; flex-direction: column; gap: 14px; }
+  .kofc-hero-event {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .kofc-hero-event-date {
+    background: var(--kofc-red);
+    color: var(--kofc-white);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+  .kofc-hero-event-date span:first-child {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .kofc-hero-event-date span:last-child {
+    display: block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+  }
+  .kofc-hero-event-info {}
+  .kofc-hero-event-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.3;
+    margin-bottom: 3px;
+  }
+  .kofc-hero-event-desc {
+    font-size: 0.74rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .kofc-hero-event-link {
+    margin-top: 4px;
+    font-size: 0.74rem;
+    color: var(--kofc-gold-light);
+    font-weight: 500;
+  }
+  .kofc-hero-event-link:hover { text-decoration: underline; }
+
+  /* ── IMPACT STRIP ── */
+  .kofc-impact-strip {
+    background: var(--kofc-white);
+    border-bottom: 1px solid var(--kofc-border);
+  }
+  .kofc-impact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .kofc-impact-stat {
+    padding: 32px 24px;
+    border-right: 1px solid var(--kofc-border);
+    text-align: center;
+  }
+  .kofc-impact-stat:last-child { border-right: none; }
+  .kofc-impact-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--kofc-navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .kofc-impact-num span { color: var(--kofc-red); }
+  .kofc-impact-label {
+    font-size: 0.78rem;
+    color: var(--kofc-text-light);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── DEPUTY MESSAGE ── */
+  .kofc-deputy {
+    background: var(--kofc-cream);
+    padding: 80px 0;
+    border-bottom: 1px solid var(--kofc-border);
+  }
+  .kofc-deputy-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .kofc-deputy-sidebar {}
+  .kofc-deputy-seal-wrap {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .kofc-deputy-seal {
+    width: 100%;
+    max-width: 280px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--kofc-border);
+  }
+  .kofc-deputy-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--kofc-navy);
+    margin-bottom: 4px;
+  }
+  .kofc-deputy-role {
+    font-size: 0.78rem;
+    color: var(--kofc-text-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+  }
+  .kofc-deputy-quote-mark {
+    font-size: 4rem;
+    line-height: 0.6;
+    color: var(--kofc-red);
+    margin-bottom: 12px;
+    display: block;
+    opacity: 0.6;
+  }
+  .kofc-deputy-content {}
+  .kofc-section-label {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--kofc-red);
+    margin-bottom: 10px;
+  }
+  .kofc-section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--kofc-navy);
+    line-height: 1.25;
+    margin-bottom: 24px;
+  }
+  .kofc-deputy-text {
+    font-size: 0.92rem;
+    color: var(--kofc-text-mid);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .kofc-deputy-pillars {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .kofc-pillar-tag {
+    background: var(--kofc-slate);
+    color: var(--kofc-navy);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--kofc-border);
+  }
+
+  /* ── PROGRAMS GRID ── */
+  .kofc-programs {
+    background: var(--kofc-white);
+    padding: 80px 0;
+    border-bottom: 1px solid var(--kofc-border);
+  }
+  .kofc-programs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .kofc-programs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .kofc-programs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .kofc-program-item {
+    background: var(--kofc-cream);
+    border: 1px solid var(--kofc-border);
+    border-radius: var(--radius-md);
+    padding: 28px 22px;
+    transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  }
+  .kofc-program-item:hover {
+    box-shadow: var(--kofc-shadow-md);
+    transform: translateY(-3px);
+    border-color: rgba(26,39,68,0.15);
+  }
+  .kofc-program-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--kofc-navy);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .kofc-program-icon svg { width: 22px; height: 22px; fill: none; stroke: rgba(255,255,255,0.85); stroke-width: 1.5; }
+  .kofc-program-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--kofc-navy);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .kofc-program-desc {
+    font-size: 0.8rem;
+    color: var(--kofc-text-mid);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .kofc-program-link {
+    font-size: 0.78rem;
+    color: var(--kofc-red);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap var(--transition);
+  }
+  .kofc-program-link:hover { gap: 8px; }
+  .kofc-text-link {
+    font-size: 0.82rem;
+    color: var(--kofc-navy);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid var(--kofc-border);
+    padding-bottom: 2px;
+    transition: color var(--transition), border-color var(--transition);
+  }
+  .kofc-text-link:hover { color: var(--kofc-red); border-color: var(--kofc-red); }
+
+  /* ── CHARITIES SPLIT ── */
+  .kofc-charities {
+    background: var(--kofc-navy);
+    padding: 80px 0;
+  }
+  .kofc-charities-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .kofc-charities-text .kofc-section-label { color: var(--kofc-gold-light); }
+  .kofc-charities-text .kofc-section-title { color: var(--kofc-white); }
+  .kofc-charities-body {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+  .kofc-charity-items { display: flex; flex-direction: column; gap: 16px; }
+  .kofc-charity-entry {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    transition: background var(--transition), border-color var(--transition);
+  }
+  .kofc-charity-entry:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.15);
+  }
+  .kofc-charity-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--kofc-gold-light);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .kofc-charity-entry-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 3px;
+  }
+  .kofc-charity-entry-desc {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+  .kofc-charities-visual {
+    position: relative;
+  }
+  .kofc-charities-img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    opacity: 0.85;
+  }
+  .kofc-charities-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--kofc-red);
+    color: var(--kofc-white);
+    padding: 18px 22px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--kofc-shadow-lg);
+  }
+  .kofc-charities-badge-num {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .kofc-charities-badge-label {
+    font-size: 0.7rem;
+    opacity: 0.85;
+    margin-top: 3px;
+  }
+
+  /* ── MEMBERSHIP CTA ── */
+  .kofc-membership {
+    background: var(--kofc-cream);
+    padding: 80px 0;
+    border-top: 1px solid var(--kofc-border);
+    border-bottom: 1px solid var(--kofc-border);
+  }
+  .kofc-membership-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 60px;
+    align-items: center;
+  }
+  .kofc-membership-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .kofc-value-entry {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .kofc-value-num {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--kofc-red);
+    font-family: var(--font-display);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 28px;
+  }
+  .kofc-value-text {}
+  .kofc-value-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--kofc-navy);
+    margin-bottom: 3px;
+  }
+  .kofc-value-body {
+    font-size: 0.78rem;
+    color: var(--kofc-text-light);
+    line-height: 1.5;
+  }
+  .kofc-membership-aside {
+    background: var(--kofc-navy);
+    border-radius: var(--radius-lg);
+    padding: 36px 30px;
+    text-align: center;
+  }
+  .kofc-membership-aside-logo {
+    width: 70px;
+    margin: 0 auto 20px;
+  }
+  .kofc-membership-aside-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--kofc-white);
+    margin-bottom: 12px;
+  }
+  .kofc-membership-aside-text {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .kofc-btn-gold {
+    display: block;
+    background: var(--kofc-gold);
+    color: var(--kofc-white);
+    padding: 13px 24px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: background var(--transition), transform var(--transition);
+    margin-bottom: 10px;
+  }
+  .kofc-btn-gold:hover { background: var(--kofc-gold-light); transform: translateY(-1px); }
+  .kofc-btn-outline-white {
+    display: block;
+    background: transparent;
+    color: rgba(255,255,255,0.65);
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.82rem;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+  }
+  .kofc-btn-outline-white:hover {
+    background: rgba(255,255,255,0.07);
+    color: var(--kofc-white);
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  /* ── PILGRIMAGE HIGHLIGHT ── */
+  .kofc-pilgrimage {
+    background: var(--kofc-white);
+    padding: 70px 0;
+    border-bottom: 1px solid var(--kofc-border);
+  }
+  .kofc-pilgrimage-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .kofc-pilgrimage-img-wrap {
+    position: relative;
+  }
+  .kofc-pilgrimage-img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 3/4;
+    object-fit: cover;
+  }
+  .kofc-pilgrimage-content {}
+  .kofc-pilgrimage-quote {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--kofc-text-mid);
+    line-height: 1.7;
+    border-left: 3px solid var(--kofc-red);
+    padding-left: 20px;
+    margin: 20px 0 28px;
+  }
+  .kofc-pilgrimage-attribution {
+    font-size: 0.78rem;
+    color: var(--kofc-text-light);
+    margin-top: 8px;
+  }
+
+  /* ── NEWS STRIP ── */
+  .kofc-news {
+    background: var(--kofc-cream);
+    padding: 70px 0;
+    border-bottom: 1px solid var(--kofc-border);
+  }
+  .kofc-news-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .kofc-news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .kofc-news-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+  }
+  .kofc-news-featured {
+    background: var(--kofc-white);
+    border: 1px solid var(--kofc-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: box-shadow var(--transition);
+  }
+  .kofc-news-featured:hover { box-shadow: var(--kofc-shadow-md); }
+  .kofc-news-featured-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  .kofc-news-featured-body { padding: 24px; }
+  .kofc-news-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--kofc-red);
+    margin-bottom: 8px;
+  }
+  .kofc-news-featured-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--kofc-navy);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .kofc-news-featured-excerpt {
+    font-size: 0.82rem;
+    color: var(--kofc-text-mid);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .kofc-news-date {
+    font-size: 0.72rem;
+    color: var(--kofc-text-light);
+  }
+  .kofc-news-minor {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .kofc-news-item {
+    background: var(--kofc-white);
+    border: 1px solid var(--kofc-border);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    flex: 1;
+    transition: box-shadow var(--transition), border-color var(--transition);
+  }
+  .kofc-news-item:hover {
+    box-shadow: var(--kofc-shadow-sm);
+    border-color: rgba(26,39,68,0.15);
+  }
+  .kofc-news-item-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--kofc-navy);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .kofc-news-item-date {
+    font-size: 0.72rem;
+    color: var(--kofc-text-light);
+  }
+
+  /* ── FOOTER ── */
+  .kofc-footer {
+    background: var(--kofc-navy-deep);
+    color: rgba(255,255,255,0.65);
+    padding: 60px 0 0;
+  }
+  .kofc-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  .kofc-footer-brand {}
+  .kofc-footer-logo {
+    width: 70px;
+    margin-bottom: 16px;
+  }
+  .kofc-footer-tagline {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px;
+    max-width: 260px;
+  }
+  .kofc-footer-social { display: flex; gap: 10px; }
+  .kofc-footer-social a {
+    width: 34px;
+    height: 34px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    transition: background var(--transition), color var(--transition);
+  }
+  .kofc-footer-social a:hover {
+    background: var(--kofc-red);
+    color: var(--kofc-white);
+  }
+  .kofc-footer-social svg { width: 14px; height: 14px; fill: currentColor; }
+  .kofc-footer-col-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+  .kofc-footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .kofc-footer-col-links a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    transition: color var(--transition);
+  }
+  .kofc-footer-col-links a:hover { color: var(--kofc-white); }
+  .kofc-footer-bottom {
+    margin-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.3);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── MOBILE OVERLAY ── */
+  .kofc-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 98;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .kofc-overlay.kofc-open { opacity: 1; }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .kofc-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .kofc-fade-in.kofc-visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .kofc-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .kofc-hero-panel { max-width: 500px; }
+    .kofc-programs-grid { grid-template-columns: repeat(2, 1fr); }
+    .kofc-news-grid { grid-template-columns: 1fr 1fr; }
+    .kofc-news-minor { flex-direction: row; }
+    .kofc-news-featured { grid-column: span 2; }
+    .kofc-footer-inner { grid-template-columns: 1fr 1fr; row-gap: 32px; }
+    .kofc-charities-inner { grid-template-columns: 1fr; }
+    .kofc-charities-visual { display: none; }
+    .kofc-membership-inner { grid-template-columns: 1fr; }
+    .kofc-pilgrimage-inner { grid-template-columns: 1fr; }
+    .kofc-pilgrimage-img-wrap { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .kofc-nav-links { display: none; }
+    .kofc-mobile-toggle { display: flex; }
+    .kofc-mobile-menu { display: block; }
+    .kofc-overlay { display: block; }
+    .kofc-impact-inner { grid-template-columns: repeat(2, 1fr); }
+    .kofc-impact-stat:nth-child(2) { border-right: none; }
+    .kofc-impact-stat:nth-child(1),
+    .kofc-impact-stat:nth-child(2) { border-bottom: 1px solid var(--kofc-border); }
+    .kofc-programs-grid { grid-template-columns: 1fr; }
+    .kofc-news-grid { grid-template-columns: 1fr; }
+    .kofc-news-featured { grid-column: span 1; }
+    .kofc-news-minor { flex-direction: column; }
+    .kofc-deputy-inner { grid-template-columns: 1fr; }
+    .kofc-membership-values { grid-template-columns: 1fr; }
+    .kofc-footer-inner { grid-template-columns: 1fr; }
+    .kofc-topbar-left { display: none; }
+    .kofc-hero-inner { padding: 56px 24px; }
+    .kofc-navbar-title { display: none; }
+    .kofc-charities-badge { display: none; }
+  }
+  /* ── GLAD HEADER ── */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .kofc-navbar {
+    top: auto;
+    transition: top 0.3s ease;
+  }
+  .kofc-navbar.kofc-scrolled {
+    top: 0px;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max, 1200px);
+    margin: 0 auto;
+    padding: 0 var(--gutter, 24px);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- TOPBAR -->
+<div class="kofc-topbar">
+  <div class="kofc-topbar-inner">
+    <div class="kofc-topbar-left">
+      <span>California State Council &nbsp;·&nbsp; Instituted May 12th, 1903</span>
+      <span>#kofccalifornia</span>
+    </div>
+    <div class="kofc-topbar-social">
+      <a href="https://www.facebook.com/kofccalifornia/" target="_blank" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/kofccalifornia/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://twitter.com/KofcCalifornia" target="_blank" aria-label="Twitter/X">
+        <svg viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/channel/UCfmywCDeaH0KovuyOhSXWPQ" target="_blank" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="kofc-navbar" id="kofc-navbar">
+  <div class="kofc-navbar-inner">
+    <a href="/" class="kofc-navbar-brand">
+      <img src="https://www.californiaknights.org/wp-content/uploads/2021/01/cropped-KOCCA-Icon-270x270.png" alt="Knights of Columbus California" class="kofc-navbar-logo">
+      <div class="kofc-navbar-title">
+        <span class="kofc-navbar-title-main">Knights of Columbus</span>
+        <span class="kofc-navbar-title-sub">California State Council</span>
+      </div>
+    </a>
+
+    <ul class="kofc-nav-links">
+      <li>
+        <a href="https://www.californiaknights.org/who-we-are/">Our Leadership
+          <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </a>
+        <div class="kofc-nav-dropdown">
+          <a href="https://www.californiaknights.org/who-we-are/">Who We Are</a>
+          <a href="https://www.californiaknights.org/state-leadership-team/">State Leadership Team</a>
+          <a href="https://www.californiaknights.org/chapters-dioceses/">Chapters &amp; Dioceses</a>
+          <a href="https://www.californiaknights.org/calendar/">Calendar</a>
+          <a href="https://www.californiaknights.org/past-state-deputies/">Past State Deputies</a>
+        </div>
+      </li>
+      <li>
+        <a href="https://www.californiaknights.org/programs-director/">Programs
+          <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </a>
+        <div class="kofc-nav-dropdown">
+          <a href="https://www.californiaknights.org/faith-programs/">Faith Programs</a>
+          <a href="https://www.californiaknights.org/family-programs/">Family Programs</a>
+          <a href="https://www.californiaknights.org/community-programs/">Community Programs</a>
+          <a href="https://www.californiaknights.org/culture-of-life/">Life Programs</a>
+          <a href="https://www.californiaknights.org/program-handbook/">Service Programs Guidebook</a>
+        </div>
+      </li>
+      <li>
+        <a href="https://www.californiaknights.org/crh-vision-and-mission/">Charities
+          <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </a>
+        <div class="kofc-nav-dropdown">
+          <a href="https://www.californiaknights.org/crh-vision-and-mission/">Columbian Retirement Home</a>
+          <a href="https://www.californiaknights.org/culture-of-life/california-columbian-charities-365club/">365 Club</a>
+          <a href="http://www.columbian-foundation.org/">Frank Nigro Foundation</a>
+          <a href="https://www.californiaknights.org/community-programs/global-wheelchair-mission-program/">Wheelchair Mission</a>
+          <a href="https://www.californiaknights.org/emilio-moure-museum/">Emilio B. Moure Museum</a>
+        </div>
+      </li>
+      <li>
+        <a href="https://www.californiaknights.org/membership-directors-message/">Membership
+          <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </a>
+        <div class="kofc-nav-dropdown">
+          <a href="https://www.californiaknights.org/join-us/">Join Us</a>
+          <a href="https://www.californiaknights.org/ceremonials/">Ceremonials (CUF)</a>
+          <a href="https://www.californiaknights.org/fourth-degree/">Patriotic 4th Degree</a>
+          <a href="https://www.californiaknights.org/find-a-council/">Find a Council</a>
+        </div>
+      </li>
+      <li>
+        <a href="https://www.californiaknights.org/state-forms/">Resources
+          <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </a>
+        <div class="kofc-nav-dropdown">
+          <a href="https://www.californiaknights.org/state-forms/">State Forms</a>
+          <a href="https://www.californiaknights.org/2025-2026-council-star-awards/">Council Star Awards</a>
+          <a href="https://www.californiaknights.org/vbn/">Fraternal Benefit Events</a>
+          <a href="https://www.californiaknights.org/contact-us/">Contact Us</a>
+        </div>
+      </li>
+      <li>
+        <a href="https://www.californiaknights.org/join-us/" class="kofc-nav-cta">Join the Knights</a>
+      </li>
+    </ul>
+
+    <button class="kofc-mobile-toggle" id="kofc-mobile-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="kofc-overlay" id="kofc-overlay"></div>
+
+<!-- MOBILE MENU -->
+<nav class="kofc-mobile-menu" id="kofc-mobile-menu" aria-label="Mobile navigation">
+  <ul class="kofc-mobile-menu-links">
+    <li><a href="https://www.californiaknights.org/who-we-are/">Our Leadership</a></li>
+    <li><a href="https://www.californiaknights.org/state-leadership-team/">State Leadership Team</a></li>
+    <li><a href="https://www.californiaknights.org/calendar/">Calendar &amp; Events</a></li>
+    <div class="kofc-mobile-menu-divider"></div>
+    <li><a href="https://www.californiaknights.org/faith-programs/">Faith Programs</a></li>
+    <li><a href="https://www.californiaknights.org/family-programs/">Family Programs</a></li>
+    <li><a href="https://www.californiaknights.org/community-programs/">Community Programs</a></li>
+    <li><a href="https://www.californiaknights.org/culture-of-life/">Life Programs</a></li>
+    <div class="kofc-mobile-menu-divider"></div>
+    <li><a href="https://www.californiaknights.org/crh-vision-and-mission/">Our Charities</a></li>
+    <li><a href="https://www.californiaknights.org/find-a-council/">Find a Council</a></li>
+    <li><a href="https://www.californiaknights.org/state-forms/">Forms &amp; Resources</a></li>
+    <li><a href="https://www.californiaknights.org/2025-2026-council-star-awards/">Council Star Awards</a></li>
+    <div class="kofc-mobile-menu-divider"></div>
+  </ul>
+  <a href="https://www.californiaknights.org/join-us/" class="kofc-mobile-join-btn">Join the Knights of Columbus</a>
+</nav>
+
+<!-- ANNOUNCEMENTS TICKER -->
+<div class="kofc-announcements">
+  <div class="kofc-announcements-inner">
+    <span class="kofc-announcements-label">Updates</span>
+    <div class="kofc-announcements-scroll">
+      <div class="kofc-announcements-track" id="kofc-ticker">
+        <a href="https://www.californiaknights.org/district-deputy-orientation-july-2026/">District Deputy Orientation — July 10–12, 2026</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/vbn/">Fraternal Benefit Events Updated June 4th</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/resolutions-2026/">Resolutions 2026 Now Available</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/sam2026/">Convention 2026 — Recap &amp; Resources</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/2025-2026-council-star-awards/">Council Star Awards Updated May 29, 2026</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/wp-content/uploads/2026/04/California-Eucharistic-Pilgrimage-Press-Release-4-6-2026.pdf">California Eucharistic Pilgrimage — Press Release</a>
+        <span class="kofc-announcements-sep">·</span>
+        <!-- duplicate for seamless loop -->
+        <a href="https://www.californiaknights.org/district-deputy-orientation-july-2026/">District Deputy Orientation — July 10–12, 2026</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/vbn/">Fraternal Benefit Events Updated June 4th</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/resolutions-2026/">Resolutions 2026 Now Available</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/sam2026/">Convention 2026 — Recap &amp; Resources</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/2025-2026-council-star-awards/">Council Star Awards Updated May 29, 2026</a>
+        <span class="kofc-announcements-sep">·</span>
+        <a href="https://www.californiaknights.org/wp-content/uploads/2026/04/California-Eucharistic-Pilgrimage-Press-Release-4-6-2026.pdf">California Eucharistic Pilgrimage — Press Release</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="kofc-hero">
+  <div class="kofc-hero-bg" role="presentation"></div>
+  <div class="kofc-hero-overlay"></div>
+  <div class="kofc-hero-inner">
+    <div class="kofc-hero-content">
+      <span class="kofc-hero-eyebrow">California State Council &nbsp;·&nbsp; Est. 1903</span>
+      <h1 class="kofc-hero-title">Knights of Columbus<br>California</h1>
+      <p class="kofc-hero-subtitle">Pillars of Hope. Servants of Faith.</p>
+      <p class="kofc-hero-text">Over 120 years of Catholic men uniting in charity, unity, and fraternity across California — serving our communities, defending life, and strengthening our Church.</p>
+      <div class="kofc-hero-actions">
+        <a href="https://www.californiaknights.org/join-us/" class="kofc-btn-primary">
+          Join the Knights
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </a>
+        <a href="https://www.californiaknights.org/find-a-council/" class="kofc-btn-secondary">Find a Local Council</a>
+      </div>
+      <p class="kofc-hero-year">124th State Convention — Visalia, May 2026</p>
+    </div>
+    <div class="kofc-hero-panel">
+      <p class="kofc-hero-panel-title">Upcoming Events</p>
+      <div class="kofc-hero-event-list">
+        <div class="kofc-hero-event">
+          <div class="kofc-hero-event-date">
+            <span>10</span>
+            <span>Jul</span>
+          </div>
+          <div class="kofc-hero-event-info">
+            <p class="kofc-hero-event-name">District Deputy Orientation</p>
+            <p class="kofc-hero-event-desc">July 10–12, 2026 &nbsp;·&nbsp; NEW for this cycle</p>
+            <a href="https://www.californiaknights.org/district-deputy-orientation-july-2026/" class="kofc-hero-event-link">View details →</a>
+          </div>
+        </div>
+        <div class="kofc-hero-event">
+          <div class="kofc-hero-event-date">
+            <span>Jun</span>
+            <span>4th</span>
+          </div>
+          <div class="kofc-hero-event-info">
+            <p class="kofc-hero-event-name">Fraternal Benefit Events</p>
+            <p class="kofc-hero-event-desc">Virtual — Updated June 4th</p>
+            <a href="https://www.californiaknights.org/vbn/" class="kofc-hero-event-link">View schedule →</a>
+          </div>
+        </div>
+        <div class="kofc-hero-event">
+          <div class="kofc-hero-event-date" style="background: var(--kofc-gold);">
+            <span>2026</span>
+            <span>Conv</span>
+          </div>
+          <div class="kofc-hero-event-info">
+            <p class="kofc-hero-event-name">Convention 2026</p>
+            <p class="kofc-hero-event-desc">Resolutions &amp; officer election results</p>
+            <a href="https://www.californiaknights.org/sam2026/" class="kofc-hero-event-link">View recap →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STRIP -->
+<div class="kofc-impact-strip">
+  <div class="kofc-impact-inner">
+    <div class="kofc-impact-stat">
+      <div class="kofc-impact-num">4<span>×</span></div>
+      <div class="kofc-impact-label">Circle of Honor — consecutive years</div>
+    </div>
+    <div class="kofc-impact-stat">
+      <div class="kofc-impact-num">240<span>+</span></div>
+      <div class="kofc-impact-label">Wheelchairs donated to Mexico</div>
+    </div>
+    <div class="kofc-impact-stat">
+      <div class="kofc-impact-num">$350<span>K</span></div>
+      <div class="kofc-impact-label">Raised for veteran wheelchairs</div>
+    </div>
+    <div class="kofc-impact-stat">
+      <div class="kofc-impact-num">20K<span>+</span></div>
+      <div class="kofc-impact-label">Lbs of food donated statewide</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATE DEPUTY MESSAGE -->
+<section class="kofc-deputy">
+  <div class="kofc-deputy-inner kofc-fade-in">
+    <div class="kofc-deputy-sidebar">
+      <img
+        src="https://www.californiaknights.org/wp-content/uploads/2020/02/Clean-State-Logo.jpg"
+        alt="KofC California State Council Logo"
+        class="kofc-deputy-seal"
+      >
+      <p class="kofc-deputy-name">State Deputy's Message</p>
+      <p class="kofc-deputy-role">June 2026 — California State Council</p>
+      <span class="kofc-deputy-quote-mark">&ldquo;</span>
+    </div>
+    <div class="kofc-deputy-content">
+      <span class="kofc-section-label">From Our State Deputy</span>
+      <h2 class="kofc-section-title">We Are Pillars of Hope</h2>
+      <p class="kofc-deputy-text">As we close our Columbian year, California has achieved the Circle of Honor for the <strong>fourth consecutive year</strong> — a testament to the dedication of brothers across our jurisdiction. The Knights of California continue to distinguish themselves through service, prayer, and action in every corner of our state.</p>
+      <p class="kofc-deputy-text">This year, over 2,100 families were touched through Campesino distributions, 240 wheelchairs were donated in Mexico, and 800+ delivered to the Philippines. The LA Archbishop recognized our Pro-Life efforts with a $10,000 grant, shared among 20 Pregnancy Resource Centers. Over 20,000 lbs of food reached local pantries and Catholic Charities statewide.</p>
+      <p class="kofc-deputy-text">Pope Leo XIV reminded us at the Supreme Convention that we are all Pillars of the Church. Supreme Knight Patrick Kelly challenged us to be Pillars of Hope. In all we do — Charity, Community, Faith, Life — you have risen to that calling.</p>
+      <div class="kofc-deputy-pillars">
+        <span class="kofc-pillar-tag">Charity</span>
+        <span class="kofc-pillar-tag">Community</span>
+        <span class="kofc-pillar-tag">Faith</span>
+        <span class="kofc-pillar-tag">Life</span>
+        <span class="kofc-pillar-tag">Unity</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="kofc-programs">
+  <div class="kofc-programs-inner">
+    <div class="kofc-programs-header kofc-fade-in">
+      <div>
+        <span class="kofc-section-label">Our Service</span>
+        <h2 class="kofc-section-title" style="margin-bottom:0">Programs &amp; Initiatives</h2>
+      </div>
+      <a href="https://www.californiaknights.org/program-handbook/" class="kofc-text-link">View 2025–26 Guidebook →</a>
+    </div>
+    <div class="kofc-programs-grid kofc-fade-in">
+      <div class="kofc-program-item">
+        <div class="kofc-program-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <p class="kofc-program-name">Faith Programs</p>
+        <p class="kofc-program-desc">Supporting our parishes through Cor spirituality, Eucharistic devotion, and active parish engagement across California.</p>
+        <a href="https://www.californiaknights.org/faith-programs/" class="kofc-program-link">Explore Faith →</a>
+      </div>
+      <div class="kofc-program-item">
+        <div class="kofc-program-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <p class="kofc-program-name">Family Programs</p>
+        <p class="kofc-program-desc">State scholarships, family enrichment activities, and programs that strengthen the Catholic family unit.</p>
+        <a href="https://www.californiaknights.org/family-programs/" class="kofc-program-link">Explore Family →</a>
+      </div>
+      <div class="kofc-program-item">
+        <div class="kofc-program-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <p class="kofc-program-name">Community Programs</p>
+        <p class="kofc-program-desc">Special Olympics, wheelchair missions, St. Joseph's Table food drives, and disaster response across our communities.</p>
+        <a href="https://www.californiaknights.org/community-programs/" class="kofc-program-link">Explore Community →</a>
+      </div>
+      <div class="kofc-program-item">
+        <div class="kofc-program-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <p class="kofc-program-name">Life Programs</p>
+        <p class="kofc-program-desc">Ultrasound initiatives, ASAP programs, Walks for Life, and advocacy for the dignity of every human life in California.</p>
+        <a href="https://www.californiaknights.org/culture-of-life/" class="kofc-program-link">Explore Life →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARITIES -->
+<section class="kofc-charities">
+  <div class="kofc-charities-inner">
+    <div class="kofc-charities-text kofc-fade-in">
+      <span class="kofc-section-label">Our Charities</span>
+      <h2 class="kofc-section-title">Serving the Most Vulnerable</h2>
+      <p class="kofc-charities-body">The California State Council operates and supports multiple charitable organizations serving seniors, families with intellectual disabilities, and those in need throughout our state and beyond.</p>
+      <div class="kofc-charity-items">
+        <div class="kofc-charity-entry">
+          <div class="kofc-charity-dot"></div>
+          <div>
+            <p class="kofc-charity-entry-name">Columbian Retirement Home</p>
+            <p class="kofc-charity-entry-desc">Providing housing and senior advisory services for Catholic seniors at Columbian Center Residence.</p>
+          </div>
+        </div>
+        <div class="kofc-charity-entry">
+          <div class="kofc-charity-dot"></div>
+          <div>
+            <p class="kofc-charity-entry-name">California Columbian Charities — 365 Club</p>
+            <p class="kofc-charity-entry-desc">Annual giving circle supporting charitable works across the California jurisdiction.</p>
+          </div>
+        </div>
+        <div class="kofc-charity-entry">
+          <div class="kofc-charity-dot"></div>
+          <div>
+            <p class="kofc-charity-entry-name">Frank Nigro Columbian Foundation</p>
+            <p class="kofc-charity-entry-desc">Dedicated to supporting people with intellectual disabilities and their families throughout California.</p>
+          </div>
+        </div>
+        <div class="kofc-charity-entry">
+          <div class="kofc-charity-dot"></div>
+          <div>
+            <p class="kofc-charity-entry-name">American Wheelchair Mission</p>
+            <p class="kofc-charity-entry-desc">Distributing wheelchairs to veterans locally and to underserved populations in Mexico and the Philippines.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kofc-charities-visual">
+      <img
+        src="https://www.californiaknights.org/wp-content/uploads/2020/02/Clean-State-Logo.jpg"
+        alt="Knights of Columbus California"
+        class="kofc-charities-img"
+        style="object-fit: contain; background: rgba(255,255,255,0.04); padding: 40px;"
+      >
+      <div class="kofc-charities-badge">
+        <div class="kofc-charities-badge-num">$350K</div>
+        <div class="kofc-charities-badge-label">Raised for veteran wheelchairs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP CTA -->
+<section class="kofc-membership">
+  <div class="kofc-membership-inner kofc-fade-in">
+    <div>
+      <span class="kofc-section-label">Become a Member</span>
+      <h2 class="kofc-section-title">Answering the Call to Brotherhood</h2>
+      <p style="font-size:0.92rem; color: var(--kofc-text-mid); line-height:1.75; max-width:520px;">The Knights of Columbus unites Catholic men in a fraternity built on four enduring principles — lived out daily through service, sacrament, and sacrifice. Joining a local council connects you to brothers across California and the world.</p>
+      <div class="kofc-membership-values">
+        <div class="kofc-value-entry">
+          <span class="kofc-value-num">I</span>
+          <div>
+            <p class="kofc-value-title">Charity</p>
+            <p class="kofc-value-body">Serving those in need, locally and globally, as an expression of our Catholic faith.</p>
+          </div>
+        </div>
+        <div class="kofc-value-entry">
+          <span class="kofc-value-num">II</span>
+          <div>
+            <p class="kofc-value-title">Unity</p>
+            <p class="kofc-value-body">Building brotherhood among Catholic men to strengthen our families and Church.</p>
+          </div>
+        </div>
+        <div class="kofc-value-entry">
+          <span class="kofc-value-num">III</span>
+          <div>
+            <p class="kofc-value-title">Fraternity</p>
+            <p class="kofc-value-body">Standing together with fellow Knights in mutual support, prayer, and accountability.</p>
+          </div>
+        </div>
+        <div class="kofc-value-entry">
+          <span class="kofc-value-num">IV</span>
+          <div>
+            <p class="kofc-value-title">Patriotism</p>
+            <p class="kofc-value-body">Honoring God and country through civic engagement and public witness of faith.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kofc-membership-aside">
+      <img
+        src="https://www.californiaknights.org/wp-content/uploads/2021/01/cropped-KOCCA-Icon-270x270.png"
+        alt="Knights of Columbus Logo"
+        class="kofc-membership-aside-logo"
+      >
+      <h3 class="kofc-membership-aside-title">Join Us Today</h3>
+      <p class="kofc-membership-aside-text">Become a Knight and join over 2 million Catholic men worldwide committed to faith, family, community, and country.</p>
+      <a href="https://www.californiaknights.org/join-us/" class="kofc-btn-gold">Apply for Membership</a>
+      <a href="https://www.californiaknights.org/find-a-council/" class="kofc-btn-outline-white">Find a Council Near You</a>
+    </div>
+  </div>
+</section>
+
+<!-- EUCHARISTIC PILGRIMAGE HIGHLIGHT -->
+<section class="kofc-pilgrimage">
+  <div class="kofc-pilgrimage-inner kofc-fade-in">
+    <div class="kofc-pilgrimage-img-wrap">
+      <img
+        src="https://www.californiaknights.org/wp-content/uploads/2026/05/Installation-of-State-Officers-Dir.-Flyer-1-791x1024.jpg"
+        alt="Installation of State Officers 2026"
+        class="kofc-pilgrimage-img"
+      >
+    </div>
+    <div class="kofc-pilgrimage-content">
+      <span class="kofc-section-label">Spiritual Renewal</span>
+      <h2 class="kofc-section-title">California Eucharistic Pilgrimage</h2>
+      <blockquote class="kofc-pilgrimage-quote">
+        "I want to let you know about a beautiful opportunity for spiritual renewal and prayer — the Camino de California Eucharistic Pilgrimage, which will visit all 21 historic California missions, beginning in the northern part of the state and traveling south."
+        <p class="kofc-pilgrimage-attribution">— Archbishop Jose H. Gomez</p>
+      </blockquote>
+      <p style="font-size:0.9rem; color: var(--kofc-text-mid); line-height:1.75; margin-bottom:28px;">This unique, holy pilgrimage provides a special moment for all of us to pray for America and the Church's mission in our country. This year also marks the 800th anniversary of the death of Saint Francis, with special programming highlighting his spiritual legacy.</p>
+      <a href="https://www.californiaknights.org/wp-content/uploads/2026/04/California-Eucharistic-Pilgrimage-Press-Release-4-6-2026.pdf" class="kofc-btn-primary" style="display:inline-flex;">
+        Read the Press Release
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS / UPDATES -->
+<section class="kofc-news">
+  <div class="kofc-news-inner">
+    <div class="kofc-news-header kofc-fade-in">
+      <div>
+        <span class="kofc-section-label">Latest Updates</span>
+        <h2 class="kofc-section-title" style="margin-bottom:0">Council News &amp; Announcements</h2>
+      </div>
+      <a href="https://www.californiaknights.org/calendar/" class="kofc-text-link">Full Calendar →</a>
+    </div>
+    <div class="kofc-news-grid kofc-fade-in">
+      <div class="kofc-news-featured">
+        <img
+          src="https://www.californiaknights.org/wp-content/uploads/2026/05/Installation-of-State-Officers-Dir.-Flyer-1-791x1024.jpg"
+          alt="State Officers Installation 2026"
+          class="kofc-news-featured-img"
+          style="object-fit: contain; background: var(--kofc-navy);"
+        >
+        <div class="kofc-news-featured-body">
+          <p class="kofc-news-tag">State Council</p>
+          <h3 class="kofc-news-featured-title">Vladimir Rivera Elected as Next State Deputy at 124th Convention</h3>
+          <p class="kofc-news-featured-excerpt">At the 124th State Convention in Visalia, California Knights celebrated a milestone year — achieving Circle of Honor for the fourth consecutive year and electing new leadership to carry the mission forward.</p>
+          <span class="kofc-news-date">May 14–16, 2026 &nbsp;·&nbsp; Visalia, CA</span>
+        </div>
+      </div>
+      <div class="kofc-news-minor">
+        <div class="kofc-news-item">
+          <p class="kofc-news-tag">Membership</p>
+          <h4 class="kofc-news-item-title">District Deputy Orientation — New Format for July 2026</h4>
+          <p class="kofc-news-item-date">July 10–12, 2026</p>
+        </div>
+        <div class="kofc-news-item">
+          <p class="kofc-news-tag">Resources</p>
+          <h4 class="kofc-news-item-title">Resolutions 2026 — Now Published for Member Review</h4>
+          <p class="kofc-news-item-date">June 2026</p>
+        </div>
+        <div class="kofc-news-item">
+          <p class="kofc-news-tag">In Memoriam</p>
+          <h4 class="kofc-news-item-title">Remembering Brother SK John Shea &amp; Tina Dietz</h4>
+          <p class="kofc-news-item-date">Emilio B. Moure Museum</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="kofc-footer">
+  <div class="kofc-footer-inner">
+    <div class="kofc-footer-brand">
+      <img
+        src="https://www.californiaknights.org/wp-content/uploads/2021/01/cropped-KOCCA-Icon-270x270.png"
+        alt="KofC California"
+        class="kofc-footer-logo"
+      >
+      <p class="kofc-footer-tagline">Knights of Columbus — California State Council. Serving God, Church, and Country since May 12th, 1903. Charity. Unity. Fraternity. Patriotism.</p>
+      <div class="kofc-footer-social">
+        <a href="https://www.facebook.com/kofccalifornia/" target="_blank" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/kofccalifornia/" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://twitter.com/KofcCalifornia" target="_blank" aria-label="Twitter">
+          <svg viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UCfmywCDeaH0KovuyOhSXWPQ" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="kofc-footer-col-title">Leadership</p>
+      <ul class="kofc-footer-col-links">
+        <li><a href="https://www.californiaknights.org/who-we-are/">Who We Are</a></li>
+        <li><a href="https://www.californiaknights.org/state-leadership-team/">State Leadership Team</a></li>
+        <li><a href="https://www.californiaknights.org/chapters-dioceses/">Chapters &amp; Dioceses</a></li>
+        <li><a href="https://www.californiaknights.org/district-deputies-2025-2026">District Deputies</a></li>
+        <li><a href="https://www.californiaknights.org/past-state-deputies/">Past State Deputies</a></li>
+        <li><a href="https://www.californiaknights.org/calendar/">Calendar</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="kofc-footer-col-title">Programs</p>
+      <ul class="kofc-footer-col-links">
+        <li><a href="https://www.californiaknights.org/faith-programs/">Faith Programs</a></li>
+        <li><a href="https://www.californiaknights.org/family-programs/">Family Programs</a></li>
+        <li><a href="https://www.californiaknights.org/community-programs/">Community Programs</a></li>
+        <li><a href="https://www.californiaknights.org/culture-of-life/">Life Programs</a></li>
+        <li><a href="https://www.californiaknights.org/fourth-degree/">4th Degree</a></li>
+        <li><a href="https://www.californiaknights.org/program-handbook/">Service Guidebook</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="kofc-footer-col-title">Resources</p>
+      <ul class="kofc-footer-col-links">
+        <li><a href="https://www.californiaknights.org/join-us/">Join the Knights</a></li>
+        <li><a href="https://www.californiaknights.org/find-a-council/">Find a Council</a></li>
+        <li><a href="https://www.californiaknights.org/state-forms/">Forms &amp; Library</a></li>
+        <li><a href="https://www.californiaknights.org/2025-2026-council-star-awards/">Star Council Awards</a></li>
+        <li><a href="https://www.californiaknights.org/vbn/">Benefit Events</a></li>
+        <li><a href="https://www.californiaknights.org/contact-us/">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="kofc-footer-bottom">
+    <span>© 2026 Knights of Columbus — California State Council. All rights reserved.</span>
+    <span><a href="https://www.californiaknights.org/terms-of-service/" style="color:inherit;">Terms of Service</a> &nbsp;·&nbsp; #kofccalifornia</span>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('kofc-navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('kofc-scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Mobile menu
+  const toggle = document.getElementById('kofc-mobile-toggle');
+  const menu = document.getElementById('kofc-mobile-menu');
+  const overlay = document.getElementById('kofc-overlay');
+
+  function openMenu() {
+    toggle.classList.add('kofc-open');
+    menu.classList.add('kofc-open');
+    overlay.classList.add('kofc-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    toggle.classList.remove('kofc-open');
+    menu.classList.remove('kofc-open');
+    overlay.classList.remove('kofc-open');
+    document.body.style.overflow = '';
+  }
+
+  toggle.addEventListener('click', () => {
+    menu.classList.contains('kofc-open') ? closeMenu() : openMenu();
+  });
+  overlay.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Scroll reveal
+  const fadeEls = document.querySelectorAll('.kofc-fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('kofc-visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+</script>
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+</script>
+</body>
+</html>
