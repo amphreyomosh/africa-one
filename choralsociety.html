@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sacramento Choral Society & Orchestra — Season 30</title>
+<style>
+  :root {
+    --scso-crimson: #B8001F;
+    --scso-crimson-dark: #8B0016;
+    --scso-navy: #003366;
+    --scso-gold: #C8992A;
+    --scso-ink: #111111;
+    --scso-charcoal: #2C2C2C;
+    --scso-stone: #5A5A5A;
+    --scso-mist: #F4F2EF;
+    --scso-white: #FFFFFF;
+    --scso-rule: #E0DDD8;
+    --scso-navy-deep: #001F40;
+    --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+    --space-2xl: 8rem;
+    --radius: 2px;
+    --transition: 0.25s ease;
+
+    --shell-max: 100%;
+    --gutter: 2rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-sans);
+    background: var(--scso-white);
+    color: var(--scso-ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── NAV ─── */
+  .scso-nav {
+    position: fixed;
+    top: auto; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(0, 19, 38, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-md);
+    height: 68px;
+    transition: top 0.3s ease, background var(--transition);
+  }
+
+  .scso-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .scso-nav-logo-mark {
+    width: 38px;
+    height: 38px;
+    background: var(--scso-crimson);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .scso-nav-logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scso-nav-logo-text strong {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--scso-white);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .scso-nav-logo-text span {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .scso-nav-links {
+    display: none;
+    list-style: none;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .scso-nav-links a {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    transition: color var(--transition);
+  }
+
+  .scso-nav-links a:hover { color: var(--scso-white); }
+
+  .scso-nav-cta {
+    display: none;
+    background: var(--scso-crimson);
+    color: var(--scso-white) !important;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.07em !important;
+    transition: background var(--transition) !important;
+  }
+
+  .scso-nav-cta:hover { background: var(--scso-crimson-dark) !important; color: var(--scso-white) !important; }
+
+  .scso-nav-hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .scso-nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: rgba(255,255,255,0.8);
+    transition: var(--transition);
+  }
+
+  /* Mobile drawer */
+  .scso-drawer {
+    position: fixed;
+    top: 0; right: -100%;
+    width: min(320px, 85vw);
+    height: 100vh;
+    background: var(--scso-navy-deep);
+    z-index: 200;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 80px var(--space-md) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    overflow-y: auto;
+  }
+
+  .scso-drawer.open { right: 0; }
+
+  .scso-drawer-close {
+    position: absolute;
+    top: 1.25rem; right: 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .scso-drawer a {
+    display: block;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: color var(--transition);
+  }
+
+  .scso-drawer a:hover { color: var(--scso-white); }
+
+  .scso-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+  }
+
+  .scso-drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* ─── SECTION 1: HERO ─── */
+  .scso-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background: var(--scso-navy-deep);
+  }
+
+  .scso-hero-slides {
+    position: absolute;
+    inset: 0;
+  }
+
+  .scso-hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  .scso-hero-slide.active { opacity: 1; }
+
+  .scso-hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: brightness(0.45);
+  }
+
+  .scso-hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,10,25,0.92) 0%, rgba(0,10,25,0.3) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .scso-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md) var(--space-lg);
+  }
+
+  .scso-hero-season {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--scso-gold);
+    margin-bottom: 1.25rem;
+    border-left: 2px solid var(--scso-crimson);
+    padding-left: 0.75rem;
+  }
+
+  .scso-hero-heading {
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: var(--scso-white);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 720px;
+    margin-bottom: 1.25rem;
+  }
+
+  .scso-hero-heading em {
+    font-style: normal;
+    color: var(--scso-crimson);
+  }
+
+  .scso-hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.72);
+    max-width: 520px;
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
+  }
+
+  .scso-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .scso-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--scso-crimson);
+    color: var(--scso-white);
+    padding: 0.85rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background var(--transition), transform var(--transition);
+    border: none;
+    cursor: pointer;
+  }
+
+  .scso-btn-primary:hover {
+    background: var(--scso-crimson-dark);
+    transform: translateY(-1px);
+  }
+
+  .scso-hero-link {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 1px;
+    transition: color var(--transition), border-color var(--transition);
+  }
+
+  .scso-hero-link:hover { color: var(--scso-white); border-color: rgba(255,255,255,0.6); }
+
+  /* Carousel dots */
+  .scso-hero-dots {
+    position: absolute;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    z-index: 3;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .scso-dot {
+    width: 6px; height: 6px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background var(--transition), width var(--transition);
+    border: none;
+  }
+
+  .scso-dot.active {
+    background: var(--scso-crimson);
+    width: 20px;
+    border-radius: 3px;
+  }
+
+  /* ─── SECTION 2: MISSION SPLIT ─── */
+  .scso-mission {
+    padding: var(--space-xl) var(--space-md);
+    background: var(--scso-mist);
+  }
+
+  .scso-mission-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .scso-mission-text {}
+
+  .scso-section-eyeline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .scso-section-eyeline span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--scso-stone);
+  }
+
+  .scso-section-eyeline::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--scso-crimson);
+  }
+
+  .scso-mission-heading {
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: 800;
+    color: var(--scso-ink);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .scso-mission-body {
+    font-size: 1.05rem;
+    color: var(--scso-charcoal);
+    line-height: 1.75;
+    max-width: 560px;
+    margin-bottom: 1.5rem;
+  }
+
+  .scso-mission-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--scso-rule);
+  }
+
+  .scso-mission-stat {}
+
+  .scso-mission-stat strong {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--scso-crimson);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+
+  .scso-mission-stat span {
+    font-size: 0.72rem;
+    color: var(--scso-stone);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .scso-mission-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .scso-mission-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .scso-mission-image:hover img { transform: scale(1.03); }
+
+  .scso-mission-image-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,10,25,0.75));
+    padding: 1.5rem 1rem 0.75rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── SECTION 3: PROGRAMS ─── */
+  .scso-programs {
+    padding: var(--space-xl) var(--space-md);
+    background: var(--scso-white);
+  }
+
+  .scso-programs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .scso-programs-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .scso-programs-heading {
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    font-weight: 800;
+    color: var(--scso-ink);
+    letter-spacing: -0.02em;
+  }
+
+  .scso-programs-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 2px solid var(--scso-rule);
+    margin-bottom: var(--space-md);
+  }
+
+  .scso-tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    padding: 0.75rem 1.25rem;
+    font-family: var(--ff-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--scso-stone);
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition);
+  }
+
+  .scso-tab-btn:hover { color: var(--scso-ink); }
+
+  .scso-tab-btn.active {
+    color: var(--scso-crimson);
+    border-bottom-color: var(--scso-crimson);
+  }
+
+  .scso-tab-panel {
+    display: none;
+    animation: scso-fadein 0.4s ease;
+  }
+
+  .scso-tab-panel.active { display: grid; }
+
+  @keyframes scso-fadein {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scso-season-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .scso-season-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--scso-rule);
+    overflow: hidden;
+    transition: box-shadow var(--transition);
+  }
+
+  .scso-season-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  .scso-season-card-image {
+    aspect-ratio: 16/7;
+    overflow: hidden;
+    background: var(--scso-navy-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scso-season-card-visual {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-weight: 800;
+    color: rgba(255,255,255,0.12);
+    letter-spacing: -0.02em;
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.2;
+  }
+
+  .scso-season-card-visual.crimson { background: var(--scso-crimson-dark); color: rgba(255,255,255,0.15); }
+  .scso-season-card-visual.navy { background: var(--scso-navy-deep); color: rgba(255,255,255,0.12); }
+  .scso-season-card-visual.gold { background: #3A2800; color: rgba(200,153,42,0.2); }
+  .scso-season-card-visual.dark { background: #1A1A1A; color: rgba(255,255,255,0.1); }
+
+  .scso-season-card-body {
+    padding: 1.5rem var(--space-md);
+    background: var(--scso-white);
+  }
+
+  .scso-season-card-date {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--scso-crimson);
+    margin-bottom: 0.5rem;
+  }
+
+  .scso-season-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--scso-ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .scso-season-card-sub {
+    font-size: 0.8rem;
+    color: var(--scso-stone);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .scso-season-card-link {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--scso-crimson);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap var(--transition);
+  }
+
+  .scso-season-card-link:hover { gap: 0.6rem; }
+
+  /* Outreach tab */
+  .scso-outreach-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .scso-outreach-item {
+    padding: 1.75rem;
+    border-left: 3px solid var(--scso-crimson);
+    background: var(--scso-mist);
+  }
+
+  .scso-outreach-item h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--scso-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .scso-outreach-item p {
+    font-size: 0.88rem;
+    color: var(--scso-stone);
+    line-height: 1.6;
+  }
+
+  /* ─── SECTION 4: EDITORIAL FEATURE ─── */
+  .scso-feature {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--scso-navy-deep);
+  }
+
+  .scso-feature-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .scso-feature-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: brightness(0.28);
+  }
+
+  .scso-feature-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .scso-feature-box {
+    max-width: 520px;
+    width: 100%;
+  }
+
+  .scso-feature-label {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--scso-gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .scso-feature-heading {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--scso-white);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .scso-feature-body {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .scso-feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--scso-white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 0.75rem 1.5rem;
+    transition: background var(--transition), border-color var(--transition);
+  }
+
+  .scso-feature-link:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  /* ─── SECTION 5: TESTIMONIAL ─── */
+  .scso-voice {
+    padding: var(--space-xl) var(--space-md);
+    background: var(--scso-ink);
+    overflow: hidden;
+  }
+
+  .scso-voice-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .scso-voice-mark {
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-weight: 900;
+    color: var(--scso-crimson);
+    line-height: 0.7;
+    opacity: 0.2;
+    display: block;
+    margin-bottom: -1rem;
+    font-family: Georgia, serif;
+  }
+
+  .scso-voice-quote {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 300;
+    color: var(--scso-white);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .scso-voice-credit {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .scso-voice-credit-line {
+    width: 32px;
+    height: 2px;
+    background: var(--scso-crimson);
+    flex-shrink: 0;
+  }
+
+  .scso-voice-credit-text {}
+
+  .scso-voice-credit-text strong {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--scso-white);
+    letter-spacing: 0.04em;
+  }
+
+  .scso-voice-credit-text span {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── SECTION 6: NEWSROOM ─── */
+  .scso-newsroom {
+    padding: var(--space-xl) var(--space-md);
+    background: var(--scso-mist);
+  }
+
+  .scso-newsroom-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .scso-newsroom-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .scso-newsroom-heading {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 800;
+    color: var(--scso-ink);
+    letter-spacing: -0.02em;
+  }
+
+  .scso-newsroom-all {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--scso-crimson);
+    border-bottom: 1px solid var(--scso-crimson);
+    padding-bottom: 1px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .scso-news-list {
+    list-style: none;
+  }
+
+  .scso-news-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--scso-rule);
+    transition: background var(--transition);
+    cursor: pointer;
+  }
+
+  .scso-news-item:first-child { border-top: 1px solid var(--scso-rule); }
+
+  .scso-news-item:hover .scso-news-title { color: var(--scso-crimson); }
+
+  .scso-news-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .scso-news-date {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--scso-stone);
+  }
+
+  .scso-news-type {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--scso-crimson);
+    border: 1px solid rgba(184,0,31,0.25);
+    padding: 0.15rem 0.5rem;
+  }
+
+  .scso-news-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--scso-ink);
+    line-height: 1.35;
+    transition: color var(--transition);
+  }
+
+  .scso-news-excerpt {
+    font-size: 0.82rem;
+    color: var(--scso-stone);
+    line-height: 1.55;
+    display: none;
+  }
+
+  /* ─── SECTION 7: CONVERSION ─── */
+  .scso-conversion {
+    padding: var(--space-xl) var(--space-md);
+    background: var(--scso-crimson);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scso-conversion::before {
+    content: 'SCSO';
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(8rem, 18vw, 16rem);
+    font-weight: 900;
+    color: rgba(255,255,255,0.05);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .scso-conversion-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .scso-conversion-text {}
+
+  .scso-conversion-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .scso-conversion-heading {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--scso-white);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .scso-conversion-body {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.65;
+  }
+
+  .scso-conversion-form {}
+
+  .scso-conversion-form-heading {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1rem;
+  }
+
+  .scso-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .scso-form-input {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 0.85rem 1rem;
+    font-family: var(--ff-sans);
+    font-size: 0.88rem;
+    color: var(--scso-white);
+    width: 100%;
+    transition: border-color var(--transition), background var(--transition);
+    outline: none;
+  }
+
+  .scso-form-input::placeholder { color: rgba(255,255,255,0.45); }
+
+  .scso-form-input:focus {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.18);
+  }
+
+  .scso-btn-white {
+    width: 100%;
+    background: var(--scso-white);
+    color: var(--scso-crimson);
+    border: none;
+    padding: 0.85rem;
+    font-family: var(--ff-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+  }
+
+  .scso-btn-white:hover {
+    background: var(--scso-ink);
+    color: var(--scso-white);
+  }
+
+  .scso-conversion-disclaimer {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+
+  /* ─── SECTION 8: FOOTER ─── */
+  .scso-footer {
+    background: var(--scso-navy-deep);
+    padding: var(--space-xl) var(--space-md) var(--space-md);
+  }
+
+  .scso-footer-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: var(--space-md);
+  }
+
+  .scso-footer-brand {}
+
+  .scso-footer-brand-name {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--scso-white);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+  }
+
+  .scso-footer-brand-sub {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .scso-footer-brand-mission {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+    max-width: 300px;
+    margin-bottom: 1.5rem;
+  }
+
+  .scso-footer-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .scso-footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.55);
+    transition: background var(--transition), color var(--transition);
+  }
+
+  .scso-footer-social a:hover {
+    background: var(--scso-crimson);
+    color: var(--scso-white);
+  }
+
+  .scso-footer-col-heading {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1rem;
+  }
+
+  .scso-footer-col-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .scso-footer-col-links a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    transition: color var(--transition);
+  }
+
+  .scso-footer-col-links a:hover { color: var(--scso-white); }
+
+  .scso-footer-contact p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+  }
+
+  .scso-footer-contact a {
+    color: var(--scso-gold);
+    transition: color var(--transition);
+  }
+
+  .scso-footer-contact a:hover { color: var(--scso-white); }
+
+  .scso-footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .scso-footer-copyright {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.03em;
+  }
+
+  .scso-footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .scso-footer-legal a {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    transition: color var(--transition);
+  }
+
+  .scso-footer-legal a:hover { color: rgba(255,255,255,0.55); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .scso-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .scso-reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (min-width: 640px) {
+    .scso-season-grid { grid-template-columns: repeat(2, 1fr); }
+    .scso-outreach-grid { grid-template-columns: repeat(2, 1fr); }
+    .scso-form-row { flex-direction: row; }
+    .scso-news-excerpt { display: block; }
+    .scso-news-item { grid-template-columns: 1fr 2fr; gap: 1.5rem; align-items: start; }
+    .scso-news-meta { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+    .scso-news-right {}
+  }
+
+  @media (min-width: 900px) {
+    .scso-nav-links { display: flex; }
+    .scso-nav-cta { display: inline-block; }
+    .scso-nav-hamburger { display: none; }
+
+    .scso-mission-inner { grid-template-columns: 55fr 45fr; }
+    .scso-season-grid { grid-template-columns: repeat(2, 1fr); }
+    .scso-conversion-inner { grid-template-columns: 1fr 1fr; }
+    .scso-footer-main { grid-template-columns: 2fr 1fr 1fr 1.5fr; }
+    .scso-footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+  }
+
+  @media (min-width: 1100px) {
+    .scso-season-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scso-reveal { opacity: 1; transform: none; }
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="scso-nav" id="scso-nav">
+  <a href="#" class="scso-nav-logo" aria-label="Sacramento Choral Society & Orchestra">
+    <div class="scso-nav-logo-mark">
+      <svg width="20" height="22" viewBox="0 0 20 22" fill="none" aria-hidden="true">
+        <path d="M10 2C10 2 4 5.5 4 11C4 14.5 6.5 17.5 10 18.5C13.5 17.5 16 14.5 16 11C16 5.5 10 2 10 2Z" fill="white" fill-opacity="0.9"/>
+        <path d="M10 8V14M7 11H13" stroke="#B8001F" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="scso-nav-logo-text">
+      <strong>Sacramento Choral Society</strong>
+      <span>& Orchestra · Est. 1996</span>
+    </div>
+  </a>
+
+  <ul class="scso-nav-links">
+    <li><a href="#">Season 30</a></li>
+    <li><a href="#">Concerts & Tickets</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Auditions</a></li>
+    <li><a href="#">Media</a></li>
+    <li><a href="#">E-News</a></li>
+    <li><a href="#" class="scso-nav-cta">Annual Fund</a></li>
+  </ul>
+
+  <button class="scso-nav-hamburger" id="scso-hamburger" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="scso-drawer-overlay" id="scso-overlay"></div>
+<div class="scso-drawer" id="scso-drawer">
+  <button class="scso-drawer-close" id="scso-drawer-close" aria-label="Close menu">✕</button>
+  <a href="#">Home</a>
+  <a href="#">Season 30 — 2025–26</a>
+  <a href="#">Concerts & Tickets</a>
+  <a href="#">Annual Fund</a>
+  <a href="#">About Us</a>
+  <a href="#">Auditions</a>
+  <a href="#">Tours</a>
+  <a href="#">Members</a>
+  <a href="#">Media</a>
+  <a href="#">E-News</a>
+  <a href="#">E-Store</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- ─── SECTION 1: HERO ─── -->
+<section class="scso-hero" aria-label="Welcome">
+  <div class="scso-hero-slides" id="scso-slides">
+    <div class="scso-hero-slide active">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Gotham.jpg/1280px-Above_Gotham.jpg"
+        alt="Sacramento Choral Society & Orchestra performing at Sacramento Community Center Theater"
+        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #001F40 0%, #0a0a1a 100%)';"
+      />
+    </div>
+    <div class="scso-hero-slide">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Palais_Garnier_Interieur.jpg/1280px-Palais_Garnier_Interieur.jpg"
+        alt="SCSO Season 30 — Beethoven's 9th Symphony"
+        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1a0010 0%, #0a0020 100%)';"
+      />
+    </div>
+    <div class="scso-hero-slide">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Orchestra_Pit.jpg/1280px-Orchestra_Pit.jpg"
+        alt="SCSO ensemble rehearsal"
+        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #001030 0%, #0a0a10 100%)';"
+      />
+    </div>
+  </div>
+  <div class="scso-hero-gradient"></div>
+
+  <div class="scso-hero-inner">
+    <span class="scso-hero-season">Season 30 · 2025–2026</span>
+    <h1 class="scso-hero-heading">
+      Thirty Years of<br>Music That <em>Moves</em><br>Sacramento
+    </h1>
+    <p class="scso-hero-sub">
+      The Sacramento Choral Society & Orchestra brings world-class choral-orchestral performance to the Greater Sacramento region — accessible, powerful, and built for the community.
+    </p>
+    <div class="scso-hero-actions">
+      <a href="#" class="scso-btn-primary">
+        Get Tickets
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7H11M8 4L11 7L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#" class="scso-hero-link">View Season 30 lineup →</a>
+    </div>
+  </div>
+
+  <div class="scso-hero-dots" id="scso-dots">
+    <button class="scso-dot active" data-index="0" aria-label="Slide 1"></button>
+    <button class="scso-dot" data-index="1" aria-label="Slide 2"></button>
+    <button class="scso-dot" data-index="2" aria-label="Slide 3"></button>
+  </div>
+</section>
+
+<!-- ─── SECTION 2: MISSION SPLIT ─── -->
+<section class="scso-mission">
+  <div class="scso-mission-inner">
+    <div class="scso-mission-text scso-reveal">
+      <div class="scso-section-eyeline">
+        <span>Our Mission</span>
+      </div>
+      <h2 class="scso-mission-heading">
+        Classical music<br>belongs to everyone
+      </h2>
+      <p class="scso-mission-body">
+        Founded in 1996 by Conductor Donald Kendrick, the SCSO has spent three decades making large-scale choral-orchestral performance financially accessible to Sacramento-area families. We believe great music doesn't require an exclusive ticket price — it requires community, dedication, and the 180 voices and 55 professional musicians who show up every season.
+      </p>
+      <p class="scso-mission-body" style="margin-top: -0.5rem;">
+        As the only chorus in the United States with a collective bargaining agreement with a professional orchestra, we keep our players working, our union strong, and our stage open to audiences who might never otherwise experience a live Beethoven symphony.
+      </p>
+      <div class="scso-mission-meta">
+        <div class="scso-mission-stat">
+          <strong>180+</strong>
+          <span>Chorus voices</span>
+        </div>
+        <div class="scso-mission-stat">
+          <strong>55</strong>
+          <span>Professional musicians</span>
+        </div>
+        <div class="scso-mission-stat">
+          <strong>180+</strong>
+          <span>Concerts presented</span>
+        </div>
+        <div class="scso-mission-stat">
+          <strong>10</strong>
+          <span>Mastered CDs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scso-mission-image scso-reveal">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Choir_Hamburg.jpg/800px-Choir_Hamburg.jpg"
+        alt="Sacramento Choral Society & Orchestra in performance at the Community Center Theater"
+        onerror="this.style.background='#1a1a2e'; this.style.minHeight='320px';"
+      />
+      <p class="scso-mission-image-caption">Sacramento Community Center Theater · Home stage of the SCSO</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 3: PROGRAMS ─── -->
+<section class="scso-programs" id="scso-season">
+  <div class="scso-programs-inner">
+    <div class="scso-programs-header scso-reveal">
+      <div class="scso-section-eyeline"><span>What We Offer</span></div>
+      <h2 class="scso-programs-heading">Concert Season & Outreach</h2>
+    </div>
+
+    <div class="scso-programs-tabs scso-reveal">
+      <button class="scso-tab-btn active" data-tab="concerts">2025–26 Concerts</button>
+      <button class="scso-tab-btn" data-tab="outreach">Community Outreach</button>
+      <button class="scso-tab-btn" data-tab="auditions">Auditions</button>
+    </div>
+
+    <!-- Concerts tab -->
+    <div class="scso-tab-panel scso-season-grid active" id="tab-concerts">
+      <article class="scso-season-card">
+        <div class="scso-season-card-image">
+          <div class="scso-season-card-visual crimson">Stained Glass:<br>Music of the Spheres</div>
+        </div>
+        <div class="scso-season-card-body">
+          <p class="scso-season-card-date">Oct 25, 2025 · 7:30 PM</p>
+          <h3 class="scso-season-card-title">Stained Glass: Music of the Spheres</h3>
+          <p class="scso-season-card-sub">Vivaldi · Mozart · Whitbourn — featuring guest organist Dr. Ryan Enright and concert saxophonist Russell Veirs. Sacramento Community Center Theater.</p>
+          <a href="#" class="scso-season-card-link">
+            Get Tickets
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 6H9.5M7 3.5L9.5 6L7 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="scso-season-card">
+        <div class="scso-season-card-image">
+          <div class="scso-season-card-visual navy">Home for<br>the Holidays</div>
+        </div>
+        <div class="scso-season-card-body">
+          <p class="scso-season-card-date">Dec 13, 2025 · 3:00 PM</p>
+          <h3 class="scso-season-card-title">Home for the Holidays</h3>
+          <p class="scso-season-card-sub">The beloved annual holiday concert draws over 2,300 elementary school children and families for a full orchestral holiday experience.</p>
+          <a href="#" class="scso-season-card-link">
+            Get Tickets
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 6H9.5M7 3.5L9.5 6L7 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="scso-season-card">
+        <div class="scso-season-card-image">
+          <div class="scso-season-card-visual gold">Dvořák's<br>Requiem</div>
+        </div>
+        <div class="scso-season-card-body">
+          <p class="scso-season-card-date">Mar 7, 2026 · 3:00 PM</p>
+          <h3 class="scso-season-card-title">Dvořák's Requiem</h3>
+          <p class="scso-season-card-sub">Antonín Dvořák's monumental requiem — one of the great choral-orchestral works of the Romantic era, performed in full with the SCSO ensemble.</p>
+          <a href="#" class="scso-season-card-link">
+            Get Tickets
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 6H9.5M7 3.5L9.5 6L7 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="scso-season-card">
+        <div class="scso-season-card-image">
+          <div class="scso-season-card-visual dark">Beethoven's 9th<br>Symphony</div>
+        </div>
+        <div class="scso-season-card-body">
+          <p class="scso-season-card-date">May 30–31, 2026</p>
+          <h3 class="scso-season-card-title">Beethoven's 9th Symphony</h3>
+          <p class="scso-season-card-sub">A landmark collaboration with the Sacramento Philharmonic & Opera at SAFE Credit Union Performing Arts Center. Tickets via sacphilopera.org.</p>
+          <a href="#" class="scso-season-card-link">
+            Tickets at Sac Phil
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 6H9.5M7 3.5L9.5 6L7 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Outreach tab -->
+    <div class="scso-tab-panel scso-outreach-grid" id="tab-outreach">
+      <div class="scso-outreach-item">
+        <h3>Veterans Outreach</h3>
+        <p>Since 2012, the SCSO has donated complimentary concert tickets to Veterans and their families as a thank-you for their service to our country and our community.</p>
+      </div>
+      <div class="scso-outreach-item">
+        <h3>Children's Music Education</h3>
+        <p>The annual Home for the Holidays concert hosts over 2,300 elementary school children — many experiencing their first live orchestral performance — at no cost to schools.</p>
+      </div>
+      <div class="scso-outreach-item">
+        <h3>Accessible Ticket Pricing</h3>
+        <p>The SCSO is committed to keeping tickets affordable for Sacramento families. World-class classical music should not be a luxury available only to the few.</p>
+      </div>
+      <div class="scso-outreach-item">
+        <h3>National & International Representation</h3>
+        <p>The SCSO has served as a cultural ambassador for the Sacramento region both nationally and internationally — bringing the community's voice to global stages.</p>
+      </div>
+    </div>
+
+    <!-- Auditions tab -->
+    <div class="scso-tab-panel" id="tab-auditions" style="grid-template-columns: 1fr;">
+      <div style="max-width: 680px;">
+        <div class="scso-section-eyeline" style="margin-bottom: 1rem;"><span>Join the Ensemble</span></div>
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--scso-ink); margin-bottom: 1rem; letter-spacing: -0.01em;">We're always looking for exceptional choral voices</h3>
+        <p style="font-size: 0.95rem; color: var(--scso-charcoal); line-height: 1.75; margin-bottom: 1.5rem;">
+          The Sacramento Choral Society welcomes singers of all backgrounds to audition for the 180-voice chorus. Auditions are held seasonally under the direction of Donald Kendrick, Music Director and Conductor.
+        </p>
+        <p style="font-size: 0.88rem; color: var(--scso-stone); line-height: 1.65; margin-bottom: 2rem;">
+          To inquire about auditioning, contact our office or email us with your voice part and experience. We'll be in touch with audition dates and requirements for the current season.
+        </p>
+        <a href="#" class="scso-btn-primary" style="display: inline-flex;">
+          Audition Inquiry
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7H11M8 4L11 7L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 4: EDITORIAL FEATURE ─── -->
+<section class="scso-feature">
+  <div class="scso-feature-bg">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Beethoven_Bonn_mu.jpg/1280px-Beethoven_Bonn_mu.jpg"
+      alt="The SCSO's 30th season milestone — Donald Kendrick conducting"
+      onerror="this.style.display='none';"
+    />
+  </div>
+
+  <div class="scso-feature-inner">
+    <div class="scso-feature-box scso-reveal">
+      <span class="scso-feature-label">Season 30 · The Legacy</span>
+      <h2 class="scso-feature-heading">
+        Three decades.<br>One conductor.<br>One community.
+      </h2>
+      <p class="scso-feature-body">
+        When Donald Kendrick founded the Sacramento Choral Society & Orchestra in 1996, he built something Sacramento didn't know it needed: a professional-grade choral organization with a union orchestra, accessible pricing, and an uncompromising commitment to the music. Thirty seasons later, the ensemble has performed over 180 concerts, produced 10 mastered recordings, and raised nearly three million dollars to keep professional musicians working in this region.
+      </p>
+      <a href="#" class="scso-feature-link">
+        Explore the SCSO Legacy
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7H11M8 4L11 7L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 5: COMMUNITY VOICE ─── -->
+<section class="scso-voice">
+  <div class="scso-voice-inner scso-reveal">
+    <span class="scso-voice-mark" aria-hidden="true">"</span>
+    <blockquote class="scso-voice-quote">
+      The Sacramento Choral Society & Orchestra provides a variety of large choral-orchestral classical music concerts in the Sacramento region for families at reasonable prices — pursuing outreach to educate and inspire people from all walks of life.
+    </blockquote>
+    <div class="scso-voice-credit">
+      <div class="scso-voice-credit-line" aria-hidden="true"></div>
+      <div class="scso-voice-credit-text">
+        <strong>San Francisco Classical Voice</strong>
+        <span>Published review · sfcv.org</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 6: NEWSROOM ─── -->
+<section class="scso-newsroom">
+  <div class="scso-newsroom-inner">
+    <div class="scso-newsroom-header scso-reveal">
+      <h2 class="scso-newsroom-heading">Latest from the SCSO</h2>
+      <a href="#" class="scso-newsroom-all">All news →</a>
+    </div>
+
+    <ul class="scso-news-list scso-reveal">
+      <li class="scso-news-item">
+        <div class="scso-news-meta">
+          <span class="scso-news-date">Oct 1, 2025</span>
+          <span class="scso-news-type">Press</span>
+        </div>
+        <div class="scso-news-right">
+          <h3 class="scso-news-title">SCSO Announces Milestone 30th Anniversary Season — Four Major Performances Including Beethoven's 9th</h3>
+          <p class="scso-news-excerpt">The Sacramento Choral Society & Orchestra marks three decades with an ambitious season featuring world-class soloists, a landmark collaboration with the Sacramento Philharmonic & Opera, and a journey through powerful choral-orchestral repertoire.</p>
+        </div>
+      </li>
+      <li class="scso-news-item">
+        <div class="scso-news-meta">
+          <span class="scso-news-date">Sep 2025</span>
+          <span class="scso-news-type">Media</span>
+        </div>
+        <div class="scso-news-right">
+          <h3 class="scso-news-title">Behind the Scenes with Kitty O'Neal: KFBK News Radio Previews Season 30</h3>
+          <p class="scso-news-excerpt">Conductor Donald Kendrick joined KFBK's Kitty O'Neal for a behind-the-scenes preview of the upcoming season — discussing what makes Beethoven's 9th a once-in-a-generation performance.</p>
+        </div>
+      </li>
+      <li class="scso-news-item">
+        <div class="scso-news-meta">
+          <span class="scso-news-date">Oct 2025</span>
+          <span class="scso-news-type">Concert</span>
+        </div>
+        <div class="scso-news-right">
+          <h3 class="scso-news-title">Stained Glass: Honoring Dr. Ryan Enright After 14 Years as SCSO Accompanist</h3>
+          <p class="scso-news-excerpt">The October 25th concert will include a special reception following the performance to honor Dr. Ryan Enright, whose 14-year tenure as SCSO accompanist closes with this season's opener.</p>
+        </div>
+      </li>
+      <li class="scso-news-item">
+        <div class="scso-news-meta">
+          <span class="scso-news-date">2025</span>
+          <span class="scso-news-type">Outreach</span>
+        </div>
+        <div class="scso-news-right">
+          <h3 class="scso-news-title">Veterans Ticket Program Continues for Season 30 — Complimentary Seats for Service Members and Families</h3>
+          <p class="scso-news-excerpt">Now in its thirteenth year, the SCSO's Veterans Outreach program provides complimentary concert tickets to military families across the Greater Sacramento region.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── SECTION 7: CONVERSION ─── -->
+<section class="scso-conversion">
+  <div class="scso-conversion-inner">
+    <div class="scso-conversion-text scso-reveal">
+      <span class="scso-conversion-label">Annual Fund 2025–26</span>
+      <h2 class="scso-conversion-heading">
+        Keep the music<br>in Sacramento
+      </h2>
+      <p class="scso-conversion-body">
+        The SCSO is a 501(c)(3) nonprofit. Your gift to the Annual Fund directly supports affordable ticket pricing, our veterans outreach program, children's education concerts, and the salaries of 55 professional union musicians who call Sacramento home.
+      </p>
+    </div>
+
+    <div class="scso-conversion-form scso-reveal">
+      <p class="scso-conversion-form-heading">Stay connected — join our E-News</p>
+      <div class="scso-form-row">
+        <input type="text" class="scso-form-input" placeholder="Your name" aria-label="Your name" />
+        <input type="email" class="scso-form-input" placeholder="Email address" aria-label="Email address" />
+      </div>
+      <button class="scso-btn-white" type="button">Subscribe to E-News</button>
+      <p class="scso-conversion-disclaimer">We respect your privacy. No spam — just concert announcements, SCSO news, and season updates. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 8: FOOTER ─── -->
+<footer class="scso-footer">
+  <div class="scso-footer-main">
+    <div class="scso-footer-brand">
+      <p class="scso-footer-brand-name">Sacramento Choral<br>Society & Orchestra</p>
+      <p class="scso-footer-brand-sub">Est. 1996 · Nonprofit ID: 94-3259903</p>
+      <p class="scso-footer-brand-mission">
+        To provide world-class choral orchestral music for the people of the Greater Sacramento Region and beyond.
+      </p>
+      <div class="scso-footer-social">
+        <a href="#" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="scso-footer-col-heading">Attend</p>
+      <ul class="scso-footer-col-links">
+        <li><a href="#">Concerts & Tickets</a></li>
+        <li><a href="#">Season 30 Schedule</a></li>
+        <li><a href="#">Annual Fund</a></li>
+        <li><a href="#">E-Store</a></li>
+        <li><a href="#">Tours</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="scso-footer-col-heading">Participate</p>
+      <ul class="scso-footer-col-links">
+        <li><a href="#">Auditions</a></li>
+        <li><a href="#">Members Area</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Media & Press</a></li>
+        <li><a href="#">E-News</a></li>
+      </ul>
+    </div>
+
+    <div class="scso-footer-contact">
+      <p class="scso-footer-col-heading">Contact</p>
+      <p>
+        Sacramento Choral Society & Orchestra<br>
+        Greater Sacramento Region, CA<br><br>
+        <a href="tel:9165369065">(916) 536-9065</a><br>
+        <a href="mailto:info@sacramentochoral.org">info@sacramentochoral.org</a><br><br>
+        Concerts held at<br>Sacramento Community Center Theater<br>
+        & SAFE Credit Union Performing Arts Center
+      </p>
+    </div>
+  </div>
+
+  <div class="scso-footer-bottom">
+    <p class="scso-footer-copyright">© 2026 Sacramento Choral Society & Orchestra. All rights reserved. A California 501(c)(3) nonprofit arts organization.</p>
+    <div class="scso-footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ─── NAV: Mobile drawer ───
+  const hamburger = document.getElementById('scso-hamburger');
+  const drawer = document.getElementById('scso-drawer');
+  const overlay = document.getElementById('scso-overlay');
+  const drawerClose = document.getElementById('scso-drawer-close');
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) hamburger.addEventListener('click', openDrawer);
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+
+  // ─── HERO CAROUSEL ───
+  const slides = document.querySelectorAll('.scso-hero-slide');
+  const dots = document.querySelectorAll('.scso-dot');
+  let currentSlide = 0;
+  let autoplay;
+
+  function goToSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  function startAutoplay() {
+    autoplay = setInterval(() => goToSlide(currentSlide + 1), 5000);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(autoplay);
+      goToSlide(parseInt(dot.dataset.index, 10));
+      startAutoplay();
+    });
+  });
+
+  if (slides.length > 1) startAutoplay();
+
+  // ─── PROGRAM TABS ───
+  const tabBtns = document.querySelectorAll('.scso-tab-btn');
+  const tabPanels = {
+    concerts: document.getElementById('tab-concerts'),
+    outreach: document.getElementById('tab-outreach'),
+    auditions: document.getElementById('tab-auditions'),
+  };
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      Object.values(tabPanels).forEach(p => p && p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = tabPanels[btn.dataset.tab];
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // ─── SCROLL REVEAL ───
+  const revealEls = document.querySelectorAll('.scso-reveal');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
+  // ─── NEWS ITEM LINK BEHAVIOR ───
+  document.querySelectorAll('.scso-news-item').forEach(item => {
+    item.addEventListener('click', () => { /* navigate to article */ });
+    item.setAttribute('role', 'link');
+    item.setAttribute('tabindex', '0');
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') item.click();
+    });
+  });
+
+})();
+
+  // ─── NAV SCROLL ───
+  const scsoNav = document.querySelector('.scso-nav');
+  window.addEventListener('scroll', () => {
+    scsoNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+</body>
+</html>

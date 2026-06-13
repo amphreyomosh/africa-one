@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sacramento Youth Symphony — A Tradition of Excellence</title>
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --sys-navy:       #1a2e4a;
+  --sys-navy-deep:  #0f1c2e;
+  --sys-gold:       #b8963e;
+  --sys-gold-light: #d4af5a;
+  --sys-cream:      #f8f6f1;
+  --sys-offwhite:   #f2f0eb;
+  --sys-warm-gray:  #e8e5de;
+  --sys-mid-gray:   #9a9690;
+  --sys-text:       #1a1816;
+  --sys-text-muted: #5c5850;
+
+  --sys-font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+
+  --sys-space-xs:   0.5rem;
+  --sys-space-sm:   1rem;
+  --sys-space-md:   2rem;
+  --sys-space-lg:   4rem;
+  --sys-space-xl:   6rem;
+  --sys-space-2xl:  8rem;
+
+  --sys-radius:     2px;
+  --sys-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --sys-max-w:      1280px;
+
+  --shell-max: 1280px;
+  --gutter: 2rem;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--sys-font-sans);
+  color: var(--sys-text);
+  background: var(--sys-cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ============================================
+   1. NAVIGATION
+   ============================================ */
+.sys-topbar {
+  background: var(--sys-navy-deep);
+  color: rgba(255,255,255,0.6);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  padding: 0.45rem var(--sys-space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sys-space-md);
+  flex-wrap: wrap;
+  text-align: center;
+}
+.sys-topbar a { color: var(--sys-gold-light); transition: color var(--sys-transition); }
+.sys-topbar a:hover { color: #fff; }
+@media (max-width: 1024px) { .sys-topbar { display: none; } }
+
+.sys-main-nav {
+  position: sticky;
+  top: auto;
+  z-index: 100;
+  background: rgba(248,246,241,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sys-warm-gray);
+  transition: top 0.3s ease, background var(--transition);
+}
+.sys-nav-inner {
+  max-width: var(--sys-max-w);
+  margin: 0 auto;
+  padding: 0 var(--sys-space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.sys-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sys-space-sm);
+  flex-shrink: 0;
+}
+.sys-nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.sys-nav-brand-top {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--sys-text-muted);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.sys-nav-brand-main {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--sys-navy);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.sys-nav-brand-sub {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--sys-gold);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 1px;
+}
+.sys-nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0;
+}
+.sys-nav-links > li > a {
+  display: block;
+  padding: 0 1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sys-text-muted);
+  line-height: 72px;
+  transition: color var(--sys-transition);
+  white-space: nowrap;
+}
+.sys-nav-links > li > a:hover { color: var(--sys-navy); }
+.sys-nav-links > li > a.sys-nav-active { color: var(--sys-navy); }
+.sys-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sys-space-sm);
+  flex-shrink: 0;
+}
+.sys-nav-btn-ghost {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sys-navy);
+  border: 1px solid var(--sys-navy);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--sys-radius);
+  transition: background var(--sys-transition), color var(--sys-transition);
+}
+.sys-nav-btn-ghost:hover { background: var(--sys-navy); color: #fff; }
+.sys-nav-btn-primary {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--sys-gold);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--sys-radius);
+  transition: background var(--sys-transition);
+}
+.sys-nav-btn-primary:hover { background: var(--sys-gold-light); }
+.sys-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sys-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--sys-navy);
+  transition: transform var(--sys-transition), opacity var(--sys-transition);
+}
+.sys-mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--sys-navy-deep);
+  flex-direction: column;
+  padding: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sys-mobile-menu.sys-open { transform: translateX(0); }
+.sys-mobile-menu-close {
+  align-self: flex-end;
+  color: #fff;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+.sys-mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.sys-mobile-nav-links li a {
+  display: block;
+  padding: 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  letter-spacing: 0.04em;
+  transition: color var(--sys-transition);
+}
+.sys-mobile-nav-links li a:hover { color: var(--sys-gold-light); }
+.sys-mobile-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.sys-mobile-actions a {
+  display: block;
+  text-align: center;
+  padding: 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--sys-radius);
+}
+.sys-mobile-actions a:first-child { background: var(--sys-gold); color: #fff; }
+.sys-mobile-actions a:last-child { border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+.sys-mobile-topbar-links {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.sys-mobile-topbar-links a {
+  font-size: 0.78rem;
+  color: var(--sys-gold-light);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.sys-mobile-topbar-links span {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 1024px) {
+  .sys-nav-links { display: none; }
+  .sys-nav-actions { display: none; }
+  .sys-hamburger { display: flex; }
+  .sys-mobile-menu { display: flex; }
+}
+
+/* ============================================
+   2. HERO SECTION
+   ============================================ */
+.sys-hero {
+  position: relative;
+  height: 92vh;
+  min-height: 580px;
+  max-height: 860px;
+  overflow: hidden;
+  background: var(--sys-navy-deep);
+}
+.sys-hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.sys-hero-slide.sys-active { opacity: 1; }
+.sys-hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.sys-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(10, 18, 32, 0.82) 0%,
+    rgba(10, 18, 32, 0.5) 55%,
+    rgba(10, 18, 32, 0.15) 100%
+  );
+}
+.sys-hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--sys-space-md) var(--sys-space-xl);
+  max-width: var(--sys-max-w);
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+.sys-hero-text-block {
+  max-width: 640px;
+}
+.sys-hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.sys-hero-kicker-line {
+  width: 32px;
+  height: 1px;
+  background: var(--sys-gold);
+}
+.sys-hero-kicker-text {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sys-gold-light);
+  font-weight: 600;
+}
+.sys-hero-title {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+.sys-hero-title em {
+  font-style: normal;
+  color: var(--sys-gold-light);
+}
+.sys-hero-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.sys-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.sys-hero-cta-primary {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  background: var(--sys-gold);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--sys-radius);
+  transition: background var(--sys-transition), transform var(--sys-transition);
+}
+.sys-hero-cta-primary:hover { background: var(--sys-gold-light); transform: translateY(-1px); }
+.sys-hero-cta-ghost {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 1px;
+  transition: color var(--sys-transition), border-color var(--sys-transition);
+}
+.sys-hero-cta-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.7); }
+.sys-hero-dots {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.sys-hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: background var(--sys-transition), transform var(--sys-transition);
+  border: none;
+}
+.sys-hero-dot.sys-active { background: var(--sys-gold); transform: scale(1.3); }
+.sys-hero-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--sys-gold);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+.sys-hero-year-badge {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 88px;
+  height: 88px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  background: rgba(10, 18, 32, 0.4);
+}
+.sys-hero-year-badge-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--sys-gold-light);
+}
+.sys-hero-year-badge-text {
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-top: 3px;
+}
+
+@media (max-width: 768px) {
+  .sys-hero-content { padding: 0 1.25rem 3.5rem; }
+  .sys-hero-year-badge { width: 68px; height: 68px; top: 1rem; right: 1rem; }
+  .sys-hero-year-badge-num { font-size: 1.4rem; }
+}
+
+/* ============================================
+   3. MISSION SPLIT
+   ============================================ */
+.sys-mission {
+  background: var(--sys-cream);
+  padding: var(--sys-space-xl) 0;
+}
+.sys-mission-inner {
+  max-width: var(--sys-max-w);
+  margin: 0 auto;
+  padding: 0 var(--sys-space-md);
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 5rem;
+  align-items: center;
+}
+.sys-mission-text-col {}
+.sys-mission-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.sys-mission-label-line {
+  width: 28px;
+  height: 1px;
+  background: var(--sys-gold);
+}
+.sys-mission-label-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sys-gold);
+  font-weight: 600;
+}
+.sys-mission-heading {
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+  font-weight: 800;
+  color: var(--sys-navy);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.75rem;
+}
+.sys-mission-body {
+  font-size: 1.05rem;
+  color: var(--sys-text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.sys-mission-body + .sys-mission-body {
+  font-size: 0.95rem;
+}
+.sys-mission-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sys-navy);
+  border-bottom: 1px solid var(--sys-navy);
+  padding-bottom: 2px;
+  transition: color var(--sys-transition), border-color var(--sys-transition);
+}
+.sys-mission-link:hover { color: var(--sys-gold); border-color: var(--sys-gold); }
+.sys-mission-image-col {
+  position: relative;
+}
+.sys-mission-img-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+}
+.sys-mission-img-frame img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.sys-mission-img-frame:hover img { transform: scale(1.02); }
+.sys-mission-img-accent {
+  position: absolute;
+  bottom: -1.5rem;
+  left: -1.5rem;
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--sys-gold);
+  border-radius: 1px;
+  z-index: -1;
+}
+
+@media (max-width: 900px) {
+  .sys-mission-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .sys-mission-img-frame img { height: 360px; }
+  .sys-mission-img-accent { display: none; }
+}
+
+/* ============================================
+   4. CORE PROGRAMS — TABBED SWITCHER
+   ============================================ */
+.sys-programs {
+  background: var(--sys-offwhite);
+  padding: var(--sys-space-xl) 0;
+  border-top: 1px solid var(--sys-warm-gray);
+  border-bottom: 1px solid var(--sys-warm-gray);
+}
+.sys-programs-inner {
+  max-width: var(--sys-max-w);
+  margin: 0 auto;
+  padding: 0 var(--sys-space-md);
+}
+.sys-programs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.sys-programs-heading {
+  font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+  font-weight: 800;
+  color: var(--sys-navy);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.sys-programs-heading span { color: var(--sys-gold); }
+.sys-programs-all-link {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sys-text-muted);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1px solid var(--sys-warm-gray);
+  padding-bottom: 2px;
+  transition: color var(--sys-transition), border-color var(--sys-transition);
+}
+.sys-programs-all-link:hover { color: var(--sys-navy); border-color: var(--sys-navy); }
+.sys-programs-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--sys-warm-gray);
+  margin-bottom: 3rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sys-programs-tabs::-webkit-scrollbar { display: none; }
+.sys-tab-btn {
+  flex-shrink: 0;
+  padding: 1rem 1.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sys-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition: color var(--sys-transition), border-color var(--sys-transition);
+}
+.sys-tab-btn:hover { color: var(--sys-navy); }
+.sys-tab-btn.sys-tab-active {
+  color: var(--sys-navy);
+  border-bottom-color: var(--sys-gold);
+}
+.sys-tab-panel {
+  display: none;
+}
+.sys-tab-panel.sys-panel-active { display: grid; grid-template-columns: 48% 52%; gap: 4rem; align-items: center; }
+.sys-tab-panel-text {}
+.sys-tab-panel-tag {
+  display: inline-block;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sys-gold);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.sys-tab-panel-title {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 800;
+  color: var(--sys-navy);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+.sys-tab-panel-body {
+  font-size: 0.97rem;
+  color: var(--sys-text-muted);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+.sys-tab-panel-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.sys-tab-panel-meta-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--sys-text-muted);
+}
+.sys-tab-panel-meta-row strong {
+  color: var(--sys-navy);
+  min-width: 80px;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+.sys-tab-panel-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--sys-navy);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--sys-radius);
+  transition: background var(--sys-transition);
+}
+.sys-tab-panel-cta:hover { background: var(--sys-gold); }
+.sys-tab-panel-image {
+  overflow: hidden;
+  border-radius: 1px;
+}
+.sys-tab-panel-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.sys-tab-panel-image:hover img { transform: scale(1.02); }
+
+@media (max-width: 860px) {
+  .sys-tab-panel.sys-panel-active { grid-template-columns: 1fr; gap: 2rem; }
+  .sys-tab-panel-image img { height: 280px; }
+}
+
+/* ============================================
+   5. EDITORIAL FEATURE
+   ============================================ */
+.sys-feature {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.sys-feature-bg {
+  position: absolute;
+  inset: 0;
+}
+.sys-feature-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.sys-feature-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10,18,32,0.04) 0%,
+    rgba(10,18,32,0.04) 50%,
+    rgba(10,18,32,0.72) 100%
+  );
+}
+.sys-feature-content {
+  position: relative;
+  max-width: var(--sys-max-w);
+  margin: 0 auto;
+  padding: 0 var(--sys-space-md) var(--sys-space-lg);
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sys-feature-box {
+  max-width: 480px;
+  padding: 2.5rem;
+  background: rgba(248,246,241,0.95);
+  backdrop-filter: blur(8px);
+  border-left: 3px solid var(--sys-gold);
+}
+.sys-feature-box-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sys-gold);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.sys-feature-box-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--sys-navy);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-bottom: 1rem;
+}
+.sys-feature-box-body {
+  font-size: 0.92rem;
+  color: var(--sys-text-muted);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.sys-feature-box-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sys-navy);
+  border-bottom: 1px solid var(--sys-navy);
+  padding-bottom: 2px;
+  transition: color var(--sys-transition), border-color var(--sys-transition);
+}
+.sys-feature-box-link:hover { color: var(--sys-gold); border-color: var(--sys-gold); }
+
+@media (max-width: 768px) {
+  .sys-feature { height: auto; min-height: 480px; }
+  .sys-feature-overlay {
+    background: linear-gradient(to top, rgba(10,18,32,0.85) 0%, rgba(10,18,32,0.2) 100%);
+  }
+  .sys-feature-content { justify-content: flex-start; padding: 0 1.25rem 2rem; }
+  .sys-feature-box { max-width: 100%; padding: 1.75rem 1.5rem; }
+}
+
+/* ============================================
+   6. COMMUNITY VOICE — PULL QUOTE
+   ============================================ */
+.sys-voice {
+  background: var(--sys-navy);
+  padding: var(--sys-space-xl) 0;
+}
+.sys-voice-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--sys-space-md);
+  text-align: center;
+}
+.sys-voice-mark {
+  font-size: 7rem;
+  line-height: 0.6;
+  color: var(--sys-gold);
+  font-family: Georgia, serif;
+  margin-bottom: 2rem;
+  display: block;
+  opacity: 0.6;
+}
+.sys-voice-quote {
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+  font-weight: 400;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  font-style: italic;
+  margin-bottom: 2.5rem;
+}
+.sys-voice-quote em {
+  font-style: normal;
+  color: var(--sys-gold-light);
+  font-weight: 600;
+}
+.sys-voice-credit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+.sys-voice-credit-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.sys-voice-credit-role {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.sys-voice-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.sys-voice-prev, .sys-voice-next {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--sys-transition), color var(--sys-transition);
+}
+.sys-voice-prev:hover, .sys-voice-next:hover {
+  border-color: var(--sys-gold);
+  color: var(--sys-gold-light);
+}
+.sys-voice-counter {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ============================================
+   7. NEWSROOM — ASYMMETRIC LIST
+   ============================================ */
+.sys-newsroom {
+  background: var(--sys-cream);
+  padding: var(--sys-space-xl) 0;
+}
+.sys-newsroom-inner {
+  max-width: var(--sys-max-w);
+  margin: 0 auto;
+  padding: 0 var(--sys-space-md);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
+}
+.sys-newsroom-sidebar {}
+.sys-newsroom-sidebar-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sys-gold);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.sys-newsroom-sidebar-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--sys-gold);
+}
+.sys-newsroom-sidebar-heading {
+  font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+  font-weight: 800;
+  color: var(--sys-navy);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.sys-newsroom-sidebar-body {
+  font-size: 0.92rem;
+  color: var(--sys-text-muted);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+.sys-newsroom-sidebar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sys-navy);
+  border-bottom: 1px solid var(--sys-navy);
+  padding-bottom: 2px;
+  transition: color var(--sys-transition), border-color var(--sys-transition);
+}
+.sys-newsroom-sidebar-link:hover { color: var(--sys-gold); border-color: var(--sys-gold); }
+.sys-newsroom-list {}
+.sys-newsroom-item {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--sys-warm-gray);
+  align-items: start;
+  transition: opacity var(--sys-transition);
+}
+.sys-newsroom-item:first-child { border-top: 1px solid var(--sys-warm-gray); }
+.sys-newsroom-item:hover { opacity: 0.75; }
+.sys-newsroom-item-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 3px;
+}
+.sys-newsroom-item-date-day {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--sys-navy);
+  line-height: 1;
+}
+.sys-newsroom-item-date-month {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sys-gold);
+  font-weight: 700;
+  margin-top: 3px;
+}
+.sys-newsroom-item-date-year {
+  font-size: 0.6rem;
+  color: var(--sys-text-muted);
+  letter-spacing: 0.08em;
+}
+.sys-newsroom-item-text {}
+.sys-newsroom-item-type {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sys-text-muted);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.sys-newsroom-item-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sys-navy);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+.sys-newsroom-item-excerpt {
+  font-size: 0.85rem;
+  color: var(--sys-text-muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .sys-newsroom-inner { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+/* ============================================
+   8. FINAL CALLOUT
+   ============================================ */
+.sys-callout {
+  background: var(--sys-offwhite);
+  border-top: 1px solid var(--sys-warm-gray);
+  padding: var(--sys-space-xl) 0;
+}
+.sys-callout-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 var(--sys-space-md);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.sys-callout-text {}
+.sys-callout-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sys-gold);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.sys-callout-heading {
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  font-weight: 800;
+  color: var(--sys-navy);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.sys-callout-body {
+  font-size: 0.97rem;
+  color: var(--sys-text-muted);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+.sys-callout-donate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: var(--sys-gold);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--sys-radius);
+  transition: background var(--sys-transition), transform var(--sys-transition);
+}
+.sys-callout-donate-btn:hover { background: var(--sys-gold-light); transform: translateY(-1px); }
+.sys-callout-form {}
+.sys-callout-form-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sys-navy);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.sys-callout-form-desc {
+  font-size: 0.82rem;
+  color: var(--sys-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.sys-callout-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.sys-callout-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--sys-warm-gray);
+  border-radius: var(--sys-radius);
+  font-family: var(--sys-font-sans);
+  font-size: 0.9rem;
+  color: var(--sys-text);
+  background: #fff;
+  outline: none;
+  transition: border-color var(--sys-transition);
+}
+.sys-callout-input:focus { border-color: var(--sys-navy); }
+.sys-callout-input::placeholder { color: var(--sys-mid-gray); }
+.sys-callout-submit {
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--sys-navy);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--sys-radius);
+  border: none;
+  cursor: pointer;
+  transition: background var(--sys-transition);
+}
+.sys-callout-submit:hover { background: var(--sys-gold); }
+
+@media (max-width: 768px) {
+  .sys-callout-inner { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+/* ============================================
+   9. FOOTER
+   ============================================ */
+.sys-footer {
+  background: var(--sys-navy-deep);
+  color: rgba(255,255,255,0.55);
+  padding: 5rem 0 0;
+}
+.sys-footer-inner {
+  max-width: var(--sys-max-w);
+  margin: 0 auto;
+  padding: 0 var(--sys-space-md);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+.sys-footer-brand-col {}
+.sys-footer-brand-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.sys-footer-brand-sub {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sys-gold);
+  margin-bottom: 1.25rem;
+}
+.sys-footer-brand-desc {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.45);
+  max-width: 280px;
+  margin-bottom: 1.75rem;
+}
+.sys-footer-address {
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.5rem;
+}
+.sys-footer-address a { color: var(--sys-gold-light); }
+.sys-footer-tax {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+.sys-footer-socials {
+  display: flex;
+  gap: 0.75rem;
+}
+.sys-footer-social-link {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  transition: border-color var(--sys-transition), color var(--sys-transition);
+}
+.sys-footer-social-link:hover { border-color: var(--sys-gold); color: var(--sys-gold-light); }
+.sys-footer-col {}
+.sys-footer-col-title {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+.sys-footer-col-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.sys-footer-col-links li a {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  transition: color var(--sys-transition);
+  line-height: 1.4;
+}
+.sys-footer-col-links li a:hover { color: rgba(255,255,255,0.85); }
+.sys-footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 1.5rem var(--sys-space-md);
+  max-width: var(--sys-max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.sys-footer-copy {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.25);
+}
+.sys-footer-legal {
+  display: flex;
+  gap: 1.5rem;
+}
+.sys-footer-legal a {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.25);
+  transition: color var(--sys-transition);
+}
+.sys-footer-legal a:hover { color: rgba(255,255,255,0.55); }
+
+@media (max-width: 900px) {
+  .sys-footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (max-width: 600px) {
+  .sys-footer-inner { grid-template-columns: 1fr; }
+  .sys-footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+.sys-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.sys-reveal.sys-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sys-reveal-delay-1 { transition-delay: 0.1s; }
+.sys-reveal-delay-2 { transition-delay: 0.2s; }
+.sys-reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- TOPBAR -->
+<div class="sys-topbar">
+  <span>Celebrating 70 Years of Musical Excellence in Sacramento</span>
+  <span>·</span>
+  <a href="#">2025–2026 Auditions Now Open</a>
+  <span>·</span>
+  <a href="#">Members Only Portal</a>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="sys-main-nav" role="navigation" aria-label="Main navigation">
+  <div class="sys-nav-inner">
+    <a href="#" class="sys-nav-brand">
+      <div class="sys-nav-brand-text">
+        <span class="sys-nav-brand-top">Sacramento</span>
+        <span class="sys-nav-brand-main">Youth Symphony</span>
+        <span class="sys-nav-brand-sub">A Tradition of Excellence</span>
+      </div>
+    </a>
+    <ul class="sys-nav-links" role="list">
+      <li><a href="#" class="sys-nav-active">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Programs</a></li>
+      <li><a href="#">Concerts</a></li>
+      <li><a href="#">Alumni</a></li>
+      <li><a href="#">The Team</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="sys-nav-actions">
+      <a href="#" class="sys-nav-btn-ghost">Members</a>
+      <a href="#" class="sys-nav-btn-primary">Auditions</a>
+    </div>
+    <button class="sys-hamburger" aria-label="Open menu" id="sys-hamburger-btn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="sys-mobile-menu" id="sys-mobile-menu" role="dialog" aria-label="Mobile navigation">
+  <button class="sys-mobile-menu-close" id="sys-mobile-close" aria-label="Close menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <ul class="sys-mobile-nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Our Programs</a></li>
+    <li><a href="#">Concerts</a></li>
+    <li><a href="#">Alumni</a></li>
+    <li><a href="#">The Team</a></li>
+    <li><a href="#">Music Selections</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">Shop</a></li>
+  </ul>
+  <div class="sys-mobile-actions">
+    <a href="#">Audition Application</a>
+    <a href="#">Members Only Portal</a>
+  </div>
+  <div class="sys-mobile-topbar-links">
+    <a href="#">2025–2026 Auditions Now Open</a>
+    <span>Celebrating 70 Years of Musical Excellence in Sacramento</span>
+  </div>
+</div>
+
+<!-- ============================================
+     SECTION 1: HERO
+     ============================================ -->
+<section class="sys-hero" aria-label="Hero">
+  <!-- Slide 1 -->
+  <div class="sys-hero-slide sys-active">
+    <img
+      src="https://static.wixstatic.com/media/d08076_dda91f8df25648258ae3e16ca8f4c014~mv2.jpg/v1/fill/w_1920,h_1080,fp_0.34_0.33,q_85,enc_avif,quality_auto/d08076_dda91f8df25648258ae3e16ca8f4c014~mv2.jpg"
+      alt="SYS musicians performing on stage"
+    >
+  </div>
+  <!-- Slide 2 -->
+  <div class="sys-hero-slide">
+    <img
+      src="https://static.wixstatic.com/media/d08076_f147ec27e16d417c9fb4d70b1aa0a2e1~mv2.jpg/v1/fill/w_1920,h_1080,fp_0.37_0.3,q_85,enc_avif,quality_auto/d08076_f147ec27e16d417c9fb4d70b1aa0a2e1~mv2.jpg"
+      alt="Sacramento Youth Symphony brass section rehearsal"
+    >
+  </div>
+  <!-- Slide 3 -->
+  <div class="sys-hero-slide">
+    <img
+      src="https://static.wixstatic.com/media/d08076_a7816d7ade174d10ac5f930217f3a3ea~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/SYS021324%20(120).jpg"
+      alt="Young musicians in concert performance"
+    >
+  </div>
+
+  <div class="sys-hero-overlay"></div>
+  <div class="sys-hero-year-badge">
+    <span class="sys-hero-year-badge-num">70</span>
+    <span class="sys-hero-year-badge-text">Years of<br>Excellence</span>
+  </div>
+
+  <div class="sys-hero-content">
+    <div class="sys-hero-text-block">
+      <div class="sys-hero-kicker">
+        <div class="sys-hero-kicker-line"></div>
+        <span class="sys-hero-kicker-text">Sacramento, California · Est. 1954</span>
+      </div>
+      <h1 class="sys-hero-title">
+        Where Young<br>Musicians Become <em>Artists</em>
+      </h1>
+      <p class="sys-hero-desc">
+        Sacramento's foremost orchestral youth organization, developing the region's most gifted young musicians from beginner through pre-professional level under acclaimed conductors.
+      </p>
+      <div class="sys-hero-actions">
+        <a href="#" class="sys-hero-cta-primary">Apply to Audition</a>
+        <a href="#" class="sys-hero-cta-ghost">
+          Explore Programs
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sys-hero-dots" id="sys-hero-dots">
+    <button class="sys-hero-dot sys-active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="sys-hero-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="sys-hero-dot" data-slide="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="sys-hero-progress" id="sys-hero-progress"></div>
+</section>
+
+<!-- ============================================
+     SECTION 2: MISSION SPLIT
+     ============================================ -->
+<section class="sys-mission" aria-labelledby="sys-mission-heading">
+  <div class="sys-mission-inner">
+    <div class="sys-mission-text-col">
+      <div class="sys-mission-label sys-reveal">
+        <div class="sys-mission-label-line"></div>
+        <span class="sys-mission-label-text">Our Mission</span>
+      </div>
+      <h2 class="sys-mission-heading sys-reveal sys-reveal-delay-1" id="sys-mission-heading">
+        Advancing Talent,<br>Inspiring a Lifelong<br>Love of Music
+      </h2>
+      <p class="sys-mission-body sys-reveal sys-reveal-delay-2">
+        As Sacramento's foremost orchestral youth organization, we aspire to become the region's most influential community for the advancement of talent and music appreciation among youth. Now entering our 70th year, the Sacramento Youth Symphony offers orchestral training to young musicians — from fledgling through pre-professional levels — directed by some of the most acclaimed conductors and teachers in the region.
+      </p>
+      <p class="sys-mission-body sys-reveal sys-reveal-delay-2">
+        Students learn from talented music educators and conductors, gain exposure to music history and theory, and perform challenging orchestral works in several exciting concerts every year. Depending on their ensemble, they may have the opportunity to tour locally or internationally.
+      </p>
+      <a href="#" class="sys-mission-link sys-reveal sys-reveal-delay-3">
+        Learn About SYS
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="sys-mission-image-col sys-reveal sys-reveal-delay-2">
+      <div class="sys-mission-img-frame">
+        <img
+          src="https://static.wixstatic.com/media/d08076_a7816d7ade174d10ac5f930217f3a3ea~mv2.jpg/v1/fill/w_900,h_1100,al_c,q_85,enc_avif,quality_auto/SYS021324%20(120).jpg"
+          alt="Young musician performing with Sacramento Youth Symphony"
+        >
+      </div>
+      <div class="sys-mission-img-accent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 3: CORE PROGRAMS — TABBED
+     ============================================ -->
+<section class="sys-programs" aria-labelledby="sys-programs-heading">
+  <div class="sys-programs-inner">
+    <div class="sys-programs-header">
+      <h2 class="sys-programs-heading sys-reveal" id="sys-programs-heading">
+        Orchestras &amp; <span>Ensembles</span>
+      </h2>
+      <a href="#" class="sys-programs-all-link sys-reveal">
+        All Programs
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="sys-programs-tabs" role="tablist" aria-label="Program categories">
+      <button class="sys-tab-btn sys-tab-active" role="tab" aria-selected="true" data-tab="premier">Premier Orchestra</button>
+      <button class="sys-tab-btn" role="tab" aria-selected="false" data-tab="symphonic">Symphonic Wind Ensemble</button>
+      <button class="sys-tab-btn" role="tab" aria-selected="false" data-tab="academic">Academic Orchestra</button>
+      <button class="sys-tab-btn" role="tab" aria-selected="false" data-tab="chamber">Summer Chamber Workshop</button>
+      <button class="sys-tab-btn" role="tab" aria-selected="false" data-tab="overture">Overture Strings</button>
+    </div>
+
+    <!-- Premier Orchestra -->
+    <div class="sys-tab-panel sys-panel-active" id="sys-tab-premier" role="tabpanel">
+      <div class="sys-tab-panel-text">
+        <span class="sys-tab-panel-tag">Advanced Level</span>
+        <h3 class="sys-tab-panel-title">Premier Orchestra</h3>
+        <p class="sys-tab-panel-body">
+          The flagship ensemble of the Sacramento Youth Symphony, the Premier Orchestra brings together the region's most advanced young string, wind, brass, and percussion players. Students perform full-scale symphonic repertoire under the direction of Conductor Ryan Murray, with opportunities for international touring and concerto solo performances.
+        </p>
+        <div class="sys-tab-panel-meta">
+          <div class="sys-tab-panel-meta-row">
+            <strong>Conductor</strong>
+            <span>Ryan Murray</span>
+          </div>
+          <div class="sys-tab-panel-meta-row">
+            <strong>Eligibility</strong>
+            <span>By audition — intermediate to advanced level</span>
+          </div>
+          <div class="sys-tab-panel-meta-row">
+            <strong>Repertoire</strong>
+            <span>Full symphonic works, concertos, and chamber pieces</span>
+          </div>
+        </div>
+        <a href="#" class="sys-tab-panel-cta">
+          Audition Requirements
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="sys-tab-panel-image">
+        <img
+          src="https://static.wixstatic.com/media/d08076_dda91f8df25648258ae3e16ca8f4c014~mv2.jpg/v1/fill/w_900,h_700,fp_0.34_0.33,q_85,enc_avif,quality_auto/d08076_dda91f8df25648258ae3e16ca8f4c014~mv2.jpg"
+          alt="Premier Orchestra performance"
+        >
+      </div>
+    </div>
+
+    <!-- Symphonic Wind -->
+    <div class="sys-tab-panel" id="sys-tab-symphonic" role="tabpanel">
+      <div class="sys-tab-panel-text">
+        <span class="sys-tab-panel-tag">Wind &amp; Brass · Percussion</span>
+        <h3 class="sys-tab-panel-title">Symphonic Wind Ensemble</h3>
+        <p class="sys-tab-panel-body">
+          A rigorous, audition-based wind band ensemble offering advanced wind, brass, and percussion players the opportunity to study and perform challenging concert band repertoire. Students develop technique, ensemble listening, and musical leadership in a focused small-group setting with dedicated professional instruction.
+        </p>
+        <div class="sys-tab-panel-meta">
+          <div class="sys-tab-panel-meta-row">
+            <strong>Focus</strong>
+            <span>Wind, brass, and percussion players</span>
+          </div>
+          <div class="sys-tab-panel-meta-row">
+            <strong>Format</strong>
+            <span>Weekly rehearsals with semester concerts</span>
+          </div>
+        </div>
+        <a href="#" class="sys-tab-panel-cta">Learn More</a>
+      </div>
+      <div class="sys-tab-panel-image">
+        <img
+          src="https://static.wixstatic.com/media/d08076_f147ec27e16d417c9fb4d70b1aa0a2e1~mv2.jpg/v1/fill/w_900,h_700,fp_0.37_0.3,q_85,enc_avif,quality_auto/d08076_f147ec27e16d417c9fb4d70b1aa0a2e1~mv2.jpg"
+          alt="SYS Wind Ensemble rehearsal"
+        >
+      </div>
+    </div>
+
+    <!-- Academic Orchestra -->
+    <div class="sys-tab-panel" id="sys-tab-academic" role="tabpanel">
+      <div class="sys-tab-panel-text">
+        <span class="sys-tab-panel-tag">Intermediate Level</span>
+        <h3 class="sys-tab-panel-title">Academic Orchestra</h3>
+        <p class="sys-tab-panel-body">
+          The Academic Orchestra is the ideal next step for intermediate string, wind, and brass players ready to experience full orchestral performance for the first time. Students gain foundational ensemble skills, section leadership experience, and the thrill of performing full concerts in front of Sacramento audiences.
+        </p>
+        <div class="sys-tab-panel-meta">
+          <div class="sys-tab-panel-meta-row">
+            <strong>Level</strong>
+            <span>At least one year of instrument experience</span>
+          </div>
+          <div class="sys-tab-panel-meta-row">
+            <strong>Pathway</strong>
+            <span>Entry point to Premier Orchestra</span>
+          </div>
+        </div>
+        <a href="#" class="sys-tab-panel-cta">Audition Info</a>
+      </div>
+      <div class="sys-tab-panel-image">
+        <img
+          src="https://static.wixstatic.com/media/d08076_2a6bb068f26c4f6982030318c828d987~mv2.jpg/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/SYS-103022%20(133).jpg"
+          alt="Academic Orchestra rehearsal"
+        >
+      </div>
+    </div>
+
+    <!-- Summer Chamber -->
+    <div class="sys-tab-panel" id="sys-tab-chamber" role="tabpanel">
+      <div class="sys-tab-panel-text">
+        <span class="sys-tab-panel-tag">Summer · All Levels</span>
+        <h3 class="sys-tab-panel-title">Summer Chamber Music Workshop</h3>
+        <p class="sys-tab-panel-body">
+          Founded in 1990 and directed by Claire Tatman, the SYS Summer Chamber Music Workshop offers an intensive week of ensemble playing for young musicians ages 7–19. The program introduces students to chamber music literature and rehearsal techniques through individualized coaching with professional performers, culminating in a public recital.
+        </p>
+        <div class="sys-tab-panel-meta">
+          <div class="sys-tab-panel-meta-row">
+            <strong>Ages</strong>
+            <span>Week 1: 7–12 · Week 2: 11–19</span>
+          </div>
+          <div class="sys-tab-panel-meta-row">
+            <strong>Director</strong>
+            <span>Claire Tatman</span>
+          </div>
+          <div class="sys-tab-panel-meta-row">
+            <strong>Ends With</strong>
+            <span>Public recital for all participants</span>
+          </div>
+        </div>
+        <a href="#" class="sys-tab-panel-cta">Summer Registration</a>
+      </div>
+      <div class="sys-tab-panel-image">
+        <img
+          src="https://static.wixstatic.com/media/2134d9_b4fd3179afaf48ff99773537f51d7a89.jpg/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/2134d9_b4fd3179afaf48ff99773537f51d7a89.jpg"
+          alt="Summer Chamber Music Workshop"
+        >
+      </div>
+    </div>
+
+    <!-- Overture Strings -->
+    <div class="sys-tab-panel" id="sys-tab-overture" role="tabpanel">
+      <div class="sys-tab-panel-text">
+        <span class="sys-tab-panel-tag">Beginning Strings</span>
+        <h3 class="sys-tab-panel-title">Overture Strings</h3>
+        <p class="sys-tab-panel-body">
+          Overture Strings is SYS's entry-level string ensemble, welcoming young violinists, violists, cellists, and bassists at the beginning of their orchestral journey. This program builds foundational string technique, music reading, and ensemble habits that prepare students for a lifetime of musical participation.
+        </p>
+        <div class="sys-tab-panel-meta">
+          <div class="sys-tab-panel-meta-row">
+            <strong>Instruments</strong>
+            <span>Violin, viola, cello, bass</span>
+          </div>
+          <div class="sys-tab-panel-meta-row">
+            <strong>Pathway</strong>
+            <span>Leads directly into Academic Orchestra</span>
+          </div>
+        </div>
+        <a href="#" class="sys-tab-panel-cta">Learn About Overture</a>
+      </div>
+      <div class="sys-tab-panel-image">
+        <img
+          src="https://static.wixstatic.com/media/d08076_a7816d7ade174d10ac5f930217f3a3ea~mv2.jpg/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/SYS021324%20(120).jpg"
+          alt="Overture Strings ensemble"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 4: EDITORIAL FEATURE
+     ============================================ -->
+<section class="sys-feature" aria-labelledby="sys-feature-title">
+  <div class="sys-feature-bg">
+    <img
+      src="https://static.wixstatic.com/media/d08076_c87a0a3f7ee14656ac9ea92250aca24b~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/d08076_c87a0a3f7ee14656ac9ea92250aca24b~mv2.jpg"
+      alt="SYS full orchestra on stage"
+    >
+  </div>
+  <div class="sys-feature-overlay"></div>
+  <div class="sys-feature-content">
+    <div class="sys-feature-box">
+      <p class="sys-feature-box-label">Concert Season 2025–2026</p>
+      <h2 class="sys-feature-box-title" id="sys-feature-title">Four Concerts. One Unforgettable Season.</h2>
+      <p class="sys-feature-box-body">
+        Each year, Sacramento Youth Symphony ensembles take the stage in multiple concerts across the Sacramento region, presenting ambitious and beloved orchestral works to live audiences. From season-opening performances to the Spring Showcase, every concert is a milestone in each student's musical growth — and a gift to the community.
+      </p>
+      <a href="#" class="sys-feature-box-link">
+        View the Concert Calendar
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 5: COMMUNITY VOICE
+     ============================================ -->
+<section class="sys-voice" aria-label="Alumni testimonials">
+  <div class="sys-voice-inner">
+    <span class="sys-voice-mark">"</span>
+    <blockquote class="sys-voice-quote" id="sys-voice-text">
+      The Sacramento Youth Symphony provided a lot of firsts for me. It was my first experience playing in a <em>full symphony orchestra</em>, my first time as Concertmaster, my first European tour — a truly special and formative time. To this day, certain pieces instantly transport me back to those rehearsals.
+    </blockquote>
+    <div class="sys-voice-credit">
+      <span class="sys-voice-credit-name" id="sys-voice-name">Rebecca Corruccini</span>
+      <span class="sys-voice-credit-role" id="sys-voice-role">SYS Premier Orchestra Alumni · Professional Violinist</span>
+    </div>
+    <div class="sys-voice-nav">
+      <button class="sys-voice-prev" aria-label="Previous testimonial">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <span class="sys-voice-counter" id="sys-voice-counter">1 / 4</span>
+      <button class="sys-voice-next" aria-label="Next testimonial">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 6: NEWSROOM
+     ============================================ -->
+<section class="sys-newsroom" aria-labelledby="sys-newsroom-heading">
+  <div class="sys-newsroom-inner">
+    <div class="sys-newsroom-sidebar">
+      <p class="sys-newsroom-sidebar-label sys-reveal">News &amp; Updates</p>
+      <h2 class="sys-newsroom-sidebar-heading sys-reveal sys-reveal-delay-1" id="sys-newsroom-heading">What's Happening at SYS</h2>
+      <p class="sys-newsroom-sidebar-body sys-reveal sys-reveal-delay-2">
+        Stay current with rehearsal updates, concert announcements, scholarship opportunities, and community news from the Sacramento Youth Symphony.
+      </p>
+      <a href="#" class="sys-newsroom-sidebar-link sys-reveal sys-reveal-delay-2">
+        All News
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="sys-newsroom-list">
+      <a href="#" class="sys-newsroom-item sys-reveal">
+        <div class="sys-newsroom-item-date">
+          <span class="sys-newsroom-item-date-day">15</span>
+          <span class="sys-newsroom-item-date-month">Sep</span>
+          <span class="sys-newsroom-item-date-year">2025</span>
+        </div>
+        <div class="sys-newsroom-item-text">
+          <p class="sys-newsroom-item-type">Announcement</p>
+          <h3 class="sys-newsroom-item-title">2025–2026 Audition Applications Now Open for All Ensembles</h3>
+          <p class="sys-newsroom-item-excerpt">Prospective students auditioning for Premier Orchestra, Academic Orchestra, and Overture Strings can now submit applications online through the member portal.</p>
+        </div>
+      </a>
+      <a href="#" class="sys-newsroom-item sys-reveal sys-reveal-delay-1">
+        <div class="sys-newsroom-item-date">
+          <span class="sys-newsroom-item-date-day">02</span>
+          <span class="sys-newsroom-item-date-month">Aug</span>
+          <span class="sys-newsroom-item-date-year">2025</span>
+        </div>
+        <div class="sys-newsroom-item-text">
+          <p class="sys-newsroom-item-type">Concert</p>
+          <h3 class="sys-newsroom-item-title">Summer Showcase 2025 — Premier Orchestra Season-Closing Concert Recap</h3>
+          <p class="sys-newsroom-item-excerpt">More than 400 community members attended the SYS Summer Showcase at the Crest Theatre. Read our full recap of the evening's performances.</p>
+        </div>
+      </a>
+      <a href="#" class="sys-newsroom-item sys-reveal sys-reveal-delay-2">
+        <div class="sys-newsroom-item-date">
+          <span class="sys-newsroom-item-date-day">18</span>
+          <span class="sys-newsroom-item-date-month">Jun</span>
+          <span class="sys-newsroom-item-date-year">2025</span>
+        </div>
+        <div class="sys-newsroom-item-text">
+          <p class="sys-newsroom-item-type">Scholarship</p>
+          <h3 class="sys-newsroom-item-title">Keith Bucher Memorial Horn Scholarship — 2025 Recipients Announced</h3>
+          <p class="sys-newsroom-item-excerpt">The SYS Board of Directors is proud to announce this year's recipients of the Keith Bucher Memorial Horn Scholarship, awarded to outstanding horn students demonstrating exceptional musicianship.</p>
+        </div>
+      </a>
+      <a href="#" class="sys-newsroom-item sys-reveal sys-reveal-delay-3">
+        <div class="sys-newsroom-item-date">
+          <span class="sys-newsroom-item-date-day">10</span>
+          <span class="sys-newsroom-item-date-month">May</span>
+          <span class="sys-newsroom-item-date-year">2025</span>
+        </div>
+        <div class="sys-newsroom-item-text">
+          <p class="sys-newsroom-item-type">Community</p>
+          <h3 class="sys-newsroom-item-title">SYS Celebrates 70 Years: A Look Back at Seven Decades of Musical Excellence</h3>
+          <p class="sys-newsroom-item-excerpt">As we enter our 70th season, we reflect on the thousands of young musicians who have passed through our rehearsal halls and onto stages around the world.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 7: FINAL CALLOUT
+     ============================================ -->
+<section class="sys-callout" aria-labelledby="sys-callout-heading">
+  <div class="sys-callout-inner">
+    <div class="sys-callout-text sys-reveal">
+      <p class="sys-callout-label">Support SYS</p>
+      <h2 class="sys-callout-heading" id="sys-callout-heading">
+        Help Us Give Every Young Musician a Chance to Soar
+      </h2>
+      <p class="sys-callout-body">
+        For 70 years, the Sacramento Youth Symphony has depended on the generosity of families, alumni, and community members like you. Your gift directly funds scholarships, instrument access, international touring opportunities, and the expert instruction that transforms young people into confident musicians.
+      </p>
+      <a href="#" class="sys-callout-donate-btn">
+        Donate Today
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="sys-callout-form sys-reveal sys-reveal-delay-1">
+      <label class="sys-callout-form-label" for="sys-email-input">Stay Connected</label>
+      <p class="sys-callout-form-desc">Receive concert announcements, audition notices, and SYS news directly to your inbox.</p>
+      <div class="sys-callout-input-group">
+        <input
+          type="text"
+          class="sys-callout-input"
+          placeholder="Your name"
+          aria-label="Your name"
+        >
+        <input
+          type="email"
+          class="sys-callout-input"
+          id="sys-email-input"
+          placeholder="Email address"
+          aria-label="Email address"
+        >
+        <button type="button" class="sys-callout-submit">Subscribe for Updates</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 8: FOOTER
+     ============================================ -->
+<footer class="sys-footer" role="contentinfo">
+  <div class="sys-footer-inner">
+    <div class="sys-footer-brand-col">
+      <p class="sys-footer-brand-name">Sacramento Youth Symphony</p>
+      <p class="sys-footer-brand-sub">A Tradition of Excellence</p>
+      <p class="sys-footer-brand-desc">
+        Sacramento's foremost orchestral youth organization, offering beginning through advanced ensembles under the baton of the region's finest music educators and conductors.
+      </p>
+      <address class="sys-footer-address" style="font-style:normal;">
+        3443 Ramona Avenue, Suite 22<br>
+        Sacramento, CA 95826-3833<br>
+        <a href="tel:9167315777">916-731-5777</a><br>
+        <a href="mailto:robert@sacramentoyouthsymphony.org">robert@sacramentoyouthsymphony.org</a>
+      </address>
+      <p class="sys-footer-tax">Tax ID: 68-0233148 · Nonprofit 501(c)(3)</p>
+      <div class="sys-footer-socials">
+        <a href="#" class="sys-footer-social-link" aria-label="Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" class="sys-footer-social-link" aria-label="Twitter / X">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+        </a>
+        <a href="#" class="sys-footer-social-link" aria-label="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="sys-footer-social-link" aria-label="YouTube">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#fff" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="sys-footer-col">
+      <p class="sys-footer-col-title">Programs</p>
+      <ul class="sys-footer-col-links">
+        <li><a href="#">Premier Orchestra</a></li>
+        <li><a href="#">Symphonic Wind Ensemble</a></li>
+        <li><a href="#">Academic Orchestra</a></li>
+        <li><a href="#">Overture Strings</a></li>
+        <li><a href="#">Summer Chamber Workshop</a></li>
+        <li><a href="#">Hire an Ensemble</a></li>
+        <li><a href="#">Audition Requirements</a></li>
+        <li><a href="#">Registration Rates</a></li>
+      </ul>
+    </div>
+
+    <div class="sys-footer-col">
+      <p class="sys-footer-col-title">Support</p>
+      <ul class="sys-footer-col-links">
+        <li><a href="#">Ways to Give</a></li>
+        <li><a href="#">Donate Online</a></li>
+        <li><a href="#">Club Dal Segno</a></li>
+        <li><a href="#">Our Sponsors</a></li>
+        <li><a href="#">Program Book Support</a></li>
+        <li><a href="#">Donate a Vehicle</a></li>
+        <li><a href="#">Wish List</a></li>
+        <li><a href="#">Keith Bucher Scholarship</a></li>
+      </ul>
+    </div>
+
+    <div class="sys-footer-col">
+      <p class="sys-footer-col-title">Organization</p>
+      <ul class="sys-footer-col-links">
+        <li><a href="#">About SYS</a></li>
+        <li><a href="#">Our Conductors</a></li>
+        <li><a href="#">Administration</a></li>
+        <li><a href="#">Board of Directors</a></li>
+        <li><a href="#">Concerts &amp; Events</a></li>
+        <li><a href="#">Music Selections</a></li>
+        <li><a href="#">Alumni Community</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sys-footer-bottom">
+    <p class="sys-footer-copy">
+      © 2025 Sacramento Youth Symphony. All rights reserved. A 501(c)(3) nonprofit organization.
+    </p>
+    <nav class="sys-footer-legal" aria-label="Legal links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Accessibility</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+const hamburgerBtn = document.getElementById('sys-hamburger-btn');
+const mobileMenu = document.getElementById('sys-mobile-menu');
+const mobileClose = document.getElementById('sys-mobile-close');
+
+hamburgerBtn.addEventListener('click', () => {
+  mobileMenu.classList.add('sys-open');
+  document.body.style.overflow = 'hidden';
+});
+mobileClose.addEventListener('click', () => {
+  mobileMenu.classList.remove('sys-open');
+  document.body.style.overflow = '';
+});
+
+/* ============================================
+   HERO CAROUSEL
+   ============================================ */
+(function() {
+  const slides = document.querySelectorAll('.sys-hero-slide');
+  const dots = document.querySelectorAll('.sys-hero-dot');
+  const progress = document.getElementById('sys-hero-progress');
+  let current = 0;
+  let interval;
+  let startTime;
+  const DURATION = 5000;
+
+  function goTo(idx) {
+    slides[current].classList.remove('sys-active');
+    dots[current].classList.remove('sys-active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('sys-active');
+    dots[current].classList.add('sys-active');
+    startTime = performance.now();
+  }
+
+  function tick(now) {
+    if (!startTime) startTime = now;
+    const elapsed = now - startTime;
+    const pct = Math.min((elapsed / DURATION) * 100, 100);
+    progress.style.width = pct + '%';
+    if (elapsed >= DURATION) {
+      goTo(current + 1);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(parseInt(dot.dataset.slide));
+    });
+  });
+
+  startTime = performance.now();
+  requestAnimationFrame(tick);
+})();
+
+/* ============================================
+   PROGRAM TABS
+   ============================================ */
+(function() {
+  const tabBtns = document.querySelectorAll('.sys-tab-btn');
+  const tabPanels = document.querySelectorAll('.sys-tab-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      tabBtns.forEach(b => { b.classList.remove('sys-tab-active'); b.setAttribute('aria-selected', 'false'); });
+      tabPanels.forEach(p => p.classList.remove('sys-panel-active'));
+      btn.classList.add('sys-tab-active');
+      btn.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById('sys-tab-' + tab);
+      if (panel) panel.classList.add('sys-panel-active');
+    });
+  });
+})();
+
+/* ============================================
+   TESTIMONIAL ROTATOR
+   ============================================ */
+(function() {
+  const testimonials = [
+    {
+      quote: 'The Sacramento Youth Symphony provided a lot of firsts for me. It was my first experience playing in a <em>full symphony orchestra</em>, my first time as Concertmaster, my first European tour — a truly special and formative time. To this day, certain pieces instantly transport me back to those rehearsals.',
+      name: 'Rebecca Corruccini',
+      role: 'SYS Premier Orchestra Alumni · Professional Violinist'
+    },
+    {
+      quote: 'SYS rehearsals were my <em>favorite time of the week</em>, for the music and the communal experience of making it together. I still remember Michael Neumann\'s sage advice about being a good orchestra member — which turned out to be sage advice for being a good citizen and member of any team.',
+      name: 'Anagha Deshmane',
+      role: 'SYS Alumni 2001–2004 · PhD, Biomedical Engineering'
+    },
+    {
+      quote: 'SYS expected a level of <em>professionalism</em> that I wouldn\'t have been exposed to at such a young age on any other platform. The fond memories of close friendships made with fellow musicians will always hold a special place in my heart.',
+      name: 'Taeko Carroll',
+      role: 'SYS Alumni 1998–2002 · Entertainment Industry Professional'
+    },
+    {
+      quote: 'My years in the SYS were some of my most memorable. Above all, playing in a group like that provides the basis for a <em>lifelong appreciation for music</em> and performance — a gift that has shaped everything since.',
+      name: 'Randy Wurschmidt',
+      role: 'SYS Alumni · Vienna Tour 1984'
+    }
+  ];
+
+  let current = 0;
+  const quoteEl = document.getElementById('sys-voice-text');
+  const nameEl = document.getElementById('sys-voice-name');
+  const roleEl = document.getElementById('sys-voice-role');
+  const counterEl = document.getElementById('sys-voice-counter');
+  const prevBtn = document.querySelector('.sys-voice-prev');
+  const nextBtn = document.querySelector('.sys-voice-next');
+
+  function update(idx) {
+    const t = testimonials[idx];
+    quoteEl.innerHTML = t.quote;
+    nameEl.textContent = t.name;
+    roleEl.textContent = t.role;
+    counterEl.textContent = (idx + 1) + ' / ' + testimonials.length;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    current = (current - 1 + testimonials.length) % testimonials.length;
+    update(current);
+  });
+  nextBtn.addEventListener('click', () => {
+    current = (current + 1) % testimonials.length;
+    update(current);
+  });
+
+  update(0);
+})();
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+(function() {
+  const reveals = document.querySelectorAll('.sys-reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('sys-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+})();
+
+/* ============================================
+   NEWSLETTER SUBSCRIBE
+   ============================================ */
+document.querySelector('.sys-callout-submit').addEventListener('click', function() {
+  const emailInput = document.getElementById('sys-email-input');
+  if (emailInput.value.includes('@')) {
+    this.textContent = '✓ You\'re subscribed';
+    this.style.background = '#2a6b3c';
+    this.disabled = true;
+  } else {
+    emailInput.style.borderColor = '#c0392b';
+    emailInput.focus();
+    setTimeout(() => { emailInput.style.borderColor = ''; }, 2000);
+  }
+});
+
+  // ─── NAV SCROLL ───
+  const sysNav = document.querySelector('.sys-main-nav');
+  window.addEventListener('scroll', () => {
+    sysNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+</body>
+</html>

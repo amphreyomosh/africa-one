@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South Natomas TMA — Transportation Management Association</title>
+<style>
+/* ===== CUSTOM PROPERTIES ===== */
+:root {
+  --sntma-blue: #1a6eb5;
+  --sntma-blue-dark: #0e4a80;
+  --sntma-blue-mid: #2580cc;
+  --sntma-cyan: #29abe2;
+  --sntma-text: #111827;
+  --sntma-text-mid: #374151;
+  --sntma-text-muted: #6b7280;
+  --sntma-text-light: #9ca3af;
+  --sntma-bg: #ffffff;
+  --sntma-bg-soft: #f8fafc;
+  --sntma-bg-warm: #f1f5f9;
+  --sntma-border: #e2e8f0;
+  --sntma-border-light: #f0f4f8;
+  --sntma-accent: #0ea5e9;
+  --sntma-rule: #cbd5e1;
+  --ff-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --space-2xl: 8rem;
+  --max-w: 1200px;
+  --max-w-text: 720px;
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shell-max: 100%;
+  --gutter: 1.5rem;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  color: var(--sntma-text);
+  background: var(--sntma-bg);
+  line-height: 1.6;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ===== TYPOGRAPHY SCALE ===== */
+.sntma-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sntma-blue);
+}
+
+/* ===== LAYOUT UTILITY ===== */
+.sntma-inner {
+  max-width: var(--max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* ===========================
+   SECTION 0 — NAVIGATION
+=========================== */
+.sntma-nav {
+  position: fixed;
+  top: auto;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.97);
+  border-bottom: 1px solid var(--sntma-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: top 0.3s ease, box-shadow var(--transition);
+}
+.sntma-nav.is-scrolled {
+  box-shadow: 0 1px 12px rgba(0,0,0,0.08);
+}
+.sntma-nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.sntma-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex-shrink: 0;
+}
+.sntma-nav-logo-mark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.sntma-nav-logo-tma {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--sntma-blue);
+  letter-spacing: -0.02em;
+}
+.sntma-nav-logo-sub {
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sntma-text-muted);
+  margin-top: 1px;
+}
+.sntma-nav-logo-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--sntma-border);
+}
+.sntma-nav-logo-name {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--sntma-text-muted);
+  line-height: 1.4;
+  max-width: 130px;
+}
+.sntma-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.sntma-nav-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--sntma-text-mid);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  transition: color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.sntma-nav-link:hover {
+  color: var(--sntma-blue);
+  background: rgba(26,110,181,0.06);
+}
+.sntma-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+.sntma-nav-cta {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--sntma-blue);
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+  transition: background var(--transition);
+}
+.sntma-nav-cta:hover { background: var(--sntma-blue-dark); }
+.sntma-nav-social {
+  display: flex;
+  align-items: center;
+  color: var(--sntma-text-muted);
+  transition: color var(--transition);
+}
+.sntma-nav-social:hover { color: var(--sntma-blue); }
+.sntma-mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--sntma-text);
+  flex-shrink: 0;
+}
+.sntma-mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border-top: 1px solid var(--sntma-border);
+  padding: 1rem 1.5rem;
+  gap: 0.25rem;
+}
+.sntma-mobile-nav.is-open { display: flex; }
+.sntma-mobile-nav-link {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--sntma-text-mid);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--sntma-border-light);
+}
+.sntma-mobile-nav-link:last-child { border-bottom: none; }
+
+/* ===========================
+   SECTION 1 — HERO CAROUSEL
+=========================== */
+.sntma-hero {
+  padding-top: 68px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.sntma-hero-slides {
+  position: relative;
+  flex: 1;
+}
+.sntma-hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+  min-height: calc(100vh - 68px);
+}
+.sntma-hero-slide.is-active {
+  opacity: 1;
+  position: relative;
+  pointer-events: auto;
+}
+.sntma-hero-slide-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.sntma-hero-slide-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.sntma-hero-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(10,35,65,0.82) 0%, rgba(10,35,65,0.55) 55%, rgba(10,35,65,0.2) 100%);
+}
+.sntma-hero-slide-content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.sntma-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sntma-cyan);
+  margin-bottom: 1.5rem;
+}
+.sntma-hero-label-line {
+  width: 28px;
+  height: 1px;
+  background: var(--sntma-cyan);
+}
+.sntma-hero-title {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  max-width: 640px;
+  margin-bottom: 1.25rem;
+}
+.sntma-hero-desc {
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+  color: rgba(255,255,255,0.82);
+  max-width: 520px;
+  line-height: 1.7;
+  text-align: start;
+  margin-bottom: 2.25rem;
+}
+.sntma-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.sntma-hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--sntma-blue);
+  padding: 0.8rem 1.75rem;
+  border-radius: 6px;
+  transition: background var(--transition), transform var(--transition);
+}
+.sntma-hero-btn-primary:hover {
+  background: var(--sntma-blue-dark);
+  transform: translateY(-1px);
+}
+.sntma-hero-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.78);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 1px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.sntma-hero-btn-ghost:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.8);
+}
+.sntma-hero-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 10;
+}
+.sntma-hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  padding: 0;
+}
+.sntma-hero-dot.is-active {
+  background: #fff;
+  transform: scale(1.4);
+}
+.sntma-hero-arrows {
+  position: absolute;
+  bottom: 1.6rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+.sntma-hero-arrow {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: background var(--transition), border-color var(--transition);
+  backdrop-filter: blur(4px);
+}
+.sntma-hero-arrow:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.6);
+}
+
+/* ===========================
+   SECTION 2 — MISSION SPLIT
+=========================== */
+.sntma-mission {
+  padding: var(--space-xl) 0;
+  background: var(--sntma-bg);
+}
+.sntma-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.sntma-mission-content {}
+.sntma-mission-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 1.75rem;
+}
+.sntma-mission-eyebrow-line {
+  width: 24px;
+  height: 1px;
+  background: var(--sntma-blue);
+}
+.sntma-mission-title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--sntma-text);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.sntma-mission-body {
+  font-size: 1.0625rem;
+  color: var(--sntma-text-mid);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+.sntma-mission-detail {
+  font-size: 0.9375rem;
+  color: var(--sntma-text-muted);
+  line-height: 1.75;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--sntma-border);
+}
+.sntma-mission-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sntma-blue);
+  margin-top: 1.75rem;
+  transition: gap var(--transition);
+}
+.sntma-mission-link:hover { gap: 0.625rem; }
+.sntma-mission-visual {
+  position: relative;
+}
+.sntma-mission-img-frame {
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.sntma-mission-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sntma-mission-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(0deg, rgba(10,30,55,0.75) 0%, transparent 100%);
+  font-size: 0.6875rem;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.sntma-mission-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: -1.25rem;
+  background: var(--sntma-blue);
+  color: #fff;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 4px 20px rgba(26,110,181,0.35);
+}
+.sntma-mission-badge strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* ===========================
+   SECTION 3 — PROGRAMS
+=========================== */
+.sntma-programs {
+  padding: var(--space-xl) 0;
+  background: var(--sntma-bg-soft);
+  border-top: 1px solid var(--sntma-border);
+  border-bottom: 1px solid var(--sntma-border);
+}
+.sntma-programs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+.sntma-programs-title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  color: var(--sntma-text);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.sntma-programs-intro {
+  font-size: 0.9375rem;
+  color: var(--sntma-text-muted);
+  max-width: 400px;
+  line-height: 1.65;
+  text-align: right;
+}
+.sntma-programs-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--sntma-border);
+  margin-bottom: 0;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.sntma-programs-tabs::-webkit-scrollbar { display: none; }
+.sntma-prog-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sntma-text-muted);
+  padding: 0.875rem 1.25rem;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition);
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-bottom: -1px;
+}
+.sntma-prog-tab:hover { color: var(--sntma-blue); }
+.sntma-prog-tab.is-active {
+  color: var(--sntma-blue);
+  border-bottom-color: var(--sntma-blue);
+}
+.sntma-prog-tab-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.sntma-programs-panels {
+  padding-top: 2.5rem;
+}
+.sntma-prog-panel {
+  display: none;
+  animation: fadeUp 0.3s ease;
+}
+.sntma-prog-panel.is-active { display: grid; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.sntma-prog-panel-2col {
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.sntma-prog-panel-3col {
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
+.sntma-prog-panel-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--sntma-text);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.sntma-prog-panel-desc {
+  font-size: 0.9375rem;
+  color: var(--sntma-text-mid);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.sntma-prog-benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-bottom: 1.5rem;
+}
+.sntma-prog-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--sntma-text-mid);
+  line-height: 1.5;
+}
+.sntma-prog-benefit-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sntma-blue);
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+.sntma-prog-amount {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+.sntma-prog-amount-num {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--sntma-blue);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.sntma-prog-amount-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sntma-text-muted);
+  letter-spacing: 0.05em;
+}
+.sntma-prog-panel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sntma-blue);
+  transition: gap var(--transition);
+}
+.sntma-prog-panel-link:hover { gap: 0.625rem; }
+.sntma-prog-card {
+  background: #fff;
+  border: 1px solid var(--sntma-border);
+  border-radius: 3px;
+  padding: 1.5rem;
+}
+.sntma-prog-card-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--sntma-blue);
+  margin-bottom: 1rem;
+}
+.sntma-prog-card-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--sntma-text);
+  margin-bottom: 0.5rem;
+}
+.sntma-prog-card-body {
+  font-size: 0.8125rem;
+  color: var(--sntma-text-muted);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+.sntma-prog-card-amount {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--sntma-blue);
+  letter-spacing: -0.02em;
+}
+
+/* ===========================
+   SECTION 4 — EDITORIAL FEATURE
+=========================== */
+.sntma-editorial {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.sntma-editorial-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.sntma-editorial-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.sntma-editorial-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(8,25,50,0.92) 0%, rgba(8,25,50,0.6) 55%, rgba(8,25,50,0.1) 100%);
+}
+.sntma-editorial-inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  width: 100%;
+}
+.sntma-editorial-box {
+  max-width: 540px;
+}
+.sntma-editorial-rule {
+  width: 40px;
+  height: 2px;
+  background: var(--sntma-cyan);
+  margin-bottom: 1.75rem;
+}
+.sntma-editorial-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sntma-cyan);
+  margin-bottom: 1.25rem;
+}
+.sntma-editorial-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+}
+.sntma-editorial-body {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.78;
+  margin-bottom: 2rem;
+}
+.sntma-editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 2px;
+  transition: border-color var(--transition), gap var(--transition);
+}
+.sntma-editorial-link:hover {
+  border-color: #fff;
+  gap: 0.75rem;
+}
+
+/* ===========================
+   SECTION 5 — COMMUNITY VOICE
+=========================== */
+.sntma-voice {
+  padding: var(--space-xl) 0;
+  background: var(--sntma-bg);
+}
+.sntma-voice-inner-wrap {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.sntma-voice-mark {
+  font-size: 7rem;
+  line-height: 0.7;
+  color: var(--sntma-blue);
+  font-weight: 900;
+  font-family: Georgia, serif;
+  opacity: 0.15;
+  user-select: none;
+  margin-top: 0.5rem;
+}
+.sntma-voice-content {}
+.sntma-voice-quote {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: var(--sntma-text);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.sntma-voice-credit {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.sntma-voice-credit-line {
+  width: 24px;
+  height: 1px;
+  background: var(--sntma-blue);
+  flex-shrink: 0;
+}
+.sntma-voice-credit-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sntma-text);
+  letter-spacing: 0.02em;
+}
+.sntma-voice-credit-role {
+  font-size: 0.75rem;
+  color: var(--sntma-text-muted);
+  margin-top: 2px;
+}
+.sntma-voice-norcal {
+  margin-top: 3.5rem;
+  padding-top: 3.5rem;
+  border-top: 1px solid var(--sntma-border);
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.sntma-voice-norcal-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sntma-text-muted);
+  max-width: 160px;
+  line-height: 1.5;
+  text-align: center;
+}
+.sntma-norcal-btns {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.sntma-norcal-signin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  background: #f59e0b;
+  padding: 0.5rem 1.25rem;
+  border-radius: 5px;
+  transition: background var(--transition);
+}
+.sntma-norcal-signin:hover { background: #d97706; }
+.sntma-norcal-join {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  background: #16a34a;
+  padding: 0.5rem 1.25rem;
+  border-radius: 5px;
+  transition: background var(--transition);
+}
+.sntma-norcal-join:hover { background: #15803d; }
+
+/* ===========================
+   SECTION 6 — NEWSROOM
+=========================== */
+.sntma-newsroom {
+  padding: var(--space-xl) 0;
+  background: var(--sntma-bg-soft);
+  border-top: 1px solid var(--sntma-border);
+}
+.sntma-newsroom-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.sntma-newsroom-sidebar {}
+.sntma-newsroom-sidebar-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: var(--sntma-text);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.sntma-newsroom-sidebar-desc {
+  font-size: 0.875rem;
+  color: var(--sntma-text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+.sntma-newsroom-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sntma-blue);
+  transition: gap var(--transition);
+}
+.sntma-newsroom-all-link:hover { gap: 0.75rem; }
+.sntma-newsroom-feed {}
+.sntma-news-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--sntma-border);
+  transition: background var(--transition);
+}
+.sntma-news-item:first-child { padding-top: 0; }
+.sntma-news-item:last-child { border-bottom: none; }
+.sntma-news-date {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sntma-text-muted);
+  line-height: 1.4;
+  padding-top: 0.2rem;
+}
+.sntma-news-date span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--sntma-text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.sntma-news-body {}
+.sntma-news-tag {
+  display: inline-block;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sntma-blue);
+  background: rgba(26,110,181,0.08);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+.sntma-news-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--sntma-text);
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
+}
+.sntma-news-excerpt {
+  font-size: 0.8125rem;
+  color: var(--sntma-text-muted);
+  line-height: 1.65;
+  margin-bottom: 0.625rem;
+}
+.sntma-news-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sntma-blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: gap var(--transition);
+}
+.sntma-news-link:hover { gap: 0.5rem; }
+
+/* ===========================
+   SECTION 7 — CONVERSION CTA
+=========================== */
+.sntma-cta {
+  padding: var(--space-xl) 0;
+  background: var(--sntma-blue-dark);
+  position: relative;
+  overflow: hidden;
+}
+.sntma-cta-bg-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #fff 0,
+    #fff 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 20px 20px;
+}
+.sntma-cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.sntma-cta-eyebrow {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sntma-cyan);
+  margin-bottom: 1.25rem;
+}
+.sntma-cta-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.sntma-cta-desc {
+  font-size: 1.0625rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.sntma-cta-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  flex-wrap: wrap;
+}
+.sntma-cta-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-family: var(--ff-body);
+  color: var(--sntma-text);
+  background: rgba(255,255,255,0.95);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color var(--transition), background var(--transition);
+}
+.sntma-cta-input:focus {
+  background: #fff;
+  border-color: var(--sntma-cyan);
+}
+.sntma-cta-input::placeholder { color: var(--sntma-text-muted); }
+.sntma-cta-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--ff-body);
+  color: #fff;
+  background: var(--sntma-cyan);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+.sntma-cta-submit:hover {
+  background: #0ea5e9;
+  transform: translateY(-1px);
+}
+.sntma-cta-privacy {
+  font-size: 0.6875rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.04em;
+}
+.sntma-cta-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255,255,255,0.15);
+  margin: 0 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.sntma-cta-alt {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.sntma-cta-alt-link {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: color var(--transition);
+}
+.sntma-cta-alt-link:hover { color: #fff; }
+
+/* ===========================
+   SECTION 8 — FOOTER
+=========================== */
+.sntma-footer {
+  background: #0a1e38;
+  color: rgba(255,255,255,0.65);
+  padding: 4rem 0 0;
+}
+.sntma-footer-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sntma-footer-brand {}
+.sntma-footer-brand-mark {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+.sntma-footer-brand-name {
+  font-size: 0.6875rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+.sntma-footer-brand-address {
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+.sntma-footer-brand-contact {
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+}
+.sntma-footer-brand-contact a {
+  color: rgba(255,255,255,0.7);
+  transition: color var(--transition);
+}
+.sntma-footer-brand-contact a:hover { color: #fff; }
+.sntma-footer-col-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.25rem;
+}
+.sntma-footer-col-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.sntma-footer-col-link {
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.6);
+  transition: color var(--transition);
+}
+.sntma-footer-col-link:hover { color: #fff; }
+.sntma-footer-bottom {
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.sntma-footer-copy {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+}
+.sntma-footer-bottom-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.sntma-footer-bottom-link {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  transition: color var(--transition);
+}
+.sntma-footer-bottom-link:hover { color: rgba(255,255,255,0.7); }
+.sntma-footer-socials {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.sntma-footer-social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+.sntma-footer-social-icon:hover {
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+
+/* ===========================
+   SCROLL ANIMATIONS
+=========================== */
+.sntma-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.sntma-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sntma-reveal-delay-1 { transition-delay: 0.1s; }
+.sntma-reveal-delay-2 { transition-delay: 0.2s; }
+.sntma-reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1024px) {
+  .sntma-mission-grid { gap: 3rem; }
+  .sntma-mission-badge { display: none; }
+  .sntma-newsroom-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .sntma-footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 1024px) {
+  .sntma-nav-links { display: none; }
+  .sntma-nav-cta { display: none; }
+  .sntma-mobile-toggle { display: block; }
+  .sntma-nav-logo-divider { display: none; }
+  .sntma-nav-logo-name { display: none; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-xl: 4rem;
+    --space-lg: 2.5rem;
+  }
+  .sntma-nav-actions { gap: 0.5rem; }
+  .sntma-mission-grid { grid-template-columns: 1fr; }
+  .sntma-mission-visual { order: -1; }
+  .sntma-programs-intro { text-align: left; }
+  .sntma-prog-panel-2col { grid-template-columns: 1fr; gap: 2rem; }
+  .sntma-prog-panel-3col { grid-template-columns: 1fr; }
+  .sntma-voice-inner-wrap { grid-template-columns: 1fr; gap: 0; }
+  .sntma-voice-mark { display: none; }
+  .sntma-footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .sntma-programs-header { flex-direction: column; align-items: flex-start; }
+  .sntma-cta-form { flex-direction: column; }
+  .sntma-cta-input { min-width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .sntma-hero-arrows { display: none; }
+  .sntma-news-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .sntma-news-date { display: flex; align-items: center; gap: 0.5rem; }
+  .sntma-news-date span { font-size: 1rem; margin-bottom: 0; }
+  .sntma-footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    .sntma-reveal { opacity: 1; transform: none; }
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ===========================
+     NAV
+=========================== -->
+<nav class="sntma-nav" id="sntma-nav" role="navigation" aria-label="Primary">
+  <div class="sntma-nav-inner">
+    <a href="#" class="sntma-nav-logo" aria-label="South Natomas TMA Home">
+      <div class="sntma-nav-logo-mark">
+        <span class="sntma-nav-logo-tma">TMA</span>
+        <span class="sntma-nav-logo-sub">South Natomas</span>
+      </div>
+      <div class="sntma-nav-logo-divider" aria-hidden="true"></div>
+      <span class="sntma-nav-logo-name">Transportation Management Association</span>
+    </a>
+    <ul class="sntma-nav-links" role="list">
+      <li><a href="#" class="sntma-nav-link">About Us</a></li>
+      <li><a href="#" class="sntma-nav-link">Programs</a></li>
+      <li><a href="#" class="sntma-nav-link">Members</a></li>
+      <li><a href="#" class="sntma-nav-link">Board of Directors</a></li>
+      <li><a href="#" class="sntma-nav-link">Links</a></li>
+      <li><a href="#" class="sntma-nav-link">Contact</a></li>
+    </ul>
+    <div class="sntma-nav-actions">
+      <a href="https://norcalgo.org/account/login" class="sntma-nav-cta" target="_blank" rel="noopener">Sign In to NorCal Go</a>
+      <a href="http://www.facebook.com/pages/South-Natomas-TMA/149397058437615" class="sntma-nav-social" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <button class="sntma-mobile-toggle" id="sntma-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="sntma-mobile-menu">
+        <svg id="sntma-menu-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="sntma-mobile-nav" id="sntma-mobile-menu" role="menu">
+    <a href="#" class="sntma-mobile-nav-link" role="menuitem">About Us</a>
+    <a href="#" class="sntma-mobile-nav-link" role="menuitem">Programs</a>
+    <a href="#" class="sntma-mobile-nav-link" role="menuitem">Members</a>
+    <a href="#" class="sntma-mobile-nav-link" role="menuitem">Board of Directors</a>
+    <a href="#" class="sntma-mobile-nav-link" role="menuitem">Links</a>
+    <a href="#" class="sntma-mobile-nav-link" role="menuitem">Contact</a>
+    <a href="https://norcalgo.org/account/login" class="sntma-mobile-nav-link" role="menuitem" target="_blank" rel="noopener" style="color:var(--sntma-blue); font-weight:600;">Sign In to NorCal Go →</a>
+  </div>
+</nav>
+
+<!-- ===========================
+     SECTION 1: HERO CAROUSEL
+=========================== -->
+<section class="sntma-hero" aria-label="Featured highlights">
+  <div class="sntma-hero-slides" id="sntma-slides">
+
+    <!-- Slide 1 -->
+    <div class="sntma-hero-slide is-active" role="group" aria-label="Slide 1 of 3">
+      <div class="sntma-hero-slide-bg">
+        <img src="https://sntma.org/images/home_photo_2.jpg" alt="Sacramento Regional Transit bus in South Natomas" loading="eager">
+        <div class="sntma-hero-slide-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="sntma-hero-slide-content">
+       
+        <h1 class="sntma-hero-title">Smarter Commutes for a Cleaner Sacramento</h1>
+        <p class="sntma-hero-desc">Since 1989, we've connected South Natomas employers and employees with real transportation alternatives — reducing traffic, improving air quality, and putting money back in commuters' pockets.</p>
+        <div class="sntma-hero-actions">
+          <a href="#" class="sntma-hero-btn-primary">
+            Explore Member Benefits
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#" class="sntma-hero-btn-ghost">
+            Become a Member
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="sntma-hero-slide" role="group" aria-label="Slide 2 of 3">
+      <div class="sntma-hero-slide-bg">
+        <img src="https://sntma.org/images/home_photo_3.jpg" alt="KVIE office bike share program" loading="lazy">
+        <div class="sntma-hero-slide-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="sntma-hero-slide-content">
+       
+        <h1 class="sntma-hero-title">Pedal More. Save More. Breathe Better.</h1>
+        <p class="sntma-hero-desc">Our bike commuter subsidies, maintenance reimbursements, and capital improvements make cycling a practical daily option for South Natomas employees.</p>
+        <div class="sntma-hero-actions">
+          <a href="#" class="sntma-hero-btn-primary">
+            View Bike Programs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#" class="sntma-hero-btn-ghost">
+            Apply for a Subsidy
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="sntma-hero-slide" role="group" aria-label="Slide 3 of 3">
+      <div class="sntma-hero-slide-bg">
+        <img src="https://sntma.org/images/home_photo_4.jpg" alt="Amtrak Capitol Corridor commuter train" loading="lazy">
+        <div class="sntma-hero-slide-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="sntma-hero-slide-content">
+        
+        <h1 class="sntma-hero-title">Your Commute. Our Investment.</h1>
+        <p class="sntma-hero-desc">Up to $75 per month for transit riders, carpool subsidies, and Emergency Ride Home coverage — because choosing the bus or train shouldn't come with financial risk.</p>
+        <div class="sntma-hero-actions">
+          <a href="#" class="sntma-hero-btn-primary">
+            See All Subsidies
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://norcalgo.org" class="sntma-hero-btn-ghost" target="_blank" rel="noopener">
+            Log trips on NorCal Go
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <div class="sntma-hero-controls" aria-label="Slide controls">
+    <button class="sntma-hero-dot is-active" aria-label="Go to slide 1" data-slide="0"></button>
+    <button class="sntma-hero-dot" aria-label="Go to slide 2" data-slide="1"></button>
+    <button class="sntma-hero-dot" aria-label="Go to slide 3" data-slide="2"></button>
+  </div>
+  <div class="sntma-hero-arrows" aria-hidden="true">
+    <button class="sntma-hero-arrow" id="sntma-prev" aria-label="Previous slide">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <button class="sntma-hero-arrow" id="sntma-next" aria-label="Next slide">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ===========================
+     SECTION 2: MISSION SPLIT
+=========================== -->
+<section class="sntma-mission" aria-labelledby="sntma-mission-heading">
+  <div class="sntma-inner">
+    <div class="sntma-mission-grid">
+      <div class="sntma-mission-content sntma-reveal">
+        <div class="sntma-mission-eyebrow">
+          <span class="sntma-mission-eyebrow-line" aria-hidden="true"></span>
+          <span class="sntma-eyebrow">Our Advocacy</span>
+        </div>
+        <h2 class="sntma-mission-title" id="sntma-mission-heading">Reducing Traffic.<br>Clearing the Air.<br>Building Community.</h2>
+        <p class="sntma-mission-body">The South Natomas TMA is a nonprofit mutual benefit corporation that works cooperatively with the greater South Natomas community on transportation management and air quality issues — developing and operating trip reduction programs that help employers, employees, and the region thrive.</p>
+        <p class="sntma-mission-detail">Incorporated in 1989, we represent approximately 200 employers and over 7,500 employees across the South Natomas business district. Recognized by the Association for Commuter Transportation, the Sacramento Area Council of Governments, and the Sacramento County Board of Supervisors as an industry leader in innovative commute programs.</p>
+        <a href="#" class="sntma-mission-link">
+          Read Our Story
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="sntma-mission-visual sntma-reveal sntma-reveal-delay-2">
+        <div class="sntma-mission-img-frame">
+          <img src="https://sntma.org/images/home_photo_6.jpg" alt="South Natomas TMA Board and staff members" loading="lazy">
+          <div class="sntma-mission-caption">South Natomas TMA — Community Leadership Since 1989</div>
+        </div>
+        <div class="sntma-mission-badge" aria-label="200 member employers, 7500 employees">
+          <strong>200+</strong>
+          Member<br>Employers
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     SECTION 3: PROGRAMS
+=========================== -->
+<section class="sntma-programs" aria-labelledby="sntma-programs-heading">
+  <div class="sntma-inner">
+    <div class="sntma-programs-header sntma-reveal">
+      <div>
+        <div class="sntma-eyebrow" style="margin-bottom: 0.75rem;">Member Programs</div>
+        <h2 class="sntma-programs-title" id="sntma-programs-heading">Benefits Built for<br>Every Commuter</h2>
+      </div>
+      <p class="sntma-programs-intro">Financial subsidies, emergency coverage, capital investments, and clean transportation options — all accessible through NorCal Go.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="sntma-programs-tabs" role="tablist" aria-label="Program categories">
+      <button class="sntma-prog-tab is-active" role="tab" aria-selected="true" aria-controls="sntma-panel-subsidies" id="sntma-tab-subsidies">
+        <svg class="sntma-prog-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Transit Subsidies
+      </button>
+      <button class="sntma-prog-tab" role="tab" aria-selected="false" aria-controls="sntma-panel-bike" id="sntma-tab-bike">
+        <svg class="sntma-prog-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 0 0-1-1h-2.5l-3 9"/><path d="M15 6l-3 5.5 2.5 3.5"/><path d="M9 17.5l3-5.5"/></svg>
+        Bike Programs
+      </button>
+      <button class="sntma-prog-tab" role="tab" aria-selected="false" aria-controls="sntma-panel-erh" id="sntma-tab-erh">
+        <svg class="sntma-prog-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Emergency Ride Home
+      </button>
+      <button class="sntma-prog-tab" role="tab" aria-selected="false" aria-controls="sntma-panel-capital" id="sntma-tab-capital">
+        <svg class="sntma-prog-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Capital Improvements
+      </button>
+    </div>
+
+    <!-- Panels -->
+    <div class="sntma-programs-panels">
+
+      <!-- Subsidies Panel -->
+      <div class="sntma-prog-panel sntma-prog-panel-2col is-active" id="sntma-panel-subsidies" role="tabpanel" aria-labelledby="sntma-tab-subsidies">
+        <div>
+          <h3 class="sntma-prog-panel-title">Carpool, Transit & Clean Vehicle Subsidies</h3>
+          <p class="sntma-prog-panel-desc">Employees of member companies who shift their commute away from solo driving are rewarded directly. Log your trips in NorCal Go and redeem monthly subsidies during the first two business days of the following month.</p>
+          <ul class="sntma-prog-benefit-list">
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>$50/month carpool subsidy — minimum 10 round trips, 2-person minimum</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>$75/month for Sacramento Regional Transit or Amtrak Capitol Corridor riders</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>$50/month Low Emissions Vehicle subsidy — 30 subsidies available monthly</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>$25/month Telework subsidy — 80 available monthly</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>Up to $250 for residential EV charging station installation</li>
+          </ul>
+          <a href="#" class="sntma-prog-panel-link">
+            View All Subsidy Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div>
+          <div class="sntma-prog-amount">
+            <span class="sntma-prog-amount-num">$75</span>
+            <span class="sntma-prog-amount-label">/ month<br>max transit</span>
+          </div>
+          <p style="font-size:0.8125rem; color:var(--sntma-text-muted); line-height:1.65; margin-bottom:1.25rem;">All subsidies are tracked and redeemed through <strong style="color:var(--sntma-text-mid);">NorCal Go</strong> — the Sacramento region's commute tracking platform. One subsidy per person, per month.</p>
+          <a href="https://norcalgo.org" class="sntma-norcal-signin" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:0.5rem; font-size:0.8125rem; font-weight:600; color:#fff; background:var(--sntma-blue); padding:0.6rem 1.25rem; border-radius:5px; transition:background var(--transition);">
+            Log Trips on NorCal Go
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bike Panel -->
+      <div class="sntma-prog-panel sntma-prog-panel-3col" id="sntma-panel-bike" role="tabpanel" aria-labelledby="sntma-tab-bike">
+        <div class="sntma-prog-card">
+          <svg class="sntma-prog-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 0 0-1-1h-2.5l-3 9"/><path d="M15 6l-3 5.5 2.5 3.5"/><path d="M9 17.5l3-5.5"/></svg>
+          <div class="sntma-prog-card-title">Bike Maintenance</div>
+          <div class="sntma-prog-card-body">Three $100 monthly subsidies for commuter bicycle maintenance and accessories. Limited to one per person per calendar year.</div>
+          <div class="sntma-prog-card-amount">$100</div>
+        </div>
+        <div class="sntma-prog-card">
+          <svg class="sntma-prog-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <div class="sntma-prog-card-title">Ridepanda Subscription</div>
+          <div class="sntma-prog-card-body">New in South Natomas — flexible monthly subscriptions for e-bikes, pedal bikes, and scooters. Virtual orientation available July 15, 2026.</div>
+          <div class="sntma-prog-card-amount">Subsidy Available</div>
+        </div>
+        <div class="sntma-prog-card">
+          <svg class="sntma-prog-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div class="sntma-prog-card-title">Bucks for Bikes</div>
+          <div class="sntma-prog-card-body">Commuter incentive program for employees biking to work. 7 subsidies still available — application deadline May 29, 2026.</div>
+          <div class="sntma-prog-card-amount">Apply Now</div>
+        </div>
+      </div>
+
+      <!-- ERH Panel -->
+      <div class="sntma-prog-panel sntma-prog-panel-2col" id="sntma-panel-erh" role="tabpanel" aria-labelledby="sntma-tab-erh">
+        <div>
+          <h3 class="sntma-prog-panel-title">Emergency Ride Home</h3>
+          <p class="sntma-prog-panel-desc">One of the most common barriers to ditching the solo commute is the fear of getting stranded. Our Emergency Ride Home program eliminates that concern entirely — giving employees the confidence to carpool or take transit every day.</p>
+          <ul class="sntma-prog-benefit-list">
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>Reimbursed taxi or rideshare if you need to get home urgently</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>Available to employees of SNTMA member companies</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>Covers personal illness, family emergency, or unscheduled overtime</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>You won't get left stranded</li>
+          </ul>
+          <a href="#" class="sntma-prog-panel-link">
+            ERH Program Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div>
+          <img src="https://sntma.org/images/home_photo_1.jpg" alt="Office bike share program" loading="lazy" style="width:100%; border-radius:3px; aspect-ratio:4/3; object-fit:cover;">
+        </div>
+      </div>
+
+      <!-- Capital Panel -->
+      <div class="sntma-prog-panel sntma-prog-panel-2col" id="sntma-panel-capital" role="tabpanel" aria-labelledby="sntma-tab-capital">
+        <div>
+          <h3 class="sntma-prog-panel-title">Capital Improvements</h3>
+          <p class="sntma-prog-panel-desc">Beyond monthly subsidies, the SNTMA invests directly in the physical infrastructure that makes sustainable commuting easier across the South Natomas business district.</p>
+          <ul class="sntma-prog-benefit-list">
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>Bike rack subsidies for member company facilities</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>Bike locker installations at key locations</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>Advocacy for transit stop improvements</li>
+            <li class="sntma-prog-benefit"><span class="sntma-prog-benefit-dot" aria-hidden="true"></span>EV charging infrastructure support</li>
+          </ul>
+          <a href="#" class="sntma-prog-panel-link">
+            Capital Programs Overview
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div>
+          <img src="https://sntma.org/images/home_photo_5.jpg" alt="Bike lockers at South Natomas facility" loading="lazy" style="width:100%; border-radius:3px; aspect-ratio:4/3; object-fit:cover;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     SECTION 4: EDITORIAL FEATURE
+=========================== -->
+<section class="sntma-editorial" aria-labelledby="sntma-editorial-heading">
+  <div class="sntma-editorial-bg">
+    <img src="https://sntma.org/images/home_photo_4.jpg" alt="Amtrak Capitol Corridor commuter rail" loading="lazy">
+    <div class="sntma-editorial-overlay" aria-hidden="true"></div>
+  </div>
+  <div class="sntma-editorial-inner">
+    <div class="sntma-editorial-box sntma-reveal">
+      <div class="sntma-editorial-rule" aria-hidden="true"></div>
+      <div class="sntma-editorial-label">Advocacy &amp; Air Quality</div>
+      <h2 class="sntma-editorial-title" id="sntma-editorial-heading">Trip Reduction Is Climate Action</h2>
+      <p class="sntma-editorial-body">Every commuter who shifts from a solo vehicle to transit, carpool, or bike reduces emissions, eases congestion, and builds a more resilient region. Since 1989, the SNTMA has made that shift practical, financially supported, and backed by an award-winning network of programs recognized statewide as a model for suburban Transportation Demand Management.</p>
+      <a href="#" class="sntma-editorial-link">
+        Our Advocacy Work
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     SECTION 5: COMMUNITY VOICE
+=========================== -->
+<section class="sntma-voice" aria-labelledby="sntma-voice-heading">
+  <div class="sntma-inner">
+    <div class="sntma-voice-inner-wrap">
+      <div class="sntma-voice-mark" aria-hidden="true">"</div>
+      <div class="sntma-voice-content sntma-reveal">
+        <h2 class="sntma-voice-quote" id="sntma-voice-heading">
+          The Emergency Ride Home program gave our team the confidence to stop driving solo. Knowing you won't get stranded is everything — and the carpool subsidy means the decision practically makes itself.
+        </h2>
+        <div class="sntma-voice-credit">
+          <span class="sntma-voice-credit-line" aria-hidden="true"></span>
+          <div>
+            <div class="sntma-voice-credit-name">South Natomas Employee</div>
+            <div class="sntma-voice-credit-role">SNTMA Member Company, Sacramento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NorCal Go integration block -->
+    <div class="sntma-voice-norcal sntma-reveal sntma-reveal-delay-1">
+      <p class="sntma-voice-norcal-label">Access all programs through NorCal Go</p>
+      <div class="sntma-norcal-btns">
+        <a href="https://norcalgo.org/account/login" class="sntma-norcal-signin" target="_blank" rel="noopener">Sign In</a>
+        <a href="https://norcalgo.org/account/register" class="sntma-norcal-join" target="_blank" rel="noopener">Create Account</a>
+      </div>
+      <p style="font-size:0.75rem; color:var(--sntma-text-muted); max-width:280px; line-height:1.6; text-align:center;">Sacramento region's commute tracking platform for SNTMA member employees</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     SECTION 6: NEWSROOM
+=========================== -->
+<section class="sntma-newsroom" aria-labelledby="sntma-newsroom-heading">
+  <div class="sntma-inner">
+    <div class="sntma-newsroom-layout">
+      <div class="sntma-newsroom-sidebar sntma-reveal">
+        <div class="sntma-eyebrow" style="margin-bottom:0.875rem;">Latest Updates</div>
+        <h2 class="sntma-newsroom-sidebar-title" id="sntma-newsroom-heading">What's New at the TMA</h2>
+        <p class="sntma-newsroom-sidebar-desc">Program changes, new subsidies, upcoming events, and important member notices — updated regularly by SNTMA staff.</p>
+        <a href="#" class="sntma-newsroom-all-link">
+          View Full News Archive
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="sntma-newsroom-feed sntma-reveal sntma-reveal-delay-1">
+
+        <article class="sntma-news-item">
+          <div class="sntma-news-date">
+            <span>19</span>
+            May 2026
+          </div>
+          <div class="sntma-news-body">
+            <span class="sntma-news-tag">Programs &amp; Benefits</span>
+            <h3 class="sntma-news-title">Bucks for Bikes, Transit Subsidies &amp; Bike Month Now Open</h3>
+            <p class="sntma-news-excerpt">7 Bucks for Bikes Subsidies remain — deadline May 29. May is Bike Month registration open. 30 LEV Subsidies available monthly. April subsidies redeemable in NorCal Go June 1–2.</p>
+            <a href="#" class="sntma-news-link">Read More <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+
+        <article class="sntma-news-item">
+          <div class="sntma-news-date">
+            <span>15</span>
+            Jul 2026
+          </div>
+          <div class="sntma-news-body">
+            <span class="sntma-news-tag">Event</span>
+            <h3 class="sntma-news-title">Ridepanda Virtual Discussion — New Subscription Subsidy</h3>
+            <p class="sntma-news-excerpt">Join SNTMA staff for a virtual orientation on the new Ridepanda Subscription Subsidy — e-bikes, pedal bikes, and scooters now available in South Natomas.</p>
+            <a href="#" class="sntma-news-link">Read More <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+
+        <article class="sntma-news-item">
+          <div class="sntma-news-date">
+            <span>01</span>
+            Jan 2026
+          </div>
+          <div class="sntma-news-body">
+            <span class="sntma-news-tag">Member Notice</span>
+            <h3 class="sntma-news-title">Annual Dues Increase Now in Effect</h3>
+            <p class="sntma-news-excerpt">Following a June 2025 Board vote, employer dues are now assessed at $0.20 per RSF (min. $500) — the first increase in eleven years. Questions? Contact the SNTMA office.</p>
+            <a href="#" class="sntma-news-link">Read More <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+
+        <article class="sntma-news-item">
+          <div class="sntma-news-date">
+            <span>01</span>
+            Jan 2024
+          </div>
+          <div class="sntma-news-body">
+            <span class="sntma-news-tag">Policy Update</span>
+            <h3 class="sntma-news-title">One Subsidy Per Person Per Month — More Participants Served</h3>
+            <p class="sntma-news-excerpt">Effective January 1, 2024, the SNTMA moved to a one-subsidy-per-person-per-month model to expand access and serve more commuters across member companies.</p>
+            <a href="#" class="sntma-news-link">Read More <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     SECTION 7: CONVERSION CTA
+=========================== -->
+<section class="sntma-cta" aria-labelledby="sntma-cta-heading">
+  <div class="sntma-cta-bg-texture" aria-hidden="true"></div>
+  <div class="sntma-cta-inner">
+    <div class="sntma-cta-eyebrow">Stay Connected</div>
+    <h2 class="sntma-cta-title" id="sntma-cta-heading">Get Member Updates Delivered</h2>
+    <p class="sntma-cta-desc">Be the first to know when new subsidies open, deadlines approach, and programs are added. No noise — just the information your commute depends on.</p>
+    <form class="sntma-cta-form" onsubmit="return false;" aria-label="Newsletter signup">
+      <label for="sntma-email" class="visually-hidden">Email address</label>
+      <input
+        class="sntma-cta-input"
+        type="email"
+        id="sntma-email"
+        name="email"
+        placeholder="Your work email address"
+        autocomplete="email"
+        required
+      >
+      <button class="sntma-cta-submit" type="submit">
+        Subscribe
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+    <p class="sntma-cta-privacy">For SNTMA member employees only. Unsubscribe anytime.</p>
+    <div class="sntma-cta-alt">
+      <a href="#" class="sntma-cta-alt-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Member Directory
+      </a>
+      <span class="sntma-cta-divider" aria-hidden="true"></span>
+      <a href="#" class="sntma-cta-alt-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Board Meeting Dates
+      </a>
+      <span class="sntma-cta-divider" aria-hidden="true"></span>
+      <a href="mailto:info@sntma.org" class="sntma-cta-alt-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact SNTMA
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     SECTION 8: FOOTER
+=========================== -->
+<footer class="sntma-footer" aria-label="Site footer">
+  <div class="sntma-inner">
+    <div class="sntma-footer-grid">
+      <!-- Brand -->
+      <div class="sntma-footer-brand">
+        <div class="sntma-footer-brand-mark">TMA</div>
+        <div class="sntma-footer-brand-name">South Natomas Transportation<br>Management Association</div>
+        <address class="sntma-footer-brand-address" style="font-style:normal;">
+          2030 West El Camino, Suite 275<br>
+          Sacramento, CA 95833
+        </address>
+        <div class="sntma-footer-brand-contact">
+          <a href="tel:+19166460928">(916) 646-0928</a> phone<br>
+          (916) 646-0463 fax<br>
+          <a href="mailto:info@sntma.org">info@sntma.org</a>
+        </div>
+        <div class="sntma-footer-socials">
+          <a href="http://www.facebook.com/pages/South-Natomas-TMA/149397058437615" class="sntma-footer-social-icon" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Organization -->
+      <div>
+        <div class="sntma-footer-col-title">Organization</div>
+        <ul class="sntma-footer-col-links" role="list">
+          <li><a href="#" class="sntma-footer-col-link">About Us</a></li>
+          <li><a href="#" class="sntma-footer-col-link">Board of Directors</a></li>
+          <li><a href="#" class="sntma-footer-col-link">Member Directory</a></li>
+          <li><a href="#" class="sntma-footer-col-link">Links &amp; Partners</a></li>
+          <li><a href="#" class="sntma-footer-col-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <div class="sntma-footer-col-title">Programs</div>
+        <ul class="sntma-footer-col-links" role="list">
+          <li><a href="https://sntma.org/subsidies.php" class="sntma-footer-col-link">Subsidies</a></li>
+          <li><a href="https://sntma.org/erh.php" class="sntma-footer-col-link">Emergency Ride Home</a></li>
+          <li><a href="https://sntma.org/bike.php" class="sntma-footer-col-link">Bike Programs</a></li>
+          <li><a href="https://sntma.org/capital_improvements.php" class="sntma-footer-col-link">Capital Improvements</a></li>
+          <li><a href="https://sntma.org/advocacy.php" class="sntma-footer-col-link">Advocacy &amp; Communication</a></li>
+          <li><a href="https://sntma.org/contest.php" class="sntma-footer-col-link">Monthly Facebook Contest</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <div class="sntma-footer-col-title">Resources</div>
+        <ul class="sntma-footer-col-links" role="list">
+          <li><a href="https://norcalgo.org" class="sntma-footer-col-link" target="_blank" rel="noopener">NorCal Go Platform</a></li>
+          <li><a href="https://norcalgo.org/account/login" class="sntma-footer-col-link" target="_blank" rel="noopener">Sign In to NorCal Go</a></li>
+          <li><a href="https://norcalgo.org/account/register" class="sntma-footer-col-link" target="_blank" rel="noopener">Create NorCal Go Account</a></li>
+          <li><a href="https://sntma.org/news.php" class="sntma-footer-col-link">News &amp; Updates</a></li>
+          <li><a href="https://www.sacrt.com" class="sntma-footer-col-link" target="_blank" rel="noopener">Sacramento Regional Transit</a></li>
+          <li><a href="https://www.actweb.org" class="sntma-footer-col-link" target="_blank" rel="noopener">Association for Commuter Transportation</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sntma-footer-bottom">
+      <p class="sntma-footer-copy">&copy; 2026 South Natomas Transportation Management Association. All rights reserved.</p>
+      <div class="sntma-footer-bottom-links">
+        <a href="#" class="sntma-footer-bottom-link">Privacy Policy</a>
+        <a href="#" class="sntma-footer-bottom-link">Dues Policy</a>
+        <a href="#" class="sntma-footer-bottom-link">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- visually-hidden utility -->
+<style>
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== NAV SCROLL ===== */
+  const nav = document.getElementById('sntma-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.top = window.scrollY > 60 ? '0' : 'auto';
+    nav.classList.toggle('is-scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  /* ===== MOBILE MENU ===== */
+  const mobileToggle = document.getElementById('sntma-mobile-toggle');
+  const mobileMenu = document.getElementById('sntma-mobile-menu');
+  mobileToggle.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('is-open');
+    mobileToggle.setAttribute('aria-expanded', open);
+  });
+
+  /* ===== HERO CAROUSEL ===== */
+  const slides = Array.from(document.querySelectorAll('.sntma-hero-slide'));
+  const dots = Array.from(document.querySelectorAll('.sntma-hero-dot'));
+  let current = 0;
+  let autoTimer;
+
+  function goTo(index) {
+    slides[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+    dots[current].setAttribute('aria-current', 'true');
+  }
+
+  function startAuto() {
+    autoTimer = setInterval(() => goTo(current + 1), 5500);
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    startAuto();
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); resetAuto(); });
+  });
+
+  const prevBtn = document.getElementById('sntma-prev');
+  const nextBtn = document.getElementById('sntma-next');
+  if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+  startAuto();
+
+  /* ===== PROGRAM TABS ===== */
+  const tabs = Array.from(document.querySelectorAll('.sntma-prog-tab'));
+  const panels = Array.from(document.querySelectorAll('.sntma-prog-panel'));
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('aria-controls');
+      tabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+      panels.forEach(p => p.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(targetId);
+      if (panel) panel.classList.add('is-active');
+    });
+  });
+
+  /* ===== SCROLL REVEAL ===== */
+  const revealEls = document.querySelectorAll('.sntma-reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+
+  /* ===== KEYBOARD NAV FOR TABS ===== */
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') tabs[(i + 1) % tabs.length].focus();
+      if (e.key === 'ArrowLeft') tabs[(i - 1 + tabs.length) % tabs.length].focus();
+    });
+  });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+
+})();
+</script>
+</body>
+</html>

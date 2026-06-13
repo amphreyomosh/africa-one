@@ -1,0 +1,1961 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redding Motorsports Park — Drag Racing · Drifting · Car Shows</title>
+    <style>
+      :root {
+        --rmp-red: #c8001e;
+        --rmp-red-deep: #8b0014;
+        --rmp-orange: #e8670a;
+        --rmp-gold: #d4a017;
+        --rmp-black: #0d0d0d;
+        --rmp-dark: #141414;
+        --rmp-surface: #1c1c1e;
+        --rmp-surface-2: #252527;
+        --rmp-border: rgba(255, 255, 255, 0.08);
+        --rmp-text: #f2f2f2;
+        --rmp-muted: #8a8a8e;
+        --rmp-rule: rgba(200, 0, 30, 0.35);
+        --rmp-space-xs: 0.5rem;
+        --rmp-space-sm: 1rem;
+        --rmp-space-md: 2rem;
+        --rmp-space-lg: 4rem;
+        --rmp-space-xl: 6rem;
+        --rmp-space-2xl: 9rem;
+        --rmp-radius: 4px;
+        --rmp-font:
+          "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        --shell-max: 1200px;
+        --gutter: 2rem;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--rmp-font);
+        background: var(--rmp-black) !important;
+        color: var(--rmp-text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* NAV */
+      .rmp-nav {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(13, 13, 13, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--rmp-border);
+        transition:
+          background 0.3s,
+          top 0.3s;
+      }
+      .rmp-nav.scrolled {
+        top: 0;
+      }
+
+      .rmp-nav-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 var(--rmp-space-md);
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--rmp-space-md);
+      }
+
+      .rmp-nav-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .rmp-nav-brand-name {
+        font-size: 0.9rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--rmp-text);
+        line-height: 1;
+      }
+
+      .rmp-nav-brand-sub {
+        font-size: 0.6rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rmp-red);
+        line-height: 1;
+      }
+
+      .rmp-nav-brand-short {
+        display: none;
+        font-size: 1rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rmp-text);
+        line-height: 1;
+      }
+
+      .rmp-nav-brand-short span {
+        color: var(--rmp-red);
+      }
+
+      .rmp-nav-links {
+        display: flex;
+        align-items: center;
+        gap: var(--rmp-space-sm);
+        list-style: none;
+      }
+
+      .rmp-nav-links a {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--rmp-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .rmp-nav-links a:hover {
+        color: var(--rmp-text);
+      }
+
+      .rmp-nav-cta {
+        background: var(--rmp-red);
+        color: var(--rmp-text) !important;
+        padding: 0.45rem 1rem;
+        border-radius: var(--rmp-radius);
+        transition: background 0.2s !important;
+        white-space: nowrap;
+      }
+
+      .rmp-nav-cta:hover {
+        background: var(--rmp-red-deep) !important;
+        color: var(--rmp-text) !important;
+      }
+
+      .rmp-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+        background: none;
+        border: none;
+      }
+
+      .rmp-hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--rmp-text);
+        transition: all 0.3s;
+        transform-origin: center;
+      }
+
+      .rmp-hamburger.rmp-open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .rmp-hamburger.rmp-open span:nth-child(2) {
+        opacity: 0;
+      }
+      .rmp-hamburger.rmp-open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .rmp-mobile-menu {
+        display: none;
+        position: fixed;
+        top: 120px;
+        left: 0;
+        right: 0;
+        background: rgba(13, 13, 13, 0.98);
+        backdrop-filter: blur(20px);
+        z-index: 99;
+        padding: var(--rmp-space-md);
+        border-bottom: 1px solid var(--rmp-border);
+        flex-direction: column;
+        gap: var(--rmp-space-sm);
+      }
+
+      .rmp-mobile-menu.rmp-open {
+        display: flex;
+      }
+
+      .rmp-mobile-menu a {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--rmp-muted);
+        text-decoration: none;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid var(--rmp-border);
+        transition: color 0.2s;
+      }
+
+      .rmp-mobile-menu a:hover {
+        color: var(--rmp-text);
+      }
+
+      /* GLAD HEADER */
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+      @media (max-width: 640px) {
+        .glad-inner {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .glad-logo img {
+          margin-left: 0;
+        }
+        .glad-back-btn {
+          margin-right: 0;
+        }
+      }
+      @media (max-width: 640px) {
+        .glad-logo img {
+          height: 28px;
+          width: auto;
+        }
+      }
+
+      .rmp-mobile-menu-cta {
+        margin-top: var(--rmp-space-xs);
+        background: var(--rmp-red);
+        color: var(--rmp-text) !important;
+        padding: 0.75rem 1rem;
+        border-radius: var(--rmp-radius);
+        text-align: center;
+        border-bottom: none !important;
+      }
+
+      /* HERO */
+      .rmp-hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 64px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .rmp-hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--rmp-space-xl) var(--rmp-space-lg) var(--rmp-space-xl)
+          max(
+            var(--rmp-space-lg),
+            calc((100vw - 1240px) / 2 + var(--rmp-space-lg))
+          );
+        position: relative;
+        z-index: 2;
+        background: black;
+      }
+
+      .rmp-hero-title {
+        font-size: clamp(2.8rem, 5vw, 4.5rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--rmp-text);
+        margin-bottom: var(--rmp-space-md);
+      }
+
+      .rmp-hero-title em {
+        font-style: normal;
+        color: var(--rmp-red);
+      }
+
+      .rmp-hero-desc {
+        font-size: 1.05rem;
+        color: var(--rmp-muted);
+        max-width: 420px;
+        line-height: 1.7;
+        margin-bottom: var(--rmp-space-lg);
+      }
+
+      .rmp-hero-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--rmp-space-md);
+        flex-wrap: wrap;
+      }
+
+      .rmp-hero-btn-primary {
+        display: inline-block;
+        background: var(--rmp-red);
+        color: var(--rmp-text);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.9rem 2rem;
+        border-radius: var(--rmp-radius);
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+
+      .rmp-hero-btn-primary:hover {
+        background: var(--rmp-red-deep);
+        transform: translateY(-1px);
+      }
+
+      .rmp-hero-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--rmp-muted);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .rmp-hero-btn-secondary:hover {
+        color: var(--rmp-text);
+      }
+
+      .rmp-hero-btn-secondary svg {
+        transition: transform 0.2s;
+      }
+      .rmp-hero-btn-secondary:hover svg {
+        transform: translateX(3px);
+      }
+
+      .rmp-hero-right {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .rmp-hero-right::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          var(--rmp-black) 0%,
+          transparent 40%
+        );
+        z-index: 1;
+      }
+
+      .rmp-hero-img-bg {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&auto=format&fit=crop")
+          center/cover no-repeat;
+        filter: brightness(0.55) saturate(0.8);
+      }
+
+      .rmp-hero-next-event {
+        position: absolute;
+        bottom: var(--rmp-space-lg);
+        right: var(--rmp-space-lg);
+        z-index: 2;
+        background: rgba(28, 28, 30, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--rmp-border);
+        border-left: 3px solid var(--rmp-red);
+        padding: var(--rmp-space-sm) var(--rmp-space-md);
+        min-width: 220px;
+      }
+
+      .rmp-event-label {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rmp-red);
+        margin-bottom: 0.4rem;
+      }
+
+      .rmp-event-name {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--rmp-text);
+        margin-bottom: 0.25rem;
+        line-height: 1.3;
+      }
+
+      .rmp-event-date {
+        font-size: 0.75rem;
+        color: var(--rmp-muted);
+      }
+
+      /* STATS */
+      .rmp-stats {
+        background: var(--rmp-surface);
+        border-top: 1px solid var(--rmp-border);
+        border-bottom: 1px solid var(--rmp-border);
+      }
+
+      .rmp-stats-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: var(--rmp-space-lg) var(--rmp-space-md);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+      }
+
+      .rmp-stat {
+        padding: var(--rmp-space-md) var(--rmp-space-lg);
+        border-right: 1px solid var(--rmp-border);
+        text-align: center;
+      }
+
+      .rmp-stat:last-child {
+        border-right: none;
+      }
+
+      .rmp-stat-number {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        color: var(--rmp-text);
+        margin-bottom: 0.35rem;
+      }
+
+      .rmp-stat-number span {
+        color: var(--rmp-red);
+      }
+
+      .rmp-stat-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rmp-muted);
+      }
+
+      /* NARRATIVE */
+      .rmp-narrative {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: var(--rmp-space-2xl) var(--rmp-space-md);
+        display: grid;
+
+        grid-template-columns: 55% 45%;
+        gap: var(--rmp-space-xl);
+        align-items: center;
+      }
+
+      .rmp-narrative-heading {
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: var(--rmp-text);
+        margin-bottom: var(--rmp-space-md);
+      }
+
+      .rmp-narrative-body {
+        font-size: 1rem;
+        color: var(--rmp-muted);
+        line-height: 1.8;
+        margin-bottom: var(--rmp-space-md);
+        max-width: 520px;
+      }
+
+      .rmp-narrative-note {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--rmp-orange);
+        background: rgba(232, 103, 10, 0.08);
+        border-left: 3px solid var(--rmp-orange);
+        padding: 0.6rem 1rem;
+        max-width: 520px;
+        line-height: 1.5;
+      }
+
+      .rmp-narrative-img-wrap {
+        position: relative;
+        border-radius: 2px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+      }
+
+      .rmp-narrative-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.85) saturate(0.9);
+      }
+
+      .rmp-narrative-img-badge {
+        position: absolute;
+        bottom: var(--rmp-space-sm);
+        left: var(--rmp-space-sm);
+        background: var(--rmp-red);
+        color: var(--rmp-text);
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.7rem;
+      }
+
+      /* PROGRAMS SWITCHER */
+      .rmp-programs {
+        background: var(--rmp-surface);
+        border-top: 1px solid var(--rmp-border);
+        border-bottom: 1px solid var(--rmp-border);
+      }
+
+      .rmp-programs-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: var(--rmp-space-2xl) var(--rmp-space-md);
+      }
+
+      .rmp-programs-header {
+        margin-bottom: var(--rmp-space-xl);
+      }
+
+      .rmp-programs-title {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        color: var(--rmp-text);
+      }
+
+      .rmp-programs-grid {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 0;
+        border: 1px solid var(--rmp-border);
+      }
+
+      .rmp-programs-tabs {
+        border-right: 1px solid var(--rmp-border);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .rmp-tab-btn {
+        display: flex;
+        align-items: center;
+        gap: var(--rmp-space-sm);
+        padding: var(--rmp-space-md) var(--rmp-space-md);
+        cursor: pointer;
+        border: none;
+        background: none;
+        text-align: left;
+        border-bottom: 1px solid var(--rmp-border);
+        transition: background 0.2s;
+        position: relative;
+      }
+
+      .rmp-tab-btn:last-child {
+        border-bottom: none;
+      }
+
+      .rmp-tab-btn::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: transparent;
+        transition: background 0.2s;
+      }
+
+      .rmp-tab-btn.rmp-tab-active {
+        background: rgba(200, 0, 30, 0.06);
+      }
+
+      .rmp-tab-btn.rmp-tab-active::before {
+        background: var(--rmp-red);
+      }
+
+      .rmp-tab-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+
+      .rmp-tab-btn.rmp-tab-active .rmp-tab-icon {
+        background: rgba(200, 0, 30, 0.15);
+      }
+
+      .rmp-tab-icon svg {
+        transition: all 0.2s;
+      }
+      .rmp-tab-btn.rmp-tab-active .rmp-tab-icon svg path,
+      .rmp-tab-btn.rmp-tab-active .rmp-tab-icon svg rect,
+      .rmp-tab-btn.rmp-tab-active .rmp-tab-icon svg circle {
+        stroke: var(--rmp-red);
+      }
+      .rmp-narrative-section {
+        background: black;
+      }
+
+      .rmp-tab-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--rmp-muted);
+        transition: color 0.2s;
+      }
+
+      .rmp-tab-btn.rmp-tab-active .rmp-tab-label {
+        color: var(--rmp-text);
+      }
+
+      .rmp-programs-panel {
+        display: none;
+        padding: var(--rmp-space-xl);
+      }
+
+      .rmp-programs-panel.rmp-panel-active {
+        display: block;
+      }
+
+      .rmp-panel-kicker {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rmp-red);
+        margin-bottom: var(--rmp-space-sm);
+      }
+
+      .rmp-panel-title {
+        font-size: 1.8rem;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        color: var(--rmp-text);
+        margin-bottom: var(--rmp-space-sm);
+        line-height: 1.1;
+      }
+
+      .rmp-panel-body {
+        font-size: 0.95rem;
+        color: var(--rmp-muted);
+        line-height: 1.8;
+        margin-bottom: var(--rmp-space-md);
+        max-width: 560px;
+      }
+
+      .rmp-panel-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--rmp-space-sm);
+      }
+
+      .rmp-panel-detail {
+        background: var(--rmp-surface-2);
+        border: 1px solid var(--rmp-border);
+        padding: 0.4rem 0.85rem;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--rmp-muted);
+      }
+
+      .rmp-panel-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: var(--rmp-space-md);
+        color: var(--rmp-red);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: gap 0.2s;
+      }
+
+      .rmp-panel-link:hover {
+        gap: 0.7rem;
+      }
+
+      /* SCHEDULE SNAPSHOT */
+      .rmp-schedule {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: var(--rmp-space-2xl) var(--rmp-space-md);
+      }
+
+      .rmp-schedule-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: var(--rmp-space-xl);
+        gap: var(--rmp-space-md);
+        flex-wrap: wrap;
+      }
+
+      .rmp-schedule-title {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        color: var(--rmp-text);
+      }
+
+      .rmp-schedule-view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--rmp-muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+
+      .rmp-schedule-view-all:hover {
+        color: var(--rmp-text);
+      }
+      .rmp-schedule-section {
+        background: black !important;
+      }
+      .rmp-schedule-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid var(--rmp-border);
+      }
+
+      .rmp-schedule-item {
+        display: grid;
+        grid-template-columns: 80px 1fr auto;
+        align-items: center;
+        gap: var(--rmp-space-md);
+        padding: var(--rmp-space-md) 0;
+        border-bottom: 1px solid var(--rmp-border);
+        transition: background 0.2s;
+      }
+
+      .rmp-schedule-item:hover {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .rmp-schedule-date-block {
+        text-align: center;
+      }
+
+      .rmp-schedule-month {
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rmp-red);
+        margin-bottom: 0.15rem;
+      }
+
+      .rmp-schedule-day {
+        font-size: 1.8rem;
+        font-weight: 900;
+        line-height: 1;
+        color: var(--rmp-text);
+      }
+
+      .rmp-schedule-event-name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--rmp-text);
+        margin-bottom: 0.2rem;
+      }
+
+      .rmp-schedule-event-meta {
+        font-size: 0.75rem;
+        color: var(--rmp-muted);
+      }
+
+      .rmp-schedule-sig {
+        display: inline-block;
+        background: rgba(200, 0, 30, 0.12);
+        color: var(--rmp-red);
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.6rem;
+        border: 1px solid rgba(200, 0, 30, 0.3);
+        white-space: nowrap;
+      }
+
+      .rmp-schedule-reg {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--rmp-muted);
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.6rem;
+        border: 1px solid var(--rmp-border);
+        white-space: nowrap;
+      }
+
+      /* QUOTE */
+      .rmp-quote-section {
+        background: var(--rmp-surface) !important;
+        border-top: 1px solid var(--rmp-border);
+        border-bottom: 1px solid var(--rmp-border);
+      }
+
+      .rmp-quote-inner {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: var(--rmp-space-2xl) var(--rmp-space-md);
+        text-align: center;
+      }
+
+      .rmp-quote-mark {
+        font-size: 8rem;
+        line-height: 0.6;
+        font-weight: 900;
+        color: var(--rmp-red);
+        opacity: 0.25;
+        display: block;
+        margin-bottom: var(--rmp-space-md);
+        font-family: Georgia, serif;
+      }
+
+      .rmp-quote-text {
+        font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.01em;
+        color: var(--rmp-text);
+        margin-bottom: var(--rmp-space-md);
+      }
+
+      .rmp-quote-rule {
+        width: 40px;
+        height: 2px;
+        background: var(--rmp-red);
+        margin: 0 auto var(--rmp-space-sm);
+      }
+
+      .rmp-quote-credit {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--rmp-muted);
+      }
+
+      /* CTA */
+      .rmp-cta {
+        background: var(--rmp-dark);
+        border-top: 1px solid var(--rmp-border);
+      }
+
+      .rmp-cta-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: var(--rmp-space-2xl) var(--rmp-space-md);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--rmp-space-xl);
+        align-items: center;
+      }
+
+      .rmp-cta-heading {
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        color: var(--rmp-text);
+        margin-bottom: var(--rmp-space-sm);
+      }
+
+      .rmp-cta-body {
+        font-size: 0.95rem;
+        color: var(--rmp-muted);
+        line-height: 1.7;
+        margin-bottom: var(--rmp-space-sm);
+      }
+
+      .rmp-cta-kids {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--rmp-gold);
+        margin-top: var(--rmp-space-sm);
+      }
+
+      .rmp-cta-right {
+        display: flex;
+        flex-direction: column;
+        gap: var(--rmp-space-md);
+      }
+
+      .rmp-cta-btn-primary {
+        display: block;
+        background: var(--rmp-red);
+        color: var(--rmp-text);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+        text-align: center;
+        text-decoration: none;
+        border-radius: var(--rmp-radius);
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+
+      .rmp-cta-btn-primary:hover {
+        background: var(--rmp-red-deep);
+        transform: translateY(-1px);
+      }
+
+      .rmp-cta-links {
+        display: flex;
+        gap: var(--rmp-space-md);
+        flex-wrap: wrap;
+      }
+
+      .rmp-cta-link {
+        color: var(--rmp-muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .rmp-cta-link:hover {
+        color: var(--rmp-text);
+      }
+
+      .rmp-cta-social {
+        display: flex;
+        gap: var(--rmp-space-sm);
+        align-items: center;
+      }
+
+      .rmp-cta-social-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--rmp-muted);
+        margin-right: 0.25rem;
+      }
+
+      .rmp-social-icon {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--rmp-border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+
+      .rmp-social-icon:hover {
+        border-color: var(--rmp-red);
+        background: rgba(200, 0, 30, 0.08);
+      }
+
+      /* FOOTER */
+      .rmp-footer {
+        background: var(--rmp-black);
+        border-top: 1px solid var(--rmp-border);
+        padding: var(--rmp-space-lg) var(--rmp-space-md);
+      }
+
+      .rmp-footer-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--rmp-space-md);
+        flex-wrap: wrap;
+      }
+
+      .rmp-footer-brand {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--rmp-muted);
+      }
+
+      .rmp-footer-brand strong {
+        color: var(--rmp-text);
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .rmp-footer-meta {
+        font-size: 0.68rem;
+        color: var(--rmp-muted);
+        letter-spacing: 0.05em;
+      }
+
+      /* SCROLL REVEAL */
+      .rmp-reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+
+      .rmp-reveal.rmp-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .rmp-hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .rmp-hero-left {
+          padding: var(--rmp-space-xl) var(--rmp-space-md);
+          padding-top: calc(64px + var(--rmp-space-lg));
+          min-height: 70vh;
+          justify-content: flex-end;
+          position: relative;
+          z-index: 2;
+        }
+        .rmp-hero-right {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+        }
+        .rmp-hero-right::before {
+          background: linear-gradient(
+            to top,
+            var(--rmp-black) 30%,
+            rgba(13, 13, 13, 0.6) 100%
+          );
+        }
+        .rmp-hero-next-event {
+          right: var(--rmp-space-sm);
+          bottom: var(--rmp-space-sm);
+        }
+        .rmp-stats-inner {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .rmp-stat {
+          border-right: none;
+          border-bottom: 1px solid var(--rmp-border);
+        }
+        .rmp-stat:last-child {
+          border-bottom: none;
+        }
+        .rmp-narrative {
+          grid-template-columns: 1fr;
+          gap: var(--rmp-space-lg);
+        }
+        .rmp-narrative-img-wrap {
+          aspect-ratio: 16/9;
+        }
+        .rmp-programs-grid {
+          grid-template-columns: 1fr;
+        }
+        .rmp-programs-tabs {
+          flex-direction: row;
+          overflow-x: auto;
+          border-right: none;
+          border-bottom: 1px solid var(--rmp-border);
+        }
+        .rmp-tab-btn {
+          flex-direction: column;
+          text-align: center;
+          gap: 0.4rem;
+          min-width: 100px;
+          padding: var(--rmp-space-sm);
+          border-bottom: none;
+          border-right: 1px solid var(--rmp-border);
+        }
+        .rmp-tab-btn::before {
+          bottom: auto;
+          right: 0;
+          left: 0;
+          top: auto;
+          width: auto;
+          height: 3px;
+        }
+        .rmp-programs-panel {
+          padding: var(--rmp-space-md);
+        }
+        .rmp-cta-inner {
+          grid-template-columns: 1fr;
+          gap: var(--rmp-space-lg);
+        }
+        .rmp-schedule-item {
+          grid-template-columns: 60px 1fr;
+        }
+        .rmp-schedule-item > :last-child {
+          display: none;
+        }
+        .rmp-nav-links {
+          display: none;
+        }
+        .rmp-hamburger {
+          display: flex;
+        }
+        .rmp-nav-brand-name,
+        .rmp-nav-brand-sub {
+          display: none;
+        }
+        .rmp-nav-brand-short {
+          display: block;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .rmp-hero-next-event {
+          display: none;
+        }
+        .rmp-schedule-item {
+          grid-template-columns: 55px 1fr;
+          gap: var(--rmp-space-sm);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rmp-reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        * {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+    <!-- NAV -->
+    <nav class="rmp-nav">
+      <div class="rmp-nav-inner">
+        <a href="#" class="rmp-nav-brand">
+          <span class="rmp-nav-brand-name">Redding Motorsports Park</span>
+          <span class="rmp-nav-brand-sub"
+            >Drag Racing · Drifting · Car Shows</span
+          >
+          <span class="rmp-nav-brand-short">RM<span>P</span></span>
+        </a>
+        <ul class="rmp-nav-links">
+          <li><a href="#">Schedule</a></li>
+          <li><a href="#">Drag Racing</a></li>
+          <li><a href="#">Drifting</a></li>
+          <li><a href="#">Rent the Track</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#" class="rmp-nav-cta">Buy Tickets</a></li>
+        </ul>
+        <button class="rmp-hamburger" id="rmpHamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="rmp-mobile-menu" id="rmpMobileMenu">
+      <a href="#">Schedule</a>
+      <a href="#">Drag Racing</a>
+      <a href="#">Drifting</a>
+      <a href="#">Rent the Track</a>
+      <a href="#">Pit Spaces</a>
+      <a href="#">Sponsors</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#" class="rmp-mobile-menu-cta">Buy Tickets Now</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="rmp-hero">
+      <div class="rmp-hero-left">
+        <h1 class="rmp-hero-title">Full Throttle.<br /><em>All Season.</em></h1>
+        <p class="rmp-hero-desc">
+          Redding Motorsports Park hosts NHRA-sanctioned drag racing,
+          high-energy drifting, and iconic signature events that have defined
+          Northern California motorsport for decades.
+        </p>
+        <div class="rmp-hero-actions">
+          <a href="#" class="rmp-hero-btn-primary">Buy Tickets Now</a>
+          <a href="#" class="rmp-hero-btn-secondary">
+            View Full Schedule
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 7h10M8 3l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="rmp-hero-right">
+        <div class="rmp-hero-img-bg"></div>
+        <div class="rmp-hero-next-event">
+          <div class="rmp-event-label">Next Event</div>
+          <div class="rmp-event-name">Midnite Mayhem GrudgeFest & Skid Pit</div>
+          <div class="rmp-event-date">Sat June 13 · Gates Open 8PM</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="rmp-stats">
+      <div class="rmp-stats-inner">
+        <div class="rmp-stat rmp-reveal">
+          <div class="rmp-stat-number">30<span>+</span></div>
+          <div class="rmp-stat-label">Events Per Season</div>
+        </div>
+        <div class="rmp-stat rmp-reveal" style="transition-delay: 0.1s">
+          <div class="rmp-stat-number"><span>NHRA</span></div>
+          <div class="rmp-stat-label">Sanctioned Facility</div>
+        </div>
+        <div class="rmp-stat rmp-reveal" style="transition-delay: 0.2s">
+          <div class="rmp-stat-number">3<span>+</span></div>
+          <div class="rmp-stat-label">Motorsport Disciplines</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NARRATIVE -->
+    <section class="rmp-narrative-section">
+      <div class="rmp-narrative">
+        <div class="rmp-narrative-left rmp-reveal">
+          <h2 class="rmp-narrative-heading">
+            Where Northern California Comes to Race
+          </h2>
+          <p class="rmp-narrative-body">
+            From NHRA Summit ET Series weekends and JR Dragster divisional
+            events, to the legendary Kool April Drags featuring Jets and Blown
+            Alcohol Funny Cars — Redding Motorsports Park is the region's home
+            for serious competition and unforgettable spectacle. Every season
+            brings signature events that draw racers and fans from across
+            California and beyond.
+          </p>
+          <div class="rmp-narrative-note">
+            ⚠️ Hot Weather Policy: Events may be canceled when forecast temps
+            exceed 106°F at race time — for the safety of racers, fans, and
+            staff.
+          </div>
+        </div>
+        <div
+          class="rmp-narrative-img-wrap rmp-reveal"
+          style="transition-delay: 0.15s"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=900&auto=format&fit=crop"
+            alt="Drag racing at Redding Motorsports Park"
+            loading="lazy"
+          />
+          <span class="rmp-narrative-img-badge"
+            >NHRA Hot Rod Heritage Series</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS SWITCHER -->
+    <section class="rmp-programs">
+      <div class="rmp-programs-inner">
+        <div class="rmp-programs-header rmp-reveal">
+          <h2 class="rmp-programs-title">Events & Disciplines</h2>
+        </div>
+        <div
+          class="rmp-programs-grid rmp-reveal"
+          style="transition-delay: 0.1s"
+        >
+          <div class="rmp-programs-tabs" id="rmpTabs">
+            <button class="rmp-tab-btn rmp-tab-active" data-panel="drag">
+              <span class="rmp-tab-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A8A8E"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v9a2 2 0 01-2 2h-2"
+                  />
+                  <circle cx="9" cy="17" r="2" />
+                  <circle cx="17" cy="17" r="2" />
+                </svg>
+              </span>
+              <span class="rmp-tab-label">Drag Racing</span>
+            </button>
+            <button class="rmp-tab-btn" data-panel="grudge">
+              <span class="rmp-tab-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A8A8E"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </span>
+              <span class="rmp-tab-label">GrudgeFest</span>
+            </button>
+            <button class="rmp-tab-btn" data-panel="drift">
+              <span class="rmp-tab-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A8A8E"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 12c0-4.97 4.03-9 9-9s9 4.03 9 9-4.03 9-9 9" />
+                  <path d="M12 8v4l3 3" />
+                </svg>
+              </span>
+              <span class="rmp-tab-label">Drifting</span>
+            </button>
+            <button class="rmp-tab-btn" data-panel="kool">
+              <span class="rmp-tab-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A8A8E"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"
+                  />
+                </svg>
+              </span>
+              <span class="rmp-tab-label">Kool April Drags</span>
+            </button>
+            <button class="rmp-tab-btn" data-panel="thunder">
+              <span class="rmp-tab-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#8A8A8E"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M19 4H5a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2z"
+                  />
+                  <path d="M12 14v6M8 18h8" />
+                </svg>
+              </span>
+              <span class="rmp-tab-label">Thunder Under The Lites</span>
+            </button>
+          </div>
+
+          <div id="rmpPanels">
+            <div class="rmp-programs-panel rmp-panel-active" id="panel-drag">
+              <div class="rmp-panel-kicker">NHRA Sanctioned</div>
+              <h3 class="rmp-panel-title">ET Bracket & JR Drag Racing</h3>
+              <p class="rmp-panel-body">
+                The heart of the Park's calendar. NHRA Summit ET Series events
+                run across multiple weekends covering Super Pro, Pro, Sportsman,
+                Motorcycle, JR Dragsters, and more. Full bracket racing for all
+                skill levels with NHRA points on the line.
+              </p>
+              <div class="rmp-panel-details">
+                <span class="rmp-panel-detail">Super Pro</span>
+                <span class="rmp-panel-detail">Sportsman</span>
+                <span class="rmp-panel-detail">Jr Dragsters</span>
+                <span class="rmp-panel-detail">Motorcycle</span>
+                <span class="rmp-panel-detail">Highschool Class</span>
+              </div>
+              <a href="#" class="rmp-panel-link"
+                >Race Schedule
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M2 7h10M8 3l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+
+            <div class="rmp-programs-panel" id="panel-grudge">
+              <div class="rmp-panel-kicker">Saturday Nights</div>
+              <h3 class="rmp-panel-title">
+                Midnite Mayhem GrudgeFest & Skid Pit
+              </h3>
+              <p class="rmp-panel-body">
+                The Park's rawest, most electric event format. Street Machine
+                grudge racing on the strip, plus the Skid Pit for tire-shredding
+                burnout competition. Gates open 8PM, racing from 9PM to 1AM —
+                lights out, no excuses.
+              </p>
+              <div class="rmp-panel-details">
+                <span class="rmp-panel-detail">Gates 8PM</span>
+                <span class="rmp-panel-detail">Racing 9PM–1AM</span>
+                <span class="rmp-panel-detail">Skid Pit</span>
+                <span class="rmp-panel-detail">Street Cars Welcome</span>
+              </div>
+              <a href="#" class="rmp-panel-link"
+                >Event Info
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M2 7h10M8 3l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+
+            <div class="rmp-programs-panel" id="panel-drift">
+              <div class="rmp-panel-kicker">Competition & Exhibition</div>
+              <h3 class="rmp-panel-title">Drift Competition & Exhibition</h3>
+              <p class="rmp-panel-body">
+                Redding Motorsports Park hosts drift competition and exhibition
+                events, bringing controlled sideways action to a dedicated
+                venue. A dynamic crowd-draw that expands the Park's reach into a
+                new generation of motorsport fans.
+              </p>
+              <div class="rmp-panel-details">
+                <span class="rmp-panel-detail">Competition Format</span>
+                <span class="rmp-panel-detail">Exhibition Runs</span>
+                <span class="rmp-panel-detail">Tandem Battles</span>
+              </div>
+              <a href="#" class="rmp-panel-link"
+                >Drift Events
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M2 7h10M8 3l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+
+            <div class="rmp-programs-panel" id="panel-kool">
+              <div class="rmp-panel-kicker">Signature Annual Event</div>
+              <h3 class="rmp-panel-title">Kool April Drags</h3>
+              <p class="rmp-panel-body">
+                The crown jewel of the season. The Kool April Drags is a
+                multi-day spectacular featuring Jet Cars, Blown Alcohol Funny
+                Cars, West Coast Outlaws, Extreme Pro Mods, and NorCal Drag
+                Bikes. Plus a Car Show and Street Machine GrudgeFest opener.
+                This is a can't-miss event.
+              </p>
+              <div class="rmp-panel-details">
+                <span class="rmp-panel-detail">Jet Cars</span>
+                <span class="rmp-panel-detail">Funny Cars</span>
+                <span class="rmp-panel-detail">Pro Mods</span>
+                <span class="rmp-panel-detail">Car Show</span>
+                <span class="rmp-panel-detail">NorCal Drag Bikes</span>
+              </div>
+              <a href="#" class="rmp-panel-link"
+                >Event Details
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M2 7h10M8 3l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+
+            <div class="rmp-programs-panel" id="panel-thunder">
+              <div class="rmp-panel-kicker">NHRA Hot Rod Heritage Series</div>
+              <h3 class="rmp-panel-title">Thunder Under The Lites</h3>
+              <p class="rmp-panel-body">
+                The NHRA Hot Rod Heritage Series comes to Redding with Nitro
+                Burning Top Fuel Dragsters, Pro Comp, West Coast Outlaws, Jr
+                Fuel Dragsters, Pro Gas Door Cars, Nostalgia Eliminator classes,
+                and Hot Rod. A full weekend of fire, fury, and nostalgia-soaked
+                speed.
+              </p>
+              <div class="rmp-panel-details">
+                <span class="rmp-panel-detail">Nitro Top Fuel</span>
+                <span class="rmp-panel-detail">Pro Comp</span>
+                <span class="rmp-panel-detail">WC Outlaws</span>
+                <span class="rmp-panel-detail">Nostalgia Eliminator</span>
+                <span class="rmp-panel-detail">Jr Fuel</span>
+              </div>
+              <a href="#" class="rmp-panel-link"
+                >Race Info
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M2 7h10M8 3l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE SNAPSHOT -->
+    <section class="rmp-schedule-section">
+      <div class="rmp-schedule">
+        <div class="rmp-schedule-header rmp-reveal">
+          <div>
+            <h2 class="rmp-schedule-title">Upcoming Events</h2>
+          </div>
+          <a href="#" class="rmp-schedule-view-all">
+            Full Calendar
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M2 7h10M8 3l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="rmp-schedule-list">
+          <div class="rmp-schedule-item rmp-reveal">
+            <div class="rmp-schedule-date-block">
+              <div class="rmp-schedule-month">Jun</div>
+              <div class="rmp-schedule-day">13</div>
+            </div>
+            <div>
+              <div class="rmp-schedule-event-name">
+                Midnite Mayhem GrudgeFest & Skid Pit
+              </div>
+              <div class="rmp-schedule-event-meta">
+                Gates 8PM · Racing 9PM–1AM
+              </div>
+            </div>
+            <span class="rmp-schedule-reg">Regular</span>
+          </div>
+
+          <div
+            class="rmp-schedule-item rmp-reveal"
+            style="transition-delay: 0.05s"
+          >
+            <div class="rmp-schedule-date-block">
+              <div class="rmp-schedule-month">Jun</div>
+              <div class="rmp-schedule-day">19</div>
+            </div>
+            <div>
+              <div class="rmp-schedule-event-name">
+                Test N Tune at the Dragstrip
+              </div>
+              <div class="rmp-schedule-event-meta">
+                Gates Open 12noon · Testing 6PM–10PM
+              </div>
+            </div>
+            <span class="rmp-schedule-reg">Regular</span>
+          </div>
+
+          <div
+            class="rmp-schedule-item rmp-reveal"
+            style="transition-delay: 0.1s"
+          >
+            <div class="rmp-schedule-date-block">
+              <div class="rmp-schedule-month">Jun</div>
+              <div class="rmp-schedule-day">20–21</div>
+            </div>
+            <div>
+              <div class="rmp-schedule-event-name">
+                NHRA Summit ET Series & JR Dragster Divisional
+              </div>
+              <div class="rmp-schedule-event-meta">
+                75th Anniversary Wally Trophies · 8AM
+              </div>
+            </div>
+            <span class="rmp-schedule-sig">Signature</span>
+          </div>
+
+          <div
+            class="rmp-schedule-item rmp-reveal"
+            style="transition-delay: 0.15s"
+          >
+            <div class="rmp-schedule-date-block">
+              <div class="rmp-schedule-month">Sep</div>
+              <div class="rmp-schedule-day">12</div>
+            </div>
+            <div>
+              <div class="rmp-schedule-event-name">
+                Thunder Under The Lites — NHRA Hot Rod Heritage Series
+              </div>
+              <div class="rmp-schedule-event-meta">
+                Nitro Fuel Dragsters · Pro Comp · West Coast Outlaws
+              </div>
+            </div>
+            <span class="rmp-schedule-sig">Signature</span>
+          </div>
+
+          <div
+            class="rmp-schedule-item rmp-reveal"
+            style="transition-delay: 0.2s"
+          >
+            <div class="rmp-schedule-date-block">
+              <div class="rmp-schedule-month">Oct</div>
+              <div class="rmp-schedule-day">1–4</div>
+            </div>
+            <div>
+              <div class="rmp-schedule-event-name">
+                NHRA Summit/Hoosier North ET Finals
+              </div>
+              <div class="rmp-schedule-event-meta">
+                Gambler · Race of Champions · Season Finale
+              </div>
+            </div>
+            <span class="rmp-schedule-sig">Signature</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="rmp-quote-section">
+      <div class="rmp-quote-inner rmp-reveal">
+        <span class="rmp-quote-mark">"</span>
+        <p class="rmp-quote-text">
+          Events in Blue are Redding Motorsport's Signature, Can't-Miss Events —
+          and once you've been to one, you'll understand why fans come back
+          every single year.
+        </p>
+        <div class="rmp-quote-rule"></div>
+        <p class="rmp-quote-credit">
+          Redding Motorsports Park · Redding, California
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rmp-cta">
+      <div class="rmp-cta-inner">
+        <div class="rmp-reveal">
+          <h2 class="rmp-cta-heading">Get on the Strip.</h2>
+          <p class="rmp-cta-body">
+            Whether you're a seasoned bracket racer, a first-time spectator, or
+            looking to rent the track — Redding Motorsports Park has a place for
+            you. Tune to 97.5 FM on event days for live race audio.
+          </p>
+          <p class="rmp-cta-kids">
+            ★ Kids 11 and younger admitted free with paid adult
+          </p>
+        </div>
+        <div class="rmp-cta-right rmp-reveal" style="transition-delay: 0.1s">
+          <a href="#" class="rmp-cta-btn-primary">Buy Tickets Now</a>
+          <div class="rmp-cta-links">
+            <a href="#" class="rmp-cta-link">Spectator Info</a>
+            <a href="#" class="rmp-cta-link">Racer Info</a>
+            <a href="#" class="rmp-cta-link">Rent the Track</a>
+            <a href="#" class="rmp-cta-link">Contact Us</a>
+          </div>
+          <div class="rmp-cta-social">
+            <span class="rmp-cta-social-label">Follow</span>
+            <a href="#" class="rmp-social-icon" aria-label="Facebook">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#8A8A8E"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="rmp-social-icon" aria-label="Instagram">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#8A8A8E"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="#" class="rmp-social-icon" aria-label="Email">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#8A8A8E"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="rmp-footer">
+      <div class="rmp-footer-inner">
+        <div class="rmp-footer-brand">
+          <strong>Redding Motorsports Park</strong>
+          Drag Racing · Car Shows · Drifting
+        </div>
+        <div class="rmp-footer-meta">
+          © 2026 Redding Motorsports Park. All rights reserved. · NHRA
+          Sanctioned Facility · Radio 97.5 FM
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu
+      const hamburger = document.getElementById("rmpHamburger");
+      const mobileMenu = document.getElementById("rmpMobileMenu");
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("rmp-open");
+        mobileMenu.classList.toggle("rmp-open");
+      });
+
+      // Tab switcher
+      const tabs = document.querySelectorAll(".rmp-tab-btn");
+      const panels = document.querySelectorAll(".rmp-programs-panel");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("rmp-tab-active"));
+          panels.forEach((p) => p.classList.remove("rmp-panel-active"));
+          tab.classList.add("rmp-tab-active");
+          const panelId = "panel-" + tab.dataset.panel;
+          document.getElementById(panelId).classList.add("rmp-panel-active");
+        });
+      });
+
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".rmp-reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("rmp-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+
+      reveals.forEach((el) => observer.observe(el));
+
+      // GLAD HEADER
+      const gladHeader = document.getElementById("glad-header");
+      const rmpNav = document.querySelector(".rmp-nav");
+      let lastScrollY = window.scrollY;
+      let gladVisible = true;
+
+      const updateGladState = () => {
+        const y = window.scrollY;
+        if (y > 80 && y > lastScrollY) {
+          if (gladVisible) {
+            gladHeader.classList.add("hidden");
+            document.body.classList.add("glad-hidden");
+            rmpNav.classList.add("scrolled");
+            gladVisible = false;
+          }
+        } else if (y < lastScrollY && y < 40) {
+          if (!gladVisible) {
+            gladHeader.classList.remove("hidden");
+            document.body.classList.remove("glad-hidden");
+            rmpNav.classList.remove("scrolled");
+            gladVisible = true;
+          }
+        }
+        lastScrollY = y;
+      };
+
+      window.addEventListener("scroll", updateGladState, { passive: true });
+      updateGladState();
+    </script>
+  </body>
+</html>

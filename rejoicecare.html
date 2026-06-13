@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rejoice Care Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rcf-ink:#2b2a28;
+    --rcf-rose:#d6597b;
+    --rcf-rose-deep:#b13f5e;
+    --rcf-cream:#f7f4ef;
+    --rcf-paper:#ffffff;
+    --rcf-muted:#7d7670;
+    --rcf-line:#e4ddd3;
+    --rcf-sage:#5d6e5a;
+
+    --rcf-display:'Source Serif 4', Georgia, serif;
+    --rcf-body:'Inter', system-ui, -apple-system, sans-serif;
+
+    --rcf-space-xs: 0.75rem;
+    --rcf-space-sm: 1.5rem;
+    --rcf-space-md: 2.5rem;
+    --rcf-space-lg: 4rem;
+    --rcf-space-xl: 6rem;
+
+    --shell-max: 1280px;
+    --gutter: 1.5rem;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:var(--rcf-body);
+    color:var(--rcf-ink);
+    background:var(--rcf-paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  img{display:block;max-width:100%;height:auto;}
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ===================== HEADER / NAV ===================== */
+  .rcf-topbar{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rcf-line);
+  }
+
+  .rcf-nav-wrap{
+    max-width:1280px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.1rem 1.5rem;
+  }
+
+  .rcf-brand{
+    display:flex;
+    align-items:center;
+    gap:0.75rem;
+  }
+
+  .rcf-brand-mark{
+    width:38px;
+    height:38px;
+    flex-shrink:0;
+  }
+
+  .rcf-brand-text{
+    display:flex;
+    flex-direction:column;
+    line-height:1.1;
+  }
+
+  .rcf-brand-name{
+    font-family:var(--rcf-display);
+    font-size:1.15rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+    color:var(--rcf-ink);
+  }
+
+  .rcf-brand-tag{
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--rcf-rose-deep);
+    margin-top:0.15rem;
+  }
+
+  .rcf-nav-links{
+    display:none;
+    align-items:center;
+    gap:2.25rem;
+  }
+
+  .rcf-nav-links a{
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--rcf-ink);
+    position:relative;
+    padding:0.25rem 0;
+    transition:color 0.2s ease;
+  }
+
+  .rcf-nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-2px;
+    width:0;
+    height:2px;
+    background:var(--rcf-rose);
+    transition:width 0.25s ease;
+  }
+
+  .rcf-nav-links a:hover{color:var(--rcf-rose-deep);}
+  .rcf-nav-links a:hover::after{width:100%;}
+
+  .rcf-nav-cta{
+    display:none;
+    align-items:center;
+    gap:1rem;
+  }
+
+  .rcf-give-btn{
+    font-size:0.88rem;
+    font-weight:600;
+    padding:0.65rem 1.5rem;
+    border:1.5px solid var(--rcf-ink);
+    border-radius:999px;
+    transition:all 0.25s ease;
+    white-space:nowrap;
+  }
+
+  .rcf-give-btn:hover{
+    background:var(--rcf-ink);
+    color:var(--rcf-paper);
+  }
+
+  /* Mobile menu toggle */
+  .rcf-menu-toggle{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:40px;
+    height:40px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    z-index:101;
+  }
+
+  .rcf-menu-toggle span{
+    display:block;
+    height:2px;
+    width:24px;
+    background:var(--rcf-ink);
+    transition:all 0.3s ease;
+    border-radius:1px;
+  }
+
+  .rcf-menu-toggle.is-active span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+  }
+  .rcf-menu-toggle.is-active span:nth-child(2){
+    opacity:0;
+  }
+  .rcf-menu-toggle.is-active span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+  }
+
+  /* Off-canvas mobile nav */
+  .rcf-mobile-panel{
+    position:fixed;
+    top:0;
+    right:0;
+    height:100vh;
+    width:min(82vw, 360px);
+    background:var(--rcf-cream);
+    box-shadow:-10px 0 40px rgba(0,0,0,0.08);
+    transform:translateX(100%);
+    transition:transform 0.4s cubic-bezier(0.65,0,0.35,1);
+    z-index:99;
+    padding:6rem 2rem 2rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+  }
+
+  .rcf-mobile-panel.is-open{
+    transform:translateX(0);
+  }
+
+  .rcf-mobile-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(43,42,40,0.35);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.3s ease;
+    z-index:98;
+  }
+
+  .rcf-mobile-overlay.is-open{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .rcf-mobile-panel a{
+    font-family:var(--rcf-display);
+    font-size:1.4rem;
+    padding:0.75rem 0;
+    border-bottom:1px solid var(--rcf-line);
+    color:var(--rcf-ink);
+  }
+
+  .rcf-mobile-give{
+    margin-top:1.5rem;
+    text-align:center;
+    padding:0.85rem 1.5rem;
+    background:var(--rcf-rose);
+    color:#fff;
+    border-radius:999px;
+    font-weight:600;
+    font-family:var(--rcf-body);
+    font-size:0.95rem;
+  }
+
+  @media(min-width:900px){
+    .rcf-nav-links{display:flex;}
+    .rcf-nav-cta{display:flex;}
+    .rcf-menu-toggle{display:none;}
+  }
+
+  /* ===================== HERO CAROUSEL ===================== */
+  .rcf-hero{
+    position:relative;
+    min-height:88vh;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+    background:var(--rcf-ink);
+  }
+
+  .rcf-hero-slides{
+    position:absolute;
+    inset:0;
+  }
+
+  .rcf-hero-slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity 1.2s ease-in-out;
+  }
+
+  .rcf-hero-slide.is-active{
+    opacity:1;
+  }
+
+  .rcf-hero-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+
+  .rcf-hero-slide::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(14, 13, 13, 0.35) 0%, rgba(19, 19, 18, 0.88) 100%);
+  }
+
+  .rcf-hero-content{
+    position:relative;
+    z-index:2;
+    max-width:1280px;
+    width:100%;
+    margin:0 auto;
+    padding:7.5rem 1.5rem 2rem 1.5rem;
+    color:#fff;
+  }
+
+  .rcf-hero-eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#f0c9d3;
+    margin-bottom:1.25rem;
+    font-weight:600;
+  }
+
+  .rcf-hero-heading{
+    font-family:var(--rcf-display);
+    font-size:clamp(2.4rem, 6vw, 4.5rem);
+    font-weight:600;
+    line-height:1.08;
+    max-width:18ch;
+    margin-bottom:1.25rem;
+  }
+
+  .rcf-hero-desc{
+    font-size:1.05rem;
+    max-width:42ch;
+    color:rgba(255,255,255,0.88);
+    margin-bottom:2rem;
+  }
+
+  .rcf-hero-actions{
+    display:flex;
+    align-items:center;
+    gap:2rem;
+    flex-wrap:wrap;
+    margin-bottom:2.5rem;
+  }
+
+  .rcf-primary-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    background:var(--rcf-rose);
+    color:#fff;
+    padding:0.95rem 2rem;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.95rem;
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+
+  .rcf-primary-btn:hover{
+    background:var(--rcf-rose-deep);
+    transform:translateY(-2px);
+  }
+
+  .rcf-secondary-link{
+    font-size:0.9rem;
+    font-weight:500;
+    border-bottom:1px solid rgba(255,255,255,0.5);
+    padding-bottom:0.2rem;
+    transition:border-color 0.25s ease;
+  }
+
+  .rcf-secondary-link:hover{
+    border-color:#fff;
+  }
+
+  .rcf-hero-dots{
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+
+  .rcf-hero-pause{
+    margin-left:0.5rem;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.35);
+    background:transparent;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:border-color 0.25s ease, background 0.25s ease;
+  }
+
+  .rcf-hero-pause:hover{
+    border-color:#fff;
+    background:rgba(255,255,255,0.1);
+  }
+
+  .rcf-hero-dot{
+    width:32px;
+    height:3px;
+    background:rgba(255,255,255,0.35);
+    border:none;
+    cursor:pointer;
+    border-radius:2px;
+    transition:background 0.3s ease;
+    padding:0;
+  }
+
+  .rcf-hero-dot.is-active{
+    background:#fff;
+  }
+
+  /* ===================== IMPACT STATS ===================== */
+  .rcf-impact{
+    border-bottom:1px solid var(--rcf-line);
+  }
+
+  .rcf-impact-row{
+    max-width:1280px;
+    margin:0 auto;
+    padding:var(--rcf-space-lg) 1.5rem;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rcf-space-md);
+  }
+
+  @media(min-width:768px){
+    .rcf-impact-row{
+      grid-template-columns:repeat(3, 1fr);
+      gap:var(--rcf-space-lg);
+    }
+  }
+
+  .rcf-impact-item{
+    border-top:1px solid var(--rcf-line);
+    padding-top:var(--rcf-space-sm);
+  }
+
+  @media(min-width:768px){
+    .rcf-impact-item:not(:first-child){
+      border-left:1px solid var(--rcf-line);
+      border-top:none;
+      padding-top:0;
+      padding-left:var(--rcf-space-lg);
+    }
+  }
+
+  .rcf-impact-number{
+    font-family:var(--rcf-display);
+    font-size:clamp(2.6rem, 5vw, 3.6rem);
+    font-weight:600;
+    color:var(--rcf-rose-deep);
+    line-height:1;
+    margin-bottom:0.6rem;
+  }
+
+  .rcf-impact-label{
+    font-size:0.88rem;
+    color:var(--rcf-muted);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    max-width:24ch;
+  }
+
+  /* ===================== NARRATIVE SPLIT ===================== */
+  .rcf-narrative{
+    background:var(--rcf-cream);
+  }
+
+  .rcf-narrative-grid{
+    max-width:1280px;
+    margin:0 auto;
+    padding:var(--rcf-space-xl) 1.5rem;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rcf-space-lg);
+    align-items:center;
+  }
+
+  @media(min-width:960px){
+    .rcf-narrative-grid{
+      grid-template-columns:1.2fr 1fr;
+      gap:var(--rcf-space-xl);
+    }
+    .rcf-narrative-grid.rcf-reverse{
+      grid-template-columns:1fr 1.2fr;
+    }
+    .rcf-narrative-grid.rcf-reverse .rcf-narrative-media{
+      order:2;
+    }
+  }
+
+  .rcf-narrative-eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--rcf-rose-deep);
+    font-weight:700;
+    margin-bottom:1.25rem;
+  }
+
+  .rcf-narrative-heading{
+    font-family:var(--rcf-display);
+    font-size:clamp(1.9rem, 4vw, 2.75rem);
+    font-weight:600;
+    line-height:1.2;
+    margin-bottom:1.5rem;
+    max-width:22ch;
+  }
+
+  .rcf-narrative-text p{
+    color:#54504c;
+    font-size:1.02rem;
+    margin-bottom:1.1rem;
+    max-width:52ch;
+  }
+
+  .rcf-narrative-text p:last-child{margin-bottom:0;}
+
+  .rcf-narrative-media img{
+    border-radius:6px;
+    width:100%;
+  }
+
+  /* ===================== PROGRAMS SWITCHER ===================== */
+  .rcf-programs{
+    background:var(--rcf-paper);
+  }
+
+  .rcf-programs-inner{
+    max-width:1280px;
+    margin:0 auto;
+    padding:var(--rcf-space-xl) 1.5rem;
+  }
+
+  .rcf-section-head{
+    max-width:640px;
+    margin-bottom:var(--rcf-space-lg);
+  }
+
+  .rcf-section-head .rcf-narrative-eyebrow{margin-bottom:1rem;}
+
+  .rcf-section-head h2{
+    font-family:var(--rcf-display);
+    font-size:clamp(1.9rem, 4vw, 2.75rem);
+    font-weight:600;
+    line-height:1.2;
+  }
+
+  .rcf-programs-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    border:1px solid var(--rcf-line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+
+  @media(min-width:900px){
+    .rcf-programs-grid{
+      grid-template-columns:340px 1fr;
+    }
+  }
+
+  .rcf-programs-tabs{
+    display:flex;
+    flex-direction:column;
+    background:var(--rcf-cream);
+  }
+
+  .rcf-program-tab{
+    text-align:left;
+    background:none;
+    border:none;
+    border-bottom:1px solid var(--rcf-line);
+    padding:1.5rem 1.75rem;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+    transition:background 0.25s ease;
+    font-family:var(--rcf-body);
+  }
+
+  .rcf-program-tab:last-child{border-bottom:none;}
+
+  .rcf-program-tab.is-active{
+    background:var(--rcf-paper);
+  }
+
+  .rcf-program-tab.is-active .rcf-program-tab-title{
+    color:var(--rcf-rose-deep);
+  }
+
+  .rcf-program-tab-index{
+    font-size:0.78rem;
+    color:var(--rcf-muted);
+    letter-spacing:0.08em;
+  }
+
+  .rcf-program-tab-title{
+    font-family:var(--rcf-display);
+    font-size:1.2rem;
+    font-weight:600;
+    color:var(--rcf-ink);
+    transition:color 0.2s ease;
+  }
+
+  .rcf-programs-panels{
+    position:relative;
+    min-height:420px;
+  }
+
+  .rcf-program-panel{
+    display:none;
+    padding:var(--rcf-space-md) var(--rcf-space-md) var(--rcf-space-lg);
+    height:100%;
+  }
+
+  .rcf-program-panel.is-active{
+    display:flex;
+    flex-direction:column;
+    gap:1.5rem;
+  }
+
+  @media(min-width:640px){
+    .rcf-program-panel.is-active{
+      flex-direction:row;
+      align-items:stretch;
+    }
+  }
+
+  .rcf-program-panel-media{
+    flex:0 0 42%;
+    border-radius:6px;
+    overflow:hidden;
+  }
+
+  .rcf-program-panel-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    min-height:220px;
+  }
+
+  .rcf-program-panel-text{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .rcf-program-panel-text h3{
+    font-family:var(--rcf-display);
+    font-size:1.6rem;
+    font-weight:600;
+    margin-bottom:1rem;
+  }
+
+  .rcf-program-panel-text p{
+    color:#54504c;
+    margin-bottom:1.1rem;
+  }
+
+  .rcf-program-panel-link{
+    margin-top:auto;
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    font-weight:600;
+    font-size:0.92rem;
+    color:var(--rcf-rose-deep);
+    align-self:flex-start;
+  }
+
+  .rcf-program-panel-link svg{
+    transition:transform 0.25s ease;
+  }
+
+  .rcf-program-panel-link:hover svg{
+    transform:translateX(4px);
+  }
+
+  /* ===================== TESTIMONIAL ===================== */
+  .rcf-testimonial{
+    background:var(--rcf-ink);
+    color:#fff;
+  }
+
+  .rcf-testimonial-inner{
+    max-width:900px;
+    margin:0 auto;
+    padding:var(--rcf-space-xl) 1.5rem;
+    text-align:center;
+  }
+
+  .rcf-quote-mark{
+    font-family:var(--rcf-display);
+    font-size:5rem;
+    line-height:1;
+    color:var(--rcf-rose);
+    margin-bottom:1rem;
+  }
+
+  .rcf-quote-text{
+    font-family:var(--rcf-display);
+    font-size:clamp(1.4rem, 3.2vw, 2rem);
+    font-weight:500;
+    font-style:italic;
+    line-height:1.5;
+    margin-bottom:2rem;
+    max-width:34ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .rcf-quote-credit{
+    font-size:0.9rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.6);
+    margin-bottom:2rem;
+  }
+
+  .rcf-testimonial-link{
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    font-size:0.9rem;
+    font-weight:600;
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,0.35);
+    padding-bottom:0.2rem;
+    transition:border-color 0.25s ease;
+  }
+
+  .rcf-testimonial-link:hover{
+    border-color:#fff;
+  }
+
+  .rcf-testimonial-link svg{
+    transition:transform 0.25s ease;
+  }
+
+  .rcf-testimonial-link:hover svg{
+    transform:translateX(4px);
+  }
+
+  /* ===================== FINAL CALLOUT ===================== */
+  .rcf-callout{
+    background:var(--rcf-cream);
+  }
+
+  .rcf-callout-inner{
+    max-width:1280px;
+    margin:0 auto;
+    padding:var(--rcf-space-xl) 1.5rem;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rcf-space-lg);
+    align-items:center;
+  }
+
+  @media(min-width:900px){
+    .rcf-callout-inner{
+      grid-template-columns:1.1fr 1fr;
+    }
+  }
+
+  .rcf-callout-text .rcf-narrative-eyebrow{margin-bottom:1.25rem;}
+
+  .rcf-callout-text h2{
+    font-family:var(--rcf-display);
+    font-size:clamp(1.9rem, 4vw, 2.75rem);
+    font-weight:600;
+    line-height:1.2;
+    margin-bottom:1.25rem;
+    max-width:18ch;
+  }
+
+  .rcf-callout-text p{
+    color:#54504c;
+    max-width:42ch;
+    margin-bottom:1.75rem;
+  }
+
+  .rcf-callout-actions{
+    display:flex;
+    gap:1.25rem;
+    flex-wrap:wrap;
+  }
+
+  .rcf-outline-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    border:1.5px solid var(--rcf-ink);
+    color:var(--rcf-ink);
+    padding:0.9rem 1.9rem;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.95rem;
+    transition:all 0.25s ease;
+  }
+
+  .rcf-outline-btn:hover{
+    background:var(--rcf-ink);
+    color:#fff;
+  }
+
+  .rcf-callout-form{
+    background:#fff;
+    border:1px solid var(--rcf-line);
+    border-radius:10px;
+    padding:var(--rcf-space-md);
+  }
+
+  .rcf-callout-form h3{
+    font-family:var(--rcf-display);
+    font-size:1.4rem;
+    font-weight:600;
+    margin-bottom:0.5rem;
+  }
+
+  .rcf-callout-form p{
+    color:var(--rcf-muted);
+    font-size:0.92rem;
+    margin-bottom:1.5rem;
+  }
+
+  .rcf-form-row{
+    margin-bottom:1.1rem;
+  }
+
+  .rcf-form-row label{
+    display:block;
+    font-size:0.82rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--rcf-muted);
+    margin-bottom:0.5rem;
+  }
+
+  .rcf-form-row input{
+    width:100%;
+    padding:0.85rem 1rem;
+    border:1px solid var(--rcf-line);
+    border-radius:6px;
+    font-family:var(--rcf-body);
+    font-size:0.95rem;
+    background:var(--rcf-cream);
+  }
+
+  .rcf-form-row input:focus{
+    outline:2px solid var(--rcf-rose);
+    outline-offset:1px;
+  }
+
+  .rcf-form-submit{
+    width:100%;
+    padding:0.95rem;
+    background:var(--rcf-rose);
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.95rem;
+    font-family:var(--rcf-body);
+    cursor:pointer;
+    transition:background 0.25s ease;
+  }
+
+  .rcf-form-submit:hover{
+    background:var(--rcf-rose-deep);
+  }
+
+  /* ===================== FOOTER ===================== */
+  .rcf-footer{
+    background:var(--rcf-ink);
+    color:rgba(255,255,255,0.7);
+  }
+
+  .rcf-footer-inner{
+    max-width:1280px;
+    margin:0 auto;
+    padding:var(--rcf-space-lg) 1.5rem var(--rcf-space-md);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rcf-space-lg);
+  }
+
+  @media(min-width:768px){
+    .rcf-footer-inner{
+      grid-template-columns:1.4fr 1fr 1fr;
+    }
+  }
+
+  .rcf-footer-brand{
+    display:flex;
+    align-items:center;
+    gap:0.75rem;
+    margin-bottom:1.25rem;
+  }
+
+  .rcf-footer-brand-name{
+    font-family:var(--rcf-display);
+    font-size:1.15rem;
+    font-weight:600;
+    color:#fff;
+  }
+
+  .rcf-footer p{
+    font-size:0.92rem;
+    max-width:34ch;
+    margin-bottom:1.5rem;
+  }
+
+  .rcf-footer-socials{
+    display:flex;
+    gap:0.85rem;
+  }
+
+  .rcf-footer-socials a{
+    width:38px;
+    height:38px;
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all 0.25s ease;
+  }
+
+  .rcf-footer-socials a:hover{
+    background:var(--rcf-rose);
+    border-color:var(--rcf-rose);
+  }
+
+  .rcf-footer-heading{
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:rgba(255,255,255,0.45);
+    margin-bottom:1.25rem;
+  }
+
+  .rcf-footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:0.75rem;
+  }
+
+  .rcf-footer-links a{
+    font-size:0.92rem;
+    transition:color 0.2s ease;
+  }
+
+  .rcf-footer-links a:hover{
+    color:#fff;
+  }
+
+  .rcf-footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);
+    max-width:1280px;
+    margin:0 auto;
+    padding:1.5rem 1.5rem;
+    font-size:0.82rem;
+    color:rgba(255,255,255,0.4);
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.75rem;
+    justify-content:space-between;
+  }
+
+  .rcf-skip-link{
+    position:absolute;
+    left:-999px;
+    top:0;
+    background:var(--rcf-ink);
+    color:#fff;
+    padding:0.75rem 1.25rem;
+    font-size:0.9rem;
+    font-weight:600;
+    z-index:200;
+    border-radius:0 0 6px 0;
+  }
+
+  .rcf-skip-link:focus{
+    left:0;
+  }
+
+  /* ===================== SCROLL REVEAL ===================== */
+  .rcf-reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .rcf-reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  @media(prefers-reduced-motion: reduce){
+    .rcf-reveal{
+      opacity:1;
+      transform:none;
+      transition:none;
+    }
+    .rcf-hero-slide{
+      transition:none;
+    }
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#rcfMain" class="rcf-skip-link">Skip to main content</a>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ===================== HEADER ===================== -->
+<header class="rcf-topbar">
+  <div class="rcf-nav-wrap">
+    <a href="javascript:void(0)" class="rcf-brand">
+      <svg class="rcf-brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 14C21 10 16 10 13 13C9.5 16.5 9.5 22 14 27L24 38L34 27C38.5 22 38.5 16.5 35 13C32 10 27 10 24 14Z" stroke="var(--rcf-rose)" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M24 6V15M19.5 10.5H28.5" stroke="var(--rcf-ink)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="rcf-brand-text">
+        <span class="rcf-brand-name">Rejoice Care Foundation</span>
+       
+      </span>
+    </a>
+
+    <nav class="rcf-nav-links" aria-label="Primary navigation">
+      <a href="javascript:void(0)">About Us</a>
+      <a href="javascript:void(0)">Youth Ministry</a>
+      <a href="javascript:void(0)">Feeding Ministry</a>
+      <a href="javascript:void(0)">Discipleship</a>
+      <a href="javascript:void(0)">Contact</a>
+    </nav>
+
+    <div class="rcf-nav-cta">
+      <a href="javascript:void(0)" class="rcf-give-btn">Give Now</a>
+    </div>
+
+    <button class="rcf-menu-toggle" id="rcfMenuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="rcf-mobile-overlay" id="rcfOverlay"></div>
+<nav class="rcf-mobile-panel" id="rcfMobilePanel" aria-label="Mobile navigation">
+  <a href="javascript:void(0)">Home</a>
+  <a href="javascript:void(0)">About Us</a>
+  <a href="javascript:void(0)">Youth Ministry</a>
+  <a href="javascript:void(0)">Feeding Ministry</a>
+  <a href="javascript:void(0)">Discipleship</a>
+  <a href="javascript:void(0)">Contact</a>
+  <a href="javascript:void(0)" class="rcf-mobile-give">Give Now</a>
+</nav>
+
+<!-- ===================== HERO CAROUSEL ===================== -->
+<section class="rcf-hero" id="rcfMain">
+  <div class="rcf-hero-slides">
+    <div class="rcf-hero-slide is-active">
+      <img src="https://static.wixstatic.com/media/488b77_b2815ace295549b1a0520949cc7f47de~mv2.jpg" alt="A diverse group of volunteers standing together in a circle with arms around each other, praying outdoors">
+    </div>
+    <div class="rcf-hero-slide">
+      <img src="https://static.wixstatic.com/media/488b77_268effa52f5a44d7a2adff99a6b9671b~mv2.jpg" alt="Youth ministry team gathered together for an enrichment program">
+    </div>
+    <div class="rcf-hero-slide">
+      <img src="https://static.wixstatic.com/media/488b77_192a20841f7f4c19a44d9c395fcfa366~mv2.jpg" alt="Volunteers preparing and distributing food at a community pantry event">
+    </div>
+  </div>
+
+  <div class="rcf-hero-content">
+    <h1 class="rcf-hero-heading">Rooted in faith, devoted to community.</h1>
+    <p class="rcf-hero-desc">Rejoice Care Foundation walks alongside youth, families, and neighbors in need through mentorship, feeding programs, and discipleship rooted in Christ's love.</p>
+    <div class="rcf-hero-actions">
+      <a href="javascript:void(0)" class="rcf-primary-btn">
+        Get Involved
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="javascript:void(0)" class="rcf-secondary-link">Learn about our programs</a>
+    </div>
+    <div class="rcf-hero-dots" id="rcfHeroDots">
+      <button class="rcf-hero-dot is-active" data-slide="0" aria-label="Show slide 1"></button>
+      <button class="rcf-hero-dot" data-slide="1" aria-label="Show slide 2"></button>
+      <button class="rcf-hero-dot" data-slide="2" aria-label="Show slide 3"></button>
+      <button class="rcf-hero-pause" id="rcfPauseBtn" aria-label="Pause slideshow" aria-pressed="false">
+        <svg class="rcf-icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <svg class="rcf-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M5 3l14 9-14 9V3z"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IMPACT STATS ===================== -->
+<section class="rcf-impact">
+  <div class="rcf-impact-row rcf-reveal">
+    <div class="rcf-impact-item">
+      <div class="rcf-impact-number">2018</div>
+      <div class="rcf-impact-label">Founded to serve youth and families in the local community</div>
+    </div>
+    <div class="rcf-impact-item">
+      <div class="rcf-impact-number">6</div>
+      <div class="rcf-impact-label">Active ministries spanning mentorship, feeding, and outreach</div>
+    </div>
+    <div class="rcf-impact-item">
+      <div class="rcf-impact-number">∞</div>
+      <div class="rcf-impact-label">Volunteers and church partners showing up week after week</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NARRATIVE SPLIT ===================== -->
+<section class="rcf-narrative">
+  <div class="rcf-narrative-grid rcf-reveal">
+    <div class="rcf-narrative-text">
+      <p class="rcf-narrative-eyebrow">Our Mission</p>
+      <h2 class="rcf-narrative-heading">A foundation built on showing up for one another.</h2>
+      <p>Rejoice Care Foundation exists to put faith into practice — meeting practical needs, building relationships, and creating spaces where young people and families feel seen, supported, and loved.</p>
+      <p>From mentorship circles to food pantry distributions, every program is carried out by volunteers from local churches who believe that care is not a program, but a way of life.</p>
+    </div>
+    <div class="rcf-narrative-media">
+      <img src="https://static.wixstatic.com/media/488b77_b2815ace295549b1a0520949cc7f47de~mv2.jpg" alt="Volunteers and community members gathered in a circle, arms around one another, outdoors">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROGRAMS SWITCHER ===================== -->
+<section class="rcf-programs">
+  <div class="rcf-programs-inner">
+    <div class="rcf-section-head rcf-reveal">
+      <p class="rcf-narrative-eyebrow">What We Do</p>
+      <h2>Core programs that carry our mission forward</h2>
+    </div>
+
+    <div class="rcf-programs-grid rcf-reveal">
+      <div class="rcf-programs-tabs" role="tablist" aria-label="Our programs">
+        <button class="rcf-program-tab is-active" data-panel="0" role="tab" aria-selected="true">
+          <span class="rcf-program-tab-index">01</span>
+          <span class="rcf-program-tab-title">Youth Enrichment & Spiritual Mentorship</span>
+        </button>
+        <button class="rcf-program-tab" data-panel="1" role="tab" aria-selected="false">
+          <span class="rcf-program-tab-index">02</span>
+          <span class="rcf-program-tab-title">Feeding Ministry & Food Pantry</span>
+        </button>
+        <button class="rcf-program-tab" data-panel="2" role="tab" aria-selected="false">
+          <span class="rcf-program-tab-index">03</span>
+          <span class="rcf-program-tab-title">Operation Christmas Child</span>
+        </button>
+        <button class="rcf-program-tab" data-panel="3" role="tab" aria-selected="false">
+          <span class="rcf-program-tab-index">04</span>
+          <span class="rcf-program-tab-title">Discipleship & Local Church Partnership</span>
+        </button>
+      </div>
+
+      <div class="rcf-programs-panels">
+        <div class="rcf-program-panel is-active" data-panel="0" role="tabpanel">
+          <div class="rcf-program-panel-media">
+            <img src="https://static.wixstatic.com/media/488b77_268effa52f5a44d7a2adff99a6b9671b~mv2.jpg" alt="Group of young people participating in a youth enrichment activity">
+          </div>
+          <div class="rcf-program-panel-text">
+            <h3>Youth Enrichment & Spiritual Mentorship</h3>
+            <p>We walk alongside young people through mentorship, Bible study, and enrichment activities designed to build character, confidence, and a strong foundation of faith for the road ahead.</p>
+            <a href="javascript:void(0)" class="rcf-program-panel-link">
+              Explore Youth Ministry
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="rcf-program-panel" data-panel="1" role="tabpanel">
+          <div class="rcf-program-panel-media">
+            <img src="https://static.wixstatic.com/media/488b77_192a20841f7f4c19a44d9c395fcfa366~mv2.jpg" alt="Volunteers distributing food to community members in need">
+          </div>
+          <div class="rcf-program-panel-text">
+            <h3>Feeding Ministry & Food Pantry</h3>
+            <p>Through our homeless feeding initiative and ongoing food pantry, we provide consistent access to meals and groceries for individuals and families facing food insecurity in our community.</p>
+            <a href="javascript:void(0)" class="rcf-program-panel-link">
+              Explore Feeding Ministry
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="rcf-program-panel" data-panel="2" role="tabpanel">
+          <div class="rcf-program-panel-media">
+            <img src="https://static.wixstatic.com/media/488b77_3a3cff40400448caaf35d74e4e6a14a7~mv2.jpg" alt="Community members coming together for an outreach event">
+          </div>
+          <div class="rcf-program-panel-text">
+            <h3>Operation Christmas Child</h3>
+            <p>Each year, we partner with Samaritan's Purse, local churches, and families to pack shoebox gifts filled with toys, school supplies, and hygiene items for children around the world.</p>
+            <p>Beyond the gift itself, every shoebox carries the message of God's love, often opening doors for the gospel to reach communities that would otherwise never hear it.</p>
+            <a href="javascript:void(0)" class="rcf-program-panel-link">
+              Learn How to Pack a Box
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="rcf-program-panel" data-panel="3" role="tabpanel">
+          <div class="rcf-program-panel-media">
+            <img src="https://static.wixstatic.com/media/488b77_b2815ace295549b1a0520949cc7f47de~mv2.jpg" alt="A circle of community members praying together outdoors">
+          </div>
+          <div class="rcf-program-panel-text">
+            <h3>Discipleship & Local Church Partnership</h3>
+            <p>We come alongside local churches to nurture growth in faith through small groups, discipleship pathways, and international mission outreach that extends our care beyond our own community.</p>
+            <a href="javascript:void(0)" class="rcf-program-panel-link">
+              See Our Partner Churches
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIAL ===================== -->
+<section class="rcf-testimonial">
+  <div class="rcf-testimonial-inner rcf-reveal">
+    <div class="rcf-quote-mark">&ldquo;</div>
+    <p class="rcf-quote-text">When the food pantry opened its doors to our family, it wasn't just groceries we received — it was the feeling that someone, somewhere, was praying for us by name.</p>
+    <p class="rcf-quote-credit">A Neighbor, Feeding Ministry Recipient</p>
+    <a href="javascript:void(0)" class="rcf-testimonial-link">
+      Read more stories from our community
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FINAL CALLOUT ===================== -->
+<section class="rcf-callout">
+  <div class="rcf-callout-inner rcf-reveal">
+    <div class="rcf-callout-text">
+      <p class="rcf-narrative-eyebrow">Join the Mission</p>
+      <h2>Your support carries this work forward.</h2>
+      <p>Whether through giving, volunteering, or simply staying connected, every act of generosity helps us reach more youth, feed more families, and share more hope.</p>
+      <div class="rcf-callout-actions">
+        <a href="javascript:void(0)" class="rcf-primary-btn">
+          Give Today
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="javascript:void(0)" class="rcf-outline-btn">Volunteer With Us</a>
+      </div>
+    </div>
+
+    <form class="rcf-callout-form" action="javascript:void(0)">
+      <h3>Stay Connected</h3>
+      <p>Get updates on upcoming feeding days, mission trips, and ways to get involved.</p>
+      <div class="rcf-form-row">
+        <label for="rcfName">Name</label>
+        <input type="text" id="rcfName" name="name" placeholder="Your full name" required>
+      </div>
+      <div class="rcf-form-row">
+        <label for="rcfEmail">Email</label>
+        <input type="email" id="rcfEmail" name="email" placeholder="you@example.com" required>
+      </div>
+      <button type="submit" class="rcf-form-submit">Sign Up for Updates</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="rcf-footer">
+  <div class="rcf-footer-inner">
+    <div>
+      <div class="rcf-footer-brand">
+        <svg class="rcf-brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M24 14C21 10 16 10 13 13C9.5 16.5 9.5 22 14 27L24 38L34 27C38.5 22 38.5 16.5 35 13C32 10 27 10 24 14Z" stroke="var(--rcf-rose)" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M24 6V15M19.5 10.5H28.5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="rcf-footer-brand-name">Rejoice Care Foundation</span>
+      </div>
+      <p>A faith-driven nonprofit serving youth, families, and neighbors through mentorship, feeding programs, and discipleship — because for God so loved the world.</p>
+      <div class="rcf-footer-socials">
+        <a href="javascript:void(0)" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="javascript:void(0)" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="javascript:void(0)" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6 12 13 2 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="rcf-footer-heading">Explore</p>
+      <div class="rcf-footer-links">
+        <a href="javascript:void(0)">About Us</a>
+        <a href="javascript:void(0)">Youth Ministry</a>
+        <a href="javascript:void(0)">Feeding Ministry</a>
+        <a href="javascript:void(0)">Discipleship</a>
+        <a href="javascript:void(0)">Operation Christmas Child</a>
+      </div>
+    </div>
+
+    <div>
+      <p class="rcf-footer-heading">Connect</p>
+      <div class="rcf-footer-links">
+        <a href="javascript:void(0)">Contact Us</a>
+        <a href="javascript:void(0)">Volunteer</a>
+        <a href="javascript:void(0)">Give Now</a>
+        <a href="javascript:void(0)">Partner Churches</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="rcf-footer-bottom">
+    <span>© 2026 Rejoice Care Foundation. All rights reserved.</span>
+    <span>For God so loved the world.</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const rcfToggle = document.getElementById('rcfMenuToggle');
+  const rcfPanel = document.getElementById('rcfMobilePanel');
+  const rcfOverlay = document.getElementById('rcfOverlay');
+
+  function rcfCloseMenu(){
+    rcfToggle.classList.remove('is-active');
+    rcfPanel.classList.remove('is-open');
+    rcfOverlay.classList.remove('is-open');
+    rcfToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  rcfToggle.addEventListener('click', () => {
+    const isOpen = rcfPanel.classList.toggle('is-open');
+    rcfToggle.classList.toggle('is-active');
+    rcfOverlay.classList.toggle('is-open');
+    rcfToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  rcfOverlay.addEventListener('click', rcfCloseMenu);
+  rcfPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', rcfCloseMenu));
+
+  // Hero carousel
+  const rcfSlides = document.querySelectorAll('.rcf-hero-slide');
+  const rcfDots = document.querySelectorAll('.rcf-hero-dot');
+  let rcfCurrent = 0;
+  let rcfInterval;
+
+  function rcfShowSlide(index){
+    rcfSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+    rcfDots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+    rcfCurrent = index;
+  }
+
+  function rcfNextSlide(){
+    rcfShowSlide((rcfCurrent + 1) % rcfSlides.length);
+  }
+
+  function rcfStartAutoplay(){
+    rcfInterval = setInterval(rcfNextSlide, 6000);
+  }
+
+  function rcfStopAutoplay(){
+    clearInterval(rcfInterval);
+  }
+
+  const rcfPauseBtn = document.getElementById('rcfPauseBtn');
+  const rcfIconPause = rcfPauseBtn.querySelector('.rcf-icon-pause');
+  const rcfIconPlay = rcfPauseBtn.querySelector('.rcf-icon-play');
+  let rcfPaused = false;
+
+  rcfPauseBtn.addEventListener('click', () => {
+    rcfPaused = !rcfPaused;
+    if (rcfPaused){
+      rcfStopAutoplay();
+      rcfIconPause.style.display = 'none';
+      rcfIconPlay.style.display = '';
+      rcfPauseBtn.setAttribute('aria-pressed', 'true');
+      rcfPauseBtn.setAttribute('aria-label', 'Play slideshow');
+    } else {
+      rcfStartAutoplay();
+      rcfIconPause.style.display = '';
+      rcfIconPlay.style.display = 'none';
+      rcfPauseBtn.setAttribute('aria-pressed', 'false');
+      rcfPauseBtn.setAttribute('aria-label', 'Pause slideshow');
+    }
+  });
+
+  rcfDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      rcfShowSlide(parseInt(dot.dataset.slide, 10));
+      if (!rcfPaused){
+        rcfStopAutoplay();
+        rcfStartAutoplay();
+      }
+    });
+  });
+
+  const rcfPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (rcfPrefersReducedMotion){
+    rcfPaused = true;
+    rcfIconPause.style.display = 'none';
+    rcfIconPlay.style.display = '';
+    rcfPauseBtn.setAttribute('aria-pressed', 'true');
+    rcfPauseBtn.setAttribute('aria-label', 'Play slideshow');
+  } else {
+    rcfStartAutoplay();
+  }
+
+  // Programs tab switcher
+  const rcfTabs = document.querySelectorAll('.rcf-program-tab');
+  const rcfPanels = document.querySelectorAll('.rcf-program-panel');
+
+  rcfTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.panel;
+      rcfTabs.forEach(t => {
+        t.classList.toggle('is-active', t === tab);
+        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+      });
+      rcfPanels.forEach(p => p.classList.toggle('is-active', p.dataset.panel === target));
+    });
+  });
+
+  // Scroll reveal
+  const rcfRevealEls = document.querySelectorAll('.rcf-reveal');
+  const rcfObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        rcfObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  rcfRevealEls.forEach(el => rcfObserver.observe(el));
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

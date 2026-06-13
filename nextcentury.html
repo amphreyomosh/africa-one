@@ -1,0 +1,2570 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Next Century, Inc. — Educational Services for Pennsylvania School
+      Districts
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        /* Pulled directly from their live site screenshots */
+        --nci-black: #000;
+        --nci-black-soft: #111111;
+        --nci-teal: #009bad;
+        --nci-teal-deep: #007a8a;
+        --nci-teal-light: #e0f5f7;
+        --nci-gold: #b8920a;
+        --nci-gold-light: #d4a812;
+        --nci-gold-pale: #fbf3dc;
+        --nci-white: #ffffff;
+        --nci-off-white: #f7f8f9;
+        --nci-border: #e2e6ea;
+        --nci-border-dark: #2a2a2a;
+        --nci-text: #1a1a1a;
+        --nci-text-soft: #4a5568;
+        --nci-text-light: #718096;
+        --ff-base: "Inter", system-ui, -apple-system, sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--ff-base);
+        color: var(--nci-text);
+        background: var(--nci-white);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ─── NAVBAR ─── */
+      .nci-navbar {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        z-index: 900;
+        background: var(--nci-black);
+        border-bottom: 1px solid var(--nci-border-dark);
+        transition:
+          box-shadow 0.3s ease,
+          top 0.3s ease;
+      }
+      .nci-navbar.nci-scrolled {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        top: 0;
+      }
+
+      .nci-navbar-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 28px;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .nci-brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        flex-shrink: 0;
+      }
+      .nci-brand-mark {
+        width: 38px;
+        height: 38px;
+        background: var(--nci-teal);
+        border-radius: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .nci-brand-mark span {
+        color: var(--nci-white);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .nci-brand-name {
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--nci-white);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+      .nci-brand-sub {
+        display: block;
+        font-size: 9.5px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.38);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+
+      .nci-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+      }
+      .nci-nav-links a {
+        font-size: 12.5px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        padding: 7px 14px;
+        border-radius: 0px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+      .nci-nav-links a:hover {
+        color: var(--nci-white);
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .nci-nav-cta {
+        background: var(--nci-teal) !important;
+        color: var(--nci-white) !important;
+        padding: 8px 18px !important;
+        border-radius: 0px !important;
+        font-weight: 500 !important;
+        transition: background 0.2s !important;
+      }
+      .nci-nav-cta:hover {
+        background: var(--nci-teal-deep) !important;
+      }
+
+      .nci-hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        color: rgba(255, 255, 255, 0.7);
+        border-radius: 0px;
+        transition: background 0.2s;
+      }
+      .nci-hamburger:hover {
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      /* Off-canvas */
+      .nci-mobile-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 950;
+        background: rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .nci-mobile-overlay.nci-open {
+        display: block;
+        opacity: 1;
+      }
+
+      .nci-mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 280px;
+        height: 100%;
+        background: var(--nci-black-soft);
+        z-index: 960;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
+      }
+      .nci-mobile-drawer.nci-open {
+        right: 0;
+      }
+
+      .nci-drawer-head {
+        padding: 20px 22px;
+        border-bottom: 1px solid var(--nci-border-dark);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nci-drawer-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        color: rgba(255, 255, 255, 0.5);
+        border-radius: 0px;
+      }
+      .nci-drawer-close:hover {
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--nci-white);
+      }
+
+      .nci-drawer-links {
+        list-style: none;
+        padding: 10px 0;
+      }
+      .nci-drawer-links li a {
+        display: block;
+        padding: 13px 22px;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+        border-bottom: 1px solid var(--nci-border-dark);
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+      .nci-drawer-links li a:hover {
+        color: var(--nci-white);
+        background: rgba(0, 155, 173, 0.15);
+      }
+      .nci-drawer-contact {
+        padding: 22px;
+      }
+      .nci-drawer-contact a {
+        display: block;
+        background: var(--nci-teal);
+        color: var(--nci-white);
+        text-align: center;
+        padding: 12px;
+        border-radius: 0px;
+        font-weight: 500;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition: background 0.2s;
+      }
+      .nci-drawer-contact a:hover {
+        background: var(--nci-teal-deep);
+      }
+
+      /* ─── HERO ─── */
+      .nci-hero {
+        position: relative;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        background: var(--nci-black);
+        overflow: hidden;
+      }
+
+      .nci-hero-bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("https://nextcentury.org/WEFiles/Image/WEImage/AdobeStock_52127023-WE76e292de3b.jpeg");
+        background-size: cover;
+        background-position: center 30%;
+        opacity: 0.15;
+        transform: scale(1.05);
+        transition:
+          transform 9s ease,
+          opacity 1.2s ease;
+      }
+      .nci-hero-bg.nci-loaded {
+        transform: scale(1);
+        opacity: 0.28;
+      }
+
+      .nci-hero-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          100deg,
+          rgba(10, 10, 10, 0.88) 0%,
+          rgba(10, 10, 10, 0.42) 55%,
+          rgba(0, 155, 173, 0.12) 100%
+        );
+      }
+
+      /* Teal accent line on left edge */
+      .nci-hero-accent-line {
+        position: absolute;
+        left: 0;
+        top: 15%;
+        bottom: 15%;
+        width: 3px;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          var(--nci-teal),
+          transparent
+        );
+      }
+
+      .nci-hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 88px 28px;
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 72px;
+        align-items: center;
+        width: 100%;
+      }
+
+      .nci-hero-since {
+        display: inline-block;
+        font-size: 10.5px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--nci-teal);
+        margin-bottom: 22px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(0, 155, 173, 0.3);
+      }
+
+      .nci-hero-title {
+        font-size: clamp(36px, 4.8vw, 58px);
+        font-weight: 300;
+        line-height: 1.1;
+        color: var(--nci-white);
+        letter-spacing: 0.01em;
+        margin-bottom: 24px;
+      }
+      .nci-hero-title strong {
+        font-weight: 600;
+        color: var(--nci-white);
+      }
+      .nci-hero-title em {
+        font-style: normal;
+        color: var(--nci-teal);
+        font-weight: 400;
+      }
+
+      .nci-hero-body {
+        font-size: 16.5px;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 38px;
+        max-width: 500px;
+      }
+
+      .nci-hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .nci-btn-primary {
+        background: var(--nci-teal);
+        color: var(--nci-white);
+        padding: 14px 30px;
+        border-radius: 0px;
+        font-size: 13.5px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        cursor: pointer;
+        border: none;
+        display: inline-block;
+      }
+      .nci-btn-primary:hover {
+        background: var(--nci-teal-deep);
+        transform: translateY(-1px);
+      }
+
+      .nci-btn-outline {
+        color: rgba(255, 255, 255, 0.7);
+        padding: 13px 26px;
+        border-radius: 0px;
+        font-size: 13.5px;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          background 0.2s;
+        display: inline-block;
+      }
+      .nci-btn-outline:hover {
+        border-color: rgba(255, 255, 255, 0.45);
+        color: var(--nci-white);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      /* Hero right panel */
+      .nci-hero-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .nci-hero-stat-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .nci-hero-stat {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 22px 20px;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .nci-hero-stat:hover {
+        background: rgba(0, 155, 173, 0.1);
+        border-color: rgba(0, 155, 173, 0.25);
+      }
+      .nci-hero-stat-number {
+        font-size: 34px;
+        font-weight: 300;
+        color: var(--nci-white);
+        line-height: 1;
+        letter-spacing: -0.01em;
+        margin-bottom: 6px;
+      }
+      .nci-hero-stat-number span {
+        font-weight: 600;
+        color: var(--nci-teal);
+      }
+      .nci-hero-stat-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .nci-hero-pullquote {
+        background: rgba(0, 155, 173, 0.1);
+        border: 1px solid rgba(0, 155, 173, 0.25);
+        border-left: 3px solid var(--nci-teal);
+        border-radius: 8px;
+        padding: 20px 22px;
+      }
+      .nci-hero-pullquote p {
+        font-size: 13px;
+        line-height: 1.68;
+        color: rgba(255, 255, 255, 0.72);
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+      .nci-hero-pullquote cite {
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.38);
+        font-style: normal;
+      }
+
+      /* ─── MISSION BAND ─── */
+      .nci-mission-band {
+        background: var(--nci-teal);
+        padding: 22px 28px;
+      }
+      .nci-mission-band-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .nci-mission-band-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .nci-mission-band-rule {
+        width: 1px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.3);
+        flex-shrink: 0;
+      }
+      .nci-mission-band-text {
+        font-size: 13.5px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.5;
+      }
+
+      /* ─── SECTION PRIMITIVES ─── */
+      .nci-section-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--nci-teal);
+        margin-bottom: 14px;
+      }
+      .nci-section-heading {
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 300;
+        line-height: 1.18;
+        letter-spacing: 0.01em;
+        color: var(--nci-text);
+        margin-bottom: 16px;
+      }
+      .nci-section-heading strong {
+        font-weight: 700;
+      }
+      .nci-section-body {
+        font-size: 15.5px;
+        line-height: 1.78;
+        color: var(--nci-text-soft);
+      }
+
+      /* Dark section variant */
+      .nci-dark-heading {
+        color: var(--nci-white);
+        font-weight: 300;
+      }
+      .nci-dark-body {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* ─── OVERVIEW ─── */
+      .nci-overview {
+        padding: 100px 28px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .nci-overview-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .nci-overview-text .nci-section-body {
+        margin-bottom: 18px;
+      }
+
+      .nci-overview-photo-wrap {
+        position: relative;
+      }
+      .nci-overview-photo-wrap img {
+        width: 100%;
+        border-radius: 4px;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+      }
+      /* Gold corner accent */
+      .nci-overview-photo-wrap::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        width: 80px;
+        height: 80px;
+        border-top: 3px solid var(--nci-gold);
+        border-right: 3px solid var(--nci-gold);
+        border-radius: 0 4px 0 0;
+        z-index: 1;
+      }
+      .nci-overview-photo-badge {
+        position: absolute;
+        bottom: -14px;
+        left: -14px;
+        background: var(--nci-teal);
+        color: var(--nci-white);
+        padding: 16px 20px;
+        border-radius: 4px;
+        z-index: 2;
+      }
+      .nci-badge-number {
+        font-size: 26px;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: 0.02em;
+      }
+      .nci-badge-label {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 4px;
+      }
+
+      /* ─── REGION ─── */
+      .nci-region {
+        background: var(--nci-off-white);
+        border-top: 1px solid var(--nci-border);
+        border-bottom: 1px solid var(--nci-border);
+        padding: 80px 28px;
+      }
+      .nci-region-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .nci-region-map-wrap {
+        background: var(--nci-white);
+        border: 1px solid var(--nci-border);
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+      }
+      .nci-region-map-wrap img {
+        width: 100%;
+        display: block;
+      }
+      .nci-region-map-caption {
+        padding: 12px 16px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        color: var(--nci-text-light);
+        text-align: center;
+        border-top: 1px solid var(--nci-border);
+        text-transform: uppercase;
+      }
+
+      .nci-district-list {
+        margin: 20px 0 26px;
+        border: 1px solid var(--nci-border);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .nci-district-item {
+        padding: 10px 16px;
+        font-size: 13.5px;
+        font-weight: 400;
+        color: var(--nci-text);
+        border-bottom: 1px solid var(--nci-border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background 0.15s;
+        background: var(--nci-white);
+      }
+      .nci-district-item:last-child {
+        border-bottom: none;
+      }
+      .nci-district-item:hover {
+        background: var(--nci-teal-light);
+      }
+      .nci-district-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--nci-teal);
+        flex-shrink: 0;
+      }
+
+      /* ─── SERVICES ─── */
+      .nci-services {
+        padding: 100px 28px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .nci-services-intro {
+        max-width: 560px;
+        margin-bottom: 52px;
+      }
+      .nci-services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--nci-border);
+        border: 1px solid var(--nci-border);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .nci-service-tile {
+        background: var(--nci-white);
+        padding: 30px 26px;
+        transition: background 0.2s;
+      }
+      .nci-service-tile:hover {
+        background: var(--nci-teal-light);
+      }
+      .nci-service-tile-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        background: var(--nci-teal-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--nci-teal);
+        margin-bottom: 14px;
+      }
+      .nci-service-tile:hover .nci-service-tile-icon {
+        background: var(--nci-teal);
+        color: var(--nci-white);
+      }
+      .nci-service-tile-title {
+        font-size: 14.5px;
+        font-weight: 600;
+        color: var(--nci-text);
+        margin-bottom: 7px;
+        letter-spacing: 0.01em;
+      }
+      .nci-service-tile-desc {
+        font-size: 13px;
+        line-height: 1.65;
+        color: var(--nci-text-soft);
+      }
+
+      /* ─── FEE SECTION ─── */
+      .nci-fee {
+        background: var(--nci-black);
+        padding: 96px 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Gold bottom rule */
+      .nci-fee::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--nci-gold);
+      }
+
+      .nci-fee-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: start;
+        position: relative;
+        z-index: 2;
+      }
+      .nci-fee .nci-section-label {
+        color: var(--nci-teal);
+      }
+
+      .nci-fee-checklist {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 28px;
+      }
+      .nci-fee-check-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 13px 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.75);
+        transition: background 0.2s;
+      }
+      .nci-fee-check-item:hover {
+        background: rgba(0, 155, 173, 0.1);
+      }
+      .nci-fee-check-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(0, 155, 173, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--nci-teal);
+      }
+
+      .nci-fee-quote-block {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-left: 3px solid var(--nci-gold);
+        border-radius: 4px;
+        padding: 32px 30px;
+      }
+      .nci-fee-quote-text {
+        font-size: 15.5px;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.75);
+        font-style: italic;
+        font-weight: 300;
+        margin-bottom: 22px;
+      }
+      .nci-fee-quote-name {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--nci-white);
+        margin-bottom: 3px;
+        letter-spacing: 0.01em;
+      }
+      .nci-fee-quote-title {
+        font-size: 11.5px;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.45;
+        letter-spacing: 0.02em;
+      }
+
+      /* ─── BOARD ─── */
+      .nci-board {
+        padding: 100px 28px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .nci-board-intro {
+        max-width: 520px;
+        margin-bottom: 52px;
+      }
+      .nci-board-intro .nci-section-body {
+        margin-top: 10px;
+      }
+
+      .nci-board-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .nci-member-card {
+        border: 1px solid var(--nci-border);
+        border-radius: 4px;
+        overflow: hidden;
+        background: var(--nci-white);
+        transition:
+          box-shadow 0.25s,
+          transform 0.25s,
+          border-color 0.25s;
+      }
+      .nci-member-card:hover {
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+        border-color: var(--nci-teal);
+      }
+      .nci-member-photo {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        filter: grayscale(20%);
+        transition: filter 0.3s;
+      }
+      .nci-member-card:hover .nci-member-photo {
+        filter: grayscale(0%);
+      }
+
+      /* Gold top accent on card hover */
+      .nci-member-card-accent {
+        height: 3px;
+        background: var(--nci-teal);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .nci-member-card:hover .nci-member-card-accent {
+        transform: scaleX(1);
+      }
+
+      .nci-member-info {
+        padding: 16px 15px 18px;
+      }
+      .nci-member-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--nci-text);
+        margin-bottom: 3px;
+        letter-spacing: 0.01em;
+      }
+      .nci-member-role {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--nci-teal);
+        margin-bottom: 6px;
+      }
+      .nci-member-org {
+        font-size: 11.5px;
+        color: var(--nci-text-light);
+        line-height: 1.5;
+      }
+
+      /* ─── CONTACT ─── */
+      .nci-contact {
+        background: var(--nci-teal);
+        padding: 92px 28px;
+      }
+      .nci-contact-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: start;
+      }
+      .nci-contact .nci-section-label {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .nci-contact .nci-dark-heading {
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 300;
+      }
+      .nci-contact-sub {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.7;
+        margin: 10px 0 32px;
+      }
+
+      .nci-contact-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .nci-contact-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+      }
+      .nci-contact-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--nci-white);
+        flex-shrink: 0;
+      }
+      .nci-contact-info-label {
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 3px;
+      }
+      .nci-contact-info-value {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--nci-white);
+        line-height: 1.55;
+      }
+      .nci-contact-info-value a {
+        color: var(--nci-white);
+        transition: opacity 0.2s;
+      }
+      .nci-contact-info-value a:hover {
+        opacity: 0.75;
+      }
+
+      .nci-form-card {
+        background: var(--nci-white);
+        border-radius: 4px;
+        padding: 36px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      }
+      .nci-form-card-title {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--nci-text);
+        margin-bottom: 5px;
+        letter-spacing: 0.01em;
+      }
+      .nci-form-card-sub {
+        font-size: 13px;
+        color: var(--nci-text-light);
+        margin-bottom: 24px;
+      }
+      .nci-field {
+        margin-bottom: 14px;
+      }
+      .nci-field-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--nci-text-soft);
+        margin-bottom: 5px;
+      }
+      .nci-field-input,
+      .nci-field-textarea,
+      .nci-field-select {
+        width: 100%;
+        padding: 10px 13px;
+        font-family: var(--ff-base);
+        font-size: 14px;
+        color: var(--nci-text);
+        background: var(--nci-off-white);
+        border: 1px solid var(--nci-border);
+        border-radius: 0px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+      }
+      .nci-field-input:focus,
+      .nci-field-textarea:focus,
+      .nci-field-select:focus {
+        border-color: var(--nci-teal);
+        box-shadow: 0 0 0 3px rgba(0, 155, 173, 0.12);
+        background: var(--nci-white);
+      }
+      .nci-field-textarea {
+        min-height: 96px;
+        resize: vertical;
+      }
+      .nci-field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .nci-btn-submit {
+        width: 100%;
+        background: var(--nci-teal);
+        color: var(--nci-white);
+        border: none;
+        border-radius: 0px;
+        padding: 13px;
+        font-family: var(--ff-base);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 6px;
+      }
+      .nci-form-submit:hover {
+        background: var(--nci-teal-deep);
+      }
+      .nci-form-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .nci-form-success {
+        display: none;
+        text-align: center;
+        padding: 24px 0;
+      }
+      .nci-form-success.nci-visible {
+        display: block;
+      }
+      .nci-form-success-mark {
+        width: 52px;
+        height: 52px;
+        background: rgba(0, 155, 173, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 14px;
+        color: var(--nci-teal);
+      }
+      .nci-form-success h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--nci-text);
+        margin-bottom: 6px;
+      }
+      .nci-form-success p {
+        font-size: 13.5px;
+        color: var(--nci-text-soft);
+      }
+
+      /* ─── FOOTER ─── */
+      .nci-footer {
+        background: black;
+        border-top: 4px solid var(--nci-gold);
+        padding: 56px 28px 32px;
+      }
+      .nci-footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .nci-footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 52px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid var(--nci-border-dark);
+        margin-bottom: 28px;
+      }
+      .nci-footer-brand-name {
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--nci-white);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .nci-footer-about {
+        font-size: 13px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 20px;
+      }
+      .nci-footer-contact-line {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .nci-footer-contact-line svg {
+        flex-shrink: 0;
+        margin-top: 2px;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .nci-footer-contact-line span,
+      .nci-footer-contact-line a {
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.5;
+        transition: color 0.2s;
+      }
+      .nci-footer-contact-line a:hover {
+        color: var(--nci-white);
+      }
+      .nci-footer-col-title {
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.28);
+        margin-bottom: 16px;
+      }
+      .nci-footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .nci-footer-links a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        transition: color 0.2s;
+      }
+      .nci-footer-links a:hover {
+        color: var(--nci-white);
+      }
+
+      .nci-footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .nci-footer-copy {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.28);
+      }
+      .nci-footer-legal {
+        display: flex;
+        gap: 18px;
+        list-style: none;
+      }
+      .nci-footer-legal a {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.28);
+        transition: color 0.2s;
+      }
+      .nci-footer-legal a:hover {
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      /* ─── SCROLL ANIMATIONS ─── */
+      .nci-fade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .nci-fade.nci-visible {
+        opacity: 1;
+        transform: none;
+      }
+      .nci-fade:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+      .nci-fade:nth-child(3) {
+        transition-delay: 0.16s;
+      }
+      .nci-fade:nth-child(4) {
+        transition-delay: 0.22s;
+      }
+      .nci-fade:nth-child(5) {
+        transition-delay: 0.28s;
+      }
+      .nci-fade:nth-child(6) {
+        transition-delay: 0.32s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .nci-fade {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .nci-hero-bg {
+          transition: none;
+        }
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 1024px) {
+        .nci-board-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .nci-services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nci-nav-links {
+          display: none !important;
+        }
+        .nci-hamburger {
+          display: flex;
+        }
+
+        .nci-hero-inner {
+          grid-template-columns: 1fr;
+          padding: 64px 20px 56px;
+          gap: 0;
+        }
+        .nci-hero-panel {
+          display: none;
+        }
+        .nci-hero-title {
+          font-size: clamp(30px, 8vw, 42px);
+        }
+
+        .nci-overview-grid,
+        .nci-region-inner,
+        .nci-fee-inner,
+        .nci-contact-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .nci-overview-photo-wrap {
+          order: -1;
+        }
+        .nci-overview-photo-wrap::before {
+          top: -8px;
+          right: -8px;
+          width: 50px;
+          height: 50px;
+        }
+        .nci-overview-photo-badge {
+          bottom: -10px;
+          left: -10px;
+        }
+
+        .nci-services-grid {
+          grid-template-columns: 1fr;
+        }
+        .nci-board-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .nci-footer-top {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .nci-mission-band-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+        .nci-mission-band-rule {
+          display: none;
+        }
+        .nci-overview,
+        .nci-services,
+        .nci-board {
+          padding: 64px 20px;
+        }
+        .nci-region,
+        .nci-fee,
+        .nci-contact {
+          padding: 64px 20px;
+        }
+        .nci-field-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nci-board-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+        .nci-hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .nci-btn-primary,
+        .nci-btn-outline {
+          text-align: center;
+        }
+        .nci-form-card {
+          padding: 24px 18px;
+        }
+      }
+      /* GLAD HEADER */
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+
+      /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+      @media (max-width: 640px) {
+        .glad-inner {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .glad-logo img {
+          margin-left: 0 !important;
+        }
+        .glad-back-btn {
+          margin-right: 0 !important;
+        }
+      }
+
+      /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+      @media (max-width: 640px) {
+        .glad-logo img {
+          height: 28px !important;
+          width: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+    <!-- NAVBAR -->
+    <nav
+      class="nci-navbar"
+      id="nciNav"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div class="nci-navbar-inner">
+        <a href="#" class="nci-brand" aria-label="Next Century Inc — Home">
+          <div class="nci-brand-mark"><span>NCI</span></div>
+          <div>
+            <span class="nci-brand-name">Next Century, Inc.</span>
+            <span class="nci-brand-sub">Milton, PA · Est. 1997</span>
+          </div>
+        </a>
+        <ul class="nci-nav-links" role="list">
+          <li><a href="#nci-about">About</a></li>
+          <li><a href="#nci-overview">Overview</a></li>
+          <li><a href="#nci-services">Services</a></li>
+          <li><a href="#nci-fee">Service Fee</a></li>
+          <li><a href="#nci-board">Directors</a></li>
+          <li><a href="#nci-contact" class="nci-nav-cta">Contact Us</a></li>
+        </ul>
+        <button
+          class="nci-hamburger"
+          id="nciHamburger"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 22 22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="3" y1="6" x2="19" y2="6" />
+            <line x1="3" y1="11" x2="19" y2="11" />
+            <line x1="3" y1="16" x2="19" y2="16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div class="nci-mobile-overlay" id="nciOverlay" aria-hidden="true"></div>
+    <div
+      class="nci-mobile-drawer"
+      id="nciDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation"
+    >
+      <div class="nci-drawer-head">
+        <div class="nci-brand" style="gap: 10px">
+          <div class="nci-brand-mark"><span>NCI</span></div>
+          <span class="nci-brand-name" style="font-size: 13px"
+            >Next Century, Inc.</span
+          >
+        </div>
+        <button
+          class="nci-drawer-close"
+          id="nciDrawerClose"
+          aria-label="Close menu"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="4" y1="4" x2="16" y2="16" />
+            <line x1="16" y1="4" x2="4" y2="16" />
+          </svg>
+        </button>
+      </div>
+      <ul class="nci-drawer-links" role="list">
+        <li><a href="#nci-about" class="nci-dl">About Us</a></li>
+        <li><a href="#nci-overview" class="nci-dl">Overview</a></li>
+        <li><a href="#nci-services" class="nci-dl">Services</a></li>
+        <li><a href="#nci-fee" class="nci-dl">Service Fee</a></li>
+        <li><a href="#nci-board" class="nci-dl">Board of Directors</a></li>
+      </ul>
+      <div class="nci-drawer-contact">
+        <a href="#nci-contact" class="nci-dl">Get in Touch</a>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="nci-hero" id="nci-about" aria-label="About Next Century">
+      <div class="nci-hero-bg" id="nciHeroBg"></div>
+      <div class="nci-hero-gradient"></div>
+      <div class="nci-hero-accent-line" aria-hidden="true"></div>
+      <div class="nci-hero-inner">
+        <div class="nci-hero-content">
+          <span class="nci-hero-since"
+            >Independent Non-Profit &nbsp;·&nbsp; Founded 1997</span
+          >
+          <h1 class="nci-hero-title">
+            <strong>Supporting Education</strong><br />
+            Across <em>Central Pennsylvania</em>
+          </h1>
+          <p class="nci-hero-body">
+            Next Century, Inc. facilitates the acquisition of educational
+            services for school districts and non-profit organizations —
+            delivering staffing, program management, and support that districts
+            depend on across the Susquehanna Valley.
+          </p>
+          <div class="nci-hero-actions">
+            <a href="#nci-contact" class="nci-btn-primary">Work With Us</a>
+            <a href="#nci-overview" class="nci-btn-outline">Learn More</a>
+          </div>
+        </div>
+        <div class="nci-hero-panel" aria-hidden="true">
+          <div class="nci-hero-stat-row">
+            <div class="nci-hero-stat">
+              <div class="nci-hero-stat-number"><span>30</span>+</div>
+              <div class="nci-hero-stat-label">Staff Members</div>
+            </div>
+            <div class="nci-hero-stat">
+              <div class="nci-hero-stat-number"><span>27</span></div>
+              <div class="nci-hero-stat-label">Years Active</div>
+            </div>
+            <div class="nci-hero-stat">
+              <div class="nci-hero-stat-number"><span>6</span>+</div>
+              <div class="nci-hero-stat-label">School Districts</div>
+            </div>
+            <div class="nci-hero-stat">
+              <div class="nci-hero-stat-number"><span>7</span></div>
+              <div class="nci-hero-stat-label">Board Directors</div>
+            </div>
+          </div>
+          <div class="nci-hero-pullquote">
+            <p>
+              "A good example of the positive role a private, non-profit
+              organization can play in educating the next generation of citizens
+              in the Susquehanna Valley."
+            </p>
+            <cite>Stephen Stanko &mdash; Former Board Member</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION BAND -->
+    <div class="nci-mission-band" aria-label="Mission">
+      <div class="nci-mission-band-inner">
+        <span class="nci-mission-band-label">Our Mission</span>
+        <div class="nci-mission-band-rule" aria-hidden="true"></div>
+        <p class="nci-mission-band-text">
+          To facilitate the acquisition of educational related services to
+          school districts and other non-profit entities throughout
+          Pennsylvania.
+        </p>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section
+      class="nci-overview"
+      id="nci-overview"
+      aria-label="Organization overview"
+    >
+      <div class="nci-overview-grid">
+        <div class="nci-overview-text nci-fade">
+          <p class="nci-section-label">Who We Are</p>
+          <h2 class="nci-section-heading">
+            An Independent Partner<br /><strong
+              >for Pennsylvania Educators</strong
+            >
+          </h2>
+          <p class="nci-section-body">
+            Established in 1997, Next Century, Inc. currently employs over 30
+            staff members who have provided services to organizations such as
+            the Central Susquehanna Intermediate Unit, Benton Area, Berwick
+            Area, Central Columbia, Mifflinburg Area, and Shikellamy School
+            Districts.
+          </p>
+          <p class="nci-section-body" style="margin-top: 16px">
+            Administrative functions are carried out by a manager and a board of
+            seven volunteer directors. All services are provided by Next Century
+            employees working under formal agreements with school districts or
+            intermediate units.
+          </p>
+        </div>
+        <div class="nci-overview-photo-wrap nci-fade">
+          <img
+            src="https://nextcentury.org/WEFiles/Image/WEImage/AdobeStock_66128414-WEea08b9798b.jpeg"
+            alt="Educational professionals working with students"
+            loading="lazy"
+          />
+          <div class="nci-overview-photo-badge">
+            <div class="nci-badge-number">1997</div>
+            <div class="nci-badge-label">Year Founded</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE REGION -->
+    <div class="nci-region" id="nci-region" aria-label="Service region">
+      <div class="nci-region-inner">
+        <div class="nci-region-map-wrap nci-fade">
+          <img
+            src="https://nextcentury.org/WEFiles/Image/WEImage/CSIU_Counties_Districts-WEe039ea92eb.jpg"
+            alt="Map of CSIU counties and school districts served by Next Century"
+            loading="lazy"
+          />
+          <p class="nci-region-map-caption">
+            Central Susquehanna Intermediate Unit — Service Region
+          </p>
+        </div>
+        <div class="nci-fade">
+          <p class="nci-section-label">Where We Serve</p>
+          <h2 class="nci-section-heading">
+            Central Susquehanna<br /><strong>Region, Pennsylvania</strong>
+          </h2>
+          <p class="nci-section-body">
+            While Next Century offers services throughout the state of
+            Pennsylvania, we currently maintain active agreements with the
+            intermediate unit and school districts within the Central
+            Susquehanna region.
+          </p>
+          <div
+            class="nci-district-list"
+            role="list"
+            aria-label="Partner school districts"
+          >
+            <div class="nci-district-item" role="listitem">
+              <span class="nci-district-dot" aria-hidden="true"></span>Central
+              Susquehanna Intermediate Unit (CSIU)
+            </div>
+            <div class="nci-district-item" role="listitem">
+              <span class="nci-district-dot" aria-hidden="true"></span>Benton
+              Area School District
+            </div>
+            <div class="nci-district-item" role="listitem">
+              <span class="nci-district-dot" aria-hidden="true"></span>Berwick
+              Area School District
+            </div>
+            <div class="nci-district-item" role="listitem">
+              <span class="nci-district-dot" aria-hidden="true"></span>Central
+              Columbia School District
+            </div>
+            <div class="nci-district-item" role="listitem">
+              <span class="nci-district-dot" aria-hidden="true"></span
+              >Mifflinburg Area School District
+            </div>
+            <div class="nci-district-item" role="listitem">
+              <span class="nci-district-dot" aria-hidden="true"></span
+              >Shikellamy School District
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section
+      class="nci-services"
+      id="nci-services"
+      aria-label="Services offered"
+    >
+      <div class="nci-services-intro nci-fade">
+        <p class="nci-section-label">What We Do</p>
+        <h2 class="nci-section-heading">
+          Educational Services That<br /><strong>Move Districts Forward</strong>
+        </h2>
+      </div>
+      <div class="nci-services-grid">
+        <div class="nci-service-tile nci-fade">
+          <div class="nci-service-tile-icon" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+              <path d="M6 12v5c3 3 9 3 12 0v-5" />
+            </svg>
+          </div>
+          <h3 class="nci-service-tile-title">Adult Education</h3>
+          <p class="nci-service-tile-desc">
+            Qualified instructors for adult learning programs, GED preparation,
+            and continuing education within school district settings.
+          </p>
+        </div>
+        <div class="nci-service-tile nci-fade">
+          <div class="nci-service-tile-icon" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <h3 class="nci-service-tile-title">After-School Programs</h3>
+          <p class="nci-service-tile-desc">
+            Staffing for structured after-school enrichment, tutoring, and
+            supervised activities extending learning beyond the school day.
+          </p>
+        </div>
+        <div class="nci-service-tile nci-fade">
+          <div class="nci-service-tile-icon" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+          </div>
+          <h3 class="nci-service-tile-title">Driver Education</h3>
+          <p class="nci-service-tile-desc">
+            Certified driver education instructors providing safe, compliant
+            behind-the-wheel and classroom instruction within districts.
+          </p>
+        </div>
+        <div class="nci-service-tile nci-fade">
+          <div class="nci-service-tile-icon" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <h3 class="nci-service-tile-title">Special Education</h3>
+          <p class="nci-service-tile-desc">
+            Specialized personnel supporting students with individualized
+            education needs, including program management and direct services.
+          </p>
+        </div>
+        <div class="nci-service-tile nci-fade">
+          <div class="nci-service-tile-icon" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3 class="nci-service-tile-title">Speech Therapy</h3>
+          <p class="nci-service-tile-desc">
+            Licensed speech-language pathologists supporting students with
+            communication needs across all grade levels.
+          </p>
+        </div>
+        <div class="nci-service-tile nci-fade">
+          <div class="nci-service-tile-icon" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <h3 class="nci-service-tile-title">Program Management</h3>
+          <p class="nci-service-tile-desc">
+            Administrative and operational support including guidance services,
+            business administration, and coordinated program management.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEE SECTION -->
+    <section class="nci-fee" id="nci-fee" aria-label="Service fee structure">
+      <div class="nci-fee-inner">
+        <div class="nci-fade">
+          <p class="nci-section-label">Service Fee Structure</p>
+          <h2 class="nci-section-heading nci-dark-heading">
+            Transparent,<br /><strong style="font-weight: 700; color: #fff"
+              >Straightforward Costs</strong
+            >
+          </h2>
+          <p class="nci-section-body nci-dark-body" style="margin-top: 14px">
+            Next Century charges a single administrative fee per agreement.
+            Social Security, Medicare, unemployment compensation, and workers
+            compensation are paid by Next Century and charged to the agreement
+            entity. Benefits are not offered to employees.
+          </p>
+          <div class="nci-fee-checklist">
+            <div class="nci-fee-check-item">
+              <span class="nci-fee-check-icon" aria-hidden="true">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="2 6 5 9 10 3" />
+                </svg>
+              </span>
+              Single administrative fee per service agreement
+            </div>
+            <div class="nci-fee-check-item">
+              <span class="nci-fee-check-icon" aria-hidden="true">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="2 6 5 9 10 3" />
+                </svg>
+              </span>
+              Social Security &amp; Medicare included
+            </div>
+            <div class="nci-fee-check-item">
+              <span class="nci-fee-check-icon" aria-hidden="true">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="2 6 5 9 10 3" />
+                </svg>
+              </span>
+              Unemployment &amp; workers compensation covered
+            </div>
+            <div class="nci-fee-check-item">
+              <span class="nci-fee-check-icon" aria-hidden="true">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="2 6 5 9 10 3" />
+                </svg>
+              </span>
+              No employee benefits — streamlined cost structure
+            </div>
+            <div class="nci-fee-check-item">
+              <span class="nci-fee-check-icon" aria-hidden="true">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="2 6 5 9 10 3" />
+                </svg>
+              </span>
+              Overseen by 7-member volunteer board
+            </div>
+          </div>
+        </div>
+        <div class="nci-fee-quote-block nci-fade">
+          <p class="nci-fee-quote-text">
+            "Next Century was a critical partner in allowing me to provide a
+            smooth transition for several very important positions in our
+            district. New employees were provided job-embedded professional
+            development that built upon their own knowledge and in the end
+            improved our school district. I was so grateful for their support."
+          </p>
+          <div>
+            <p class="nci-fee-quote-name">Dr. John Kurelja</p>
+            <p class="nci-fee-quote-title">
+              Executive Director, Central Susquehanna Intermediate Unit<br />Former
+              Superintendent, Warrior Run School District
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOARD -->
+    <section class="nci-board" id="nci-board" aria-label="Board of Directors">
+      <div class="nci-board-intro nci-fade">
+        <p class="nci-section-label">Leadership</p>
+        <h2 class="nci-section-heading"><strong>Board of Directors</strong></h2>
+        <p class="nci-section-body">
+          A seven-member volunteer board and a dedicated administrative manager
+          guide Next Century's mission across Central Pennsylvania.
+        </p>
+      </div>
+      <div class="nci-board-grid">
+        <article class="nci-member-card nci-fade">
+          <div class="nci-member-card-accent"></div>
+          <img
+            class="nci-member-photo"
+            src="https://nextcentury.org/WEFiles/Image/WEImage/Withrow1.jpg"
+            alt="M. Ellen Withrow"
+            loading="lazy"
+          />
+          <div class="nci-member-info">
+            <p class="nci-member-name">M. Ellen Withrow</p>
+            <p class="nci-member-role">President</p>
+            <p class="nci-member-org">
+              CEO &amp; Founder<br />Grant Edventures, LLC
+            </p>
+          </div>
+        </article>
+        <article class="nci-member-card nci-fade">
+          <div class="nci-member-card-accent"></div>
+          <img
+            class="nci-member-photo"
+            src="https://nextcentury.org/WEFiles/Image/WEImage/TeraUnzickerFasero-WEc201eb51c4.jpeg"
+            alt="Tera Unzicker-Fassero"
+            loading="lazy"
+          />
+          <div class="nci-member-info">
+            <p class="nci-member-name">Tera Unzicker-Fassero</p>
+            <p class="nci-member-role">Vice President</p>
+            <p class="nci-member-org">
+              Optometrist<br />Central Vision Eyecare
+            </p>
+          </div>
+        </article>
+        <article class="nci-member-card nci-fade">
+          <div class="nci-member-card-accent"></div>
+          <img
+            class="nci-member-photo"
+            src="https://nextcentury.org/WEFiles/Image/WEImage/Dennis_Keiser.jpg"
+            alt="Dennis Keiser"
+            loading="lazy"
+          />
+          <div class="nci-member-info">
+            <p class="nci-member-name">Dennis Keiser</p>
+            <p class="nci-member-role">Treasurer</p>
+            <p class="nci-member-org">
+              Retired, Former Mifflinburg Area SD &amp; CSIU Board
+            </p>
+          </div>
+        </article>
+        <article class="nci-member-card nci-fade">
+          <div class="nci-member-card-accent"></div>
+          <img
+            class="nci-member-photo"
+            src="https://nextcentury.org/WEFiles/Image/WEImage/WilliamBrecker.jpg"
+            alt="William Brecker"
+            loading="lazy"
+          />
+          <div class="nci-member-info">
+            <p class="nci-member-name">William Brecker</p>
+            <p class="nci-member-role">CSIU Representative</p>
+            <p class="nci-member-org">
+              Children's Mental Health Specialist<br />Northumberland County
+            </p>
+          </div>
+        </article>
+        <article class="nci-member-card nci-fade">
+          <div class="nci-member-card-accent"></div>
+          <img
+            class="nci-member-photo"
+            src="https://nextcentury.org/WEFiles/Image/WEImage/LynnCromley.jpg"
+            alt="Lynn Cromley"
+            loading="lazy"
+          />
+          <div class="nci-member-info">
+            <p class="nci-member-name">Lynn Cromley</p>
+            <p class="nci-member-role">At-Large Member</p>
+            <p class="nci-member-org">
+              President<br />EdC3 Consulting Services, LLC
+            </p>
+          </div>
+        </article>
+        <article class="nci-member-card nci-fade">
+          <div class="nci-member-card-accent"></div>
+          <img
+            class="nci-member-photo"
+            src="https://nextcentury.org/WEFiles/Image/WEImage/DavidHess_1.png"
+            alt="David Hess"
+            loading="lazy"
+          />
+          <div class="nci-member-info">
+            <p class="nci-member-name">David Hess</p>
+            <p class="nci-member-role">CSIU Representative</p>
+            <p class="nci-member-org">
+              Retired Educator<br />Selinsgrove Area School District
+            </p>
+          </div>
+        </article>
+        <article class="nci-member-card nci-fade">
+          <div class="nci-member-card-accent"></div>
+          <img
+            class="nci-member-photo"
+            src="https://nextcentury.org/WEFiles/Image/WEImage/karenm.jpg"
+            alt="Karen Murtin"
+            loading="lazy"
+          />
+          <div class="nci-member-info">
+            <p class="nci-member-name">Karen Murtin</p>
+            <p class="nci-member-role">At-Large Member</p>
+            <p class="nci-member-org">Retired<br />Bloomsburg University</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="nci-contact" id="nci-contact" aria-label="Contact">
+      <div class="nci-contact-inner">
+        <div class="nci-fade">
+          <p class="nci-section-label">Get in Touch</p>
+          <h2 class="nci-section-heading nci-dark-heading">
+            <strong style="font-weight: 700">We're Happy to Answer</strong
+            ><br />Your Questions
+          </h2>
+          <p class="nci-contact-sub">
+            Whether you represent a school district exploring a partnership or a
+            non-profit seeking educational services, our team is ready to help.
+          </p>
+          <div class="nci-contact-rows">
+            <div class="nci-contact-row">
+              <div class="nci-contact-icon" aria-hidden="true">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <p class="nci-contact-info-label">Address</p>
+                <p class="nci-contact-info-value">
+                  90 Lawton Lane, Milton, PA 17847
+                </p>
+              </div>
+            </div>
+            <div class="nci-contact-row">
+              <div class="nci-contact-icon" aria-hidden="true">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12.23a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 1.5h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.4a16 16 0 0 0 6.29 6.29l1.22-1.22a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p class="nci-contact-info-label">Phone</p>
+                <p class="nci-contact-info-value">
+                  <a href="tel:5702465943">(570) 246-5943</a> &nbsp;|&nbsp;
+                  <a href="tel:5702591525">(570) 259-1525</a>
+                  <span style="font-size: 11px; opacity: 0.6">cell</span>
+                </p>
+              </div>
+            </div>
+            <div class="nci-contact-row">
+              <div class="nci-contact-icon" aria-hidden="true">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <div>
+                <p class="nci-contact-info-label">Email</p>
+                <p class="nci-contact-info-value">
+                  Sue Beiler, Administrative Manager<br />
+                  <a href="mailto:info@nextcentury.org">info@nextcentury.org</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nci-form-card nci-fade">
+          <div id="nciForm">
+            <h3 class="nci-form-card-title">Send a Message</h3>
+            <p class="nci-form-card-sub">
+              We typically respond within one business day.
+            </p>
+            <div class="nci-field-row">
+              <div class="nci-field">
+                <label class="nci-field-label" for="nciName">Full Name</label>
+                <input
+                  class="nci-field-input"
+                  type="text"
+                  id="nciName"
+                  placeholder="Jane Smith"
+                  autocomplete="name"
+                />
+              </div>
+              <div class="nci-field">
+                <label class="nci-field-label" for="nciEmail">Email</label>
+                <input
+                  class="nci-field-input"
+                  type="email"
+                  id="nciEmail"
+                  placeholder="jane@district.org"
+                  autocomplete="email"
+                />
+              </div>
+            </div>
+            <div class="nci-field">
+              <label class="nci-field-label" for="nciOrg"
+                >Organization / District</label
+              >
+              <input
+                class="nci-field-input"
+                type="text"
+                id="nciOrg"
+                placeholder="Berwick Area School District"
+              />
+            </div>
+            <div class="nci-field">
+              <label class="nci-field-label" for="nciService"
+                >Service of Interest</label
+              >
+              <select class="nci-field-select" id="nciService">
+                <option value="" disabled selected>
+                  Select a service area
+                </option>
+                <option>Adult Education</option>
+                <option>After-School Programs</option>
+                <option>Driver Education</option>
+                <option>Special Education</option>
+                <option>Speech Therapy</option>
+                <option>Program Management / Administration</option>
+                <option>Other / General Inquiry</option>
+              </select>
+            </div>
+            <div class="nci-field">
+              <label class="nci-field-label" for="nciMsg">Message</label>
+              <textarea
+                class="nci-field-textarea"
+                id="nciMsg"
+                placeholder="Tell us about your needs or how we can help..."
+              ></textarea>
+            </div>
+            <button class="nci-form-submit" id="nciSubmit" type="button">
+              Send Message
+            </button>
+          </div>
+          <div class="nci-form-success" id="nciSuccess" aria-live="polite">
+            <div class="nci-form-success-mark" aria-hidden="true">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <h3>Message Received</h3>
+            <p>
+              Thank you for reaching out. Sue Beiler will be in touch with you
+              shortly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="nci-footer" role="contentinfo">
+      <div class="nci-footer-inner">
+        <div class="nci-footer-top">
+          <div>
+            <p class="nci-footer-brand-name">Next Century, Inc.</p>
+            <p class="nci-footer-about">
+              An independent non-profit corporation facilitating educational
+              services for school districts and non-profit organizations
+              throughout Pennsylvania since 1997.
+            </p>
+            <div class="nci-footer-contact-line">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span>90 Lawton Lane, Milton, PA 17847</span>
+            </div>
+            <div class="nci-footer-contact-line">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12.23a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 1.5h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.4a16 16 0 0 0 6.29 6.29l1.22-1.22a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+              <a href="tel:5702465943">(570) 246-5943</a>
+            </div>
+          </div>
+          <div>
+            <p class="nci-footer-col-title">Navigate</p>
+            <ul class="nci-footer-links">
+              <li><a href="#nci-about">About Us</a></li>
+              <li><a href="#nci-overview">Overview</a></li>
+              <li><a href="#nci-services">Services</a></li>
+              <li><a href="#nci-fee">Service Fee</a></li>
+              <li><a href="#nci-board">Board of Directors</a></li>
+              <li><a href="#nci-contact">Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="nci-footer-col-title">Services</p>
+            <ul class="nci-footer-links">
+              <li><a href="#nci-services">Adult Education</a></li>
+              <li><a href="#nci-services">After-School Programs</a></li>
+              <li><a href="#nci-services">Driver Education</a></li>
+              <li><a href="#nci-services">Special Education</a></li>
+              <li><a href="#nci-services">Speech Therapy</a></li>
+              <li><a href="#nci-services">Program Management</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="nci-footer-bottom">
+          <p class="nci-footer-copy">
+            &copy; 2024 Next Century, Inc. All rights reserved. Milton, PA.
+          </p>
+          <ul class="nci-footer-legal">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Non-Profit Status</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        // Navbar scroll
+        var nav = document.getElementById("nciNav");
+        window.addEventListener(
+          "scroll",
+          function () {
+            nav.classList.toggle("nci-scrolled", window.scrollY > 10);
+          },
+          { passive: true },
+        );
+
+        // Hero bg
+        var bg = document.getElementById("nciHeroBg");
+        if (bg)
+          setTimeout(function () {
+            bg.classList.add("nci-loaded");
+          }, 80);
+
+        // Drawer
+        var hamburger = document.getElementById("nciHamburger");
+        var drawer = document.getElementById("nciDrawer");
+        var overlay = document.getElementById("nciOverlay");
+
+        function openDrawer() {
+          drawer.classList.add("nci-open");
+          overlay.classList.add("nci-open");
+          document.body.style.overflow = "hidden";
+          hamburger.setAttribute("aria-expanded", "true");
+        }
+        function closeDrawer() {
+          drawer.classList.remove("nci-open");
+          overlay.classList.remove("nci-open");
+          document.body.style.overflow = "";
+          hamburger.setAttribute("aria-expanded", "false");
+        }
+        hamburger.addEventListener("click", openDrawer);
+        document
+          .getElementById("nciDrawerClose")
+          .addEventListener("click", closeDrawer);
+        overlay.addEventListener("click", closeDrawer);
+        document.querySelectorAll(".nci-dl").forEach(function (l) {
+          l.addEventListener("click", closeDrawer);
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && drawer.classList.contains("nci-open"))
+            closeDrawer();
+        });
+
+        // Scroll fade
+        var fades = document.querySelectorAll(".nci-fade");
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("nci-visible");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -30px 0px" },
+          );
+          fades.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          fades.forEach(function (el) {
+            el.classList.add("nci-visible");
+          });
+        }
+
+        // Form
+        document
+          .getElementById("nciSubmit")
+          .addEventListener("click", function () {
+            var name = document.getElementById("nciName").value.trim();
+            var email = document.getElementById("nciEmail").value.trim();
+            var msg = document.getElementById("nciMsg").value.trim();
+            var btn = this;
+
+            function shake(id) {
+              var el = document.getElementById(id);
+              el.style.borderColor = "#e53e3e";
+              el.focus();
+              setTimeout(function () {
+                el.style.borderColor = "";
+              }, 2000);
+            }
+
+            if (!name) {
+              shake("nciName");
+              return;
+            }
+            if (!email) {
+              shake("nciEmail");
+              return;
+            }
+            if (!msg) {
+              shake("nciMsg");
+              return;
+            }
+
+            btn.textContent = "Sending\u2026";
+            btn.disabled = true;
+
+            setTimeout(function () {
+              document.getElementById("nciForm").style.display = "none";
+              document
+                .getElementById("nciSuccess")
+                .classList.add("nci-visible");
+            }, 850);
+          });
+
+        ["nciName", "nciEmail", "nciMsg"].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el)
+            el.addEventListener("input", function () {
+              el.style.borderColor = "";
+            });
+        });
+      })();
+    </script>
+    <script>
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>

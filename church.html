@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>St. Mary & Archangel Raphael Coptic Orthodox Church</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --smar-gold: #af832a;
+    --smar-gold-light: #c9a24e;
+    --smar-gold-muted: #d4b96a22;
+    --smar-dark: #1a1410;
+    --smar-ink: #2c2318;
+    --smar-warm: #4a3d2e;
+    --smar-parchment: #f8f5ef;
+    --smar-ivory: #fdfbf7;
+    --smar-stone: #e8e1d6;
+    --smar-mid: #9a8d7e;
+    --smar-rule: #d4c9b8;
+    --ff-serif: 'Cormorant Garamond', Georgia, serif;
+    --ff-sans: 'Inter', system-ui, sans-serif;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+    --space-2xl: 8rem;
+    --max-w: 1280px;
+    --nav-h: 72px;
+
+    --shell-max: 1280px;
+    --gutter: 2rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-sans);
+    background: var(--smar-ivory);
+    color: var(--smar-ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* ─── NAV ─────────────────────────────────────────── */
+  .smar-nav {
+    position: fixed;
+    top: auto; left: 0; right: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    background: rgba(26, 20, 16, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(175, 131, 42, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-md);
+    transition: top 0.3s ease, background 0.2s;
+  }
+
+  .smar-nav-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .smar-nav-brand-abbr {
+    font-family: var(--ff-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--smar-gold);
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  .smar-nav-brand-sub {
+    font-size: 0.62rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .smar-nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    list-style: none;
+  }
+
+  .smar-nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .smar-nav-links a:hover { color: var(--smar-gold-light); }
+
+  .smar-nav-cta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--smar-dark) !important;
+    background: var(--smar-gold);
+    padding: 0.5rem 1.25rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .smar-nav-cta:hover { background: var(--smar-gold-light); color: var(--smar-dark) !important; }
+
+  .smar-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 0.25rem;
+  }
+
+  .smar-nav-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: var(--smar-dark);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .smar-nav-drawer.smar-open { display: flex; }
+
+  .smar-nav-drawer a {
+    font-family: var(--ff-serif);
+    font-size: 2rem;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-style: italic;
+    transition: color 0.2s;
+  }
+  .smar-nav-drawer a:hover { color: var(--smar-gold-light); }
+
+  .smar-drawer-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+
+  /* ─── SECTION 1: HERO ──────────────────────────────── */
+  .smar-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .smar-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .smar-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .smar-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(10,7,4,0.92) 0%, rgba(10,7,4,0.55) 45%, rgba(10,7,4,0.15) 100%),
+      linear-gradient(to right, rgba(10,7,4,0.5) 0%, transparent 60%);
+  }
+
+  .smar-hero-text-col {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-xl) var(--space-xl) var(--space-xl) var(--space-xl);
+    max-width: 760px;
+  }
+
+  .smar-hero-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--smar-gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .smar-hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--smar-gold);
+  }
+
+  .smar-hero-heading {
+    font-family: var(--ff-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  .smar-hero-heading em {
+    font-style: italic;
+    color: var(--smar-gold-light);
+  }
+
+  .smar-hero-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.62);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+  }
+
+  .smar-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .smar-hero-btn {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--smar-gold);
+    color: var(--smar-dark);
+    padding: 0.9rem 2.25rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .smar-hero-btn:hover { background: var(--smar-gold-light); transform: translateY(-1px); }
+
+  .smar-hero-link {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .smar-hero-link:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.5); }
+
+  /* keep these empty so old refs don't break */
+  .smar-hero-img-col {}
+  .smar-hero-img-overlay {}
+
+  /* ─── SECTION 2: MISSION SPLIT ─────────────────────── */
+  .smar-mission {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    min-height: 580px;
+    background: var(--smar-parchment);
+  }
+
+  .smar-mission-text {
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--smar-rule);
+  }
+
+  .smar-section-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--smar-gold);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .smar-section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 40px;
+    background: var(--smar-gold);
+    opacity: 0.5;
+  }
+
+  .smar-mission-heading {
+    font-family: var(--ff-serif);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--smar-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .smar-mission-heading em { font-style: italic; color: var(--smar-warm); }
+
+  .smar-mission-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--smar-warm);
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .smar-mission-scripture {
+    font-family: var(--ff-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--smar-mid);
+    border-left: 2px solid var(--smar-gold);
+    padding-left: 1rem;
+    line-height: 1.6;
+  }
+
+  .smar-mission-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .smar-mission-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ─── SECTION 3: PROGRAMS SWITCHER ─────────────────── */
+  .smar-programs {
+    padding: var(--space-xl) var(--space-lg);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .smar-programs-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: end;
+    margin-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--smar-rule);
+    padding-bottom: var(--space-md);
+  }
+
+  .smar-programs-heading {
+    font-family: var(--ff-serif);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--smar-dark);
+  }
+
+  .smar-programs-intro {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--smar-mid);
+    align-self: end;
+  }
+
+  .smar-programs-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid var(--smar-rule);
+  }
+
+  .smar-programs-tab {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--smar-mid);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    margin-bottom: -1px;
+  }
+
+  .smar-programs-tab:hover { color: var(--smar-ink); }
+  .smar-programs-tab.smar-tab-active {
+    color: var(--smar-gold);
+    border-bottom-color: var(--smar-gold);
+  }
+
+  .smar-programs-panel {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+    min-height: 340px;
+  }
+
+  .smar-programs-panel.smar-panel-active { display: grid; }
+
+  .smar-panel-content {}
+
+  .smar-panel-title {
+    font-family: var(--ff-serif);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--smar-dark);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .smar-panel-verse {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--smar-gold);
+    margin-bottom: 1rem;
+  }
+
+  .smar-panel-body {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--smar-warm);
+    margin-bottom: 1.25rem;
+  }
+
+  .smar-panel-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--smar-mid);
+  }
+
+  .smar-panel-meta svg { color: var(--smar-gold); }
+
+  .smar-panel-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--smar-stone);
+  }
+
+  .smar-panel-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .smar-programs-panel.smar-panel-active .smar-panel-img img {
+    animation: smar-imgIn 0.6s ease forwards;
+  }
+
+  @keyframes smar-imgIn {
+    from { transform: scale(1.04); opacity: 0.8; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* ─── SECTION 4: EDITORIAL DEEP DIVE ───────────────── */
+  .smar-editorial {
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .smar-editorial-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .smar-editorial-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .smar-editorial-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,20,16,0.88) 0%, rgba(26,20,16,0.45) 60%, rgba(26,20,16,0.2) 100%);
+  }
+
+  .smar-editorial-box {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    margin: 0 0 var(--space-xl) var(--space-xl);
+    padding: var(--space-md) var(--space-md) var(--space-md) 0;
+    border-left: 2px solid var(--smar-gold);
+    padding-left: var(--space-md);
+  }
+
+  .smar-editorial-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--smar-gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .smar-editorial-heading {
+    font-family: var(--ff-serif);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .smar-editorial-body {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 1.5rem;
+  }
+
+  .smar-editorial-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--smar-gold-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(175,131,42,0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .smar-editorial-link:hover { border-color: var(--smar-gold-light); }
+
+  /* ─── SECTION 5: COMMUNITY VOICE ───────────────────── */
+  .smar-voice {
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--smar-dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .smar-voice-mark {
+    font-family: var(--ff-serif);
+    font-size: 12rem;
+    line-height: 0.6;
+    color: var(--smar-gold);
+    opacity: 0.18;
+    user-select: none;
+    margin-bottom: -2rem;
+  }
+
+  .smar-voice-quote {
+    font-family: var(--ff-serif);
+    font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.45;
+    margin-bottom: 1.5rem;
+  }
+
+  .smar-voice-credit {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .smar-voice-line {
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--smar-gold);
+  }
+
+  .smar-voice-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--smar-gold);
+  }
+
+  .smar-voice-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .smar-voice-verse-block {
+    border-left: 2px solid rgba(175,131,42,0.3);
+    padding-left: 1.25rem;
+  }
+
+  .smar-voice-verse-text {
+    font-family: var(--ff-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .smar-voice-verse-ref {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--smar-gold);
+    opacity: 0.7;
+  }
+
+  /* ─── SECTION 6: SCHEDULE / NEWSROOM ───────────────── */
+  .smar-newsroom {
+    padding: var(--space-xl) var(--space-lg);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .smar-newsroom-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid var(--smar-rule);
+    padding-bottom: 1.25rem;
+  }
+
+  .smar-newsroom-heading {
+    font-family: var(--ff-serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 500;
+    color: var(--smar-dark);
+    line-height: 1.1;
+  }
+
+  .smar-newsroom-all {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--smar-gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: 1px solid rgba(175,131,42,0.3);
+    padding-bottom: 2px;
+  }
+
+  .smar-schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .smar-schedule-day {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-bottom: 1px solid var(--smar-rule);
+    border-right: 1px solid var(--smar-rule);
+  }
+
+  .smar-schedule-day:nth-child(even) { border-right: none; }
+
+  .smar-schedule-date-col {
+    padding: var(--space-md) 1rem var(--space-md) 0;
+    border-right: 1px solid var(--smar-rule);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: var(--space-md);
+  }
+
+  .smar-schedule-num {
+    font-family: var(--ff-serif);
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--smar-dark);
+    line-height: 1;
+  }
+
+  .smar-schedule-dow {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--smar-mid);
+    margin-top: 0.25rem;
+  }
+
+  .smar-schedule-events {
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .smar-schedule-event {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .smar-event-time {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--smar-gold);
+  }
+
+  .smar-event-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--smar-ink);
+    line-height: 1.3;
+  }
+
+  .smar-schedule-note {
+    margin-top: var(--space-md);
+    padding: 1.25rem var(--space-md);
+    background: var(--smar-parchment);
+    border: 1px solid var(--smar-rule);
+    border-left: 3px solid var(--smar-gold);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .smar-schedule-note p {
+    font-size: 0.85rem;
+    color: var(--smar-warm);
+    line-height: 1.5;
+  }
+
+  .smar-schedule-note strong {
+    color: var(--smar-dark);
+  }
+
+  /* ─── SECTION 7: CALLOUT / DONATE ──────────────────── */
+  .smar-callout {
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--smar-parchment);
+    border-top: 1px solid var(--smar-rule);
+    border-bottom: 1px solid var(--smar-rule);
+  }
+
+  .smar-callout-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .smar-callout-ornament {
+    width: 48px;
+    height: 2px;
+    background: var(--smar-gold);
+    margin: 0 auto 2rem;
+  }
+
+  .smar-callout-heading {
+    font-family: var(--ff-serif);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 500;
+    color: var(--smar-dark);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .smar-callout-heading em { font-style: italic; color: var(--smar-warm); }
+
+  .smar-callout-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--smar-warm);
+    margin-bottom: 0.75rem;
+  }
+
+  .smar-callout-verse {
+    font-family: var(--ff-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--smar-mid);
+    margin-bottom: 2.5rem;
+  }
+
+  .smar-callout-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .smar-callout-btn-primary {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--smar-gold);
+    color: var(--smar-dark);
+    padding: 1rem 2.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .smar-callout-btn-primary:hover { background: var(--smar-gold-light); transform: translateY(-1px); }
+
+  .smar-callout-btn-secondary {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--smar-dark);
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(26,20,16,0.3);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .smar-callout-btn-secondary:hover { border-color: var(--smar-dark); }
+
+  /* ─── SECTION 8: FOOTER ─────────────────────────────── */
+  .smar-footer {
+    background: var(--smar-dark);
+    padding: var(--space-xl) var(--space-lg) var(--space-md);
+    border-top: 1px solid rgba(175,131,42,0.2);
+  }
+
+  .smar-footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .smar-footer-cols {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: var(--space-md);
+  }
+
+  .smar-footer-brand-name {
+    font-family: var(--ff-serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--smar-gold);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .smar-footer-brand-tagline {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.38);
+    line-height: 1.7;
+    max-width: 280px;
+    margin-bottom: 1.5rem;
+  }
+
+  .smar-footer-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .smar-footer-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .smar-footer-social-link:hover { border-color: var(--smar-gold); color: var(--smar-gold); }
+
+  .smar-footer-col-heading {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--smar-gold);
+    margin-bottom: 1rem;
+  }
+
+  .smar-footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .smar-footer-links a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+    line-height: 1.5;
+  }
+  .smar-footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+  .smar-footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .smar-footer-contact-icon { color: var(--smar-gold); flex-shrink: 0; margin-top: 2px; }
+
+  .smar-footer-contact-text {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  .smar-footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .smar-footer-copy {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.06em;
+  }
+
+  .smar-footer-legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .smar-footer-legal a {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.25);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .smar-footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+  /* ─── SCROLL REVEAL ──────────────────────────────────── */
+  .smar-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .smar-reveal.smar-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .smar-reveal-delay-1 { transition-delay: 0.1s; }
+  .smar-reveal-delay-2 { transition-delay: 0.2s; }
+  .smar-reveal-delay-3 { transition-delay: 0.3s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .smar-reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .smar-nav-links { display: none; }
+    .smar-nav-toggle { display: block; }
+
+    .smar-hero-text-col { padding: var(--space-lg) var(--space-md); }
+
+    .smar-mission { grid-template-columns: 1fr; }
+    .smar-mission-img { height: 320px; border-right: none; }
+    .smar-mission-text { border-right: none; padding: var(--space-lg) var(--space-md); }
+
+    .smar-programs { padding: var(--space-lg) var(--space-md); }
+    .smar-programs-head { grid-template-columns: 1fr; gap: 1rem; }
+    .smar-programs-panel.smar-panel-active { grid-template-columns: 1fr; }
+    .smar-programs-tabs { flex-wrap: wrap; }
+    .smar-programs-tab { padding: 0.6rem 1rem; font-size: 0.7rem; }
+
+    .smar-editorial-box { margin: 0 var(--space-md) var(--space-lg); }
+
+    .smar-voice { grid-template-columns: 1fr; padding: var(--space-lg) var(--space-md); gap: var(--space-md); }
+
+    .smar-newsroom { padding: var(--space-lg) var(--space-md); }
+    .smar-schedule-grid { grid-template-columns: 1fr; }
+    .smar-schedule-day { border-right: none; }
+    .smar-schedule-day:nth-child(even) { border-right: none; }
+
+    .smar-callout { padding: var(--space-lg) var(--space-md); }
+
+    .smar-footer { padding: var(--space-lg) var(--space-md) var(--space-md); }
+    .smar-footer-cols { grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+
+    .smar-footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 560px) {
+    .smar-footer-cols { grid-template-columns: 1fr; }
+    .smar-hero-actions { flex-direction: column; align-items: flex-start; }
+    .smar-callout-actions { flex-direction: column; }
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ── NAVIGATION ─────────────────────────────────────── -->
+<nav class="smar-nav" role="navigation" aria-label="Main navigation">
+  <div class="smar-nav-brand">
+    <span class="smar-nav-brand-abbr">SMAR</span>
+    <span class="smar-nav-brand-sub">Coptic Orthodox Church</span>
+  </div>
+  <ul class="smar-nav-links" role="list">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Our Services</a></li>
+    <li><a href="#">Schedule</a></li>
+    <li><a href="#">Media</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#" class="smar-nav-cta">Donate</a></li>
+  </ul>
+  <button class="smar-nav-toggle" aria-label="Open menu" onclick="document.getElementById('smar-drawer').classList.add('smar-open')">
+    <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="1" x2="22" y2="1" stroke="white" stroke-width="1.5"/>
+      <line x1="0" y1="8" x2="16" y2="8" stroke="white" stroke-width="1.5"/>
+      <line x1="0" y1="15" x2="22" y2="15" stroke="white" stroke-width="1.5"/>
+    </svg>
+  </button>
+</nav>
+
+<div class="smar-nav-drawer" id="smar-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="smar-drawer-close" aria-label="Close menu" onclick="document.getElementById('smar-drawer').classList.remove('smar-open')">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><line x1="2" y1="2" x2="18" y2="18" stroke="white" stroke-width="1.5"/><line x1="18" y1="2" x2="2" y2="18" stroke="white" stroke-width="1.5"/></svg>
+  </button>
+  <a href="#" onclick="document.getElementById('smar-drawer').classList.remove('smar-open')">Home</a>
+  <a href="#" onclick="document.getElementById('smar-drawer').classList.remove('smar-open')">Our Services</a>
+  <a href="#" onclick="document.getElementById('smar-drawer').classList.remove('smar-open')">Schedule</a>
+  <a href="#" onclick="document.getElementById('smar-drawer').classList.remove('smar-open')">Media</a>
+  <a href="#" onclick="document.getElementById('smar-drawer').classList.remove('smar-open')">Donate</a>
+  <a href="#" onclick="document.getElementById('smar-drawer').classList.remove('smar-open')">Contact</a>
+</div>
+
+<!-- ── SECTION 1: HERO ────────────────────────────────── -->
+<section class="smar-hero" aria-label="Welcome">
+  <div class="smar-hero-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1752309134583-4c95689692b1?w=1800&auto=format&fit=crop&q=80" alt="" loading="eager"/>
+  </div>
+  <div class="smar-hero-text-col">
+    
+    <h1 class="smar-hero-heading">A <em>beacon</em> of<br>ancient faith<br>in a new world.</h1>
+    <p class="smar-hero-desc">St. Mary and Archangel Raphael Coptic Orthodox Church carries 2,000 years of unbroken tradition into the heart of New Jersey — a living community of worship, formation, and belonging.</p>
+    <div class="smar-hero-actions">
+      <a href="#" class="smar-hero-btn">Join Us This Sunday</a>
+      <a href="#" class="smar-hero-link">View Service Schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: MISSION SPLIT ───────────────────────── -->
+<section class="smar-mission" aria-label="Our Mission">
+  <div class="smar-mission-text smar-reveal">
+    <span class="smar-section-label">Our Identity</span>
+    <h2 class="smar-mission-heading">Rooted in Alexandria,<br><em>alive in New Jersey.</em></h2>
+    <p class="smar-mission-body">SMAR Church stands as a member of the Coptic Orthodox Archdiocese in North America, under the patriarchal jurisdiction of the Coptic Orthodox Patriarchate of Alexandria — one of the oldest Christian communities on earth. Here, ancient liturgies are sung in Coptic, Arabic, and English, and families are formed across generations in the full richness of this heritage.</p>
+    <blockquote class="smar-mission-scripture">
+      "For of such is the kingdom of heaven."<br>
+      <small style="font-size:0.78rem; font-style:normal; letter-spacing:0.1em; text-transform:uppercase; color:var(--smar-mid); font-family:var(--ff-sans);">Matthew 19:14</small>
+    </blockquote>
+  </div>
+  <div class="smar-mission-img">
+    <img src="https://static.wixstatic.com/media/33ed6c_3a01487446e54554b8abcb9002f08f49~mv2.jpg/v1/fill/w_490,h_656,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/33ed6c_3a01487446e54554b8abcb9002f08f49~mv2.jpg" alt="Community at St. Mary and Archangel Raphael Church" loading="lazy"/>
+  </div>
+</section>
+
+<!-- ── SECTION 3: PROGRAMS SWITCHER ──────────────────── -->
+<section class="smar-programs" aria-label="Church Programs">
+  <div class="smar-programs-head smar-reveal">
+    <div>
+      <span class="smar-section-label">Our Ministries</span>
+      <h2 class="smar-programs-heading">Formed in faith<br>at every stage of life.</h2>
+    </div>
+    <p class="smar-programs-intro">From the youngest Sunday School student to the women who gather in fellowship, every member of SMAR is called into an active life of worship, study, and community.</p>
+  </div>
+
+  <div class="smar-programs-tabs" role="tablist" aria-label="Ministry programs">
+    <button class="smar-programs-tab smar-tab-active" role="tab" aria-selected="true" aria-controls="smar-panel-ss" data-target="smar-panel-ss">Sunday School</button>
+    <button class="smar-programs-tab" role="tab" aria-selected="false" aria-controls="smar-panel-hymns" data-target="smar-panel-hymns">Hymns & Bible Study</button>
+    <button class="smar-programs-tab" role="tab" aria-selected="false" aria-controls="smar-panel-ladies" data-target="smar-panel-ladies">Ladies Meeting</button>
+    <button class="smar-programs-tab" role="tab" aria-selected="false" aria-controls="smar-panel-cya" data-target="smar-panel-cya">College & Young Adults</button>
+  </div>
+
+  <div class="smar-programs-panel smar-panel-active" id="smar-panel-ss" role="tabpanel">
+    <div class="smar-panel-content smar-reveal">
+      <h3 class="smar-panel-title">Sunday School</h3>
+      <p class="smar-panel-verse">Matthew 19:14 — "Let the little children come to Me."</p>
+      <p class="smar-panel-body">We seek to raise our children in the fear of God. Through dedicated servants and a curriculum rooted in Scripture, Sunday School forms the spiritual foundation of each new generation in our community. Every child is welcomed, every question honored.</p>
+      <p class="smar-panel-meta">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Saturdays · 11:15 AM – 12:15 PM · 8 Old Rd, South Amboy
+      </p>
+    </div>
+    <div class="smar-panel-img">
+      <img src="https://smarchurch.com/assets/images/sunday-school.jpg" alt="Sunday School at SMAR Church" loading="lazy" onerror="this.style.background='#d4c9b8';this.style.minHeight='200px'"/>
+    </div>
+  </div>
+
+  <div class="smar-programs-panel" id="smar-panel-hymns" role="tabpanel" hidden>
+    <div class="smar-panel-content smar-reveal">
+      <h3 class="smar-panel-title">Hymns & Bible Study</h3>
+      <p class="smar-panel-verse">Psalm 34:5 — "His praise shall continually be in my mouth."</p>
+      <p class="smar-panel-body">Praise is the language of heaven. We carry the Coptic Church's ancient and rich tradition of hymnody, pairing it with rigorous study of the Holy Scriptures. Every believer is called to be fluent in both worship and the Word of God.</p>
+      <p class="smar-panel-meta">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Fridays · 6:30 PM – 8:00 PM · 8 Old Rd, South Amboy
+      </p>
+    </div>
+    <div class="smar-panel-img">
+      <img src="https://smarchurch.com/assets/images/hymns-class.jpg" alt="Hymns and Bible Study" loading="lazy" onerror="this.style.background='#d4c9b8';this.style.minHeight='200px'"/>
+    </div>
+  </div>
+
+  <div class="smar-programs-panel" id="smar-panel-ladies" role="tabpanel" hidden>
+    <div class="smar-panel-content smar-reveal">
+      <h3 class="smar-panel-title">Ladies Meeting</h3>
+      <p class="smar-panel-verse">Hebrews 10:24–25 — "Stir up love and good works, not forsaking the assembling of ourselves together."</p>
+      <p class="smar-panel-body">We foster an environment where the faithful ladies of our church can gather, grow closer to God and to each other, encourage one another in virtue, and build the kind of deep community that stands across seasons of life.</p>
+      <p class="smar-panel-meta">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Fridays · 6:30 PM – 8:00 PM · 8 Old Rd, South Amboy
+      </p>
+    </div>
+    <div class="smar-panel-img">
+      <img src="https://smarchurch.com/assets/images/ladies-meeting.jpg" alt="Ladies Meeting at SMAR Church" loading="lazy" onerror="this.style.background='#d4c9b8';this.style.minHeight='200px'"/>
+    </div>
+  </div>
+
+  <div class="smar-programs-panel" id="smar-panel-cya" role="tabpanel" hidden>
+    <div class="smar-panel-content smar-reveal">
+      <h3 class="smar-panel-title">College & Young Adults</h3>
+      <p class="smar-panel-verse">1 Timothy 4:12 — "Be an example to the believers."</p>
+      <p class="smar-panel-body">The College and Young Adults ministry is a space for young Coptic Christians to wrestle with faith, build lifelong friendships, and take ownership of their spiritual lives. Discussion, worship, and fellowship shape an authentic community of young believers.</p>
+      <p class="smar-panel-meta">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Fridays · 8:00 PM – 10:00 PM · 8 Old Rd, South Amboy
+      </p>
+    </div>
+    <div class="smar-panel-img" style="background:var(--smar-stone); display:flex; align-items:center; justify-content:center;">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="opacity:0.25"><circle cx="32" cy="24" r="12" stroke="#af832a" stroke-width="2"/><path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#af832a" stroke-width="2"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: EDITORIAL DEEP DIVE ────────────────── -->
+<section class="smar-editorial" aria-label="Our Community">
+  <div class="smar-editorial-bg" aria-hidden="true">
+    <img src="https://static.wixstatic.com/media/33ed6c_695f123650634f7daed2cca765022bce~mv2.jpg/v1/fit/w_2500,h_1330,al_c/33ed6c_695f123650634f7daed2cca765022bce~mv2.jpg" alt="" loading="lazy"/>
+  </div>
+  <div class="smar-editorial-box smar-reveal">
+    <p class="smar-editorial-label">A Living Tradition</p>
+    <h2 class="smar-editorial-heading">The Coptic Church has never stopped singing.</h2>
+    <p class="smar-editorial-body">In a world of noise and fragmentation, SMAR offers something rare: an unbroken liturgical tradition stretching back to the Apostle Mark, faithfully carried across continents and centuries, now alive here in New Jersey. Come and experience it for yourself.</p>
+    <a href="#" class="smar-editorial-link">
+      Learn about Coptic Orthodoxy
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M9 1l4 4-4 4M1 5h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ── SECTION 5: COMMUNITY VOICE ────────────────────── -->
+<section class="smar-voice" aria-label="Community testimony">
+  <div>
+    <div class="smar-voice-mark" aria-hidden="true">"</div>
+    <blockquote class="smar-voice-quote">
+      SMAR is where I was baptized, where I was married, and where I bring my children every week. It is not just a church — it is our family across generations.
+    </blockquote>
+    <div class="smar-voice-credit">
+      <span class="smar-voice-line" aria-hidden="true"></span>
+      <span class="smar-voice-name">A Parishioner of SMAR, Old Bridge</span>
+    </div>
+  </div>
+  <div class="smar-voice-right smar-reveal smar-reveal-delay-1">
+    <div class="smar-voice-verse-block">
+      <p class="smar-voice-verse-text">"I will bless the Lord at all times; His praise shall continually be in my mouth."</p>
+      <p class="smar-voice-verse-ref">Psalm 34:5</p>
+    </div>
+    <div class="smar-voice-verse-block">
+      <p class="smar-voice-verse-text">"There is one who scatters, yet increases more; and there is one who withholds more than is right, but it leads to poverty."</p>
+      <p class="smar-voice-verse-ref">Proverbs 11:24</p>
+    </div>
+    <div class="smar-voice-verse-block">
+      <p class="smar-voice-verse-text">"Till I come, give attention to reading, to exhortation, to doctrine."</p>
+      <p class="smar-voice-verse-ref">1 Timothy 4:13</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 6: SERVICE SCHEDULE / NEWSROOM ─────────── -->
+<section class="smar-newsroom" aria-label="Upcoming Service Schedule">
+  <div class="smar-newsroom-head smar-reveal">
+    <div>
+      <span class="smar-section-label">Upcoming Services</span>
+      <h2 class="smar-newsroom-heading">Service Schedule</h2>
+    </div>
+    <a href="#" class="smar-newsroom-all">
+      Full Calendar
+      <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M7.5 1l3.5 3.5-3.5 3.5M1 4.5h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div class="smar-schedule-grid">
+    <div class="smar-schedule-day smar-reveal">
+      <div class="smar-schedule-date-col">
+        <span class="smar-schedule-num">13</span>
+        <span class="smar-schedule-dow">Sat<br><small style="font-size:0.55rem; opacity:0.6">June</small></span>
+      </div>
+      <div class="smar-schedule-events">
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">8:00 – 11:00 AM</span>
+          <span class="smar-event-name">Liturgy & Deacon Ordinations<br><small style="color:var(--smar-mid); font-size:0.75rem;">with H.G. Bishop Gabriel</small></span>
+        </div>
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">11:15 AM – 12:15 PM</span>
+          <span class="smar-event-name">Sunday School</span>
+        </div>
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">11:15 AM – 12:15 PM</span>
+          <span class="smar-event-name">Family Meeting & Adult Alhan Class</span>
+        </div>
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">1:00 – 2:00 PM</span>
+          <span class="smar-event-name">Catechesis</span>
+        </div>
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">7:00 – 9:30 PM</span>
+          <span class="smar-event-name">Vespers & Midnight Praises</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="smar-schedule-day smar-reveal smar-reveal-delay-1">
+      <div class="smar-schedule-date-col">
+        <span class="smar-schedule-num">14</span>
+        <span class="smar-schedule-dow">Sun<br><small style="font-size:0.55rem; opacity:0.6">June</small></span>
+      </div>
+      <div class="smar-schedule-events">
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">All Day</span>
+          <span class="smar-event-name">Flag Day</span>
+        </div>
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">7:30 – 10:00 AM</span>
+          <span class="smar-event-name">Divine Liturgy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="smar-schedule-day smar-reveal smar-reveal-delay-2">
+      <div class="smar-schedule-date-col">
+        <span class="smar-schedule-num">17</span>
+        <span class="smar-schedule-dow">Wed<br><small style="font-size:0.55rem; opacity:0.6">June</small></span>
+      </div>
+      <div class="smar-schedule-events">
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">4:45 – 6:15 AM</span>
+          <span class="smar-event-name">Divine Liturgy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="smar-schedule-day smar-reveal smar-reveal-delay-3">
+      <div class="smar-schedule-date-col">
+        <span class="smar-schedule-num">20</span>
+        <span class="smar-schedule-dow">Sat<br><small style="font-size:0.55rem; opacity:0.6">June</small></span>
+      </div>
+      <div class="smar-schedule-events">
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">11:15 AM – 12:15 PM</span>
+          <span class="smar-event-name">Sunday School</span>
+        </div>
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">6:30 – 8:00 PM</span>
+          <span class="smar-event-name">Hymns & Bible Study</span>
+        </div>
+        <div class="smar-schedule-event">
+          <span class="smar-event-time">8:00 – 10:00 PM</span>
+          <span class="smar-event-name">College & Young Adults Meeting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="smar-schedule-note">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="color:var(--smar-gold); flex-shrink:0;"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.3"/><line x1="9" y1="5" x2="9" y2="9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="12.5" r="0.8" fill="currentColor"/></svg>
+    <p><strong>Church address:</strong> 8 Old Rd, South Amboy, NJ 08879 · Miscellaneous services: 269 NJ-34, Matawan, NJ 07747 · For inquiries: <strong>+1 (848) 218-9784</strong></p>
+  </div>
+</section>
+
+<!-- ── SECTION 7: DONATE / CALLOUT ────────────────────── -->
+<section class="smar-callout" aria-label="Support our mission">
+  <div class="smar-callout-inner smar-reveal">
+    <div class="smar-callout-ornament" aria-hidden="true"></div>
+    <h2 class="smar-callout-heading">Your generosity<br><em>transforms lives.</em></h2>
+    <p class="smar-callout-body">SMAR is a generous community sustained by faithful giving. Every contribution supports our ministries, our building, and our mission of forming disciples and welcoming all who seek God.</p>
+    <p class="smar-callout-verse">"There is one who scatters, yet increases more." — Proverbs 11:24</p>
+    <div class="smar-callout-actions">
+      <a href="#" class="smar-callout-btn-primary">Give Online</a>
+      <a href="#" class="smar-callout-btn-secondary">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 8: FOOTER ──────────────────────────────── -->
+<footer class="smar-footer" aria-label="Site footer">
+  <div class="smar-footer-inner">
+    <div class="smar-footer-cols">
+      <div>
+        <p class="smar-footer-brand-name">St. Mary &amp; Archangel Raphael</p>
+        <p class="smar-footer-brand-tagline">A Coptic Orthodox congregation in Old Bridge Township, New Jersey — rooted in the ancient tradition of the See of Alexandria, serving the community with faith, love, and liturgy.</p>
+        <div class="smar-footer-social" aria-label="Social media links">
+          <a href="#" class="smar-footer-social-link" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="smar-footer-social-link" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" stroke="currentColor" stroke-width="1.5"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="smar-footer-social-link" aria-label="SoundCloud">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 17H5a4 4 0 0 1 0-8 1 1 0 0 1 1-1 7 7 0 0 1 13 3 4 4 0 0 1-3 3.87" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 17v-5m3 5v-7m3 7v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="smar-footer-col-heading">Navigate</p>
+        <ul class="smar-footer-links" role="list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Our Services</a></li>
+          <li><a href="#">Service Schedule</a></li>
+          <li><a href="#">Media &amp; Recordings</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="smar-footer-col-heading">Ministries</p>
+        <ul class="smar-footer-links" role="list">
+          <li><a href="#">Sunday School</a></li>
+          <li><a href="#">Hymns &amp; Bible Study</a></li>
+          <li><a href="#">Ladies Meeting</a></li>
+          <li><a href="#">College &amp; Young Adults</a></li>
+          <li><a href="#">Catechesis</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="smar-footer-col-heading">Contact</p>
+        <div class="smar-footer-contact-item">
+          <svg class="smar-footer-contact-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.515 1.5 2.5 3.515 2.5 6c0 3.5 4.5 6.5 4.5 6.5S11.5 9.5 11.5 6c0-2.485-2.015-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          <span class="smar-footer-contact-text">8 Old Rd, South Amboy, NJ 08879</span>
+        </div>
+        <div class="smar-footer-contact-item">
+          <svg class="smar-footer-contact-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2.5h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.2"/><polyline points="1,3.5 7,8 13,3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          <span class="smar-footer-contact-text">Contact via website form</span>
+        </div>
+        <div class="smar-footer-contact-item">
+          <svg class="smar-footer-contact-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 2A1.5 1.5 0 0 0 1 3.5C1 8.194 5.806 13 10.5 13A1.5 1.5 0 0 0 12 11.5v-1a1.5 1.5 0 0 0-1.5-1.5 5.5 5.5 0 0 1-1.8-.3 1.5 1.5 0 0 0-1.5.35L6.5 9.3A7.5 7.5 0 0 1 4.7 7.5l.25-.7a1.5 1.5 0 0 0 .35-1.5A5.5 5.5 0 0 1 5 3.5 1.5 1.5 0 0 0 3.5 2H2.5z" stroke="currentColor" stroke-width="1.2"/></svg>
+          <span class="smar-footer-contact-text">Church: +1 (848) 218-9784<br>Fr. Rafaeil: +1 (732) 710-2263</span>
+        </div>
+        <div class="smar-footer-contact-item">
+          <svg class="smar-footer-contact-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1 5h12" stroke="currentColor" stroke-width="1.2"/><path d="M5 1v2M9 1v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <span class="smar-footer-contact-text">P.O. Box 781<br>Old Bridge, NJ 08857</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="smar-footer-bottom">
+      <p class="smar-footer-copy">&copy; 2026 St. Mary &amp; Archangel Raphael Coptic Orthodox Church. All rights reserved.</p>
+      <nav class="smar-footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Site Map</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Tab Switcher ──────────────────────────────────────
+  const smarTabs = document.querySelectorAll('.smar-programs-tab');
+  const smarPanels = document.querySelectorAll('.smar-programs-panel');
+
+  smarTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.target;
+
+      smarTabs.forEach(t => {
+        t.classList.remove('smar-tab-active');
+        t.setAttribute('aria-selected', 'false');
+      });
+
+      smarPanels.forEach(p => {
+        p.classList.remove('smar-panel-active');
+        p.hidden = true;
+      });
+
+      tab.classList.add('smar-tab-active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(target);
+      if (panel) {
+        panel.classList.add('smar-panel-active');
+        panel.hidden = false;
+      }
+    });
+  });
+
+  // ── Scroll Reveal ─────────────────────────────────────
+  const smarObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('smar-visible');
+        smarObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.smar-reveal').forEach(el => smarObserver.observe(el));
+
+  // ─── NAV SCROLL ───
+  const smarNav = document.querySelector('.smar-nav');
+  window.addEventListener('scroll', () => {
+    smarNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+
+  // ── Mobile drawer close on outside click ──────────────
+  document.getElementById('smar-drawer').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('smar-open');
+  });
+</script>
+</body>
+</html>

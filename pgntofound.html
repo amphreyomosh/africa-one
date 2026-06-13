@@ -1,0 +1,214 @@
+<style>
+   
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Open Sans',sans-serif;
+}
+
+.error-page{
+    min-height:100vh;
+    background:#f7f9fc;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+/* BIG 404 */
+
+.error-background{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+}
+
+.error-background h1{
+    font-size:clamp(12rem,35vw,32rem);
+    font-weight:800;
+    line-height:1;
+
+    color:#2f4a8e;
+    opacity:.22;
+
+    letter-spacing:-0.08em;
+    user-select:none;
+
+    position:relative;
+    z-index:1;
+}
+
+/* CLOUDS */
+
+.cloud{
+    position:absolute;
+    background:white;
+    border-radius:999px;
+    filter:blur(14px);
+    opacity:.85;
+}
+
+.cloud-left{
+    width:350px;
+    height:120px;
+    left:-80px;
+    top:42%;
+}
+
+.cloud-right{
+    width:350px;
+    height:120px;
+    right:-80px;
+    top:42%;
+}
+
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    background:white;
+    border-radius:50%;
+}
+
+.cloud::before{
+    width:120px;
+    height:120px;
+    left:50px;
+    top:-40px;
+}
+
+.cloud::after{
+    width:140px;
+    height:140px;
+    right:60px;
+    top:-50px;
+}
+
+/* LIGHT FOG */
+
+.mist{
+    position:absolute;
+    left:50%;
+    top:52%;
+    transform:translateX(-50%);
+
+    width:min(900px,85vw);
+    height:120px;
+
+    background:radial-gradient(
+        ellipse at center,
+        rgba(47,74,142,.12) 0%,
+        rgba(47,74,142,.05) 50%,
+        transparent 100%
+    );
+
+    filter:blur(30px);
+}
+
+/* CONTENT */
+
+.error-content{
+    position:relative;
+    z-index:10;
+    text-align:center;
+    padding:2rem;
+    margin-top:14rem;
+}
+
+.error-content h2{
+    font-size:clamp(2rem,3vw,3.5rem);
+    font-weight:700;
+    color:#111827;
+    margin-bottom:1rem;
+}
+
+.error-content p{
+    max-width:620px;
+    margin:0 auto 2rem;
+
+    color:#6b7280;
+    font-size:1rem;
+    line-height:1.7;
+}
+
+/* BUTTON */
+
+.home-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    height:52px;
+    min-width:180px;
+
+    padding:0 24px;
+
+    background:#2f4a8e;
+    color:white;
+
+    text-decoration:none;
+    font-weight:600;
+
+    border-radius:8px;
+
+    transition:.3s ease;
+}
+
+.home-btn:hover{
+    background:#243b72;
+    transform:translateY(-2px);
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+    .error-content{
+        margin-top:10rem;
+    }
+
+    .error-background h1{
+        font-size:10rem;
+    }
+
+    .cloud-left,
+    .cloud-right{
+        width:220px;
+        height:80px;
+    }
+
+    .error-content h2{
+        line-height:1.2;
+    }
+}
+</style>
+<section class="error-page">
+  <div class="error-background">
+    <h1>404</h1>
+
+    <div class="cloud cloud-left"></div>
+    <div class="cloud cloud-right"></div>
+    <div class="mist"></div>
+  </div>
+
+  <div class="error-content">
+    <h2>Sorry, that page could not be found</h2>
+
+    <p>
+      The requested page either doesn't exist or you don't have access to it.
+    </p>
+
+    <a href="/" class="home-btn">Go Back Home</a>
+  </div>
+</section>

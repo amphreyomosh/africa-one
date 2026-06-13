@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotts of Friends Animal Rescue | Woodland, CA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rof-brown-deep: #2a1a0e;
+    --rof-brown-mid: #5c3317;
+    --rof-brown-warm: #8b4513;
+    --rof-red-accent: #c0392b;
+    --rof-red-dark: #8b1a1a;
+    --rof-cream: #f5f0e8;
+    --rof-cream-warm: #ede5d8;
+    --rof-sand: #d4b896;
+    --rof-text-dark: #1a0f08;
+    --rof-text-mid: #4a3020;
+    --rof-text-muted: #7a6050;
+    --rof-white: #ffffff;
+    --rof-space-xs: 0.5rem;
+    --rof-space-sm: 1rem;
+    --rof-space-md: 2rem;
+    --rof-space-lg: 4rem;
+    --rof-space-xl: 6rem;
+    --rof-space-2xl: 9rem;
+    --rof-radius-sm: 100px;
+    --rof-radius-md: 8px;
+    --rof-radius-lg: 16px;
+    --rof-font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --rof-font-display: 'Fraunces', Georgia, serif;
+
+    --shell-max: 1200px;
+    --gutter: 2rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--rof-font-body);
+    background: var(--rof-cream);
+    color: var(--rof-text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ── */
+  .rof-nav {
+    position: fixed;
+    top: auto; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(42, 26, 14, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: top 0.3s ease, background 0.3s;
+  }
+
+  .rof-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--rof-space-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .rof-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rof-nav-logo-mark {
+    width: 40px;
+    height: 40px;
+    background: var(--rof-red-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .rof-nav-wordmark {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .rof-nav-wordmark strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--rof-white);
+    letter-spacing: 0.01em;
+  }
+
+  .rof-nav-wordmark span {
+    font-size: 0.7rem;
+    color: var(--rof-sand);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .rof-nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--rof-space-md);
+    list-style: none;
+  }
+
+  .rof-nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.72);
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .rof-nav-links a:hover { color: var(--rof-white); }
+
+  .rof-nav-cta {
+    background: var(--rof-red-accent);
+    color: var(--rof-white) !important;
+    padding: 8px 20px;
+    border-radius: var(--rof-radius-sm);
+    font-weight: 600 !important;
+    letter-spacing: 0.03em;
+    transition: background 0.2s !important;
+  }
+
+  .rof-nav-cta:hover { background: var(--rof-red-dark) !important; }
+
+  .rof-nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .rof-nav-burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--rof-white);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .rof-nav-mobile {
+    display: none;
+    background: var(--rof-brown-deep);
+    padding: var(--rof-space-md);
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .rof-nav-mobile a {
+    display: block;
+    padding: 12px 0;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-weight: 500;
+  }
+
+  .rof-nav-mobile.rof-open { display: flex; }
+
+  /* ── HERO ── */
+  .rof-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    overflow: hidden;
+    background: var(--rof-brown-deep);
+  }
+
+  .rof-hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .rof-hero-slide.rof-active { opacity: 1; }
+
+  .rof-hero-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(42,26,14,0.82) 0%,
+      rgba(42,26,14,0.55) 50%,
+      rgba(42,26,14,0.30) 100%
+    );
+  }
+
+  .rof-hero-slide-1 {
+    background-image: url('https://www.rottsoffriends.com/images/dog-main-hero.jpg');
+    background-color: #3d2010;
+  }
+
+  .rof-hero-slide-2 {
+    background-image: url('https://www.rottsoffriends.com/images/dog2.jpg');
+    background-color: #2a1a0e;
+  }
+
+  .rof-hero-slide-3 {
+    background-image: url('https://www.rottsoffriends.com/images/dog3.jpg');
+    background-color: #1e1408;
+  }
+
+  .rof-hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--rof-space-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .rof-hero-text {
+    max-width: 640px;
+    padding-top: 68px;
+  }
+
+  .rof-hero-heading {
+    font-family: var(--rof-font-display);
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    color: var(--rof-white);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--rof-space-md);
+  }
+
+  .rof-hero-heading em {
+    font-style: normal;
+    color: var(--rof-sand);
+  }
+
+  .rof-hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: var(--rof-space-lg);
+    max-width: 480px;
+  }
+
+  .rof-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--rof-space-md);
+    flex-wrap: wrap;
+  }
+
+  .rof-hero-btn-primary {
+    background: var(--rof-red-accent);
+    color: var(--rof-white);
+    padding: 14px 32px;
+    border-radius: var(--rof-radius-sm);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .rof-hero-btn-primary:hover {
+    background: var(--rof-red-dark);
+    transform: translateY(-1px);
+  }
+
+  .rof-hero-btn-secondary {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.72);
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .rof-hero-btn-secondary:hover { color: var(--rof-white); }
+
+  .rof-hero-btn-secondary svg { transition: transform 0.2s; }
+  .rof-hero-btn-secondary:hover svg { transform: translateX(4px); }
+
+  .rof-hero-dots {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+  }
+
+  .rof-hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border: none;
+  }
+
+  .rof-hero-dot.rof-active {
+    background: var(--rof-red-accent);
+    transform: scale(1.3);
+  }
+
+
+
+  /* ── MISSION SPLIT ── */
+  .rof-mission {
+    background: var(--rof-cream);
+    overflow: hidden;
+  }
+
+  .rof-mission-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--rof-space-xl) var(--rof-space-md);
+    display: grid;
+    grid-template-columns: 55% 45%;
+    gap: var(--rof-space-xl);
+    align-items: center;
+  }
+
+  .rof-mission-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--rof-space-md);
+  }
+
+  .rof-mission-label-rule {
+    width: 24px;
+    height: 2px;
+    background: var(--rof-red-accent);
+  }
+
+  .rof-mission-label-text {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rof-red-accent);
+  }
+
+  .rof-mission-heading {
+    font-family: var(--rof-font-display);
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.12;
+    color: var(--rof-text-dark);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--rof-space-md);
+  }
+
+  .rof-mission-quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--rof-brown-warm);
+    font-weight: 600;
+    margin-bottom: var(--rof-space-md);
+    padding-left: 1.2rem;
+    border-left: 3px solid var(--rof-red-accent);
+    line-height: 1.5;
+  }
+
+  .rof-mission-body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--rof-text-mid);
+    margin-bottom: var(--rof-space-lg);
+  }
+
+  .rof-mission-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--rof-red-accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: gap 0.2s;
+  }
+
+  .rof-mission-link:hover { gap: 14px; }
+
+  .rof-mission-image-wrap {
+    position: relative;
+    border-radius: var(--rof-radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: var(--rof-brown-mid);
+  }
+
+  .rof-mission-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .rof-mission-image-wrap:hover img { transform: scale(1.03); }
+
+  .rof-mission-image-tag {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: rgba(42,26,14,0.88);
+    backdrop-filter: blur(8px);
+    color: var(--rof-sand);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: var(--rof-radius-sm);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* ── JOURNEY / PROGRAMS ── */
+  .rof-programs {
+    background: var(--rof-brown-deep);
+  }
+
+  .rof-programs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--rof-space-xl) var(--rof-space-md);
+  }
+
+  .rof-programs-header {
+    text-align: center;
+    margin-bottom: var(--rof-space-lg);
+  }
+
+  .rof-programs-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rof-sand);
+    opacity: 0.7;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .rof-programs-title {
+    font-family: var(--rof-font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: var(--rof-white);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .rof-programs-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: var(--rof-space-lg);
+    background: rgba(255,255,255,0.05);
+    border-radius: var(--rof-radius-md);
+    padding: 6px;
+  }
+
+  .rof-tab-btn {
+    flex: 1;
+    max-width: 200px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .rof-tab-btn.rof-tab-active {
+    background: var(--rof-red-accent);
+    color: var(--rof-white);
+  }
+
+  .rof-tab-btn:hover:not(.rof-tab-active) {
+    background: rgba(255,255,255,0.08);
+    color: var(--rof-white);
+  }
+
+  .rof-tab-panel {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--rof-space-lg);
+    align-items: start;
+  }
+
+  .rof-tab-panel.rof-panel-active {
+    display: grid;
+    animation: rof-fade-in 0.4s ease;
+  }
+
+  @keyframes rof-fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .rof-panel-text {}
+
+  .rof-panel-step {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rof-red-accent);
+    margin-bottom: var(--rof-space-sm);
+  }
+
+  .rof-panel-heading {
+    font-family: var(--rof-font-display);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 800;
+    color: var(--rof-white);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: var(--rof-space-md);
+  }
+
+  .rof-panel-body {
+    font-size: 0.97rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.62);
+    margin-bottom: var(--rof-space-md);
+  }
+
+  .rof-panel-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rof-panel-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .rof-panel-list li::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rof-red-accent);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .rof-panel-visual {
+    border-radius: var(--rof-radius-md);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--rof-brown-mid);
+    position: relative;
+  }
+
+  .rof-panel-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85);
+  }
+
+  .rof-panel-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(42,26,14,0.6) 0%, transparent 50%);
+  }
+
+  /* ── STORY QUOTE ── */
+  .rof-story {
+    background: var(--rof-cream-warm);
+    overflow: hidden;
+  }
+
+  .rof-story-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--rof-space-xl) var(--rof-space-md);
+    position: relative;
+  }
+
+  .rof-story-bg-mark {
+    position: absolute;
+    top: var(--rof-space-lg);
+    left: var(--rof-space-md);
+    font-size: 14rem;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(139,69,19,0.07);
+    font-family: Georgia, serif;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .rof-story-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .rof-story-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rof-red-accent);
+    margin-bottom: var(--rof-space-md);
+    display: block;
+  }
+
+  .rof-story-quote {
+    font-family: var(--rof-font-display);
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+    font-weight: 600;
+    line-height: 1.55;
+    color: var(--rof-text-dark);
+    margin-bottom: var(--rof-space-lg);
+    letter-spacing: -0.01em;
+  }
+
+  .rof-story-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--rof-red-accent);
+    margin: 0 auto var(--rof-space-md);
+  }
+
+  .rof-story-attribution {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--rof-brown-warm);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .rof-story-attribution span {
+    display: block;
+    font-weight: 400;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--rof-text-muted);
+    margin-top: 4px;
+    font-size: 0.82rem;
+  }
+
+  .rof-story-dogs {
+    display: flex;
+    justify-content: center;
+    gap: var(--rof-space-md);
+    margin-top: var(--rof-space-xl);
+    flex-wrap: wrap;
+  }
+
+  .rof-story-dog-thumb {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--rof-sand);
+    background: var(--rof-brown-mid);
+    flex-shrink: 0;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .rof-story-dog-thumb:hover {
+    border-color: var(--rof-red-accent);
+    transform: scale(1.05);
+  }
+
+  .rof-story-dog-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── CALLOUT ── */
+  .rof-callout {
+    background: var(--rof-brown-mid);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rof-callout::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(42,26,14,0.5) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .rof-callout-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--rof-space-xl) var(--rof-space-md);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--rof-space-xl);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .rof-callout-text {}
+
+  .rof-callout-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rof-sand);
+    opacity: 0.8;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .rof-callout-heading {
+    font-family: var(--rof-font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: var(--rof-white);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin-bottom: var(--rof-space-md);
+  }
+
+  .rof-callout-body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.68);
+    margin-bottom: var(--rof-space-lg);
+  }
+
+  .rof-callout-cost {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: var(--rof-space-lg);
+    padding: 12px 20px;
+    background: rgba(255,255,255,0.08);
+    border-radius: var(--rof-radius-md);
+    border: 1px solid rgba(255,255,255,0.12);
+    max-width: 100%;
+  }
+
+  .rof-callout-cost strong {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--rof-white);
+    letter-spacing: -0.03em;
+  }
+
+  .rof-callout-cost span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+  }
+
+  .rof-callout-actions {
+    display: flex;
+    gap: var(--rof-space-sm);
+    flex-wrap: wrap;
+  }
+
+  .rof-callout-btn-primary {
+    background: var(--rof-red-accent);
+    color: var(--rof-white);
+    padding: 14px 32px;
+    border-radius: var(--rof-radius-sm);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+
+  .rof-callout-btn-primary:hover { background: var(--rof-red-dark); }
+
+  .rof-callout-btn-ghost {
+    background: transparent;
+    color: var(--rof-white);
+    padding: 14px 32px;
+    border-radius: var(--rof-radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+
+  .rof-callout-btn-ghost:hover {
+    border-color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .rof-callout-form-side {}
+
+  .rof-form-card {
+    background: var(--rof-cream);
+    border-radius: var(--rof-radius-lg);
+    padding: var(--rof-space-lg);
+  }
+
+  .rof-form-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--rof-text-dark);
+    margin-bottom: 4px;
+  }
+
+  .rof-form-sub {
+    font-size: 0.85rem;
+    color: var(--rof-text-muted);
+    margin-bottom: var(--rof-space-md);
+    line-height: 1.5;
+  }
+
+  .rof-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .rof-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .rof-form-field label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rof-text-muted);
+  }
+
+  .rof-form-field input,
+  .rof-form-field select,
+  .rof-form-field textarea {
+    padding: 11px 14px;
+    border: 1.5px solid rgba(0,0,0,0.12);
+    border-radius: var(--rof-radius-md);
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--rof-text-dark);
+    background: var(--rof-white);
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+  }
+
+  .rof-form-field input:focus,
+  .rof-form-field select:focus,
+  .rof-form-field textarea:focus {
+    border-color: var(--rof-red-accent);
+  }
+
+  .rof-form-field-full {
+    margin-bottom: 12px;
+  }
+
+  .rof-form-submit {
+    width: 100%;
+    background: var(--rof-red-accent);
+    color: var(--rof-white);
+    padding: 14px;
+    border: none;
+    border-radius: var(--rof-radius-sm);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: var(--rof-space-sm);
+    transition: background 0.2s;
+  }
+
+  .rof-form-submit:hover { background: var(--rof-red-dark); }
+
+  .rof-form-note {
+    font-size: 0.72rem;
+    color: var(--rof-text-muted);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  .rof-footer {
+    background: var(--rof-brown-deep);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .rof-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--rof-space-xl) var(--rof-space-md) var(--rof-space-lg);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--rof-space-lg);
+  }
+
+  .rof-footer-brand {}
+
+  .rof-footer-brand-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--rof-white);
+    margin-bottom: 6px;
+  }
+
+  .rof-footer-brand-tagline {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--rof-sand);
+    margin-bottom: var(--rof-space-md);
+    line-height: 1.5;
+  }
+
+  .rof-footer-tax {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.7;
+  }
+
+  .rof-footer-tax strong {
+    color: rgba(255,255,255,0.5);
+    font-weight: 600;
+    display: block;
+  }
+
+  .rof-footer-col-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rof-sand);
+    opacity: 0.7;
+    margin-bottom: var(--rof-space-md);
+  }
+
+  .rof-footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rof-footer-links a {
+    font-size: 0.87rem;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.2s;
+  }
+
+  .rof-footer-links a:hover { color: var(--rof-white); }
+
+  .rof-footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: var(--rof-space-md);
+  }
+
+  .rof-footer-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.6);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .rof-footer-social a:hover {
+    background: var(--rof-red-accent);
+    color: var(--rof-white);
+  }
+
+  .rof-footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--rof-space-md) var(--rof-space-md);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--rof-space-md);
+  }
+
+  .rof-footer-bottom-text {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .rof-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .rof-reveal.rof-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE: MOBILE FIRST ── */
+
+  /* Base mobile overrides (all screens up to 600px) */
+  @media (max-width: 600px) {
+    /* Nav */
+    .rof-nav-inner { padding: 0 1rem; height: 60px; }
+    .rof-nav-wordmark { display: none; }
+    .rof-nav-links { display: none; }
+    .rof-nav-burger { display: flex; }
+    .rof-nav-mobile { padding: 1rem; }
+
+    /* Hero */
+    .rof-hero { min-height: 100svh; }
+    .rof-hero-content { padding: 0 1.25rem; }
+    .rof-hero-text { padding-top: 60px; max-width: 100%; }
+    .rof-hero-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .rof-hero-btn-primary { width: 100%; text-align: center; }
+
+    /* Mission */
+    .rof-mission-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 3rem 1.25rem;
+    }
+    .rof-mission-image-wrap { aspect-ratio: 4/3; order: -1; }
+
+    /* Programs */
+    .rof-programs-inner { padding: 3rem 1.25rem; }
+    .rof-programs-tabs {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+    }
+    .rof-tab-btn { max-width: none; text-align: left; padding: 14px 16px; }
+    .rof-tab-panel.rof-panel-active { grid-template-columns: 1fr; gap: 1.5rem; }
+    .rof-panel-visual { aspect-ratio: 16/9; }
+
+    /* Story */
+    .rof-story-inner { padding: 3rem 1.25rem; }
+    .rof-story-bg-mark { font-size: 7rem; }
+    .rof-story-dogs {
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+    .rof-story-dog-thumb { width: 72px; height: 72px; }
+
+    /* Callout */
+    .rof-callout-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 3rem 1.25rem;
+    }
+    .rof-callout-actions { flex-direction: column; }
+    .rof-callout-btn-primary,
+    .rof-callout-btn-ghost { text-align: center; width: 100%; }
+    .rof-form-card { padding: 1.5rem 1.25rem; }
+    .rof-form-row { grid-template-columns: 1fr; }
+
+    /* Footer */
+    .rof-footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 3rem 1.25rem 2rem;
+    }
+    .rof-footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 1.5rem 1.25rem;
+    }
+  }
+
+  /* Medium screens: tablet (601px – 900px) */
+  @media (min-width: 601px) and (max-width: 900px) {
+    /* Nav */
+    .rof-nav-inner { padding: 0 1.5rem; }
+    .rof-nav-links { display: none; }
+    .rof-nav-burger { display: flex; }
+
+    /* Hero */
+    .rof-hero-content { padding: 0 1.5rem; }
+    .rof-hero-text { max-width: 520px; }
+
+    /* Mission */
+    .rof-mission-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 4rem 1.5rem;
+    }
+    .rof-mission-image-wrap { aspect-ratio: 16/9; order: -1; }
+
+    /* Programs */
+    .rof-programs-inner { padding: 4rem 1.5rem; }
+    .rof-programs-tabs { flex-wrap: wrap; justify-content: center; }
+    .rof-tab-btn { max-width: none; flex: 1 1 auto; min-width: 120px; }
+    .rof-tab-panel.rof-panel-active { grid-template-columns: 1fr; gap: 2rem; }
+    .rof-panel-visual { aspect-ratio: 16/9; }
+
+    /* Story */
+    .rof-story-inner { padding: 4rem 1.5rem; }
+    .rof-story-dogs { gap: 1rem; }
+    .rof-story-dog-thumb { width: 96px; height: 96px; }
+
+    /* Callout */
+    .rof-callout-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 4rem 1.5rem;
+    }
+    .rof-form-row { grid-template-columns: 1fr 1fr; }
+
+    /* Footer */
+    .rof-footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      padding: 4rem 1.5rem 2.5rem;
+    }
+    .rof-footer-bottom { padding: 1.5rem; }
+  }
+
+  /* Desktop nav inner padding */
+  @media (min-width: 901px) {
+    .rof-nav-burger { display: none; }
+    .rof-nav-links { display: flex; }
+    .rof-nav-wordmark { display: flex; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+    .rof-reveal { opacity: 1; transform: none; }
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav class="rof-nav">
+  <div class="rof-nav-inner">
+    <a href="#" class="rof-nav-logo">
+      <div class="rof-nav-logo-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.5 2 6 4 6 6.5C6 8 7 9 8 9.5C7 10 5 11.5 5 14C5 16.5 7 18.5 9 19C9 20 9.5 22 12 22C14.5 22 15 20 15 19C17 18.5 19 16.5 19 14C19 11.5 17 10 16 9.5C17 9 18 8 18 6.5C18 4 15.5 2 12 2Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="rof-nav-wordmark">
+        <strong>Rotts of Friends</strong>
+        <span>Animal Rescue · Woodland, CA</span>
+      </div>
+    </a>
+    <ul class="rof-nav-links">
+      <li><a href="#">Adoptable Dogs</a></li>
+      <li><a href="#">The Journey</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#" class="rof-nav-cta">Donate</a></li>
+    </ul>
+    <button class="rof-nav-burger" id="rofBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="rof-nav-mobile" id="rofMobileMenu">
+    <a href="#">Adoptable Dogs</a>
+    <a href="#">The Dog's Journey</a>
+    <a href="#">About Us</a>
+    <a href="#">Events / Calendar</a>
+    <a href="#">Special Thanks</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Donate</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="rof-hero">
+  <div class="rof-hero-slide rof-active rof-hero-slide-1" style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&q=80'); background-position: center;"></div>
+  <div class="rof-hero-slide rof-hero-slide-2" style="background-image: url('https://images.unsplash.com/photo-1534361960057-19f4434a1b9c?w=1600&q=80');"></div>
+  <div class="rof-hero-slide rof-hero-slide-3" style="background-image: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1600&q=80');"></div>
+
+  <div class="rof-hero-content">
+    <div class="rof-hero-text">
+      <h1 class="rof-hero-heading" style="margin-top: var(--rof-space-md)">
+        We Are <em>Not</em><br>Disposable.
+      </h1>
+      <p class="rof-hero-sub">
+        Rotts of Friends rescues, rehabilitates, and rehomes abused and abandoned dogs — matching every rescue to a forever family who will love them for life.
+      </p>
+      <div class="rof-hero-actions">
+        <a href="#" class="rof-hero-btn-primary">Meet Our Dogs</a>
+        <a href="#" class="rof-hero-btn-secondary">
+          Learn how we help
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="rof-hero-dots">
+    <button class="rof-hero-dot rof-active" data-idx="0"></button>
+    <button class="rof-hero-dot" data-idx="1"></button>
+    <button class="rof-hero-dot" data-idx="2"></button>
+  </div>
+</section>
+
+<!-- ── MISSION SPLIT ── -->
+<section class="rof-mission">
+  <div class="rof-mission-inner">
+    <div class="rof-mission-text rof-reveal">
+      <div class="rof-mission-label">
+        <div class="rof-mission-label-rule"></div>
+        <span class="rof-mission-label-text">Our Mission</span>
+      </div>
+      <h2 class="rof-mission-heading"><strong>Every dog deserves a second chance at a forever home.</strong></h2>
+      <p class="rof-mission-quote">"We are not disposable."</p>
+      <p class="rof-mission-body">
+        Rotts of Friends is a registered 501(c)(3) non-profit formed to educate and prevent irresponsible breeding and ownership of animals. We rescue, rehabilitate, and place discarded and abused animals into forever homes: dogs that have been dumped in shelters, found wandering, or left behind in vacant buildings. Every dog that comes through our care is spayed or neutered, microchipped, and receives free lifetime obedience training.
+      </p>
+      <a href="#" class="rof-mission-link">
+        Read our full story
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="rof-reveal">
+      <div class="rof-mission-image-wrap">
+        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=800&q=80" alt="Rescued Rottweiler in foster care" loading="lazy">
+        <div class="rof-mission-image-tag">In Foster Care · Woodland, CA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── JOURNEY / PROGRAMS ── -->
+<section class="rof-programs">
+  <div class="rof-programs-inner">
+    <div class="rof-programs-header rof-reveal">
+      <span class="rof-programs-eyebrow">The Dog's Journey</span>
+      <h2 class="rof-programs-title"><strong>From rescue to forever home</strong></h2>
+    </div>
+
+    <div class="rof-programs-tabs" role="tablist">
+      <button class="rof-tab-btn rof-tab-active" data-tab="rescue" role="tab">Rescue</button>
+      <button class="rof-tab-btn" data-tab="rehab" role="tab">Rehabilitation</button>
+      <button class="rof-tab-btn" data-tab="adoption" role="tab">Adoption</button>
+    </div>
+
+    <!-- Rescue Panel -->
+    <div class="rof-tab-panel rof-panel-active" id="rof-panel-rescue">
+      <div class="rof-panel-text">
+        <span class="rof-panel-step">Step 01 / Rescue</span>
+        <h3 class="rof-panel-heading"><strong>Pulled from shelters, streets, and crisis situations</strong></h3>
+        <p class="rof-panel-body">
+          Rotts of Friends is contacted by other organizations, municipalities, and individuals when a dog needs help. These animals have been dumped in shelters, found wandering roads, or left in vacant buildings — malnourished, injured, and afraid.
+        </p>
+        <ul class="rof-panel-list">
+          <li>Licensed AHT Renee Lancaster stabilizes animals during transport</li>
+          <li>Accepts delivery from shelters across all of California</li>
+          <li>Immediate intake assessment and emergency veterinary triage</li>
+          <li>Coordination with municipal animal control and rescue networks</li>
+        </ul>
+      </div>
+      <div class="rof-panel-visual">
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80" alt="Dog in rehabilitation" loading="lazy">
+        <div class="rof-panel-visual-overlay"></div>
+      </div>
+    </div>
+
+    <!-- Rehab Panel -->
+    <div class="rof-tab-panel" id="rof-panel-rehab">
+      <div class="rof-panel-text">
+        <span class="rof-panel-step">Step 02 / Rehabilitation</span>
+        <h3 class="rof-panel-heading"><strong>Healing bodies, restoring spirits</strong></h3>
+        <p class="rof-panel-body">
+          Animals received often require immediate, significant medical attention — ranging from starvation to broken bones, infection, gunshot wounds, and trauma from beatings. Rehabilitation goes far beyond physical healing.
+        </p>
+        <ul class="rof-panel-list">
+          <li>Emergency and ongoing veterinary care through partner hospitals</li>
+          <li>Spay/neuter, microchipping, and full vaccinations</li>
+          <li>Behavioral assessment and mandatory obedience training</li>
+          <li>Consistent routine and care to rebuild trust and confidence</li>
+        </ul>
+      </div>
+      <div class="rof-panel-visual">
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80" alt="Dog in rehabilitation" loading="lazy">
+        <div class="rof-panel-visual-overlay"></div>
+      </div>
+    </div>
+
+    <!-- Adoption Panel -->
+    <div class="rof-tab-panel" id="rof-panel-adoption">
+      <div class="rof-panel-text">
+        <span class="rof-panel-step">Step 03 / Forever Home</span>
+        <h3 class="rof-panel-heading"><strong>Matching every rescue to the right family</strong></h3>
+        <p class="rof-panel-body">
+          We are advocates for our dogs every step of the way. Every adoption involves careful screening: phone interviews, in-person meetings with all family members and pets, to ensure a permanent, loving match.
+        </p>
+        <ul class="rof-panel-list">
+          <li>Thorough phone and in-person adoption screening process</li>
+          <li>All dogs come with free lifetime obedience training</li>
+          <li>Mandatory follow-up education for new owners</li>
+          <li>Ongoing support from Renee Lancaster with 30+ years of canine expertise</li>
+        </ul>
+      </div>
+      <div class="rof-panel-visual">
+        <img src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=800&q=80" alt="Dog in forever home" loading="lazy">
+        <div class="rof-panel-visual-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SUCCESS STORY ── -->
+<section class="rof-story">
+  <div class="rof-story-inner">
+    <div class="rof-story-bg-mark">"</div>
+    <div class="rof-story-content rof-reveal">
+      <span class="rof-story-eyebrow">Happy Tails</span>
+      <p class="rof-story-quote">
+        "When we first met Bruno, he could barely walk. His back legs had been fractured and left untreated. Six months later, he was chasing our kids around the yard. Renee matched him to us perfectly. We didn't just adopt a dog; we saved a life."
+      </p>
+      <div class="rof-story-divider"></div>
+      <div class="rof-story-attribution">
+        The Martinez Family
+        <span>Forever Home · Sacramento, CA · Bruno, adopted 2021</span>
+      </div>
+    </div>
+
+    <div class="rof-story-dogs rof-reveal">
+      <div class="rof-story-dog-thumb">
+        <img src="https://images.unsplash.com/photo-1554692918-08fa0fdc9db3?w=300&q=80" alt="Happy tails dog" loading="lazy">
+      </div>
+      <div class="rof-story-dog-thumb">
+        <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=300&q=80" alt="Happy tails dog" loading="lazy">
+      </div>
+      <div class="rof-story-dog-thumb">
+        <img src="https://images.unsplash.com/photo-1605897472359-85e4b94d685d?w=300&q=80" alt="Happy tails dog" loading="lazy">
+      </div>
+      <div class="rof-story-dog-thumb">
+        <img src="https://images.unsplash.com/photo-1534361960057-19f4434a1b9c?w=300&q=80" alt="Happy tails dog" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CALLOUT + FORM ── -->
+<section class="rof-callout">
+  <div class="rof-callout-inner">
+    <div class="rof-callout-text rof-reveal">
+      <span class="rof-callout-label">Support the Mission</span>
+      <h2 class="rof-callout-heading"><strong>Every dollar saves a life that matters.</strong></h2>
+      <p class="rof-callout-body">
+        Even with generous donated veterinary services, food, and volunteer time, the annual cost of caring for our rescues exceeds $100,000. Your contribution at any level directly funds medical care, rehabilitation, and the journey to a forever home.
+      </p>
+      <div class="rof-callout-cost">
+        <strong>$100K</strong>
+        <span>annual cost of rescue operations</span>
+      </div>
+      <div class="rof-callout-actions">
+        <a href="#" class="rof-callout-btn-primary">Donate Now</a>
+        <a href="#" class="rof-callout-btn-ghost">Volunteer</a>
+      </div>
+    </div>
+    <div class="rof-callout-form-side rof-reveal">
+      <div class="rof-form-card">
+        <p class="rof-form-title">Apply to Adopt</p>
+        <p class="rof-form-sub">Start your journey. We'll reach out to schedule a phone screening within 48 hours.</p>
+        <div class="rof-form-row">
+          <div class="rof-form-field">
+            <label for="rof-fname">First Name</label>
+            <input type="text" id="rof-fname" placeholder="Maria">
+          </div>
+          <div class="rof-form-field">
+            <label for="rof-lname">Last Name</label>
+            <input type="text" id="rof-lname" placeholder="Gonzalez">
+          </div>
+        </div>
+        <div class="rof-form-row">
+          <div class="rof-form-field">
+            <label for="rof-email">Email</label>
+            <input type="email" id="rof-email" placeholder="you@example.com">
+          </div>
+          <div class="rof-form-field">
+            <label for="rof-phone">Phone</label>
+            <input type="tel" id="rof-phone" placeholder="(530) 000-0000">
+          </div>
+        </div>
+        <div class="rof-form-field rof-form-field-full">
+          <label for="rof-home-type">Living Situation</label>
+          <select id="rof-home-type">
+            <option value="">Select one…</option>
+            <option>House with yard (fenced)</option>
+            <option>House with yard (unfenced)</option>
+            <option>Apartment / Condo</option>
+            <option>Acreage / Rural property</option>
+          </select>
+        </div>
+        <div class="rof-form-field rof-form-field-full">
+          <label for="rof-message">Tell us about your household</label>
+          <textarea id="rof-message" rows="3" placeholder="Other pets, children, activity level…"></textarea>
+        </div>
+        <button type="button" class="rof-form-submit">Submit Application</button>
+        <p class="rof-form-note">All donations are fully tax deductible. 501(c)(3) · Tax ID #26-0723143</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="rof-footer">
+  <div class="rof-footer-inner">
+    <div class="rof-footer-brand">
+      <p class="rof-footer-brand-name">Rotts of Friends Animal Rescue</p>
+      <p class="rof-footer-brand-tagline">"We are not disposable."</p>
+      <div class="rof-footer-social">
+        <a href="#" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.97A29 29 0 0023 12a29 29 0 00-.46-5.58zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
+        </a>
+      </div>
+      <div class="rof-footer-tax" style="margin-top: 1rem;">
+        <strong>501(c)(3) Non-Profit Organization</strong>
+        Tax ID #26-0723143<br>
+        All donations are fully tax deductible.<br>
+        Woodland, California
+      </div>
+    </div>
+    <div>
+      <p class="rof-footer-col-title">Adopt</p>
+      <ul class="rof-footer-links">
+        <li><a href="#">Adoptable Dogs</a></li>
+        <li><a href="#">Adoption Process</a></li>
+        <li><a href="#">Application Form</a></li>
+        <li><a href="#">Happy Tails</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="rof-footer-col-title">Organization</p>
+      <ul class="rof-footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">The Dog's Journey</a></li>
+        <li><a href="#">Events / Calendar</a></li>
+        <li><a href="#">Special Thanks</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="rof-footer-col-title">Give</p>
+      <ul class="rof-footer-links">
+        <li><a href="#">Donate</a></li>
+        <li><a href="#">Wish List</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rof-footer-bottom">
+    <span class="rof-footer-bottom-text">© 2026 Rotts of Friends Animal Rescue. All rights reserved.</span>
+    <span class="rof-footer-bottom-text">Woodland, CA · rottsoffriends.com</span>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile Nav ──
+  const rofBurger = document.getElementById('rofBurger');
+  const rofMobileMenu = document.getElementById('rofMobileMenu');
+  rofBurger.addEventListener('click', () => {
+    rofMobileMenu.classList.toggle('rof-open');
+  });
+
+  // ── Hero Carousel ──
+  const rofSlides = document.querySelectorAll('.rof-hero-slide');
+  const rofDots = document.querySelectorAll('.rof-hero-dot');
+  let rofCurrentSlide = 0;
+  let rofCarouselTimer;
+
+  function rofGoToSlide(idx) {
+    rofSlides[rofCurrentSlide].classList.remove('rof-active');
+    rofDots[rofCurrentSlide].classList.remove('rof-active');
+    rofCurrentSlide = (idx + rofSlides.length) % rofSlides.length;
+    rofSlides[rofCurrentSlide].classList.add('rof-active');
+    rofDots[rofCurrentSlide].classList.add('rof-active');
+  }
+
+  function rofStartCarousel() {
+    rofCarouselTimer = setInterval(() => {
+      rofGoToSlide(rofCurrentSlide + 1);
+    }, 5000);
+  }
+
+  rofDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(rofCarouselTimer);
+      rofGoToSlide(parseInt(dot.dataset.idx));
+      rofStartCarousel();
+    });
+  });
+
+  rofStartCarousel();
+
+  // ── Programs Tabs ──
+  const rofTabBtns = document.querySelectorAll('.rof-tab-btn');
+  const rofTabPanels = document.querySelectorAll('.rof-tab-panel');
+
+  rofTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      rofTabBtns.forEach(b => b.classList.remove('rof-tab-active'));
+      rofTabPanels.forEach(p => p.classList.remove('rof-panel-active'));
+      btn.classList.add('rof-tab-active');
+      document.getElementById('rof-panel-' + target).classList.add('rof-panel-active');
+    });
+  });
+
+  // ── Scroll Reveal ──
+  const rofRevealEls = document.querySelectorAll('.rof-reveal');
+  const rofObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('rof-visible');
+        }, i * 80);
+        rofObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  rofRevealEls.forEach(el => rofObserver.observe(el));
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+  const rofNav = document.querySelector('.rof-nav');
+  window.addEventListener('scroll', () => {
+    rofNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+</script>
+
+</body>
+</html>

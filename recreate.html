@@ -1,0 +1,2557 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReCreate — Reduce Waste. Inspire Creativity.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --rc-green: #4a7c3f;
+        --rc-green-mid: #5e9651;
+        --rc-green-light: #e8f0e5;
+        --rc-green-xlight: #f3f7f1;
+        --rc-olive: #6b7c3a;
+        --rc-dark: #1e2318;
+        --rc-text: #2c3328;
+        --rc-muted: #6b7566;
+        --rc-border: #d6e0d2;
+        --rc-white: #ffffff;
+        --rc-bg: #f9faf8;
+        --rc-warm: #f5f3ee;
+        --rc-accent-warm: #c8773a;
+        --font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+        --font-heading: "Fraunces", Georgia, serif;
+        --nav-h: 68px;
+        --radius: 20px;
+        --transition: 0.24s ease;
+        --rc-gutter: 80px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font);
+        color: var(--rc-text);
+        background: var(--rc-white);
+        line-height: 1.6;
+        font-size: 17px;
+
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        cursor: pointer;
+        font-family: var(--font);
+      }
+
+      /* ─── NAVBAR ─────────────────────────────────────────── */
+      .rc-navbar {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        height: var(--nav-h);
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--rc-border);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--rc-gutter);
+        transition:
+          box-shadow var(--transition),
+          top var(--transition);
+      }
+      /* GLAD HEADER */
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      /* PERFECT CENTER */
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+
+      /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+      @media (max-width: 640px) {
+        .glad-inner {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .glad-logo img {
+          margin-left: 0 !important;
+        }
+        .glad-back-btn {
+          margin-right: 0 !important;
+        }
+      }
+
+      /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+      @media (max-width: 640px) {
+        .glad-logo img {
+          height: 28px !important;
+          width: auto !important;
+        }
+      }
+      .rc-navbar.rc-scrolled {
+        box-shadow: 0 2px 20px rgba(30, 35, 24, 0.08);
+        top: 0;
+      }
+
+      .rc-navbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .rc-navbar-logo img {
+        height: 40px;
+        width: auto;
+      }
+
+      .rc-navbar-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        list-style: none;
+      }
+      .rc-navbar-links > li {
+        position: relative;
+      }
+      .rc-navbar-links > li > a {
+        display: block;
+        padding: 8px 14px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--rc-text);
+        border-radius: 6px;
+        transition:
+          background var(--transition),
+          color var(--transition);
+      }
+      .rc-navbar-links > li > a:hover,
+      .rc-navbar-links > li > a.rc-active {
+        color: var(--rc-green);
+      }
+
+      /* Dropdown */
+      .rc-dropdown {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        min-width: 220px;
+        background: var(--rc-white);
+        border: 1px solid var(--rc-border);
+        border-radius: 14px;
+        box-shadow: 0 8px 32px rgba(30, 35, 24, 0.12);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-6px);
+        transition:
+          opacity var(--transition),
+          transform var(--transition);
+        z-index: 10;
+        padding: 6px;
+        list-style: none;
+      }
+      .rc-navbar-links > li:hover .rc-dropdown {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .rc-dropdown li a {
+        display: block;
+        padding: 8px 12px;
+        font-size: 0.83rem;
+        color: var(--rc-text);
+        border-radius: 6px;
+        transition: background var(--transition);
+      }
+      .rc-dropdown li a:hover {
+        background: var(--rc-green-light);
+        color: var(--rc-green);
+      }
+
+      .rc-navbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+
+      .rc-btn-donate {
+        background: var(--rc-green);
+        color: var(--rc-white);
+        border: none;
+        padding: 9px 20px;
+        border-radius: 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition:
+          background var(--transition),
+          transform var(--transition);
+      }
+      .rc-btn-donate:hover {
+        background: var(--rc-green-mid);
+        transform: translateY(-1px);
+      }
+
+      .rc-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        padding: 6px;
+        border-radius: 6px;
+      }
+      .rc-hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--rc-text);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .rc-hamburger.rc-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .rc-hamburger.rc-open span:nth-child(2) {
+        opacity: 0;
+      }
+      .rc-hamburger.rc-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* ─── OFF-CANVAS MENU ─────────────────────────────────── */
+      .rc-offcanvas-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(30, 35, 24, 0.45);
+        z-index: 1100;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .rc-offcanvas-overlay.rc-visible {
+        display: block;
+      }
+      .rc-offcanvas-overlay.rc-active {
+        opacity: 1;
+      }
+
+      .rc-offcanvas {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 300px;
+        height: 100%;
+        background: var(--rc-white);
+        z-index: 1200;
+        padding: 24px 20px;
+        overflow-y: auto;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 1px solid var(--rc-border);
+      }
+      .rc-offcanvas.rc-open {
+        right: 0;
+      }
+
+      .rc-offcanvas-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+      }
+      .rc-offcanvas-top img {
+        height: 36px;
+      }
+      .rc-offcanvas-close {
+        background: none;
+        border: none;
+        font-size: 1.4rem;
+        color: var(--rc-muted);
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: color var(--transition);
+      }
+      .rc-offcanvas-close:hover {
+        color: var(--rc-green);
+      }
+
+      .rc-mobile-nav {
+        list-style: none;
+      }
+      .rc-mobile-nav > li {
+        border-bottom: 1px solid var(--rc-border);
+      }
+      .rc-mobile-nav > li:last-child {
+        border-bottom: none;
+      }
+      .rc-mobile-nav > li > a,
+      .rc-mobile-nav > li > button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 14px 0;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--rc-text);
+        background: none;
+        border: none;
+        text-align: left;
+      }
+      .rc-mobile-subnav {
+        list-style: none;
+        padding-bottom: 8px;
+        display: none;
+      }
+      .rc-mobile-subnav.rc-open {
+        display: block;
+      }
+      .rc-mobile-subnav li a {
+        display: block;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        color: var(--rc-muted);
+        border-radius: 6px;
+        transition: background var(--transition);
+      }
+      .rc-mobile-subnav li a:hover {
+        background: var(--rc-green-light);
+        color: var(--rc-green);
+      }
+      .rc-mobile-donate-wrap {
+        margin-top: 24px;
+      }
+      .rc-mobile-donate-wrap .rc-btn-donate {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        font-size: 0.95rem;
+      }
+      .rc-chevron {
+        font-size: 0.75rem;
+        transition: transform 0.25s;
+        color: var(--rc-muted);
+      }
+      .rc-chevron.rc-rotated {
+        transform: rotate(180deg);
+      }
+
+      /* ─── HERO CAROUSEL ──────────────────────────────────── */
+      .rc-hero {
+        margin-top: var(--nav-h);
+
+        position: relative;
+        height: 75dvh;
+        overflow: hidden;
+        background: var(--rc-dark);
+      }
+
+      .rc-hero-track {
+        display: flex;
+        height: 100%;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+      }
+
+      .rc-hero-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .rc-hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        transition: transform 8s ease;
+      }
+      .rc-hero-slide.rc-slide-active img {
+        transform: scale(1.04);
+      }
+
+      .rc-hero-slide-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(8, 15, 4, 0.834) 0%,
+          rgba(5, 7, 3, 0.816) 50%,
+          rgba(4, 6, 3, 0.338) 100%
+        );
+      }
+
+      .rc-hero-content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 40% 0 var(--rc-gutter);
+        max-width: 100%;
+        margin-left: 20px;
+      }
+
+      .rc-hero-title {
+        font-size: clamp(2rem, 3.8vw, 3.2rem);
+        font-weight: 800;
+        font-family: var(--font-heading);
+        line-height: 1.1;
+        color: #ffffff;
+        letter-spacing: -0.02em;
+        margin-bottom: 18px;
+        white-space: nowrap;
+      }
+      .rc-hero-title span {
+        color: #9ed48a;
+      }
+
+      .rc-hero-desc {
+        font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+        color: rgba(255, 255, 255, 0.84);
+        line-height: 1.65;
+        margin-bottom: 32px;
+        max-width: 900px;
+        font-weight: 400;
+        text-align: start;
+      }
+
+      .rc-hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--rc-green);
+        color: #fff;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 0;
+        font-size: 0.975rem;
+        font-weight: 600;
+        align-self: flex-start;
+        transition:
+          background var(--transition),
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+      .rc-hero-cta:hover {
+        background: var(--rc-green-mid);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(74, 124, 63, 0.4);
+      }
+      .rc-hero-cta svg {
+        flex-shrink: 0;
+      }
+
+      /* Carousel controls */
+      .rc-hero-dots {
+        position: absolute;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+      }
+      .rc-hero-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition:
+          background var(--transition),
+          transform var(--transition);
+      }
+      .rc-hero-dot.rc-dot-active {
+        background: #fff;
+        transform: scale(1.25);
+      }
+
+      .rc-hero-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #fff;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: background var(--transition);
+      }
+      .rc-hero-arrow:hover {
+        background: rgba(255, 255, 255, 0.28);
+      }
+      .rc-hero-arrow-prev {
+        left: 20px;
+      }
+      .rc-hero-arrow-next {
+        right: 20px;
+      }
+
+      /* ─── MISSION STRIP ──────────────────────────────────── */
+      .rc-mission-strip {
+        background: var(--rc-green);
+        padding: 0;
+        overflow: hidden;
+      }
+      .rc-mission-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 0 var(--rc-gutter);
+      }
+      .rc-mission-stat {
+        padding: 36px 32px;
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        text-align: center;
+      }
+      .rc-mission-stat:last-child {
+        border-right: none;
+      }
+      .rc-mission-stat-num {
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        font-family: var(--font-heading);
+        margin-bottom: 4px;
+      }
+      .rc-mission-stat-label {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+
+      /* ─── SECTION SHARED ─────────────────────────────────── */
+      .rc-section-header {
+        margin-bottom: 48px;
+      }
+      .rc-section-header h2 {
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 800;
+        font-family: var(--font-heading);
+        color: var(--rc-dark);
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+        line-height: 1.15;
+      }
+      .rc-section-header p {
+        font-size: 1rem;
+        color: var(--rc-muted);
+        max-width: 520px;
+        line-height: 1.65;
+      }
+      .rc-section-header.rc-centered {
+        text-align: center;
+      }
+      .rc-section-header.rc-centered p {
+        margin: 0 auto;
+      }
+
+      .rc-pad {
+        padding: 88px var(--rc-gutter);
+      }
+      .rc-pad-sm {
+        padding: 64px var(--rc-gutter);
+      }
+
+      /* ─── ABOUT ──────────────────────────────────────────── */
+      .rc-about {
+        background: var(--rc-white);
+      }
+      .rc-about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .rc-about-text p {
+        font-size: 1rem;
+        color: var(--rc-muted);
+        line-height: 1.75;
+        margin-bottom: 20px;
+      }
+      .rc-about-text p:last-of-type {
+        margin-bottom: 32px;
+      }
+      .rc-about-text h2 {
+        font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+        font-weight: 800;
+        font-family: var(--font-heading);
+        color: var(--rc-dark);
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+      .rc-about-text h2 em {
+        font-style: normal;
+        color: var(--rc-green);
+      }
+
+      .rc-about-img-wrap {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+      }
+      .rc-about-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+      .rc-about-img-wrap:hover img {
+        transform: scale(1.03);
+      }
+
+      .rc-btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1.5px solid var(--rc-green);
+        color: var(--rc-green);
+        padding: 10px 22px;
+        border-radius: 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition:
+          background var(--transition),
+          color var(--transition);
+        background: transparent;
+      }
+      .rc-btn-outline:hover {
+        background: var(--rc-green);
+        color: #fff;
+      }
+
+      /* ─── PROGRAMS ───────────────────────────────────────── */
+      .rc-programs {
+        background: var(--rc-bg);
+      }
+      .rc-programs-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .rc-program-item {
+        background: var(--rc-white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--rc-border);
+        transition:
+          box-shadow var(--transition),
+          transform var(--transition);
+        display: flex;
+      }
+      .rc-program-item:hover {
+        box-shadow: 0 8px 32px rgba(30, 35, 24, 0.1);
+        transform: translateY(-3px);
+      }
+      .rc-program-item-img {
+        width: 140px;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .rc-program-item-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .rc-program-item:hover .rc-program-item-img img {
+        transform: scale(1.06);
+      }
+      .rc-program-item-body {
+        padding: 22px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .rc-program-item-body h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--rc-dark);
+        margin-bottom: 6px;
+        line-height: 1.3;
+      }
+      .rc-program-item-body p {
+        font-size: 0.82rem;
+        color: var(--rc-muted);
+        line-height: 1.55;
+        margin-bottom: 14px;
+      }
+      .rc-program-item-link {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--rc-green);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: gap var(--transition);
+      }
+      .rc-program-item:hover .rc-program-item-link {
+        gap: 8px;
+      }
+
+      /* ─── SPLIT FEATURE ──────────────────────────────────── */
+      .rc-feature {
+        background: var(--rc-warm);
+      }
+      .rc-feature-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .rc-feature-media {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 12px;
+      }
+      .rc-feature-media-main {
+        grid-column: 1 / -1;
+        border-radius: 20px;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+      }
+      .rc-feature-media-main img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s;
+      }
+      .rc-feature-media-main:hover img {
+        transform: scale(1.03);
+      }
+      .rc-feature-media-thumb {
+        border-radius: 18px;
+        overflow: hidden;
+        aspect-ratio: 3/2;
+      }
+      .rc-feature-media-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+      .rc-feature-media-thumb:hover img {
+        transform: scale(1.05);
+      }
+
+      .rc-feature-text h2 {
+        font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+        font-weight: 800;
+        font-family: var(--font-heading);
+        color: var(--rc-dark);
+        letter-spacing: -0.02em;
+        margin-bottom: 18px;
+        line-height: 1.2;
+      }
+      .rc-feature-text p {
+        font-size: 0.975rem;
+        color: var(--rc-muted);
+        line-height: 1.75;
+        margin-bottom: 16px;
+      }
+      .rc-feature-text p:last-of-type {
+        margin-bottom: 28px;
+      }
+      .rc-feature-list {
+        list-style: none;
+        margin-bottom: 32px;
+      }
+      .rc-feature-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.9rem;
+        color: var(--rc-text);
+        padding: 8px 0;
+        border-bottom: 1px solid var(--rc-border);
+        line-height: 1.5;
+      }
+      .rc-feature-list li:last-child {
+        border-bottom: none;
+      }
+      .rc-feature-list li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--rc-green);
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      /* ─── SHOP BANNER ────────────────────────────────────── */
+      .rc-shop-banner {
+        background: var(--rc-white);
+      }
+      .rc-shop-inner {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .rc-shop-text h2 {
+        font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+        font-weight: 800;
+        font-family: var(--font-heading);
+        color: var(--rc-dark);
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      .rc-shop-text p {
+        font-size: 0.975rem;
+        color: var(--rc-muted);
+        line-height: 1.75;
+        margin-bottom: 16px;
+      }
+      .rc-shop-text p:last-of-type {
+        margin-bottom: 28px;
+      }
+      .rc-shop-hours {
+        background: var(--rc-green-xlight);
+        border: 1px solid var(--rc-border);
+        border-radius: 14px;
+        padding: 20px 22px;
+        margin-bottom: 28px;
+      }
+      .rc-shop-hours h4 {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--rc-green);
+        margin-bottom: 10px;
+      }
+      .rc-shop-hours p {
+        font-size: 0.85rem;
+        color: var(--rc-text);
+        line-height: 1.6;
+        margin-bottom: 4px;
+      }
+      .rc-shop-hours p:last-child {
+        margin-bottom: 0;
+      }
+      .rc-shop-image {
+        border-radius: 20px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+      }
+      .rc-shop-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s;
+      }
+      .rc-shop-image:hover img {
+        transform: scale(1.03);
+      }
+
+      /* ─── EVENTS STRIP ───────────────────────────────────── */
+      .rc-events-strip {
+        background: var(--rc-bg);
+      }
+      .rc-events-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .rc-event-tile {
+        background: var(--rc-white);
+        border: 1px solid var(--rc-border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition:
+          box-shadow var(--transition),
+          transform var(--transition);
+      }
+      .rc-event-tile:hover {
+        box-shadow: 0 8px 32px rgba(30, 35, 24, 0.1);
+        transform: translateY(-3px);
+      }
+      .rc-event-tile-img {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+      }
+      .rc-event-tile-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+      .rc-event-tile:hover .rc-event-tile-img img {
+        transform: scale(1.05);
+      }
+      .rc-event-tile-body {
+        padding: 20px;
+      }
+      .rc-event-tile-body h3 {
+        font-size: 0.93rem;
+        font-weight: 700;
+        color: var(--rc-dark);
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+      .rc-event-tile-body p {
+        font-size: 0.82rem;
+        color: var(--rc-muted);
+        line-height: 1.55;
+        margin-bottom: 14px;
+      }
+      .rc-event-link {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--rc-green);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .rc-event-tile:hover .rc-event-link {
+        gap: 8px;
+      }
+      .rc-event-link {
+        transition: gap var(--transition);
+      }
+
+      /* ─── SUPPORT SECTION ────────────────────────────────── */
+      .rc-support {
+        background: var(--rc-green);
+        padding: 80px var(--rc-gutter);
+        text-align: center;
+      }
+      .rc-support h2 {
+        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+        font-weight: 800;
+        font-family: var(--font-heading);
+        color: #fff;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+        line-height: 1.15;
+      }
+      .rc-support p {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 520px;
+        margin: 0 auto 36px;
+        line-height: 1.7;
+      }
+      .rc-support-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .rc-btn-white {
+        background: #fff;
+        color: var(--rc-green);
+        border: none;
+        padding: 12px 26px;
+        border-radius: 0;
+        font-size: 0.925rem;
+        font-weight: 700;
+        transition:
+          background var(--transition),
+          transform var(--transition);
+        display: inline-block;
+      }
+      .rc-btn-white:hover {
+        background: var(--rc-green-light);
+        transform: translateY(-2px);
+      }
+      .rc-btn-white-outline {
+        background: transparent;
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        padding: 12px 26px;
+        border-radius: 0;
+        font-size: 0.925rem;
+        font-weight: 600;
+        transition:
+          background var(--transition),
+          border-color var(--transition);
+        display: inline-block;
+      }
+      .rc-btn-white-outline:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.9);
+      }
+
+      /* ─── INSTAGRAM STRIP ────────────────────────────────── */
+      .rc-instagram {
+        background: var(--rc-white);
+      }
+      .rc-instagram-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .rc-insta-tile {
+        aspect-ratio: 1;
+        border-radius: 18px;
+        overflow: hidden;
+        position: relative;
+      }
+      .rc-insta-tile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+      .rc-insta-tile:hover img {
+        transform: scale(1.07);
+      }
+      .rc-insta-tile-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(74, 124, 63, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity var(--transition);
+      }
+      .rc-insta-tile:hover .rc-insta-tile-overlay {
+        opacity: 1;
+      }
+      .rc-insta-tile-overlay svg {
+        color: #fff;
+      }
+      .rc-instagram-follow {
+        margin-top: 28px;
+        text-align: center;
+      }
+      .rc-instagram-follow a {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--rc-green);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-bottom: 1.5px solid currentColor;
+        padding-bottom: 2px;
+        transition: color var(--transition);
+      }
+      .rc-instagram-follow a:hover {
+        color: var(--rc-olive);
+      }
+
+      /* ─── FOOTER ─────────────────────────────────────────── */
+      .rc-footer {
+        background: var(--rc-dark);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 64px var(--rc-gutter) 36px;
+      }
+      .rc-footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+      .rc-footer-brand img {
+        height: 38px;
+        margin-bottom: 16px;
+        filter: brightness(0) invert(1);
+      }
+      .rc-footer-brand p {
+        font-size: 0.85rem;
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+      .rc-footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .rc-footer-social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 7px;
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.7);
+        transition:
+          background var(--transition),
+          color var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .rc-footer-social a:hover {
+        background: var(--rc-green);
+        color: #fff;
+        border-color: transparent;
+      }
+      .rc-footer-col h4 {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #fff;
+        margin-bottom: 16px;
+      }
+      .rc-footer-col ul {
+        list-style: none;
+      }
+      .rc-footer-col ul li {
+        margin-bottom: 9px;
+      }
+      .rc-footer-col ul li a {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        transition: color var(--transition);
+      }
+      .rc-footer-col ul li a:hover {
+        color: #9ed48a;
+      }
+      .rc-footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .rc-footer-bottom p {
+        font-size: 0.8rem;
+      }
+      .rc-footer-address {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* ─── SCROLL ANIMATIONS ──────────────────────────────── */
+      .rc-fade-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      .rc-fade-up.rc-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .rc-fade-up:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .rc-fade-up:nth-child(3) {
+        transition-delay: 0.18s;
+      }
+      .rc-fade-up:nth-child(4) {
+        transition-delay: 0.26s;
+      }
+
+      /* ─── RESPONSIVE ─────────────────────────────────────── */
+      @media (max-width: 1024px) {
+        :root {
+          --rc-gutter: 48px;
+        }
+        .rc-navbar-links,
+        .rc-navbar-actions .rc-btn-donate {
+          display: none;
+        }
+        .rc-hamburger {
+          display: flex;
+        }
+        .rc-about-grid,
+        .rc-feature-grid,
+        .rc-shop-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .rc-about-img-wrap {
+          aspect-ratio: 16/9;
+          max-height: 320px;
+        }
+        .rc-footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+        .rc-programs-grid {
+          grid-template-columns: 1fr;
+        }
+        .rc-events-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .rc-instagram-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .rc-feature-grid .rc-feature-media {
+          order: -1;
+        }
+        .rc-hero-title {
+          white-space: normal;
+        }
+      }
+
+      @media (max-width: 640px) {
+        :root {
+          --nav-h: 60px;
+          --rc-gutter: 20px;
+        }
+        .rc-navbar {
+          padding: 0 20px;
+        }
+        .rc-hero {
+          height: 88vh;
+          max-height: none;
+        }
+        .rc-hero-content {
+          padding: 0 20px;
+          max-width: 100%;
+        }
+        .rc-hero-title {
+          white-space: normal;
+        }
+        .rc-hero-arrow {
+          display: none;
+        }
+        .rc-mission-inner {
+          grid-template-columns: 1fr;
+          padding: 0;
+        }
+        .rc-mission-stat {
+          border-right: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .rc-mission-stat:last-child {
+          border-bottom: none;
+        }
+        .rc-programs-grid {
+          grid-template-columns: 1fr;
+        }
+        .rc-program-item {
+          flex-direction: column;
+        }
+        .rc-program-item-img {
+          width: 100%;
+          height: 160px;
+        }
+        .rc-events-grid {
+          grid-template-columns: 1fr;
+        }
+        .rc-footer-grid {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .rc-footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .rc-instagram-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .rc-feature-media {
+          grid-template-columns: 1fr;
+        }
+        .rc-feature-media-thumb:last-child {
+          display: none;
+        }
+        .rc-support-actions {
+          flex-direction: column;
+        }
+        .rc-shop-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .rc-hero-content {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 0 10% 0 var(--rc-gutter);
+          max-width: 100%;
+          margin-left: 0px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- ═══ NAVBAR ═══════════════════════════════════════════ -->
+    <header class="rc-navbar" id="rcNavbar">
+      <a href="#" class="rc-navbar-logo">
+        <img
+          src="https://static1.squarespace.com/static/508224f4e4b0f4598aa61755/t/5d0bd31eb9e3a10001c55340/1593198411832/logo-for-sq.jpg?format=300w"
+          alt="ReCreate logo"
+        />
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="rc-navbar-links">
+          <li><a href="#" class="rc-active">Home</a></li>
+          <li>
+            <a href="#">About ▾</a>
+            <ul class="rc-dropdown">
+              <li><a href="#">Mission &amp; Vision</a></li>
+              <li><a href="#">Our History</a></li>
+              <li><a href="#">Board of Directors</a></li>
+              <li><a href="#">Staff</a></li>
+              <li><a href="#">Employment</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Shop / Visit ▾</a>
+            <ul class="rc-dropdown">
+              <li><a href="#">Shop at ReCreate</a></li>
+              <li><a href="#">Gift Certificates</a></li>
+              <li><a href="#">Creative Maker Studio</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Events ▾</a>
+            <ul class="rc-dropdown">
+              <li><a href="#">Birthday Parties</a></li>
+              <li><a href="#">Field Trips</a></li>
+              <li><a href="#">Scout Programs</a></li>
+              <li><a href="#">Classes &amp; Community</a></li>
+              <li><a href="#">Summer Camp</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Education ▾</a>
+            <ul class="rc-dropdown">
+              <li><a href="#">More Art, Less Waste</a></li>
+              <li><a href="#">STEAM / GeniusMobile</a></li>
+              <li><a href="#">Preschool &amp; Kinder Visits</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Support ▾</a>
+            <ul class="rc-dropdown">
+              <li><a href="#">Financial Donations</a></li>
+              <li><a href="#">Material Donations</a></li>
+              <li><a href="#">Volunteer</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="rc-navbar-actions">
+        <a href="#" class="rc-btn-donate">Donate</a>
+      </div>
+
+      <button
+        class="rc-hamburger"
+        id="rcHamburger"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- ═══ OFF-CANVAS MOBILE MENU ═══════════════════════════ -->
+    <div class="rc-offcanvas-overlay" id="rcOverlay"></div>
+    <aside class="rc-offcanvas" id="rcOffcanvas" aria-hidden="true">
+      <div class="rc-offcanvas-top">
+        <img
+          src="https://static1.squarespace.com/static/508224f4e4b0f4598aa61755/t/5d0bd31eb9e3a10001c55340/1593198411832/logo-for-sq.jpg?format=300w"
+          alt="ReCreate"
+        />
+        <button
+          class="rc-offcanvas-close"
+          id="rcOffcanvasClose"
+          aria-label="Close menu"
+        >
+          &times;
+        </button>
+      </div>
+      <ul class="rc-mobile-nav">
+        <li><a href="#">Home</a></li>
+        <li>
+          <button onclick="rcToggleSub(this)">
+            About <span class="rc-chevron">&#9660;</span>
+          </button>
+          <ul class="rc-mobile-subnav">
+            <li><a href="#">Mission &amp; Vision</a></li>
+            <li><a href="#">Our History</a></li>
+            <li><a href="#">Board of Directors</a></li>
+            <li><a href="#">Staff</a></li>
+            <li><a href="#">Employment</a></li>
+          </ul>
+        </li>
+        <li>
+          <button onclick="rcToggleSub(this)">
+            Shop / Visit <span class="rc-chevron">&#9660;</span>
+          </button>
+          <ul class="rc-mobile-subnav">
+            <li><a href="#">Shop at ReCreate</a></li>
+            <li><a href="#">Gift Certificates</a></li>
+            <li><a href="#">Creative Maker Studio</a></li>
+          </ul>
+        </li>
+        <li>
+          <button onclick="rcToggleSub(this)">
+            Events <span class="rc-chevron">&#9660;</span>
+          </button>
+          <ul class="rc-mobile-subnav">
+            <li><a href="#">Birthday Parties</a></li>
+            <li><a href="#">Field Trips</a></li>
+            <li><a href="#">Scout Programs</a></li>
+            <li><a href="#">Classes &amp; Community</a></li>
+            <li><a href="#">Summer Camp</a></li>
+          </ul>
+        </li>
+        <li>
+          <button onclick="rcToggleSub(this)">
+            Education <span class="rc-chevron">&#9660;</span>
+          </button>
+          <ul class="rc-mobile-subnav">
+            <li><a href="#">More Art, Less Waste</a></li>
+            <li><a href="#">STEAM / GeniusMobile</a></li>
+            <li><a href="#">Preschool &amp; Kinder Visits</a></li>
+          </ul>
+        </li>
+        <li>
+          <button onclick="rcToggleSub(this)">
+            Support <span class="rc-chevron">&#9660;</span>
+          </button>
+          <ul class="rc-mobile-subnav">
+            <li><a href="#">Financial Donations</a></li>
+            <li><a href="#">Material Donations</a></li>
+            <li><a href="#">Volunteer</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+      <div class="rc-mobile-donate-wrap">
+        <a href="#" class="rc-btn-donate">Donate Now</a>
+      </div>
+    </aside>
+
+    <!-- ═══ HERO CAROUSEL ════════════════════════════════════ -->
+    <section class="rc-hero" aria-label="Hero slideshow">
+      <div class="rc-hero-track" id="rcHeroTrack">
+        <div class="rc-hero-slide rc-slide-active">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1773451073519-58ZGBM8M4WNSZ8BK8ILS/IMG_5614.jpg"
+            alt="Summer Offerings at ReCreate"
+            loading="eager"
+          />
+          <div class="rc-hero-slide-overlay"></div>
+          <div class="rc-hero-content">
+            <h1 class="rc-hero-title">
+              Reduce Waste. <span>Inspire Creativity.</span>
+            </h1>
+            <p class="rc-hero-desc">
+              ReCreate is a nonprofit bringing hands-on maker education to youth
+              while diverting over 60 tons of materials from landfills every
+              year.
+            </p>
+            <a href="#" class="rc-hero-cta">
+              Explore Our Programs
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="rc-hero-slide">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506569327040-MHX815P5RWJLF6LBKX5D/IMG_1966+-+Copy.JPG"
+            alt="GeniusMobile STEAM Education"
+            loading="lazy"
+          />
+          <div class="rc-hero-slide-overlay"></div>
+          <div class="rc-hero-content">
+            <h1 class="rc-hero-title">
+              STEAM Learning <span>on Wheels.</span>
+            </h1>
+            <p class="rc-hero-desc">
+              Our GeniusMobile brings project-based STEAM education directly to
+              schools across the region, reaching thousands of students each
+              year.
+            </p>
+            <a href="#" class="rc-hero-cta">
+              Meet the GeniusMobile
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="rc-hero-slide">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1720824429969-N4ONLNBHNMKW64FTRLSN/403416158_7069101333153313_6220529220347035077_n.jpg"
+            alt="Creative Maker Studio"
+            loading="lazy"
+          />
+          <div class="rc-hero-slide-overlay"></div>
+          <div class="rc-hero-content">
+            <h1 class="rc-hero-title">Create <span>Something New.</span></h1>
+            <p class="rc-hero-desc">
+              Book a table at our Creative Maker Studio and bring your ideas to
+              life using diverted materials you won't find anywhere else.
+            </p>
+            <a href="#" class="rc-hero-cta">
+              Reserve Studio Time
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="rc-hero-slide">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506571302173-OGKELJ6O91K1KLIFFPI5/IMG_3740.JPG"
+            alt="Community Events by ReCreate"
+            loading="lazy"
+          />
+          <div class="rc-hero-slide-overlay"></div>
+          <div class="rc-hero-content">
+            <h1 class="rc-hero-title">
+              Making Art <span>in Every Community.</span>
+            </h1>
+            <p class="rc-hero-desc">
+              We show up at fairs, festivals, and school events with diverted
+              materials and a table full of possibilities — for all ages.
+            </p>
+            <a href="#" class="rc-hero-cta">
+              See Upcoming Events
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="rc-hero-arrow rc-hero-arrow-prev"
+        id="rcHeroPrev"
+        aria-label="Previous slide"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        class="rc-hero-arrow rc-hero-arrow-next"
+        id="rcHeroNext"
+        aria-label="Next slide"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <div class="rc-hero-dots" id="rcHeroDots">
+        <button
+          class="rc-hero-dot rc-dot-active"
+          data-index="0"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          class="rc-hero-dot"
+          data-index="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          class="rc-hero-dot"
+          data-index="2"
+          aria-label="Slide 3"
+        ></button>
+        <button
+          class="rc-hero-dot"
+          data-index="3"
+          aria-label="Slide 4"
+        ></button>
+      </div>
+    </section>
+
+    <!-- ═══ STATS STRIP ══════════════════════════════════════ -->
+    <div class="rc-mission-strip">
+      <div class="rc-mission-inner">
+        <div class="rc-mission-stat">
+          <div class="rc-mission-stat-num">60+</div>
+          <div class="rc-mission-stat-label">Tons Diverted Annually</div>
+        </div>
+        <div class="rc-mission-stat">
+          <div class="rc-mission-stat-num">10,000</div>
+          <div class="rc-mission-stat-label">Students Reached Per Year</div>
+        </div>
+        <div class="rc-mission-stat">
+          <div class="rc-mission-stat-num">K–8</div>
+          <div class="rc-mission-stat-label">Grades Served by GeniusMobile</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ABOUT ═════════════════════════════════════════════ -->
+    <section class="rc-about rc-pad">
+      <div class="rc-about-grid">
+        <div class="rc-about-text rc-fade-up">
+          <h2>A simple goal:<br /><em>Less waste, more creativity.</em></h2>
+          <p>
+            ReCreate is a Rocklin-based nonprofit with a straightforward mission
+            — collect materials no longer needed by local businesses, and put
+            them back to work in the hands of artists, educators, and kids.
+          </p>
+          <p>
+            We run a reuse warehouse, a Creative Maker Studio, and education
+            programs that reach schools across the region. Everything we do
+            connects the dots between sustainability and hands-on learning.
+          </p>
+          <a href="#" class="rc-btn-outline">
+            Our Story
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="rc-about-img-wrap rc-fade-up">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506571328504-041XJMV78B4ZLAVCSLCZ/chase.jpg"
+            alt="Student engaged in maker education at ReCreate"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PROGRAMS ══════════════════════════════════════════ -->
+    <section class="rc-programs rc-pad">
+      <div class="rc-section-header rc-centered rc-fade-up">
+        <h2>What We Do</h2>
+        <p>
+          Four ways ReCreate turns unwanted materials into learning, creativity,
+          and community.
+        </p>
+      </div>
+      <div class="rc-programs-grid">
+        <div class="rc-program-item rc-fade-up">
+          <div class="rc-program-item-img">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1720824429969-N4ONLNBHNMKW64FTRLSN/403416158_7069101333153313_6220529220347035077_n.jpg"
+              alt="Creative Maker Studio"
+            />
+          </div>
+          <div class="rc-program-item-body">
+            <h3>Art &amp; Maker Studio</h3>
+            <p>
+              Birthday parties, field trips, workshops, and open studio time for
+              artists and crafters of all ages. We supply the materials — you
+              bring the creativity.
+            </p>
+            <a href="#" class="rc-program-item-link">Book a Table ›</a>
+          </div>
+        </div>
+
+        <div class="rc-program-item rc-fade-up">
+          <div class="rc-program-item-img">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506569327040-MHX815P5RWJLF6LBKX5D/IMG_1966+-+Copy.JPG"
+              alt="GeniusMobile STEAM Education"
+            />
+          </div>
+          <div class="rc-program-item-body">
+            <h3>STEAM Education — GeniusMobile</h3>
+            <p>
+              Project-based learning on wheels for grades K–8. Our GeniusMobile
+              visits schools, delivers hands-on STEAM lessons, and hosts Family
+              STEAM Nights.
+            </p>
+            <a href="#" class="rc-program-item-link">Learn More ›</a>
+          </div>
+        </div>
+
+        <div class="rc-program-item rc-fade-up">
+          <div class="rc-program-item-img">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506571363064-LIY4Q9UNTLT6NX1GJWX6/back+of+nissan+copy.jpg"
+              alt="More Art Less Waste education program"
+            />
+          </div>
+          <div class="rc-program-item-body">
+            <h3>More Art, Less Waste</h3>
+            <p>
+              We bring Sort Smart, Recycle Right waste reduction education to
+              over 10,000 students annually — in school and in the community.
+            </p>
+            <a href="#" class="rc-program-item-link">See the Program ›</a>
+          </div>
+        </div>
+
+        <div class="rc-program-item rc-fade-up">
+          <div class="rc-program-item-img">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506571302173-OGKELJ6O91K1KLIFFPI5/IMG_3740.JPG"
+              alt="Community Events"
+            />
+          </div>
+          <div class="rc-program-item-body">
+            <h3>Community Events</h3>
+            <p>
+              Look for our van at fairs, festivals, and school events throughout
+              the year. Glue guns, diverted materials, and fun facilitators
+              always included.
+            </p>
+            <a href="#" class="rc-program-item-link">Upcoming Events ›</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURE — EDUCATION ══════════════════════════════ -->
+    <section class="rc-feature rc-pad">
+      <div class="rc-feature-grid">
+        <div class="rc-feature-media rc-fade-up">
+          <div class="rc-feature-media-main">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506569058330-KSXYAIH68WK0CJ0ENYKC/simple+circuit.jpg"
+              alt="Students working with circuits — ReCreate education"
+            />
+          </div>
+          <div class="rc-feature-media-thumb">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506571328504-041XJMV78B4ZLAVCSLCZ/chase.jpg"
+              alt="Maker education in action"
+            />
+          </div>
+          <div class="rc-feature-media-thumb">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1773451073519-58ZGBM8M4WNSZ8BK8ILS/IMG_5614.jpg"
+              alt="Summer program at ReCreate"
+            />
+          </div>
+        </div>
+        <div class="rc-feature-text rc-fade-up">
+          <h2>Teaching the 3 R's through hands-on science and art</h2>
+          <p>
+            ReCreate's education model bridges environmental responsibility with
+            the curiosity of making. Students don't just hear about
+            sustainability — they live it, building real projects from real
+            diverted materials.
+          </p>
+          <ul class="rc-feature-list">
+            <li>Preschool &amp; kindergarten classroom visits</li>
+            <li>Field trips to our Art and Maker Studio</li>
+            <li>In-school and after-school STEAM enrichment</li>
+            <li>Sort Smart, Recycle Right assemblies</li>
+            <li>Family STEAM Night events</li>
+          </ul>
+          <a href="#" class="rc-btn-outline">
+            Education Programs
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CRAFT THRIFT SHOP ═════════════════════════════════ -->
+    <section class="rc-shop-banner rc-pad">
+      <div class="rc-shop-inner">
+        <div class="rc-shop-text rc-fade-up">
+          <h2>Our Reuse Warehouse is full of treasures.</h2>
+          <p>
+            ReCreate collects materials from local businesses that no longer
+            need them — foam, fabric, wood, electronics parts, paper goods, and
+            things you can't even imagine — and sells them at incredibly low
+            prices.
+          </p>
+          <p>
+            Artists, teachers, sewers, costume-makers, and curious tinkerers
+            shop here for supplies that spark projects you'd never plan in a
+            regular art supply store.
+          </p>
+          <div class="rc-shop-hours">
+            <h4>Store Hours</h4>
+            <p>Monday – Saturday: 10:30 AM – 6:00 PM</p>
+            <p>Sunday: 12:00 PM – 4:00 PM</p>
+            <p>6827 Lonetree Blvd. #105, Rocklin, CA 95765</p>
+          </div>
+          <a href="#" class="rc-btn-outline">
+            Plan Your Visit
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="rc-shop-image rc-fade-up">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506569062607-FUKD7J3CDTM2TKQOFJHC/ReCreate+1+%281%29.jpg"
+            alt="Inside the ReCreate Reuse Warehouse"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EVENTS TILES ══════════════════════════════════════ -->
+    <section class="rc-events-strip rc-pad-sm">
+      <div class="rc-section-header rc-fade-up">
+        <h2>Events &amp; Experiences</h2>
+        <p>
+          From birthday parties to scout programs — there's always something
+          happening at ReCreate.
+        </p>
+      </div>
+      <div class="rc-events-grid">
+        <div class="rc-event-tile rc-fade-up">
+          <div class="rc-event-tile-img">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1773451073519-58ZGBM8M4WNSZ8BK8ILS/IMG_5614.jpg"
+              alt="Summer Offerings at ReCreate"
+            />
+          </div>
+          <div class="rc-event-tile-body">
+            <h3>Summer Offerings</h3>
+            <p>
+              Camps, Maker Mondays, and more — designed for curious, creative
+              kids all summer long.
+            </p>
+            <a href="#" class="rc-event-link">Learn More ›</a>
+          </div>
+        </div>
+        <div class="rc-event-tile rc-fade-up">
+          <div class="rc-event-tile-img">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506571302173-OGKELJ6O91K1KLIFFPI5/IMG_3740.JPG"
+              alt="Community Events"
+            />
+          </div>
+          <div class="rc-event-tile-body">
+            <h3>Birthday Parties &amp; Field Trips</h3>
+            <p>
+              Book our studio for a one-of-a-kind birthday celebration or
+              educational field trip your group will talk about for years.
+            </p>
+            <a href="#" class="rc-event-link">Book Now ›</a>
+          </div>
+        </div>
+        <div class="rc-event-tile rc-fade-up">
+          <div class="rc-event-tile-img">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506569327040-MHX815P5RWJLF6LBKX5D/IMG_1966+-+Copy.JPG"
+              alt="Scout Programs at ReCreate"
+            />
+          </div>
+          <div class="rc-event-tile-body">
+            <h3>Scout Programs &amp; Workshops</h3>
+            <p>
+              Hands-on badge work and workshops for troops of all levels, led by
+              our creative facilitators.
+            </p>
+            <a href="#" class="rc-event-link">Get Details ›</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SUPPORT CTA ═══════════════════════════════════════ -->
+    <section class="rc-support">
+      <h2>Support ReCreate's mission</h2>
+      <p>
+        Your financial or material donation keeps our programs running, our
+        warehouse stocked, and our GeniusMobile on the road.
+      </p>
+      <div class="rc-support-actions">
+        <a href="#" class="rc-btn-white">Make a Financial Gift</a>
+        <a href="#" class="rc-btn-white-outline">Donate Materials</a>
+        <a href="#" class="rc-btn-white-outline">Volunteer</a>
+      </div>
+    </section>
+
+    <!-- ═══ INSTAGRAM STRIP ══════════════════════════════════ -->
+    <section class="rc-instagram rc-pad-sm">
+      <div class="rc-section-header rc-centered rc-fade-up">
+        <h2>From the Community</h2>
+        <p>
+          Creativity from our warehouse, studio, and classrooms — follow along
+          on Instagram.
+        </p>
+      </div>
+      <div class="rc-instagram-grid">
+        <a href="#" class="rc-insta-tile rc-fade-up">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506569058330-KSXYAIH68WK0CJ0ENYKC/simple+circuit.jpg"
+            alt="ReCreate Instagram post"
+          />
+          <div class="rc-insta-tile-overlay">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1.5"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+          </div>
+        </a>
+        <a href="#" class="rc-insta-tile rc-fade-up">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1720824429969-N4ONLNBHNMKW64FTRLSN/403416158_7069101333153313_6220529220347035077_n.jpg"
+            alt="ReCreate Instagram post"
+          />
+          <div class="rc-insta-tile-overlay">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1.5"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+          </div>
+        </a>
+        <a href="#" class="rc-insta-tile rc-fade-up">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1773451073519-58ZGBM8M4WNSZ8BK8ILS/IMG_5614.jpg"
+            alt="ReCreate Instagram post"
+          />
+          <div class="rc-insta-tile-overlay">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1.5"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+          </div>
+        </a>
+        <a href="#" class="rc-insta-tile rc-fade-up">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/508224f4e4b0f4598aa61755/1506571328504-041XJMV78B4ZLAVCSLCZ/chase.jpg"
+            alt="ReCreate Instagram post"
+          />
+          <div class="rc-insta-tile-overlay">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1.5"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
+      <div class="rc-instagram-follow rc-fade-up">
+        <a href="#">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle
+              cx="17.5"
+              cy="6.5"
+              r="1.5"
+              fill="currentColor"
+              stroke="none"
+            />
+          </svg>
+          Follow @recreateorg
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ════════════════════════════════════════════ -->
+    <footer class="rc-footer">
+      <div class="rc-footer-grid">
+        <div class="rc-footer-brand">
+          <img
+            src="https://static1.squarespace.com/static/508224f4e4b0f4598aa61755/t/5d0bd31eb9e3a10001c55340/1593198411832/logo-for-sq.jpg?format=300w"
+            alt="ReCreate"
+          />
+          <p>
+            A nonprofit dedicated to reducing waste and inspiring creativity
+            through maker education in Rocklin, CA and beyond.
+          </p>
+          <div class="rc-footer-social">
+            <a href="#" aria-label="Facebook">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1.5"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="TikTok">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Etsy">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M9.3 1.1C6.2 1.6 4.2 3.2 3.5 6c-.2.8-.2 1.4-.2 6s0 5.2.2 6c.7 2.8 2.7 4.4 5.8 4.9.8.1 4.4.1 5.2 0 3.1-.5 5.1-2.1 5.8-4.9.2-.8.2-1.4.2-6s0-5.2-.2-6c-.7-2.8-2.7-4.4-5.8-4.9C13.7 1 10 1 9.3 1.1zm5.5 4.6c.6 0 1 .4 1 1s-.4 1-1 1h-3v2.5h2.5c.6 0 1 .4 1 1s-.4 1-1 1H11.8v4.5c0 .6-.4 1-1 1s-1-.4-1-1V6.7c0-.6.4-1 1-1h4z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="rc-footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="#">Shop at ReCreate</a></li>
+            <li><a href="#">Creative Maker Studio</a></li>
+            <li><a href="#">Gift Certificates</a></li>
+            <li><a href="#">Hours &amp; Directions</a></li>
+          </ul>
+        </div>
+
+        <div class="rc-footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#">STEAM GeniusMobile</a></li>
+            <li><a href="#">More Art, Less Waste</a></li>
+            <li><a href="#">Birthday Parties</a></li>
+            <li><a href="#">Field Trips</a></li>
+            <li><a href="#">Scout Programs</a></li>
+            <li><a href="#">Summer Camp</a></li>
+          </ul>
+        </div>
+
+        <div class="rc-footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Financial Donations</a></li>
+            <li><a href="#">Material Donations</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Board of Directors</a></li>
+            <li><a href="#">Employment</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rc-footer-bottom">
+        <p>
+          &copy; 2025 ReCreate. All rights reserved. 501(c)(3) nonprofit
+          organization.
+        </p>
+        <p class="rc-footer-address">
+          6827 Lonetree Blvd. #105, Rocklin, CA 95765
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ── NAVBAR SCROLL ────────────────────────────────────── */
+        const rcNavbar = document.getElementById("rcNavbar");
+        window.addEventListener(
+          "scroll",
+          function () {
+            rcNavbar.classList.toggle("rc-scrolled", window.scrollY > 20);
+          },
+          { passive: true },
+        );
+
+        /* ── OFF-CANVAS MENU ──────────────────────────────────── */
+        const rcHamburger = document.getElementById("rcHamburger");
+        const rcOffcanvas = document.getElementById("rcOffcanvas");
+        const rcOverlay = document.getElementById("rcOverlay");
+        const rcClose = document.getElementById("rcOffcanvasClose");
+
+        function rcOpenMenu() {
+          rcHamburger.classList.add("rc-open");
+          rcHamburger.setAttribute("aria-expanded", "true");
+          rcOffcanvas.classList.add("rc-open");
+          rcOffcanvas.setAttribute("aria-hidden", "false");
+          rcOverlay.classList.add("rc-visible");
+          requestAnimationFrame(function () {
+            rcOverlay.classList.add("rc-active");
+          });
+          document.body.style.overflow = "hidden";
+        }
+
+        function rcCloseMenu() {
+          rcHamburger.classList.remove("rc-open");
+          rcHamburger.setAttribute("aria-expanded", "false");
+          rcOffcanvas.classList.remove("rc-open");
+          rcOffcanvas.setAttribute("aria-hidden", "true");
+          rcOverlay.classList.remove("rc-active");
+          setTimeout(function () {
+            rcOverlay.classList.remove("rc-visible");
+          }, 300);
+          document.body.style.overflow = "";
+        }
+
+        rcHamburger.addEventListener("click", rcOpenMenu);
+        rcClose.addEventListener("click", rcCloseMenu);
+        rcOverlay.addEventListener("click", rcCloseMenu);
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") rcCloseMenu();
+        });
+
+        /* ── MOBILE SUBNAV TOGGLE ─────────────────────────────── */
+        window.rcToggleSub = function (btn) {
+          const sub = btn.nextElementSibling;
+          const chevron = btn.querySelector(".rc-chevron");
+          const isOpen = sub.classList.contains("rc-open");
+          // close all
+          document
+            .querySelectorAll(".rc-mobile-subnav.rc-open")
+            .forEach(function (el) {
+              el.classList.remove("rc-open");
+            });
+          document
+            .querySelectorAll(".rc-chevron.rc-rotated")
+            .forEach(function (el) {
+              el.classList.remove("rc-rotated");
+            });
+          if (!isOpen) {
+            sub.classList.add("rc-open");
+            chevron.classList.add("rc-rotated");
+          }
+        };
+
+        /* ── HERO CAROUSEL ────────────────────────────────────── */
+        const rcTrack = document.getElementById("rcHeroTrack");
+        const rcSlides = rcTrack
+          ? rcTrack.querySelectorAll(".rc-hero-slide")
+          : [];
+        const rcDots = document.querySelectorAll(".rc-hero-dot");
+        let rcCurrent = 0;
+        let rcAutoTimer = null;
+
+        function rcGoToSlide(index) {
+          if (!rcSlides.length) return;
+          rcSlides[rcCurrent].classList.remove("rc-slide-active");
+          rcDots[rcCurrent].classList.remove("rc-dot-active");
+          rcCurrent = (index + rcSlides.length) % rcSlides.length;
+          rcTrack.style.transform = "translateX(-" + rcCurrent * 100 + "%)";
+          rcSlides[rcCurrent].classList.add("rc-slide-active");
+          rcDots[rcCurrent].classList.add("rc-dot-active");
+        }
+
+        function rcStartAuto() {
+          rcAutoTimer = setInterval(function () {
+            rcGoToSlide(rcCurrent + 1);
+          }, 5500);
+        }
+
+        function rcResetAuto() {
+          clearInterval(rcAutoTimer);
+          rcStartAuto();
+        }
+
+        const rcPrev = document.getElementById("rcHeroPrev");
+        const rcNext = document.getElementById("rcHeroNext");
+        if (rcPrev)
+          rcPrev.addEventListener("click", function () {
+            rcGoToSlide(rcCurrent - 1);
+            rcResetAuto();
+          });
+        if (rcNext)
+          rcNext.addEventListener("click", function () {
+            rcGoToSlide(rcCurrent + 1);
+            rcResetAuto();
+          });
+
+        rcDots.forEach(function (dot) {
+          dot.addEventListener("click", function () {
+            rcGoToSlide(parseInt(dot.dataset.index));
+            rcResetAuto();
+          });
+        });
+
+        // Touch swipe
+        let rcTouchStartX = 0;
+        if (rcTrack) {
+          rcTrack.addEventListener(
+            "touchstart",
+            function (e) {
+              rcTouchStartX = e.touches[0].clientX;
+            },
+            { passive: true },
+          );
+          rcTrack.addEventListener(
+            "touchend",
+            function (e) {
+              const diff = rcTouchStartX - e.changedTouches[0].clientX;
+              if (Math.abs(diff) > 50) {
+                rcGoToSlide(diff > 0 ? rcCurrent + 1 : rcCurrent - 1);
+                rcResetAuto();
+              }
+            },
+            { passive: true },
+          );
+        }
+
+        rcStartAuto();
+
+        /* ── SCROLL FADE-UP ───────────────────────────────────── */
+        const rcFadeEls = document.querySelectorAll(".rc-fade-up");
+        if ("IntersectionObserver" in window) {
+          const rcObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("rc-visible");
+                  rcObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+          );
+          rcFadeEls.forEach(function (el) {
+            rcObserver.observe(el);
+          });
+        } else {
+          rcFadeEls.forEach(function (el) {
+            el.classList.add("rc-visible");
+          });
+        }
+      })();
+    </script>
+    <script>
+      //glad header
+      const gladHeader = document.getElementById("glad-header");
+      const calbccHeader = document.querySelector(".calbcc-header");
+      let lastScrollY = window.scrollY,
+        gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+      //
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Stage | Creative Community in Christ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rs-ink:#2b1d2e;
+    --rs-plum:#4a2545;
+    --rs-burgundy:#7a2e3a;
+    --rs-gold:#b8924a;
+    --rs-ivory:#f7f3ee;
+    --rs-stone:#ece5dd;
+    --rs-white:#ffffff;
+
+    --rs-font-display:'Cormorant Garamond', Georgia, serif;
+    --rs-font-body:'Libre Franklin', system-ui, -apple-system, sans-serif;
+
+    --rs-space-xs:0.75rem;
+    --rs-space-sm:1.5rem;
+    --rs-space-md:2.5rem;
+    --rs-space-lg:4rem;
+    --rs-space-xl:6rem;
+
+    --rs-radius:2px;
+    --rs-transition:0.35s ease;
+
+    --shell-max:1240px;
+    --gutter:1.5rem;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:var(--rs-font-body);
+    color:var(--rs-ink);
+    background:var(--rs-ivory);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  img{max-width:100%;display:block;}
+
+  a{color:inherit;text-decoration:none;}
+
+  .rs-wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding-left:var(--rs-space-sm);
+    padding-right:var(--rs-space-sm);
+  }
+
+  /* ===================== HEADER / NAV ===================== */
+  .rs-site-header{
+    position:sticky;
+    top:auto;
+    z-index:100;
+    background:rgba(247,243,238,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(43,29,46,0.08);
+    transition: top 0.3s ease, background 0.3s;
+  }
+
+  .rs-nav-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:var(--rs-space-sm) 0;
+  }
+
+  .rs-brand{
+    font-family:var(--rs-font-display);
+    font-size:1.5rem;
+    font-weight:600;
+    letter-spacing:0.04em;
+    color:var(--rs-plum);
+  }
+
+  @media (max-width:599px){
+    .rs-brand{margin-left:1rem;}
+  }
+
+  .rs-brand-tag{
+    display:block;
+    font-family:var(--rs-font-body);
+    font-size:0.625rem;
+    font-weight:500;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+    margin-top:0.15rem;
+  }
+
+  .rs-main-nav{
+    display:none;
+    align-items:center;
+    gap:var(--rs-space-md);
+  }
+
+  .rs-main-nav a{
+    font-size:0.8125rem;
+    font-weight:500;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--rs-ink);
+    transition:color var(--rs-transition);
+    position:relative;
+    padding-bottom:4px;
+  }
+
+  .rs-main-nav a::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:1px;
+    background:var(--rs-gold);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform var(--rs-transition);
+  }
+
+  .rs-main-nav a:hover{color:var(--rs-burgundy);}
+  .rs-main-nav a:hover::after{transform:scaleX(1);}
+
+  .rs-nav-actions{
+    display:flex;
+    align-items:center;
+    gap:var(--rs-space-sm);
+  }
+
+  .rs-donate-btn{
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    border:1px solid var(--rs-plum);
+    color:var(--rs-plum);
+    padding:0.7rem 1.5rem;
+    transition:all var(--rs-transition);
+  }
+
+  .rs-donate-btn:hover{
+    background:var(--rs-plum);
+    color:var(--rs-ivory);
+  }
+
+  @media (max-width:599px){
+    .rs-donate-btn{display:none;}
+  }
+
+  .rs-menu-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:44px;height:44px;
+    border:1px solid rgba(43,29,46,0.18);
+    background:transparent;
+    cursor:pointer;
+    color:var(--rs-ink);
+  }
+
+  .rs-menu-toggle svg{width:18px;height:18px;}
+
+  @media (max-width:599px){
+    .rs-menu-toggle{margin-right:1rem;}
+  }
+
+  @media (min-width:960px){
+    .rs-main-nav{display:flex;}
+    .rs-menu-toggle{display:none;}
+  }
+
+  /* ===================== OFF-CANVAS MENU ===================== */
+  .rs-offcanvas{
+    position:fixed;
+    top:0; right:0;
+    height:100vh;
+    width:min(86vw,360px);
+    background:var(--rs-plum);
+    color:var(--rs-ivory);
+    z-index:200;
+    transform:translateX(100%);
+    transition:transform 0.4s ease;
+    padding:var(--rs-space-lg) var(--rs-space-md);
+    overflow-y:auto;
+  }
+
+  .rs-offcanvas.rs-open{transform:translateX(0);}
+
+  .rs-offcanvas-close{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:40px;height:40px;
+    border:1px solid rgba(247,243,238,0.3);
+    background:transparent;
+    color:var(--rs-ivory);
+    cursor:pointer;
+    margin-bottom:var(--rs-space-lg);
+  }
+
+  .rs-offcanvas-close svg{width:16px;height:16px;}
+
+  .rs-offcanvas-nav{
+    display:flex;
+    flex-direction:column;
+    gap:var(--rs-space-sm);
+  }
+
+  .rs-offcanvas-nav a{
+    font-family:var(--rs-font-display);
+    font-size:1.6rem;
+    font-weight:500;
+  }
+
+  .rs-offcanvas-sub{
+    margin-top:var(--rs-space-lg);
+    padding-top:var(--rs-space-md);
+    border-top:1px solid rgba(247,243,238,0.16);
+    display:flex;
+    flex-direction:column;
+    gap:0.85rem;
+  }
+
+  .rs-offcanvas-sub a{
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:rgba(247,243,238,0.75);
+  }
+
+  .rs-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(43,29,46,0.45);
+    z-index:150;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity var(--rs-transition);
+  }
+
+  .rs-overlay.rs-open{opacity:1;pointer-events:auto;}
+
+  @media (min-width:960px){
+    .rs-offcanvas, .rs-overlay{display:none;}
+  }
+
+  /* ===================== HERO CAROUSEL ===================== */
+  .rs-hero{
+    position:relative;
+    min-height:70vh;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+  }
+
+  .rs-hero-slides{
+    position:absolute;
+    inset:0;
+  }
+
+  .rs-hero-slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity 1.2s ease;
+  }
+
+  .rs-hero-slide.rs-active{opacity:1;}
+
+  .rs-hero-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .rs-hero-slide::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0.688) 0%, rgba(4, 3, 5, 0.85) 100%);
+  }
+
+  .rs-hero-content{
+    position:relative;
+    z-index:5;
+    color:var(--rs-ivory);
+    padding-top:var(--rs-space-xl);
+    padding-bottom:var(--rs-space-xl);
+    width:100%;
+  }
+
+  .rs-hero-eyebrow{
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+    margin-bottom:var(--rs-space-sm);
+  }
+
+  .rs-hero-heading{
+    font-family:var(--rs-font-display);
+    font-weight:600;
+    font-size:clamp(2.75rem, 7vw, 5.5rem);
+    line-height:1.05;
+    max-width:14ch;
+    margin-bottom:var(--rs-space-sm);
+  }
+
+  .rs-hero-heading em{
+    font-style:italic;
+    color:var(--rs-gold);
+  }
+
+  .rs-hero-desc{
+    font-size:1.0625rem;
+    max-width:38ch;
+    color:rgba(247,243,238,0.88);
+    margin-bottom:var(--rs-space-md);
+  }
+
+  .rs-hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:var(--rs-space-md);
+  }
+
+  .rs-primary-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    font-size:0.8125rem;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    background:var(--rs-gold);
+    color:var(--rs-plum);
+    padding:1.1rem 2.2rem;
+    transition:all var(--rs-transition);
+    border:1px solid var(--rs-gold);
+  }
+
+  .rs-primary-btn:hover{
+    background:transparent;
+    color:var(--rs-gold);
+  }
+
+  .rs-primary-btn svg{width:14px;height:14px;}
+
+  .rs-secondary-link{
+    font-size:0.8125rem;
+    font-weight:500;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:rgba(247,243,238,0.8);
+    border-bottom:1px solid rgba(247,243,238,0.35);
+    padding-bottom:0.25rem;
+    transition:all var(--rs-transition);
+  }
+
+  .rs-secondary-link:hover{
+    color:var(--rs-ivory);
+    border-color:var(--rs-gold);
+  }
+
+  .rs-hero-dots{
+    position:absolute;
+    bottom:var(--rs-space-md);
+    right:var(--rs-space-sm);
+    z-index:6;
+    display:flex;
+    gap:0.6rem;
+  }
+
+  .rs-hero-dot{
+    width:8px;height:8px;
+    border-radius:50%;
+    border:1px solid rgba(247,243,238,0.6);
+    background:transparent;
+    cursor:pointer;
+    transition:background var(--rs-transition);
+    padding:0;
+  }
+
+  .rs-hero-dot.rs-active{background:var(--rs-gold);border-color:var(--rs-gold);}
+
+  /* ===================== IMPACT STATS ===================== */
+  .rs-impact{
+    padding:var(--rs-space-xl) 0;
+    border-bottom:1px solid rgba(43,29,46,0.08);
+  }
+
+  .rs-impact-row{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rs-space-lg);
+  }
+
+  @media (min-width:760px){
+    .rs-impact-row{
+      grid-template-columns:repeat(3,1fr);
+      gap:var(--rs-space-md);
+    }
+  }
+
+  .rs-impact-item{
+    text-align:left;
+    border-top:1px solid rgba(43,29,46,0.12);
+    padding-top:var(--rs-space-sm);
+  }
+
+  .rs-impact-number{
+    font-family:var(--rs-font-display);
+    font-weight:600;
+    font-size:clamp(2.75rem, 5vw, 4.5rem);
+    line-height:1;
+    color:var(--rs-plum);
+    display:flex;
+    align-items:baseline;
+    gap:0.25rem;
+  }
+
+  .rs-impact-number .rs-impact-suffix{
+    font-size:1.5rem;
+    color:var(--rs-gold);
+  }
+
+  .rs-impact-label{
+    margin-top:0.6rem;
+    font-size:0.8125rem;
+    font-weight:500;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:rgba(43,29,46,0.55);
+    max-width:24ch;
+  }
+
+  /* ===================== NARRATIVE SPLIT ===================== */
+  .rs-narrative{
+    padding:var(--rs-space-xl) 0;
+  }
+
+  .rs-narrative-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rs-space-lg);
+    align-items:center;
+  }
+
+  @media (min-width:900px){
+    .rs-narrative-grid{
+      grid-template-columns:55% 45%;
+      gap:var(--rs-space-xl);
+    }
+  }
+
+  .rs-narrative-eyebrow{
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+    margin-bottom:var(--rs-space-sm);
+  }
+
+  .rs-narrative-heading{
+    font-family:var(--rs-font-display);
+    font-weight:600;
+    font-size:clamp(2rem, 4vw, 3.25rem);
+    line-height:1.15;
+    margin-bottom:var(--rs-space-md);
+    color:var(--rs-plum);
+  }
+
+  .rs-narrative-body p{
+    font-size:1.0625rem;
+    color:rgba(43,29,46,0.78);
+    margin-bottom:var(--rs-space-sm);
+    max-width:54ch;
+  }
+
+  .rs-narrative-body p:last-child{margin-bottom:0;}
+
+  .rs-narrative-scripture{
+    font-family:var(--rs-font-display);
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--rs-burgundy);
+    border-left:2px solid var(--rs-gold);
+    padding-left:var(--rs-space-sm);
+    margin:var(--rs-space-md) 0;
+  }
+
+  .rs-narrative-scripture cite{
+    display:block;
+    font-style:normal;
+    font-family:var(--rs-font-body);
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+    margin-top:0.5rem;
+  }
+
+  .rs-narrative-image{
+    position:relative;
+    overflow:hidden;
+  }
+
+  .rs-narrative-image img{
+    width:100%;
+    height:auto;
+    transition:transform 0.6s ease;
+  }
+
+  .rs-narrative-image:hover img{transform:scale(1.03);}
+
+  /* ===================== PROGRAMS SWITCHER ===================== */
+  .rs-programs{
+    padding:var(--rs-space-xl) 0;
+    background:var(--rs-stone);
+  }
+
+  .rs-section-eyebrow{
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+    margin-bottom:var(--rs-space-sm);
+  }
+
+  .rs-section-heading{
+    font-family:var(--rs-font-display);
+    font-weight:600;
+    font-size:clamp(2rem, 4vw, 3rem);
+    color:var(--rs-plum);
+    line-height:1.15;
+  }
+
+  .rs-program-switcher{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rs-space-lg);
+  }
+
+  @media (min-width:900px){
+    .rs-program-switcher{
+      grid-template-columns:38% 62%;
+      gap:var(--rs-space-xl);
+      align-items:start;
+    }
+  }
+
+  .rs-programs-head{
+    max-width:34rem;
+  }
+
+  @media (min-width:900px){
+    .rs-programs-head{
+      position:sticky;
+      top:calc(var(--rs-space-xl) + 1rem);
+    }
+  }
+
+  .rs-programs-intro{
+    margin-top:var(--rs-space-sm);
+    font-size:1.0625rem;
+    color:rgba(43,29,46,0.7);
+    max-width:36ch;
+  }
+
+  /* ===================== ACCORDION ===================== */
+  .rs-program-accordion{
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid rgba(43,29,46,0.14);
+  }
+
+  .rs-program-item{
+    border-bottom:1px solid rgba(43,29,46,0.14);
+  }
+
+  .rs-program-trigger{
+    width:100%;
+    text-align:left;
+    background:transparent;
+    border:none;
+    padding:var(--rs-space-md) 0;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:var(--rs-space-sm);
+    font-family:var(--rs-font-body);
+    transition:opacity var(--rs-transition);
+  }
+
+  .rs-program-trigger:hover{opacity:0.7;}
+
+  .rs-program-trigger-index{
+    font-family:var(--rs-font-display);
+    font-size:1rem;
+    color:var(--rs-gold);
+    font-weight:600;
+  }
+
+  .rs-program-trigger-name{
+    font-family:var(--rs-font-display);
+    font-size:clamp(1.4rem, 2.4vw, 1.75rem);
+    font-weight:600;
+    color:var(--rs-plum);
+    flex:1;
+  }
+
+  .rs-program-trigger-icon{
+    width:18px;height:18px;
+    color:var(--rs-gold);
+    flex-shrink:0;
+    transition:transform var(--rs-transition);
+  }
+
+  .rs-program-item.rs-active .rs-program-trigger-icon{transform:rotate(45deg);}
+
+  .rs-program-panel{
+    overflow:hidden;
+    max-height:0;
+    transition:max-height 0.4s ease;
+  }
+
+  .rs-program-item.rs-active .rs-program-panel{
+    max-height:32rem;
+  }
+
+  .rs-program-panel-inner{
+    display:flex;
+    flex-direction:column;
+    gap:var(--rs-space-sm);
+    padding-bottom:var(--rs-space-md);
+  }
+
+  .rs-program-panel-desc{
+    font-size:1.0625rem;
+    color:rgba(43,29,46,0.78);
+    max-width:48ch;
+  }
+
+  .rs-program-panel-list{
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+    margin-top:var(--rs-space-xs);
+  }
+
+  .rs-program-panel-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:0.75rem;
+    font-size:0.95rem;
+    color:rgba(43,29,46,0.7);
+  }
+
+  .rs-program-panel-list svg{
+    width:14px;height:14px;
+    margin-top:0.3rem;
+    color:var(--rs-burgundy);
+    flex-shrink:0;
+  }
+
+  .rs-program-panel-link{
+    margin-top:var(--rs-space-sm);
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    font-size:0.8125rem;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--rs-burgundy);
+    border-bottom:1px solid var(--rs-burgundy);
+    padding-bottom:0.2rem;
+    width:fit-content;
+  }
+
+  .rs-program-panel-link svg{width:12px;height:12px;}
+
+  /* ===================== PULL QUOTE ===================== */
+  .rs-quote{
+    padding:var(--rs-space-xl) 0;
+  }
+
+  .rs-quote-inner{
+    max-width:48rem;
+    margin:0 auto;
+    text-align:center;
+    position:relative;
+  }
+
+  .rs-quote-mark{
+    font-family:var(--rs-font-display);
+    font-size:6rem;
+    line-height:1;
+    color:var(--rs-gold);
+    opacity:0.35;
+    margin-bottom:-1.5rem;
+  }
+
+  .rs-quote-text{
+    font-family:var(--rs-font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.5rem, 3.2vw, 2.4rem);
+    line-height:1.4;
+    color:var(--rs-plum);
+  }
+
+  .rs-quote-credit{
+    margin-top:var(--rs-space-md);
+    font-size:0.8125rem;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+  }
+
+  .rs-quote-credit span{
+    display:block;
+    margin-top:0.3rem;
+    font-weight:400;
+    letter-spacing:0.05em;
+    text-transform:none;
+    color:rgba(43,29,46,0.55);
+  }
+
+  /* ===================== FINAL CALLOUT ===================== */
+  .rs-callout{
+    background:var(--rs-plum);
+    color:var(--rs-ivory);
+    padding:var(--rs-space-xl) 0;
+  }
+
+  .rs-callout-inner{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rs-space-lg);
+    align-items:center;
+  }
+
+  @media (min-width:900px){
+    .rs-callout-inner{
+      grid-template-columns:1.2fr 1fr;
+    }
+  }
+
+  .rs-callout-heading{
+    font-family:var(--rs-font-display);
+    font-weight:600;
+    font-size:clamp(2rem, 4vw, 3.25rem);
+    line-height:1.2;
+    margin-bottom:var(--rs-space-sm);
+  }
+
+  .rs-callout-heading em{color:var(--rs-gold);font-style:italic;}
+
+  .rs-callout-text{
+    font-size:1.0625rem;
+    color:rgba(247,243,238,0.82);
+    max-width:42ch;
+  }
+
+  .rs-callout-form{
+    display:flex;
+    flex-direction:column;
+    gap:var(--rs-space-sm);
+  }
+
+  .rs-form-row{
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+  }
+
+  .rs-form-row label{
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+  }
+
+  .rs-form-row input{
+    background:transparent;
+    border:none;
+    border-bottom:1px solid rgba(247,243,238,0.3);
+    padding:0.75rem 0;
+    font-size:1rem;
+    color:var(--rs-ivory);
+    font-family:var(--rs-font-body);
+    transition:border-color var(--rs-transition);
+  }
+
+  .rs-form-row input::placeholder{color:rgba(247,243,238,0.35);}
+
+  .rs-form-row input:focus{
+    outline:none;
+    border-color:var(--rs-gold);
+  }
+
+  .rs-callout-submit{
+    margin-top:var(--rs-space-xs);
+    align-self:flex-start;
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    font-size:0.8125rem;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    background:var(--rs-gold);
+    color:var(--rs-plum);
+    padding:1.1rem 2.2rem;
+    border:1px solid var(--rs-gold);
+    cursor:pointer;
+    transition:all var(--rs-transition);
+  }
+
+  .rs-callout-submit:hover{
+    background:transparent;
+    color:var(--rs-gold);
+  }
+
+  .rs-callout-submit svg{width:14px;height:14px;}
+
+  .rs-callout-note{
+    font-size:0.8125rem;
+    color:rgba(247,243,238,0.5);
+  }
+
+  /* ===================== FOOTER ===================== */
+  .rs-footer{
+    background:var(--rs-ink);
+    color:rgba(247,243,238,0.7);
+    padding:var(--rs-space-xl) 0 var(--rs-space-md);
+  }
+
+  .rs-footer-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:var(--rs-space-lg);
+    margin-bottom:var(--rs-space-lg);
+  }
+
+  @media (min-width:760px){
+    .rs-footer-grid{grid-template-columns:1.5fr 1fr 1fr 1fr;}
+  }
+
+  .rs-footer-brand{
+    font-family:var(--rs-font-display);
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--rs-ivory);
+    margin-bottom:var(--rs-space-sm);
+  }
+
+  .rs-footer-brand span{
+    display:block;
+    font-family:var(--rs-font-body);
+    font-size:0.625rem;
+    font-weight:500;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+    margin-top:0.3rem;
+  }
+
+  .rs-footer-desc{
+    font-size:0.9rem;
+    max-width:32ch;
+    margin-top:var(--rs-space-sm);
+    color:rgba(247,243,238,0.55);
+  }
+
+  .rs-footer-heading{
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--rs-gold);
+    margin-bottom:var(--rs-space-sm);
+  }
+
+  .rs-footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+  }
+
+  .rs-footer-links a{
+    font-size:0.9rem;
+    transition:color var(--rs-transition);
+  }
+
+  .rs-footer-links a:hover{color:var(--rs-ivory);}
+
+  .rs-footer-social{
+    display:flex;
+    gap:0.8rem;
+    margin-top:var(--rs-space-sm);
+  }
+
+  .rs-footer-social a{
+    width:36px;height:36px;
+    border:1px solid rgba(247,243,238,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all var(--rs-transition);
+  }
+
+  .rs-footer-social a:hover{
+    border-color:var(--rs-gold);
+    color:var(--rs-gold);
+  }
+
+  .rs-footer-social svg{width:15px;height:15px;}
+
+  .rs-footer-bottom{
+    border-top:1px solid rgba(247,243,238,0.1);
+    padding-top:var(--rs-space-md);
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+    font-size:0.8rem;
+    color:rgba(247,243,238,0.4);
+  }
+
+  @media (min-width:760px){
+    .rs-footer-bottom{
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+    }
+  }
+
+  /* ===================== SCROLL REVEAL ===================== */
+  .rs-reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .rs-reveal.rs-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ===================== SECTION SPACING ===================== */
+  section{position:relative;}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ===================== HEADER ===================== -->
+<header class="rs-site-header">
+  <div class="rs-wrap rs-nav-bar">
+    <a href="javascript:void(0)" class="rs-brand">
+      Royal Stage
+      <span class="rs-brand-tag">Community in Christ</span>
+    </a>
+
+    <nav class="rs-main-nav" aria-label="Primary">
+      <a href="javascript:void(0)">Classes &amp; Camps</a>
+      <a href="javascript:void(0)">Shows &amp; Events</a>
+      <a href="javascript:void(0)">Our Purpose</a>
+      <a href="javascript:void(0)">Staff</a>
+      <a href="javascript:void(0)">Contact</a>
+    </nav>
+
+    <div class="rs-nav-actions">
+      <a href="javascript:void(0)" class="rs-donate-btn">Donate</a>
+      <button class="rs-menu-toggle" id="rsMenuToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="rs-overlay" id="rsOverlay"></div>
+
+<aside class="rs-offcanvas" id="rsOffcanvas">
+  <button class="rs-offcanvas-close" id="rsOffcanvasClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+  </button>
+  <nav class="rs-offcanvas-nav" aria-label="Mobile">
+    <a href="javascript:void(0)">Classes &amp; Camps</a>
+    <a href="javascript:void(0)">Shows &amp; Events</a>
+    <a href="javascript:void(0)">Our Purpose</a>
+    <a href="javascript:void(0)">Staff</a>
+    <a href="javascript:void(0)">Donate</a>
+    <a href="javascript:void(0)">Contact</a>
+  </nav>
+  <div class="rs-offcanvas-sub">
+    <a href="javascript:void(0)">Summer Playcation</a>
+    <a href="javascript:void(0)">Tickets</a>
+    <a href="javascript:void(0)">Rent Our Facilities</a>
+    <a href="javascript:void(0)">Romania 2026</a>
+  </div>
+</aside>
+
+<!-- ===================== HERO ===================== -->
+<section class="rs-hero" aria-label="Featured">
+  <div class="rs-hero-slides">
+    <div class="rs-hero-slide rs-active">
+      <img src="https://images.squarespace-cdn.com/content/v1/50df6062e4b00220dc7a985f/0fcf455c-5082-40e7-93bd-fd2d66f46195/Welcome+to.png" alt="Royal Stage dancers in performance">
+    </div>
+    <div class="rs-hero-slide">
+      <img src="https://images.squarespace-cdn.com/content/v1/50df6062e4b00220dc7a985f/13c708a3-30b0-47a9-bddd-cd0d522c4b98/Welcome+to+%281%29.png" alt="Royal Stage students in class">
+    </div>
+    <div class="rs-hero-slide">
+      <img src="https://images.squarespace-cdn.com/content/v1/50df6062e4b00220dc7a985f/58d6c98e-c03f-4f66-95a8-e495eb749135/Welcome+to+%283%29.png" alt="Royal Stage theater production">
+    </div>
+  </div>
+
+  <div class="rs-wrap rs-hero-content">
+    <h1 class="rs-hero-heading">Movement that declares <em>who you truly are.</em></h1>
+    <p class="rs-hero-desc">A non-profit dance, theater, and creative arts community training artists of every age and background &mdash; rooted in faith, devoted to dignity, and open to everyone.</p>
+    <div class="rs-hero-actions">
+      <a href="javascript:void(0)" class="rs-primary-btn">
+        See a Show
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="javascript:void(0)" class="rs-secondary-link">View Class &amp; Camp Schedule</a>
+    </div>
+  </div>
+
+  <div class="rs-hero-dots" role="tablist" aria-label="Slide selection">
+    <button class="rs-hero-dot rs-active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="rs-hero-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="rs-hero-dot" data-slide="2" aria-label="Slide 3"></button>
+  </div>
+</section>
+
+<!-- ===================== IMPACT STATS ===================== -->
+<section class="rs-impact">
+  <div class="rs-wrap">
+    <div class="rs-impact-row">
+      <div class="rs-impact-item rs-reveal">
+        <div class="rs-impact-number">100<span class="rs-impact-suffix">%</span></div>
+        <p class="rs-impact-label">Free access for participants coming out of trauma, abuse, or disadvantage</p>
+      </div>
+      <div class="rs-impact-item rs-reveal">
+        <div class="rs-impact-number">7<span class="rs-impact-suffix">+</span></div>
+        <p class="rs-impact-label">Partner organizations served with complimentary classes &amp; performances</p>
+      </div>
+      <div class="rs-impact-item rs-reveal">
+        <div class="rs-impact-number">2<span class="rs-impact-suffix">Loc.</span></div>
+        <p class="rs-impact-label">A studio in Roseville and a theater in Citrus Heights, serving greater Sacramento</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NARRATIVE SPLIT ===================== -->
+<section class="rs-narrative">
+  <div class="rs-wrap">
+    <div class="rs-narrative-grid">
+      <div class="rs-narrative-body rs-reveal">
+        <p class="rs-narrative-eyebrow">Our Purpose</p>
+        <h2 class="rs-narrative-heading">Building up girls and women to know they are true royalty &mdash; and raising up men to protect that calling.</h2>
+        <p>We offer safe, encouraging classes and camps for both males and females, but every dollar of profit earned goes toward one cause: helping people of all walks of life understand their worth. From young girls just forming their self-image to teens and adults healing from trauma, we extend free and deeply discounted opportunities along the way.</p>
+        <p>Our wonderful crew of boys and men join our theater productions and classes too. We commit to raising them up to respect and protect women, breaking cycles of abuse in many lives.</p>
+        <blockquote class="rs-narrative-scripture">
+          &ldquo;Now to him who is able to do immeasurably more than all we ask or imagine, according to his power that is at work within us.&rdquo;
+          <cite>Ephesians 3:20</cite>
+        </blockquote>
+      </div>
+      <div class="rs-narrative-image rs-reveal">
+        <img src="https://images.squarespace-cdn.com/content/v1/50df6062e4b00220dc7a985f/1517446683142-BRVG4HZ3N7737APXHBHH/12243588_918681944852595_508888912993267631_n.jpg" alt="Royal Stage performers in rehearsal">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROGRAMS SWITCHER ===================== -->
+<section class="rs-programs">
+  <div class="rs-wrap">
+    <div class="rs-program-switcher">
+      <div class="rs-programs-head rs-reveal">
+        <p class="rs-section-eyebrow">What We Offer</p>
+        <h2 class="rs-section-heading">Three facets of one creative community.</h2>
+        <p class="rs-programs-intro">From weekly classes to mainstage productions and outreach trips abroad, every program exists to train artists well and point them toward who they were made to be. Explore each facet below.</p>
+      </div>
+
+      <div class="rs-program-accordion rs-reveal" role="tablist">
+        <div class="rs-program-item rs-active">
+          <button class="rs-program-trigger" data-panel="0" aria-expanded="true">
+            <span class="rs-program-trigger-index">01</span>
+            <span class="rs-program-trigger-name">Classes &amp; Camps</span>
+            <svg class="rs-program-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="rs-program-panel">
+            <div class="rs-program-panel-inner">
+              <p class="rs-program-panel-desc">Year-round dance, theater, and creative arts training for all ages and skill levels &mdash; taught by professionally trained instructors in a faith-rooted, encouraging environment.</p>
+              <ul class="rs-program-panel-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Weekly class schedule across multiple disciplines</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Summer Camps and Summer Playcation programs</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Scholarship and pay-what-you-wish options available</li>
+              </ul>
+              <a href="javascript:void(0)" class="rs-program-panel-link">View Class Schedule
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="rs-program-item">
+          <button class="rs-program-trigger" data-panel="1" aria-expanded="false">
+            <span class="rs-program-trigger-index">02</span>
+            <span class="rs-program-trigger-name">Stage &amp; Theater</span>
+            <svg class="rs-program-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="rs-program-panel">
+            <div class="rs-program-panel-inner">
+              <p class="rs-program-panel-desc">Full-scale productions at our Citrus Heights theater bring dancers, singers, and actors together for performances that inspire and uplift the wider Sacramento community.</p>
+              <ul class="rs-program-panel-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Seasonal mainstage productions at Royal Stage Theater</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Auditions open to performers of all backgrounds</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Pay-what-you-wish performance weekends</li>
+              </ul>
+              <a href="javascript:void(0)" class="rs-program-panel-link">Get Tickets
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="rs-program-item">
+          <button class="rs-program-trigger" data-panel="2" aria-expanded="false">
+            <span class="rs-program-trigger-index">03</span>
+            <span class="rs-program-trigger-name">Outreach &amp; Touring</span>
+            <svg class="rs-program-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="rs-program-panel">
+            <div class="rs-program-panel-inner">
+              <p class="rs-program-panel-desc">Our dancers, singers, actors, and speakers travel to churches, schools, fairs, and community organizations &mdash; bringing an engaging, inspiring show wherever they're invited.</p>
+              <ul class="rs-program-panel-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free performances for partner shelters and recovery programs</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Appearances at fairs, churches, and community events</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>International outreach trips, including Romania 2026</li>
+              </ul>
+              <a href="javascript:void(0)" class="rs-program-panel-link">Request an Appearance
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PULL QUOTE ===================== -->
+<section class="rs-quote">
+  <div class="rs-wrap">
+    <div class="rs-quote-inner rs-reveal">
+      <div class="rs-quote-mark">&ldquo;</div>
+      <p class="rs-quote-text">But you are a chosen people, a royal priesthood, a holy nation, God's special possession, that you may declare the praises of him who called you out of darkness into his wonderful light.</p>
+      <p class="rs-quote-credit">1 Peter 2:9<span>The verse behind our name &mdash; and the heart of everything we teach</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CALLOUT ===================== -->
+<section class="rs-callout">
+  <div class="rs-wrap">
+    <div class="rs-callout-inner">
+      <div class="rs-reveal">
+        <h2 class="rs-callout-heading">Help us extend <em>free and deeply discounted</em> opportunities to more women, men, and families.</h2>
+        <p class="rs-callout-text">Every gift helps cover the cost of a dancer, a seat, or a season for someone who couldn't otherwise afford it. Join our circle of supporters and hear first about shows, classes, and ways to give.</p>
+      </div>
+
+      <form class="rs-callout-form rs-reveal" onsubmit="return false;">
+        <div class="rs-form-row">
+          <label for="rsName">Name</label>
+          <input type="text" id="rsName" placeholder="Your name">
+        </div>
+        <div class="rs-form-row">
+          <label for="rsEmail">Email</label>
+          <input type="email" id="rsEmail" placeholder="you@example.com">
+        </div>
+        <button type="submit" class="rs-callout-submit">
+          Join Our Community
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="rs-callout-note">Or give directly &mdash; visit our Donate page to support Royal Stage today.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="rs-footer">
+  <div class="rs-wrap">
+    <div class="rs-footer-grid">
+      <div>
+        <p class="rs-footer-brand">Royal Stage<span>Creative Community in Christ</span></p>
+        <p class="rs-footer-desc">A non-profit dance, theater, and creative arts ministry serving the greater Sacramento area through classes, productions, and outreach.</p>
+        <div class="rs-footer-social">
+          <a href="javascript:void(0)" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10 9 15 12 10 15" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="javascript:void(0)" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8h-2a2 2 0 0 0-2 2v2H9v3h3v6h3v-6h2.5l.5-3H15v-1.5A.5.5 0 0 1 15.5 9H17z"/></svg>
+          </a>
+          <a href="javascript:void(0)" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="rs-footer-heading">Visit</p>
+        <div class="rs-footer-links">
+          <a href="javascript:void(0)">Studio &mdash; 1000 Sunrise Ave, Suite 10B, Roseville</a>
+          <a href="javascript:void(0)">Theater &mdash; 6174 Sunrise Mall, Citrus Heights</a>
+          <a href="javascript:void(0)">916.572.3022</a>
+          <a href="javascript:void(0)">hello@royalstage.org</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="rs-footer-heading">Explore</p>
+        <div class="rs-footer-links">
+          <a href="javascript:void(0)">Classes &amp; Camps</a>
+          <a href="javascript:void(0)">Shows &amp; Events</a>
+          <a href="javascript:void(0)">Meet Our Staff</a>
+          <a href="javascript:void(0)">About Royal Stage</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="rs-footer-heading">Get Involved</p>
+        <div class="rs-footer-links">
+          <a href="javascript:void(0)">Donate</a>
+          <a href="javascript:void(0)">Volunteer</a>
+          <a href="javascript:void(0)">Advertising &amp; Sponsorships</a>
+          <a href="javascript:void(0)">Rent Our Facilities</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rs-footer-bottom">
+      <p>&copy; 2026 Royal Stage. All rights reserved.</p>
+      <p>Royal Stage is a registered non-profit organization.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===================== HERO CAROUSEL =====================
+  (function(){
+    const slides = document.querySelectorAll('.rs-hero-slide');
+    const dots = document.querySelectorAll('.rs-hero-dot');
+    let current = 0;
+    let timer;
+
+    function goTo(index){
+      slides[current].classList.remove('rs-active');
+      dots[current].classList.remove('rs-active');
+      current = index;
+      slides[current].classList.add('rs-active');
+      dots[current].classList.add('rs-active');
+    }
+
+    function next(){
+      goTo((current + 1) % slides.length);
+    }
+
+    function startTimer(){
+      timer = setInterval(next, 6500);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(timer);
+        goTo(i);
+        startTimer();
+      });
+    });
+
+    startTimer();
+  })();
+
+  // ===================== OFF-CANVAS MENU =====================
+  (function(){
+    const toggle = document.getElementById('rsMenuToggle');
+    const close = document.getElementById('rsOffcanvasClose');
+    const offcanvas = document.getElementById('rsOffcanvas');
+    const overlay = document.getElementById('rsOverlay');
+
+    function open(){
+      offcanvas.classList.add('rs-open');
+      overlay.classList.add('rs-open');
+    }
+    function shut(){
+      offcanvas.classList.remove('rs-open');
+      overlay.classList.remove('rs-open');
+    }
+
+    toggle.addEventListener('click', open);
+    close.addEventListener('click', shut);
+    overlay.addEventListener('click', shut);
+  })();
+
+  // ===================== PROGRAM ACCORDION =====================
+  (function(){
+    const items = document.querySelectorAll('.rs-program-item');
+
+    items.forEach(item => {
+      const trigger = item.querySelector('.rs-program-trigger');
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('rs-active');
+
+        items.forEach(i => {
+          i.classList.remove('rs-active');
+          i.querySelector('.rs-program-trigger').setAttribute('aria-expanded', 'false');
+        });
+
+        if(!isOpen){
+          item.classList.add('rs-active');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+
+  // ===================== SCROLL REVEAL =====================
+  (function(){
+    const reveals = document.querySelectorAll('.rs-reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('rs-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+  })();
+
+  // ===================== NAV SCROLL =====================
+  const rsHeader = document.querySelector('.rs-site-header');
+  window.addEventListener('scroll', () => {
+    rsHeader.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>
