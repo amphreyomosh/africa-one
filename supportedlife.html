@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supported Life Institute — Advocating Inclusive and Dynamic Communities</title>
+<style>
+/* =============================================
+   DESIGN TOKENS
+============================================= */
+:root {
+  --sli-magenta: #c0186e;
+  --sli-magenta-dark: #9e1259;
+  --sli-magenta-light: #e8d0df;
+  --sli-green: #2d6a2d;
+  --sli-ink: #1a1a1a;
+  --sli-ink-soft: #3d3d3d;
+  --sli-muted: #6b6b6b;
+  --sli-rule: #e0e0e0;
+  --sli-bg: #faf9f8;
+  --sli-bg-off: #f3f1ee;
+  --sli-bg-dark: #111111;
+  --sli-white: #ffffff;
+  --sli-font: 'Inter', system-ui, -apple-system, sans-serif;
+  --sli-space-xs: 0.5rem;
+  --sli-space-sm: 1rem;
+  --sli-space-md: 2rem;
+  --sli-space-lg: 4rem;
+  --sli-space-xl: 6rem;
+  --sli-radius: 3px;
+  --sli-transition: 240ms ease;
+  --sli-max: 1200px;
+  --sli-transition: 240ms ease;
+
+  --shell-max: 1200px;
+  --gutter: 2.5rem;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--sli-font); cursor: pointer; border: none; background: none; }
+
+/* =============================================
+   UTILITIES
+============================================= */
+.sli-inner {
+  max-width: var(--sli-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* =============================================
+   1. NAV
+============================================= */
+  .sli-nav {
+    position: fixed;
+    top: auto; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250, 249, 248, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--sli-rule);
+    height: 68px;
+    transition: top 0.3s ease, background 0.2s;
+  }
+.sli-nav-inner {
+  max-width: var(--sli-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.sli-nav-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 1.15;
+}
+.sli-nav-brand-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sli-magenta);
+  letter-spacing: -0.02em;
+}
+.sli-nav-brand-tagline {
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sli-muted);
+  display: none;
+}
+@media (min-width: 1024px) {
+  .sli-nav-brand-tagline { display: block; }
+}
+.sli-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+}
+.sli-nav-links a {
+  display: block;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--sli-ink-soft);
+  transition: color var(--sli-transition);
+  letter-spacing: 0.01em;
+}
+.sli-nav-links a:hover { color: var(--sli-magenta); }
+.sli-nav-cta {
+  flex-shrink: 0;
+  background: var(--sli-magenta);
+  color: var(--sli-white) !important;
+  padding: 0.45rem 1.1rem !important;
+  border-radius: var(--sli-radius) !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  transition: background var(--sli-transition) !important;
+}
+.sli-nav-cta:hover { background: var(--sli-magenta-dark) !important; }
+.sli-nav-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.sli-nav-mobile-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--sli-ink);
+  transition: all var(--sli-transition);
+}
+.sli-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px; left: 0; right: 0;
+  background: var(--sli-white);
+  border-bottom: 1px solid var(--sli-rule);
+  padding: 1rem 1.5rem 1.5rem;
+  z-index: 99;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.sli-mobile-menu.sli-open { display: flex; }
+.sli-mobile-menu a {
+  padding: 0.6rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--sli-ink-soft);
+  border-bottom: 1px solid var(--sli-rule);
+}
+.sli-mobile-menu a:last-child { border-bottom: none; }
+
+/* =============================================
+   2. HERO (Section 1)
+============================================= */
+.sli-hero {
+  padding-top: 68px;
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: var(--sli-bg-dark);
+}
+.sli-hero-slides {
+  position: absolute;
+  inset: 0;
+}
+.sli-hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  background-size: cover;
+  background-position: center;
+}
+.sli-hero-slide.sli-active { opacity: 1; }
+.sli-hero-slide-1 {
+  background-image: linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.4) 100%),
+    url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80&auto=format');
+}
+.sli-hero-slide-2 {
+  background-image: linear-gradient(135deg, rgba(192,24,110,0.7) 0%, rgba(0,0,0,0.6) 100%),
+    url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=80&auto=format');
+}
+.sli-hero-slide-3 {
+  background-image: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(45,106,45,0.5) 100%),
+    url('https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1600&q=80&auto=format');
+}
+.sli-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1380px;
+  margin-inline: auto;
+  padding-inline: 2.5rem;
+  padding-block: var(--sli-space-xl);
+  width: 100%;
+}
+.sli-hero-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sli-magenta-light);
+  margin-bottom: 1.25rem;
+}
+.sli-hero-slides-text {
+  position: relative;
+  height: 290px;
+}
+.sli-hero-text {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  pointer-events: none;
+}
+.sli-hero-text.sli-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.sli-hero-heading {
+  font-size: clamp(2.4rem, 5.5vw, 4.25rem);
+  font-weight: 800;
+  color: var(--sli-white);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 700px;
+  margin-bottom: 1.25rem;
+}
+.sli-hero-heading em {
+  font-style: normal;
+  color: var(--sli-magenta-light);
+}
+.sli-hero-desc {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: rgba(255,255,255,0.78);
+  max-width: 520px;
+  margin-bottom: 2.25rem;
+  line-height: 1.65;
+  font-weight: 400;
+}
+.sli-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.sli-hero-btn-primary {
+  background: var(--sli-magenta);
+  color: var(--sli-white);
+  padding: 0.85rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: var(--sli-radius);
+  letter-spacing: 0.02em;
+  transition: background var(--sli-transition), transform var(--sli-transition);
+  display: inline-block;
+}
+.sli-hero-btn-primary:hover {
+  background: var(--sli-magenta-dark);
+  transform: translateY(-1px);
+}
+.sli-hero-link-secondary {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  padding-bottom: 1px;
+  transition: color var(--sli-transition), border-color var(--sli-transition);
+}
+.sli-hero-link-secondary:hover {
+  color: var(--sli-white);
+  border-color: var(--sli-white);
+}
+.sli-hero-controls {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  max-width: var(--sli-max);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 3;
+}
+.sli-hero-dots {
+  display: flex;
+  gap: 8px;
+}
+.sli-hero-dot {
+  width: 28px;
+  height: 3px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 2px;
+  transition: background var(--sli-transition), width var(--sli-transition);
+  cursor: pointer;
+  border: none;
+}
+.sli-hero-dot.sli-active {
+  background: var(--sli-magenta);
+  width: 44px;
+}
+.sli-hero-nav-btns {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+.sli-hero-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: var(--sli-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--sli-transition);
+}
+.sli-hero-nav-btn:hover { background: rgba(255,255,255,0.22); }
+
+/* =============================================
+   3. ADVOCACY NARRATIVE (Section 2)
+============================================= */
+.sli-narrative {
+  padding-block: var(--sli-space-xl);
+  background: var(--sli-white);
+}
+.sli-narrative-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.sli-narrative-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sli-magenta);
+  margin-bottom: 1.25rem;
+}
+.sli-narrative-heading {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: var(--sli-ink);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+}
+.sli-narrative-body {
+  font-size: 1.05rem;
+  color: var(--sli-ink-soft);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.sli-narrative-values {
+  border-top: 1px solid var(--sli-rule);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.sli-narrative-value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  color: var(--sli-ink-soft);
+  line-height: 1.5;
+}
+.sli-narrative-value-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sli-magenta);
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+.sli-narrative-img-wrap {
+  position: relative;
+}
+.sli-narrative-img-wrap::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 180px;
+  height: 180px;
+  background: var(--sli-magenta-light);
+  opacity: 0.4;
+  z-index: 0;
+  border-radius: 2px;
+}
+.sli-narrative-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  border-radius: 2px;
+}
+.sli-narrative-img-caption {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--sli-muted);
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================
+   4. CORE PROGRAMS (Section 3)
+============================================= */
+.sli-programs {
+  padding-block: var(--sli-space-xl);
+  background: var(--sli-bg-off);
+}
+.sli-programs-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.sli-programs-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sli-magenta);
+  margin-bottom: 0.75rem;
+}
+.sli-programs-title {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--sli-ink);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  max-width: 400px;
+}
+.sli-programs-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--sli-rule);
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sli-programs-tabs::-webkit-scrollbar { display: none; }
+.sli-programs-tab {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sli-muted);
+  border-bottom: 2px solid transparent;
+  transition: color var(--sli-transition), border-color var(--sli-transition);
+  white-space: nowrap;
+  margin-bottom: -1px;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.sli-programs-tab:hover { color: var(--sli-ink); }
+.sli-programs-tab.sli-active {
+  color: var(--sli-magenta);
+  border-bottom-color: var(--sli-magenta);
+}
+.sli-programs-panels { position: relative; }
+.sli-programs-panel {
+  display: none;
+  animation: sliFadeIn 0.4s ease;
+}
+.sli-programs-panel.sli-active { display: block; }
+@keyframes sliFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.sli-programs-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: start;
+}
+.sli-programs-panel-number {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--sli-magenta-light);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.5rem;
+}
+.sli-programs-panel-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--sli-ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.sli-programs-panel-body {
+  font-size: 0.97rem;
+  color: var(--sli-ink-soft);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+.sli-programs-panel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--sli-magenta);
+  letter-spacing: 0.02em;
+  transition: gap var(--sli-transition);
+}
+.sli-programs-panel-link:hover { gap: 0.75rem; }
+.sli-programs-panel-visual {
+  background: var(--sli-white);
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--sli-rule);
+}
+.sli-programs-panel-img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+.sli-programs-panel-img-caption {
+  padding: 1rem 1.25rem;
+  font-size: 0.78rem;
+  color: var(--sli-muted);
+  border-top: 1px solid var(--sli-rule);
+  font-weight: 500;
+}
+
+/* =============================================
+   5. EDITORIAL FEATURE (Section 4)
+============================================= */
+.sli-editorial {
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--sli-bg-dark);
+}
+.sli-editorial-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.3) 100%),
+    url('https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1600&q=80&auto=format');
+  background-size: cover;
+  background-position: center 30%;
+}
+.sli-editorial-content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--sli-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  padding-block: var(--sli-space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+.sli-editorial-box {
+  max-width: 480px;
+}
+.sli-editorial-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sli-magenta-light);
+  margin-bottom: 1.25rem;
+}
+.sli-editorial-heading {
+  font-size: clamp(1.8rem, 3.5vw, 2.85rem);
+  font-weight: 800;
+  color: var(--sli-white);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+.sli-editorial-body {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+.sli-editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--sli-white);
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  padding-bottom: 2px;
+  transition: border-color var(--sli-transition), gap var(--sli-transition);
+}
+.sli-editorial-link:hover {
+  border-color: var(--sli-white);
+  gap: 0.9rem;
+}
+
+/* =============================================
+   6. COMMUNITY VOICE (Section 5)
+============================================= */
+.sli-voice {
+  padding-block: var(--sli-space-xl);
+  background: var(--sli-white);
+}
+.sli-voice-inner {
+  max-width: 860px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+.sli-voice-mark {
+  font-size: 6rem;
+  line-height: 0.6;
+  color: var(--sli-magenta);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.sli-voice-quote {
+  font-size: clamp(1.35rem, 2.8vw, 1.95rem);
+  font-weight: 700;
+  color: var(--sli-ink);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+.sli-voice-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--sli-magenta);
+  margin-bottom: 1.25rem;
+}
+.sli-voice-credit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.sli-voice-credit-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sli-ink);
+  letter-spacing: 0.02em;
+}
+.sli-voice-credit-role {
+  font-size: 0.8rem;
+  color: var(--sli-muted);
+  font-weight: 500;
+}
+
+/* =============================================
+   7. THEMATIC INSIGHTS (Section 6)
+============================================= */
+.sli-newsroom {
+  padding-block: var(--sli-space-xl);
+  background: var(--sli-bg-off);
+  border-top: 1px solid var(--sli-rule);
+}
+.sli-newsroom-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.sli-newsroom-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sli-magenta);
+  margin-bottom: 0.75rem;
+}
+.sli-newsroom-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  color: var(--sli-ink);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+.sli-newsroom-all-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--sli-magenta);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap var(--sli-transition);
+  flex-shrink: 0;
+}
+.sli-newsroom-all-link:hover { gap: 0.65rem; }
+.sli-newsroom-list {
+  display: flex;
+  flex-direction: column;
+}
+.sli-newsroom-item {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 1.75rem;
+  align-items: start;
+  padding-block: 1.75rem;
+  border-bottom: 1px solid var(--sli-rule);
+  transition: background var(--sli-transition);
+}
+.sli-newsroom-item:first-child { border-top: 1px solid var(--sli-rule); }
+.sli-newsroom-item:hover { background: rgba(192,24,110,0.025); }
+.sli-newsroom-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3px;
+}
+.sli-newsroom-date-month {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sli-magenta);
+}
+.sli-newsroom-date-day {
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--sli-ink);
+  letter-spacing: -0.04em;
+}
+.sli-newsroom-date-year {
+  font-size: 0.68rem;
+  color: var(--sli-muted);
+  font-weight: 500;
+}
+.sli-newsroom-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.sli-newsroom-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sli-magenta);
+}
+.sli-newsroom-item-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sli-ink);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.35rem;
+}
+.sli-newsroom-item-desc {
+  font-size: 0.86rem;
+  color: var(--sli-muted);
+  line-height: 1.6;
+}
+.sli-newsroom-arrow {
+  color: var(--sli-rule);
+  transition: color var(--sli-transition), transform var(--sli-transition);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.sli-newsroom-item:hover .sli-newsroom-arrow {
+  color: var(--sli-magenta);
+  transform: translateX(3px);
+}
+
+/* =============================================
+   8. FINAL CTA (Section 7)
+============================================= */
+.sli-cta {
+  padding-block: var(--sli-space-xl);
+  background: var(--sli-white);
+  border-top: 1px solid var(--sli-rule);
+}
+.sli-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.sli-cta-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sli-magenta);
+  margin-bottom: 1rem;
+}
+.sli-cta-heading {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--sli-ink);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+.sli-cta-body {
+  font-size: 1rem;
+  color: var(--sli-ink-soft);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.sli-cta-tax {
+  font-size: 0.8rem;
+  color: var(--sli-muted);
+  line-height: 1.5;
+}
+.sli-cta-form-wrap {
+  background: var(--sli-bg-off);
+  border: 1px solid var(--sli-rule);
+  border-radius: 4px;
+  padding: 2.5rem;
+}
+.sli-cta-form-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--sli-ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
+}
+.sli-cta-form-sub {
+  font-size: 0.85rem;
+  color: var(--sli-muted);
+  margin-bottom: 1.5rem;
+}
+.sli-cta-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.sli-cta-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-family: var(--sli-font);
+  font-size: 0.88rem;
+  border: 1px solid var(--sli-rule);
+  background: var(--sli-white);
+  border-radius: var(--sli-radius);
+  color: var(--sli-ink);
+  transition: border-color var(--sli-transition);
+}
+.sli-cta-input:focus {
+  outline: none;
+  border-color: var(--sli-magenta);
+}
+.sli-cta-input::placeholder { color: var(--sli-muted); }
+.sli-cta-submit {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--sli-magenta);
+  color: var(--sli-white);
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: var(--sli-radius);
+  transition: background var(--sli-transition);
+  letter-spacing: 0.02em;
+}
+.sli-cta-submit:hover { background: var(--sli-magenta-dark); }
+.sli-cta-form-note {
+  font-size: 0.72rem;
+  color: var(--sli-muted);
+  text-align: center;
+  margin-top: 0.75rem;
+}
+.sli-donate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0.7rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid var(--sli-magenta);
+  color: var(--sli-magenta);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: var(--sli-radius);
+  transition: all var(--sli-transition);
+  letter-spacing: 0.02em;
+}
+.sli-donate-btn:hover {
+  background: var(--sli-magenta);
+  color: var(--sli-white);
+}
+
+/* =============================================
+   9. FOOTER (Section 8)
+============================================= */
+.sli-footer {
+  background: #0f0f0f;
+  color: rgba(255,255,255,0.55);
+  padding-top: var(--sli-space-lg);
+  padding-bottom: 2rem;
+}
+.sli-footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: var(--sli-space-lg);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 2rem;
+}
+.sli-footer-brand-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sli-white);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+.sli-footer-brand-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 1.25rem;
+}
+.sli-footer-about {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.48);
+  margin-bottom: 1.25rem;
+  max-width: 280px;
+}
+.sli-footer-address {
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.4);
+  font-style: normal;
+}
+.sli-footer-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.sli-footer-social-link {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  transition: all var(--sli-transition);
+}
+.sli-footer-social-link:hover {
+  border-color: var(--sli-magenta);
+  color: var(--sli-magenta);
+}
+.sli-footer-col-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1.25rem;
+}
+.sli-footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.sli-footer-links a {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.45);
+  transition: color var(--sli-transition);
+}
+.sli-footer-links a:hover { color: var(--sli-white); }
+.sli-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.sli-footer-legal {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.28);
+}
+.sli-footer-legal a {
+  color: rgba(255,255,255,0.4);
+  transition: color var(--sli-transition);
+}
+.sli-footer-legal a:hover { color: rgba(255,255,255,0.7); }
+.sli-footer-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.3);
+}
+.sli-footer-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+}
+
+/* =============================================
+   SCROLL ANIMATIONS
+============================================= */
+.sli-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.sli-reveal.sli-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sli-reveal-delay-1 { transition-delay: 0.1s; }
+.sli-reveal-delay-2 { transition-delay: 0.2s; }
+.sli-reveal-delay-3 { transition-delay: 0.3s; }
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 960px) {
+  .sli-narrative-grid,
+  .sli-programs-panel-grid,
+  .sli-editorial-content,
+  .sli-cta-grid,
+  .sli-footer-top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .sli-narrative-img-wrap::before { display: none; }
+  .sli-editorial-content { padding-block: 4rem; }
+  .sli-editorial-box { max-width: 100%; }
+  .sli-footer-top { grid-template-columns: 1fr 1fr; }
+  .sli-newsroom-item { grid-template-columns: 70px 1fr auto; gap: 1.25rem; }
+}
+@media (max-width: 640px) {
+  :root { --sli-space-lg: 3rem; --sli-space-xl: 4rem; }
+  .sli-nav-links { display: none; }
+  .sli-nav-mobile-toggle { display: flex; }
+  .sli-footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .sli-newsroom-item { grid-template-columns: 1fr; gap: 0.75rem; }
+  .sli-newsroom-date { flex-direction: row; align-items: center; gap: 0.5rem; }
+  .sli-newsroom-date-day { font-size: 1.5rem; }
+  .sli-newsroom-arrow { display: none; }
+  .sli-programs-tab { padding: 0.65rem 1rem; font-size: 0.78rem; }
+  .sli-programs-panel-number { font-size: 3.5rem; }
+  .sli-hero-slides-text { min-height: 260px; }
+  .sli-voice-mark { font-size: 4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .sli-hero-slide { transition: none; }
+  .sli-reveal { opacity: 1; transform: none; }
+}
+
+/* ===================== GLAD HEADER ===================== */
+#glad-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 3200;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+#glad-header.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.calbcc-header.glad-hidden {
+  top: 0;
+}
+.glad-inner {
+  position: relative;
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* PERFECT CENTER */
+.glad-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.glad-logo img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+.glad-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  background: #1e3a6e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid #1e3a6e;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  white-space: nowrap;
+  margin-right: 40px !important;
+}
+.glad-back-btn:hover {
+  background: #142d57;
+  border-color: #142d57;
+  transform: translateX(-2px);
+}
+@media (max-width: 480px) {
+  .btn-label {
+    display: none;
+  }
+  .glad-back-btn {
+    padding: 7px 10px;
+  }
+}
+
+/* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+@media (max-width: 640px) {
+  .glad-inner {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .glad-logo img {
+    margin-left: 0 !important;
+  }
+  .glad-back-btn {
+    margin-right: 0 !important;
+  }
+}
+
+/* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+@media (max-width: 640px) {
+  .glad-logo img { height: 28px !important; width: auto !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="sli-nav" role="navigation" aria-label="Main navigation">
+  <div class="sli-nav-inner">
+    <a href="#" class="sli-nav-brand" aria-label="Supported Life Institute home">
+      <span class="sli-nav-brand-name">Supported Life Institute</span>
+      <span class="sli-nav-brand-tagline">Advocating Inclusive and Dynamic Communities</span>
+    </a>
+    <ul class="sli-nav-links" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Mission</a></li>
+      <li><a href="#">History</a></li>
+      <li><a href="#">Vision</a></li>
+      <li><a href="#">Values</a></li>
+      <li><a href="#">Conferences</a></li>
+      <li><a href="#" class="sli-nav-cta">Register Now</a></li>
+    </ul>
+    <button class="sli-nav-mobile-toggle" aria-label="Open menu" aria-expanded="false" id="sliMobileToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="sli-mobile-menu" id="sliMobileMenu" role="navigation" aria-label="Mobile navigation">
+  <a href="#">Home</a>
+  <a href="#">Mission</a>
+  <a href="#">History</a>
+  <a href="#">Vision</a>
+  <a href="#">Values</a>
+  <a href="#">Conferences</a>
+  <a href="#">Register for Supported Life 2026</a>
+</div>
+
+<!-- SECTION 1: HERO -->
+<section class="sli-hero" aria-label="Welcome to Supported Life Institute">
+  <div class="sli-hero-slides" aria-hidden="true">
+    <div class="sli-hero-slide sli-hero-slide-1 sli-active"></div>
+    <div class="sli-hero-slide sli-hero-slide-2"></div>
+    <div class="sli-hero-slide sli-hero-slide-3"></div>
+  </div>
+
+  <div class="sli-hero-content">
+    <span class="sli-hero-kicker">Supported Life Institute · Sacramento, CA</span>
+    <div class="sli-hero-slides-text">
+      <div class="sli-hero-text sli-active" data-slide="0">
+        <h1 class="sli-hero-heading">A life rich in choices,<br><em>not controlled by services.</em></h1>
+        <p class="sli-hero-desc">We educate, train, and advocate so every person with a disability can live a full life — on their own terms. The 40th Annual Supported Life Conference is October 8–9, 2026.</p>
+        <div class="sli-hero-actions">
+          <a href="#" class="sli-hero-btn-primary">Register for SL 2026</a>
+          <a href="#" class="sli-hero-link-secondary">Submit a Session Proposal</a>
+        </div>
+      </div>
+      <div class="sli-hero-text" data-slide="1">
+        <h1 class="sli-hero-heading">Self-advocacy is a<br><em>force for real change.</em></h1>
+        <p class="sli-hero-desc">The 30th California Statewide Self-Advocacy Conference connects people with disabilities, families, and providers around shared voice and shared power. May 8–9, 2026.</p>
+        <div class="sli-hero-actions">
+          <a href="#" class="sli-hero-btn-primary">Get Registration Materials</a>
+          <a href="#" class="sli-hero-link-secondary">Learn about SA 2026</a>
+        </div>
+      </div>
+      <div class="sli-hero-text" data-slide="2">
+        <h1 class="sli-hero-heading">The strength of community<br><em>grows from its diversity.</em></h1>
+        <p class="sli-hero-desc">Since 1991, we have offered training, conferences, and resources that center the voices and values of people with disabilities and the communities that include them.</p>
+        <div class="sli-hero-actions">
+          <a href="#" class="sli-hero-btn-primary">Our Mission</a>
+          <a href="#" class="sli-hero-link-secondary">Our History</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sli-hero-controls" aria-label="Carousel controls">
+    <div class="sli-hero-dots" role="tablist">
+      <button class="sli-hero-dot sli-active" role="tab" aria-selected="true" aria-label="Slide 1" data-index="0"></button>
+      <button class="sli-hero-dot" role="tab" aria-selected="false" aria-label="Slide 2" data-index="1"></button>
+      <button class="sli-hero-dot" role="tab" aria-selected="false" aria-label="Slide 3" data-index="2"></button>
+    </div>
+    <div class="sli-hero-nav-btns">
+      <button class="sli-hero-nav-btn" id="sliHeroPrev" aria-label="Previous slide">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="sli-hero-nav-btn" id="sliHeroNext" aria-label="Next slide">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ADVOCACY NARRATIVE -->
+<section class="sli-narrative" aria-labelledby="sli-narrative-heading">
+  <div class="sli-inner">
+    <div class="sli-narrative-grid">
+      <div class="sli-reveal">
+        <p class="sli-narrative-label">Our Mission</p>
+        <h2 class="sli-narrative-heading" id="sli-narrative-heading">Improving quality of life through education and training</h2>
+        <p class="sli-narrative-body">The Supported Life Institute offers educational and training opportunities to assist individuals and organizations in the work of improving the quality of life for people with disabilities. A supported life is not a special life — it is the life everyone deserves.</p>
+        <div class="sli-narrative-values">
+          <div class="sli-narrative-value-item">
+            <span class="sli-narrative-value-dot" aria-hidden="true"></span>
+            <span>Grows from a person's own choices, desires, and dreams — not from the services available</span>
+          </div>
+          <div class="sli-narrative-value-item">
+            <span class="sli-narrative-value-dot" aria-hidden="true"></span>
+            <span>Goes beyond meeting basic needs to reaching a rich, full quality of life in all its areas</span>
+          </div>
+          <div class="sli-narrative-value-item">
+            <span class="sli-narrative-value-dot" aria-hidden="true"></span>
+            <span>Is the kind of life we all want — not unique to people who happen to have disabilities</span>
+          </div>
+          <div class="sli-narrative-value-item">
+            <span class="sli-narrative-value-dot" aria-hidden="true"></span>
+            <span>Reflects the community's obligation to support all of its members and grow through its diversity</span>
+          </div>
+        </div>
+      </div>
+      <div class="sli-reveal sli-reveal-delay-2">
+        <div class="sli-narrative-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=900&q=80&auto=format"
+            alt="People with disabilities connecting and engaging together in community"
+            class="sli-narrative-img"
+            loading="lazy"
+          >
+          <p class="sli-narrative-img-caption">Supported Life Institute · Sacramento, California · Est. 1991</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: CORE PROGRAMS -->
+<section class="sli-programs" aria-labelledby="sli-programs-heading">
+  <div class="sli-inner">
+    <div class="sli-programs-head">
+      <div class="sli-reveal">
+        <p class="sli-programs-label">What We Do</p>
+        <h2 class="sli-programs-title" id="sli-programs-heading">Programs &amp; Initiatives</h2>
+      </div>
+    </div>
+    <div class="sli-reveal">
+      <div class="sli-programs-tabs" role="tablist" aria-label="Programs">
+        <button class="sli-programs-tab sli-active" role="tab" aria-selected="true" aria-controls="sli-panel-1" id="sli-tab-1">Annual Conference</button>
+        <button class="sli-programs-tab" role="tab" aria-selected="false" aria-controls="sli-panel-2" id="sli-tab-2">Self-Advocacy</button>
+        <button class="sli-programs-tab" role="tab" aria-selected="false" aria-controls="sli-panel-3" id="sli-tab-3">Training &amp; Workshops</button>
+        <button class="sli-programs-tab" role="tab" aria-selected="false" aria-controls="sli-panel-4" id="sli-tab-4">College &amp; Career</button>
+      </div>
+    </div>
+    <div class="sli-programs-panels">
+      <!-- Panel 1 -->
+      <div class="sli-programs-panel sli-active" id="sli-panel-1" role="tabpanel" aria-labelledby="sli-tab-1">
+        <div class="sli-programs-panel-grid">
+          <div>
+            <div class="sli-programs-panel-number" aria-hidden="true">40</div>
+            <h3 class="sli-programs-panel-title">Supported Life Annual Conference</h3>
+            <p class="sli-programs-panel-body">The annual Supported Life Conference is a cornerstone event drawing hundreds of people with disabilities, family members, service providers, and policy advocates from across California. Supported Life 2026 — "Strengthening Supports in an Evolving Environment" — takes place October 8–9 at the Wyndham Sacramento Hotel. Session proposals are open now.</p>
+            <a href="#" class="sli-programs-panel-link">
+              View conference details
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="sli-programs-panel-visual">
+            <img
+              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80&auto=format"
+              alt="Conference attendees engaging in discussion"
+              class="sli-programs-panel-img"
+              loading="lazy"
+            >
+            <p class="sli-programs-panel-img-caption">Supported Life 2026 · October 8–9, 2026 · Sacramento, CA</p>
+          </div>
+        </div>
+      </div>
+      <!-- Panel 2 -->
+      <div class="sli-programs-panel" id="sli-panel-2" role="tabpanel" aria-labelledby="sli-tab-2">
+        <div class="sli-programs-panel-grid">
+          <div>
+            <div class="sli-programs-panel-number" aria-hidden="true">30</div>
+            <h3 class="sli-programs-panel-title">California Statewide Self-Advocacy Conference</h3>
+            <p class="sli-programs-panel-body">Now in its 30th year, the California Statewide Self-Advocacy Conference is a premier gathering organized by and for people with developmental disabilities. "May the Self-Advocacy Force Be With You" — the 2026 conference runs May 8–9 at the Wyndham Hotel Sacramento. Registration materials are available in accessible formats including text-only versions for screen reader use.</p>
+            <a href="#" class="sli-programs-panel-link">
+              Download registration materials
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="sli-programs-panel-visual">
+            <img
+              src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=900&q=80&auto=format"
+              alt="Self-advocacy conference attendees"
+              class="sli-programs-panel-img"
+              loading="lazy"
+            >
+            <p class="sli-programs-panel-img-caption">SA 2026 · May 8–9, 2026 · Wyndham Hotel Sacramento</p>
+          </div>
+        </div>
+      </div>
+      <!-- Panel 3 -->
+      <div class="sli-programs-panel" id="sli-panel-3" role="tabpanel" aria-labelledby="sli-tab-3">
+        <div class="sli-programs-panel-grid">
+          <div>
+            <div class="sli-programs-panel-number" aria-hidden="true">01</div>
+            <h3 class="sli-programs-panel-title">Training &amp; Workshops</h3>
+            <p class="sli-programs-panel-body">Beyond our annual conferences, the Supported Life Institute delivers targeted training and workshop programs for individuals, families, and service provider organizations across California. Our curriculum is grounded in the values of supported life — centering choice, dignity, and full community participation. We partner with regional centers, advocacy networks, and educational institutions to deliver relevant, accessible training.</p>
+            <a href="#" class="sli-programs-panel-link">
+              Explore training opportunities
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="sli-programs-panel-visual">
+            <img
+              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&q=80&auto=format"
+              alt="Training workshop participants"
+              class="sli-programs-panel-img"
+              loading="lazy"
+            >
+            <p class="sli-programs-panel-img-caption">SLI Training Program · Available Statewide</p>
+          </div>
+        </div>
+      </div>
+      <!-- Panel 4 -->
+      <div class="sli-programs-panel" id="sli-panel-4" role="tabpanel" aria-labelledby="sli-tab-4">
+        <div class="sli-programs-panel-grid">
+          <div>
+            <div class="sli-programs-panel-number" aria-hidden="true">02</div>
+            <h3 class="sli-programs-panel-title">College &amp; Career Success Project</h3>
+            <p class="sli-programs-panel-body">The College Students and Professionals with Disabilities Project produces peer-authored resources for people with developmental disabilities pursuing higher education and careers. Our publications — "Success in College" and "Success in the Workplace" — collect first-person strategies from college graduates and working professionals with disabilities. A connected YouTube channel and Facebook community extend the reach of peer mentorship beyond print.</p>
+            <a href="#" class="sli-programs-panel-link">
+              Read the Success in College guide
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="sli-programs-panel-visual">
+            <img
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&q=80&auto=format"
+              alt="College students celebrating graduation"
+              class="sli-programs-panel-img"
+              loading="lazy"
+            >
+            <p class="sli-programs-panel-img-caption">College &amp; Career Project · Peer-authored Resources</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: EDITORIAL FEATURE -->
+<section class="sli-editorial" aria-labelledby="sli-editorial-heading">
+  <div class="sli-editorial-bg" aria-hidden="true"></div>
+  <div class="sli-editorial-content">
+    <div class="sli-editorial-box sli-reveal">
+      <p class="sli-editorial-label">Peer Advocacy Connection</p>
+      <h2 class="sli-editorial-heading" id="sli-editorial-heading">Communication is the foundation of every supported life</h2>
+      <p class="sli-editorial-body">The Communication Technology Education Center (CTEC), a close partner of the Supported Life Institute, works to ensure that people with complex communication needs have access to the tools, training, and support required to make their voices heard. When communication barriers fall, self-determination rises.</p>
+      <a href="#" class="sli-editorial-link">
+        Visit CTEC and the Peer Advocacy Connection
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: COMMUNITY VOICE -->
+<section class="sli-voice" aria-labelledby="sli-voice-heading">
+  <div class="sli-voice-inner">
+    <div class="sli-reveal">
+      <span class="sli-voice-mark" aria-hidden="true">&ldquo;</span>
+      <blockquote>
+        <p class="sli-voice-quote" id="sli-voice-heading">A supported life is the kind of life we all want — and it is not unique to people who happen to have disabilities. When we build communities that truly include everyone, the whole community becomes stronger.</p>
+        <footer>
+          <div class="sli-voice-rule" aria-hidden="true"></div>
+          <cite class="sli-voice-credit">
+            <span class="sli-voice-credit-name">Supported Life Institute</span>
+            <span class="sli-voice-credit-role">Core Values Statement · Sacramento, California</span>
+          </cite>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: THEMATIC INSIGHTS / NEWSROOM -->
+<section class="sli-newsroom" aria-labelledby="sli-newsroom-heading">
+  <div class="sli-inner">
+    <div class="sli-newsroom-head sli-reveal">
+      <div>
+        <p class="sli-newsroom-label">Announcements &amp; Resources</p>
+        <h2 class="sli-newsroom-title" id="sli-newsroom-heading">Dates, Updates &amp; Publications</h2>
+      </div>
+      <a href="#" class="sli-newsroom-all-link">
+        All announcements
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1.5 6.5h10M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="sli-newsroom-list sli-reveal">
+      <a href="#" class="sli-newsroom-item">
+        <div class="sli-newsroom-date" aria-label="May 8, 2026">
+          <span class="sli-newsroom-date-month">May</span>
+          <span class="sli-newsroom-date-day">8</span>
+          <span class="sli-newsroom-date-year">2026</span>
+        </div>
+        <div class="sli-newsroom-meta">
+          <span class="sli-newsroom-tag">Conference</span>
+          <h3 class="sli-newsroom-item-title">30th California Statewide Self-Advocacy Conference — "May the Self-Advocacy Force Be With You"</h3>
+          <p class="sli-newsroom-item-desc">2-day in-person event at the Wyndham Hotel Sacramento. Registration materials available in PDF and text-only formats for screen reader accessibility.</p>
+        </div>
+        <svg class="sli-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#" class="sli-newsroom-item">
+        <div class="sli-newsroom-date" aria-label="October 8, 2026">
+          <span class="sli-newsroom-date-month">Oct</span>
+          <span class="sli-newsroom-date-day">8</span>
+          <span class="sli-newsroom-date-year">2026</span>
+        </div>
+        <div class="sli-newsroom-meta">
+          <span class="sli-newsroom-tag">Annual Conference</span>
+          <h3 class="sli-newsroom-item-title">40th Annual Supported Life Conference — "Strengthening Supports in an Evolving Environment"</h3>
+          <p class="sli-newsroom-item-desc">October 8–9 at the Wyndham Sacramento Hotel. Speaker RFP application open now — submit session proposals online.</p>
+        </div>
+        <svg class="sli-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#" class="sli-newsroom-item">
+        <div class="sli-newsroom-date" aria-label="Publication">
+          <span class="sli-newsroom-date-month">Pub</span>
+          <span class="sli-newsroom-date-day">01</span>
+          <span class="sli-newsroom-date-year">Guide</span>
+        </div>
+        <div class="sli-newsroom-meta">
+          <span class="sli-newsroom-tag">Resource · PDF</span>
+          <h3 class="sli-newsroom-item-title">Success in College — Advice from College Students and Graduates with Developmental Disabilities</h3>
+          <p class="sli-newsroom-item-desc">A peer-authored guide featuring first-person strategies, insights, and encouragement from college students and graduates with developmental disabilities.</p>
+        </div>
+        <svg class="sli-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#" class="sli-newsroom-item">
+        <div class="sli-newsroom-date" aria-label="Publication">
+          <span class="sli-newsroom-date-month">Pub</span>
+          <span class="sli-newsroom-date-day">02</span>
+          <span class="sli-newsroom-date-year">Guide</span>
+        </div>
+        <div class="sli-newsroom-meta">
+          <span class="sli-newsroom-tag">Resource · PDF</span>
+          <h3 class="sli-newsroom-item-title">Success in the Workplace — Strategies from Professionals with Developmental Disabilities</h3>
+          <p class="sli-newsroom-item-desc">Career strategies and first-person accounts from professionals navigating work with disabilities — as featured in Comstock's Magazine.</p>
+        </div>
+        <svg class="sli-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: FINAL CTA -->
+<section class="sli-cta" aria-labelledby="sli-cta-heading">
+  <div class="sli-inner">
+    <div class="sli-cta-grid">
+      <div class="sli-reveal">
+        <p class="sli-cta-label">Support Our Work</p>
+        <h2 class="sli-cta-heading" id="sli-cta-heading">Help bring voice to people with disabilities</h2>
+        <p class="sli-cta-body">The Supported Life Institute is a 501(c)(3) nonprofit organization. Your support makes it possible to deliver communication training, self-advocacy programming, and conference events that center the voices and dignity of people with disabilities across California.</p>
+        <p class="sli-cta-tax">Donations are tax-deductible. You will receive a receipt for your records.</p>
+        <a href="#" class="sli-donate-btn">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 13S2 9.5 2 5.5C2 3.57 3.57 2 5.5 2c1.05 0 2 .5 2.5 1.27C8.5 2.5 9.45 2 10.5 2 12.43 2 14 3.57 14 5.5c0 4-5.5 7.5-5.5 7.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Make a Donation
+        </a>
+      </div>
+      <div class="sli-reveal sli-reveal-delay-2">
+        <div class="sli-cta-form-wrap">
+          <h3 class="sli-cta-form-title">Stay Connected</h3>
+          <p class="sli-cta-form-sub">Receive conference announcements, resources, and updates from SLI.</p>
+          <div class="sli-cta-fieldset">
+            <input type="text" class="sli-cta-input" placeholder="Your full name" aria-label="Full name" autocomplete="name">
+            <input type="email" class="sli-cta-input" placeholder="Email address" aria-label="Email address" autocomplete="email">
+          </div>
+          <button class="sli-cta-submit" type="button">Subscribe to Updates</button>
+          <p class="sli-cta-form-note">No spam. Unsubscribe at any time. Your information is never shared.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: FOOTER -->
+<footer class="sli-footer" role="contentinfo">
+  <div class="sli-inner">
+    <div class="sli-footer-top">
+      <div>
+        <p class="sli-footer-brand-name">Supported Life Institute</p>
+        <p class="sli-footer-brand-tag">Advocating Inclusive and Dynamic Communities</p>
+        <p class="sli-footer-about">A 501(c)(3) nonprofit organization incorporated in 1991, dedicated to improving the quality of life for people with disabilities through education, training, and advocacy across California.</p>
+        <address class="sli-footer-address">
+          2025 Hurley Way, Suite 105<br>
+          Sacramento, CA 95825<br>
+          <a href="tel:9165671974" style="color:inherit;">(916) 567-1974</a>
+        </address>
+        <div class="sli-footer-social" aria-label="Social media links">
+          <a href="#" class="sli-footer-social-link" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="sli-footer-social-link" aria-label="YouTube">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="sli-footer-col-title">Organization</p>
+        <ul class="sli-footer-links" role="list">
+          <li><a href="#">Our Mission</a></li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Vision</a></li>
+          <li><a href="#">Values</a></li>
+          <li><a href="#">Log In</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sli-footer-col-title">Conferences</p>
+        <ul class="sli-footer-links" role="list">
+          <li><a href="#">Supported Life 2026</a></li>
+          <li><a href="#">Self-Advocacy 2026</a></li>
+          <li><a href="#">Submit a Session Proposal</a></li>
+          <li><a href="#">Past Conferences</a></li>
+          <li><a href="#">Training &amp; Workshops</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sli-footer-col-title">Resources</p>
+        <ul class="sli-footer-links" role="list">
+          <li><a href="#">Success in College (PDF)</a></li>
+          <li><a href="#">Success in the Workplace (PDF)</a></li>
+          <li><a href="#">CTEC — Communication Tech</a></li>
+          <li><a href="#">Peer Advocacy Connection</a></li>
+          <li><a href="#">Donate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sli-footer-bottom">
+      <p class="sli-footer-legal">
+        &copy; 2025 Supported Life Institute. All rights reserved. &nbsp;&middot;&nbsp;
+        <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp;
+        <a href="#">Accessibility Statement</a> &nbsp;&middot;&nbsp;
+        501(c)(3) Nonprofit Organization
+      </p>
+      <div class="sli-footer-status" aria-label="Organization status">
+        <span class="sli-footer-status-dot" aria-hidden="true"></span>
+        Sacramento, CA · Est. 1991
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* --- MOBILE NAV --- */
+  const toggle = document.getElementById('sliMobileToggle');
+  const mobileMenu = document.getElementById('sliMobileMenu');
+  toggle.addEventListener('click', function () {
+    const open = mobileMenu.classList.toggle('sli-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  /* --- HERO CAROUSEL --- */
+  const slides = document.querySelectorAll('.sli-hero-slide');
+  const texts = document.querySelectorAll('.sli-hero-text');
+  const dots = document.querySelectorAll('.sli-hero-dot');
+  let current = 0;
+  let timer;
+
+  function goTo(index) {
+    slides[current].classList.remove('sli-active');
+    texts[current].classList.remove('sli-active');
+    dots[current].classList.remove('sli-active');
+    dots[current].setAttribute('aria-selected', 'false');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('sli-active');
+    texts[current].classList.add('sli-active');
+    dots[current].classList.add('sli-active');
+    dots[current].setAttribute('aria-selected', 'true');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 6000);
+  }
+
+  document.getElementById('sliHeroNext').addEventListener('click', function () {
+    next(); startTimer();
+  });
+
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      goTo(parseInt(dot.dataset.index));
+      startTimer();
+    });
+  });
+
+  startTimer();
+
+  /* --- PROGRAM TABS --- */
+  const tabs = document.querySelectorAll('.sli-programs-tab');
+  const panels = document.querySelectorAll('.sli-programs-panel');
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) {
+        t.classList.remove('sli-active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(function (p) { p.classList.remove('sli-active'); });
+      tab.classList.add('sli-active');
+      tab.setAttribute('aria-selected', 'true');
+      panels[i].classList.add('sli-active');
+    });
+  });
+
+  /* --- SCROLL REVEAL --- */
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sli-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.sli-reveal').forEach(function (el) {
+      observer.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.sli-reveal').forEach(function (el) {
+      el.classList.add('sli-visible');
+    });
+  }
+
+  // ─── NAV SCROLL ───
+  const sliNav = document.querySelector('.sli-nav');
+  window.addEventListener('scroll', () => {
+    sliNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+    lastScrollY = y;
+    },
+    { passive: true }
+  ); // <-- Fixed syntax error here
+})(); 
+
+</script>
+</body>
+</html>

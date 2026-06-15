@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terra Nova Counseling — Where People Grow</title>
+<style>
+  /* ─── TOKENS ─── */
+  :root {
+    --tnc-navy:       #1a2744;
+    --tnc-navy-mid:   #243358;
+    --tnc-navy-light: #2e4070;
+    --tnc-copper:     #c8704a;
+    --tnc-copper-lt:  #d9886a;
+    --tnc-sky:        #4a7fa5;
+    --tnc-off-white:  #f5f4f0;
+    --tnc-warm-gray:  #ece9e3;
+    --tnc-mid-gray:   #8a8880;
+    --tnc-text:       #1a1a1a;
+    --tnc-text-light: #4a4845;
+
+    --tnc-font: 'Inter', system-ui, -apple-system, sans-serif;
+    --tnc-r: 0px;
+
+    --tnc-s1: .5rem;
+    --tnc-s2: 1rem;
+    --tnc-s3: 1.5rem;
+    --tnc-s4: 2rem;
+    --tnc-s6: 3rem;
+    --tnc-s8: 4rem;
+    --tnc-s12: 6rem;
+
+    --shell-max: 1200px;
+    --gutter: 2rem;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+
+  body {
+    font-family: var(--tnc-font);
+    color: var(--tnc-text);
+    background: #fff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* ─── NAV ─── */
+  .tnc-nav {
+    position: fixed;
+    top: auto; left: 0; right: 0;
+    z-index: 900;
+    background: rgba(26, 39, 68, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    transition: top 0.3s ease, background .3s;
+  }
+
+  .tnc-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 1rem;
+  }
+
+  .tnc-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-decoration: none;
+  }
+  .tnc-logo-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+  }
+  .tnc-logo-name span { color: var(--tnc-copper); }
+  .tnc-logo-tag {
+    font-size: .6rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+  }
+
+  .tnc-nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--tnc-s2);
+    list-style: none;
+  }
+
+  .tnc-nav-links > li { position: relative; }
+
+  .tnc-nav-links > li > a,
+  .tnc-nav-links > li > button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--tnc-font);
+    font-size: .82rem;
+    font-weight: 500;
+    color: rgba(255,255,255,.78);
+    text-decoration: none;
+    letter-spacing: .02em;
+    padding: .4rem .6rem;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    transition: color .2s;
+  }
+  .tnc-nav-links > li > a:hover,
+  .tnc-nav-links > li > button:hover { color: #fff; }
+
+  .tnc-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--tnc-navy);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 6px;
+    min-width: 180px;
+    padding: .5rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity .2s, transform .2s;
+    list-style: none;
+  }
+  .tnc-nav-links > li:hover .tnc-nav-dropdown,
+  .tnc-nav-links > li:focus-within .tnc-nav-dropdown {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .tnc-nav-dropdown a {
+    display: block;
+    padding: .45rem 1rem;
+    font-size: .8rem;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    transition: color .15s, background .15s;
+  }
+  .tnc-nav-dropdown a:hover { color: #fff; background: rgba(255,255,255,.05); }
+
+  .tnc-nav-cta {
+    font-size: .8rem !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    background: var(--tnc-copper) !important;
+    border-radius: 4px;
+    padding: .45rem 1rem !important;
+    transition: background .2s !important;
+  }
+  .tnc-nav-cta:hover { background: var(--tnc-copper-lt) !important; color: #fff !important; }
+
+  .tnc-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: .5rem;
+    width: 40px;
+    height: 40px;
+  }
+  .tnc-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 1px;
+    transition: transform .3s, opacity .3s;
+    transform-origin: center;
+  }
+  /* Animate to X when open */
+  .tnc-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .tnc-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .tnc-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .tnc-mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--tnc-navy);
+    z-index: 800;
+    padding: 0 0 var(--tnc-s4);
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .tnc-mobile-menu.is-open { display: flex; }
+
+  .tnc-mobile-close {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,.7);
+    cursor: pointer;
+    padding: var(--tnc-s3) var(--tnc-s4);
+    height: 68px; /* matches nav height */
+    transition: color .2s;
+    flex-shrink: 0;
+    align-self: flex-end;
+  }
+  .tnc-mobile-close:hover { color: #fff; }
+
+  .tnc-mobile-menu a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,.82);
+    text-decoration: none;
+    padding: .85rem var(--tnc-s4);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    transition: color .15s, background .15s;
+  }
+  .tnc-mobile-menu a:hover { color: #fff; background: rgba(255,255,255,.04); }
+
+  .tnc-mobile-menu-group-label {
+    font-size: .62rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.3);
+    padding: var(--tnc-s3) var(--tnc-s4) .4rem;
+    display: block;
+  }
+
+  .tnc-mobile-enroll {
+    margin: var(--tnc-s4) var(--tnc-s4) 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tnc-copper);
+    color: #fff !important;
+    font-weight: 600 !important;
+    border-radius: 4px;
+    padding: .9rem var(--tnc-s4) !important;
+    border-bottom: none !important;
+  }
+  .tnc-mobile-enroll:hover { background: var(--tnc-copper-lt) !important; }
+
+  /* ─── SECTION 1: HERO CAROUSEL ─── */
+  .tnc-hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 480px;
+    max-height: 860px;
+    overflow: hidden; /* clips the 3-slide flex row */
+  }
+
+  .tnc-hero-slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform .7s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+
+  .tnc-hero-slide {
+    flex: 0 0 100%;   /* each slide exactly viewport width, never wider */
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .tnc-hero-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(26,39,68,.88) 0%,
+      rgba(26,39,68,.6) 55%,
+      rgba(26,39,68,.18) 100%
+    );
+  }
+
+  .tnc-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .tnc-hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    padding: 64px clamp(1rem, 5vw, 3rem) 80px;
+  }
+
+  .tnc-hero-text {
+    max-width: 580px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s .2s, transform .6s .2s;
+  }
+  .tnc-hero-slide.is-active .tnc-hero-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tnc-hero-eyeline {
+    font-size: clamp(.58rem, 1.6vw, .72rem);
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--tnc-copper);
+    margin-bottom: clamp(.4rem, 1.5vw, .75rem);
+  }
+
+  .tnc-hero-heading {
+    font-size: clamp(1.5rem, 5.5vw, 3.4rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.03em;
+    line-height: 1.08;
+    margin-bottom: clamp(.5rem, 1.8vw, 1.25rem);
+  }
+
+  .tnc-hero-sub {
+    font-size: clamp(.8rem, 2vw, 1rem);
+    font-weight: 400;
+    color: rgba(255,255,255,.82);
+    line-height: 1.6;
+    margin-bottom: clamp(.75rem, 2.5vw, 2rem);
+    max-width: 460px;
+  }
+
+  .tnc-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(.75rem, 2.5vw, 1.5rem);
+    flex-wrap: wrap;
+  }
+
+  .tnc-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--tnc-copper);
+    color: #fff;
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 600;
+    padding: .85rem 1.8rem;
+    border-radius: 4px;
+    letter-spacing: .01em;
+    transition: background .2s, transform .15s;
+  }
+  .tnc-hero-btn:hover { background: var(--tnc-copper-lt); transform: translateY(-1px); }
+
+  .tnc-hero-link {
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    font-size: .875rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,.35);
+    padding-bottom: 1px;
+    transition: color .2s, border-color .2s;
+  }
+  .tnc-hero-link:hover { color: #fff; border-color: rgba(255,255,255,.7); }
+
+  /* Carousel controls */
+  .tnc-hero-controls {
+    position: absolute;
+    bottom: var(--tnc-s6);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: var(--tnc-s2);
+  }
+
+  .tnc-hero-dot {
+    width: 28px;
+    height: 3px;
+    background: rgba(255,255,255,.35);
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background .3s, width .3s;
+    padding: 0;
+  }
+  .tnc-hero-dot.is-active {
+    background: var(--tnc-copper);
+    width: 48px;
+  }
+
+  .tnc-hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .tnc-hero-arrow:hover { background: rgba(255,255,255,.22); }
+  .tnc-hero-arrow-prev { left: var(--tnc-s4); }
+  .tnc-hero-arrow-next { right: var(--tnc-s4); }
+
+  /* ─── SECTION 2: MISSION SPLIT ─── */
+  .tnc-mission {
+    background: #fff;
+    padding: var(--tnc-s12) 0;
+  }
+
+  .tnc-mission-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--tnc-s4);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tnc-s12);
+    align-items: center;
+  }
+
+  .tnc-mission-text {}
+
+  .tnc-section-label {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--tnc-copper);
+    display: block;
+    margin-bottom: var(--tnc-s3);
+  }
+
+  .tnc-mission-heading {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--tnc-navy);
+    letter-spacing: -.03em;
+    line-height: 1.15;
+    margin-bottom: var(--tnc-s4);
+  }
+
+  .tnc-mission-body {
+    font-size: 1.05rem;
+    color: var(--tnc-text-light);
+    line-height: 1.75;
+    margin-bottom: var(--tnc-s6);
+  }
+
+  .tnc-mission-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tnc-s3);
+  }
+
+  .tnc-mission-pillar {
+    padding: var(--tnc-s3);
+    border-left: 3px solid var(--tnc-copper);
+    background: var(--tnc-off-white);
+  }
+  .tnc-mission-pillar-title {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--tnc-navy);
+    margin-bottom: .4rem;
+  }
+  .tnc-mission-pillar-body {
+    font-size: .85rem;
+    color: var(--tnc-text-light);
+    line-height: 1.55;
+  }
+
+  .tnc-mission-visual {
+    position: relative;
+  }
+  .tnc-mission-img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    object-position: center;
+  }
+  .tnc-mission-badge {
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    background: var(--tnc-navy);
+    color: #fff;
+    padding: var(--tnc-s3) var(--tnc-s4);
+    max-width: 260px;
+  }
+  .tnc-mission-badge-text {
+    font-size: .82rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: rgba(255,255,255,.8);
+  }
+  .tnc-mission-badge-text strong {
+    display: block;
+    font-size: .95rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: .3rem;
+  }
+
+  /* ─── SECTION 3: PROGRAMS SWITCHER ─── */
+  .tnc-programs {
+    background: var(--tnc-off-white);
+    padding: var(--tnc-s12) 0;
+  }
+
+  .tnc-programs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--tnc-s4);
+  }
+
+  .tnc-programs-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: var(--tnc-s8);
+    gap: var(--tnc-s4);
+  }
+
+  .tnc-programs-heading {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--tnc-navy);
+    letter-spacing: -.03em;
+    line-height: 1.2;
+    max-width: 400px;
+  }
+
+  .tnc-programs-intro {
+    font-size: .95rem;
+    color: var(--tnc-text-light);
+    max-width: 380px;
+    line-height: 1.65;
+  }
+
+  .tnc-programs-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 0;
+    border: 1px solid #ddd;
+    background: #fff;
+  }
+
+  .tnc-programs-tabs {
+    border-right: 1px solid #ddd;
+    list-style: none;
+  }
+
+  .tnc-programs-tab {
+    padding: 0;
+    border-bottom: 1px solid #eee;
+  }
+  .tnc-programs-tab:last-child { border-bottom: 0; }
+
+  .tnc-programs-tab-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--tnc-font);
+    text-align: left;
+    padding: var(--tnc-s3) var(--tnc-s4);
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    transition: background .15s;
+    position: relative;
+  }
+  .tnc-programs-tab-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: transparent;
+    transition: background .2s;
+  }
+  .tnc-programs-tab-btn.is-active { background: var(--tnc-off-white); }
+  .tnc-programs-tab-btn.is-active::before { background: var(--tnc-copper); }
+  .tnc-programs-tab-btn:hover:not(.is-active) { background: #f8f7f5; }
+
+  .tnc-programs-tab-name {
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--tnc-navy);
+  }
+  .tnc-programs-tab-sub {
+    font-size: .75rem;
+    color: var(--tnc-mid-gray);
+  }
+
+  .tnc-programs-panels {
+    padding: var(--tnc-s6);
+  }
+
+  .tnc-programs-panel {
+    display: none;
+  }
+  .tnc-programs-panel.is-active { display: block; }
+
+  .tnc-programs-panel-label {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--tnc-copper);
+    margin-bottom: var(--tnc-s2);
+  }
+
+  .tnc-programs-panel-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--tnc-navy);
+    letter-spacing: -.02em;
+    margin-bottom: var(--tnc-s3);
+    line-height: 1.2;
+  }
+
+  .tnc-programs-panel-body {
+    font-size: .95rem;
+    color: var(--tnc-text-light);
+    line-height: 1.72;
+    margin-bottom: var(--tnc-s4);
+    max-width: 540px;
+  }
+
+  .tnc-programs-panel-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--tnc-s3);
+    margin-bottom: var(--tnc-s4);
+  }
+
+  .tnc-programs-detail {
+    background: var(--tnc-off-white);
+    padding: var(--tnc-s3);
+  }
+  .tnc-programs-detail-label {
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--tnc-mid-gray);
+    font-weight: 600;
+    margin-bottom: .3rem;
+  }
+  .tnc-programs-detail-value {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--tnc-navy);
+  }
+
+  .tnc-programs-panel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--tnc-copper);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+    transition: color .2s;
+  }
+  .tnc-programs-panel-link:hover { color: var(--tnc-copper-lt); }
+
+  /* ─── SECTION 4: EDITORIAL FEATURE ─── */
+  .tnc-feature {
+    position: relative;
+    height: 560px;
+    overflow: hidden;
+  }
+
+  .tnc-feature-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  .tnc-feature::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(26,39,68,.85) 0%, rgba(26,39,68,.6) 50%, rgba(26,39,68,.15) 100%);
+  }
+
+  .tnc-feature-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--tnc-s4);
+    max-width: 1200px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+
+  .tnc-feature-box {
+    max-width: 520px;
+  }
+
+  .tnc-feature-label {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--tnc-copper);
+    margin-bottom: var(--tnc-s3);
+    display: block;
+  }
+
+  .tnc-feature-heading {
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.03em;
+    line-height: 1.15;
+    margin-bottom: var(--tnc-s4);
+  }
+
+  .tnc-feature-body {
+    font-size: 1rem;
+    color: rgba(255,255,255,.82);
+    line-height: 1.72;
+    margin-bottom: var(--tnc-s4);
+  }
+
+  .tnc-feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: .88rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.45);
+    padding-bottom: 2px;
+    transition: border-color .2s;
+  }
+  .tnc-feature-link:hover { border-color: #fff; }
+
+  /* ─── SECTION 5: TESTIMONIAL ─── */
+  .tnc-voice {
+    background: var(--tnc-navy);
+    padding: var(--tnc-s12) 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tnc-voice::before {
+    content: '\201C';
+    position: absolute;
+    top: -40px;
+    left: var(--tnc-s8);
+    font-size: 22rem;
+    font-weight: 800;
+    color: rgba(255,255,255,.04);
+    line-height: 1;
+    font-family: Georgia, serif;
+    pointer-events: none;
+  }
+
+  .tnc-voice-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 var(--tnc-s4);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tnc-voice-mark {
+    display: block;
+    font-size: 4rem;
+    line-height: .6;
+    color: var(--tnc-copper);
+    font-family: Georgia, serif;
+    margin-bottom: var(--tnc-s4);
+  }
+
+  .tnc-voice-quote {
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+    font-weight: 400;
+    color: rgba(255,255,255,.92);
+    line-height: 1.6;
+    letter-spacing: -.01em;
+    margin-bottom: var(--tnc-s6);
+  }
+
+  .tnc-voice-rule {
+    width: 40px;
+    height: 2px;
+    background: var(--tnc-copper);
+    margin: 0 auto var(--tnc-s3);
+    border: none;
+  }
+
+  .tnc-voice-credit {
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.5);
+  }
+
+  .tnc-voice-credit strong {
+    display: block;
+    color: rgba(255,255,255,.75);
+    margin-bottom: .2rem;
+    font-size: .9rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* ─── SECTION 6: NEWSROOM ─── */
+  .tnc-newsroom {
+    background: #fff;
+    padding: var(--tnc-s12) 0;
+  }
+
+  .tnc-newsroom-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--tnc-s4);
+  }
+
+  .tnc-newsroom-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tnc-s12);
+    margin-bottom: var(--tnc-s8);
+    align-items: end;
+  }
+
+  .tnc-newsroom-heading {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--tnc-navy);
+    letter-spacing: -.03em;
+    line-height: 1.2;
+  }
+
+  .tnc-newsroom-intro {
+    font-size: .95rem;
+    color: var(--tnc-text-light);
+    line-height: 1.65;
+  }
+
+  .tnc-newsroom-list {
+    list-style: none;
+    border-top: 2px solid var(--tnc-navy);
+  }
+
+  .tnc-newsroom-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: var(--tnc-s4);
+    align-items: baseline;
+    padding: var(--tnc-s4) 0;
+    border-bottom: 1px solid #e8e6e2;
+    text-decoration: none;
+    transition: background .15s;
+  }
+  .tnc-newsroom-item:hover .tnc-newsroom-item-title { color: var(--tnc-copper); }
+
+  .tnc-newsroom-date {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    color: var(--tnc-mid-gray);
+    text-transform: uppercase;
+  }
+
+  .tnc-newsroom-item-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--tnc-navy);
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    transition: color .2s;
+  }
+  .tnc-newsroom-item-sub {
+    font-size: .82rem;
+    color: var(--tnc-text-light);
+    margin-top: .25rem;
+    font-weight: 400;
+  }
+
+  .tnc-newsroom-arrow {
+    color: var(--tnc-mid-gray);
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION 7: CALLOUT ─── */
+  .tnc-callout {
+    background: var(--tnc-warm-gray);
+    padding: var(--tnc-s12) 0;
+  }
+
+  .tnc-callout-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--tnc-s4);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tnc-s12);
+    align-items: center;
+  }
+
+  .tnc-callout-text {}
+
+  .tnc-callout-heading {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--tnc-navy);
+    letter-spacing: -.03em;
+    line-height: 1.2;
+    margin-bottom: var(--tnc-s3);
+  }
+
+  .tnc-callout-body {
+    font-size: 1rem;
+    color: var(--tnc-text-light);
+    line-height: 1.7;
+    margin-bottom: var(--tnc-s4);
+  }
+
+  .tnc-callout-locations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tnc-s3);
+    margin-bottom: var(--tnc-s4);
+  }
+
+  .tnc-callout-location {
+    padding: var(--tnc-s3);
+    background: #fff;
+    border-top: 3px solid var(--tnc-navy);
+  }
+  .tnc-callout-location-name {
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--tnc-copper);
+    margin-bottom: .5rem;
+  }
+  .tnc-callout-location-phone {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--tnc-navy);
+    text-decoration: none;
+    display: block;
+    margin-bottom: .35rem;
+    letter-spacing: -.01em;
+  }
+  .tnc-callout-location-hours {
+    font-size: .78rem;
+    color: var(--tnc-text-light);
+    line-height: 1.55;
+  }
+
+  .tnc-callout-form-side {}
+
+  .tnc-callout-form-label {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--tnc-copper);
+    display: block;
+    margin-bottom: var(--tnc-s3);
+  }
+
+  .tnc-callout-form-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--tnc-navy);
+    letter-spacing: -.02em;
+    margin-bottom: var(--tnc-s4);
+  }
+
+  .tnc-callout-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tnc-s2);
+  }
+
+  .tnc-callout-field {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+
+  .tnc-callout-field label {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--tnc-navy);
+    letter-spacing: .02em;
+  }
+
+  .tnc-callout-field input,
+  .tnc-callout-field select {
+    padding: .75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: var(--tnc-font);
+    font-size: .9rem;
+    color: var(--tnc-text);
+    background: #fff;
+    transition: border-color .2s;
+  }
+  .tnc-callout-field input:focus,
+  .tnc-callout-field select:focus {
+    outline: none;
+    border-color: var(--tnc-navy);
+  }
+
+  .tnc-callout-submit {
+    margin-top: .5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    background: var(--tnc-navy);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: var(--tnc-font);
+    font-size: .9rem;
+    font-weight: 600;
+    padding: .9rem 1.8rem;
+    border-radius: 3px;
+    letter-spacing: .01em;
+    transition: background .2s;
+  }
+  .tnc-callout-submit:hover { background: var(--tnc-navy-mid); }
+
+  /* ─── SECTION 8: FOOTER ─── */
+  .tnc-footer {
+    background: #111822;
+    padding: var(--tnc-s12) 0 var(--tnc-s4);
+  }
+
+  .tnc-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--tnc-s4);
+  }
+
+  .tnc-footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: var(--tnc-s6);
+    margin-bottom: var(--tnc-s8);
+    padding-bottom: var(--tnc-s8);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .tnc-footer-brand {}
+  .tnc-footer-logo-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.02em;
+    margin-bottom: .25rem;
+  }
+  .tnc-footer-logo-name span { color: var(--tnc-copper); }
+  .tnc-footer-logo-tag {
+    font-size: .65rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.4);
+    display: block;
+    margin-bottom: var(--tnc-s3);
+  }
+  .tnc-footer-brand-desc {
+    font-size: .82rem;
+    color: rgba(255,255,255,.45);
+    line-height: 1.65;
+    margin-bottom: var(--tnc-s3);
+    max-width: 260px;
+  }
+  .tnc-footer-socials {
+    display: flex;
+    gap: var(--tnc-s2);
+  }
+  .tnc-footer-social-link {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .tnc-footer-social-link:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+
+  .tnc-footer-col {}
+  .tnc-footer-col-title {
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.35);
+    margin-bottom: var(--tnc-s3);
+  }
+  .tnc-footer-col ul { list-style: none; }
+  .tnc-footer-col ul li { margin-bottom: .6rem; }
+  .tnc-footer-col ul li a {
+    font-size: .82rem;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .tnc-footer-col ul li a:hover { color: rgba(255,255,255,.9); }
+
+  .tnc-footer-partners {
+    grid-column: 1 / -1;
+    padding-top: var(--tnc-s6);
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .tnc-footer-partners-label {
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.25);
+    margin-bottom: var(--tnc-s3);
+  }
+  .tnc-footer-partners-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tnc-s3) var(--tnc-s6);
+  }
+  .tnc-footer-partners-list a {
+    font-size: .78rem;
+    color: rgba(255,255,255,.38);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .tnc-footer-partners-list a:hover { color: rgba(255,255,255,.65); }
+
+  .tnc-footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tnc-s4);
+    flex-wrap: wrap;
+  }
+  .tnc-footer-copy {
+    font-size: .75rem;
+    color: rgba(255,255,255,.25);
+  }
+  .tnc-footer-legal {
+    display: flex;
+    gap: var(--tnc-s3);
+    list-style: none;
+  }
+  .tnc-footer-legal a {
+    font-size: .72rem;
+    color: rgba(255,255,255,.25);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .tnc-footer-legal a:hover { color: rgba(255,255,255,.55); }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .tnc-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .tnc-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .tnc-reveal-delay-1 { transition-delay: .1s; }
+  .tnc-reveal-delay-2 { transition-delay: .2s; }
+  .tnc-reveal-delay-3 { transition-delay: .3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .tnc-nav-links { display: none; }
+    .tnc-hamburger { display: flex; }
+    .tnc-mission-inner { grid-template-columns: 1fr; }
+    .tnc-mission-visual { display: none; }
+    .tnc-programs-layout { grid-template-columns: 1fr; }
+    .tnc-programs-tabs { border-right: 0; border-bottom: 1px solid #ddd; display: flex; overflow-x: auto; }
+    .tnc-programs-tab { border-bottom: 0; border-right: 1px solid #eee; flex-shrink: 0; }
+    .tnc-newsroom-header { grid-template-columns: 1fr; gap: var(--tnc-s4); }
+    .tnc-newsroom-item { grid-template-columns: 80px 1fr; }
+    .tnc-newsroom-arrow { display: none; }
+    .tnc-callout-inner { grid-template-columns: 1fr; }
+    .tnc-footer-top { grid-template-columns: 1fr 1fr; }
+    .tnc-footer-brand { grid-column: 1 / -1; }
+    .tnc-programs-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 640px) {
+    .tnc-mission-pillars { grid-template-columns: 1fr; }
+    .tnc-callout-locations { grid-template-columns: 1fr; }
+    .tnc-footer-top { grid-template-columns: 1fr; }
+    .tnc-hero-arrow { display: none; }
+    .tnc-hero-btn { width: 100%; justify-content: center; }
+    .tnc-hero-actions { flex-direction: column; align-items: flex-start; gap: var(--tnc-s2); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tnc-hero-slides { transition: none; }
+    .tnc-reveal { opacity: 1; transform: none; transition: none; }
+    .tnc-hero-text { transition: none; }
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ─── NAV ─── -->
+<nav class="tnc-nav" aria-label="Main navigation">
+  <div class="tnc-nav-inner">
+    <a href="#" class="tnc-logo" aria-label="Terra Nova Counseling home">
+      <span class="tnc-logo-name">Terra <span>Nova</span></span>
+    </a>
+    <ul class="tnc-nav-links" role="list">
+      <li>
+        <button aria-haspopup="true" aria-expanded="false">
+          Enrollment
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="tnc-nav-dropdown" role="list">
+          <li><a href="#">Enrollment</a></li>
+          <li><a href="#">Assessments</a></li>
+          <li><a href="#">Reinstatement</a></li>
+        </ul>
+      </li>
+      <li>
+        <button aria-haspopup="true">
+          Pricing
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="tnc-nav-dropdown">
+          <li><a href="#">Payment</a></li>
+          <li><a href="#">Programs &amp; Fees</a></li>
+          <li><a href="#">Additional Fees</a></li>
+        </ul>
+      </li>
+      <li>
+        <button aria-haspopup="true">
+          Rules
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="tnc-nav-dropdown">
+          <li><a href="#">Virtual Rules</a></li>
+          <li><a href="#">Rules &amp; Regulations</a></li>
+        </ul>
+      </li>
+      <li>
+        <button aria-haspopup="true">
+          Company
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="tnc-nav-dropdown">
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Job Openings</a></li>
+          <li><a href="#">Board Members</a></li>
+        </ul>
+      </li>
+      <li>
+        <button aria-haspopup="true">
+          More Info
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="tnc-nav-dropdown">
+          <li><a href="#">Zoom Schedule</a></li>
+          <li><a href="#">Leave of Absence</a></li>
+          <li><a href="#">Rescheduling</a></li>
+          <li><a href="#">Termination</a></li>
+        </ul>
+      </li>
+      <li><a href="#" class="tnc-nav-cta">Enroll Now</a></li>
+    </ul>
+    <button class="tnc-hamburger" id="tnc-hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="tnc-mobile-menu" id="tnc-mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+  <button class="tnc-mobile-close" id="tnc-mobile-close" aria-label="Close navigation menu">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+  <span class="tnc-mobile-menu-group-label">Enrollment</span>
+  <a href="#">Enrollment</a>
+  <a href="#">Assessments</a>
+  <a href="#">Reinstatement</a>
+  <span class="tnc-mobile-menu-group-label">Pricing</span>
+  <a href="#">Payment</a>
+  <a href="#">Programs &amp; Fees</a>
+  <a href="#">Additional Fees</a>
+  <span class="tnc-mobile-menu-group-label">Rules</span>
+  <a href="#">Virtual Rules</a>
+  <a href="#">Rules &amp; Regulations</a>
+  <span class="tnc-mobile-menu-group-label">Company</span>
+  <a href="#">Contact</a>
+  <a href="#">Job Openings</a>
+  <a href="#">Board Members</a>
+  <span class="tnc-mobile-menu-group-label">More Info</span>
+  <a href="#">Zoom Schedule</a>
+  <a href="#">Leave of Absence</a>
+  <a href="#">Rescheduling</a>
+  <a href="#">Termination</a>
+  <a href="#" class="tnc-mobile-enroll">Enroll Now</a>
+</div>
+
+<!-- ─── SECTION 1: HERO ─── -->
+<section class="tnc-hero" aria-label="Hero carousel">
+  <div class="tnc-hero-slides" id="tnc-slides">
+
+    <!-- Slide 1 -->
+    <div class="tnc-hero-slide is-active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
+      <img
+        class="tnc-hero-bg"
+        src="https://static.wixstatic.com/media/ad34d1_ac9a452505d04774819a765cc1b640b7~mv2.jpg"
+        alt="Sunrise over the ocean — a place of calm and renewal"
+        loading="eager"
+      >
+      <div class="tnc-hero-content">
+        <div class="tnc-hero-text">
+          <p class="tnc-hero-eyeline">Sacramento's Licensed DUI Program Provider</p>
+          <h1 class="tnc-hero-heading">Where People<br>Find Their Way Back</h1>
+          <p class="tnc-hero-sub">Terra Nova Counseling offers confidential, DHCS-licensed DUI programs at two convenient Sacramento locations. Your path to license reinstatement starts here.</p>
+          <div class="tnc-hero-actions">
+            <a href="#" class="tnc-hero-btn">
+              Begin Enrollment
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#" class="tnc-hero-link">View program options</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="tnc-hero-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3">
+      <img
+        class="tnc-hero-bg"
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&auto=format&fit=crop"
+        alt="Mountain landscape at dawn — strength and renewal"
+        loading="lazy"
+      >
+      <div class="tnc-hero-content">
+        <div class="tnc-hero-text">
+          <p class="tnc-hero-eyeline">Community-Centered Mental Health Services</p>
+          <h1 class="tnc-hero-heading">Supporting Families.<br>Strengthening Communities.</h1>
+          <p class="tnc-hero-sub">We provide mental health, intervention, and educational services to diverse families and individuals across Sacramento County.</p>
+          <div class="tnc-hero-actions">
+            <a href="#" class="tnc-hero-btn">
+              Explore Services
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#" class="tnc-hero-link">Contact our team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="tnc-hero-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3">
+      <img
+        class="tnc-hero-bg"
+        src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1600&q=80&auto=format&fit=crop"
+        alt="Light through trees — growth and possibility"
+        loading="lazy"
+      >
+      <div class="tnc-hero-content">
+        <div class="tnc-hero-text">
+          <p class="tnc-hero-eyeline">California DHCS-Licensed &amp; Monitored</p>
+          <h1 class="tnc-hero-heading">Licensed Programs<br>You Can Trust.</h1>
+          <p class="tnc-hero-sub">From first-offender 3-month programs to 18-month multiple-offender tracks, Terra Nova meets every DHCS requirement and issues your DMV completion notice within 10 days.</p>
+          <div class="tnc-hero-actions">
+            <a href="#" class="tnc-hero-btn">
+              View Pricing &amp; Fees
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#" class="tnc-hero-link">Download Zoom schedule</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prev/Next -->
+  <button class="tnc-hero-arrow tnc-hero-arrow-prev" id="tnc-prev" aria-label="Previous slide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="tnc-hero-arrow tnc-hero-arrow-next" id="tnc-next" aria-label="Next slide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <!-- Dots -->
+  <div class="tnc-hero-controls" role="tablist" aria-label="Slide navigation">
+    <button class="tnc-hero-dot is-active" data-slide="0" role="tab" aria-selected="true" aria-label="Go to slide 1"></button>
+    <button class="tnc-hero-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Go to slide 2"></button>
+    <button class="tnc-hero-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Go to slide 3"></button>
+  </div>
+</section>
+
+<!-- ─── SECTION 2: MISSION SPLIT ─── -->
+<section class="tnc-mission">
+  <div class="tnc-mission-inner">
+    <div class="tnc-mission-text tnc-reveal">
+      <span class="tnc-section-label">Our Mission</span>
+      <h2 class="tnc-mission-heading">Building Strong Communities Through Recovery and Education</h2>
+      <p class="tnc-mission-body">Terra Nova Counseling was founded on the belief that every individual deserves the support to reclaim their life, rebuild relationships, and re-enter their community with confidence. We serve Sacramento families and individuals with confidential, compassionate, and clinically grounded services.</p>
+      <div class="tnc-mission-pillars">
+        <div class="tnc-mission-pillar tnc-reveal tnc-reveal-delay-1">
+          <p class="tnc-mission-pillar-title">Our Vision</p>
+          <p class="tnc-mission-pillar-body">To strengthen diverse communities by providing mental health, intervention, and educational services to families and individuals.</p>
+        </div>
+        <div class="tnc-mission-pillar tnc-reveal tnc-reveal-delay-2">
+          <p class="tnc-mission-pillar-title">Our Goals</p>
+          <p class="tnc-mission-pillar-body">To reduce repeat DUI offenses and enable participants to adopt positive lifestyle changes that eliminate the harmful use of alcohol and drugs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tnc-mission-visual tnc-reveal tnc-reveal-delay-1">
+      <img
+        class="tnc-mission-img"
+        src="https://static.wixstatic.com/media/ad34d1_aa778959498b430f8d0e068e70ee15b7~mv2.jpg"
+        alt="Terra Nova counseling session — supportive community environment"
+      >
+      <div class="tnc-mission-badge">
+        <p class="tnc-mission-badge-text">
+          <strong>DHCS Licensed &amp; Monitored</strong>
+          Licensed by the California Department of Health Care Services and Sacramento County Substance Abuse and Treatment Services.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 3: PROGRAMS SWITCHER ─── -->
+<section class="tnc-programs">
+  <div class="tnc-programs-inner">
+    <div class="tnc-programs-header tnc-reveal">
+      <div>
+        <span class="tnc-section-label">DUI &amp; Counseling Programs</span>
+        <h2 class="tnc-programs-heading">Every Path to Recovery Is Different</h2>
+      </div>
+      <p class="tnc-programs-intro">Terra Nova offers structured, court-approved DUI programs calibrated to your conviction level — all confidential, all DHCS-licensed.</p>
+    </div>
+
+    <div class="tnc-programs-layout tnc-reveal">
+      <ul class="tnc-programs-tabs" role="tablist" aria-label="DUI programs">
+        <li class="tnc-programs-tab">
+          <button class="tnc-programs-tab-btn is-active" role="tab" aria-selected="true" aria-controls="tnc-panel-1" id="tnc-tab-1">
+            <span class="tnc-programs-tab-name">First Offender</span>
+            <span class="tnc-programs-tab-sub">3, 6, or 9 months</span>
+          </button>
+        </li>
+        <li class="tnc-programs-tab">
+          <button class="tnc-programs-tab-btn" role="tab" aria-selected="false" aria-controls="tnc-panel-2" id="tnc-tab-2">
+            <span class="tnc-programs-tab-name">Multiple Offender</span>
+            <span class="tnc-programs-tab-sub">18-month program</span>
+          </button>
+        </li>
+        <li class="tnc-programs-tab">
+          <button class="tnc-programs-tab-btn" role="tab" aria-selected="false" aria-controls="tnc-panel-3" id="tnc-tab-3">
+            <span class="tnc-programs-tab-name">Wet &amp; Reckless</span>
+            <span class="tnc-programs-tab-sub">6-week program</span>
+          </button>
+        </li>
+        <li class="tnc-programs-tab">
+          <button class="tnc-programs-tab-btn" role="tab" aria-selected="false" aria-controls="tnc-panel-4" id="tnc-tab-4">
+            <span class="tnc-programs-tab-name">Assessments</span>
+            <span class="tnc-programs-tab-sub">Initial evaluation</span>
+          </button>
+        </li>
+        <li class="tnc-programs-tab">
+          <button class="tnc-programs-tab-btn" role="tab" aria-selected="false" aria-controls="tnc-panel-5" id="tnc-tab-5">
+            <span class="tnc-programs-tab-name">Reinstatement</span>
+            <span class="tnc-programs-tab-sub">License restoration</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="tnc-programs-panels">
+        <!-- Panel 1 -->
+        <div class="tnc-programs-panel is-active" id="tnc-panel-1" role="tabpanel" aria-labelledby="tnc-tab-1">
+          <p class="tnc-programs-panel-label">DUI Program — First Offense</p>
+          <h3 class="tnc-programs-panel-title">First Offender Program</h3>
+          <p class="tnc-programs-panel-body">Designed for individuals convicted of a first DUI offense, our First Offender Program is available in three lengths to satisfy court and DMV requirements. Sessions combine education, group counseling, and individual support to promote genuine behavioral change — not just compliance.</p>
+          <div class="tnc-programs-panel-details">
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Duration Options</p>
+              <p class="tnc-programs-detail-value">3, 6, or 9 Months</p>
+            </div>
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Format</p>
+              <p class="tnc-programs-detail-value">In-Person &amp; Virtual</p>
+            </div>
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Completion Notice</p>
+              <p class="tnc-programs-detail-value">Within 10 Days</p>
+            </div>
+          </div>
+          <a href="#" class="tnc-programs-panel-link">
+            Enroll in this program
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- Panel 2 -->
+        <div class="tnc-programs-panel" id="tnc-panel-2" role="tabpanel" aria-labelledby="tnc-tab-2">
+          <p class="tnc-programs-panel-label">DUI Program — Multiple Offense</p>
+          <h3 class="tnc-programs-panel-title">Multiple Offender Program</h3>
+          <p class="tnc-programs-panel-body">The 18-month program is designed for individuals with multiple DUI convictions. This intensive, structured curriculum meets DHCS's rigorous requirements and supports long-term sobriety through counseling, education, and accountability planning. Participants receive a DMV DL-101 Notice of Completion upon successful graduation.</p>
+          <div class="tnc-programs-panel-details">
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Duration</p>
+              <p class="tnc-programs-detail-value">18 Months</p>
+            </div>
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Format</p>
+              <p class="tnc-programs-detail-value">In-Person &amp; Virtual</p>
+            </div>
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Completion Notice</p>
+              <p class="tnc-programs-detail-value">Within 10 Days</p>
+            </div>
+          </div>
+          <a href="#" class="tnc-programs-panel-link">
+            Enroll in this program
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- Panel 3 -->
+        <div class="tnc-programs-panel" id="tnc-panel-3" role="tabpanel" aria-labelledby="tnc-tab-3">
+          <p class="tnc-programs-panel-label">DUI Program — Wet &amp; Reckless</p>
+          <h3 class="tnc-programs-panel-title">Wet &amp; Reckless Program</h3>
+          <p class="tnc-programs-panel-body">For individuals convicted of a Wet &amp; Reckless charge (Vehicle Code 23103/23103.5), Terra Nova offers a focused 6-week program. This shorter track addresses alcohol education and risk behavior without the full DUI program requirement, while still satisfying court-ordered treatment conditions.</p>
+          <div class="tnc-programs-panel-details">
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Duration</p>
+              <p class="tnc-programs-detail-value">6 Weeks</p>
+            </div>
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Format</p>
+              <p class="tnc-programs-detail-value">In-Person &amp; Virtual</p>
+            </div>
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Eligibility</p>
+              <p class="tnc-programs-detail-value">VC 23103/23103.5</p>
+            </div>
+          </div>
+          <a href="#" class="tnc-programs-panel-link">
+            Enroll in this program
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- Panel 4 -->
+        <div class="tnc-programs-panel" id="tnc-panel-4" role="tabpanel" aria-labelledby="tnc-tab-4">
+          <p class="tnc-programs-panel-label">Program Entry</p>
+          <h3 class="tnc-programs-panel-title">Initial Assessment</h3>
+          <p class="tnc-programs-panel-body">Every participant begins with a confidential intake assessment conducted by a licensed counselor. This evaluation determines the appropriate program level, identifies any additional support needs, and establishes a treatment baseline. Assessments are available at both our Natomas and Downtown Sacramento locations, as well as virtually via Zoom.</p>
+          <div class="tnc-programs-panel-details">
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Duration</p>
+              <p class="tnc-programs-detail-value">~60 Minutes</p>
+            </div>
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Availability</p>
+              <p class="tnc-programs-detail-value">In-Person &amp; Zoom</p>
+            </div>
+          </div>
+          <a href="#" class="tnc-programs-panel-link">
+            Schedule an assessment
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- Panel 5 -->
+        <div class="tnc-programs-panel" id="tnc-panel-5" role="tabpanel" aria-labelledby="tnc-tab-5">
+          <p class="tnc-programs-panel-label">License Restoration</p>
+          <h3 class="tnc-programs-panel-title">License Reinstatement Support</h3>
+          <p class="tnc-programs-panel-body">Participants returning to Terra Nova after a leave of absence or seeking reinstatement of a suspended license receive dedicated case support. We work directly with the DMV and DHCS to ensure your status is current, fees are documented, and your DL-101 completion notice is filed promptly upon successful program conclusion.</p>
+          <div class="tnc-programs-panel-details">
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">DMV Filing</p>
+              <p class="tnc-programs-detail-value">Within 10 Days</p>
+            </div>
+            <div class="tnc-programs-detail">
+              <p class="tnc-programs-detail-label">Support</p>
+              <p class="tnc-programs-detail-value">Case-by-Case Basis</p>
+            </div>
+          </div>
+          <a href="#" class="tnc-programs-panel-link">
+            Request reinstatement info
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 4: EDITORIAL FEATURE ─── -->
+<section class="tnc-feature" aria-label="Program highlight">
+  <img
+    class="tnc-feature-bg"
+    src="https://static.wixstatic.com/media/ad34d1_ac9a452505d04774819a765cc1b640b7~mv2.jpg"
+    alt="Ocean sunrise — the Terra Nova spirit of renewal"
+  >
+  <div class="tnc-feature-content">
+    <div class="tnc-feature-box tnc-reveal">
+      <span class="tnc-feature-label">Why Terra Nova</span>
+      <h2 class="tnc-feature-heading">A Program Built on<br>Accountability and Growth</h2>
+      <p class="tnc-feature-body">Our programs are not simply court requirements — they are structured opportunities for individuals to examine attitudes, build healthier behaviors, and take ownership of their future. Licensed and monitored by DHCS and Sacramento County, every session is designed with both compliance and genuine human development in mind. We believe that when people are supported with respect and clinical expertise, they grow.</p>
+      <a href="#" class="tnc-feature-link">
+        Read about our approach
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 5: COMMUNITY VOICE ─── -->
+<section class="tnc-voice">
+  <div class="tnc-voice-inner tnc-reveal">
+    <span class="tnc-voice-mark" aria-hidden="true">&ldquo;</span>
+    <blockquote class="tnc-voice-quote">
+      "I came to Terra Nova not knowing what to expect. What I found was a team that treated me like a person — not a case number. The program didn't just help me meet my court obligations. It helped me change how I think about myself and my future."
+    </blockquote>
+    <hr class="tnc-voice-rule">
+    <cite class="tnc-voice-credit">
+      <strong>Program Graduate, Sacramento</strong>
+      First Offender Program Participant
+    </cite>
+  </div>
+</section>
+
+<!-- ─── SECTION 6: NEWSROOM ─── -->
+<section class="tnc-newsroom">
+  <div class="tnc-newsroom-inner">
+    <div class="tnc-newsroom-header tnc-reveal">
+      <div>
+        <span class="tnc-section-label">Updates &amp; Resources</span>
+        <h2 class="tnc-newsroom-heading">Program News &amp; Policy Updates</h2>
+      </div>
+      <p class="tnc-newsroom-intro">Stay current with Terra Nova program changes, Zoom schedule updates, DHCS regulatory notices, and community resources for participants and families.</p>
+    </div>
+
+    <ul class="tnc-newsroom-list tnc-reveal" role="list">
+      <li>
+        <a href="#" class="tnc-newsroom-item">
+          <span class="tnc-newsroom-date">Jun 2025</span>
+          <span>
+            <span class="tnc-newsroom-item-title">Updated Zoom Session Schedule — Summer 2025</span>
+            <span class="tnc-newsroom-item-sub">New virtual session times for both Natomas and Downtown cohorts, effective July 1.</span>
+          </span>
+          <svg class="tnc-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="tnc-newsroom-item">
+          <span class="tnc-newsroom-date">Apr 2025</span>
+          <span>
+            <span class="tnc-newsroom-item-title">DHCS Regulatory Update: Multiple Offender Program Requirements</span>
+            <span class="tnc-newsroom-item-sub">California DHCS issued updated counseling hour minimums for 18-month programs statewide.</span>
+          </span>
+          <svg class="tnc-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="tnc-newsroom-item">
+          <span class="tnc-newsroom-date">Mar 2025</span>
+          <span>
+            <span class="tnc-newsroom-item-title">Payment Plan Options Expanded for 2025</span>
+            <span class="tnc-newsroom-item-sub">Terra Nova now offers flexible DHCS-approved payment schedules for all program lengths.</span>
+          </span>
+          <svg class="tnc-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="tnc-newsroom-item">
+          <span class="tnc-newsroom-date">Jan 2025</span>
+          <span>
+            <span class="tnc-newsroom-item-title">MADD Victim Impact Panel — 2025 Sacramento Schedule Released</span>
+            <span class="tnc-newsroom-item-sub">Mandatory VIP dates for Sacramento Superior Court enrollees are now posted for the full year.</span>
+          </span>
+          <svg class="tnc-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="tnc-newsroom-item">
+          <span class="tnc-newsroom-date">Nov 2024</span>
+          <span>
+            <span class="tnc-newsroom-item-title">Holiday Office Hours — Natomas &amp; Downtown Locations</span>
+            <span class="tnc-newsroom-item-sub">Special session and office hours for Thanksgiving, Christmas, and New Year's week.</span>
+          </span>
+          <svg class="tnc-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── SECTION 7: CALLOUT ─── -->
+<section class="tnc-callout">
+  <div class="tnc-callout-inner">
+    <div class="tnc-callout-text tnc-reveal">
+      <span class="tnc-section-label">Two Sacramento Locations</span>
+      <h2 class="tnc-callout-heading">Ready to Take the First Step?</h2>
+      <p class="tnc-callout-body">Enrollment is straightforward. Call either of our offices to schedule your initial assessment, or start the intake process online. Our staff will walk you through program placement, payment options, and your session schedule.</p>
+      <div class="tnc-callout-locations">
+        <div class="tnc-callout-location">
+          <p class="tnc-callout-location-name">Downtown Sacramento</p>
+          <a href="tel:9164445680" class="tnc-callout-location-phone">916-444-5680</a>
+          <p class="tnc-callout-location-hours">
+            Office: Mon–Thurs 10am–4pm · Fri 10am–1pm<br>
+            Counselors: Mon–Wed 11:30am–8:30pm<br>
+            Thu 10:30am–7:30pm · Fri 8:30am–2:30pm
+          </p>
+        </div>
+        <div class="tnc-callout-location">
+          <p class="tnc-callout-location-name">Natomas</p>
+          <a href="tel:9165640600" class="tnc-callout-location-phone">916-564-0600</a>
+          <p class="tnc-callout-location-hours">
+            Office: Mon–Thurs 10am–4pm · Fri 10am–1pm<br>
+            Counselors: Mon–Wed 11:30am–8:30pm<br>
+            Thu 10:30am–7:30pm · Fri 8:30am–2:30pm
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tnc-callout-form-side tnc-reveal tnc-reveal-delay-1">
+      <span class="tnc-callout-form-label">Start Your Enrollment</span>
+      <h3 class="tnc-callout-form-title">Request an Assessment Appointment</h3>
+      <div class="tnc-callout-form">
+        <div class="tnc-callout-field">
+          <label for="tnc-name">Full Name</label>
+          <input type="text" id="tnc-name" placeholder="Your full name" autocomplete="name">
+        </div>
+        <div class="tnc-callout-field">
+          <label for="tnc-phone">Phone Number</label>
+          <input type="tel" id="tnc-phone" placeholder="(916) 000-0000" autocomplete="tel">
+        </div>
+        <div class="tnc-callout-field">
+          <label for="tnc-program">Program of Interest</label>
+          <select id="tnc-program">
+            <option value="">Select a program</option>
+            <option>First Offender — 3 Month</option>
+            <option>First Offender — 6 Month</option>
+            <option>First Offender — 9 Month</option>
+            <option>Multiple Offender — 18 Month</option>
+            <option>Wet &amp; Reckless — 6 Week</option>
+            <option>I need guidance on which program</option>
+          </select>
+        </div>
+        <div class="tnc-callout-field">
+          <label for="tnc-location">Preferred Location</label>
+          <select id="tnc-location">
+            <option value="">Select a location</option>
+            <option>Downtown Sacramento</option>
+            <option>Natomas</option>
+            <option>Virtual / Zoom</option>
+          </select>
+        </div>
+        <button type="button" class="tnc-callout-submit">
+          Request Appointment
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 8: FOOTER ─── -->
+<footer class="tnc-footer">
+  <div class="tnc-footer-inner">
+    <div class="tnc-footer-top">
+      <div class="tnc-footer-brand">
+        <p class="tnc-footer-logo-name">Terra <span>Nova</span></p>
+        <span class="tnc-footer-logo-tag">Counseling · Where People Grow</span>
+        <p class="tnc-footer-brand-desc">Licensed by the California Department of Health Care Services (DHCS) and Sacramento County Substance Abuse and Treatment Services. Serving Sacramento since our founding.</p>
+        <div class="tnc-footer-socials" aria-label="Social media links">
+          <!-- Facebook -->
+          <a href="#" class="tnc-footer-social-link" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- X/Twitter -->
+          <a href="#" class="tnc-footer-social-link" aria-label="X (formerly Twitter)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="tnc-footer-social-link" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="tnc-footer-col">
+        <p class="tnc-footer-col-title">DUI Programs</p>
+        <ul>
+          <li><a href="#">Enrollment</a></li>
+          <li><a href="#">Assessments</a></li>
+          <li><a href="#">Reinstatement</a></li>
+          <li><a href="#">Programs &amp; Fees</a></li>
+          <li><a href="#">Additional Fees</a></li>
+          <li><a href="#">Make a Payment</a></li>
+        </ul>
+      </div>
+
+      <div class="tnc-footer-col">
+        <p class="tnc-footer-col-title">Scheduling</p>
+        <ul>
+          <li><a href="#">Zoom Schedule</a></li>
+          <li><a href="#">Leave of Absence</a></li>
+          <li><a href="#">Rescheduling</a></li>
+          <li><a href="#">Termination</a></li>
+        </ul>
+      </div>
+
+      <div class="tnc-footer-col">
+        <p class="tnc-footer-col-title">Rules</p>
+        <ul>
+          <li><a href="#">Virtual Rules</a></li>
+          <li><a href="#">Rules &amp; Regulations</a></li>
+        </ul>
+      </div>
+
+      <div class="tnc-footer-col">
+        <p class="tnc-footer-col-title">Company</p>
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Job Openings</a></li>
+          <li><a href="#">Board Members</a></li>
+          <li><a href="#">More Info</a></li>
+        </ul>
+      </div>
+
+      <div class="tnc-footer-partners">
+        <p class="tnc-footer-partners-label">Partner Agencies &amp; Regulatory Bodies</p>
+        <div class="tnc-footer-partners-list">
+          <a href="http://www.chp.ca.gov" target="_blank" rel="noopener">California Highway Patrol (CHP)</a>
+          <a href="http://www.dhcs.ca.gov" target="_blank" rel="noopener">Dept of Health Care Services (DHCS)</a>
+          <a href="http://www.dmv.ca.gov" target="_blank" rel="noopener">Dept of Motor Vehicles (DMV)</a>
+          <a href="https://madd.org" target="_blank" rel="noopener">MADD Victim Impact Panel</a>
+          <a href="http://www.saccourt.ca.gov" target="_blank" rel="noopener">Sacramento Superior Court</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tnc-footer-bottom">
+      <p class="tnc-footer-copy">&copy; 2025 Terra Nova Counseling. All rights reserved. Licensed by DHCS &amp; Sacramento County SATS.</p>
+      <ul class="tnc-footer-legal" role="list">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Accessibility</a></li>
+        <li><a href="#">HIPAA Notice</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── CAROUSEL ── */
+  (function () {
+    const slides = document.querySelectorAll('.tnc-hero-slide');
+    const dots   = document.querySelectorAll('.tnc-hero-dot');
+    const track  = document.getElementById('tnc-slides');
+    let current  = 0;
+    let timer;
+
+    function goTo(i) {
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      dots[current].setAttribute('aria-selected', 'false');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+      dots[current].setAttribute('aria-selected', 'true');
+      track.style.transform = `translateX(-${current * 100}%)`;
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() { timer = setInterval(next, 6000); }
+    function stopAuto()  { clearInterval(timer); }
+
+    document.getElementById('tnc-next').addEventListener('click', () => { stopAuto(); next(); startAuto(); });
+    document.getElementById('tnc-prev').addEventListener('click', () => { stopAuto(); prev(); startAuto(); });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        stopAuto();
+        goTo(parseInt(dot.dataset.slide));
+        startAuto();
+      });
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    const hero = document.querySelector('.tnc-hero');
+    hero.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { stopAuto(); dx < 0 ? next() : prev(); startAuto(); }
+    }, { passive: true });
+
+    startAuto();
+  }());
+
+  /* ── PROGRAMS TABS ── */
+  (function () {
+    const tabs   = document.querySelectorAll('.tnc-programs-tab-btn');
+    const panels = document.querySelectorAll('.tnc-programs-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+        panels.forEach(p => p.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById(tab.getAttribute('aria-controls')).classList.add('is-active');
+      });
+    });
+  }());
+
+  /* ── MOBILE MENU ── */
+  (function () {
+    const btn   = document.getElementById('tnc-hamburger-btn');
+    const close = document.getElementById('tnc-mobile-close');
+    const menu  = document.getElementById('tnc-mobile-menu');
+
+    function openMenu() {
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      btn.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', () => menu.classList.contains('is-open') ? closeMenu() : openMenu());
+    close.addEventListener('click', closeMenu);
+
+    // Close on Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  }());
+
+  /* ── SCROLL REVEAL ── */
+  (function () {
+    const els = document.querySelectorAll('.tnc-reveal');
+    const io  = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  }());
+
+  // ─── NAV SCROLL ───
+  const tncNav = document.querySelector('.tnc-nav');
+  window.addEventListener('scroll', () => {
+    tncNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+</body>
+</html>

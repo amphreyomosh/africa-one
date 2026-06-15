@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunshine Academy — Helping America's Future Grow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   DESIGN TOKENS — White & Blue only
+============================================= */
+:root {
+  --sa-blue-dark:   #0D2257;   /* deep navy for nav, footer, headings */
+  --sa-blue:        #1B4FBB;   /* primary blue for buttons, accents    */
+  --sa-blue-mid:    #2F60CC;   /* hover / secondary accent             */
+  --sa-blue-light:  #EBF1FB;   /* tinted section backgrounds           */
+  --sa-blue-rule:   #C5D6F5;   /* dividers, borders                    */
+  --sa-white:       #FFFFFF;
+  --sa-off-white:   #F6F8FC;   /* alternating section bg               */
+  --sa-ink:         #0A1628;   /* body text                            */
+  --sa-ink-mid:     #2E3E5C;
+  --sa-ink-muted:   #5A6A84;
+
+  --sa-font-display: 'Playfair Display', Georgia, serif;
+  --sa-font-body:    'Inter', system-ui, sans-serif;
+
+  --sa-margin:       100px;
+  --sa-radius:       8px;
+  --sa-section-pad:  5rem;
+
+  --shell-max: calc(100% - var(--sa-margin) * 2);
+  --gutter: var(--sa-margin);
+}
+
+/* =============================================
+   RESET & BASE
+============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: var(--sa-font-body);
+  color: var(--sa-ink);
+  background: var(--sa-white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+/* =============================================
+   SCROLL REVEAL
+============================================= */
+.sa-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.sa-reveal.sa-visible { opacity: 1; transform: translateY(0); }
+
+/* =============================================
+   NAVBAR
+============================================= */
+.sa-nav {
+  position: fixed;
+  top: auto; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--sa-blue-dark);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: top 0.3s ease, background 0.3s;
+}
+.sa-nav-inner {
+  width: calc(100% - 2 * var(--sa-margin));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 2rem;
+}
+.sa-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+}
+.sa-nav-brand-icon {
+  width: 34px; height: 34px;
+  background: var(--sa-white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sa-nav-brand-icon svg { color: var(--sa-blue-dark); }
+.sa-nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.sa-nav-brand-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sa-white);
+  letter-spacing: 0.01em;
+}
+.sa-nav-brand-sub {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.sa-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+.sa-nav-link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.72);
+  padding: 0.42rem 0.85rem;
+  border-radius: var(--sa-radius);
+  transition: color 0.18s, background 0.18s;
+  white-space: nowrap;
+}
+.sa-nav-link:hover { color: var(--sa-white); background: rgba(255,255,255,0.09); }
+.sa-nav-cta {
+  background: var(--sa-blue);
+  color: var(--sa-white) !important;
+  font-weight: 600 !important;
+  padding: 0.5rem 1.25rem !important;
+  margin-left: 0.5rem;
+  border-radius: var(--sa-radius);
+  transition: background 0.18s !important;
+}
+.sa-nav-cta:hover { background: var(--sa-blue-mid) !important; }
+.sa-nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.4rem;
+  border-radius: var(--sa-radius);
+}
+.sa-nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--sa-white);
+  transition: transform 0.28s, opacity 0.28s;
+}
+.sa-nav-hamburger.sa-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.sa-nav-hamburger.sa-open span:nth-child(2) { opacity: 0; }
+.sa-nav-hamburger.sa-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.sa-mobile-nav {
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 1rem 1rem;
+  background: var(--sa-blue-dark);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.sa-mobile-nav.sa-open { display: flex; }
+.sa-mobile-nav a {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--sa-radius);
+  transition: background 0.18s;
+}
+.sa-mobile-nav a:hover { background: rgba(255,255,255,0.08); }
+
+/* =============================================
+   SECTION 1 · HERO
+============================================= */
+.sa-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--sa-blue-dark);
+  display: flex;
+  align-items: center;
+}
+
+/* Background image panels — these crossfade, nothing else moves */
+.sa-hero-bg-panel {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  z-index: 0;
+}
+.sa-hero-bg-panel.sa-active { opacity: 1; }
+
+#sa-bg-0 { background-image: url('https://images.unsplash.com/photo-1758270704286-83476deb3bd1?fm=jpg&q=80&w=1800&fit=crop'); }
+#sa-bg-1 { background-image: url('https://images.unsplash.com/photo-1758270704925-fa59d93119c1?fm=jpg&q=80&w=1800&fit=crop'); }
+#sa-bg-2 { background-image: url('https://images.unsplash.com/photo-1758685733780-4eced3a89d98?fm=jpg&q=80&w=1800&fit=crop'); }
+
+/* Single dark overlay always on top of images */
+.sa-hero-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10, 22, 60, 0.72);
+  z-index: 1;
+}
+
+/* Dot-grid texture */
+.sa-hero-texture {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Right-side line accent */
+.sa-hero-line-accent {
+  position: absolute;
+  top: 0; right: 120px; bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.07);
+  z-index: 2;
+}
+
+/* Fixed content — never moves, always above everything */
+.sa-hero-content {
+  position: relative;
+  z-index: 5;
+  padding: 0 var(--sa-margin);
+  width: 100%;
+  max-width: 760px;
+}
+.sa-hero-heading {
+  font-family: var(--sa-font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--sa-white);
+  line-height: 1.1;
+  margin-bottom: 1.4rem;
+  max-width: 600px;
+}
+.sa-hero-heading em {
+  font-style: italic;
+  font-weight: 500;
+  color: #90AFEE;
+}
+.sa-hero-desc {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  max-width: 500px;
+  margin-bottom: 2.5rem;
+}
+.sa-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.sa-hero-btn {
+  display: inline-block;
+  background: var(--sa-blue);
+  color: var(--sa-white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  border-radius: var(--sa-radius);
+  letter-spacing: 0.02em;
+  transition: background 0.18s;
+}
+.sa-hero-btn:hover { background: var(--sa-blue-mid); }
+.sa-hero-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: color 0.18s;
+}
+.sa-hero-link:hover { color: var(--sa-white); }
+/* Slide controls */
+.sa-hero-dots {
+  position: absolute;
+  bottom: 2.5rem;
+  right: var(--sa-margin);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.sa-hero-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, width 0.25s;
+}
+.sa-hero-dot.sa-active {
+  background: var(--sa-white);
+  width: 22px;
+  border-radius: 4px;
+}
+.sa-hero-counter {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.35);
+  margin-left: 0.25rem;
+}
+/* Scroll cue */
+.sa-hero-scroll {
+  position: absolute;
+  bottom: 2.4rem;
+  left: var(--sa-margin);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.sa-hero-scroll-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  writing-mode: vertical-rl;
+}
+.sa-hero-scroll-bar {
+  width: 1px;
+  height: 44px;
+  background: rgba(255,255,255,0.2);
+  overflow: hidden;
+  position: relative;
+}
+.sa-hero-scroll-bar::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0; right: 0;
+  height: 100%;
+  background: rgba(255,255,255,0.55);
+  animation: sa-scroll-tick 2s ease-in-out infinite;
+}
+@keyframes sa-scroll-tick {
+  0%   { top: -100%; }
+  50%  { top: 0%; }
+  100% { top: 100%; }
+}
+
+/* =============================================
+   SECTION 2 · MISSION SPLIT
+============================================= */
+.sa-mission {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+}
+.sa-mission-image {
+  background: var(--sa-blue-dark);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+}
+/* Structured geometric illustration — no gradient */
+.sa-mission-illustration {
+  width: 100%; height: 100%;
+  position: absolute; inset: 0;
+}
+.sa-mission-caption {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 2rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.sa-mission-text {
+  background: var(--sa-white);
+  padding: var(--sa-section-pad) 5rem var(--sa-section-pad) var(--sa-margin);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sa-mission-heading {
+  font-family: var(--sa-font-display);
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+  font-weight: 700;
+  color: var(--sa-blue-dark);
+  line-height: 1.18;
+  margin-bottom: 1.5rem;
+}
+.sa-mission-body {
+  font-size: 1.02rem;
+  font-weight: 300;
+  color: var(--sa-ink-mid);
+  line-height: 1.82;
+  margin-bottom: 1.4rem;
+}
+.sa-mission-body strong { font-weight: 600; color: var(--sa-ink); }
+.sa-mission-detail {
+  font-size: 0.9rem;
+  color: var(--sa-ink-muted);
+  line-height: 1.78;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--sa-blue-rule);
+}
+.sa-mission-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sa-blue);
+  transition: color 0.18s;
+}
+.sa-mission-link:hover { color: var(--sa-blue-mid); }
+
+/* =============================================
+   SECTION 3 · PROGRAMS
+============================================= */
+.sa-programs {
+  background: var(--sa-blue-dark);
+  padding: var(--sa-section-pad) var(--sa-margin);
+}
+.sa-programs-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.sa-programs-heading {
+  font-family: var(--sa-font-display);
+  font-size: clamp(1.55rem, 2.6vw, 2.3rem);
+  font-weight: 700;
+  color: var(--sa-white);
+  line-height: 1.2;
+}
+.sa-programs-heading em { font-style: italic; font-weight: 500; color: #90AFEE; }
+.sa-programs-tabs {
+  display: flex;
+  gap: 0.2rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: calc(var(--sa-radius) + 2px);
+  padding: 0.22rem;
+}
+.sa-prog-tab {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--sa-radius);
+  color: rgba(255,255,255,0.5);
+  transition: background 0.18s, color 0.18s;
+  white-space: nowrap;
+}
+.sa-prog-tab.sa-active {
+  background: var(--sa-blue);
+  color: var(--sa-white);
+  font-weight: 600;
+}
+.sa-prog-tab:hover:not(.sa-active) { color: var(--sa-white); }
+.sa-programs-grid {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--sa-radius);
+  overflow: hidden;
+}
+.sa-programs-grid.sa-active { display: grid; }
+.sa-prog-cell {
+  padding: 2.25rem 2.5rem;
+  background: rgba(255,255,255,0.025);
+  border-right: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: background 0.2s;
+}
+.sa-prog-cell:nth-child(2n) { border-right: none; }
+.sa-prog-cell:nth-last-child(-n+2) { border-bottom: none; }
+.sa-prog-cell:hover { background: rgba(255,255,255,0.055); }
+.sa-prog-icon {
+  width: 38px; height: 38px;
+  background: rgba(27,79,187,0.35);
+  border-radius: var(--sa-radius);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 0.25rem;
+  flex-shrink: 0;
+}
+.sa-prog-title { font-size: 1rem; font-weight: 600; color: var(--sa-white); }
+.sa-prog-desc { font-size: 0.86rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.sa-prog-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.77rem;
+  font-weight: 600;
+  color: #90AFEE;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  transition: color 0.18s;
+}
+.sa-prog-link:hover { color: var(--sa-white); }
+
+/* =============================================
+   SECTION 4 · EDITORIAL FEATURE
+============================================= */
+.sa-feature {
+  position: relative;
+  min-height: 520px;
+  background: var(--sa-blue-dark);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.sa-feature-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.sa-feature-left {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  padding: var(--sa-section-pad) 4rem var(--sa-section-pad) var(--sa-margin);
+}
+.sa-feature-left-quote {
+  font-family: var(--sa-font-display);
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(255,255,255,0.1);
+  line-height: 1.2;
+  max-width: 440px;
+  user-select: none;
+}
+.sa-feature-left-attr {
+  margin-top: 1.25rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  padding-left: 1.75rem;
+  position: relative;
+}
+.sa-feature-left-attr::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  width: 20px; height: 1px;
+  background: rgba(255,255,255,0.25);
+}
+.sa-feature-card {
+  position: relative;
+  z-index: 2;
+  width: 420px;
+  max-width: calc(100% - 2 * var(--sa-margin));
+  flex-shrink: 0;
+  margin-right: var(--sa-margin);
+  background: var(--sa-white);
+  border-radius: var(--sa-radius);
+  padding: 2.75rem 2.75rem 2.75rem 3rem;
+  border-left: 4px solid var(--sa-blue);
+}
+.sa-feature-card-heading {
+  font-family: var(--sa-font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--sa-blue-dark);
+  line-height: 1.22;
+  margin-bottom: 1.1rem;
+}
+.sa-feature-card-body {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--sa-ink-mid);
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+}
+.sa-feature-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sa-blue);
+  border-bottom: 1px solid var(--sa-blue-rule);
+  padding-bottom: 2px;
+  transition: color 0.18s, border-color 0.18s;
+}
+.sa-feature-card-link:hover { color: var(--sa-blue-mid); border-color: var(--sa-blue-mid); }
+
+/* =============================================
+   SECTION 5 · COMMUNITY VOICE
+============================================= */
+.sa-voice {
+  background: var(--sa-off-white);
+  padding: var(--sa-section-pad) var(--sa-margin);
+  border-top: 1px solid var(--sa-blue-rule);
+  border-bottom: 1px solid var(--sa-blue-rule);
+}
+.sa-voice-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0 3rem;
+  align-items: start;
+}
+.sa-voice-mark {
+  font-family: var(--sa-font-display);
+  font-size: 6.5rem;
+  font-weight: 700;
+  color: var(--sa-blue);
+  line-height: 0.8;
+  padding-top: 0.4rem;
+  user-select: none;
+  opacity: 0.25;
+}
+.sa-voice-body { display: flex; flex-direction: column; gap: 1.75rem; }
+.sa-voice-quote {
+  font-family: var(--sa-font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--sa-blue-dark);
+  line-height: 1.55;
+}
+.sa-voice-credit {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--sa-blue-rule);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.sa-voice-name { font-size: 0.85rem; font-weight: 700; color: var(--sa-ink); }
+.sa-voice-role { font-size: 0.76rem; color: var(--sa-ink-muted); letter-spacing: 0.04em; }
+.sa-voice-controls { display: flex; gap: 0.5rem; }
+.sa-voice-btn {
+  width: 36px; height: 36px;
+  border: 1px solid var(--sa-blue-rule);
+  border-radius: var(--sa-radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--sa-ink-muted);
+  background: var(--sa-white);
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.sa-voice-btn:hover {
+  background: var(--sa-blue);
+  color: var(--sa-white);
+  border-color: var(--sa-blue);
+}
+
+/* =============================================
+   SECTION 6 · NEWSROOM
+============================================= */
+.sa-newsroom {
+  background: var(--sa-white);
+  padding: var(--sa-section-pad) var(--sa-margin);
+}
+.sa-newsroom-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--sa-blue-dark);
+  margin-bottom: 0;
+}
+.sa-newsroom-heading {
+  font-family: var(--sa-font-display);
+  font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+  font-weight: 700;
+  color: var(--sa-blue-dark);
+  line-height: 1.2;
+}
+.sa-newsroom-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--sa-blue);
+  white-space: nowrap;
+  transition: color 0.18s;
+}
+.sa-newsroom-see-all:hover { color: var(--sa-blue-mid); }
+.sa-newsroom-list { display: flex; flex-direction: column; }
+.sa-newsroom-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 28px;
+  gap: 0 2.25rem;
+  align-items: start;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--sa-blue-rule);
+  transition: background 0.15s;
+  border-radius: var(--sa-radius);
+}
+.sa-newsroom-row:hover { background: var(--sa-off-white); }
+.sa-newsroom-date {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--sa-ink-muted);
+  padding-top: 0.2rem;
+}
+.sa-newsroom-meta { display: flex; flex-direction: column; gap: 0.35rem; }
+.sa-newsroom-cat {
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sa-blue);
+}
+.sa-newsroom-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--sa-ink);
+  line-height: 1.4;
+  transition: color 0.18s;
+}
+.sa-newsroom-row:hover .sa-newsroom-title { color: var(--sa-blue); }
+.sa-newsroom-summary {
+  font-size: 0.84rem;
+  color: var(--sa-ink-muted);
+  line-height: 1.65;
+  margin-top: 0.35rem;
+}
+.sa-newsroom-arrow {
+  color: var(--sa-blue-rule);
+  align-self: center;
+  transition: color 0.18s, transform 0.18s;
+  flex-shrink: 0;
+}
+.sa-newsroom-row:hover .sa-newsroom-arrow { color: var(--sa-blue); transform: translateX(4px); }
+
+/* =============================================
+   SECTION 7 · FINAL CALLOUT
+============================================= */
+.sa-callout {
+  background: var(--sa-blue-light);
+  padding: var(--sa-section-pad) var(--sa-margin);
+  border-top: 1px solid var(--sa-blue-rule);
+}
+.sa-callout-inner {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 400px);
+  gap: 5rem;
+  align-items: center;
+}
+.sa-callout-text { display: flex; flex-direction: column; gap: 1.1rem; }
+.sa-callout-heading {
+  font-family: var(--sa-font-display);
+  font-size: clamp(1.65rem, 2.8vw, 2.45rem);
+  font-weight: 700;
+  color: var(--sa-blue-dark);
+  line-height: 1.2;
+}
+.sa-callout-body {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--sa-ink-mid);
+  line-height: 1.8;
+  max-width: 500px;
+}
+.sa-callout-btns {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+.sa-callout-btn-primary {
+  display: inline-block;
+  background: var(--sa-blue-dark);
+  color: var(--sa-white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  border-radius: var(--sa-radius);
+  transition: background 0.18s;
+}
+.sa-callout-btn-primary:hover { background: var(--sa-blue); }
+.sa-callout-btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--sa-blue-dark);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.85rem 2rem;
+  border-radius: var(--sa-radius);
+  border: 1.5px solid var(--sa-blue-dark);
+  transition: background 0.18s, color 0.18s;
+}
+.sa-callout-btn-outline:hover { background: var(--sa-blue-dark); color: var(--sa-white); }
+/* Newsletter form */
+.sa-callout-form {
+  background: var(--sa-white);
+  border-radius: var(--sa-radius);
+  padding: 2.25rem;
+  border: 1px solid var(--sa-blue-rule);
+}
+.sa-callout-form-title { font-size: 1.02rem; font-weight: 700; color: var(--sa-blue-dark); margin-bottom: 0.35rem; }
+.sa-callout-form-sub { font-size: 0.82rem; color: var(--sa-ink-muted); margin-bottom: 1.4rem; }
+.sa-callout-input {
+  width: 100%;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--sa-blue-rule);
+  border-radius: var(--sa-radius);
+  font-family: var(--sa-font-body);
+  font-size: 0.86rem;
+  color: var(--sa-ink);
+  background: var(--sa-off-white);
+  margin-bottom: 0.65rem;
+  outline: none;
+  transition: border-color 0.18s;
+}
+.sa-callout-input:focus { border-color: var(--sa-blue); background: var(--sa-white); }
+.sa-callout-submit {
+  width: 100%;
+  background: var(--sa-blue);
+  color: var(--sa-white);
+  font-family: var(--sa-font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.82rem;
+  border-radius: var(--sa-radius);
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s;
+  letter-spacing: 0.02em;
+}
+.sa-callout-submit:hover { background: var(--sa-blue-mid); }
+.sa-callout-form-note {
+  font-size: 0.68rem;
+  color: var(--sa-ink-muted);
+  text-align: center;
+  margin-top: 0.65rem;
+}
+
+/* =============================================
+   SECTION 8 · FOOTER
+============================================= */
+.sa-footer {
+  background: var(--sa-blue-dark);
+  padding: 5rem var(--sa-margin) 2rem;
+}
+.sa-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+  margin-bottom: 2rem;
+}
+.sa-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.1rem;
+}
+.sa-footer-brand-icon {
+  width: 32px; height: 32px;
+  background: var(--sa-white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sa-footer-brand-name { font-size: 0.92rem; font-weight: 700; color: var(--sa-white); }
+.sa-footer-brand-tag {
+  display: block;
+  font-size: 0.59rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 0.1rem;
+}
+.sa-footer-about {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.78;
+  margin-bottom: 1.4rem;
+}
+.sa-footer-socials { display: flex; gap: 0.5rem; }
+.sa-footer-social {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--sa-radius);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.45);
+  transition: border-color 0.18s, color 0.18s;
+}
+.sa-footer-social:hover { border-color: rgba(255,255,255,0.4); color: var(--sa-white); }
+.sa-footer-col-title {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sa-white);
+  margin-bottom: 1.1rem;
+}
+.sa-footer-links { display: flex; flex-direction: column; gap: 0.55rem; }
+.sa-footer-link {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.45);
+  transition: color 0.18s;
+}
+.sa-footer-link:hover { color: rgba(255,255,255,0.85); }
+.sa-footer-contact-block { display: flex; flex-direction: column; gap: 0.85rem; }
+.sa-footer-contact-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.sa-footer-contact-lbl {
+  font-size: 0.6rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+.sa-footer-contact-val {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.55;
+}
+.sa-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.sa-footer-copy { font-size: 0.74rem; color: rgba(255,255,255,0.28); }
+.sa-footer-legal { display: flex; gap: 1.5rem; }
+.sa-footer-legal-link {
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.28);
+  transition: color 0.18s;
+}
+.sa-footer-legal-link:hover { color: rgba(255,255,255,0.6); }
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 1100px) {
+  :root { --sa-margin: 40px; }
+  .sa-callout-inner { grid-template-columns: 1fr; }
+  .sa-footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+  :root { --sa-margin: 20px; --sa-section-pad: 3rem; }
+  .sa-nav-links { display: none; }
+  .sa-nav-hamburger { display: flex; }
+  .sa-mission { grid-template-columns: 1fr; }
+  .sa-mission-image { min-height: 260px; }
+  .sa-mission-text { padding: 2.5rem var(--sa-margin); }
+  .sa-programs-top { flex-direction: column; align-items: flex-start; }
+  .sa-programs-grid { grid-template-columns: 1fr; }
+  .sa-prog-cell { border-right: none !important; }
+  .sa-feature { flex-direction: column; min-height: auto; }
+  .sa-feature-left { display: none; }
+  .sa-feature-card { width: 100%; margin: var(--sa-section-pad) var(--sa-margin); }
+  .sa-voice-inner { grid-template-columns: 1fr; }
+  .sa-voice-mark { display: none; }
+  .sa-newsroom-row { grid-template-columns: 1fr 24px; }
+  .sa-newsroom-date { display: none; }
+  .sa-footer-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-reveal { opacity: 1; transform: none; transition: none; }
+  .sa-hero-track { transition: none; }
+  .sa-hero-scroll-bar::after { animation: none; }
+}
+
+/* ===================== GLAD HEADER ===================== */
+#glad-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 3200;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+#glad-header.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.calbcc-header.glad-hidden {
+  top: 0;
+}
+.glad-inner {
+  position: relative;
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* PERFECT CENTER */
+.glad-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  
+}
+
+.glad-logo img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+.glad-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  background: #1e3a6e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid #1e3a6e;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  white-space: nowrap;
+  margin-right: 40px !important;
+}
+.glad-back-btn:hover {
+  background: #142d57;
+  border-color: #142d57;
+  transform: translateX(-2px);
+}
+@media (max-width: 480px) {
+  .btn-label {
+    display: none;
+  }
+  .glad-back-btn {
+    padding: 7px 10px;
+  }
+}
+
+/* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+@media (max-width: 640px) {
+  .glad-inner {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .glad-logo img {
+    margin-left: 0 !important;
+  }
+  .glad-back-btn {
+    margin-right: 0 !important;
+  }
+}
+
+/* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+@media (max-width: 640px) {
+  .glad-logo img { height: 28px !important; width: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="sa-nav" role="navigation" aria-label="Main navigation">
+  <div class="sa-nav-inner">
+    <a href="#" class="sa-nav-brand" aria-label="Sunshine Academy home">
+      <div class="sa-nav-brand-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="9" cy="9" r="3.5" fill="currentColor"/>
+          <line x1="9" y1="1" x2="9" y2="3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="9" y1="14.5" x2="9" y2="17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="1" y1="9" x2="3.5" y2="9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="14.5" y1="9" x2="17" y2="9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="3.1" y1="3.1" x2="4.9" y2="4.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="13.1" y1="13.1" x2="14.9" y2="14.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="14.9" y1="3.1" x2="13.1" y2="4.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="4.9" y1="13.1" x2="3.1" y2="14.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sa-nav-brand-text">
+        <span class="sa-nav-brand-name">Sunshine Academy</span>
+        <span class="sa-nav-brand-sub">Falls Church, Virginia</span>
+      </div>
+    </a>
+
+    <div class="sa-nav-links">
+      <a href="#" class="sa-nav-link">Our Mission</a>
+      <a href="#" class="sa-nav-link">Programs</a>
+      <a href="#" class="sa-nav-link">Summer School</a>
+      <a href="#" class="sa-nav-link">Newsworthy</a>
+      <a href="#" class="sa-nav-link">Financial Aid</a>
+      <a href="#" class="sa-nav-link">Contact Us</a>
+      <a href="#" class="sa-nav-link sa-nav-cta">Enroll Now</a>
+    </div>
+
+    <button class="sa-nav-hamburger" id="sa-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="sa-mobile-nav" id="sa-mobile-nav" aria-label="Mobile navigation">
+    <a href="#">Our Mission</a>
+    <a href="#">Programs</a>
+    <a href="#">Summer School</a>
+    <a href="#">Newsworthy</a>
+    <a href="#">Financial Aid</a>
+    <a href="#">Contact Us</a>
+    <a href="#" style="color:var(--sa-white);font-weight:600;">Enroll Now →</a>
+  </nav>
+</nav>
+
+<!-- ─── SECTION 1: HERO ─── -->
+<section class="sa-hero" aria-label="Welcome to Sunshine Academy">
+
+  <!-- Background panels — only these crossfade, content never moves -->
+  <div class="sa-hero-bg-panel sa-active" id="sa-bg-0" aria-hidden="true"></div>
+  <div class="sa-hero-bg-panel" id="sa-bg-1" aria-hidden="true"></div>
+  <div class="sa-hero-bg-panel" id="sa-bg-2" aria-hidden="true"></div>
+
+  <!-- Shared dark overlay -->
+  <div class="sa-hero-overlay" aria-hidden="true"></div>
+
+  <!-- Decorative texture + line — always visible -->
+  <div class="sa-hero-texture" aria-hidden="true"></div>
+  <div class="sa-hero-line-accent" aria-hidden="true"></div>
+
+  <!-- Single fixed content block — never moves -->
+  <div class="sa-hero-content">
+    <h1 class="sa-hero-heading">
+      Every child deserves the chance<br>to <em>truly excel.</em>
+    </h1>
+    <p class="sa-hero-desc">Sunshine Academy provides students in Grades 1–12 with certified instruction in reading, writing, mathematics, and critical thinking — at tuition that any family can afford.</p>
+    <div class="sa-hero-actions">
+      <a href="#" class="sa-hero-btn">Explore Programs</a>
+      <a href="#" class="sa-hero-link">
+        View our mission
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2.5 7H11.5M8 3.5L11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="sa-hero-scroll" aria-hidden="true">
+    <div class="sa-hero-scroll-bar"></div>
+    <span class="sa-hero-scroll-label">Scroll</span>
+  </div>
+
+  <!-- Slide dots -->
+  <div class="sa-hero-dots" role="tablist" aria-label="Background image navigation">
+    <button class="sa-hero-dot sa-active" data-slide="0" role="tab" aria-selected="true" aria-label="Image 1"></button>
+    <button class="sa-hero-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Image 2"></button>
+    <button class="sa-hero-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Image 3"></button>
+    <span class="sa-hero-counter" id="sa-counter" aria-live="polite">01 / 03</span>
+  </div>
+</section>
+
+<!-- ─── SECTION 2: MISSION SPLIT ─── -->
+<section class="sa-mission" aria-label="Our Mission">
+
+  <div class="sa-mission-image">
+    <!-- Structured SVG illustration — no gradient, no decorative shapes -->
+    <svg class="sa-mission-illustration" viewBox="0 0 600 520" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+      <!-- Background solid -->
+      <rect width="600" height="520" fill="#0D2257"/>
+      <!-- Grid lines -->
+      <line x1="0" y1="130" x2="600" y2="130" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="0" y1="260" x2="600" y2="260" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="0" y1="390" x2="600" y2="390" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="150" y1="0" x2="150" y2="520" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="300" y1="0" x2="300" y2="520" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="450" y1="0" x2="450" y2="520" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <!-- Sun outline — clean, geometric -->
+      <circle cx="300" cy="250" r="110" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      <circle cx="300" cy="250" r="80" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <circle cx="300" cy="250" r="50" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+      <circle cx="300" cy="250" r="28" fill="rgba(27,79,187,0.4)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <!-- Rays — measured, uniform -->
+      <line x1="300" y1="130" x2="300" y2="106" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="300" y1="394" x2="300" y2="370" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="180" y1="250" x2="156" y2="250" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="444" y1="250" x2="420" y2="250" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="215" y1="165" x2="198" y2="148" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="402" y1="352" x2="385" y2="335" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="385" y1="165" x2="402" y2="148" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="198" y1="352" x2="215" y2="335" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Outer orbit ring -->
+      <circle cx="300" cy="250" r="148" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5 10"/>
+    </svg>
+    <span class="sa-mission-caption">Sunshine Academy · Falls Church, VA</span>
+  </div>
+
+  <div class="sa-mission-text sa-reveal">
+    <h2 class="sa-mission-heading">Children are our sunshine. Every single one.</h2>
+    <p class="sa-mission-body">
+      Our mission is to help <strong>all children</strong>, regardless of their socioeconomic background, across Fairfax County and neighboring communities — to pursue their academic interests and build lasting skills in reading, writing, mathematics, critical thinking, and foreign language.
+    </p>
+    <p class="sa-mission-detail">
+      Sunshine Academy serves students from Grade 1 through Grade 12. All our teachers are certified professional educators with years of classroom experience — specifically requested and praised by both parents and students for their dedication and effectiveness. Instruction is tailored to each individual student, with multimedia supplementing hands-on teaching and learning.
+    </p>
+    <a href="#" class="sa-mission-link">
+      Read our full mission
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M2.5 7H11.5M8 3.5L11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ─── SECTION 3: PROGRAMS ─── -->
+<section class="sa-programs" aria-label="Core Programs">
+  <div class="sa-programs-top sa-reveal">
+    <h2 class="sa-programs-heading">A curriculum built for <em>real achievement.</em></h2>
+    <div class="sa-programs-tabs" role="tablist" aria-label="Program categories">
+      <button class="sa-prog-tab sa-active" data-panel="sa-panel-literacy" role="tab" aria-selected="true">Literacy</button>
+      <button class="sa-prog-tab" data-panel="sa-panel-math" role="tab" aria-selected="false">Mathematics</button>
+      <button class="sa-prog-tab" data-panel="sa-panel-enrichment" role="tab" aria-selected="false">Enrichment</button>
+    </div>
+  </div>
+
+  <!-- Literacy -->
+  <div class="sa-programs-grid sa-active" id="sa-panel-literacy" role="tabpanel">
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <rect x="2.5" y="1.5" width="13" height="15" rx="1.5" stroke="white" stroke-width="1.3"/>
+          <line x1="5.5" y1="6" x2="12.5" y2="6" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="5.5" y1="9" x2="12.5" y2="9" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="5.5" y1="12" x2="9.5" y2="12" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Reading</div>
+      <div class="sa-prog-desc">Structured reading instruction building comprehension, vocabulary, and fluency — from foundational phonics to advanced literary analysis across all grade levels.</div>
+      <a href="#" class="sa-prog-link">View curriculum <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M3 15L5.5 4.5L9 11L12 7L15 15" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Writing</div>
+      <div class="sa-prog-desc">Students develop a confident voice through grammar, composition, and essay writing. Exceptional work is published in Sunshine Academy's annual student writing anthology.</div>
+      <a href="#" class="sa-prog-link">View anthology <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M4 9L7 12L14 5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9" cy="9" r="7.5" stroke="white" stroke-width="1.3"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Grammar & Vocabulary</div>
+      <div class="sa-prog-desc">Precision in language is foundational. Our grammar and vocabulary tracks build the technical skill students need to communicate with clarity and confidence at every level.</div>
+      <a href="#" class="sa-prog-link">Learn more <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <rect x="2" y="2" width="6" height="6" rx="1" stroke="white" stroke-width="1.3"/>
+          <rect x="10" y="2" width="6" height="6" rx="1" stroke="white" stroke-width="1.3"/>
+          <rect x="2" y="10" width="6" height="6" rx="1" stroke="white" stroke-width="1.3"/>
+          <rect x="10" y="10" width="6" height="6" rx="1" stroke="white" stroke-width="1.3"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Study Skills & Test-Taking</div>
+      <div class="sa-prog-desc">Targeted strategies for academic success — note-taking, time management, standardized test approaches, and performing under pressure. Skills that serve students for a lifetime.</div>
+      <a href="#" class="sa-prog-link">Learn more <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+  <!-- Math -->
+  <div class="sa-programs-grid" id="sa-panel-math" role="tabpanel">
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M3 9H15M9 3V15" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">AMC Preparation</div>
+      <div class="sa-prog-desc">Rigorous preparation for the American Mathematics Competitions — covering number theory, algebra, combinatorics, and advanced problem-solving strategies for high-achieving students.</div>
+      <a href="#" class="sa-prog-link">View program <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <polygon points="9,2 17,16 1,16" stroke="white" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Mathcounts</div>
+      <div class="sa-prog-desc">Intensive coaching for the national Mathcounts competition. Students build speed, accuracy, and creative problem-solving across all domains of middle-school mathematics.</div>
+      <a href="#" class="sa-prog-link">View program <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="7.5" stroke="white" stroke-width="1.3"/>
+          <circle cx="9" cy="9" r="3" stroke="white" stroke-width="1.3"/>
+          <line x1="9" y1="1.5" x2="9" y2="6" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="9" y1="12" x2="9" y2="16.5" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Math Olympiad</div>
+      <div class="sa-prog-desc">Deep mathematical exploration through the Math Olympiad for Elementary and Middle Schools (MOEMS) program — building analytical reasoning and competition readiness.</div>
+      <a href="#" class="sa-prog-link">View program <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M9 2L11 7H16L12 10.5L13.5 16L9 13L4.5 16L6 10.5L2 7H7L9 2Z" stroke="white" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Math Kangaroo</div>
+      <div class="sa-prog-desc">International competition training focused on logical thinking, pattern recognition, and mathematical discovery. Open to students from Grade 1 through 12.</div>
+      <a href="#" class="sa-prog-link">View program <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+  <!-- Enrichment -->
+  <div class="sa-programs-grid" id="sa-panel-enrichment" role="tabpanel">
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M9 2C9 2 4 6.5 4 10.5C4 13.5 6.24 16 9 16C11.76 16 14 13.5 14 10.5C14 6.5 9 2 9 2Z" stroke="white" stroke-width="1.3" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Critical Thinking</div>
+      <div class="sa-prog-desc">A structured program in logic, reasoning, and analytical problem-solving — giving students a durable intellectual framework applicable across every subject and stage of life.</div>
+      <a href="#" class="sa-prog-link">View program <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <circle cx="9" cy="8" r="4" stroke="white" stroke-width="1.3"/>
+          <path d="M2 16C2 13.24 5.13 11 9 11C12.87 11 16 13.24 16 16" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Certified Teachers</div>
+      <div class="sa-prog-desc">All instructors are certified professional educators with years of classroom experience — specifically requested by parents and students for their expertise and commitment to student success.</div>
+      <a href="#" class="sa-prog-link">Meet our team <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <rect x="2" y="3" width="14" height="12" rx="1.5" stroke="white" stroke-width="1.3"/>
+          <line x1="2" y1="7" x2="16" y2="7" stroke="white" stroke-width="1.3"/>
+          <line x1="6" y1="3" x2="6" y2="1" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="12" y1="3" x2="12" y2="1" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Summer School</div>
+      <div class="sa-prog-desc">Our summer intensive keeps students academically sharp and ahead of the curve. Enrollment is open for reading advancement, math acceleration, and writing development.</div>
+      <a href="#" class="sa-prog-link">Summer enrollment <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="sa-prog-cell">
+      <div class="sa-prog-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M9 2L11.5 7H16.5L12.5 10.5L14 16L9 13L4 16L5.5 10.5L1.5 7H6.5L9 2Z" stroke="white" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="sa-prog-title">Foreign Language</div>
+      <div class="sa-prog-desc">Language instruction that broadens students' cultural literacy and global awareness — forming an essential complement to our core academic offerings throughout the year.</div>
+      <a href="#" class="sa-prog-link">Learn more <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 5.5H9M6.5 3L9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 4: EDITORIAL FEATURE ─── -->
+<section class="sa-feature" aria-label="Academic Excellence">
+  <div class="sa-feature-grid-bg" aria-hidden="true"></div>
+  <div class="sa-feature-left sa-reveal" aria-hidden="true">
+    <div class="sa-feature-left-quote">"Education is not the filling of a pail, but the lighting of a fire."</div>
+    <div class="sa-feature-left-attr">William Butler Yeats</div>
+  </div>
+  <div class="sa-feature-card sa-reveal">
+    <h2 class="sa-feature-card-heading">Where academic challenge meets genuine opportunity</h2>
+    <p class="sa-feature-card-body">Sunshine Academy's advanced curricula are designed for students who want more — higher challenges, deeper engagement, and a clear path toward academic excellence. Using multimedia alongside hands-on instruction, we create effective learning experiences at a minimal tuition. Ability should drive a student's ceiling, never their family's income.</p>
+    <a href="#" class="sa-feature-card-link">
+      Explore registration
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+        <path d="M2 6.5H11M7.5 3L11 6.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ─── SECTION 5: COMMUNITY VOICE ─── -->
+<section class="sa-voice" aria-label="Voices from our community">
+  <div class="sa-voice-inner">
+    <div class="sa-voice-mark" aria-hidden="true">&ldquo;</div>
+    <div class="sa-voice-body sa-reveal">
+      <blockquote class="sa-voice-quote" id="sa-quote-text">
+        Our programs are best known for students' high achievements in various national math and writing contests, for advanced curricula, for responsible teachers, and for parents' sincere recommendations.
+      </blockquote>
+      <div class="sa-voice-credit">
+        <div class="sa-voice-name" id="sa-quote-name">Sunshine Academy</div>
+        <div class="sa-voice-role" id="sa-quote-role">Program Overview · Falls Church, VA</div>
+      </div>
+      <div class="sa-voice-controls">
+        <button class="sa-voice-btn" id="sa-q-prev" aria-label="Previous quote">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M8 2.5L4 6.5L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="sa-voice-btn" id="sa-q-next" aria-label="Next quote">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M5 2.5L9 6.5L5 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 6: NEWSROOM ─── -->
+<section class="sa-newsroom" aria-label="Newsworthy">
+  <div class="sa-newsroom-top sa-reveal">
+    <h2 class="sa-newsroom-heading">Education news worth reading</h2>
+    <a href="#" class="sa-newsroom-see-all">
+      All articles
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5H11M7.5 3L11 6.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div class="sa-newsroom-list" role="list">
+
+    <a href="#" class="sa-newsroom-row sa-reveal" role="listitem">
+      <div class="sa-newsroom-date">Apr 14, 2020</div>
+      <div class="sa-newsroom-meta">
+        <span class="sa-newsroom-cat">Fellowship · New Americans</span>
+        <div class="sa-newsroom-title">The New York Times Announces Winners of the Paul &amp; Daisy Soros Fellowships 2020</div>
+        <div class="sa-newsroom-summary">The Paul &amp; Daisy Soros Fellowship provides opportunities for able New Americans to achieve leadership in their chosen fields, recognizing contributions immigrants make to American life.</div>
+      </div>
+      <svg class="sa-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9H14.5M10.5 5L14.5 9L10.5 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="#" class="sa-newsroom-row sa-reveal" role="listitem">
+      <div class="sa-newsroom-date">Apr 14, 2020</div>
+      <div class="sa-newsroom-meta">
+        <span class="sa-newsroom-cat">Higher Education · Graduate Study</span>
+        <div class="sa-newsroom-title">Paul &amp; Daisy Soros Fellowship Honors New American Excellence</div>
+        <div class="sa-newsroom-summary">30 outstanding immigrants and children of immigrants were selected from 2,211 applicants — each receiving up to $90,000 in funding to pursue graduate education in the United States.</div>
+      </div>
+      <svg class="sa-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9H14.5M10.5 5L14.5 9L10.5 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="#" class="sa-newsroom-row sa-reveal" role="listitem">
+      <div class="sa-newsroom-date">Nov 12, 2018</div>
+      <div class="sa-newsroom-meta">
+        <span class="sa-newsroom-cat">Research · Yale University</span>
+        <div class="sa-newsroom-title">Simple Tips Can Lead to Better Food Choices, Yale University Study Finds</div>
+        <div class="sa-newsroom-summary">A small number of easily learned strategies on food choice can increase healthy selections by 5–11%, according to research published in the Proceedings of the National Academy of Sciences.</div>
+      </div>
+      <svg class="sa-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9H14.5M10.5 5L14.5 9L10.5 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="#" class="sa-newsroom-row sa-reveal" role="listitem">
+      <div class="sa-newsroom-date">Jan 21, 2016</div>
+      <div class="sa-newsroom-meta">
+        <span class="sa-newsroom-cat">Admissions · Higher Education</span>
+        <div class="sa-newsroom-title">College Admissions to Focus on Character, Not Achievement Lists</div>
+        <div class="sa-newsroom-summary">Yale announced it would revise its application to emphasize ethical conduct and authentic academic engagement over credentials — a shift with broad implications for how students prepare.</div>
+      </div>
+      <svg class="sa-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9H14.5M10.5 5L14.5 9L10.5 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a href="#" class="sa-newsroom-row sa-reveal" role="listitem">
+      <div class="sa-newsroom-date">Mar 31, 2016</div>
+      <div class="sa-newsroom-meta">
+        <span class="sa-newsroom-cat">Admissions · Yale University</span>
+        <div class="sa-newsroom-title">Yale Admits 6.27 Percent of Applicants to the Class of 2020</div>
+        <div class="sa-newsroom-summary">The Office of Undergraduate Admissions accepted 1,972 students from a pool of 31,455 applicants — Yale's largest-ever applicant pool by more than 500 applications.</div>
+      </div>
+      <svg class="sa-newsroom-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9H14.5M10.5 5L14.5 9L10.5 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<!-- ─── SECTION 7: FINAL CALLOUT ─── -->
+<section class="sa-callout" aria-label="Enroll at Sunshine Academy">
+  <div class="sa-callout-inner">
+    <div class="sa-callout-text sa-reveal">
+      <h2 class="sa-callout-heading">Give your child the academic foundation they deserve.</h2>
+      <p class="sa-callout-body">Sunshine Academy offers year-round enrollment for students in Grades 1 through 12. Our tuition is minimal by design — because every child, regardless of their family's means, should have access to exceptional instruction. Financial aid and scholarships are available for qualifying students.</p>
+      <div class="sa-callout-btns">
+        <a href="#" class="sa-callout-btn-primary">Enroll Today</a>
+        <a href="#" class="sa-callout-btn-outline">View Financial Aid</a>
+      </div>
+    </div>
+    <div class="sa-callout-form sa-reveal">
+      <div class="sa-callout-form-title">Stay informed.</div>
+      <div class="sa-callout-form-sub">Receive updates on enrollment windows, program news, and academic resources.</div>
+      <input type="text" class="sa-callout-input" placeholder="Parent or guardian name" aria-label="Parent or guardian name">
+      <input type="email" class="sa-callout-input" placeholder="Email address" aria-label="Email address">
+      <input type="text" class="sa-callout-input" placeholder="Student's grade level" aria-label="Student grade level">
+      <button class="sa-callout-submit" type="button">Subscribe to Updates</button>
+      <p class="sa-callout-form-note">We respect your privacy. No spam, ever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 8: FOOTER ─── -->
+<footer class="sa-footer" aria-label="Site footer">
+  <div class="sa-footer-grid">
+
+    <div>
+      <div class="sa-footer-brand">
+        <div class="sa-footer-brand-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="3.5" fill="#0D2257"/>
+            <line x1="9" y1="1" x2="9" y2="3.5" stroke="#0D2257" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="9" y1="14.5" x2="9" y2="17" stroke="#0D2257" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="1" y1="9" x2="3.5" y2="9" stroke="#0D2257" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="14.5" y1="9" x2="17" y2="9" stroke="#0D2257" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="3.1" y1="3.1" x2="4.9" y2="4.9" stroke="#0D2257" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="13.1" y1="13.1" x2="14.9" y2="14.9" stroke="#0D2257" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="14.9" y1="3.1" x2="13.1" y2="4.9" stroke="#0D2257" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="4.9" y1="13.1" x2="3.1" y2="14.9" stroke="#0D2257" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sa-footer-brand-name">Sunshine Academy</div>
+          <span class="sa-footer-brand-tag">Helping America's Future Grow</span>
+        </div>
+      </div>
+      <p class="sa-footer-about">A nonprofit academic enrichment program serving Grades 1–12 across Fairfax County and neighboring communities in Northern Virginia. Always learning. Learning changes everything.</p>
+      <div class="sa-footer-socials" aria-label="Social media links">
+        <a href="#" class="sa-footer-social" aria-label="Facebook">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 3H11V1H9.5C8.12 1 7 2.12 7 3.5V5H5.5V7H7V15H9V7H10.5L11 5H9V3.5C9 3.22 9.22 3 9.5 3Z" fill="currentColor"/></svg>
+        </a>
+        <a href="#" class="sa-footer-social" aria-label="Twitter / X">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12.6 1H14.8L9.94 6.6L15.67 15H11.14L7.59 10.37L3.52 15H1.29L6.5 9.01L1 1H5.65L8.86 5.22L12.6 1ZM11.83 13.65H13.05L4.9 2.25H3.59L11.83 13.65Z" fill="currentColor"/></svg>
+        </a>
+        <a href="#" class="sa-footer-social" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 3.5L8 9L14.5 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="sa-footer-col-title">Programs</div>
+      <nav class="sa-footer-links" aria-label="Programs">
+        <a href="#" class="sa-footer-link">Reading</a>
+        <a href="#" class="sa-footer-link">Writing</a>
+        <a href="#" class="sa-footer-link">Grammar &amp; Vocabulary</a>
+        <a href="#" class="sa-footer-link">Mathematics</a>
+        <a href="#" class="sa-footer-link">Critical Thinking</a>
+        <a href="#" class="sa-footer-link">Summer School</a>
+        <a href="#" class="sa-footer-link">Foreign Language</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="sa-footer-col-title">Organization</div>
+      <nav class="sa-footer-links" aria-label="Organization">
+        <a href="#" class="sa-footer-link">Our Mission</a>
+        <a href="#" class="sa-footer-link">Registration</a>
+        <a href="#" class="sa-footer-link">Financial Aid &amp; Scholarships</a>
+        <a href="#" class="sa-footer-link">Photo Gallery</a>
+        <a href="#" class="sa-footer-link">Video Gallery</a>
+        <a href="#" class="sa-footer-link">Newsworthy</a>
+        <a href="#" class="sa-footer-link">Quotations</a>
+        <a href="#" class="sa-footer-link">Contact Us</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="sa-footer-col-title">Contact &amp; Location</div>
+      <div class="sa-footer-contact-block">
+        <div class="sa-footer-contact-item">
+          <span class="sa-footer-contact-lbl">Mailing Address</span>
+          <span class="sa-footer-contact-val">Sunshine Academy<br>P.O. Box 708<br>Falls Church, VA 22040</span>
+        </div>
+        <div class="sa-footer-contact-item">
+          <span class="sa-footer-contact-lbl">Service Area</span>
+          <span class="sa-footer-contact-val">Fairfax County &amp; neighboring counties</span>
+        </div>
+        <div class="sa-footer-contact-item">
+          <span class="sa-footer-contact-lbl">Grades Served</span>
+          <span class="sa-footer-contact-val">1st through 12th grade</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="sa-footer-bottom">
+    <span class="sa-footer-copy">© 2025 Sunshine Academy. All rights reserved.</span>
+    <nav class="sa-footer-legal" aria-label="Legal">
+      <a href="#" class="sa-footer-legal-link">Privacy Policy</a>
+      <a href="#" class="sa-footer-legal-link">Non-Discrimination Policy</a>
+      <a href="#" class="sa-footer-legal-link">Sign In</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ─── JAVASCRIPT ─── -->
+<script>
+(function () {
+  'use strict';
+
+  /* — Body pad for fixed nav — */
+  document.body.style.paddingTop = 'auto';
+
+  /* — Mobile menu — */
+  var hamburger = document.getElementById('sa-hamburger');
+  var mobileNav = document.getElementById('sa-mobile-nav');
+  hamburger.addEventListener('click', function () {
+    var open = mobileNav.classList.toggle('sa-open');
+    hamburger.classList.toggle('sa-open', open);
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* — Hero background crossfade — */
+  var bgPanels = [
+    document.getElementById('sa-bg-0'),
+    document.getElementById('sa-bg-1'),
+    document.getElementById('sa-bg-2')
+  ];
+  var dots = document.querySelectorAll('.sa-hero-dot');
+  var counter = document.getElementById('sa-counter');
+  var total = 3, current = 0, timer;
+
+  function goTo(n) {
+    current = ((n % total) + total) % total;
+    /* swap background panels only */
+    bgPanels.forEach(function (p, i) { p.classList.toggle('sa-active', i === current); });
+    /* update dots */
+    dots.forEach(function (d, i) {
+      d.classList.toggle('sa-active', i === current);
+      d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+    counter.textContent = '0' + (current + 1) + ' / 0' + total;
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(function () { goTo(current + 1); }, 5500);
+  }
+
+  dots.forEach(function (d, i) {
+    d.addEventListener('click', function () { goTo(i); resetTimer(); });
+  });
+
+  resetTimer();
+
+  /* — Program tabs — */
+  document.querySelectorAll('.sa-prog-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.sa-prog-tab').forEach(function (t) {
+        t.classList.remove('sa-active'); t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.sa-programs-grid').forEach(function (p) { p.classList.remove('sa-active'); });
+      tab.classList.add('sa-active'); tab.setAttribute('aria-selected', 'true');
+      document.getElementById(tab.dataset.panel).classList.add('sa-active');
+    });
+  });
+
+  /* — Quote rotator — */
+  var quotes = [
+    { text: 'Our programs are best known for students\u2019 high achievements in various national math and writing contests, for advanced curricula, for responsible teachers, and for parents\u2019 sincere recommendations.', name: 'Sunshine Academy', role: 'Program Overview \u00B7 Falls Church, VA' },
+    { text: 'Education is the most powerful weapon which you can use to change the world.', name: 'Nelson Mandela', role: 'Statesman \u0026 Educator \u00B7 Cited in Sunshine Academy Curriculum' },
+    { text: 'It is the supreme art of the teacher to awaken joy in creative expression and knowledge.', name: 'Albert Einstein', role: 'Physicist \u0026 Educator \u00B7 Cited in Sunshine Academy Curriculum' },
+    { text: 'Education is not the filling of a pail, but the lighting of a fire.', name: 'William Butler Yeats', role: 'Poet \u0026 Philosopher \u00B7 Cited in Sunshine Academy Curriculum' },
+    { text: 'If you are planning for a year, sow rice; if you are planning for a decade, plant trees; if you are planning for a lifetime, educate people.', name: 'Chinese Proverb', role: 'Cited in Sunshine Academy Curriculum' }
+  ];
+  var qIdx = 0;
+  var qText = document.getElementById('sa-quote-text');
+  var qName = document.getElementById('sa-quote-name');
+  var qRole = document.getElementById('sa-quote-role');
+
+  function showQuote(n) {
+    qIdx = ((n % quotes.length) + quotes.length) % quotes.length;
+    qText.style.opacity = '0';
+    setTimeout(function () {
+      var q = quotes[qIdx];
+      qText.textContent = q.text;
+      qName.textContent = q.name;
+      qRole.textContent = q.role;
+      qText.style.transition = 'opacity 0.35s';
+      qText.style.opacity = '1';
+    }, 180);
+  }
+
+  document.getElementById('sa-q-prev').addEventListener('click', function () { showQuote(qIdx - 1); });
+  document.getElementById('sa-q-next').addEventListener('click', function () { showQuote(qIdx + 1); });
+
+  /* — Scroll reveal — */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('sa-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('.sa-reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.sa-reveal').forEach(function (el) { el.classList.add('sa-visible'); });
+  }
+
+  })();
+
+  // ─── NAV SCROLL ───
+  const saNav = document.querySelector('.sa-nav');
+  window.addEventListener('scroll', () => {
+    saNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+</body>
+</html>

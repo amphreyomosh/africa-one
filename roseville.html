@@ -1,843 +1,2119 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roseville Elks Lodge #2248 | Community &amp; Brotherhood · Roseville, CA</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roseville Community Preschool — Let Them Play</title>
+    <style>
+      /* ─── TOKENS ─────────────────────────────────────────── */
+      :root {
+        --rcp-green: #2a7a4b;
+        --rcp-orange: #e05a1c;
+        --rcp-blue: #1b6fa8;
+        --rcp-dark: #1a1a1a;
+        --rcp-mid: #4a4a4a;
+        --rcp-muted: #787878;
+        --rcp-border: #e2e2e2;
+        --rcp-surface: #f7f6f3;
+        --rcp-white: #ffffff;
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: "Lato", sans-serif; background: #fff; color: #2c2c2c; overflow-x: hidden; }
-    img { display: block; max-width: 100%; }
+        --rcp-sp-xs: 0.5rem;
+        --rcp-sp-s: 1rem;
+        --rcp-sp-m: 2rem;
+        --rcp-sp-l: 4rem;
+        --rcp-sp-xl: 6rem;
 
-    :root {
-      --navy:    #1a2d52;
-      --navy-mid:#24407a;
-      --gold:    #c8922a;
-      --gold-lt: #e8b04a;
-      --cream:   #f7f4ee;
-      --white:   #ffffff;
-      --charcoal:#2c2c2c;
-      --gray:    #5a5a5a;
-      --gray-lt: #888;
-      --border:  #dbd7cc;
-      --glad-h:  56px;
-      --nav-h:   64px;
-      --px: 16px;
-      --max: 1160px;
-    }
+        --rcp-font: "Inter", system-ui, -apple-system, sans-serif;
+        --rcp-radius: 4px;
+        --rcp-transition: 0.25s ease;
+        --shell-max: 1200px;
+        --gutter: 2rem;
+      }
 
-    /* ── GLAD HEADER ── */
-    #glad-header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 400;
-      height: var(--glad-h); background: #fff;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      padding: 0 var(--px);
-      box-shadow: 0 1px 6px rgba(0,0,0,.07);
-      transition: transform .35s ease, opacity .35s ease;
-    }
-    #glad-header.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
-    .glad-inner {
-      display: flex; align-items: center; justify-content: center;
-      gap: 20px; width: 100%; max-width: var(--max); position: relative;
-    }
-    .glad-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-    .glad-logo img { height: 36px; width: auto; object-fit: contain; }
-    .glad-back-btn {
-      position: absolute; right: 0;
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--navy); color: #fff;
-      font-family: "Lato", sans-serif; font-size: 12px; font-weight: 700;
-      text-decoration: none; padding: 8px 16px;
-      border-radius: 5px; letter-spacing: .04em; white-space: nowrap;
-      transition: background .2s;
-    }
-    .glad-back-btn:hover { background: var(--navy-mid); }
-    .glad-back-btn svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 2.2; flex-shrink: 0; }
-    @media (max-width: 440px) {
-      .glad-back-btn .btn-label { display: none; }
-      .glad-back-btn { padding: 8px 10px; }
-    }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: var(--glad-h); left: 0; right: 0; z-index: 300;
-      height: var(--nav-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 var(--px);
-      background: rgba(26,45,82,.97);
-      backdrop-filter: blur(16px);
-      transition: top .35s ease, box-shadow .3s;
-    }
-    nav.glad-hidden { top: 0; }
-    nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.22); }
-    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; flex: 1 1 0; min-width: 0; overflow: hidden; }
-    .nav-logo img { height: 36px !important; width: auto !important; flex-shrink: 0; }
-    .nav-logo-text { min-width: 0; overflow: hidden; }
-    .lodge-name { font-family: "Cinzel", serif; font-size: 13px; font-weight: 700; color: #fff; line-height: 1.2; letter-spacing: .03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .lodge-sub { display: none; font-size: 9px; color: var(--gold-lt); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
-    .nav-links { display: none; flex-shrink: 0; }
-    .nav-links-inner { display: flex; align-items: center; list-style: none; }
-    .nav-links-inner > li { position: relative; }
-    .nav-links-inner > li > a {
-      display: block; padding: 8px 11px;
-      font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
-      color: rgba(255,255,255,.78); text-decoration: none; transition: color .2s; white-space: nowrap;
-    }
-    .nav-links-inner > li > a:hover { color: var(--gold-lt); }
-    .nav-links-inner > li > a.has-drop::after { content: " ▾"; font-size: 9px; }
-    .dropdown {
-      position: absolute; top: calc(100% + 2px); left: 0;
-      background: var(--navy); border: 1px solid rgba(200,146,42,.25); border-top: 2px solid var(--gold);
-      min-width: 220px; padding: 6px 0;
-      opacity: 0; visibility: hidden; transform: translateY(8px);
-      transition: opacity .2s, transform .2s, visibility .2s; z-index: 500;
-    }
-    .nav-links-inner > li:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
-    .dropdown a { display: block; padding: 9px 16px; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: rgba(255,255,255,.72); text-decoration: none; transition: color .2s, background .2s; }
-    .dropdown a:hover { color: var(--gold-lt); background: rgba(255,255,255,.05); }
-    .nav-cta { background: var(--gold) !important; color: var(--navy) !important; font-weight: 700 !important; padding: 8px 18px !important; border-radius: 4px !important; margin-left: 8px; transition: background .2s !important; }
-    .nav-cta:hover { background: var(--gold-lt) !important; }
-    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; flex-shrink: 0; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: transform .2s, opacity .2s; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    /* mobile menu */
-    .mobile-menu {
-      display: none; position: fixed;
-      top: calc(var(--glad-h) + var(--nav-h)); left: 0; right: 0; bottom: 0;
-      background: var(--navy); z-index: 290;
-      padding: 24px var(--px) 40px; flex-direction: column; overflow-y: auto;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { display: block; padding: 14px 0; font-size: 15px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: rgba(255,255,255,.82); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.1); transition: color .2s; }
-    .mobile-menu a:hover { color: var(--gold-lt); }
-    .mobile-menu .m-sub { font-size: 12px !important; padding: 10px 0 10px 16px !important; color: rgba(255,255,255,.55) !important; letter-spacing: .03em !important; }
-    .mobile-menu .m-cta { margin-top: 20px; background: var(--gold); color: var(--navy) !important; text-align: center; border-radius: 4px; border: none; }
+      body {
+        font-family: var(--rcp-font);
+        color: var(--rcp-dark);
+        background: var(--rcp-white);
+        -webkit-font-smoothing: antialiased;
+      }
 
-    /* ── LAYOUT ── */
-    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding-left: var(--px); padding-right: var(--px); }
-    .section { padding: 56px 0; }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
 
-    .section-label { display: inline-flex; align-items: center; gap: 10px; font-family: "Cinzel", serif; font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-    .section-label::before { content: ""; width: 24px; height: 1px; background: var(--gold); }
-    .section-label.light { color: var(--gold-lt); }
-    .section-label.light::before { background: var(--gold-lt); }
+      /* ─── NAV ─────────────────────────────────────────────── */
+      .rcp-nav {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--rcp-border);
+        height: 64px;
+        display: flex;
+        align-items: center;
+        padding: 0 var(--rcp-m);
+        transition: top 0.3s ease;
+      }
+      #glad-header.hidden + .rcp-nav {
+        top: 0;
+      }
+      #glad-header.hidden + .rcp-nav + .rcp-mobile-menu {
+        top: 64px;
+      }
+      .rcp-nav-inner {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--rcp-sp-m);
+      }
+      .rcp-nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .rcp-nav-logo-mark {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 1.5rem;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        color: var(--rcp-dark);
+      }
+      .rcp-nav-logo-mark span.dot-g {
+        color: var(--rcp-green);
+      }
+      .rcp-nav-logo-mark span.dot-o {
+        color: var(--rcp-orange);
+      }
+      .rcp-nav-logo-mark span.dot-b {
+        color: var(--rcp-blue);
+      }
+      .rcp-nav-wordmark {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--rcp-dark);
+        line-height: 1.3;
+      }
+      .rcp-nav-links {
+        display: flex;
+        align-items: center;
+        gap: var(--rcp-sp-m);
+        list-style: none;
+      }
+      .rcp-nav-links a {
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        color: var(--rcp-mid);
+        transition: color var(--rcp-transition);
+      }
+      .rcp-nav-links a:hover {
+        color: var(--rcp-green);
+      }
+      .rcp-nav-cta {
+        background: var(--rcp-green);
+        color: var(--rcp-white) !important;
+        padding: 7px 16px;
+        border-radius: var(--rcp-radius);
+        font-weight: 600 !important;
+        transition: background var(--rcp-transition) !important;
+      }
+      .rcp-nav-cta:hover {
+        background: #236040 !important;
+        color: var(--rcp-white) !important;
+      }
 
-    h2.sh { font-family: "Cinzel", serif; font-weight: 700; font-size: clamp(24px, 5vw, 42px); color: var(--navy); line-height: 1.1; margin-bottom: 14px; letter-spacing: .02em; }
-    h2.sh.white { color: #fff; }
-    .lead { font-size: 15px; font-weight: 300; color: var(--gray); line-height: 1.85; max-width: 540px; }
-    .lead.white { color: rgba(255,255,255,.65); }
+      .rcp-nav-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .rcp-nav-hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--rcp-dark);
+        border-radius: 2px;
+        transition: var(--rcp-transition);
+      }
 
-    /* buttons */
-    .btn-gold { display: inline-block; padding: 13px 28px; background: var(--gold); color: var(--navy); font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; border-radius: 3px; transition: background .2s, transform .15s; }
-    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
-    .btn-border { display: inline-block; padding: 12px 22px; background: transparent; color: var(--navy); font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; border: 1.5px solid var(--border); border-radius: 3px; transition: border-color .2s, background .2s; }
-    .btn-border:hover { border-color: var(--navy); background: var(--cream); }
-    .btn-outline-hero { display: inline-block; padding: 12px 24px; background: transparent; color: #fff; font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; border: 1.5px solid rgba(255,255,255,.4); border-radius: 3px; transition: border-color .2s, background .2s; }
-    .btn-outline-hero:hover { border-color: #fff; background: rgba(255,255,255,.1); }
-    .btn-navy { display: inline-block; padding: 13px 28px; background: var(--navy); color: #fff; font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; border-radius: 3px; transition: background .2s, transform .15s; }
-    .btn-navy:hover { background: var(--navy-mid); transform: translateY(-2px); }
-    .btn-outline-gold { display: inline-block; padding: 12px 22px; background: transparent; color: var(--navy); font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; border: 2px solid var(--navy); border-radius: 3px; transition: background .2s; }
-    .btn-outline-gold:hover { background: rgba(26,45,82,.1); }
-    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+      .rcp-mobile-menu {
+        display: none;
+        position: fixed;
+        top: 120px;
+        left: 0;
+        right: 0;
+        background: var(--rcp-white);
+        border-bottom: 1px solid var(--rcp-border);
+        padding: var(--rcp-sp-m);
+        z-index: 99;
+        flex-direction: column;
+        gap: var(--rcp-sp-s);
+      }
+      .rcp-mobile-menu.open {
+        display: flex;
+      }
+      .rcp-mobile-menu a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--rcp-mid);
+        padding: var(--rcp-sp-xs) 0;
+        border-bottom: 1px solid var(--rcp-border);
+      }
+      .rcp-mobile-menu a:last-child {
+        border-bottom: none;
+      }
 
-    /* ── HERO ── */
-    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding-top: calc(var(--glad-h) + var(--nav-h)); overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background-image: url('https://static.wixstatic.com/media/4af2ac_d2f9c544414e4331b193e5f751221e83~mv2.jpg/v1/crop/x_0,y_287,w_2736,h_1251/fill/w_2000,h_900,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/P1030608_edited.jpg'); background-size: cover; background-position: center 40%; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(110deg, rgba(26,45,82,.93) 45%, rgba(26,45,82,.5) 100%); }
-    .hero-body { position: relative; z-index: 2; width: 100%; padding: 48px var(--px) 0; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(200,146,42,.16); border: 1px solid rgba(200,146,42,.42); color: var(--gold-lt); font-family: "Cinzel", serif; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; padding: 7px 14px; margin-bottom: 22px; }
-    .hero-badge::before { content: ""; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
-    .hero-title { font-family: "Cinzel", serif; font-weight: 900; font-size: clamp(32px, 8vw, 72px); color: #fff; line-height: 1.05; margin-bottom: 10px; letter-spacing: .02em; }
-    .hero-title span { color: var(--gold-lt); }
-    .hero-subtitle { font-family: "Cinzel", serif; font-weight: 400; font-size: clamp(13px, 2.5vw, 22px); color: rgba(255,255,255,.68); letter-spacing: .08em; margin-bottom: 20px; }
-    .hero-desc { font-size: 15px; line-height: 1.82; font-weight: 300; color: rgba(255,255,255,.76); max-width: 500px; margin-bottom: 32px; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero-stats { display: flex; flex-wrap: wrap; background: rgba(20,36,68,.95); border-top: 3px solid var(--gold); margin-top: 40px; }
-    .hero-stat { padding: 18px 20px; border-right: 1px solid rgba(255,255,255,.1); flex: 1 1 90px; }
-    .hero-stat:last-child { border-right: none; }
-    .hero-stat-num { font-family: "Cinzel", serif; font-size: 22px; font-weight: 700; color: var(--gold-lt); line-height: 1; }
-    .hero-stat-label { font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.48); margin-top: 4px; }
+      /* ─── GLAD HEADER ─────────────────────────────────────── */
+      #glad-header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 3200;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      #glad-header.hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .calbcc-header.glad-hidden {
+        top: 0;
+      }
+      .glad-inner {
+        position: relative;
+        max-width: var(--shell-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .glad-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .glad-logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .glad-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 16px;
+        background: #1e3a6e;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        text-decoration: none;
+        border: 1.5px solid #1e3a6e;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+        margin-right: 40px !important;
+      }
+      .glad-back-btn:hover {
+        background: #142d57;
+        border-color: #142d57;
+        transform: translateX(-2px);
+      }
+      @media (max-width: 480px) {
+        .btn-label {
+          display: none;
+        }
+        .glad-back-btn {
+          padding: 7px 10px;
+        }
+      }
+      @media (max-width: 640px) {
+        .glad-inner {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .glad-logo img {
+          margin-left: 0 !important;
+        }
+        .glad-back-btn {
+          margin-right: 0 !important;
+        }
+      }
+      @media (max-width: 640px) {
+        .glad-logo img {
+          height: 28px !important;
+          width: auto !important;
+        }
+      }
 
-    /* ── TICKER ── */
-    .ticker { background: var(--gold); padding: 11px 0; overflow: hidden; }
-    .ticker-track { display: inline-flex; gap: 44px; animation: ticker 32s linear infinite; white-space: nowrap; }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .ticker-item { font-family: "Cinzel", serif; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--navy); display: inline-flex; align-items: center; gap: 14px; }
-    .ticker-dot { width: 4px; height: 4px; background: var(--navy); border-radius: 50%; opacity: .45; flex-shrink: 0; }
+      /* ─── HERO CAROUSEL ───────────────────────────────────── */
+      .rcp-hero {
+        margin-top: 64px;
+        height: calc(100dvh - 64px);
+        min-height: 520px;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        background: var(--rcp-dark);
+      }
 
-    /* ── ABOUT ── */
-    .about-grid { display: grid; gap: 36px; }
-    .about-img-wrap { position: relative; }
-    .about-img-main { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
-    .about-img-main img { width: 100%; height: 100%; object-fit: cover; }
-    .about-float { position: absolute; bottom: -20px; right: 12px; background: var(--navy); color: #fff; padding: 18px 22px; text-align: center; }
-    .about-float-num { font-family: "Cinzel", serif; font-size: 36px; font-weight: 700; color: var(--gold-lt); line-height: 1; display: block; }
-    .about-float-label { font-size: 9.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 4px; display: block; }
-    .about-list { margin-top: 28px; }
-    .about-item { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--border); }
-    .about-item:first-child { border-top: 1px solid var(--border); }
-    .about-icon { width: 38px; height: 38px; flex-shrink: 0; background: var(--cream); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 17px; }
-    .about-item strong { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
-    .about-item p { font-size: 13px; color: var(--gray); line-height: 1.65; font-weight: 300; }
+      .rcp-hero-slide {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        opacity: 0;
+        transition: opacity 0.7s ease;
+        pointer-events: none;
+      }
+      .rcp-hero-slide.active {
+        opacity: 1;
+        pointer-events: auto;
+        position: relative;
+        flex: 1;
+      }
 
-    /* ── FEATURES ── */
-    .features-grid { display: grid; gap: 3px; margin-top: 36px; }
-    .feat { background: var(--cream); padding: 32px 24px; position: relative; overflow: hidden; transition: background .25s; }
-    .feat::before { content: ""; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height .35s; }
-    .feat:hover::before { height: 100%; }
-    .feat:hover { background: var(--navy); }
-    .feat:hover .feat-title { color: #fff; }
-    .feat:hover .feat-text { color: rgba(255,255,255,.6); }
-    .feat:hover .feat-num { color: rgba(200,146,42,.28); }
-    .feat:hover .feat-lnk { color: var(--gold-lt); border-color: var(--gold-lt); }
-    .feat-num { font-family: "Cinzel", serif; font-size: 42px; font-weight: 900; color: var(--border); line-height: 1; margin-bottom: 16px; transition: color .25s; }
-    .feat-title { font-family: "Cinzel", serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; transition: color .25s; }
-    .feat-text { font-size: 13px; color: var(--gray); line-height: 1.75; font-weight: 300; transition: color .25s; }
-    .feat-lnk { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--navy); padding-bottom: 2px; transition: gap .2s, color .25s, border-color .25s; }
-    .feat-lnk:hover { gap: 12px; }
+      .rcp-hero-text-panel {
+        width: 48%;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--rcp-sp-xl) var(--rcp-sp-l) var(--rcp-sp-xl)
+          calc(var(--rcp-sp-l) + 1rem);
+        background: var(--rcp-white);
+        position: relative;
+        z-index: 2;
+      }
+      .rcp-hero-text-panel::after {
+        content: "";
+        position: absolute;
+        right: -32px;
+        top: 0;
+        bottom: 0;
+        width: 64px;
+        background: var(--rcp-white);
+        clip-path: polygon(0 0, 0 100%, 100% 100%);
+        z-index: 3;
+      }
 
-    /* ── HOURS / CONTACT ── */
-    .hours-layout { display: grid; gap: 36px; }
-    .hours-tbl { width: 100%; border-collapse: collapse; margin-top: 24px; }
-    .hours-tbl tr { border-bottom: 1px solid var(--border); }
-    .hours-tbl tr:first-child { border-top: 1px solid var(--border); }
-    .hours-tbl td { padding: 13px 0; font-size: 13.5px; font-weight: 300; color: var(--charcoal); vertical-align: top; }
-    .hours-tbl td:first-child { font-weight: 700; color: var(--navy); width: 46%; padding-right: 10px; }
-    .hours-closed { color: var(--gray-lt) !important; font-style: italic; }
-    .hours-note { margin-top: 18px; padding: 14px 18px; background: rgba(26,45,82,.06); border-left: 3px solid var(--gold); font-size: 13px; color: var(--gray); line-height: 1.65; }
-    .contact-card { background: var(--navy); color: #fff; padding: 32px 28px; }
-    .contact-card h3 { font-family: "Cinzel", serif; font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-    .cc-sub { font-size: 13px; color: rgba(255,255,255,.52); margin-bottom: 24px; }
-    .cc-row { margin-bottom: 16px; }
-    .cc-label { font-size: 9.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 4px; }
-    .cc-val { font-size: 13.5px; color: rgba(255,255,255,.84); line-height: 1.6; }
-    .cc-val a { color: var(--gold-lt); text-decoration: none; }
-    .cc-val a:hover { text-decoration: underline; }
-    .cc-div { height: 1px; background: rgba(255,255,255,.1); margin: 16px 0; }
-    .soc-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #fff; font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-decoration: none; text-transform: uppercase; border-radius: 3px; transition: background .2s; margin-top: 16px; }
-    .soc-btn:hover { background: rgba(255,255,255,.16); }
+      .rcp-hero-slide-label {
+        display: none;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rcp-green);
+        margin-bottom: var(--rcp-sp-m);
+      }
+      .rcp-hero-slide-label::before {
+        content: "";
+        display: block;
+        width: 28px;
+        height: 2px;
+        background: var(--rcp-green);
+      }
 
-    /* ── VENUE ── */
-    .venue-layout { display: grid; gap: 36px; }
-    .venue-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-    .venue-img-full { grid-column: 1 / -1; aspect-ratio: 16/9; overflow: hidden; }
-    .venue-img-sm { aspect-ratio: 4/3; overflow: hidden; }
-    .venue-imgs img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-    .venue-imgs img:hover { transform: scale(1.04); }
-    .venue-feats { margin-top: 24px; }
-    .vf { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
-    .vf:first-child { border-top: 1px solid var(--border); }
-    .vf-check { width: 22px; height: 22px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; color: var(--navy); font-weight: 900; }
-    .vf-text { font-size: 13.5px; color: var(--charcoal); }
+      .rcp-hero-title {
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: var(--rcp-dark);
+        margin-bottom: var(--rcp-sp-m);
+      }
+      .rcp-hero-title em {
+        font-style: normal;
+        color: var(--rcp-green);
+      }
+      .rcp-hero-title .accent-o {
+        color: var(--rcp-orange);
+      }
+      .rcp-hero-title .accent-b {
+        color: var(--rcp-blue);
+      }
 
-    /* ── RV ── */
-    .rv-layout { display: grid; gap: 36px; }
-    .rv-img { aspect-ratio: 4/3; overflow: hidden; }
-    .rv-img img { width: 100%; height: 100%; object-fit: cover; }
-    .rv-cards { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
-    .rv-card { display: flex; gap: 14px; padding: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09); }
-    .rv-card-icon { font-size: 20px; flex-shrink: 0; }
-    .rv-card-text { font-size: 13px; color: rgba(255,255,255,.68); line-height: 1.65; }
-    .rv-card-text strong { display: block; color: #fff; font-size: 13.5px; margin-bottom: 2px; }
+      .rcp-hero-desc {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--rcp-mid);
+        max-width: 420px;
+        margin-bottom: var(--rcp-sp-l);
+      }
 
-    /* ── WEEKLY ── */
-    .weekly-layout { display: grid; gap: 32px; margin-top: 28px; }
-    .weekly-img img { max-width: 280px; width: 100%; box-shadow: 0 8px 28px rgba(0,0,0,.12); }
-    .duty-box { margin-top: 24px; padding: 18px; border-left: 3px solid var(--gold); background: var(--cream); }
-    .duty-label { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-    .duty-name { font-family: "Cinzel", serif; font-size: 18px; font-weight: 600; color: var(--navy); }
+      .rcp-hero-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--rcp-sp-m);
+        flex-wrap: wrap;
+      }
+      .rcp-hero-btn-primary {
+        background: var(--rcp-green);
+        color: var(--rcp-white);
+        padding: 14px 28px;
+        border-radius: var(--rcp-radius);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        transition:
+          background var(--rcp-transition),
+          transform var(--rcp-transition);
+        display: inline-block;
+      }
+      .rcp-hero-btn-primary:hover {
+        background: #236040;
+        transform: translateY(-1px);
+      }
+      .rcp-hero-btn-secondary {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--rcp-mid);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: color var(--rcp-transition);
+      }
+      .rcp-hero-btn-secondary:hover {
+        color: var(--rcp-green);
+      }
+      .rcp-hero-btn-secondary svg {
+        transition: transform var(--rcp-transition);
+      }
+      .rcp-hero-btn-secondary:hover svg {
+        transform: translateX(3px);
+      }
 
-    /* ── CTA ── */
-    .cta-band { background: var(--gold); padding: 64px 0; position: relative; overflow: hidden; }
-    .cta-band::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(0,0,0,.025) 8px, rgba(0,0,0,.025) 9px); }
-    .cta-inner { position: relative; z-index: 1; }
-    .cta-layout { display: flex; flex-direction: column; gap: 28px; }
-    .cta-heading { font-family: "Cinzel", serif; font-size: clamp(26px, 6vw, 50px); font-weight: 900; color: var(--navy); line-height: 1.05; }
-    .cta-sub { font-size: 14.5px; color: rgba(26,45,82,.72); margin-top: 8px; max-width: 420px; font-weight: 300; }
-    .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+      .rcp-hero-image-panel {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+      }
+      .rcp-hero-image-panel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease;
+      }
+      .rcp-hero-slide.active .rcp-hero-image-panel img {
+        transform: scale(1.02);
+      }
+      .rcp-hero-image-panel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent);
+      }
 
-    /* ── FOOTER ── */
-    footer { background: #1c1c1c; padding: 56px 0 0; }
-    .footer-top { display: grid; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.09); }
-    .footer-brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 16px; }
-    .footer-brand-logo img { height: 46px; width: auto; filter: brightness(0) invert(1); opacity: .82; }
-    .footer-brand-name { font-family: "Cinzel", serif; font-size: 15px; font-weight: 700; color: #fff; letter-spacing: .03em; line-height: 1.2; }
-    .footer-brand-sub { font-size: 9.5px; color: rgba(255,255,255,.35); letter-spacing: .13em; text-transform: uppercase; }
-    .footer-tagline { font-size: 13px; color: rgba(255,255,255,.42); line-height: 1.8; font-weight: 300; max-width: 280px; margin-bottom: 20px; }
-    .footer-contact-block { display: flex; flex-direction: column; gap: 10px; }
-    .fcb-row { display: flex; align-items: flex-start; gap: 10px; }
-    .fcb-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; opacity: .55; }
-    .fcb-text { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.55; }
-    .fcb-text a { color: var(--gold-lt); text-decoration: none; }
-    .fcb-text a:hover { text-decoration: underline; }
-    .fcb-text strong { color: rgba(255,255,255,.78); display: block; font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 1px; }
-    .footer-social { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
-    .f-soc { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 3px; color: rgba(255,255,255,.65); font-size: 11.5px; font-weight: 700; text-decoration: none; letter-spacing: .04em; text-transform: uppercase; transition: background .2s, color .2s; }
-    .f-soc:hover { background: rgba(255,255,255,.12); color: #fff; }
-    .footer-col h4 { font-family: "Cinzel", serif; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .footer-col a { font-size: 13px; color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; font-weight: 300; display: flex; align-items: center; gap: 6px; }
-    .footer-col a::before { content: "›"; color: var(--gold); font-size: 14px; }
-    .footer-col a:hover { color: #fff; }
-    .footer-hours-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-    .footer-hours-list li { font-size: 12.5px; color: rgba(255,255,255,.5); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); line-height: 1.5; font-weight: 300; }
-    .footer-hours-list li span { display: block; color: rgba(255,255,255,.8); font-weight: 700; font-size: 11.5px; }
-    .footer-bottom { display: flex; flex-direction: column; gap: 8px; padding: 20px 0 24px; }
-    .footer-bottom p { font-size: 11.5px; color: rgba(255,255,255,.22); }
-    .footer-bottom .f-glad { color: rgba(200,146,42,.45); }
-    .footer-bottom .f-links { display: flex; gap: 14px; flex-wrap: wrap; }
-    .footer-bottom .f-links a { font-size: 11.5px; color: rgba(255,255,255,.28); text-decoration: none; transition: color .2s; }
-    .footer-bottom .f-links a:hover { color: rgba(255,255,255,.6); }
+      /* Carousel controls */
+      .rcp-hero-controls {
+        position: absolute;
+        bottom: var(--rcp-sp-m);
+        left: 0;
+        width: 48%;
+        display: flex;
+        align-items: center;
+        gap: var(--rcp-sp-s);
+        padding: 0 calc(var(--rcp-sp-l) + 1rem);
+        z-index: 10;
+      }
+      .rcp-hero-progress {
+        display: flex;
+        gap: 8px;
+        flex: 1;
+      }
+      .rcp-hero-pip {
+        height: 3px;
+        flex: 1;
+        background: var(--rcp-border);
+        border-radius: 2px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: background var(--rcp-transition);
+      }
+      .rcp-hero-pip.active {
+        background: var(--rcp-green);
+      }
+      .rcp-hero-pip-fill {
+        height: 100%;
+        background: var(--rcp-green);
+        width: 0%;
+        transition: width 5s linear;
+      }
+      .rcp-hero-pip.active .rcp-hero-pip-fill {
+        width: 100%;
+      }
 
-    /* ── FADE ── */
-    .fade { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
-    .fade.in { opacity: 1; transform: translateY(0); }
+      .rcp-hero-nav-btns {
+        display: flex;
+        gap: 8px;
+      }
+      .rcp-hero-arrow {
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid var(--rcp-border);
+        border-radius: var(--rcp-radius);
+        background: var(--rcp-white);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          border-color var(--rcp-transition),
+          background var(--rcp-transition);
+      }
+      .rcp-hero-arrow:hover {
+        border-color: var(--rcp-green);
+        background: var(--rcp-green);
+      }
+      .rcp-hero-arrow:hover svg path {
+        stroke: white;
+      }
+      .rcp-hero-arrow svg path {
+        stroke: var(--rcp-mid);
+      }
 
-    /* ══ RESPONSIVE — MOBILE FIRST ══ */
+      /* ─── PATHWAYS BAR ────────────────────────────────────── */
+      .rcp-pathways {
+        background: var(--rcp-dark);
+        padding: var(--rcp-sp-l) 0;
+      }
+      .rcp-pathways-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--rcp-sp-m);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .rcp-pathway-item {
+        background: var(--rcp-dark);
+        padding: var(--rcp-sp-m) var(--rcp-sp-l);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        transition: background var(--rcp-transition);
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+      }
+      .rcp-pathway-item:last-child {
+        border-right: none;
+      }
+      .rcp-pathway-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .rcp-pathway-item:hover .rcp-pathway-arrow {
+        transform: translateX(4px);
+      }
+      .rcp-pathway-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .rcp-pathway-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--rcp-white);
+        line-height: 1.2;
+      }
+      .rcp-pathway-sub {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.5;
+        margin-top: 2px;
+      }
+      .rcp-pathway-arrow {
+        margin-top: var(--rcp-sp-s);
+        transition: transform var(--rcp-transition);
+      }
 
-    /* 480px */
-    @media (min-width: 480px) {
-      :root { --px: 20px; }
-      .hero-stats { flex-wrap: nowrap; }
-    }
+      /* ─── PILLARS ─────────────────────────────────────────── */
+      .rcp-pillars {
+        padding: var(--rcp-sp-xl) 0;
+        background: var(--rcp-white);
+      }
+      .rcp-pillars-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--rcp-sp-m);
+      }
+      .rcp-pillars-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: var(--rcp-sp-l);
+        gap: var(--rcp-sp-m);
+      }
+      .rcp-section-eyebrow {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rcp-muted);
+        margin-bottom: 10px;
+      }
+      .rcp-section-title {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: var(--rcp-dark);
+      }
+      .rcp-pillars-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 2px;
+      }
+      .rcp-pillar {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .rcp-pillar:first-child {
+        grid-row: 1 / 3;
+      }
+      .rcp-pillar-img {
+        width: 100%;
+        height: 100%;
+        min-height: 260px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .rcp-pillar:hover .rcp-pillar-img {
+        transform: scale(1.04);
+      }
+      .rcp-pillar-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.82) 0%,
+          rgba(0, 0, 0, 0.1) 60%,
+          transparent 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: var(--rcp-sp-m);
+      }
+      .rcp-pillar-tag {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 6px;
+      }
+      .rcp-pillar-name {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--rcp-white);
+        line-height: 1.15;
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+      }
+      .rcp-pillar:first-child .rcp-pillar-name {
+        font-size: 2rem;
+      }
+      .rcp-pillar-desc {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.6;
+        max-width: 320px;
+      }
+      .rcp-pillar-accent {
+        display: inline-block;
+        width: 24px;
+        height: 3px;
+        border-radius: 2px;
+        margin-bottom: 12px;
+      }
 
-    /* 640px */
-    @media (min-width: 640px) {
-      :root { --px: 28px; }
-      .section { padding: 72px 0; }
-      .about-grid { grid-template-columns: 1fr 1fr; align-items: center; }
-      .about-float { right: -16px; bottom: -16px; }
-      .weekly-layout { grid-template-columns: auto 1fr; align-items: start; }
-      .footer-top { grid-template-columns: 1fr 1fr; }
-      .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
-      .cta-layout { flex-direction: row; justify-content: space-between; align-items: center; gap: 40px; }
-      .cta-btns { flex-shrink: 0; }
-    }
+      /* ─── PROGRAM SWITCHER ────────────────────────────────── */
+      .rcp-programs {
+        background: var(--rcp-surface);
+        padding: var(--rcp-sp-xl) 0;
+      }
+      .rcp-programs-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--rcp-sp-m);
+      }
+      .rcp-programs-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: var(--rcp-sp-l);
+        align-items: start;
+        margin-top: var(--rcp-sp-l);
+      }
+      .rcp-programs-tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .rcp-programs-tab {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--rcp-sp-s) var(--rcp-sp-m);
+        border-radius: var(--rcp-radius);
+        cursor: pointer;
+        transition: background var(--rcp-transition);
+        border: 1px solid transparent;
+      }
+      .rcp-programs-tab:hover {
+        background: rgba(42, 122, 75, 0.06);
+      }
+      .rcp-programs-tab.active {
+        background: var(--rcp-white);
+        border-color: var(--rcp-border);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+      }
+      .rcp-programs-tab-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--rcp-mid);
+      }
+      .rcp-programs-tab.active .rcp-programs-tab-label {
+        color: var(--rcp-dark);
+      }
+      .rcp-programs-tab-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--rcp-border);
+        transition: background var(--rcp-transition);
+      }
+      .rcp-programs-tab.active .rcp-programs-tab-dot {
+        background: var(--rcp-green);
+      }
 
-    /* 768px */
-    @media (min-width: 768px) {
-      :root { --px: 32px; }
-      .nav-links { display: flex; }
-      .hamburger { display: none; }
-      .mobile-menu { display: none !important; }
-      .section { padding: 80px 0; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      .hours-layout { grid-template-columns: 1.1fr .9fr; align-items: start; gap: 52px; }
-      .venue-layout { grid-template-columns: 1.1fr .9fr; align-items: center; gap: 52px; }
-      .rv-layout { grid-template-columns: 1fr 1fr; align-items: center; gap: 52px; }
-      .footer-top { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; }
-    }
+      .rcp-programs-panel {
+        display: none;
+        animation: rcpFadeUp 0.3s ease;
+      }
+      .rcp-programs-panel.active {
+        display: block;
+      }
+      @keyframes rcpFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-    /* 1024px */
-    @media (min-width: 1024px) {
-      :root { --px: 40px; }
-      .features-grid { grid-template-columns: repeat(3, 1fr); }
-    }
+      .rcp-panel-tag {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--rcp-green);
+        margin-bottom: 10px;
+      }
+      .rcp-panel-title {
+        font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: var(--rcp-dark);
+        margin-bottom: var(--rcp-sp-m);
+      }
+      .rcp-panel-body {
+        font-size: 0.95rem;
+        color: var(--rcp-mid);
+        line-height: 1.75;
+        max-width: 560px;
+        margin-bottom: var(--rcp-sp-m);
+      }
+      .rcp-panel-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--rcp-sp-s);
+        margin-bottom: var(--rcp-sp-m);
+      }
+      .rcp-panel-chip {
+        background: var(--rcp-white);
+        border: 1px solid var(--rcp-border);
+        border-radius: var(--rcp-radius);
+        padding: 6px 14px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--rcp-dark);
+      }
+      .rcp-panel-link {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--rcp-green);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: gap var(--rcp-transition);
+        width: fit-content;
+      }
+      .rcp-panel-link:hover {
+        gap: 10px;
+      }
 
-    /* 1200px */
-    @media (min-width: 1200px) {
-      :root { --px: 44px; }
-    }
-  
-  /* ─── MOBILE: left-align text on small screens (max 640px) ──── */
-  @media (max-width: 640px) {
-    /* Override any inline style="text-align:center" */
-    [style*="text-align:center"],
-    [style*="text-align: center"] {
-      text-align: left !important;
-    }
-    /* Headings and paragraphs */
-    h1, h2, h3, h4, h5, h6, p {
-      text-align: left !important;
-    }
-    /* Common section block classes used across all pages */
-    .section-label, .section-heading, .section-subheading,
-    .section-header, .section-head, .section-title, .section-desc,
-    .section-subtitle, .section-body, .section-eyebrow,
-    .page-label, .page-heading, .page-title, .page-desc,
-    .eyebrow, .kicker, .tag-label,
-    .hero-eyebrow, .hero-label, .hero-since, .hero-tag,
-    .hero-heading, .hero-title, .hero-body, .hero-desc,
-    .hero-subtitle, .hero-text,
-    .impact-stat, .impact-num, .impact-label,
-    .stat-block, .stat-item, .stat-num, .stat-label,
-    .counter-block, .counter-item, .metric-item, .metric-block,
-    .cta-inner, .cta-block, .cta-heading, .cta-desc, .cta-body,
-    .footer-copy { text-align: left !important; }
-    /* Remove centering constraint on text-only subheading blocks */
-    .section-subheading, .section-desc, .hero-body {
-      max-width: 100% !important;
-    }
-    /* Prevent horizontal overflow */
-    img { max-width: 100% !important; height: auto !important; }
-    table { width: 100% !important; }
-  }
+      /* ─── QUOTE / COMMUNITY ───────────────────────────────── */
+      .rcp-voices {
+        background: var(--rcp-green);
+        padding: var(--rcp-sp-xl) 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .rcp-voices::before {
+        content: '"';
+        position: absolute;
+        top: -0.3em;
+        left: 4%;
+        font-size: 22rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.06);
+        line-height: 1;
+        pointer-events: none;
+        select: none;
+      }
+      .rcp-voices-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 var(--rcp-sp-m);
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+      .rcp-voices-quote {
+        font-size: clamp(1.3rem, 2.5vw, 2rem);
+        font-weight: 700;
+        color: var(--rcp-white);
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        margin-bottom: var(--rcp-sp-m);
+      }
+      .rcp-voices-author {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .rcp-voices-author span {
+        display: block;
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 500;
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        margin-top: 4px;
+      }
+      .rcp-voices-divider {
+        width: 40px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.3);
+        margin: var(--rcp-sp-m) auto;
+      }
 
-  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
-  @media (max-width: 640px) {
-    .glad-inner {
-      padding-left: 16px !important;
-      padding-right: 16px !important;
-    }
-    .glad-logo img {
-      margin-left: 0 !important;
-    }
-    .glad-back-btn {
-      margin-right: 0 !important;
-    }
-  }
+      /* ─── ADMISSIONS CTA ──────────────────────────────────── */
+      .rcp-admissions {
+        padding: var(--rcp-sp-xl) 0;
+        background: var(--rcp-white);
+      }
+      .rcp-admissions-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--rcp-sp-m);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--rcp-sp-l);
+        align-items: center;
+      }
+      .rcp-admissions-text .rcp-section-eyebrow {
+        margin-bottom: 10px;
+      }
+      .rcp-admissions-text .rcp-section-title {
+        margin-bottom: var(--rcp-sp-m);
+      }
+      .rcp-admissions-body {
+        font-size: 0.95rem;
+        color: var(--rcp-mid);
+        line-height: 1.75;
+        margin-bottom: var(--rcp-sp-l);
+      }
+      .rcp-admissions-actions {
+        display: flex;
+        gap: var(--rcp-sp-s);
+        flex-wrap: wrap;
+      }
+      .rcp-btn-primary {
+        background: var(--rcp-green);
+        color: var(--rcp-white);
+        padding: 14px 28px;
+        border-radius: var(--rcp-radius);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        transition: background var(--rcp-transition);
+        display: inline-block;
+      }
+      .rcp-btn-primary:hover {
+        background: #236040;
+      }
+      .rcp-btn-outline {
+        border: 1.5px solid var(--rcp-border);
+        color: var(--rcp-dark);
+        padding: 13px 24px;
+        border-radius: var(--rcp-radius);
+        font-size: 0.88rem;
+        font-weight: 600;
+        transition:
+          border-color var(--rcp-transition),
+          color var(--rcp-transition);
+        display: inline-block;
+      }
+      .rcp-btn-outline:hover {
+        border-color: var(--rcp-green);
+        color: var(--rcp-green);
+      }
 
-  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
-  @media (max-width: 640px) {
-    .glad-logo img { height: 28px !important; width: auto !important; }
-  }
+      .rcp-admissions-card {
+        background: var(--rcp-surface);
+        border: 1px solid var(--rcp-border);
+        border-radius: calc(var(--rcp-radius) * 2);
+        padding: var(--rcp-sp-l);
+      }
+      .rcp-admissions-card-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--rcp-muted);
+        margin-bottom: var(--rcp-sp-m);
+        padding-bottom: var(--rcp-sp-s);
+        border-bottom: 1px solid var(--rcp-border);
+      }
+      .rcp-admissions-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .rcp-timeline-item {
+        display: flex;
+        gap: var(--rcp-sp-m);
+        position: relative;
+        padding-bottom: var(--rcp-sp-m);
+      }
+      .rcp-timeline-item:last-child {
+        padding-bottom: 0;
+      }
+      .rcp-timeline-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+        width: 24px;
+      }
+      .rcp-timeline-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--rcp-green);
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+      .rcp-timeline-line {
+        flex: 1;
+        width: 1px;
+        background: var(--rcp-border);
+        margin-top: 4px;
+      }
+      .rcp-timeline-item:last-child .rcp-timeline-line {
+        display: none;
+      }
+      .rcp-timeline-event {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--rcp-dark);
+        margin-bottom: 2px;
+      }
+      .rcp-timeline-date {
+        font-size: 0.78rem;
+        color: var(--rcp-muted);
+      }
 
-  /* --- NAV LOGO: size fix for medium & small screens --- */
-  @media (max-width: 900px) {
-    .nav-logo img { height: 32px !important; width: auto !important; }
-    .nav-logo-text .club-name,
-    .nav-logo-text .org-name { font-size: 14px !important; }
-    .nav-logo-text .club-sub,
-    .nav-logo-text .org-sub { font-size: 9px !important; }
-  }
-  @media (max-width: 640px) {
-    .nav-logo img { height: 26px !important; width: auto !important; }
-  }
-</style>
-</head>
-<body>
+      /* ─── FOOTER ──────────────────────────────────────────── */
+      .rcp-footer {
+        background: var(--rcp-dark);
+        padding: var(--rcp-sp-l) 0 var(--rcp-sp-m);
+      }
+      .rcp-footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--rcp-sp-m);
+      }
+      .rcp-footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: var(--rcp-sp-l);
+        padding-bottom: var(--rcp-sp-l);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: var(--rcp-sp-m);
+      }
+      .rcp-footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: var(--rcp-sp-s);
+      }
+      .rcp-footer-logo {
+        font-size: 1.4rem;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        color: var(--rcp-white);
+      }
+      .rcp-footer-logo .dot-g {
+        color: var(--rcp-green);
+      }
+      .rcp-footer-logo .dot-o {
+        color: var(--rcp-orange);
+      }
+      .rcp-footer-logo .dot-b {
+        color: var(--rcp-blue);
+      }
+      .rcp-footer-tagline {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.6;
+        max-width: 240px;
+      }
+      .rcp-footer-address {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.8;
+        margin-top: var(--rcp-sp-s);
+      }
+      .rcp-footer-socials {
+        display: flex;
+        gap: 10px;
+        margin-top: var(--rcp-sp-s);
+      }
+      .rcp-footer-social {
+        width: 32px;
+        height: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--rcp-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          border-color var(--rcp-transition),
+          background var(--rcp-transition);
+      }
+      .rcp-footer-social:hover {
+        border-color: var(--rcp-green);
+        background: var(--rcp-green);
+      }
+      .rcp-footer-col-title {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: var(--rcp-sp-s);
+      }
+      .rcp-footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .rcp-footer-links a {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.55);
+        transition: color var(--rcp-transition);
+      }
+      .rcp-footer-links a:hover {
+        color: var(--rcp-white);
+      }
+      .rcp-footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.3);
+      }
 
-<!-- GLAD HEADER -->
-<header id="glad-header">
-  <div class="glad-inner">
-    <a href="https://www.gladtech.io/" class="glad-logo" aria-label="GLAD Technology">
-      <img src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w" alt="GLAD Technology" />
-    </a>
-    <a href="https://www.gladtech.io/" class="glad-back-btn">
-      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      <span class="btn-label">Back to Main Site</span>
-    </a>
-  </div>
-</header>
+      /* ─── SCROLL ANIMATIONS ───────────────────────────────── */
+      .rcp-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .rcp-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .rcp-reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .rcp-reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .rcp-reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
 
-<!-- NAV -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">
-    <img src="https://static.wixstatic.com/media/4af2ac_69c6241aff5c4ed394ea4e15ebe4589e~mv2.jpg/v1/fill/w_229,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5c585d0fe5383_image.jpg" alt="Roseville Elks Lodge #2248" />
-    <div class="nav-logo-text">
-      <div class="lodge-name">Roseville Elks Lodge</div>
-      <div class="lodge-sub">Benevolent &amp; Protective Order · #2248</div>
-    </div>
-  </a>
-  <div class="nav-links">
-    <ul class="nav-links-inner">
-      <li>
-        <a href="https://www.elks2248.com/our-lodge" class="has-drop">About Us</a>
-        <div class="dropdown">
-          <a href="https://www.elks2248.com/lodge-officers">Lodge Officers</a>
-          <a href="https://www.elks2248.com/about-our-lodge">Lodge History</a>
-          <a href="https://www.elks2248.com/our-programs">Charitable Programs</a>
-        </div>
-      </li>
-      <li><a href="https://www.elks2248.com/monthly-calendar">Calendar</a></li>
-      <li><a href="https://www.elks2248.com/event-registration">Events</a></li>
-      <li>
-        <a href="https://www.elks2248.com/rv" class="has-drop">RV Parking</a>
-        <div class="dropdown">
-          <a href="https://www.elks2248.com/rv-park-reservations">Reserve a Spot</a>
-          <a href="https://www.elks2248.com/rv-area-photos">RV Area Photos</a>
-        </div>
-      </li>
-      <li><a href="https://www.elks2248.com/lodge-rental">Lodge Rental</a></li>
-      <li><a href="https://www.elks2248.com/newsletter">Newsletter</a></li>
-      <li><a href="https://www.elks2248.com/members-only" class="nav-cta">Members</a></li>
-    </ul>
-  </div>
-  <button class="hamburger" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
-</nav>
+      /* ─── RESPONSIVE ──────────────────────────────────────── */
+      @media (max-width: 960px) {
+        .rcp-hero {
+          margin-top: 48px;
+          height: 90dvh;
+        }
+        .rcp-hero-slide.active {
+          flex-direction: column;
+          position: relative;
+        }
+        .rcp-hero-text-panel {
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 4;
+          background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.78) 0%,
+            rgba(0, 0, 0, 0.5) 60%,
+            transparent 100%
+          );
+          padding: var(--rcp-sp-l) var(--rcp-sp-m) var(--rcp-sp-m);
+        }
+        .rcp-hero-text-panel::after {
+          display: none;
+        }
+        .rcp-hero-title {
+          color: var(--rcp-white);
+        }
+        .rcp-hero-title em,
+        .rcp-hero-title .accent-o,
+        .rcp-hero-title .accent-b {
+          color: rgba(255, 255, 255, 0.85);
+        }
+        .rcp-hero-slide-label {
+          color: rgba(255, 255, 255, 0.7);
+        }
+        .rcp-hero-slide-label::before {
+          background: rgba(255, 255, 255, 0.5);
+        }
+        .rcp-hero-desc {
+          color: rgba(255, 255, 255, 0.75);
+        }
+        .rcp-hero-btn-secondary {
+          color: rgba(255, 255, 255, 0.7);
+        }
+        .rcp-hero-btn-secondary svg path {
+          stroke: rgba(255, 255, 255, 0.7);
+        }
+        .rcp-hero-image-panel {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          flex: none;
+        }
+        .rcp-hero-controls {
+          width: 100%;
+          padding: 0 var(--rcp-sp-m);
+          bottom: var(--rcp-sp-m);
+        }
+        .rcp-pathways-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .rcp-pillars-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .rcp-pillar:first-child {
+          grid-row: auto;
+        }
+        .rcp-programs-layout {
+          grid-template-columns: 1fr;
+        }
+        .rcp-admissions-inner {
+          grid-template-columns: 1fr;
+        }
+        .rcp-footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: var(--rcp-sp-m);
+        }
+      }
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="https://www.elks2248.com/our-lodge">About Us</a>
-  <a href="https://www.elks2248.com/lodge-officers" class="m-sub">↳ Lodge Officers</a>
-  <a href="https://www.elks2248.com/about-our-lodge" class="m-sub">↳ Lodge History</a>
-  <a href="https://www.elks2248.com/our-programs" class="m-sub">↳ Charitable Programs</a>
-  <a href="https://www.elks2248.com/monthly-calendar">Calendar</a>
-  <a href="https://www.elks2248.com/event-registration">Events &amp; Dinners</a>
-  <a href="https://www.elks2248.com/rv">RV Parking</a>
-  <a href="https://www.elks2248.com/lodge-rental">Lodge Rental</a>
-  <a href="https://www.elks2248.com/newsletter">Newsletter</a>
-  <a href="https://www.elks2248.com/members-only" class="m-cta">Members Only</a>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-body wrap">
-    <div class="hero-badge">Roseville, California · Lodge #2248</div>
-    <h1 class="hero-title">Where Community<br />&amp; <span>Brotherhood</span> Thrive</h1>
-    <p class="hero-subtitle">Benevolent &amp; Protective Order of Elks</p>
-    <p class="hero-desc">The Roseville Elks Lodge #2248 is a vibrant social gathering place where people know your name — providing charitable giving, community service, and fellowship for members and neighbors across Roseville.</p>
-    <div class="hero-actions">
-      <a href="https://www.elks2248.com/our-lodge" class="btn-gold">Discover the Lodge</a>
-      <a href="https://www.elks2248.com/event-registration" class="btn-outline-hero">View Events</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num">1868</div><div class="hero-stat-label">Elks Founded</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">#2248</div><div class="hero-stat-label">Lodge Number</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Events Per Year</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">Roseville</div><div class="hero-stat-label">Brady Lane, CA</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <div class="ticker-item"><span class="ticker-dot"></span>Community Service</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Lodge #2248 · Roseville</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Charitable Giving</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Veterans Support</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Event Venue &amp; Rental</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>RV Parking</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Brotherhood &amp; Fellowship</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Youth Programs</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Community Service</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Lodge #2248 · Roseville</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Charitable Giving</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Veterans Support</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Event Venue &amp; Rental</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>RV Parking</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Brotherhood &amp; Fellowship</div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Youth Programs</div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section class="section" id="about" style="background:var(--white);">
-  <div class="wrap">
-    <div class="about-grid fade">
-      <div class="about-img-wrap">
-        <div class="about-img-main">
-          <img src="https://static.wixstatic.com/media/4af2ac_d2f9c544414e4331b193e5f751221e83~mv2.jpg/v1/crop/x_0,y_287,w_2736,h_1251/fill/w_1200,h_900,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/P1030608_edited.jpg" alt="Roseville Elks Lodge Building" loading="lazy" />
-        </div>
-        <div class="about-float">
-          <span class="about-float-num">1868</span>
-          <span class="about-float-label">Order Founded</span>
-        </div>
-      </div>
-      <div style="padding-top:24px;">
-        <div class="section-label">Our Story</div>
-        <h2 class="sh">A Roseville Institution Rooted in Service</h2>
-        <p class="lead">The Roseville Elks Lodge #2248 offers a wonderful gathering spot for both men and women — where people know your name. We're dedicated to community service, charitable giving, and making a difference for kids, veterans, and neighbors.</p>
-        <div class="about-list">
-          <div class="about-item">
-            <div class="about-icon">🤝</div>
-            <div><strong>Brotherhood &amp; Fellowship</strong><p>A welcoming community where members build lasting bonds through shared values, events, and service.</p></div>
-          </div>
-          <div class="about-item">
-            <div class="about-icon">🎗️</div>
-            <div><strong>Charitable Programs</strong><p>From youth scholarships to veterans' support, our Elks programs make a real, lasting difference locally.</p></div>
-          </div>
-          <div class="about-item">
-            <div class="about-icon">🏛️</div>
-            <div><strong>Community Gathering Place</strong><p>Bar, dining room, event venue, and RV park — the Lodge serves Roseville in many meaningful ways.</p></div>
-          </div>
-        </div>
-        <div class="btn-row">
-          <a href="https://www.elks2248.com/our-lodge" class="btn-gold">Learn About Us</a>
-          <a href="https://www.elks2248.com/our-programs" class="btn-border">Our Programs</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="section" id="features" style="background:var(--cream);">
-  <div class="wrap">
-    <div class="fade" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;">
-      <div>
-        <div class="section-label">What We Offer</div>
-        <h2 class="sh" style="margin-bottom:0;">Everything the Lodge Has to Offer</h2>
-      </div>
-      <p class="lead" style="max-width:320px;">From weekly dinners and events to RV parking and venue rental — there is always something happening at Lodge #2248.</p>
-    </div>
-    <div class="features-grid fade" style="transition-delay:.1s;">
-      <div class="feat"><div class="feat-num">01</div><div class="feat-title">Bar &amp; Dining</div><p class="feat-text">Monday–Friday bar service with food served most evenings. Full commercial kitchen available. Check the calendar for Friday dinner specials.</p><a href="https://www.elks2248.com/our-lodge" class="feat-lnk">Hours &amp; Info →</a></div>
-      <div class="feat"><div class="feat-num">02</div><div class="feat-title">Events &amp; Dinners</div><p class="feat-text">Lodge meetings on the 1st &amp; 3rd Thursdays, plus special dinner events and registrations throughout the year. Register online to secure your spot.</p><a href="https://www.elks2248.com/event-registration" class="feat-lnk">Register →</a></div>
-      <div class="feat"><div class="feat-num">03</div><div class="feat-title">Lodge Rental</div><p class="feat-text">Perfect for weddings, receptions, anniversary parties, celebrations of life, and business meetings. Full bar, kitchen, AV equipment, and flexible pricing.</p><a href="https://www.elks2248.com/lodge-rental" class="feat-lnk">Inquire →</a></div>
-      <div class="feat"><div class="feat-num">04</div><div class="feat-title">RV Parking</div><p class="feat-text">Convenient RV area for reservations at our Roseville facility. A great option for members and travelers visiting the area.</p><a href="https://www.elks2248.com/rv" class="feat-lnk">Reserve →</a></div>
-      <div class="feat"><div class="feat-num">05</div><div class="feat-title">Charitable Giving</div><p class="feat-text">Supporting youth, veterans, and community members through national Elks programs and local initiatives. Together we make a difference.</p><a href="https://www.elks2248.com/our-programs" class="feat-lnk">Learn More →</a></div>
-      <div class="feat"><div class="feat-num">06</div><div class="feat-title">Members Portal</div><p class="feat-text">Access exclusive resources, news, and lodge administration. Not a member? Reach out — we'd love to welcome you into the family.</p><a href="https://www.elks2248.com/members-only" class="feat-lnk">Member Login →</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- HOURS & CONTACT -->
-<section class="section" id="hours" style="background:var(--white);">
-  <div class="wrap">
-    <div class="hours-layout">
-      <div class="fade">
-        <div class="section-label">Hours &amp; Schedule</div>
-        <h2 class="sh">When We're Open</h2>
-        <p class="lead">Our lodge office is open Mon, Tue, Thu &amp; Fri from 10 AM – 2 PM. Bar and dining hours vary by day — see below.</p>
-        <table class="hours-tbl">
-          <tr><td>Monday &amp; Tuesday</td><td>Bar 4:00–9:00 PM<br/>Food 4:00–6:30 PM</td></tr>
-          <tr><td>Wednesday</td><td>Bar 4:00–9:00 PM<br/>Charcuterie packs only</td></tr>
-          <tr><td>1st &amp; 3rd Thursday</td><td>Meeting nights<br/>Bar 4–9 PM · Dinner 4–6 PM</td></tr>
-          <tr><td>Friday</td><td>Food service varies<br/>Check Events calendar</td></tr>
-          <tr><td>Saturday &amp; Sunday</td><td class="hours-closed">Closed — available for private rentals</td></tr>
-        </table>
-        <div class="hours-note"><strong>Lodge Meetings</strong> — 1st &amp; 3rd Thursdays of the month at 7:00 PM. All members welcome.</div>
-        <div class="btn-row">
-          <a href="https://www.elks2248.com/monthly-calendar" class="btn-gold">View Monthly Calendar</a>
-          <a href="https://www.elks2248.com/event-registration" class="btn-border">Register for Events</a>
-        </div>
-      </div>
-      <div class="contact-card fade" style="transition-delay:.1s;">
-        <h3>Get in Touch</h3>
-        <p class="cc-sub">Questions about membership, events, or rentals? We'd love to hear from you.</p>
-        <div class="cc-row"><div class="cc-label">Phone</div><div class="cc-val"><a href="tel:9167834515">916-783-4515</a></div></div>
-        <div class="cc-div"></div>
-        <div class="cc-row"><div class="cc-label">General Info</div><div class="cc-val"><a href="mailto:info@rosevilleelkslodge.org">info@rosevilleelkslodge.org</a></div></div>
-        <div class="cc-row"><div class="cc-label">Lodge Secretary</div><div class="cc-val"><a href="mailto:roselks@elks2248.com">roselks@elks2248.com</a></div></div>
-        <div class="cc-row"><div class="cc-label">Rentals — Club Manager</div><div class="cc-val"><a href="mailto:clubmanager@elks2248.com">clubmanager@elks2248.com</a></div></div>
-        <div class="cc-div"></div>
-        <div class="cc-row"><div class="cc-label">Physical Address</div><div class="cc-val">3000 Brady Lane<br/>Roseville, CA 95747</div></div>
-        <div class="cc-row"><div class="cc-label">Mailing Address</div><div class="cc-val">P.O. Box 247<br/>Roseville, CA 95747</div></div>
-        <div class="cc-row"><div class="cc-label">Office Hours</div><div class="cc-val">Mon · Tue · Thu · Fri<br/>10:00 AM – 2:00 PM</div></div>
-        <a href="https://www.facebook.com/Roseville-Elks-Lodge-2248-1030188310368426/" class="soc-btn" target="_blank" rel="noopener">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          Follow on Facebook
+      @media (max-width: 640px) {
+        .rcp-nav-links {
+          display: none;
+        }
+        .rcp-nav-hamburger {
+          display: flex;
+        }
+        .rcp-hero-title {
+          font-size: 1.8rem;
+        }
+        .rcp-hero-desc {
+          font-size: 0.88rem;
+        }
+        .rcp-hero-text-panel {
+          width: 100%;
+          padding: var(--rcp-sp-l) var(--rcp-sp-m) var(--rcp-sp-l);
+        }
+        .rcp-hero-actions {
+          margin-top: var(--rcp-sp-m);
+        }
+        .rcp-hero-progress {
+          display: none;
+        }
+        .rcp-hero-nav-btns {
+          display: none;
+        }
+        .rcp-pathways-inner {
+          grid-template-columns: 1fr;
+        }
+        .rcp-pathway-item {
+          padding: var(--rcp-sp-m);
+        }
+        .rcp-pillars-grid {
+          grid-template-columns: 1fr;
+        }
+        .rcp-footer-top {
+          grid-template-columns: 1fr;
+        }
+        .rcp-footer-bottom {
+          flex-direction: column;
+          gap: var(--rcp-sp-s);
+          text-align: center;
+        }
+        .rcp-admissions-card {
+          display: none;
+        }
+        .rcp-pillars-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="glad-header">
+      <div class="glad-inner">
+        <a
+          href="https://www.gladtech.io/"
+          class="glad-logo"
+          aria-label="GLAD Technology"
+        >
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+            alt="GLAD Technology Digital Services"
+          />
+        </a>
+        <a href="https://www.gladtech.io/" class="glad-back-btn">
+          <svg
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2.2"
+            width="14"
+            height="14"
+          >
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          <span class="btn-label">Back to Main Site</span>
         </a>
       </div>
+    </header>
+    <!-- ── NAV ──────────────────────────────────────────────── -->
+    <nav class="rcp-nav">
+      <div class="rcp-nav-inner">
+        <a href="#" class="rcp-nav-brand">
+          <div class="rcp-nav-logo-mark">
+            R<span class="dot-g">•</span>c<span class="dot-o">•</span>p<span
+              class="dot-b"
+              >•</span
+            >
+          </div>
+        </a>
+        <ul class="rcp-nav-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Classes</a></li>
+          <li><a href="#">Parent Participation</a></li>
+          <li><a href="#">Photo Gallery</a></li>
+          <li><a href="#">Support RCP</a></li>
+          <li><a href="#" class="rcp-nav-cta">Enroll Now</a></li>
+        </ul>
+        <div
+          class="rcp-nav-hamburger"
+          id="rcp-hamburger"
+          aria-label="Open menu"
+          role="button"
+          tabindex="0"
+        >
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="rcp-mobile-menu" id="rcp-mobile-menu">
+      <a href="#">About</a>
+      <a href="#">Classes &amp; Registration</a>
+      <a href="#">Parent Participation</a>
+      <a href="#">Photo Gallery</a>
+      <a href="#">Support RCP</a>
+      <a href="#">Pay Tuition</a>
+      <a href="#">Contact</a>
+      <a
+        href="#"
+        class="rcp-nav-cta"
+        style="text-align: center; margin-top: 8px"
+        >Enroll Now</a
+      >
     </div>
-  </div>
-</section>
 
-<!-- VENUE RENTAL -->
-<section class="section" id="venue" style="background:var(--cream);">
-  <div class="wrap">
-    <div class="venue-layout">
-      <div class="fade">
-        <div class="venue-imgs">
-          <div class="venue-img-full"><img src="https://static.wixstatic.com/media/4af2ac_137d04ef048345918ab5672e60ab3f8f~mv2.jpg/v1/fill/w_1200,h_680,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_7650.jpg" alt="Lodge dining room" loading="lazy" /></div>
-          <div class="venue-img-sm"><img src="https://static.wixstatic.com/media/4af2ac_4cb5a751d29d4a6387c85168316d971b~mv2.jpg/v1/fill/w_600,h_450,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_7647.jpg" alt="Lodge bar" loading="lazy" /></div>
-          <div class="venue-img-sm"><img src="https://static.wixstatic.com/media/4af2ac_cba5f0d29ad743beb603d7a57374ca7f~mv2.jpg/v1/fill/w_600,h_450,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_7648.jpg" alt="Lodge event space" loading="lazy" /></div>
+    <!-- ── HERO ──────────────────────────────────────────────── -->
+    <section class="rcp-hero" id="rcp-hero-carousel">
+      <!-- Slide 1 -->
+      <div class="rcp-hero-slide active" data-index="0">
+        <div class="rcp-hero-text-panel">
+          <div class="rcp-hero-slide-label">Play-Based Learning</div>
+          <h1 class="rcp-hero-title">
+            Where Curiosity<br />
+            <em>Leads the Way</em>
+          </h1>
+          <p class="rcp-hero-desc">
+            Children learn best through self-guided, active exploration. At RCP,
+            we give every child the space to discover, wonder, and grow — at
+            their own perfect pace.
+          </p>
+          <div class="rcp-hero-actions">
+            <a href="#" class="rcp-hero-btn-primary">Schedule a Tour</a>
+            <a href="#" class="rcp-hero-btn-secondary">
+              Learn Our Philosophy
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="#787878"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="rcp-hero-image-panel">
+          <img
+            src="https://static.wixstatic.com/media/ce942a_f4c84bd04c144d498cfc27d08ea63953~mv2.jpg"
+            alt="Children exploring at RCP"
+          />
         </div>
       </div>
-      <div class="fade" style="transition-delay:.1s;">
-        <div class="section-label">Venue &amp; Rental</div>
-        <h2 class="sh">Host Your Next Event at the Lodge</h2>
-        <p class="lead">A wonderful choice for meetings, celebrations, weddings, and parties. The Lodge adapts to your needs with full amenities at affordable rates.</p>
-        <div class="venue-feats">
-          <div class="vf"><div class="vf-check">✓</div><div class="vf-text">Full bar with large dining &amp; meeting room</div></div>
-          <div class="vf"><div class="vf-check">✓</div><div class="vf-text">Commercial kitchen available</div></div>
-          <div class="vf"><div class="vf-check">✓</div><div class="vf-text">State-of-the-art AV — projector, large screen, upgraded sound</div></div>
-          <div class="vf"><div class="vf-check">✓</div><div class="vf-text">Weddings, receptions, anniversaries, celebrations of life</div></div>
-          <div class="vf"><div class="vf-check">✓</div><div class="vf-text">Party &amp; menu planning included in pricing</div></div>
-          <div class="vf"><div class="vf-check">✓</div><div class="vf-text">Very affordable rates — available on weekends</div></div>
-        </div>
-        <div class="btn-row">
-          <a href="mailto:clubmanager@elks2248.com" class="btn-gold">Inquire About Rental</a>
-          <a href="https://www.elks2248.com/lodge-rental" class="btn-border">Rental Info</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- RV PARK -->
-<section class="section" id="rv" style="background:var(--navy);">
-  <div class="wrap">
-    <div class="rv-layout">
-      <div class="fade">
-        <div class="section-label light">RV Area</div>
-        <h2 class="sh white">RV Parking &amp; Reservations</h2>
-        <p class="lead white">The Roseville Elks Lodge #2248 offers a convenient RV parking area for members and travelers. Reservations are required — call us to book your spot.</p>
-        <div class="rv-cards">
-          <div class="rv-card"><div class="rv-card-icon">📞</div><div class="rv-card-text"><strong>Reservations Required</strong>Call the lodge at <a href="tel:9167834515" style="color:var(--gold-lt);">916-783-4515</a> to reserve your RV spot.</div></div>
-          <div class="rv-card"><div class="rv-card-icon">📍</div><div class="rv-card-text"><strong>Location</strong>3000 Brady Lane, Roseville, CA 95747 — conveniently located in central Roseville.</div></div>
-          <div class="rv-card"><div class="rv-card-icon">💲</div><div class="rv-card-text"><strong>Affordable Rates</strong>Great value for members and visitors. View photos of the RV area before you book.</div></div>
+      <!-- Slide 2 -->
+      <div class="rcp-hero-slide" data-index="1">
+        <div class="rcp-hero-text-panel">
+          <div class="rcp-hero-slide-label">Parent Participation</div>
+          <h1 class="rcp-hero-title">
+            A School Built<br />
+            <span class="accent-o">By Families,</span><br />
+            For Families
+          </h1>
+          <p class="rcp-hero-desc">
+            Every RCP family is an active part of our community. Parents
+            participate weekly in classrooms, helping to shape an environment of
+            trust, belonging, and shared purpose.
+          </p>
+          <div class="rcp-hero-actions">
+            <a href="#" class="rcp-hero-btn-primary">Explore Participation</a>
+            <a href="#" class="rcp-hero-btn-secondary">
+              Parent Requirements
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="#787878"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="btn-row" style="margin-top:28px;">
-          <a href="https://www.elks2248.com/rv-park-reservations" class="btn-gold">Reserve a Spot</a>
-          <a href="https://www.elks2248.com/rv-area-photos" style="display:inline-block;padding:12px 22px;border:1.5px solid rgba(255,255,255,.35);color:#fff;font-size:12.5px;font-weight:700;text-decoration:none;letter-spacing:.07em;text-transform:uppercase;border-radius:3px;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.1)'" onmouseout="this.style.background='transparent'">View Photos</a>
-        </div>
-      </div>
-      <div class="rv-img fade" style="transition-delay:.1s;">
-        <img src="https://static.wixstatic.com/media/4af2ac_d2f9c544414e4331b193e5f751221e83~mv2.jpg/v1/crop/x_0,y_287,w_2736,h_1251/fill/w_1200,h_900,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/P1030608_edited.jpg" alt="Lodge grounds" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WEEKLY NEWS -->
-<section class="section" id="weekly" style="background:var(--white);">
-  <div class="wrap">
-    <div class="section-label">Stay Informed</div>
-    <h2 class="sh">Lodge Weekly News</h2>
-    <div class="weekly-layout fade">
-      <div class="weekly-img"><img src="https://static.wixstatic.com/media/4af2ac_4c9eb3b5b93a41559f380c73a20dc91c~mv2.png/v1/fill/w_600,h_1050,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/MAY%204%20-%20May%208.png" alt="Lodge Weekly News" loading="lazy" /></div>
-      <div>
-        <p class="lead">Keep up with everything happening at the lodge. Our weekly schedule is updated regularly with duty officers, dinner specials, events, and upcoming activities.</p>
-        <div class="duty-box">
-          <div class="duty-label">Current Duty Officer</div>
-          <div class="duty-name">Inner Guard Ron McCormick</div>
-        </div>
-        <div class="btn-row">
-          <a href="https://www.elks2248.com/newsletter" class="btn-gold">Read Our Newsletter</a>
-          <a href="https://www.elks2248.com/monthly-calendar" class="btn-border">Monthly Calendar</a>
+        <div class="rcp-hero-image-panel">
+          <img
+            src="https://static.wixstatic.com/media/ce942a_a7744e12567a42e898f3465ebf0306ec~mv2.jpg"
+            alt="Parent and child at RCP"
+            style="object-position: center 30%"
+          />
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- CTA -->
-<section class="cta-band">
-  <div class="wrap cta-inner">
-    <div class="cta-layout fade">
-      <div>
-        <h2 class="cta-heading">Together We Make<br/>a Difference.</h2>
-        <p class="cta-sub">Join the Elks family and be part of a community that cares — for its members, for veterans, for youth, and for Roseville.</p>
+      <!-- Slide 3 -->
+      <div class="rcp-hero-slide" data-index="2">
+        <div class="rcp-hero-text-panel">
+          <div class="rcp-hero-slide-label">2026–2027 Enrollment</div>
+          <h1 class="rcp-hero-title">
+            Now Enrolling<br />
+            <span class="accent-b">For Next Year</span>
+          </h1>
+          <p class="rcp-hero-desc">
+            Enrollment for the 2026–2027 school year is open. Tours are
+            available now — spaces fill quickly, and we typically carry a
+            one-year waitlist. Don't miss your window.
+          </p>
+          <div class="rcp-hero-actions">
+            <a href="#" class="rcp-hero-btn-primary">Begin Enrollment</a>
+            <a href="#" class="rcp-hero-btn-secondary">
+              View Class Options
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="#787878"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="rcp-hero-image-panel">
+          <img
+            src="https://static.wixstatic.com/media/ce942a_1e3eab98a03a4e3f88560ecc1e7d7356~mv2.jpg"
+            alt="RCP classroom"
+          />
+        </div>
       </div>
-      <div class="cta-btns">
-        <a href="https://www.elks2248.com/our-lodge" class="btn-navy">Join the Elks</a>
-        <a href="mailto:info@rosevilleelkslodge.org" class="btn-outline-gold">Contact Us</a>
+
+      <!-- Carousel controls -->
+      <div class="rcp-hero-controls">
+        <div class="rcp-hero-progress">
+          <div class="rcp-hero-pip active" data-pip="0">
+            <div class="rcp-hero-pip-fill"></div>
+          </div>
+          <div class="rcp-hero-pip" data-pip="1">
+            <div class="rcp-hero-pip-fill"></div>
+          </div>
+          <div class="rcp-hero-pip" data-pip="2">
+            <div class="rcp-hero-pip-fill"></div>
+          </div>
+        </div>
+        <div class="rcp-hero-nav-btns">
+          <button
+            class="rcp-hero-arrow"
+            id="rcp-prev"
+            aria-label="Previous slide"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M9 2L4 7l5 5"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="rcp-hero-arrow" id="rcp-next" aria-label="Next slide">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M5 2l5 5-5 5"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
+    <!-- ── PATHWAYS ───────────────────────────────────────────── -->
+    <section class="rcp-pathways">
+      <div class="rcp-pathways-inner">
+        <a href="#" class="rcp-pathway-item">
+          <div class="rcp-pathway-label">I am a</div>
+          <div class="rcp-pathway-title">Prospective Family</div>
+          <div class="rcp-pathway-sub">
+            Tours, enrollment info &amp; class options
+          </div>
+          <div class="rcp-pathway-arrow">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="rgba(255,255,255,0.4)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </a>
+        <a href="#" class="rcp-pathway-item">
+          <div class="rcp-pathway-label">I am a</div>
+          <div class="rcp-pathway-title">Current Parent</div>
+          <div class="rcp-pathway-sub">
+            Resources, schedule &amp; parent meetings
+          </div>
+          <div class="rcp-pathway-arrow">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="rgba(255,255,255,0.4)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </a>
+        <a href="#" class="rcp-pathway-item">
+          <div class="rcp-pathway-label">I want to</div>
+          <div class="rcp-pathway-title">Support RCP</div>
+          <div class="rcp-pathway-sub">Donate, wishlists &amp; fundraising</div>
+          <div class="rcp-pathway-arrow">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="rgba(255,255,255,0.4)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </a>
+        <a href="#" class="rcp-pathway-item">
+          <div class="rcp-pathway-label">I want to</div>
+          <div class="rcp-pathway-title">Pay Tuition</div>
+          <div class="rcp-pathway-sub">Brightwheel online payments portal</div>
+          <div class="rcp-pathway-arrow">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="rgba(255,255,255,0.4)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
+    </section>
 
-      <!-- Brand & Contact -->
-      <div>
-        <a href="#" class="footer-brand-logo">
-          <img src="https://static.wixstatic.com/media/4af2ac_69c6241aff5c4ed394ea4e15ebe4589e~mv2.jpg/v1/fill/w_229,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5c585d0fe5383_image.jpg" alt="Roseville Elks Lodge #2248" />
+    <!-- ── PILLARS ────────────────────────────────────────────── -->
+    <section class="rcp-pillars">
+      <div class="rcp-pillars-inner">
+        <div class="rcp-pillars-header rcp-reveal">
           <div>
-            <div class="footer-brand-name">Roseville Elks Lodge</div>
-            <div class="footer-brand-sub">Lodge #2248 · Roseville, CA</div>
+            <div class="rcp-section-eyebrow">Our Approach</div>
+            <div class="rcp-section-title">
+              Three Pillars of<br />Child Development
+            </div>
           </div>
-        </a>
-        <p class="footer-tagline">A wonderful social gathering spot where people know your name — providing charitable giving, community service, and fellowship.</p>
-        <div class="footer-contact-block">
-          <div class="fcb-row"><div class="fcb-icon">📞</div><div class="fcb-text"><strong>Phone</strong><a href="tel:9167834515">916-783-4515</a></div></div>
-          <div class="fcb-row"><div class="fcb-icon">✉️</div><div class="fcb-text"><strong>General Info</strong><a href="mailto:info@rosevilleelkslodge.org">info@rosevilleelkslodge.org</a></div></div>
-          <div class="fcb-row"><div class="fcb-icon">✉️</div><div class="fcb-text"><strong>Lodge Secretary</strong><a href="mailto:roselks@elks2248.com">roselks@elks2248.com</a></div></div>
-          <div class="fcb-row"><div class="fcb-icon">✉️</div><div class="fcb-text"><strong>Club Manager (Rentals)</strong><a href="mailto:clubmanager@elks2248.com">clubmanager@elks2248.com</a></div></div>
-          <div class="fcb-row"><div class="fcb-icon">📍</div><div class="fcb-text"><strong>Physical Address</strong>3000 Brady Lane, Roseville, CA 95747</div></div>
-          <div class="fcb-row"><div class="fcb-icon">📮</div><div class="fcb-text"><strong>Mailing Address</strong>P.O. Box 247, Roseville, CA 95747</div></div>
-          <div class="fcb-row"><div class="fcb-icon">🕐</div><div class="fcb-text"><strong>Office Hours</strong>Mon · Tue · Thu · Fri: 10 AM – 2 PM</div></div>
-        </div>
-        <div class="footer-social">
-          <a href="https://www.facebook.com/Roseville-Elks-Lodge-2248-1030188310368426/" class="f-soc" target="_blank" rel="noopener">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            Facebook
+          <a
+            href="#"
+            class="rcp-hero-btn-secondary"
+            style="flex-shrink: 0; padding-bottom: 6px"
+          >
+            Read Our Philosophy
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="#787878"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
           </a>
         </div>
+
+        <div class="rcp-pillars-grid rcp-reveal">
+          <div class="rcp-pillar">
+            <img
+              class="rcp-pillar-img"
+              src="https://static.wixstatic.com/media/ce942a_f4c84bd04c144d498cfc27d08ea63953~mv2.jpg"
+              alt="Exploration at RCP"
+              style="min-height: 480px"
+            />
+            <div class="rcp-pillar-overlay">
+              <div class="rcp-pillar-accent" style="background: #2a7a4b"></div>
+              <div class="rcp-pillar-tag">01 — Foundation</div>
+              <div class="rcp-pillar-name">
+                Exploration &amp;<br />Self-Discovery
+              </div>
+              <div class="rcp-pillar-desc">
+                Children explore freely in a judgement-free environment,
+                following their curiosities with open-ended opportunities and
+                adult support.
+              </div>
+            </div>
+          </div>
+          <div class="rcp-pillar">
+            <img
+              class="rcp-pillar-img"
+              src="https://static.wixstatic.com/media/ce942a_a7744e12567a42e898f3465ebf0306ec~mv2.jpg"
+              alt="Hands-on learning"
+              style="object-position: center 30%"
+            />
+            <div class="rcp-pillar-overlay">
+              <div class="rcp-pillar-accent" style="background: #e05a1c"></div>
+              <div class="rcp-pillar-tag">02 — Method</div>
+              <div class="rcp-pillar-name">Hands-On<br />Experience</div>
+              <div class="rcp-pillar-desc">
+                "Experience is not the best teacher, it is the only teacher." —
+                Bev Bos
+              </div>
+            </div>
+          </div>
+          <div class="rcp-pillar">
+            <img
+              class="rcp-pillar-img"
+              src="https://static.wixstatic.com/media/ce942a_1e3eab98a03a4e3f88560ecc1e7d7356~mv2.jpg"
+              alt="RCP community"
+            />
+            <div class="rcp-pillar-overlay">
+              <div class="rcp-pillar-accent" style="background: #1b6fa8"></div>
+              <div class="rcp-pillar-tag">03 — Culture</div>
+              <div class="rcp-pillar-name">Community &amp;<br />Belonging</div>
+              <div class="rcp-pillar-desc">
+                Parent participation builds a sense of shared purpose,
+                responsibility, and belonging that extends well beyond the
+                classroom.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Navigate -->
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="https://www.elks2248.com/our-lodge">Our Lodge</a></li>
-          <li><a href="https://www.elks2248.com/lodge-officers">Lodge Officers</a></li>
-          <li><a href="https://www.elks2248.com/about-our-lodge">Lodge History</a></li>
-          <li><a href="https://www.elks2248.com/our-programs">Charitable Programs</a></li>
-          <li><a href="https://www.elks2248.com/monthly-calendar">Monthly Calendar</a></li>
-          <li><a href="https://www.elks2248.com/newsletter">Newsletter</a></li>
-          <li><a href="https://www.elks2248.com/members-only">Members Only</a></li>
-        </ul>
+    <!-- ── PROGRAM SWITCHER ───────────────────────────────────── -->
+    <section class="rcp-programs">
+      <div class="rcp-programs-inner">
+        <div class="rcp-reveal">
+          <div class="rcp-section-eyebrow">Class Schedules</div>
+          <div class="rcp-section-title">
+            Find the Right Program<br />for Your Child
+          </div>
+        </div>
+
+        <div class="rcp-programs-layout">
+          <div class="rcp-programs-tabs" role="tablist">
+            <div
+              class="rcp-programs-tab active"
+              data-tab="mwf"
+              role="tab"
+              tabindex="0"
+            >
+              <span class="rcp-programs-tab-label">Mon / Wed / Fri</span>
+              <span class="rcp-programs-tab-dot"></span>
+            </div>
+            <div
+              class="rcp-programs-tab"
+              data-tab="tth-am"
+              role="tab"
+              tabindex="0"
+            >
+              <span class="rcp-programs-tab-label">Tue / Thu — Morning</span>
+              <span class="rcp-programs-tab-dot"></span>
+            </div>
+            <div
+              class="rcp-programs-tab"
+              data-tab="tth-pm"
+              role="tab"
+              tabindex="0"
+            >
+              <span class="rcp-programs-tab-label">Tue / Thu — Afternoon</span>
+              <span class="rcp-programs-tab-dot"></span>
+            </div>
+            <div
+              class="rcp-programs-tab"
+              data-tab="summer"
+              role="tab"
+              tabindex="0"
+            >
+              <span class="rcp-programs-tab-label">Summer Camp</span>
+              <span class="rcp-programs-tab-dot"></span>
+            </div>
+          </div>
+
+          <div class="rcp-programs-panels">
+            <div class="rcp-programs-panel active" data-panel="mwf">
+              <div class="rcp-panel-tag">Monday · Wednesday · Friday</div>
+              <div class="rcp-panel-title">
+                Morning Sessions,<br />Three Days a Week
+              </div>
+              <p class="rcp-panel-body">
+                Our Monday/Wednesday/Friday program offers a structured rhythm
+                of play-based learning across three mornings. Mixed-age
+                groupings support natural mentorship between children, fostering
+                independence and social development together.
+              </p>
+              <div class="rcp-panel-meta">
+                <div class="rcp-panel-chip">9:00 – 11:30 AM</div>
+                <div class="rcp-panel-chip">Ages 2y 9m – 6.5 years</div>
+                <div class="rcp-panel-chip">Mixed-age class</div>
+                <div class="rcp-panel-chip">~1 Year Waitlist</div>
+              </div>
+              <a href="#" class="rcp-panel-link">
+                View registration process
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M3 7h8M7 3l4 4-4 4"
+                    stroke="#2a7a4b"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div class="rcp-programs-panel" data-panel="tth-am">
+              <div class="rcp-panel-tag">Tuesday · Thursday · Morning</div>
+              <div class="rcp-panel-title">Two Days, Full<br />Engagement</div>
+              <p class="rcp-panel-body">
+                The Tuesday/Thursday morning class is ideal for families easing
+                into the preschool routine. Children benefit from RCP's full
+                play-based curriculum and parent participation model across two
+                focused mornings per week.
+              </p>
+              <div class="rcp-panel-meta">
+                <div class="rcp-panel-chip">9:00 – 11:30 AM</div>
+                <div class="rcp-panel-chip">Ages 2y 9m – 6.5 years</div>
+                <div class="rcp-panel-chip">Mixed-age class</div>
+                <div class="rcp-panel-chip">~1 Year Waitlist</div>
+              </div>
+              <a href="#" class="rcp-panel-link">
+                View registration process
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M3 7h8M7 3l4 4-4 4"
+                    stroke="#2a7a4b"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div class="rcp-programs-panel" data-panel="tth-pm">
+              <div class="rcp-panel-tag">Tuesday · Thursday · Afternoon</div>
+              <div class="rcp-panel-title">
+                Afternoon Sessions<br />for Flexible Families
+              </div>
+              <p class="rcp-panel-body">
+                RCP's Tuesday/Thursday afternoon program brings the same rich,
+                child-directed learning into a later time slot — ideal for
+                families with morning scheduling constraints while maintaining
+                all participation requirements.
+              </p>
+              <div class="rcp-panel-meta">
+                <div class="rcp-panel-chip">12:00 – 2:30 PM</div>
+                <div class="rcp-panel-chip">Ages 2y 9m – 6.5 years</div>
+                <div class="rcp-panel-chip">Mixed-age class</div>
+                <div class="rcp-panel-chip">~1 Year Waitlist</div>
+              </div>
+              <a href="#" class="rcp-panel-link">
+                View registration process
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M3 7h8M7 3l4 4-4 4"
+                    stroke="#2a7a4b"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div class="rcp-programs-panel" data-panel="summer">
+              <div class="rcp-panel-tag">Summer Program</div>
+              <div class="rcp-panel-title">
+                RCP Summer Camp<br />— Registration Open
+              </div>
+              <p class="rcp-panel-body">
+                RCP's Summer Camp extends the school-year community into the
+                summer months. Children engage in seasonal play-based
+                activities, outdoor exploration, and the same warm,
+                family-centered environment they know from the school year.
+              </p>
+              <div class="rcp-panel-meta">
+                <div class="rcp-panel-chip">Summer 2026</div>
+                <div class="rcp-panel-chip">Ages 2y 9m – 6.5 years</div>
+                <div class="rcp-panel-chip">Registration Open</div>
+              </div>
+              <a href="#" class="rcp-panel-link">
+                Register for Summer Camp
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M3 7h8M7 3l4 4-4 4"
+                    stroke="#2a7a4b"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Services -->
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="https://www.elks2248.com/event-registration">Events &amp; Dinners</a></li>
-          <li><a href="https://www.elks2248.com/lodge-rental">Lodge Rental</a></li>
-          <li><a href="https://www.elks2248.com/rv">RV Reservations</a></li>
-          <li><a href="https://www.elks2248.com/rv-park-reservations">Reserve RV Spot</a></li>
-          <li><a href="https://www.elks2248.com/rv-area-photos">RV Area Photos</a></li>
-        </ul>
+    <!-- ── VOICES ─────────────────────────────────────────────── -->
+    <section class="rcp-voices">
+      <div class="rcp-voices-inner rcp-reveal">
+        <div class="rcp-voices-quote">
+          "The community we found at RCP changed how we think about parenting.
+          Watching our daughter thrive alongside children whose families we
+          genuinely know — that's something no other preschool offered us."
+        </div>
+        <div class="rcp-voices-divider"></div>
+        <div class="rcp-voices-author">
+          RCP Family
+          <span>Parent · Class of 2025</span>
+        </div>
       </div>
+    </section>
 
-      <!-- Hours -->
-      <div class="footer-col">
-        <h4>Bar &amp; Office Hours</h4>
-        <ul class="footer-hours-list">
-          <li><span>Monday &amp; Tuesday</span>Bar 4–9 PM · Food 4–6:30 PM</li>
-          <li><span>Wednesday</span>Bar 4–9 PM · Charcuterie only</li>
-          <li><span>1st &amp; 3rd Thursday</span>Meeting nights · Bar 4–9 PM · Dinner 4–6 PM</li>
-          <li><span>Friday</span>Varies — see Events calendar</li>
-          <li><span>Saturday &amp; Sunday</span>Closed (rentals available)</li>
-          <li><span>Office Hours</span>Mon · Tue · Thu · Fri: 10 AM – 2 PM</li>
-        </ul>
+    <!-- ── ADMISSIONS ─────────────────────────────────────────── -->
+    <section class="rcp-admissions">
+      <div class="rcp-admissions-inner">
+        <div class="rcp-admissions-text rcp-reveal">
+          <div class="rcp-section-eyebrow">2026–2027 Enrollment</div>
+          <div class="rcp-section-title">Join Our<br />Community</div>
+          <p class="rcp-admissions-body">
+            Enrollment for the upcoming school year is now open. We recommend
+            beginning with a campus tour — it's the best way to experience RCP's
+            philosophy in action and start the registration process. Children
+            may be added to the waitlist from 18 months of age, following a
+            completed tour.
+          </p>
+          <div class="rcp-admissions-actions">
+            <a href="#" class="rcp-btn-primary">Book a Tour</a>
+            <a href="#" class="rcp-btn-outline">Registration Process</a>
+          </div>
+        </div>
+
+        <div class="rcp-admissions-card rcp-reveal rcp-reveal-delay-2">
+          <div class="rcp-admissions-card-title">Key Enrollment Dates</div>
+          <div class="rcp-admissions-timeline">
+            <div class="rcp-timeline-item">
+              <div class="rcp-timeline-left">
+                <div class="rcp-timeline-dot"></div>
+                <div class="rcp-timeline-line"></div>
+              </div>
+              <div>
+                <div class="rcp-timeline-event">Spring Open House</div>
+                <div class="rcp-timeline-date">
+                  Spring 2026 — Prospective families welcome
+                </div>
+              </div>
+            </div>
+            <div class="rcp-timeline-item">
+              <div class="rcp-timeline-left">
+                <div
+                  class="rcp-timeline-dot"
+                  style="background: var(--rcp-orange)"
+                ></div>
+                <div class="rcp-timeline-line"></div>
+              </div>
+              <div>
+                <div class="rcp-timeline-event">Campus Tours Available</div>
+                <div class="rcp-timeline-date">
+                  Year-round by appointment — required before waitlisting
+                </div>
+              </div>
+            </div>
+            <div class="rcp-timeline-item">
+              <div class="rcp-timeline-left">
+                <div
+                  class="rcp-timeline-dot"
+                  style="background: var(--rcp-blue)"
+                ></div>
+                <div class="rcp-timeline-line"></div>
+              </div>
+              <div>
+                <div class="rcp-timeline-event">Summer Camp Registration</div>
+                <div class="rcp-timeline-date">
+                  Summer 2026 — Now accepting registrations
+                </div>
+              </div>
+            </div>
+            <div class="rcp-timeline-item">
+              <div class="rcp-timeline-left">
+                <div class="rcp-timeline-dot"></div>
+                <div class="rcp-timeline-line"></div>
+              </div>
+              <div>
+                <div class="rcp-timeline-event">
+                  2026–2027 School Year Begins
+                </div>
+                <div class="rcp-timeline-date">
+                  Fall 2026 — Orientation &amp; first parent meeting
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-    </div><!-- /footer-top -->
-
-    <div class="footer-bottom">
-      <p>© 2024 Roseville Elks Lodge #2248 · All rights reserved.</p>
-      <div class="f-links">
-        <a href="https://www.elks2248.com/our-lodge">About</a>
-        <a href="https://www.elks2248.com/lodge-rental">Rentals</a>
-        <a href="https://www.elks2248.com/rv">RV Park</a>
-        <a href="https://www.elks2248.com/members-only">Members</a>
+    <!-- ── FOOTER ─────────────────────────────────────────────── -->
+    <footer class="rcp-footer">
+      <div class="rcp-footer-inner">
+        <div class="rcp-footer-top">
+          <div class="rcp-footer-brand">
+            <div class="rcp-footer-logo">
+              r<span class="dot-g">•</span>c<span class="dot-o">•</span>p<span
+                class="dot-b"
+                >•</span
+              >
+            </div>
+            <div class="rcp-footer-tagline">
+              A play-based, parent participation preschool serving Roseville, CA
+              since the beginning of something wonderful.
+            </div>
+            <div class="rcp-footer-address">
+              50 Corporation Yard Road<br />
+              Roseville, CA 95678<br />
+              director@rosevillecp.org
+            </div>
+            <div class="rcp-footer-socials">
+              <a href="#" class="rcp-footer-social" aria-label="Facebook">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                    stroke="rgba(255,255,255,0.6)"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="rcp-footer-social" aria-label="Instagram">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="2"
+                    y="2"
+                    width="20"
+                    height="20"
+                    rx="5"
+                    ry="5"
+                    stroke="rgba(255,255,255,0.6)"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="4"
+                    stroke="rgba(255,255,255,0.6)"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="1"
+                    fill="rgba(255,255,255,0.6)"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="rcp-footer-col-title">School</div>
+            <ul class="rcp-footer-links">
+              <li><a href="#">About RCP</a></li>
+              <li><a href="#">Our Staff</a></li>
+              <li><a href="#">Our Philosophy</a></li>
+              <li><a href="#">Photo Gallery</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="rcp-footer-col-title">Families</div>
+            <ul class="rcp-footer-links">
+              <li><a href="#">Parent Participation</a></li>
+              <li><a href="#">Parent Resources</a></li>
+              <li><a href="#">Monthly Meetings</a></li>
+              <li><a href="#">Pay Tuition</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="rcp-footer-col-title">Enroll</div>
+            <ul class="rcp-footer-links">
+              <li><a href="#">Classes &amp; Registration</a></li>
+              <li><a href="#">Registration Process</a></li>
+              <li><a href="#">Book a Tour</a></li>
+              <li><a href="#">Support RCP</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="rcp-footer-bottom">
+          <span
+            >© 2026 Roseville Community Preschool. All rights reserved.</span
+          >
+          <span>let them play</span>
+        </div>
       </div>
-      <p class="f-glad">Redesigned by GLAD Technology</p>
-    </div>
+    </footer>
 
-  </div>
-</footer>
+    <script>
+      // ── MOBILE NAV ──────────────────────────────────────────
+      const hamburger = document.getElementById("rcp-hamburger");
+      const mobileMenu = document.getElementById("rcp-mobile-menu");
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+      });
 
-<script>
-  const gladEl = document.getElementById('glad-header');
-  const navEl  = document.getElementById('navbar');
-  let lastY = window.scrollY, gladVisible = true;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y > 80 && y > lastY) {
-      if (gladVisible) { gladEl.classList.add('hidden'); navEl.classList.add('glad-hidden'); gladVisible = false; }
-    } else if (y < lastY && y < 40) {
-      if (!gladVisible) { gladEl.classList.remove('hidden'); navEl.classList.remove('glad-hidden'); gladVisible = true; }
-    }
-    lastY = y;
-    navEl.classList.toggle('scrolled', y > 40);
-  }, { passive: true });
+      // ── HERO CAROUSEL ───────────────────────────────────────
+      const slides = document.querySelectorAll(".rcp-hero-slide");
+      const pips = document.querySelectorAll(".rcp-hero-pip");
+      let current = 0;
+      let autoTimer;
 
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileM = document.getElementById('mobileMenu');
-  menuBtn.addEventListener('click', () => {
-    mobileM.classList.toggle('open');
-    menuBtn.classList.toggle('open');
-  });
-  mobileM.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
-    mobileM.classList.remove('open');
-    menuBtn.classList.remove('open');
-  }));
+      function goTo(index) {
+        slides[current].classList.remove("active");
+        pips[current].classList.remove("active");
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-  }, { threshold: 0.07 });
-  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
-</script>
-</body>
+        current = (index + slides.length) % slides.length;
+
+        slides[current].classList.add("active");
+        pips[current].classList.add("active");
+      }
+
+      function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goTo(current + 1), 5000);
+      }
+
+      document.getElementById("rcp-next").addEventListener("click", () => {
+        goTo(current + 1);
+        startAuto();
+      });
+      document.getElementById("rcp-prev").addEventListener("click", () => {
+        goTo(current - 1);
+        startAuto();
+      });
+      pips.forEach((pip) => {
+        pip.addEventListener("click", () => {
+          goTo(parseInt(pip.dataset.pip));
+          startAuto();
+        });
+      });
+
+      startAuto();
+
+      // ── PROGRAM TABS ────────────────────────────────────────
+      const tabs = document.querySelectorAll(".rcp-programs-tab");
+      const panels = document.querySelectorAll(".rcp-programs-panel");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const key = tab.dataset.tab;
+          tabs.forEach((t) => t.classList.remove("active"));
+          panels.forEach((p) => p.classList.remove("active"));
+          tab.classList.add("active");
+          document
+            .querySelector(`.rcp-programs-panel[data-panel="${key}"]`)
+            .classList.add("active");
+        });
+        tab.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") tab.click();
+        });
+      });
+
+      // ── SCROLL REVEAL ───────────────────────────────────────
+      const revealEls = document.querySelectorAll(".rcp-reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      revealEls.forEach((el) => observer.observe(el));
+
+      // GLAD HEADER
+      const gladHeader = document.getElementById("glad-header");
+      let lastScrollY = window.scrollY;
+      let gladVisible = true;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y > 80 && y > lastScrollY) {
+            if (gladVisible) {
+              gladHeader.classList.add("hidden");
+              gladVisible = false;
+            }
+          } else if (y < lastScrollY && y < 40) {
+            if (!gladVisible) {
+              gladHeader.classList.remove("hidden");
+              gladVisible = true;
+            }
+          }
+          lastScrollY = y;
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
 </html>

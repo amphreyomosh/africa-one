@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thatcher Brook Center — Enriching Abilities Since 1991</title>
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --tbc-slate:    #13133c;
+    --tbc-slate-dk: #2a2a40;
+    --tbc-slate-md: #212146;
+    --tbc-slate-lt: #7c7c9e;
+    --tbc-lilac:    #9898c0;
+    --tbc-lilac-lt: #d4d4e8;
+    --tbc-cream:    #f6f6f2;
+    --tbc-white:    #ffffff;
+    --tbc-text:     #1e1e2e;
+    --tbc-muted:    #5a5a6e;
+    --tbc-green:    #4a7c59;
+    --tbc-green-lt: #e8f0eb;
+    --tbc-border:   #e0e0ec;
+    --tbc-r: 0px;
+    --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --sp-xs: 0.5rem;
+    --sp-sm: 1rem;
+    --sp-md: 2rem;
+    --sp-lg: 4rem;
+    --sp-xl: 6rem;
+  --max-w: 1160px;
+
+  --shell-max: 1160px;
+  --gutter: 2rem;
+}
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-sans);
+    color: var(--tbc-text);
+    background: var(--tbc-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* ── SKIP LINK ── */
+  .tbc-skip {
+    position: absolute; top: -999px; left: 1rem;
+    background: var(--tbc-slate); color: var(--tbc-white);
+    padding: 0.5rem 1rem; font-size: 0.875rem;
+    z-index: 9999;
+  }
+  .tbc-skip:focus { top: 1rem; }
+
+  /* ══════════════════════════════════════
+     1. NAV
+  ══════════════════════════════════════ */
+  .tbc-nav {
+    position: fixed; top: auto; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(16, 16, 38, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: top 0.3s ease;
+  }
+
+  .tbc-nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--sp-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .tbc-nav-brand {
+    display: flex; flex-direction: column; gap: 1px;
+    text-decoration: none;
+  }
+  .tbc-nav-brand-name {
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--tbc-white); letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .tbc-nav-brand-tagline {
+    font-size: 0.68rem; font-weight: 400;
+    color: var(--tbc-lilac); letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .tbc-nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .tbc-nav-links a {
+    font-size: 0.8rem; font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .tbc-nav-links a:hover { color: var(--tbc-white); }
+
+  .tbc-nav-cta {
+    font-size: 0.78rem !important; font-weight: 600 !important;
+    color: var(--tbc-white) !important;
+    background: var(--tbc-green);
+    padding: 0.45rem 1.1rem !important;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .tbc-nav-cta:hover { background: #3a6347 !important; }
+
+  .tbc-nav-toggle {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    padding: 0.25rem;
+    color: var(--tbc-white);
+  }
+
+  .tbc-nav-mobile {
+    display: none;
+    background: var(--tbc-slate-dk);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1rem var(--sp-md) 1.5rem;
+  }
+  .tbc-nav-mobile.is-open { display: block; }
+  .tbc-nav-mobile ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .tbc-nav-mobile a {
+    font-size: 0.85rem; font-weight: 500;
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    display: block; padding: 0.25rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* ══════════════════════════════════════
+     2. HERO CAROUSEL  — mobile-first
+  ══════════════════════════════════════ */
+
+  /* BASE (mobile) */
+  .tbc-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 64px;
+    /* full viewport height minus nav */
+    height: calc(100svh - 64px);
+    min-height: 480px;
+  }
+
+  .tbc-hero-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+  }
+
+  .tbc-hero-slide {
+    /* exactly viewport width — never overflow */
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tbc-hero-slide-bg {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center top;
+    transition: transform 8s ease;
+  }
+  .tbc-hero-slide.is-active .tbc-hero-slide-bg {
+    transform: scale(1.04);
+  }
+
+  /* Mobile overlay: heavy bottom-to-top so content always readable */
+  .tbc-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(12, 12, 22, 0.97) 0%,
+      rgba(9, 9, 17, 0.75) 40%,
+      rgba(28,28,50,0.30) 70%,
+      rgba(28,28,50,0.10) 100%
+    );
+  }
+
+  /* Content sits at the bottom on mobile */
+  .tbc-hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 1.25rem 4.5rem;
+    /* prevent any child from escaping the slide */
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .tbc-hero-kicker {
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--tbc-lilac);
+    margin-bottom: 0.65rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    /* prevent line-break overflow */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tbc-hero-kicker::before {
+    content: '';
+    display: block; flex-shrink: 0;
+    width: 20px; height: 1px;
+    background: var(--tbc-lilac);
+  }
+
+  .tbc-hero-title {
+    font-size: clamp(1.55rem, 6vw, 2.2rem);
+    font-weight: 700;
+    color: var(--tbc-white);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    width: 100%;
+    margin-bottom: 0.85rem;
+    word-break: break-word;
+  }
+
+  .tbc-hero-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.78);
+    width: 100%;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .tbc-hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .tbc-hero-btn-primary {
+    display: block;
+    width: 100%;
+    background: var(--tbc-green);
+    color: var(--tbc-white);
+    font-size: 0.875rem; font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.9rem 1.5rem;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+    box-sizing: border-box;
+  }
+  .tbc-hero-btn-primary:hover {
+    background: #3a6347;
+    transform: translateY(-1px);
+  }
+
+  .tbc-hero-link-secondary {
+    font-size: 0.82rem; font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+  .tbc-hero-link-secondary:hover { color: var(--tbc-white); }
+
+  /* Dots */
+  .tbc-hero-controls {
+    position: absolute; bottom: 1.25rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; align-items: center; gap: 0.6rem;
+    z-index: 10;
+  }
+
+  .tbc-hero-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    border: none; cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+    padding: 0;
+  }
+  .tbc-hero-dot.is-active {
+    background: var(--tbc-white);
+    transform: scale(1.3);
+  }
+
+  /* Arrows — hidden on mobile */
+  .tbc-hero-arrow {
+    display: none;
+  }
+
+  /* ══════════════════════════════════════
+     3. MISSION NARRATIVE
+  ══════════════════════════════════════ */
+  .tbc-mission {
+    padding: var(--sp-xl) var(--sp-md);
+    background: var(--tbc-white);
+  }
+
+  .tbc-mission-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .tbc-section-label {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--tbc-lilac);
+    margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .tbc-section-label::after {
+    content: '';
+    display: block; flex: 1; height: 1px;
+    background: var(--tbc-border);
+    max-width: 60px;
+  }
+
+  .tbc-mission-headline {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--tbc-slate-dk);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+
+  .tbc-mission-image-wrap {
+    margin: 2.5rem 0;
+    border-radius: 6px;
+    overflow: hidden;
+    max-height: 420px;
+  }
+
+  .tbc-mission-image-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .tbc-mission-body {
+    font-size: 1.05rem;
+    color: var(--tbc-muted);
+    line-height: 1.8;
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+
+  .tbc-mission-body p:first-child {
+    font-size: 1.15rem;
+    color: var(--tbc-text);
+    font-weight: 400;
+    line-height: 1.75;
+  }
+
+  /* ══════════════════════════════════════
+     4. ACCORDION PROGRAMS
+  ══════════════════════════════════════ */
+  .tbc-programs {
+    padding: var(--sp-xl) var(--sp-md);
+    background: var(--tbc-cream);
+  }
+
+  .tbc-programs-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .tbc-programs-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+
+  .tbc-programs-title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--tbc-slate-dk);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .tbc-programs-intro {
+    font-size: 0.95rem;
+    color: var(--tbc-muted);
+    line-height: 1.7;
+  }
+
+  .tbc-accordion {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--tbc-border);
+  }
+
+  .tbc-accordion-item {
+    border-bottom: 1px solid var(--tbc-border);
+  }
+
+  .tbc-accordion-trigger {
+    width: 100%; background: none; border: none;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .tbc-accordion-trigger-left {
+    display: flex; align-items: center; gap: 1.25rem;
+  }
+
+  .tbc-accordion-num {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--tbc-lilac);
+    min-width: 24px;
+  }
+
+  .tbc-accordion-name {
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--tbc-slate-dk);
+    line-height: 1.3;
+  }
+
+  .tbc-accordion-item.is-open .tbc-accordion-name {
+    color: var(--tbc-green);
+  }
+
+  .tbc-accordion-icon {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border: 1px solid var(--tbc-border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--tbc-muted);
+    transition: background 0.2s, border-color 0.2s, transform 0.3s;
+  }
+  .tbc-accordion-item.is-open .tbc-accordion-icon {
+    background: var(--tbc-green);
+    border-color: var(--tbc-green);
+    color: var(--tbc-white);
+    transform: rotate(45deg);
+  }
+
+  .tbc-accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+  .tbc-accordion-item.is-open .tbc-accordion-body {
+    grid-template-rows: 1fr;
+  }
+
+  .tbc-accordion-body-inner {
+    overflow: hidden;
+  }
+
+  .tbc-accordion-content {
+    padding: 0 0 2rem 3rem;
+    font-size: 0.95rem;
+    color: var(--tbc-muted);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  .tbc-accordion-content ul {
+    margin-top: 1rem;
+    padding-left: 1.25rem;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+
+  .tbc-accordion-content li {
+    color: var(--tbc-muted);
+    font-size: 0.9rem;
+  }
+
+  /* ══════════════════════════════════════
+     5. EDITORIAL FEATURE
+  ══════════════════════════════════════ */
+  .tbc-feature {
+    position: relative;
+    height: 560px;
+    overflow: hidden;
+  }
+
+  .tbc-feature-bg {
+    position: absolute; inset: 0;
+    background: url('http://nebula.wsimg.com/b4432d350d938e9e3d8f89607004ae6a?AccessKeyId=5D2974F55BC3CD7E5431&disposition=0&alloworigin=1') center/cover no-repeat;
+  }
+
+  .tbc-feature-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(42,42,64,0.88) 0%, rgba(42,42,64,0.3) 70%, transparent 100%);
+  }
+
+  .tbc-feature-inner {
+    position: relative; z-index: 2;
+    height: 100%;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--sp-md);
+    display: flex;
+    align-items: center;
+  }
+
+  .tbc-feature-box {
+    max-width: 480px;
+    padding: 3rem;
+    background: rgba(30,30,46,0.72);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+  }
+
+  .tbc-feature-box .tbc-section-label {
+    color: var(--tbc-lilac);
+    margin-bottom: 1.25rem;
+  }
+  .tbc-feature-box .tbc-section-label::after {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .tbc-feature-box-headline {
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--tbc-white);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .tbc-feature-box-text {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .tbc-feature-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--tbc-lilac);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(152,152,192,0.35);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .tbc-feature-link:hover { color: var(--tbc-white); }
+
+  /* ══════════════════════════════════════
+     6. COMMUNITY VOICE
+  ══════════════════════════════════════ */
+  .tbc-voice {
+    padding: var(--sp-xl) var(--sp-md);
+    background: var(--tbc-slate-dk);
+    text-align: center;
+  }
+
+  .tbc-voice-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .tbc-voice-mark {
+    font-size: 6rem; line-height: 0.8;
+    color: var(--tbc-lilac);
+    font-weight: 900;
+    margin-bottom: 2rem;
+    opacity: 0.4;
+    display: block;
+  }
+
+  .tbc-voice-quote {
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-weight: 300;
+    color: var(--tbc-white);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  .tbc-voice-credit {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0.25rem;
+  }
+
+  .tbc-voice-credit-line {
+    width: 32px; height: 1px;
+    background: var(--tbc-lilac);
+    margin-bottom: 0.75rem;
+    margin-left: auto; margin-right: auto;
+    opacity: 0.5;
+  }
+
+  .tbc-voice-name {
+    font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--tbc-lilac);
+  }
+
+  .tbc-voice-role {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
+  }
+
+  /* ══════════════════════════════════════
+     7. INSIGHTS GRID
+  ══════════════════════════════════════ */
+  .tbc-insights {
+    padding: var(--sp-xl) var(--sp-md);
+    background: var(--tbc-white);
+  }
+
+  .tbc-insights-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .tbc-insights-header {
+    display: flex; align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .tbc-insights-title {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--tbc-slate-dk);
+    letter-spacing: -0.02em;
+  }
+
+  .tbc-insights-more {
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--tbc-slate-md);
+    text-decoration: none;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border-bottom: 1px solid var(--tbc-border);
+    padding-bottom: 2px;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .tbc-insights-more:hover { color: var(--tbc-green); }
+
+  .tbc-insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .tbc-insight-card {
+    border: 1px solid var(--tbc-border);
+    border-radius: 6px;
+    padding: 1.75rem;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    background: var(--tbc-white);
+  }
+  .tbc-insight-card:hover {
+    border-color: var(--tbc-lilac);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(61,61,92,0.08);
+  }
+
+  .tbc-insight-card-meta {
+    display: flex; align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .tbc-insight-card-tag {
+    font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--tbc-green);
+    background: var(--tbc-green-lt);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+  }
+
+  .tbc-insight-card-date {
+    font-size: 0.72rem;
+    color: var(--tbc-slate-lt);
+    font-weight: 400;
+  }
+
+  .tbc-insight-card-title {
+    font-size: 0.98rem; font-weight: 600;
+    color: var(--tbc-slate-dk);
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  .tbc-insight-card-excerpt {
+    font-size: 0.85rem;
+    color: var(--tbc-muted);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .tbc-insight-card-read {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--tbc-slate-md);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.35rem;
+  }
+
+  /* ══════════════════════════════════════
+     8. CONVERSION
+  ══════════════════════════════════════ */
+  .tbc-cta {
+    padding: var(--sp-xl) var(--sp-md);
+    background: var(--tbc-lilac-lt);
+    border-top: 1px solid var(--tbc-border);
+    border-bottom: 1px solid var(--tbc-border);
+  }
+
+  .tbc-cta-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .tbc-cta-headline {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--tbc-slate-dk);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .tbc-cta-sub {
+    font-size: 1rem;
+    color: var(--tbc-muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .tbc-cta-form {
+    display: flex; gap: 0.75rem;
+    max-width: 480px;
+    margin: 0 auto 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .tbc-cta-input {
+    flex: 1; min-width: 200px;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--tbc-lilac);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: var(--ff-sans);
+    background: var(--tbc-white);
+    color: var(--tbc-text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .tbc-cta-input:focus { border-color: var(--tbc-slate); }
+
+  .tbc-cta-submit {
+    padding: 0.85rem 1.75rem;
+    background: var(--tbc-slate-dk);
+    color: var(--tbc-white);
+    border: none; border-radius: 4px;
+    font-size: 0.875rem; font-weight: 600;
+    font-family: var(--ff-sans);
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background 0.2s;
+  }
+  .tbc-cta-submit:hover { background: var(--tbc-green); }
+
+  .tbc-cta-disclaimer {
+    font-size: 0.75rem;
+    color: var(--tbc-slate-lt);
+    line-height: 1.5;
+  }
+
+  .tbc-cta-alt {
+    margin-top: 2rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; flex-wrap: wrap;
+  }
+
+  .tbc-cta-alt-link {
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--tbc-slate-md);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.35rem;
+    border-bottom: 1px solid var(--tbc-border);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+  .tbc-cta-alt-link:hover { color: var(--tbc-slate-dk); }
+
+  /* ══════════════════════════════════════
+     9. FOOTER
+  ══════════════════════════════════════ */
+  .tbc-footer {
+    background: var(--tbc-slate-dk);
+    padding: var(--sp-lg) var(--sp-md) var(--sp-md);
+  }
+
+  .tbc-footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .tbc-footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+
+  .tbc-footer-brand-name {
+    font-size: 0.95rem; font-weight: 700;
+    color: var(--tbc-white);
+    margin-bottom: 0.35rem;
+  }
+
+  .tbc-footer-brand-tagline {
+    font-size: 0.75rem;
+    color: var(--tbc-lilac);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.25rem;
+  }
+
+  .tbc-footer-about {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 280px;
+    overflow-wrap: break-word;
+  }
+
+  .tbc-footer-socials {
+    display: flex; gap: 0.75rem;
+  }
+
+  .tbc-footer-social-link {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tbc-footer-social-link:hover {
+    border-color: rgba(255,255,255,0.35);
+    color: var(--tbc-white);
+  }
+
+  .tbc-footer-col-label {
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1rem;
+  }
+
+  .tbc-footer-col-links {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+
+  .tbc-footer-col-links a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+    line-height: 1.4;
+    display: block;
+  }
+  .tbc-footer-col-links a:hover { color: var(--tbc-white); }
+
+  .tbc-footer-contact-item {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  .tbc-footer-contact-item svg {
+    flex-shrink: 0; margin-top: 2px;
+    color: var(--tbc-lilac);
+  }
+
+  .tbc-footer-contact-item a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .tbc-footer-contact-item a:hover { color: var(--tbc-white); }
+
+  .tbc-footer-bottom {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    flex-wrap: wrap; gap: 0.75rem;
+  }
+
+  .tbc-footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .tbc-footer-legal {
+    display: flex; gap: 1.5rem;
+    list-style: none;
+  }
+
+  .tbc-footer-legal a {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .tbc-footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ══════════════════════════════════════
+     SCROLL REVEAL
+  ══════════════════════════════════════ */
+  .tbc-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .tbc-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE — scale UP from mobile
+  ══════════════════════════════════════ */
+
+  /* ── Tablet: ≥640px ── */
+  @media (min-width: 640px) {
+    .tbc-hero {
+      height: calc(100svh - 64px);
+      min-height: 520px;
+      max-height: 780px;
+    }
+    .tbc-hero-overlay {
+      background: linear-gradient(
+        135deg,
+        rgba(4, 4, 8, 0.88) 0%,
+        rgba(28,28,50,0.50) 55%,
+        rgba(11, 11, 21, 0.675) 100%
+      );
+    }
+    .tbc-hero-content {
+      position: absolute; inset: 0;
+      justify-content: flex-end;
+      padding: 0 2.5rem 5rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      /* reset width constraint so content uses available space */
+      left: 0; right: 0;
+    }
+    .tbc-hero-kicker { font-size: 0.7rem; margin-bottom: 0.9rem; }
+    .tbc-hero-kicker::before { width: 28px; }
+    .tbc-hero-title {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      max-width: 600px;
+      margin-bottom: 1rem;
+    }
+    .tbc-hero-desc {
+      font-size: 1rem;
+      max-width: 480px;
+      margin-bottom: 1.75rem;
+    }
+    .tbc-hero-actions {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+      width: auto;
+    }
+    .tbc-hero-btn-primary {
+      display: inline-block;
+      width: auto;
+    }
+    .tbc-hero-controls { bottom: 1.75rem; gap: 0.75rem; }
+    .tbc-hero-dot { width: 8px; height: 8px; }
+    .tbc-programs-header { grid-template-columns: 1fr 1fr; }
+    .tbc-insight-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── Desktop: ≥1024px ── */
+  @media (min-width: 1024px) {
+    .tbc-hero {
+      height: 100vh;
+      min-height: 600px;
+      max-height: 900px;
+    }
+    .tbc-hero-overlay {
+      background: linear-gradient(
+        135deg,
+        rgba(28,28,50,0.84) 0%,
+        rgba(28,28,50,0.42) 60%,
+        rgba(28,28,50,0.10) 100%
+      );
+    }
+    .tbc-hero-content {
+      justify-content: center;
+      padding: 0 var(--sp-md) 0;
+    }
+    .tbc-hero-kicker { font-size: 0.72rem; margin-bottom: 1.25rem; }
+    .tbc-hero-kicker::before { width: 32px; }
+    .tbc-hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+    .tbc-hero-desc {
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+    /* Show side arrows on desktop */
+    .tbc-hero-arrow {
+      display: flex;
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--tbc-white);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+    .tbc-hero-arrow:hover { background: rgba(255,255,255,0.2); }
+    .tbc-hero-arrow-prev { left: 1.5rem; }
+    .tbc-hero-arrow-next { right: 1.5rem; }
+    .tbc-hero-controls { bottom: 2.5rem; }
+    .tbc-insight-grid { grid-template-columns: repeat(3, 1fr); }
+    .tbc-footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  }
+
+  /* ── Other non-hero layout fixes below 640px ── */
+  @media (max-width: 639px) {
+    :root { --sp-lg: 3rem; --sp-xl: 4rem; }
+    .tbc-nav-links { display: none; }
+    .tbc-nav-toggle { display: block; }
+    .tbc-programs-header { grid-template-columns: 1fr; }
+    .tbc-insight-grid { grid-template-columns: 1fr; }
+    .tbc-footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    .tbc-footer-bottom { flex-direction: column; align-items: flex-start; }
+    .tbc-feature-box { padding: 1.75rem; }
+    .tbc-cta-form { flex-direction: column; }
+    .tbc-cta-input, .tbc-cta-submit { width: 100%; }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .tbc-nav-links { display: none; }
+    .tbc-nav-toggle { display: block; }
+    .tbc-footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .tbc-footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tbc-hero-track { transition: none; }
+    .tbc-hero-slide-bg { transition: none; }
+    .tbc-reveal { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tbc-hero-track { transition: none; }
+    .tbc-hero-slide-bg { transition: none; }
+    .tbc-reveal { opacity: 1; transform: none; }
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<a href="#main" class="tbc-skip">Skip to main content</a>
+
+<!-- ── NAV ── -->
+<nav class="tbc-nav" role="navigation" aria-label="Main">
+  <div class="tbc-nav-inner">
+    <a href="#" class="tbc-nav-brand" aria-label="Thatcher Brook Center home">
+      <span class="tbc-nav-brand-name">Thatcher Brook Center</span>
+      <span class="tbc-nav-brand-tagline">Enriching abilities since 1991</span>
+    </a>
+    <ul class="tbc-nav-links" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Newsletter</a></li>
+      <li><a href="#">Services Offered</a></li>
+      <li><a href="#">Photo Gallery</a></li>
+      <li><a href="#" class="tbc-nav-cta">Contact Us</a></li>
+    </ul>
+    <button class="tbc-nav-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMobileNav(this)">
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="8" width="16" height="2" rx="1" fill="currentColor"/>
+        <rect y="16" width="22" height="2" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+  <div class="tbc-nav-mobile" id="tbc-mobile-nav" aria-hidden="true">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Newsletter</a></li>
+      <li><a href="#">Services Offered</a></li>
+      <li><a href="#">Photo Gallery</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ══════════════════════════════════════
+     SECTION 1 — HERO CAROUSEL
+══════════════════════════════════════ -->
+<section class="tbc-hero" aria-label="Featured highlights">
+  <div class="tbc-hero-track" id="tbc-carousel-track">
+
+    <!-- Slide 1 -->
+    <div class="tbc-hero-slide is-active" aria-hidden="false">
+      <div class="tbc-hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1604866830893-c13cafa515d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9vayUyMGluJTIwbGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D');"></div>
+      <div class="tbc-hero-overlay"></div>
+      <div class="tbc-hero-content">
+       
+        <h1 class="tbc-hero-title">Every day, lived to its fullest potential.</h1>
+        <p class="tbc-hero-desc">Thatcher Brook Center provides adult day programs and career services for individuals with disabilities — grounded in dignity, health, and the joy of daily life.</p>
+        <div class="tbc-hero-actions">
+          <a href="#" class="tbc-hero-btn-primary">Explore Our Services</a>
+          <a href="#" class="tbc-hero-link-secondary">Meet our community
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M9 1L13 5L9 9M1 5H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="tbc-hero-slide" aria-hidden="true">
+      <div class="tbc-hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Ym9vayUyMGluJTIwbGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D');"></div>
+      <div class="tbc-hero-overlay"></div>
+      <div class="tbc-hero-content">
+        
+        <h1 class="tbc-hero-title">Real skills. Real community. Real life.</h1>
+        <p class="tbc-hero-desc">Our morning and afternoon programs are built around what our participants choose — cooking, arts, gardening, performing arts, and so much more.</p>
+        <div class="tbc-hero-actions">
+          <a href="#" class="tbc-hero-btn-primary">View Programs</a>
+          <a href="#" class="tbc-hero-link-secondary">Photo gallery
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M9 1L13 5L9 9M1 5H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="tbc-hero-slide" aria-hidden="true">
+      <div class="tbc-hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1700145872464-4beb41df93a3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGJvb2slMjBpbiUyMGxpYnJhcnl8ZW58MHx8MHx8fDA%3D');"></div>
+      <div class="tbc-hero-overlay"></div>
+      <div class="tbc-hero-content">
+        
+        <h1 class="tbc-hero-title">Discovering the genius in every individual.</h1>
+        <p class="tbc-hero-desc">Our Discovering Personal Genius program identifies each person's unique strengths and vocational themes — building a clear path toward meaningful career success.</p>
+        <div class="tbc-hero-actions">
+          <a href="#" class="tbc-hero-btn-primary">Learn About DPG</a>
+          <a href="#" class="tbc-hero-link-secondary">Contact us
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M9 1L13 5L9 9M1 5H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Arrows -->
+  <button class="tbc-hero-arrow tbc-hero-arrow-prev" aria-label="Previous slide" onclick="carouselStep(-1)">
+    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M7 1L1 7L7 13M1 7H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="tbc-hero-arrow tbc-hero-arrow-next" aria-label="Next slide" onclick="carouselStep(1)">
+    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M9 1L15 7L9 13M15 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <!-- Dots -->
+  <div class="tbc-hero-controls" role="tablist" aria-label="Slides">
+    <button class="tbc-hero-dot is-active" role="tab" aria-selected="true" aria-label="Slide 1" onclick="goToSlide(0)"></button>
+    <button class="tbc-hero-dot" role="tab" aria-selected="false" aria-label="Slide 2" onclick="goToSlide(1)"></button>
+    <button class="tbc-hero-dot" role="tab" aria-selected="false" aria-label="Slide 3" onclick="goToSlide(2)"></button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 2 — MISSION NARRATIVE
+══════════════════════════════════════ -->
+<section class="tbc-mission">
+  <div class="tbc-mission-inner">
+    <p class="tbc-section-label tbc-reveal">Our Mission</p>
+    <h2 class="tbc-mission-headline tbc-reveal">Assisting individuals to maximize the quality of their day — every day.</h2>
+
+    <div class="tbc-mission-image-wrap tbc-reveal">
+      <img
+        src="http://nebula.wsimg.com/67b7cf0e388246a4943add493710a543?AccessKeyId=5D2974F55BC3CD7E5431&disposition=0&alloworigin=1"
+        alt="Participants at Thatcher Brook Center"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="tbc-mission-body tbc-reveal">
+      <p>At Thatcher Brook Center, we find no greater purpose than assisting individuals who have come to us seeking excellence in service delivery — the opportunity to maximize the quality of their day. We ensure our success by the quantifiable progress on personal goals, and by the smiles we see at the start and end of each day.</p>
+      <p>Our fundamental guide is fostering individual health by teaching the tenets of good mental and physical wellbeing — through growing, understanding and eating whole foods, learning natural strategies to decrease anxiety such as physical exercise, and the modeling of healthy living by our staff.</p>
+      <p>We strive to ensure that a day for people who join us here should be as fulfilling as what we would hope for our own personal lives. It is our standard and bar of excellence to grow ourselves every day to better enable this to occur.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 3 — ACCORDION PROGRAMS
+══════════════════════════════════════ -->
+<section class="tbc-programs">
+  <div class="tbc-programs-inner">
+    <div class="tbc-programs-header tbc-reveal">
+      <div>
+        <p class="tbc-section-label">What We Offer</p>
+        <h2 class="tbc-programs-title">Programs built around the whole person.</h2>
+      </div>
+      <p class="tbc-programs-intro">Each of our programs is designed to meet participants where they are — building skills, confidence, and community through purposeful daily engagement.</p>
+    </div>
+
+    <div class="tbc-accordion tbc-reveal" role="list">
+
+      <div class="tbc-accordion-item is-open" role="listitem">
+        <button class="tbc-accordion-trigger" aria-expanded="true" onclick="toggleAccordion(this)">
+          <div class="tbc-accordion-trigger-left">
+            <span class="tbc-accordion-num">01</span>
+            <span class="tbc-accordion-name">Community-Based Morning & Afternoon Programs</span>
+          </div>
+          <span class="tbc-accordion-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+        <div class="tbc-accordion-body">
+          <div class="tbc-accordion-body-inner">
+            <div class="tbc-accordion-content">
+              <p>Our community-based adult day program — offered both morning and afternoon — is committed to offering the highest quality programming centered on teaching real-life skills and social skills. Clients design their own monthly calendars with a variety of community activities to choose from.</p>
+              <ul>
+                <li>Healthy cooking classes & whole foods education</li>
+                <li>Arts & Crafts, Drama Club, Performing Arts</li>
+                <li>Special Olympics participation</li>
+                <li>Book Club & American Sign Language</li>
+                <li>Gardening, Hiking, and Woodworking</li>
+                <li>Dance and much more</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tbc-accordion-item" role="listitem">
+        <button class="tbc-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <div class="tbc-accordion-trigger-left">
+            <span class="tbc-accordion-num">02</span>
+            <span class="tbc-accordion-name">Career Planning — Discovering Personal Genius (DPG)</span>
+          </div>
+          <span class="tbc-accordion-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+        <div class="tbc-accordion-body">
+          <div class="tbc-accordion-body-inner">
+            <div class="tbc-accordion-content">
+              <p>Thatcher Brook Center offers high quality Career Planning Services through our Discovering Personal Genius (DPG) program — a personalized approach to identifying an individual's interests, skills, and key vocational themes that help shape a vocational profile and customized job and career development plan.</p>
+              <ul>
+                <li>Personalized vocational profile development</li>
+                <li>Identification of three overarching Vocational Themes</li>
+                <li>Clarification of ideal work conditions for success</li>
+                <li>Customized job development and work-site support facilitation</li>
+                <li>Grounded in the Griffin-Hammis DPG methodology</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tbc-accordion-item" role="listitem">
+        <button class="tbc-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <div class="tbc-accordion-trigger-left">
+            <span class="tbc-accordion-num">03</span>
+            <span class="tbc-accordion-name">Health & Wellness Integration</span>
+          </div>
+          <span class="tbc-accordion-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+        <div class="tbc-accordion-body">
+          <div class="tbc-accordion-body-inner">
+            <div class="tbc-accordion-content">
+              <p>Health and wellbeing are woven into everything we do at Thatcher Brook Center. Our staff model healthy living daily, and participants engage in activities that support both mental and physical flourishing.</p>
+              <ul>
+                <li>Whole foods growing, preparation, and nutrition education</li>
+                <li>Physical exercise as a natural anxiety-reduction strategy</li>
+                <li>Staff modeling of healthy lifestyles and positive habits</li>
+                <li>Mental health awareness and emotional regulation support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tbc-accordion-item" role="listitem">
+        <button class="tbc-accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+          <div class="tbc-accordion-trigger-left">
+            <span class="tbc-accordion-num">04</span>
+            <span class="tbc-accordion-name">Participant-Led Calendar & Community Activities</span>
+          </div>
+          <span class="tbc-accordion-icon" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+        <div class="tbc-accordion-body">
+          <div class="tbc-accordion-body-inner">
+            <div class="tbc-accordion-content">
+              <p>Agency and self-determination are central to our philosophy. Each month, clients actively co-design their own calendars by selecting from a rotating set of community-based activities — ensuring that programming remains personally meaningful and self-directed.</p>
+              <ul>
+                <li>Monthly client-designed activity calendars</li>
+                <li>Community integration outings and local partnerships</li>
+                <li>Rotating activity offerings to maintain engagement</li>
+                <li>Focus on social skill development in real-world settings</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 4 — EDITORIAL FEATURE
+══════════════════════════════════════ -->
+<section class="tbc-feature" aria-label="Our approach">
+  <div class="tbc-feature-bg" role="img" aria-label="Thatcher Brook Center community"></div>
+  <div class="tbc-feature-overlay"></div>
+  <div class="tbc-feature-inner">
+    <div class="tbc-feature-box tbc-reveal">
+      <p class="tbc-section-label">Our Standard of Excellence</p>
+      <h2 class="tbc-feature-box-headline">A day here should be as fulfilling as any other.</h2>
+      <p class="tbc-feature-box-text">We hold ourselves to a single, uncompromising bar: a day at Thatcher Brook Center should offer the same richness, purpose, and joy that we would want for our own lives. That commitment drives us to grow ourselves every single day — so we can better serve the people who trust us with theirs.</p>
+      <a href="#" class="tbc-feature-link">
+        Learn our story
+        <svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M7 1L11 5L7 9M1 5H11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 5 — COMMUNITY VOICE
+══════════════════════════════════════ -->
+<section class="tbc-voice">
+  <div class="tbc-voice-inner tbc-reveal">
+    <span class="tbc-voice-mark" aria-hidden="true">&ldquo;</span>
+    <blockquote class="tbc-voice-quote">
+      "We ensure our success by the quantifiable progress on personal goals — and by the smiles we see at the start and end of each day."
+    </blockquote>
+    <div class="tbc-voice-credit">
+      <div class="tbc-voice-credit-line"></div>
+      <cite class="tbc-voice-name">Thatcher Brook Center Team</cite>
+      <span class="tbc-voice-role">Biddeford, Maine · In service since 1991</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 6 — INSIGHTS GRID
+══════════════════════════════════════ -->
+<section class="tbc-insights">
+  <div class="tbc-insights-inner">
+    <div class="tbc-insights-header tbc-reveal">
+      <h2 class="tbc-insights-title">From the Center</h2>
+      <a href="#" class="tbc-insights-more">All updates
+        <svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M7 1L11 5L7 9M1 5H11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="tbc-insight-grid">
+
+      <a href="#" class="tbc-insight-card tbc-reveal">
+        <div class="tbc-insight-card-meta">
+          <span class="tbc-insight-card-tag">Newsletter</span>
+          <span class="tbc-insight-card-date">Spring 2025</span>
+        </div>
+        <h3 class="tbc-insight-card-title">Spring Newsletter: New Activities, New Voices</h3>
+        <p class="tbc-insight-card-excerpt">This season's newsletter highlights our newest community activities, participant spotlights, and upcoming Special Olympics preparations.</p>
+        <span class="tbc-insight-card-read">Read newsletter
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M6 1L9 4L6 7M1 4H9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="tbc-insight-card tbc-reveal">
+        <div class="tbc-insight-card-meta">
+          <span class="tbc-insight-card-tag">Programs</span>
+          <span class="tbc-insight-card-date">Jan 2025</span>
+        </div>
+        <h3 class="tbc-insight-card-title">Discovering Personal Genius: A Path to Meaningful Work</h3>
+        <p class="tbc-insight-card-excerpt">Our DPG career planning service helps participants identify their vocational themes and build a customized job development plan grounded in their strengths.</p>
+        <span class="tbc-insight-card-read">Read more
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M6 1L9 4L6 7M1 4H9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a href="#" class="tbc-insight-card tbc-reveal">
+        <div class="tbc-insight-card-meta">
+          <span class="tbc-insight-card-tag">Community</span>
+          <span class="tbc-insight-card-date">Oct 2024</span>
+        </div>
+        <h3 class="tbc-insight-card-title">Gardening, Cooking & Wellness: A Whole-Person Approach</h3>
+        <p class="tbc-insight-card-excerpt">From growing vegetables to learning whole-food cooking, our health programming has become one of the most popular parts of our participants' weekly calendars.</p>
+        <span class="tbc-insight-card-read">Read more
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M6 1L9 4L6 7M1 4H9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 7 — CONVERSION / NEWSLETTER
+══════════════════════════════════════ -->
+<section class="tbc-cta">
+  <div class="tbc-cta-inner tbc-reveal">
+    <h2 class="tbc-cta-headline">Stay connected with Thatcher Brook Center.</h2>
+    <p class="tbc-cta-sub">Sign up to receive our seasonal newsletter — full of program updates, participant stories, and community news from Biddeford, Maine.</p>
+    <div class="tbc-cta-form">
+      <input class="tbc-cta-input" type="email" placeholder="Your email address" aria-label="Email address">
+      <button class="tbc-cta-submit" type="button">Subscribe</button>
+    </div>
+    <p class="tbc-cta-disclaimer">We respect your privacy. Unsubscribe at any time.</p>
+    <div class="tbc-cta-alt">
+      <a href="#" class="tbc-cta-alt-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1C3.68 1 1 3.68 1 7s2.68 6 6 6 6-2.68 6-6-2.68-6-6-6Zm0 2.25A1.75 1.75 0 1 1 7 8.75 1.75 1.75 0 0 1 7 3.25Zm0 8.25a4.5 4.5 0 0 1-3.45-1.62C4.07 9.12 5.46 8.5 7 8.5s2.93.62 3.45 1.38A4.5 4.5 0 0 1 7 11.5Z" fill="currentColor"/></svg>
+        Contact our team
+      </a>
+      <a href="#" class="tbc-cta-alt-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M5 7h4M7 5v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        View services offered
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 8 — FOOTER
+══════════════════════════════════════ -->
+<footer class="tbc-footer">
+  <div class="tbc-footer-inner">
+    <div class="tbc-footer-grid">
+
+      <!-- Brand col -->
+      <div>
+        <div class="tbc-footer-brand-name">Thatcher Brook Center</div>
+        <div class="tbc-footer-brand-tagline">Enriching abilities since 1991</div>
+        <p class="tbc-footer-about">A community-based adult day program in Biddeford, Maine — committed to maximizing the quality of each day for every individual we serve.</p>
+        <div class="tbc-footer-socials">
+          <a href="https://www.facebook.com/ThatcherBrookCenter/" class="tbc-footer-social-link" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation col -->
+      <div>
+        <p class="tbc-footer-col-label">Navigation</p>
+        <ul class="tbc-footer-col-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Services Offered</a></li>
+          <li><a href="#">Photo Gallery</a></li>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Programs col -->
+      <div>
+        <p class="tbc-footer-col-label">Programs</p>
+        <ul class="tbc-footer-col-links">
+          <li><a href="#">Morning Program</a></li>
+          <li><a href="#">Afternoon Program</a></li>
+          <li><a href="#">Career Planning (DPG)</a></li>
+          <li><a href="#">Health & Wellness</a></li>
+          <li><a href="#">Special Olympics</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact col -->
+      <div>
+        <p class="tbc-footer-col-label">Contact</p>
+        <div class="tbc-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1C4.24 1 2 3.24 2 6c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5Zm0 6.5A1.5 1.5 0 1 1 7 4a1.5 1.5 0 0 1 0 3Z" fill="currentColor"/></svg>
+          <span>638 Elm Street, PO Box 516<br>Biddeford, ME 04005</span>
+        </div>
+        <div class="tbc-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 2h9a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9A.5.5 0 0 1 2 11.5v-9A.5.5 0 0 1 2.5 2Zm0 1.5L7 7.5l4.5-4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <a href="mailto:admin@thatcherbrookcenter.org">admin@thatcherbrookcenter.org</a>
+        </div>
+        <div class="tbc-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M11.5 9.2l-2-1.9a.75.75 0 0 0-1.06 0l-.94.94a5.25 5.25 0 0 1-1.74-1.74l.94-.94a.75.75 0 0 0 0-1.06L4.8 2.5a.75.75 0 0 0-1.06 0L2.5 3.74C2.5 8.6 5.4 11.5 10.26 11.5l1.24-1.24a.75.75 0 0 0 0-1.06Z" fill="currentColor"/></svg>
+          <a href="tel:+12072831435">(207) 283-1435</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tbc-footer-bottom">
+      <span class="tbc-footer-copy">&copy; 2025 Thatcher Brook Center. All rights reserved.</span>
+      <ul class="tbc-footer-legal">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Accessibility</a></li>
+        <li><a href="#">Site Map</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+/* ── CAROUSEL ── */
+let currentSlide = 0;
+const totalSlides = 3;
+let autoTimer;
+
+const track = document.getElementById('tbc-carousel-track');
+const slides = track.querySelectorAll('.tbc-hero-slide');
+const dots = document.querySelectorAll('.tbc-hero-dot');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('is-active');
+  slides[currentSlide].setAttribute('aria-hidden', 'true');
+  dots[currentSlide].classList.remove('is-active');
+  dots[currentSlide].setAttribute('aria-selected', 'false');
+
+  currentSlide = (n + totalSlides) % totalSlides;
+
+  slides[currentSlide].classList.add('is-active');
+  slides[currentSlide].setAttribute('aria-hidden', 'false');
+  dots[currentSlide].classList.add('is-active');
+  dots[currentSlide].setAttribute('aria-selected', 'true');
+
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => carouselStep(1), 5500);
+}
+
+function carouselStep(dir) {
+  goToSlide(currentSlide + dir);
+}
+
+autoTimer = setInterval(() => carouselStep(1), 5500);
+
+/* ── TOUCH SWIPE ── */
+let touchStartX = 0;
+const heroEl = document.querySelector('.tbc-hero');
+heroEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+heroEl.addEventListener('touchend', e => {
+  const dx = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(dx) > 40) carouselStep(dx > 0 ? 1 : -1);
+}, { passive: true });
+
+/* ── ACCORDION ── */
+function toggleAccordion(btn) {
+  const item = btn.closest('.tbc-accordion-item');
+  const isOpen = item.classList.contains('is-open');
+
+  document.querySelectorAll('.tbc-accordion-item.is-open').forEach(el => {
+    el.classList.remove('is-open');
+    el.querySelector('.tbc-accordion-trigger').setAttribute('aria-expanded', 'false');
+  });
+
+  if (!isOpen) {
+    item.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+/* ── MOBILE NAV ── */
+function toggleMobileNav(btn) {
+  const nav = document.getElementById('tbc-mobile-nav');
+  const open = nav.classList.toggle('is-open');
+  btn.setAttribute('aria-expanded', String(open));
+  nav.setAttribute('aria-hidden', String(!open));
+}
+
+/* ── SCROLL REVEAL ── */
+const revealEls = document.querySelectorAll('.tbc-reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => revealObserver.observe(el));
+
+  // ─── NAV SCROLL ───
+  const tbcNav = document.querySelector('.tbc-nav');
+  window.addEventListener('scroll', () => {
+    tbcNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tahoe Keys Beach and Harbor Association, Inc.</title>
+<style>
+  /* ── CUSTOM PROPERTIES ── */
+  :root {
+    --tkbha-navy:       #1a2d4a;
+    --tkbha-navy-deep:  #0f1e33;
+    --tkbha-blue:       #2a5fa8;
+    --tkbha-blue-mid:   #3b7fcf;
+    --tkbha-water:      #4a9edd;
+    --tkbha-ice:        #e8f3fb;
+    --tkbha-mist:       #f4f7fa;
+    --tkbha-fog:        #eef1f5;
+    --tkbha-slate:      #5c6f84;
+    --tkbha-text:       #1c2b3a;
+    --tkbha-text-soft:  #4a5e72;
+    --tkbha-white:      #ffffff;
+    --tkbha-border:     #d4dce6;
+    --tkbha-gold:       #c8953a;
+
+    --tkbha-font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --tkbha-sp-xs: 0.5rem;
+    --tkbha-sp-sm: 1rem;
+    --tkbha-sp-md: 2rem;
+    --tkbha-sp-lg: 4rem;
+    --tkbha-sp-xl: 6rem;
+    --tkbha-radius: 3px;
+    --tkbha-transition: 0.22s ease;
+
+    --shell-max: 1240px;
+    --gutter: 2rem;
+  }
+
+  /* ── RESET ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--tkbha-font);
+    color: var(--tkbha-text);
+    background: var(--tkbha-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  button { cursor: pointer; font-family: var(--tkbha-font); border: none; background: none; }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  /* ── UTILITY ── */
+  .tkbha-visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  /* ══════════════════════════════════════════
+     §1  TOP BAR + NAV
+  ══════════════════════════════════════════ */
+  .tkbha-topbar {
+    background: var(--tkbha-navy-deep);
+    color: rgba(255,255,255,0.65);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    padding: 0.45rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+  }
+  .tkbha-topbar a { color: rgba(255,255,255,0.75); transition: color var(--tkbha-transition); }
+  .tkbha-topbar a:hover { color: var(--tkbha-white); }
+
+  .tkbha-nav {
+    position: fixed; top: auto; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(26,45,74,0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: top 0.3s ease, background 0.3s;
+  }
+  .tkbha-nav-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .tkbha-nav-brand {
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .tkbha-nav-brand-name {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--tkbha-white);
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+  }
+  .tkbha-nav-brand-tag {
+    font-size: 0.67rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .tkbha-nav-links {
+    display: flex; align-items: center; gap: 0.25rem;
+  }
+  .tkbha-nav-links li a {
+    display: block;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.72);
+    letter-spacing: 0.02em;
+    border-radius: var(--tkbha-radius);
+    transition: color var(--tkbha-transition), background var(--tkbha-transition);
+    position: relative;
+  }
+  .tkbha-nav-links li a:hover { color: var(--tkbha-white); background: rgba(255,255,255,0.08); }
+  .tkbha-nav-links li.tkbha-has-sub { position: relative; }
+  .tkbha-nav-links li.tkbha-has-sub > a::after {
+    content: '';
+    display: inline-block;
+    margin-left: 5px;
+    width: 5px; height: 5px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    vertical-align: middle;
+  }
+  .tkbha-sub-menu {
+    display: none;
+    position: absolute; top: 100%; left: 0;
+    background: var(--tkbha-navy);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    min-width: 200px;
+    padding: 0.5rem 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .tkbha-nav-links li.tkbha-has-sub:hover .tkbha-sub-menu { display: block; }
+  .tkbha-sub-menu li a {
+    padding: 0.5rem 1rem;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.7);
+    display: block;
+    border-radius: 0;
+  }
+  .tkbha-sub-menu li a:hover { background: rgba(255,255,255,0.08); color: var(--tkbha-white); }
+
+  .tkbha-nav-cta {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background: var(--tkbha-blue-mid);
+    color: var(--tkbha-white);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    border-radius: var(--tkbha-radius);
+    transition: background var(--tkbha-transition);
+    margin-left: 0.5rem;
+  }
+  .tkbha-nav-cta:hover { background: var(--tkbha-water); }
+
+  .tkbha-nav-toggle {
+    display: none;
+    flex-direction: column; gap: 5px;
+    padding: 0.5rem; cursor: pointer;
+  }
+  .tkbha-nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 2px;
+    transition: var(--tkbha-transition);
+  }
+
+  /* ══════════════════════════════════════════
+     §2  HERO CAROUSEL
+  ══════════════════════════════════════════ */
+  .tkbha-hero {
+    position: relative;
+    height: 92vh; min-height: 560px; max-height: 840px;
+    overflow: hidden;
+    background: var(--tkbha-navy-deep);
+  }
+  .tkbha-hero-slides { width: 100%; height: 100%; position: relative; }
+  .tkbha-hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .tkbha-hero-slide.tkbha-active { opacity: 1; }
+  .tkbha-hero-slide-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    filter: brightness(0.52) saturate(0.85);
+    transform: scale(1.04);
+    transition: transform 8s ease;
+  }
+  .tkbha-hero-slide.tkbha-active .tkbha-hero-slide-img { transform: scale(1); }
+
+  .tkbha-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(10,20,40,0.55) 0%,
+      rgba(15,30,55,0.3) 50%,
+      rgba(10,20,40,0.7) 100%
+    );
+  }
+  .tkbha-hero-content {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end;
+    padding: 0 2rem 6rem;
+    max-width: 1240px; margin: 0 auto;
+    left: 50%; transform: translateX(-50%);
+    width: 100%;
+  }
+  .tkbha-hero-text { max-width: 680px; }
+  .tkbha-hero-kicker {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tkbha-water);
+    margin-bottom: 1rem;
+  }
+  .tkbha-hero-title {
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 800;
+    color: var(--tkbha-white);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+  .tkbha-hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    max-width: 540px;
+  }
+  .tkbha-hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .tkbha-hero-btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--tkbha-blue-mid);
+    color: var(--tkbha-white);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-radius: var(--tkbha-radius);
+    transition: background var(--tkbha-transition), transform var(--tkbha-transition);
+  }
+  .tkbha-hero-btn-primary:hover { background: var(--tkbha-water); transform: translateY(-1px); }
+  .tkbha-hero-btn-ghost {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 1px;
+    transition: color var(--tkbha-transition), border-color var(--tkbha-transition);
+  }
+  .tkbha-hero-btn-ghost:hover { color: var(--tkbha-white); border-color: rgba(255,255,255,0.8); }
+
+  .tkbha-hero-controls {
+    position: absolute; bottom: 2.5rem; right: 2.5rem;
+    display: flex; gap: 0.5rem;
+  }
+  .tkbha-hero-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: background var(--tkbha-transition), transform var(--tkbha-transition);
+    cursor: pointer; border: none;
+  }
+  .tkbha-hero-dot.tkbha-active { background: var(--tkbha-water); transform: scale(1.4); }
+
+  /* ══════════════════════════════════════════
+     §3  MISSION SPLIT
+  ══════════════════════════════════════════ */
+  .tkbha-mission {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+  .tkbha-mission-text {
+    background: var(--tkbha-navy);
+    color: var(--tkbha-white);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+  }
+  .tkbha-mission-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--tkbha-water);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .tkbha-mission-heading {
+    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--tkbha-white);
+  }
+  .tkbha-mission-body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.68);
+    max-width: 480px;
+  }
+  .tkbha-mission-body + .tkbha-mission-body { margin-top: 1rem; }
+  .tkbha-mission-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--tkbha-water);
+    transition: gap var(--tkbha-transition);
+  }
+  .tkbha-mission-link:hover { gap: 0.8rem; }
+  .tkbha-mission-link svg { width: 16px; height: 16px; }
+
+  .tkbha-mission-image {
+    overflow: hidden;
+    position: relative;
+  }
+  .tkbha-mission-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+  }
+  .tkbha-mission-image:hover img { transform: scale(1.03); }
+
+  /* ══════════════════════════════════════════
+     §4  CORE PROGRAMS — TABBED SWITCHER
+  ══════════════════════════════════════════ */
+  .tkbha-programs {
+    padding: var(--tkbha-sp-xl) 2rem;
+    background: var(--tkbha-mist);
+  }
+  .tkbha-programs-inner {
+    max-width: 1120px; margin: 0 auto;
+  }
+  .tkbha-programs-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 3rem;
+    gap: 1rem;
+  }
+  .tkbha-section-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--tkbha-blue);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .tkbha-section-title {
+    font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--tkbha-navy);
+    line-height: 1.2;
+  }
+
+  .tkbha-tab-nav {
+    display: flex; gap: 0;
+    border-bottom: 2px solid var(--tkbha-border);
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tkbha-tab-btn {
+    flex-shrink: 0;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--tkbha-text-soft);
+    letter-spacing: 0.02em;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color var(--tkbha-transition), border-color var(--tkbha-transition);
+    background: none;
+    white-space: nowrap;
+  }
+  .tkbha-tab-btn:hover { color: var(--tkbha-navy); }
+  .tkbha-tab-btn.tkbha-tab-active { color: var(--tkbha-blue); border-bottom-color: var(--tkbha-blue); }
+
+  .tkbha-tab-panel { display: none; }
+  .tkbha-tab-panel.tkbha-tab-panel-active { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  .tkbha-panel-body { font-size: 0.95rem; line-height: 1.75; color: var(--tkbha-text-soft); }
+  .tkbha-panel-title { font-size: 1.5rem; font-weight: 700; color: var(--tkbha-navy); margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .tkbha-panel-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .tkbha-panel-list-item {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    font-size: 0.88rem; color: var(--tkbha-text-soft); line-height: 1.6;
+  }
+  .tkbha-panel-list-item::before {
+    content: '';
+    display: block; flex-shrink: 0;
+    width: 5px; height: 5px;
+    background: var(--tkbha-blue-mid);
+    border-radius: 50%;
+    margin-top: 0.55rem;
+  }
+  .tkbha-panel-detail {
+    background: var(--tkbha-fog);
+    border-left: 3px solid var(--tkbha-blue-mid);
+    padding: 1.5rem 1.75rem;
+    border-radius: 0 var(--tkbha-radius) var(--tkbha-radius) 0;
+  }
+  .tkbha-panel-detail-head { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--tkbha-blue); margin-bottom: 0.75rem; }
+  .tkbha-panel-detail-text { font-size: 0.88rem; color: var(--tkbha-text-soft); line-height: 1.7; }
+  .tkbha-panel-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--tkbha-blue);
+    transition: gap var(--tkbha-transition);
+  }
+  .tkbha-panel-link:hover { gap: 0.8rem; }
+  .tkbha-panel-link svg { width: 14px; height: 14px; }
+
+  /* ══════════════════════════════════════════
+     §5  EDITORIAL FEATURE
+  ══════════════════════════════════════════ */
+  .tkbha-feature {
+    position: relative;
+    height: 580px;
+    overflow: hidden;
+  }
+  .tkbha-feature-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+    filter: brightness(0.45) saturate(0.75);
+  }
+  .tkbha-feature-box {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.96);
+    padding: 2.5rem 2.75rem;
+    max-width: 400px;
+    border-radius: var(--tkbha-radius);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+  .tkbha-feature-tag {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--tkbha-blue);
+    display: block; margin-bottom: 1rem;
+  }
+  .tkbha-feature-box-title {
+    font-size: 1.35rem; font-weight: 700; line-height: 1.25;
+    letter-spacing: -0.01em; color: var(--tkbha-navy);
+    margin-bottom: 1rem;
+  }
+  .tkbha-feature-box-text {
+    font-size: 0.88rem; color: var(--tkbha-text-soft); line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .tkbha-feature-box-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; font-weight: 600; color: var(--tkbha-blue);
+    transition: gap var(--tkbha-transition);
+  }
+  .tkbha-feature-box-link:hover { gap: 0.8rem; }
+  .tkbha-feature-box-link svg { width: 14px; height: 14px; }
+
+  .tkbha-feature-headline {
+    position: absolute;
+    left: 6%; bottom: 14%;
+    max-width: 520px;
+  }
+  .tkbha-feature-headline-text {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--tkbha-white);
+  }
+
+  /* ══════════════════════════════════════════
+     §6  COMMUNITY VOICE
+  ══════════════════════════════════════════ */
+  .tkbha-voice {
+    padding: var(--tkbha-sp-xl) 2rem;
+    background: var(--tkbha-white);
+  }
+  .tkbha-voice-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 80px 1fr; gap: 2.5rem; align-items: start;
+  }
+  .tkbha-voice-mark {
+    font-size: 8rem; line-height: 0.7;
+    color: var(--tkbha-ice);
+    font-weight: 800;
+    user-select: none;
+    margin-top: 0.5rem;
+    font-family: Georgia, serif;
+  }
+  .tkbha-voice-content {}
+  .tkbha-voice-meta-top {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--tkbha-blue);
+    margin-bottom: 1.5rem; display: block;
+  }
+  .tkbha-voice-quote {
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--tkbha-navy);
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+  }
+  .tkbha-voice-credit {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .tkbha-voice-credit-line {
+    width: 28px; height: 2px;
+    background: var(--tkbha-blue-mid);
+    flex-shrink: 0;
+  }
+  .tkbha-voice-credit-name {
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--tkbha-text);
+    letter-spacing: 0.04em;
+  }
+  .tkbha-voice-credit-role {
+    font-size: 0.75rem; color: var(--tkbha-text-soft);
+    margin-top: 0.1rem;
+  }
+
+  /* ══════════════════════════════════════════
+     §7  NEWSROOM
+  ══════════════════════════════════════════ */
+  .tkbha-newsroom {
+    padding: var(--tkbha-sp-xl) 2rem;
+    background: var(--tkbha-fog);
+    border-top: 1px solid var(--tkbha-border);
+  }
+  .tkbha-newsroom-inner { max-width: 1120px; margin: 0 auto; }
+  .tkbha-newsroom-header { margin-bottom: 3rem; }
+  .tkbha-newsroom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .tkbha-news-item {
+    padding: 2rem 0;
+    border-top: 1px solid var(--tkbha-border);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    transition: background var(--tkbha-transition);
+    cursor: default;
+  }
+  .tkbha-news-item:nth-child(odd) { padding-right: 3rem; border-right: 1px solid var(--tkbha-border); }
+  .tkbha-news-item:nth-child(even) { padding-left: 3rem; }
+  .tkbha-news-date {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--tkbha-blue);
+    line-height: 1.3;
+    padding-top: 0.15rem;
+  }
+  .tkbha-news-title {
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--tkbha-navy); line-height: 1.45;
+    margin-bottom: 0.4rem;
+    transition: color var(--tkbha-transition);
+  }
+  .tkbha-news-item:hover .tkbha-news-title { color: var(--tkbha-blue); }
+  .tkbha-news-excerpt { font-size: 0.82rem; color: var(--tkbha-text-soft); line-height: 1.6; }
+
+  /* ══════════════════════════════════════════
+     §8  CONVERSION CALLOUT
+  ══════════════════════════════════════════ */
+  .tkbha-callout {
+    padding: var(--tkbha-sp-xl) 2rem;
+    background: var(--tkbha-navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .tkbha-callout::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(74,158,221,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .tkbha-callout-inner {
+    max-width: 760px; margin: 0 auto;
+    text-align: center; position: relative;
+  }
+  .tkbha-callout-label {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--tkbha-water);
+    margin-bottom: 1.25rem; display: block;
+  }
+  .tkbha-callout-heading {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--tkbha-white);
+    margin-bottom: 1.25rem;
+  }
+  .tkbha-callout-text {
+    font-size: 1rem; color: rgba(255,255,255,0.65);
+    line-height: 1.7; margin-bottom: 2.5rem;
+    max-width: 560px; margin-left: auto; margin-right: auto;
+  }
+  .tkbha-callout-form {
+    display: flex; gap: 0; max-width: 460px; margin: 0 auto;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--tkbha-radius);
+    overflow: hidden;
+  }
+  .tkbha-callout-input {
+    flex: 1;
+    padding: 0.85rem 1.25rem;
+    background: rgba(255,255,255,0.06);
+    color: var(--tkbha-white);
+    font-size: 0.9rem;
+    font-family: var(--tkbha-font);
+    border: none; outline: none;
+  }
+  .tkbha-callout-input::placeholder { color: rgba(255,255,255,0.35); }
+  .tkbha-callout-submit {
+    padding: 0.85rem 1.5rem;
+    background: var(--tkbha-blue-mid);
+    color: var(--tkbha-white);
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.03em;
+    border: none; cursor: pointer;
+    transition: background var(--tkbha-transition);
+    font-family: var(--tkbha-font);
+    white-space: nowrap;
+  }
+  .tkbha-callout-submit:hover { background: var(--tkbha-water); }
+  .tkbha-callout-note {
+    margin-top: 1rem;
+    font-size: 0.75rem; color: rgba(255,255,255,0.35);
+  }
+
+  /* ══════════════════════════════════════════
+     §9  FOOTER
+  ══════════════════════════════════════════ */
+  .tkbha-footer {
+    background: var(--tkbha-navy-deep);
+    color: rgba(255,255,255,0.5);
+    padding: 5rem 2rem 2.5rem;
+  }
+  .tkbha-footer-grid {
+    max-width: 1120px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  .tkbha-footer-brand {}
+  .tkbha-footer-brand-name {
+    font-size: 0.92rem; font-weight: 700;
+    color: var(--tkbha-white); margin-bottom: 0.4rem;
+  }
+  .tkbha-footer-brand-tag {
+    font-size: 0.7rem; letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.35); text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .tkbha-footer-brand-desc {
+    font-size: 0.82rem; line-height: 1.7;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.5rem;
+  }
+  .tkbha-footer-social { display: flex; gap: 0.75rem; }
+  .tkbha-footer-social a {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--tkbha-radius);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.45);
+    transition: border-color var(--tkbha-transition), color var(--tkbha-transition);
+  }
+  .tkbha-footer-social a:hover { border-color: rgba(255,255,255,0.5); color: var(--tkbha-white); }
+  .tkbha-footer-social svg { width: 15px; height: 15px; }
+
+  .tkbha-footer-col-title {
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 1.25rem;
+  }
+  .tkbha-footer-links { display: flex; flex-direction: column; gap: 0.6rem; }
+  .tkbha-footer-links li a {
+    font-size: 0.8rem; color: rgba(255,255,255,0.38);
+    transition: color var(--tkbha-transition);
+    line-height: 1.4;
+  }
+  .tkbha-footer-links li a:hover { color: rgba(255,255,255,0.75); }
+
+  .tkbha-footer-contact { display: flex; flex-direction: column; gap: 0.75rem; }
+  .tkbha-footer-contact-item { font-size: 0.8rem; color: rgba(255,255,255,0.38); line-height: 1.5; }
+  .tkbha-footer-contact-item strong { display: block; color: rgba(255,255,255,0.6); font-weight: 600; }
+  .tkbha-footer-contact-item a { color: rgba(255,255,255,0.38); transition: color var(--tkbha-transition); }
+  .tkbha-footer-contact-item a:hover { color: rgba(255,255,255,0.75); }
+
+  .tkbha-footer-bar {
+    max-width: 1120px; margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap;
+  }
+  .tkbha-footer-copy { font-size: 0.74rem; color: rgba(255,255,255,0.25); }
+  .tkbha-footer-legal { display: flex; gap: 1.5rem; }
+  .tkbha-footer-legal a { font-size: 0.74rem; color: rgba(255,255,255,0.25); transition: color var(--tkbha-transition); }
+  .tkbha-footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+  /* ══════════════════════════════════════════
+     MOBILE NAV DRAWER
+  ══════════════════════════════════════════ */
+  .tkbha-mobile-menu {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--tkbha-navy-deep);
+    padding: 2rem;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .tkbha-mobile-menu.tkbha-open { transform: translateX(0); display: block; }
+  .tkbha-mobile-close {
+    display: flex; justify-content: flex-end; margin-bottom: 2rem;
+  }
+  .tkbha-mobile-close button {
+    color: rgba(255,255,255,0.6); font-size: 1.5rem;
+    background: none; border: none; cursor: pointer;
+  }
+  .tkbha-mobile-nav-links { display: flex; flex-direction: column; gap: 0.25rem; }
+  .tkbha-mobile-nav-links a {
+    display: block; padding: 0.85rem 0;
+    font-size: 1.05rem; font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color var(--tkbha-transition);
+  }
+  .tkbha-mobile-nav-links a:hover { color: var(--tkbha-white); }
+  .tkbha-mobile-cta {
+    display: block; margin-top: 2rem;
+    padding: 1rem; text-align: center;
+    background: var(--tkbha-blue-mid);
+    color: var(--tkbha-white); font-weight: 600;
+    border-radius: var(--tkbha-radius);
+    font-size: 0.95rem;
+  }
+
+  /* ══════════════════════════════════════════
+     SCROLL REVEAL
+  ══════════════════════════════════════════ */
+  .tkbha-reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .tkbha-reveal.tkbha-revealed { opacity: 1; transform: translateY(0); }
+  .tkbha-reveal-delay-1 { transition-delay: 0.1s; }
+  .tkbha-reveal-delay-2 { transition-delay: 0.2s; }
+  .tkbha-reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .tkbha-footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .tkbha-footer-brand { grid-column: 1 / -1; }
+    .tkbha-mission-text { padding: 4rem 3rem 4rem 4rem; }
+    .tkbha-tab-panel.tkbha-tab-panel-active { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  @media (max-width: 768px) {
+    .tkbha-nav-links, .tkbha-nav-cta { display: none; }
+    .tkbha-nav-toggle { display: flex; }
+    .tkbha-mission { grid-template-columns: 1fr; }
+    .tkbha-mission-text { padding: 3.5rem 1.5rem; }
+    .tkbha-mission-image { height: 320px; }
+    .tkbha-hero-content { padding: 0 1.5rem 4rem; }
+    .tkbha-programs { padding: 4rem 1.5rem; }
+    .tkbha-feature { height: auto; }
+    .tkbha-feature-img { height: 320px; object-position: center 40%; }
+    .tkbha-feature-box { position: relative; right: auto; top: auto; transform: none; max-width: 100%; margin: 0; border-radius: 0; box-shadow: none; }
+    .tkbha-feature-headline { display: none; }
+    .tkbha-voice-inner { grid-template-columns: 1fr; }
+    .tkbha-voice-mark { display: none; }
+    .tkbha-newsroom-grid { grid-template-columns: 1fr; }
+    .tkbha-news-item:nth-child(odd) { padding-right: 0; border-right: none; }
+    .tkbha-news-item:nth-child(even) { padding-left: 0; }
+    .tkbha-callout-form { flex-direction: column; }
+    .tkbha-callout-input, .tkbha-callout-submit { width: 100%; }
+    .tkbha-footer-grid { grid-template-columns: 1fr 1fr; }
+    .tkbha-footer-brand { grid-column: 1 / -1; }
+    .tkbha-footer-bar { flex-direction: column; align-items: flex-start; }
+    .tkbha-voice { padding: 4rem 1.5rem; }
+    .tkbha-newsroom { padding: 4rem 1.5rem; }
+    .tkbha-callout { padding: 4rem 1.5rem; }
+    .tkbha-footer { padding: 4rem 1.5rem 2rem; }
+    .tkbha-programs-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ===================== GLAD HEADER ===================== */
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== GLAD HEADER ===================== -->
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+<!-- TOP BAR -->
+<div class="tkbha-topbar">
+  <span>South Lake Tahoe, CA 96150</span>
+  <a href="#">Member Login</a>
+  <a href="#">Register</a>
+</div>
+
+<!-- NAV -->
+<nav class="tkbha-nav" role="navigation" aria-label="Main navigation">
+  <div class="tkbha-nav-inner">
+    <a href="#" class="tkbha-nav-brand">
+      <span class="tkbha-nav-brand-name">TKBHA</span>
+      <span class="tkbha-nav-brand-tag">Tahoe Keys Beach & Harbor Association</span>
+    </a>
+    <ul class="tkbha-nav-links" role="list">
+      <li><a href="#">Home</a></li>
+      <li class="tkbha-has-sub">
+        <a href="#">Governance</a>
+        <ul class="tkbha-sub-menu">
+          <li><a href="#">Organizational Information</a></li>
+          <li><a href="#">Governing Documents & Rules</a></li>
+          <li><a href="#">Board Members</a></li>
+          <li><a href="#">Member Eligibility Map</a></li>
+        </ul>
+      </li>
+      <li class="tkbha-has-sub">
+        <a href="#">Docks & Boating</a>
+        <ul class="tkbha-sub-menu">
+          <li><a href="#">Our Docks</a></li>
+          <li><a href="#">Boat Slip Dimensions</a></li>
+          <li><a href="#">Boater Safety Tips</a></li>
+          <li><a href="#">Boater Cards</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Annual Forms</a></li>
+      <li><a href="#">FAQs</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="tkbha-nav-cta">Member Portal</a>
+    <button class="tkbha-nav-toggle" id="tkbha-menu-open" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="tkbha-mobile-menu" id="tkbha-mobile-menu" role="dialog" aria-label="Mobile navigation">
+  <div class="tkbha-mobile-close">
+    <button id="tkbha-menu-close" aria-label="Close navigation menu">&#x2715;</button>
+  </div>
+  <nav class="tkbha-mobile-nav-links">
+    <a href="#">Home</a>
+    <a href="#">Governance & Membership</a>
+    <a href="#">Our Docks & Boating</a>
+    <a href="#">Annual Forms</a>
+    <a href="#">FAQs</a>
+    <a href="#">Calendar</a>
+    <a href="#">Contact</a>
+  </nav>
+  <a href="#" class="tkbha-mobile-cta">Member Login</a>
+</div>
+
+<!-- ══ §1 HERO ══ -->
+<section class="tkbha-hero" aria-label="Hero">
+  <div class="tkbha-hero-slides" id="tkbha-slides">
+
+    <div class="tkbha-hero-slide tkbha-active">
+      <img class="tkbha-hero-slide-img"
+        src="https://public-files.hoa-express.com/website-2635921682/banner-photos/S7kt3dHnOUjNRdjr.jpeg"
+        alt="Tahoe Keys marina with boats docked on calm water" loading="eager">
+    </div>
+
+    <div class="tkbha-hero-slide">
+      <img class="tkbha-hero-slide-img"
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&auto=format&fit=crop"
+        alt="Lake Tahoe mountain panorama at dusk" loading="lazy">
+    </div>
+
+    <div class="tkbha-hero-slide">
+      <img class="tkbha-hero-slide-img"
+        src="https://images.unsplash.com/photo-1559825481-12a05cc00344?w=1600&q=80&auto=format&fit=crop"
+        alt="Boat on Lake Tahoe in summer" loading="lazy">
+    </div>
+
+  </div>
+
+  <div class="tkbha-hero-overlay" aria-hidden="true"></div>
+
+  <div class="tkbha-hero-content">
+    <div class="tkbha-hero-text">
+      <span class="tkbha-hero-kicker">South Lake Tahoe · Est. Members' Association</span>
+      <h1 class="tkbha-hero-title">The Jewel of<br>the Sierras,<br>Within Reach.</h1>
+      <p class="tkbha-hero-desc">266 secured boat slips. A private harbor on Lake Tahoe's southern shore. Managed by members, for members — since the first season.</p>
+      <div class="tkbha-hero-actions">
+        <a href="#" class="tkbha-hero-btn-primary">Member Portal</a>
+        <a href="#" class="tkbha-hero-btn-ghost">Dock key pickup hours →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tkbha-hero-controls" role="group" aria-label="Slide navigation">
+    <button class="tkbha-hero-dot tkbha-active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="tkbha-hero-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="tkbha-hero-dot" data-slide="2" aria-label="Slide 3"></button>
+  </div>
+</section>
+
+<!-- ══ §2 MISSION SPLIT ══ -->
+<section class="tkbha-mission" aria-label="Mission">
+  <div class="tkbha-mission-text tkbha-reveal">
+    <span class="tkbha-mission-label">Who We Are</span>
+    <h2 class="tkbha-mission-heading">A member-governed harbor on one of North America's clearest lakes.</h2>
+    <p class="tkbha-mission-body">The Tahoe Keys Beach and Harbor Association operates one of the largest not-for-profit docks on Lake Tahoe — 266 secured slips, a 120-vehicle lighted parking facility, and private dockside restrooms, all managed exclusively for qualifying property owners.</p>
+    <p class="tkbha-mission-body">Our facilities run seasonally from April 1 through October 31, weather permitting. Membership requires property ownership within Tahoe Island Park Addition Number 4, including Sky Meadows and Mount Tallac Village areas.</p>
+    <a href="#" class="tkbha-mission-link">
+      View membership eligibility
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </a>
+  </div>
+  <div class="tkbha-mission-image">
+    <img src="https://public-files.hoa-express.com/website-2635921682/banner-photos/S7kt3dHnOUjNRdjr.jpeg"
+      alt="Aerial view of Tahoe Keys marina filled with boats" loading="lazy">
+  </div>
+</section>
+
+<!-- ══ §3 CORE PROGRAMS ══ -->
+<section class="tkbha-programs" aria-label="Core Programs">
+  <div class="tkbha-programs-inner">
+    <div class="tkbha-programs-header tkbha-reveal">
+      <div>
+        <span class="tkbha-section-label">What We Offer</span>
+        <h2 class="tkbha-section-title">Your harbor,<br>your season.</h2>
+      </div>
+    </div>
+
+    <div class="tkbha-tab-nav" role="tablist" aria-label="Program tabs">
+      <button class="tkbha-tab-btn tkbha-tab-active" role="tab" aria-selected="true" aria-controls="tkbha-tab-docks" id="tkbha-btn-docks">Dock Slips</button>
+      <button class="tkbha-tab-btn" role="tab" aria-selected="false" aria-controls="tkbha-tab-beach" id="tkbha-btn-beach">Beach Access</button>
+      <button class="tkbha-tab-btn" role="tab" aria-selected="false" aria-controls="tkbha-tab-governance" id="tkbha-btn-governance">Governance</button>
+      <button class="tkbha-tab-btn" role="tab" aria-selected="false" aria-controls="tkbha-tab-services" id="tkbha-btn-services">Marina Services</button>
+    </div>
+
+    <!-- DOCKS -->
+    <div class="tkbha-tab-panel tkbha-tab-panel-active" id="tkbha-tab-docks" role="tabpanel" aria-labelledby="tkbha-btn-docks">
+      <div>
+        <h3 class="tkbha-panel-title">266 Secured Boat Slips</h3>
+        <p class="tkbha-panel-body">Our slips are located at 2415 Venice Drive East, South Lake Tahoe, on the East Cove waterways shared with TKPOA and the Tahoe Keys Marina. Season runs April 1 – October 31, weather permitting.</p>
+        <ul class="tkbha-panel-list">
+          <li class="tkbha-panel-list-item">232 slips, 20 ft length — accommodating boats up to 25 ft overall</li>
+          <li class="tkbha-panel-list-item">8 slips, 28 ft length — accommodating boats up to 30 ft overall</li>
+          <li class="tkbha-panel-list-item">26 slips, 30 ft length — accommodating boats up to 32 ft overall</li>
+          <li class="tkbha-panel-list-item">Each slip includes limited electrical power for occasional maintenance</li>
+          <li class="tkbha-panel-list-item">Lighted parking for approximately 120 vehicles</li>
+          <li class="tkbha-panel-list-item">Secure private restrooms, dockside access</li>
+        </ul>
+        <a href="#" class="tkbha-panel-link">
+          View boat slip dimensions PDF
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+      <div>
+        <div class="tkbha-panel-detail">
+          <p class="tkbha-panel-detail-head">2026 Dock Key Pickup</p>
+          <p class="tkbha-panel-detail-text">Office hours are available for <strong>Approved Boat Operators only</strong>. A photo ID matching your submitted 2026 TKBHA Boat and Operator Information form is required to collect your dock key.</p>
+          <p class="tkbha-panel-detail-text" style="margin-top:0.75rem;"><strong>Tuesday</strong> 4:30 – 7:00 pm<br><strong>Saturday</strong> 9:00 am – 12:00 pm</p>
+          <p class="tkbha-panel-detail-text" style="margin-top:0.75rem;">CoWork Tahoe · 3079 Harrison Avenue, Suite 13 · South Lake Tahoe, CA 96150</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEACH -->
+    <div class="tkbha-tab-panel" id="tkbha-tab-beach" role="tabpanel" aria-labelledby="tkbha-btn-beach">
+      <div>
+        <h3 class="tkbha-panel-title">TKPOA Beach Pass</h3>
+        <p class="tkbha-panel-body">TKBHA members may now obtain a beach pass through the Tahoe Keys Property Owners Association. Beach pass conditions remain consistent with prior seasons, and passes are issued directly at the TKPOA office.</p>
+        <ul class="tkbha-panel-list">
+          <li class="tkbha-panel-list-item">Beach pass issued at TKPOA office: 356 Ala Wai Blvd</li>
+          <li class="tkbha-panel-list-item">Bring your current TKBHA membership card as identification</li>
+          <li class="tkbha-panel-list-item">Same conditions as prior years apply</li>
+        </ul>
+        <a href="#" class="tkbha-panel-link">
+          Social membership & beach pass info
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+      <div>
+        <div class="tkbha-panel-detail">
+          <p class="tkbha-panel-detail-head">Free Boat Launch Privilege</p>
+          <p class="tkbha-panel-detail-text">As a TKBHA member, there is no charge to launch your personal boat at the Tahoe Keys Marina. This exclusive privilege applies to your personal vessel only and is a member-only benefit.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOVERNANCE -->
+    <div class="tkbha-tab-panel" id="tkbha-tab-governance" role="tabpanel" aria-labelledby="tkbha-btn-governance">
+      <div>
+        <h3 class="tkbha-panel-title">Board & Member Governance</h3>
+        <p class="tkbha-panel-body">TKBHA is a member-governed nonprofit association. Our board meets monthly via virtual meeting and maintains full financial transparency with members in good standing.</p>
+        <ul class="tkbha-panel-list">
+          <li class="tkbha-panel-list-item">Governing Documents & Rules available to all members</li>
+          <li class="tkbha-panel-list-item">Board meeting agendas and minutes published post-meeting</li>
+          <li class="tkbha-panel-list-item">Monthly financial statements accessible to members</li>
+          <li class="tkbha-panel-list-item">Annual forms submitted each season</li>
+        </ul>
+        <a href="#" class="tkbha-panel-link">
+          View board members
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+      <div>
+        <div class="tkbha-panel-detail">
+          <p class="tkbha-panel-detail-head">Upcoming Board Meeting</p>
+          <p class="tkbha-panel-detail-text"><strong>June 18, 2026</strong> · 5:00 – 6:30 pm<br>Virtual Meeting — link posted on the member homepage.</p>
+          <p class="tkbha-panel-detail-text" style="margin-top:0.75rem;">Additional meetings: July 16 and August 20, 2026, same time and format.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="tkbha-tab-panel" id="tkbha-tab-services" role="tabpanel" aria-labelledby="tkbha-btn-services">
+      <div>
+        <h3 class="tkbha-panel-title">Shared Marina Ecosystem</h3>
+        <p class="tkbha-panel-body">The East Cove waterways are shared with TKPOA and the Tahoe Keys Marina. While TKBHA manages member slips, the Tahoe Keys Marina and surrounding businesses offer an extensive range of additional services.</p>
+        <ul class="tkbha-panel-list">
+          <li class="tkbha-panel-list-item">Boat launch services (free for TKBHA members)</li>
+          <li class="tkbha-panel-list-item">Fuel and marine repair services</li>
+          <li class="tkbha-panel-list-item">Watercraft sales and short-term rentals</li>
+          <li class="tkbha-panel-list-item">Fishing charters, balloon rides, parasailing</li>
+          <li class="tkbha-panel-list-item">Dock License For Sale listings available</li>
+        </ul>
+        <a href="#" class="tkbha-panel-link">
+          Dock license listings
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+      <div>
+        <div class="tkbha-panel-detail">
+          <p class="tkbha-panel-detail-head">J-Dock Construction Update</p>
+          <p class="tkbha-panel-detail-text">The contractor is making daily progress on the J-Dock renovation. The dock and surrounding area remains an active construction site — members are asked not to access or utilize the J-Dock until the work is completed.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ §4 EDITORIAL FEATURE ══ -->
+<section class="tkbha-feature" aria-label="Feature: Lake Tahoe">
+  <img class="tkbha-feature-img"
+    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80&auto=format&fit=crop"
+    alt="Lake Tahoe panoramic view with mountains and forest" loading="lazy">
+
+  <div class="tkbha-feature-headline" aria-hidden="true">
+    <p class="tkbha-feature-headline-text">One lake.<br>One season.<br>266 slips.</p>
+  </div>
+
+  <div class="tkbha-feature-box tkbha-reveal">
+    <span class="tkbha-feature-tag">Lake Tahoe · TRPA Compliance</span>
+    <h2 class="tkbha-feature-box-title">Don't Forget Your Boat Inspection</h2>
+    <p class="tkbha-feature-box-text">Before launching on Lake Tahoe, all vessels must pass an aquatic invasive species inspection. TKBHA members are responsible for compliance with TRPA boating regulations — inspections are mandatory and protect the lake's exceptional water clarity.</p>
+    <a href="#" class="tkbha-feature-box-link">
+      Boating inspection requirements
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══ §5 COMMUNITY VOICE ══ -->
+<section class="tkbha-voice" aria-label="Member Voice">
+  <div class="tkbha-voice-inner">
+    <div class="tkbha-voice-mark" aria-hidden="true">"</div>
+    <div class="tkbha-voice-content tkbha-reveal">
+      <span class="tkbha-voice-meta-top">Member Experience</span>
+      <blockquote class="tkbha-voice-quote">
+        "Our harbor is one of the most well-organized on the lake. There's something genuinely special about pulling into your slip on a clear Tahoe morning — the association makes sure that access is protected and maintained for everyone who qualifies."
+      </blockquote>
+      <div class="tkbha-voice-credit">
+        <div class="tkbha-voice-credit-line" aria-hidden="true"></div>
+        <div>
+          <p class="tkbha-voice-credit-name">TKBHA Member</p>
+          <p class="tkbha-voice-credit-role">Tahoe Keys Property Owner · South Lake Tahoe</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ §6 NEWSROOM ══ -->
+<section class="tkbha-newsroom" aria-label="Updates and Announcements">
+  <div class="tkbha-newsroom-inner">
+    <div class="tkbha-newsroom-header tkbha-reveal">
+      <span class="tkbha-section-label">Updates</span>
+      <h2 class="tkbha-section-title">What's current<br>at the harbor.</h2>
+    </div>
+
+    <div class="tkbha-newsroom-grid">
+
+      <article class="tkbha-news-item tkbha-reveal">
+        <div class="tkbha-news-date">Jun 2026</div>
+        <div>
+          <h3 class="tkbha-news-title">Harbor Open — Slips Filling Quickly This Season</h3>
+          <p class="tkbha-news-excerpt">The harbor is open and filling with boats. Members are encouraged to confirm their slip reservation and complete annual forms promptly to secure their space.</p>
+        </div>
+      </article>
+
+      <article class="tkbha-news-item tkbha-reveal tkbha-reveal-delay-1">
+        <div class="tkbha-news-date">Jun 2026</div>
+        <div>
+          <h3 class="tkbha-news-title">TKPOA Beach Pass Now Available to TKBHA Members</h3>
+          <p class="tkbha-news-excerpt">Beach pass conditions remain unchanged. Visit the TKPOA office at 356 Ala Wai Blvd with your current TKBHA membership card to obtain your pass.</p>
+        </div>
+      </article>
+
+      <article class="tkbha-news-item tkbha-reveal tkbha-reveal-delay-2">
+        <div class="tkbha-news-date">Jun 2026</div>
+        <div>
+          <h3 class="tkbha-news-title">J-Dock Renovation in Active Progress — Area Restricted</h3>
+          <p class="tkbha-news-excerpt">The J-Dock renovation is advancing on schedule. The dock and surrounding zone remain a restricted construction site. Do not access until work is completed and announced.</p>
+        </div>
+      </article>
+
+      <article class="tkbha-news-item tkbha-reveal tkbha-reveal-delay-3">
+        <div class="tkbha-news-date">Jun 2026</div>
+        <div>
+          <h3 class="tkbha-news-title">Board Meeting — June 18, 2026 · 5:00 pm Virtual</h3>
+          <p class="tkbha-news-excerpt">The next board meeting is June 18, 2026 at 5:00 pm via Microsoft Teams. The virtual link is available on the member homepage. Future meetings: July 16 and August 20.</p>
+        </div>
+      </article>
+
+      <article class="tkbha-news-item tkbha-reveal">
+        <div class="tkbha-news-date">May 2026</div>
+        <div>
+          <h3 class="tkbha-news-title">2026 Dock Key Pickup — Scheduled Drop-In Hours Now Active</h3>
+          <p class="tkbha-news-excerpt">Pickup hours for Approved Boat Operators are Tuesdays 4:30–7:00 pm and Saturdays 9:00 am–12:00 pm at CoWork Tahoe. Photo ID required.</p>
+        </div>
+      </article>
+
+      <article class="tkbha-news-item tkbha-reveal tkbha-reveal-delay-1">
+        <div class="tkbha-news-date">Apr 2026</div>
+        <div>
+          <h3 class="tkbha-news-title">MS Dixie Channel Dredging Update — Season Unaffected</h3>
+          <p class="tkbha-news-excerpt">The TKM is working toward a permanent solution for the MS Dixie but has not announced a schedule. Current indications are that dredging will not affect this season's operations.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ §7 CONVERSION CALLOUT ══ -->
+<section class="tkbha-callout" aria-label="Stay Connected">
+  <div class="tkbha-callout-inner tkbha-reveal">
+    <span class="tkbha-callout-label">Member Communications</span>
+    <h2 class="tkbha-callout-heading">Stay ahead of<br>every harbor update.</h2>
+    <p class="tkbha-callout-text">Board meeting notices, dock key announcements, seasonal updates, and urgent harbor advisories — delivered directly to your inbox. Enter your email to receive member communications from TKBHA.</p>
+    <div class="tkbha-callout-form" role="form" aria-label="Email signup">
+      <label for="tkbha-email-input" class="tkbha-visually-hidden">Email address</label>
+      <input class="tkbha-callout-input" id="tkbha-email-input" type="email" placeholder="your@email.com" autocomplete="email">
+      <button class="tkbha-callout-submit" type="button">Subscribe</button>
+    </div>
+    <p class="tkbha-callout-note">Member communications only. No marketing. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- ══ §8 FOOTER ══ -->
+<footer class="tkbha-footer" role="contentinfo">
+  <div class="tkbha-footer-grid">
+
+    <div class="tkbha-footer-brand">
+      <p class="tkbha-footer-brand-name">Tahoe Keys Beach and Harbor Association, Inc.</p>
+      <p class="tkbha-footer-brand-tag">South Lake Tahoe · California</p>
+      <p class="tkbha-footer-brand-desc">A member-governed nonprofit association operating one of the largest not-for-profit dock systems on Lake Tahoe. Open seasonally, April 1 – October 31.</p>
+      <div class="tkbha-footer-social">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="tkbha-footer-col-title">Navigation</p>
+      <ul class="tkbha-footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">How to Pay Your Dues</a></li>
+        <li><a href="#">Annual Forms</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Photos & Fun</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="tkbha-footer-col-title">Governance</p>
+      <ul class="tkbha-footer-links">
+        <li><a href="#">Organizational Information</a></li>
+        <li><a href="#">Governing Documents</a></li>
+        <li><a href="#">Board Members</a></li>
+        <li><a href="#">Member Eligibility Map</a></li>
+        <li><a href="#">Social Membership</a></li>
+        <li><a href="#">File Locker</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="tkbha-footer-col-title">Docks & Boating</p>
+      <ul class="tkbha-footer-links">
+        <li><a href="#">Our Docks</a></li>
+        <li><a href="#">Boat Slip Dimensions</a></li>
+        <li><a href="#">Boater Cards (CA & NV)</a></li>
+        <li><a href="#">Boating Safety Tips</a></li>
+        <li><a href="#">Lake Tahoe Map</a></li>
+        <li><a href="#">Dock License For Sale</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="tkbha-footer-col-title">Contact</p>
+      <div class="tkbha-footer-contact">
+        <div class="tkbha-footer-contact-item">
+          <strong>Email</strong>
+          <a href="mailto:manager@tkbha.com">manager@tkbha.com</a>
+        </div>
+        <div class="tkbha-footer-contact-item">
+          <strong>Phone</strong>
+          <a href="tel:5305441521">(530) 544-1521</a><br>
+          Voice & text enabled
+        </div>
+        <div class="tkbha-footer-contact-item">
+          <strong>Mailing Address</strong>
+          P.O. Box 10199<br>South Lake Tahoe, CA 96158
+        </div>
+        <div class="tkbha-footer-contact-item">
+          <strong>Office (By Appointment)</strong>
+          CoWork Tahoe · Suite 13<br>3079 Harrison Ave · SLT 96150
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tkbha-footer-bar">
+    <p class="tkbha-footer-copy">© 2026 Tahoe Keys Beach and Harbor Association, Inc. All rights reserved.</p>
+    <nav class="tkbha-footer-legal" aria-label="Legal links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Vendors</a>
+      <a href="#">Emergency Contacts</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── HERO CAROUSEL ── */
+  var slides = document.querySelectorAll('.tkbha-hero-slide');
+  var dots   = document.querySelectorAll('.tkbha-hero-dot');
+  var current = 0;
+  var timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('tkbha-active');
+    dots[current].classList.remove('tkbha-active');
+    dots[current].setAttribute('aria-pressed', 'false');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('tkbha-active');
+    dots[current].classList.add('tkbha-active');
+    dots[current].setAttribute('aria-pressed', 'true');
+  }
+
+  function startTimer() {
+    timer = setInterval(function () { goTo(current + 1); }, 6000);
+  }
+
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      clearInterval(timer);
+      goTo(parseInt(this.dataset.slide, 10));
+      startTimer();
+    });
+  });
+
+  startTimer();
+
+  /* ── MOBILE NAV ── */
+  var menuOpen  = document.getElementById('tkbha-menu-open');
+  var menuClose = document.getElementById('tkbha-menu-close');
+  var mobileMenu = document.getElementById('tkbha-mobile-menu');
+
+  function openMenu() {
+    mobileMenu.style.display = 'block';
+    requestAnimationFrame(function () {
+      mobileMenu.classList.add('tkbha-open');
+    });
+    menuOpen.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove('tkbha-open');
+    menuOpen.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(function () { mobileMenu.style.display = ''; }, 300);
+  }
+
+  if (menuOpen) menuOpen.addEventListener('click', openMenu);
+  if (menuClose) menuClose.addEventListener('click', closeMenu);
+
+  /* ── TABS ── */
+  var tabBtns   = document.querySelectorAll('.tkbha-tab-btn');
+  var tabPanels = document.querySelectorAll('.tkbha-tab-panel');
+
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = this.getAttribute('aria-controls');
+      tabBtns.forEach(function (b) {
+        b.classList.remove('tkbha-tab-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      tabPanels.forEach(function (p) {
+        p.classList.remove('tkbha-tab-panel-active');
+      });
+      this.classList.add('tkbha-tab-active');
+      this.setAttribute('aria-selected', 'true');
+      var panel = document.getElementById(target);
+      if (panel) panel.classList.add('tkbha-tab-panel-active');
+    });
+  });
+
+  /* ── SCROLL REVEAL ── */
+  var revealEls = document.querySelectorAll('.tkbha-reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('tkbha-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('tkbha-revealed'); });
+  }
+
+  /* ── EMAIL SUBSCRIBE ── */
+  var submitBtn = document.querySelector('.tkbha-callout-submit');
+  var emailInput = document.getElementById('tkbha-email-input');
+  if (submitBtn && emailInput) {
+    submitBtn.addEventListener('click', function () {
+      var val = emailInput.value.trim();
+      if (!val || !val.includes('@')) {
+        emailInput.style.outline = '2px solid #e85a3a';
+        return;
+      }
+      emailInput.style.outline = '';
+      submitBtn.textContent = 'Subscribed ✓';
+      submitBtn.style.background = '#2a5fa8';
+      emailInput.value = '';
+      emailInput.disabled = true;
+      submitBtn.disabled = true;
+    });
+  }
+
+  // ─── NAV SCROLL ───
+  const tkbhaNav = document.querySelector('.tkbha-nav');
+  window.addEventListener('scroll', () => {
+    tkbhaNav.style.top = window.scrollY > 60 ? '0' : 'auto';
+  }, { passive: true });
+
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+
+})();
+</script>
+</body>
+</html>
