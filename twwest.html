@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Western Section of The Wildlife Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --tws-forest: #1E3A2F;
+  --tws-forest-mid: #2D5040;
+  --tws-sage: #4A7C59;
+  --tws-sage-light: #6B9E78;
+  --tws-sand: #F5F0E8;
+  --tws-sand-dark: #EDE6D8;
+  --tws-bark: #8B6F47;
+  --tws-stone: #E8E4DC;
+  --tws-white: #FFFFFF;
+  --tws-ink: #1A1A1A;
+  --tws-ink-mid: #3D3D3D;
+  --tws-ink-soft: #666666;
+  --tws-border: #D8D3C8;
+  --tws-radius-sm: 6px;
+  --tws-radius: 10px;
+  --tws-radius-lg: 16px;
+  --tws-radius-pill: 100px;
+  --tws-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --tws-shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --tws-transition: 0.22s ease;
+  font-size: 16px;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--tws-white); color: var(--tws-ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+
+/* ===================== SECTION 1: NAVBAR ===================== */
+.tws-nav-root {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(30, 58, 47, 0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: box-shadow var(--tws-transition);
+}
+.tws-nav-root.tws-nav-scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.18); }
+
+.tws-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.tws-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+.tws-nav-brand-mark {
+  width: 38px;
+  height: 38px;
+  background: var(--tws-sage-light);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: var(--tws-white);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-align: center;
+}
+.tws-nav-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+.tws-nav-brand-text span:first-child {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tws-nav-brand-text span:last-child {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--tws-white);
+  letter-spacing: 0.01em;
+}
+
+.tws-nav-links {
+  display: none;
+  list-style: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+@media (min-width: 1024px) { .tws-nav-links { display: flex; } }
+
+.tws-nav-item { position: relative; }
+.tws-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  border-radius: var(--tws-radius-sm);
+  transition: all var(--tws-transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tws-nav-link:hover { color: var(--tws-white); background: rgba(255,255,255,0.08); }
+.tws-nav-link svg { width: 12px; height: 12px; opacity: 0.6; transition: transform var(--tws-transition); }
+.tws-nav-item:hover .tws-nav-link svg { transform: rotate(180deg); opacity: 1; }
+
+.tws-nav-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--tws-white);
+  border: 1px solid var(--tws-border);
+  border-radius: var(--tws-radius);
+  box-shadow: var(--tws-shadow-lg);
+  min-width: 210px;
+  padding: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.18s ease;
+  z-index: 100;
+}
+.tws-nav-item:hover .tws-nav-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.tws-nav-dropdown a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.82rem;
+  color: var(--tws-ink-mid);
+  border-radius: var(--tws-radius-sm);
+  transition: all var(--tws-transition);
+}
+.tws-nav-dropdown a:hover { background: var(--tws-sand); color: var(--tws-forest); }
+
+.tws-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.tws-nav-member-btn {
+  display: none;
+  padding: 0.5rem 1.1rem;
+  background: var(--tws-sage-light);
+  color: var(--tws-white);
+  border-radius: var(--tws-radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all var(--tws-transition);
+}
+.tws-nav-member-btn:hover { background: var(--tws-sage); }
+@media (min-width: 768px) { .tws-nav-member-btn { display: inline-flex; } }
+
+.tws-nav-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-radius: var(--tws-radius-sm);
+  transition: background var(--tws-transition);
+}
+.tws-nav-hamburger:hover { background: rgba(255,255,255,0.1); }
+.tws-nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+.tws-nav-hamburger.tws-menu-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.tws-nav-hamburger.tws-menu-open span:nth-child(2) { opacity: 0; }
+.tws-nav-hamburger.tws-menu-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (min-width: 1024px) { .tws-nav-hamburger { display: none; } }
+
+/* Mobile Drawer */
+.tws-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: min(360px, 90vw);
+  height: 100vh;
+  background: var(--tws-forest);
+  z-index: 1100;
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  padding: 1.5rem;
+}
+.tws-nav-drawer.tws-drawer-open { right: 0; }
+.tws-nav-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.tws-nav-drawer-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tws-white);
+  font-size: 1.2rem;
+  transition: background var(--tws-transition);
+}
+.tws-nav-drawer-close:hover { background: rgba(255,255,255,0.2); }
+.tws-nav-drawer-menu { list-style: none; }
+.tws-nav-drawer-menu li { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.tws-nav-drawer-menu a {
+  display: block;
+  padding: 0.85rem 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  transition: color var(--tws-transition);
+}
+.tws-nav-drawer-menu a:hover { color: var(--tws-white); }
+.tws-nav-drawer-submenu { list-style: none; padding-left: 1rem; padding-bottom: 0.5rem; }
+.tws-nav-drawer-submenu a { font-size: 0.83rem; color: rgba(255,255,255,0.55); padding: 0.4rem 0; }
+.tws-nav-drawer-submenu a:hover { color: rgba(255,255,255,0.85); }
+.tws-nav-drawer-cta {
+  display: block;
+  margin-top: 1.5rem;
+  text-align: center;
+  padding: 0.85rem;
+  background: var(--tws-sage-light);
+  color: var(--tws-white);
+  border-radius: var(--tws-radius-pill);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tws-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1050;
+}
+.tws-nav-overlay.tws-overlay-show { display: block; }
+
+/* ===================== SECTION 2: HERO CAROUSEL ===================== */
+.tws-hero-root {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--tws-forest);
+}
+@media (min-width: 1024px) { .tws-hero-root { height: 90dvh; } }
+
+.tws-hero-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.tws-hero-slide {
+  flex: 0 0 100%;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.tws-hero-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  transition: transform 6s ease;
+}
+.tws-hero-slide.tws-slide-active .tws-hero-slide-img { transform: scale(1.0); }
+.tws-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,28,20,0.82) 0%, rgba(10,28,20,0.5) 60%, rgba(10,28,20,0.25) 100%);
+}
+@media (min-width: 768px) {
+  .tws-hero-overlay { background: rgba(10,28,20,0.52); }
+}
+
+.tws-hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 6rem 1.5rem 5rem;
+}
+@media (min-width: 768px) {
+  .tws-hero-content {
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+  }
+}
+
+.tws-hero-text-wrap { max-width: 720px; }
+.tws-hero-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tws-sage-light);
+  margin-bottom: 1rem;
+}
+.tws-hero-title {
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--tws-white);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.tws-hero-desc {
+  font-size: clamp(0.9rem, 2vw, 1.08rem);
+  color: rgba(255,255,255,0.78);
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+  max-width: 580px;
+}
+@media (min-width: 768px) { .tws-hero-desc { margin-left: auto; margin-right: auto; } }
+
+.tws-hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px) { .tws-hero-cta-row { justify-content: center; } }
+
+.tws-hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.78rem 1.75rem;
+  background: var(--tws-sage-light);
+  color: var(--tws-white);
+  border-radius: var(--tws-radius-pill);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--tws-transition);
+  white-space: nowrap;
+}
+.tws-hero-cta-primary:hover { background: var(--tws-sage); transform: translateY(-1px); }
+
+.tws-hero-cta-ghost {
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 1px;
+  transition: all var(--tws-transition);
+}
+.tws-hero-cta-ghost:hover { color: var(--tws-white); border-color: rgba(255,255,255,0.7); }
+
+.tws-hero-nav {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 10;
+}
+.tws-hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+.tws-hero-dot.tws-dot-active { background: var(--tws-white); width: 20px; border-radius: 3px; }
+
+.tws-hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tws-white);
+  z-index: 10;
+  transition: all var(--tws-transition);
+  backdrop-filter: blur(4px);
+}
+.tws-hero-arrow:hover { background: rgba(255,255,255,0.22); }
+.tws-hero-arrow-prev { left: 1.25rem; }
+.tws-hero-arrow-next { right: 1.25rem; }
+@media (max-width: 640px) { .tws-hero-arrow { display: none; } }
+
+/* ===================== SECTION 3: MISSION ===================== */
+.tws-mission-root {
+  background: var(--tws-white);
+  padding: 5rem 1.5rem;
+}
+.tws-mission-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .tws-mission-inner { grid-template-columns: 1fr 1fr; gap: 5rem; }
+}
+
+.tws-mission-text-side {}
+.tws-mission-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tws-sage);
+  margin-bottom: 1rem;
+}
+.tws-mission-headline {
+  font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--tws-forest);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+.tws-mission-body {
+  font-size: 1rem;
+  color: var(--tws-ink-mid);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.tws-mission-body + .tws-mission-body { margin-top: 0.75rem; }
+.tws-mission-learn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  padding: 0.65rem 1.4rem;
+  border: 2px solid var(--tws-forest);
+  color: var(--tws-forest);
+  border-radius: var(--tws-radius-pill);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all var(--tws-transition);
+}
+.tws-mission-learn:hover { background: var(--tws-forest); color: var(--tws-white); }
+
+.tws-mission-image-side {}
+.tws-mission-photo-frame {
+  position: relative;
+  border-radius: var(--tws-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--tws-stone);
+}
+.tws-mission-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tws-mission-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(to top, rgba(10,28,20,0.75), transparent);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+}
+
+/* ===================== SECTION 4: PROGRAMS ===================== */
+.tws-programs-root {
+  background: var(--tws-sand);
+  padding: 5rem 1.5rem;
+}
+.tws-programs-inner { max-width: 1280px; margin: 0 auto; }
+.tws-section-hd {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.tws-section-hd-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tws-sage);
+  margin-bottom: 0.75rem;
+}
+.tws-section-hd-title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  color: var(--tws-forest);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+}
+.tws-section-hd-sub {
+  font-size: 0.95rem;
+  color: var(--tws-ink-soft);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.tws-programs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 600px) { .tws-programs-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .tws-programs-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.tws-program-card {
+  background: var(--tws-white);
+  border-radius: var(--tws-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--tws-border);
+  transition: all var(--tws-transition);
+}
+.tws-program-card:hover { transform: translateY(-3px); box-shadow: var(--tws-shadow-lg); border-color: transparent; }
+
+.tws-program-card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: var(--tws-stone);
+}
+.tws-program-card-body { padding: 1.4rem; }
+.tws-program-card-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tws-sage);
+  margin-bottom: 0.5rem;
+}
+.tws-program-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tws-forest);
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+.tws-program-card-text {
+  font-size: 0.85rem;
+  color: var(--tws-ink-soft);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+.tws-program-card-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--tws-sage);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap var(--tws-transition);
+}
+.tws-program-card-link:hover { gap: 0.55rem; }
+
+/* ===================== SECTION 5: STORIES ===================== */
+.tws-stories-root {
+  background: var(--tws-white);
+  padding: 5rem 1.5rem;
+}
+.tws-stories-inner { max-width: 1280px; margin: 0 auto; }
+
+.tws-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-top: 3rem;
+}
+@media (min-width: 768px) {
+  .tws-gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 240px 240px;
+    gap: 0.75rem;
+  }
+}
+
+.tws-gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--tws-radius);
+  background: var(--tws-stone);
+  cursor: pointer;
+  aspect-ratio: 1;
+}
+@media (min-width: 768px) {
+  .tws-gallery-item { aspect-ratio: unset; }
+  .tws-gallery-item--wide { grid-column: span 2; }
+  .tws-gallery-item--tall { grid-row: span 2; }
+}
+
+.tws-gallery-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+.tws-gallery-item:hover .tws-gallery-item-img { transform: scale(1.06); }
+
+.tws-gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,28,20,0.82) 0%, rgba(10,28,20,0.1) 55%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.1rem;
+}
+.tws-gallery-item:hover .tws-gallery-item-overlay { opacity: 1; }
+
+.tws-gallery-item-region {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tws-sage-light);
+  margin-bottom: 0.3rem;
+}
+.tws-gallery-item-caption {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--tws-white);
+  line-height: 1.35;
+}
+
+/* ===================== SECTION 6: ENGAGE ===================== */
+.tws-engage-root {
+  background: var(--tws-forest);
+  padding: 5rem 1.5rem;
+}
+.tws-engage-inner { max-width: 1280px; margin: 0 auto; }
+.tws-engage-inner .tws-section-hd-label { color: var(--tws-sage-light); }
+.tws-engage-inner .tws-section-hd-title { color: var(--tws-white); }
+.tws-engage-inner .tws-section-hd-sub { color: rgba(255,255,255,0.6); }
+
+.tws-engage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+@media (min-width: 600px) { .tws-engage-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .tws-engage-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.tws-engage-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--tws-radius-lg);
+  padding: 1.75rem 1.5rem;
+  transition: all var(--tws-transition);
+  display: flex;
+  flex-direction: column;
+}
+.tws-engage-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-2px); }
+
+.tws-engage-card-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(107,158,120,0.2);
+  border-radius: var(--tws-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+}
+.tws-engage-card-icon svg { width: 20px; height: 20px; color: var(--tws-sage-light); }
+.tws-engage-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tws-white);
+  margin-bottom: 0.5rem;
+}
+.tws-engage-card-text {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.58);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+.tws-engage-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--tws-sage-light);
+  transition: gap var(--tws-transition);
+}
+.tws-engage-card-action:hover { gap: 0.55rem; }
+
+/* ===================== SECTION 7: NEWS ===================== */
+.tws-news-root {
+  background: var(--tws-sand);
+  padding: 5rem 1.5rem;
+}
+.tws-news-inner { max-width: 1280px; margin: 0 auto; }
+
+.tws-news-editorial {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+@media (min-width: 640px) { .tws-news-editorial { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .tws-news-editorial { grid-template-columns: repeat(3, 1fr); } }
+
+.tws-news-article-card {
+  background: var(--tws-white);
+  border: 1px solid var(--tws-border);
+  border-radius: var(--tws-radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--tws-transition);
+}
+.tws-news-article-card:hover { box-shadow: var(--tws-shadow-lg); transform: translateY(-2px); border-color: transparent; }
+
+.tws-news-article-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: var(--tws-stone);
+}
+.tws-news-article-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+.tws-news-article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+.tws-news-article-cat {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--tws-sage);
+}
+.tws-news-article-date {
+  font-size: 0.75rem;
+  color: var(--tws-ink-soft);
+}
+.tws-news-article-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--tws-forest);
+  line-height: 1.4;
+  margin-bottom: 0.6rem;
+}
+.tws-news-article-excerpt {
+  font-size: 0.83rem;
+  color: var(--tws-ink-soft);
+  line-height: 1.65;
+  flex: 1;
+}
+.tws-news-article-readmore {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tws-sage);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap var(--tws-transition);
+}
+.tws-news-article-readmore:hover { gap: 0.5rem; }
+
+.tws-news-view-all {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.tws-news-view-all a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.75rem;
+  border: 2px solid var(--tws-forest);
+  color: var(--tws-forest);
+  border-radius: var(--tws-radius-pill);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all var(--tws-transition);
+}
+.tws-news-view-all a:hover { background: var(--tws-forest); color: var(--tws-white); }
+
+/* ===================== SECTION 8: FOOTER ===================== */
+.tws-footer-root {
+  background: var(--tws-ink);
+  color: rgba(255,255,255,0.65);
+  padding: 4rem 1.5rem 2rem;
+}
+.tws-footer-inner { max-width: 1280px; margin: 0 auto; }
+.tws-footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 2rem;
+}
+@media (min-width: 640px) { .tws-footer-top { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .tws-footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+
+.tws-footer-brand-col {}
+.tws-footer-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.tws-footer-brand-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--tws-forest-mid);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--tws-white);
+  text-align: center;
+  line-height: 1.1;
+}
+.tws-footer-brand-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--tws-white);
+  line-height: 1.3;
+}
+.tws-footer-brand-desc {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  max-width: 280px;
+}
+.tws-footer-social-row {
+  display: flex;
+  gap: 0.6rem;
+}
+.tws-footer-social-link {
+  width: 34px;
+  height: 34px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--tws-transition);
+}
+.tws-footer-social-link:hover { background: var(--tws-sage-light); }
+.tws-footer-social-link svg { width: 15px; height: 15px; color: rgba(255,255,255,0.7); }
+
+.tws-footer-col-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 1rem;
+}
+.tws-footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.tws-footer-col-links a {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.5);
+  transition: color var(--tws-transition);
+}
+.tws-footer-col-links a:hover { color: rgba(255,255,255,0.88); }
+
+.tws-footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+}
+@media (min-width: 768px) {
+  .tws-footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+}
+.tws-footer-legal-links { display: flex; gap: 1.25rem; }
+.tws-footer-legal-links a { color: rgba(255,255,255,0.3); transition: color var(--tws-transition); }
+.tws-footer-legal-links a:hover { color: rgba(255,255,255,0.65); }
+
+/* Large screen containment */
+@media (min-width: 1440px) {
+  .tws-nav-inner,
+  .tws-mission-inner,
+  .tws-programs-inner,
+  .tws-stories-inner,
+  .tws-engage-inner,
+  .tws-news-inner,
+  .tws-footer-inner {
+    max-width: 1280px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Scroll reveal */
+.tws-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.tws-reveal.tws-revealed { opacity: 1; transform: translateY(0); }
+</style>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── DYNAMIC NAVBAR TOP OFFSET ─── */
+  body .sk-main-navbar,
+  body .tia-nav,
+  body .tws-nav-root,
+  body .pau-site-nav,
+  body .wgf-nav-bar,
+  body .yba-nav,
+  body .yli-navbar,
+  body .zna-main-nav {
+    top: 56px !important;
+    transition: top 0.3s ease !important;
+  }
+  body .sk-main-navbar.glad-hidden,
+  body .tia-nav.glad-hidden,
+  body .tws-nav-root.glad-hidden,
+  body .pau-site-nav.glad-hidden,
+  body .wgf-nav-bar.glad-hidden,
+  body .yba-nav.glad-hidden,
+  body .yli-navbar.glad-hidden,
+  body .zna-main-nav.glad-hidden {
+    top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+
+<!-- ===================== SECTION 1: NAVBAR ===================== -->
+<nav class="tws-nav-root" id="twsNav" role="navigation" aria-label="Main navigation">
+  <div class="tws-nav-inner">
+    <a href="#" class="tws-nav-brand">
+      <div class="tws-nav-brand-mark">TWS<br>WS</div>
+      <div class="tws-nav-brand-text">
+        <span>Western Section</span>
+        <span>The Wildlife Society</span>
+      </div>
+    </a>
+
+    <ul class="tws-nav-links" role="list">
+      <li class="tws-nav-item">
+        <a href="#" class="tws-nav-link">Member Portal</a>
+      </li>
+      <li class="tws-nav-item">
+        <a href="#" class="tws-nav-link">About Us
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2,4 6,8 10,4"/></svg>
+        </a>
+        <div class="tws-nav-dropdown" role="menu">
+          <a href="#" role="menuitem">Ways to Get Involved</a>
+          <a href="#" role="menuitem">Executive Board</a>
+          <a href="#" role="menuitem">Committees</a>
+          <a href="#" role="menuitem">Chapters</a>
+          <a href="#" role="menuitem">Awards</a>
+          <a href="#" role="menuitem">Strategic Plan</a>
+        </div>
+      </li>
+      <li class="tws-nav-item">
+        <a href="#" class="tws-nav-link">Podcasts</a>
+      </li>
+      <li class="tws-nav-item">
+        <a href="#" class="tws-nav-link">Resources
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2,4 6,8 10,4"/></svg>
+        </a>
+        <div class="tws-nav-dropdown" role="menu">
+          <a href="#" role="menuitem">Job Postings</a>
+          <a href="#" role="menuitem">Grants &amp; Scholarships</a>
+          <a href="#" role="menuitem">Student &amp; Early Career</a>
+          <a href="#" role="menuitem">Wildlife Links</a>
+        </div>
+      </li>
+      <li class="tws-nav-item">
+        <a href="#" class="tws-nav-link">Publications
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2,4 6,8 10,4"/></svg>
+        </a>
+        <div class="tws-nav-dropdown" role="menu">
+          <a href="#" role="menuitem">Western Wildlife Journal</a>
+          <a href="#" role="menuitem">Annual Reports</a>
+          <a href="#" role="menuitem">Transactions</a>
+          <a href="#" role="menuitem">Wildlife Confessional</a>
+          <a href="#" role="menuitem">Atlas of Biodiversity</a>
+        </div>
+      </li>
+      <li class="tws-nav-item">
+        <a href="#" class="tws-nav-link">Events
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2,4 6,8 10,4"/></svg>
+        </a>
+        <div class="tws-nav-dropdown" role="menu">
+          <a href="#" role="menuitem">Upcoming Events</a>
+          <a href="#" role="menuitem">Bumble Bee Field Course</a>
+          <a href="#" role="menuitem">Women+ of Wildlife</a>
+          <a href="#" role="menuitem">Western Monarch Workshop</a>
+          <a href="#" role="menuitem">Career Builder Series</a>
+          <a href="#" role="menuitem">Professional Development</a>
+        </div>
+      </li>
+      <li class="tws-nav-item">
+        <a href="#" class="tws-nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <div class="tws-nav-actions">
+      <a href="#" class="tws-nav-member-btn">Join / Sign In</a>
+      <button class="tws-nav-hamburger" id="twsHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="tws-nav-overlay" id="twsOverlay"></div>
+
+<div class="tws-nav-drawer" id="twsDrawer" role="dialog" aria-label="Mobile navigation">
+  <div class="tws-nav-drawer-header">
+    <div class="tws-nav-brand">
+      <div class="tws-nav-brand-mark" style="background:var(--tws-sage-light)">TWS<br>WS</div>
+      <div class="tws-nav-brand-text">
+        <span style="color:rgba(255,255,255,0.45)">Western Section</span>
+        <span>The Wildlife Society</span>
+      </div>
+    </div>
+    <button class="tws-nav-drawer-close" id="twsDrawerClose" aria-label="Close menu">✕</button>
+  </div>
+  <ul class="tws-nav-drawer-menu" role="list">
+    <li><a href="#">Member Portal</a></li>
+    <li>
+      <a href="#">About Us</a>
+      <ul class="tws-nav-drawer-submenu">
+        <li><a href="#">Ways to Get Involved</a></li>
+        <li><a href="#">Executive Board</a></li>
+        <li><a href="#">Committees &amp; Chapters</a></li>
+        <li><a href="#">Awards</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Podcasts</a></li>
+    <li>
+      <a href="#">Resources</a>
+      <ul class="tws-nav-drawer-submenu">
+        <li><a href="#">Job Postings</a></li>
+        <li><a href="#">Grants &amp; Scholarships</a></li>
+        <li><a href="#">Student Resources</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Publications</a>
+      <ul class="tws-nav-drawer-submenu">
+        <li><a href="#">Western Wildlife Journal</a></li>
+        <li><a href="#">Annual Reports</a></li>
+        <li><a href="#">Wildlife Confessional</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Events</a>
+      <ul class="tws-nav-drawer-submenu">
+        <li><a href="#">Bumble Bee Field Course — Jul 9–12</a></li>
+        <li><a href="#">Women+ of Wildlife — Sep 25–27</a></li>
+        <li><a href="#">Western Monarch Workshop — Nov 9–10</a></li>
+        <li><a href="#">Career Builder Series</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+  <a href="#" class="tws-nav-drawer-cta">Join / Access Member Portal</a>
+</div>
+
+<!-- ===================== SECTION 2: HERO CAROUSEL ===================== -->
+<section class="tws-hero-root" aria-label="Featured highlights">
+  <div class="tws-hero-track" id="twsHeroTrack">
+
+    <div class="tws-hero-slide tws-slide-active">
+      <img
+        class="tws-hero-slide-img"
+        src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80"
+        alt="California mountain landscape with wildlife habitat"
+      >
+      <div class="tws-hero-overlay"></div>
+      <div class="tws-hero-content">
+        <div class="tws-hero-text-wrap">
+          <span class="tws-hero-kicker">Western Monarch Workshop — November 2026</span>
+          <h1 class="tws-hero-title">Protecting Western Monarch Overwintering Ecology</h1>
+          <p class="tws-hero-desc">Join expert instructors for a two-day field and lecture experience in Santa Barbara examining critical monarch butterfly habitat and overwintering behavior.</p>
+          <div class="tws-hero-cta-row">
+            <a href="#" class="tws-hero-cta-primary">
+              Register Now
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+            </a>
+            <a href="#" class="tws-hero-cta-ghost">View All Events</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tws-hero-slide">
+      <img
+        class="tws-hero-slide-img"
+        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80"
+        alt="Bumble bee field course — Truckee California"
+      >
+      <div class="tws-hero-overlay"></div>
+      <div class="tws-hero-content">
+        <div class="tws-hero-text-wrap">
+          <span class="tws-hero-kicker">Bumble Bee Field Course — July 9–12, 2026</span>
+          <h2 class="tws-hero-title">Four Days in Truckee's Pollinator Corridors</h2>
+          <p class="tws-hero-desc">An immersive field training course in Truckee, California studying bumble bee ecology, identification, and conservation in western alpine habitats.</p>
+          <div class="tws-hero-cta-row">
+            <a href="#" class="tws-hero-cta-primary">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+            </a>
+            <a href="#" class="tws-hero-cta-ghost">View Calendar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tws-hero-slide">
+      <img
+        class="tws-hero-slide-img"
+        src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1600&q=80"
+        alt="Women of Wildlife retreat — Anza Borrego"
+      >
+      <div class="tws-hero-overlay"></div>
+      <div class="tws-hero-content">
+        <div class="tws-hero-text-wrap">
+          <span class="tws-hero-kicker">Women+ of Wildlife Retreat — September 25–27</span>
+          <h2 class="tws-hero-title">Community, Conservation, and Connection in the Desert</h2>
+          <p class="tws-hero-desc">The Women+ of Wildlife Retreat returns to the Steele/Burnand Anza-Borrego Desert Research Center for three days of learning, networking, and community building.</p>
+          <div class="tws-hero-cta-row">
+            <a href="#" class="tws-hero-cta-primary">
+              Register Now
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+            </a>
+            <a href="#" class="tws-hero-cta-ghost">About the Retreat</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tws-hero-slide">
+      <img
+        class="tws-hero-slide-img"
+        src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=1600&q=80"
+        alt="Wildlife biology fieldwork in the western United States"
+      >
+      <div class="tws-hero-overlay"></div>
+      <div class="tws-hero-content">
+        <div class="tws-hero-text-wrap">
+          <span class="tws-hero-kicker">Western Section Election 2026</span>
+          <h2 class="tws-hero-title">Your Vote Shapes Western Wildlife Leadership</h2>
+          <p class="tws-hero-desc">All current Western Section members are eligible and encouraged to vote. Listen to candidate interviews and read statements before voting closes June 15.</p>
+          <div class="tws-hero-cta-row">
+            <a href="#" class="tws-hero-cta-primary">
+              Vote Now
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+            </a>
+            <a href="#" class="tws-hero-cta-ghost">Candidate Statements</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="tws-hero-arrow tws-hero-arrow-prev" id="twsHeroPrev" aria-label="Previous slide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11,4 6,9 11,14"/></svg>
+  </button>
+  <button class="tws-hero-arrow tws-hero-arrow-next" id="twsHeroNext" aria-label="Next slide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7,4 12,9 7,14"/></svg>
+  </button>
+
+  <div class="tws-hero-nav" id="twsHeroNav" role="tablist" aria-label="Carousel indicators">
+    <button class="tws-hero-dot tws-dot-active" data-slide="0" aria-label="Slide 1" aria-selected="true"></button>
+    <button class="tws-hero-dot" data-slide="1" aria-label="Slide 2" aria-selected="false"></button>
+    <button class="tws-hero-dot" data-slide="2" aria-label="Slide 3" aria-selected="false"></button>
+    <button class="tws-hero-dot" data-slide="3" aria-label="Slide 4" aria-selected="false"></button>
+  </div>
+</section>
+
+<!-- ===================== SECTION 3: MISSION ===================== -->
+<section class="tws-mission-root">
+  <div class="tws-mission-inner">
+    <div class="tws-mission-text-side tws-reveal">
+      <span class="tws-mission-label">Who We Are</span>
+      <h2 class="tws-mission-headline">Advancing Wildlife Stewardship Across the Western States</h2>
+      <p class="tws-mission-body">The Western Section of The Wildlife Society is a non-profit 501(c)3 scientific and educational association dedicated to excellence in wildlife stewardship through science and education. We represent over 1,000 wildlife managers, biologists, ecologists, and students across California, Nevada, Hawaii, and the Commonwealth of the Northern Mariana Islands.</p>
+      <p class="tws-mission-body">Our mission is to enhance the ability of wildlife professionals and students to conserve diversity, sustain productivity, and ensure responsible use of wildlife resources and their habitats — through research, field work, professional development, and community.</p>
+      <a href="#" class="tws-mission-learn">
+        About the Western Section
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+      </a>
+    </div>
+    <div class="tws-mission-image-side tws-reveal">
+      <div class="tws-mission-photo-frame">
+        <img
+          src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=900&q=80"
+          alt="Wildlife professionals conducting field research in the western United States"
+        >
+        <p class="tws-mission-photo-caption">Western Section members at a field survey, Central California</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 4: PROGRAMS ===================== -->
+<section class="tws-programs-root">
+  <div class="tws-programs-inner">
+    <div class="tws-section-hd tws-reveal">
+      <span class="tws-section-hd-label">What We Offer</span>
+      <h2 class="tws-section-hd-title">Programs, Resources & Opportunities</h2>
+      <p class="tws-section-hd-sub">From field courses and workshops to grants, publications, and career resources — the Western Section supports wildlife professionals at every career stage.</p>
+    </div>
+    <div class="tws-programs-grid">
+
+      <article class="tws-program-card tws-reveal">
+        <img
+          class="tws-program-card-img"
+          src="https://images.unsplash.com/photo-1470920878077-d6a00b7a3be9?w=800&q=75"
+          alt="Field workshops and professional training"
+        >
+        <div class="tws-program-card-body">
+          <span class="tws-program-card-tag">Training</span>
+          <h3 class="tws-program-card-title">Workshops & Field Courses</h3>
+          <p class="tws-program-card-text">Hands-on training in wildlife ecology and field methods, from the Bumble Bee Field Course in Truckee to the Western Monarch Overwintering Workshop in Santa Barbara.</p>
+          <a href="#" class="tws-program-card-link">Explore workshops <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="tws-program-card tws-reveal">
+        <img
+          class="tws-program-card-img"
+          src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=75"
+          alt="Career development and professional resources"
+        >
+        <div class="tws-program-card-body">
+          <span class="tws-program-card-tag">Career</span>
+          <h3 class="tws-program-card-title">Career Builder Workshop Series</h3>
+          <p class="tws-program-card-text">Monthly virtual workshops, completely free, designed to help wildlife professionals and students develop the skills and connections they need to grow their careers.</p>
+          <a href="#" class="tws-program-card-link">Join the series <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="tws-program-card tws-reveal">
+        <img
+          class="tws-program-card-img"
+          src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=800&q=75"
+          alt="Grants and scholarship opportunities for students"
+        >
+        <div class="tws-program-card-body">
+          <span class="tws-program-card-tag">Funding</span>
+          <h3 class="tws-program-card-title">Grants & Scholarships</h3>
+          <p class="tws-program-card-text">Financial support for wildlife students and early-career professionals pursuing research, fieldwork, and continuing education across the western states.</p>
+          <a href="#" class="tws-program-card-link">Find funding <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="tws-program-card tws-reveal">
+        <img
+          class="tws-program-card-img"
+          src="https://images.unsplash.com/photo-1516214104703-d870798883c5?w=800&q=75"
+          alt="Western Wildlife Journal and publications"
+        >
+        <div class="tws-program-card-body">
+          <span class="tws-program-card-tag">Publications</span>
+          <h3 class="tws-program-card-title">Western Wildlife Journal</h3>
+          <p class="tws-program-card-text">Our peer-reviewed scientific journal publishing original research on the wildlife species, habitats, and management issues of the western United States and Pacific Islands.</p>
+          <a href="#" class="tws-program-card-link">Read the journal <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="tws-program-card tws-reveal">
+        <img
+          class="tws-program-card-img"
+          src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=75"
+          alt="Conservation affairs and policy advocacy"
+        >
+        <div class="tws-program-card-body">
+          <span class="tws-program-card-tag">Policy</span>
+          <h3 class="tws-program-card-title">Conservation Affairs</h3>
+          <p class="tws-program-card-text">Our Conservation Affairs Committee meets monthly to monitor and respond to conservation policy, land management decisions, and advocacy opportunities affecting western wildlife.</p>
+          <a href="#" class="tws-program-card-link">Get involved <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="tws-program-card tws-reveal">
+        <img
+          class="tws-program-card-img"
+          src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&q=75"
+          alt="Podcasts and wildlife education media"
+        >
+        <div class="tws-program-card-body">
+          <span class="tws-program-card-tag">Media</span>
+          <h3 class="tws-program-card-title">Wildlife Podcasts</h3>
+          <p class="tws-program-card-text">Listen to conversations with wildlife professionals, researchers, and conservationists working on the most pressing issues facing western wildlife today.</p>
+          <a href="#" class="tws-program-card-link">Listen now <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 5: STORIES ===================== -->
+<section class="tws-stories-root">
+  <div class="tws-stories-inner">
+    <div class="tws-section-hd tws-reveal">
+      <span class="tws-section-hd-label">Impact Stories</span>
+      <h2 class="tws-section-hd-title">Wildlife Science in Action</h2>
+      <p class="tws-section-hd-sub">Meet the professionals, researchers, and students advancing western wildlife conservation through the work of the Western Section.</p>
+    </div>
+
+    <div class="tws-gallery-grid">
+
+      <div class="tws-gallery-item tws-gallery-item--tall tws-reveal">
+        <img class="tws-gallery-item-img" src="https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=900&q=80" alt="Field biologist monitoring Sierra Nevada wildlife">
+        <div class="tws-gallery-item-overlay">
+          <span class="tws-gallery-item-region">Sierra Nevada</span>
+          <p class="tws-gallery-item-caption">High-elevation species monitoring</p>
+        </div>
+      </div>
+
+      <div class="tws-gallery-item tws-reveal">
+        <img class="tws-gallery-item-img" src="https://images.unsplash.com/photo-1470920878077-d6a00b7a3be9?w=700&q=80" alt="Bumble bee field research">
+        <div class="tws-gallery-item-overlay">
+          <span class="tws-gallery-item-region">Truckee, CA</span>
+          <p class="tws-gallery-item-caption">Bumble bee ecology field course</p>
+        </div>
+      </div>
+
+      <div class="tws-gallery-item tws-reveal">
+        <img class="tws-gallery-item-img" src="https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=700&q=80" alt="Women in wildlife community">
+        <div class="tws-gallery-item-overlay">
+          <span class="tws-gallery-item-region">Anza-Borrego</span>
+          <p class="tws-gallery-item-caption">Women+ of Wildlife Retreat</p>
+        </div>
+      </div>
+
+      <div class="tws-gallery-item tws-gallery-item--wide tws-reveal">
+        <img class="tws-gallery-item-img" src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=900&q=80" alt="Wildlife conservation fieldwork">
+        <div class="tws-gallery-item-overlay">
+          <span class="tws-gallery-item-region">Western States</span>
+          <p class="tws-gallery-item-caption">Conservation field research partnerships</p>
+        </div>
+      </div>
+
+      <div class="tws-gallery-item tws-reveal">
+        <img class="tws-gallery-item-img" src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=700&q=80" alt="Student career workshop">
+        <div class="tws-gallery-item-overlay">
+          <span class="tws-gallery-item-region">Career Programs</span>
+          <p class="tws-gallery-item-caption">Career Builder Workshop Series</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 6: ENGAGE ===================== -->
+<section class="tws-engage-root">
+  <div class="tws-engage-inner">
+    <div class="tws-section-hd tws-reveal">
+      <span class="tws-section-hd-label">Get Involved</span>
+      <h2 class="tws-section-hd-title">Ways to Support Western Wildlife</h2>
+      <p class="tws-section-hd-sub">Whether you're a seasoned biologist, student, or conservation-minded supporter — there's a place for you in the Western Section community.</p>
+    </div>
+
+    <div class="tws-engage-grid">
+
+      <div class="tws-engage-card tws-reveal">
+        <div class="tws-engage-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="tws-engage-card-title">Become a Member</h3>
+        <p class="tws-engage-card-text">Join over 1,000 wildlife professionals across California, Nevada, Hawaii, and the Northern Mariana Islands. Access resources, events, and a professional community committed to western wildlife.</p>
+        <a href="#" class="tws-engage-card-action">Join today <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+      </div>
+
+      <div class="tws-engage-card tws-reveal">
+        <div class="tws-engage-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <h3 class="tws-engage-card-title">Donate &amp; Support</h3>
+        <p class="tws-engage-card-text">Your contribution funds student scholarships, field courses, grants, and conservation programs that directly advance wildlife science in the western United States.</p>
+        <a href="#" class="tws-engage-card-action">Make a gift <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+      </div>
+
+      <div class="tws-engage-card tws-reveal">
+        <div class="tws-engage-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3 class="tws-engage-card-title">Attend an Event</h3>
+        <p class="tws-engage-card-text">From free monthly virtual workshops to multi-day field courses and the annual meeting — our events calendar has opportunities for every schedule and career stage.</p>
+        <a href="#" class="tws-engage-card-action">View calendar <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+      </div>
+
+      <div class="tws-engage-card tws-reveal">
+        <div class="tws-engage-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="tws-engage-card-title">Contact Us</h3>
+        <p class="tws-engage-card-text">Have questions about membership, events, or committee work? Get in touch with the Western Section team — we're happy to help you find your place in the community.</p>
+        <a href="#" class="tws-engage-card-action">Get in touch <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 7: NEWS ===================== -->
+<section class="tws-news-root">
+  <div class="tws-news-inner">
+    <div class="tws-section-hd tws-reveal">
+      <span class="tws-section-hd-label">News &amp; Updates</span>
+      <h2 class="tws-section-hd-title">Latest from the Western Section</h2>
+      <p class="tws-section-hd-sub">Stay current with events, election news, field course updates, and professional resources from across our member community.</p>
+    </div>
+
+    <div class="tws-news-editorial">
+
+      <article class="tws-news-article-card tws-reveal">
+        <img
+          class="tws-news-article-img"
+          src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=700&q=75"
+          alt="Western Section election 2026"
+        >
+        <div class="tws-news-article-body">
+          <div class="tws-news-article-meta">
+            <span class="tws-news-article-cat">Elections</span>
+            <span class="tws-news-article-date">June 1, 2026</span>
+          </div>
+          <h3 class="tws-news-article-title">Western Section 2026 Election Now Open — Voting Closes June 15</h3>
+          <p class="tws-news-article-excerpt">All current Western Section members are eligible and encouraged to vote in the 2026 board election. Listen to candidate podcast interviews and read written statements before casting your ballot online.</p>
+          <a href="#" class="tws-news-article-readmore">Read more <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="tws-news-article-card tws-reveal">
+        <img
+          class="tws-news-article-img"
+          src="https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=700&q=75"
+          alt="Bumble bee field course registration open"
+        >
+        <div class="tws-news-article-body">
+          <div class="tws-news-article-meta">
+            <span class="tws-news-article-cat">Upcoming Event</span>
+            <span class="tws-news-article-date">May 20, 2026</span>
+          </div>
+          <h3 class="tws-news-article-title">Registration Open: Bumble Bee Field Course, July 9–12 in Truckee</h3>
+          <p class="tws-news-article-excerpt">The Western Section's Bumble Bee Field Course returns to Truckee, California this July. The four-day course covers bumble bee ecology, field identification, and western alpine habitat assessment.</p>
+          <a href="#" class="tws-news-article-readmore">Read more <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="tws-news-article-card tws-reveal">
+        <img
+          class="tws-news-article-img"
+          src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=700&q=75"
+          alt="74th Annual Meeting Sacramento 2027"
+        >
+        <div class="tws-news-article-body">
+          <div class="tws-news-article-meta">
+            <span class="tws-news-article-cat">Annual Meeting</span>
+            <span class="tws-news-article-date">May 5, 2026</span>
+          </div>
+          <h3 class="tws-news-article-title">74th Annual Meeting Announced for Sacramento — February 1–5, 2027</h3>
+          <p class="tws-news-article-excerpt">The 74th Annual Meeting of the Western Section will be held at the Doubletree by Hilton in Sacramento. The Call for Papers opens in August 2026. Save the dates and plan your attendance.</p>
+          <a href="#" class="tws-news-article-readmore">Read more <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="tws-news-view-all tws-reveal">
+      <a href="#">
+        View all news &amp; updates
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 8: FOOTER ===================== -->
+<footer class="tws-footer-root">
+  <div class="tws-footer-inner">
+    <div class="tws-footer-top">
+
+      <div class="tws-footer-brand-col">
+        <div class="tws-footer-brand-mark">
+          <div class="tws-footer-brand-icon">TWS<br>WS</div>
+          <span class="tws-footer-brand-name">Western Section<br>The Wildlife Society</span>
+        </div>
+        <p class="tws-footer-brand-desc">A non-profit 501(c)3 scientific and educational association dedicated to excellence in wildlife stewardship through science and education across California, Nevada, Hawaii, and the CNMI.</p>
+        <div class="tws-footer-social-row">
+          <!-- Instagram -->
+          <a href="#" class="tws-footer-social-link" aria-label="Instagram — Western Section">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="tws-footer-social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- Discord -->
+          <a href="#" class="tws-footer-social-link" aria-label="Discord Community">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.08.114 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" opacity=".65"/></svg>
+          </a>
+          <!-- YouTube / Podcast placeholder -->
+          <a href="#" class="tws-footer-social-link" aria-label="Podcasts">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="11" r="3"/><path d="M6.11 18.56a6 6 0 0 1 0-15.12"/><path d="M1.42 23a10 10 0 0 1 0-24"/><path d="M17.89 18.56a6 6 0 0 0 0-15.12"/><path d="M22.58 23a10 10 0 0 0 0-24"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="tws-footer-col-title">Organization</h4>
+        <ul class="tws-footer-col-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Executive Board</a></li>
+          <li><a href="#">Committees</a></li>
+          <li><a href="#">Chapters</a></li>
+          <li><a href="#">Awards</a></li>
+          <li><a href="#">Strategic Plan</a></li>
+          <li><a href="#">Ombuds Information</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="tws-footer-col-title">Resources</h4>
+        <ul class="tws-footer-col-links">
+          <li><a href="#">Member Portal</a></li>
+          <li><a href="#">Job Postings</a></li>
+          <li><a href="#">Grants &amp; Scholarships</a></li>
+          <li><a href="#">Student Resources</a></li>
+          <li><a href="#">Wildlife Links</a></li>
+          <li><a href="#">Publications</a></li>
+          <li><a href="#">Annual Reports</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="tws-footer-col-title">Get Involved</h4>
+        <ul class="tws-footer-col-links">
+          <li><a href="#">Join / Membership</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Mailing List</a></li>
+          <li><a href="#">Upcoming Events</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Zazzle Store</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="tws-footer-bottom">
+      <p>© 2026 Western Section of The Wildlife Society. A 501(c)3 non-profit organization.</p>
+      <div class="tws-footer-legal-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Code of Ethics</a>
+        <a href="#">Policies &amp; Operations</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ─── NAV: scroll shadow ───────────────────────────────────────
+  const nav = document.getElementById('twsNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('tws-nav-scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ─── NAV: mobile drawer ───────────────────────────────────────
+  const hamburger = document.getElementById('twsHamburger');
+  const drawer    = document.getElementById('twsDrawer');
+  const overlay   = document.getElementById('twsOverlay');
+  const closeBtn  = document.getElementById('twsDrawerClose');
+
+  function openDrawer() {
+    drawer.classList.add('tws-drawer-open');
+    overlay.classList.add('tws-overlay-show');
+    hamburger.classList.add('tws-menu-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('tws-drawer-open');
+    overlay.classList.remove('tws-overlay-show');
+    hamburger.classList.remove('tws-menu-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  // ─── HERO CAROUSEL ──────────────────────────────────────────
+  const track  = document.getElementById('twsHeroTrack');
+  const slides = track.querySelectorAll('.tws-hero-slide');
+  const dots   = document.querySelectorAll('.tws-hero-dot');
+  const prevBtn = document.getElementById('twsHeroPrev');
+  const nextBtn = document.getElementById('twsHeroNext');
+  let current = 0;
+  let autoTimer;
+
+  function goTo(idx) {
+    slides[current].classList.remove('tws-slide-active');
+    dots[current].classList.remove('tws-dot-active');
+    dots[current].setAttribute('aria-selected', 'false');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('tws-slide-active');
+    dots[current].classList.add('tws-dot-active');
+    dots[current].setAttribute('aria-selected', 'true');
+    track.style.transform = `translateX(-${current * 100}%)`;
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(current + 1), 5500);
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => goTo(parseInt(dot.dataset.slide)));
+  });
+
+  // Touch / swipe
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  resetAuto();
+
+  // ─── SCROLL REVEAL ───────────────────────────────────────────
+  const revealEls = document.querySelectorAll('.tws-reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('tws-revealed'), i * 60);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('tws-revealed'));
+  }
+
+})();
+</script>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  const mainNav = document.querySelector(".sk-main-navbar, .tia-nav, .tws-nav-root, .pau-site-nav, .wgf-nav-bar, .yba-nav, .yli-navbar, .zna-main-nav");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+
+  // Initialize state based on current scroll position
+  if (lastScrollY > 80) {
+    gladHeader.classList.add("hidden");
+    if (mainNav) {
+      mainNav.classList.add("glad-hidden");
+    }
+    gladVisible = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          if (mainNav) {
+            mainNav.classList.add("glad-hidden");
+          }
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          if (mainNav) {
+            mainNav.classList.remove("glad-hidden");
+          }
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Young Ladies' Grand Institute — A Catholic Women's Organization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =====================================================
+   YLI DESIGN TOKENS
+   ===================================================== */
+:root {
+  --yli-navy:       #1B2B5E;
+  --yli-navy-deep:  #111C3E;
+  --yli-blue-mid:   #2E4A8F;
+  --yli-blue-light: #4A72C4;
+  --yli-sky:        #C8D8F0;
+  --yli-gold:       #B8963E;
+  --yli-gold-light: #D4AC56;
+  --yli-cream:      #F7F6F2;
+  --yli-off-white:  #FAFAF8;
+  --yli-slate:      #6B7590;
+  --yli-text:       #1A1F35;
+  --yli-text-muted: #5A6070;
+  --yli-border:     #DDE2EC;
+  --yli-white:      #FFFFFF;
+
+  --yli-gap-xs:   0.5rem;
+  --yli-gap-sm:   1rem;
+  --yli-gap-md:   1.5rem;
+  --yli-gap-lg:   2.5rem;
+  --yli-gap-xl:   4rem;
+  --yli-gap-xxl:  6rem;
+
+  --yli-radius-card: 12px;
+  --yli-radius-btn:  9999px;
+
+  --yli-font: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --yli-max-w: 1200px;
+  --yli-gutter: clamp(1.25rem, 5vw, 3rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--yli-font);
+  color: var(--yli-text);
+  background: var(--yli-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+
+a { text-decoration: none; color: inherit; }
+
+/* =====================================================
+   SHARED UTILITIES
+   ===================================================== */
+.yli-inner {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+}
+
+.yli-section-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--yli-gold);
+  margin-bottom: 0.75rem;
+}
+
+.yli-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  background: var(--yli-navy);
+  color: var(--yli-white);
+  border-radius: var(--yli-radius-btn);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.15s;
+  border: none;
+  cursor: pointer;
+}
+.yli-btn-primary:hover { background: var(--yli-blue-mid); transform: translateY(-1px); }
+
+.yli-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.8rem;
+  background: transparent;
+  color: var(--yli-navy);
+  border: 1.5px solid var(--yli-navy);
+  border-radius: var(--yli-radius-btn);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.yli-btn-secondary:hover { background: var(--yli-navy); color: var(--yli-white); }
+
+.yli-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--yli-navy);
+  transition: gap 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.yli-btn-ghost:hover { gap: 0.7rem; }
+
+/* =====================================================
+   SECTION 1: STICKY NAVBAR
+   ===================================================== */
+.yli-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: var(--yli-white);
+  border-bottom: 1px solid var(--yli-border);
+  transition: box-shadow 0.2s;
+}
+.yli-navbar.yli-navbar--scrolled { box-shadow: 0 2px 12px rgba(27,43,94,0.08); }
+
+.yli-navbar-inner {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.yli-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+.yli-navbar-logo-mark {
+  width: 38px;
+  height: 38px;
+  background: var(--yli-navy);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--yli-white);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.yli-navbar-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.yli-navbar-name-main {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--yli-navy);
+  letter-spacing: -0.01em;
+}
+.yli-navbar-name-sub {
+  font-size: 0.68rem;
+  color: var(--yli-slate);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.yli-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+}
+.yli-navbar-links li a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--yli-text-muted);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+.yli-navbar-links li a:hover,
+.yli-navbar-links li a.yli-active { color: var(--yli-navy); background: var(--yli-sky); }
+
+.yli-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.yli-navbar-cta {
+  padding: 0.55rem 1.25rem;
+  background: var(--yli-navy);
+  color: var(--yli-white);
+  border-radius: var(--yli-radius-btn);
+  font-size: 0.825rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.yli-navbar-cta:hover { background: var(--yli-blue-mid); }
+
+.yli-navbar-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.yli-navbar-burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--yli-navy);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+.yli-navbar-burger.yli-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.yli-navbar-burger.yli-open span:nth-child(2) { opacity: 0; }
+.yli-navbar-burger.yli-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Off-canvas */
+.yli-offcanvas-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,28,62,0.4);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.yli-offcanvas-overlay.yli-visible { opacity: 1; pointer-events: all; }
+
+.yli-offcanvas {
+  position: fixed;
+  top: 0; right: 0;
+  width: min(320px, 90vw);
+  height: 100dvh;
+  background: var(--yli-white);
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.yli-offcanvas.yli-open { transform: translateX(0); }
+
+.yli-offcanvas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--yli-border);
+}
+.yli-offcanvas-close {
+  width: 36px; height: 36px;
+  border: none; background: var(--yli-cream);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--yli-navy);
+  font-size: 1.1rem;
+}
+
+.yli-offcanvas-nav {
+  list-style: none;
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.yli-offcanvas-nav li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--yli-text);
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+.yli-offcanvas-nav li a:hover { background: var(--yli-sky); color: var(--yli-navy); }
+
+.yli-offcanvas-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--yli-border);
+}
+.yli-offcanvas-footer .yli-btn-primary { width: 100%; justify-content: center; }
+
+@media (max-width: 900px) {
+  .yli-navbar-links { display: none; }
+  .yli-navbar-actions .yli-navbar-cta { display: none; }
+  .yli-navbar-burger { display: flex; }
+}
+
+/* =====================================================
+   SECTION 2: HERO CAROUSEL
+   ===================================================== */
+.yli-carousel {
+  position: relative;
+  height: clamp(520px, 80vh, 760px);
+  overflow: hidden;
+  background: var(--yli-navy-deep);
+}
+
+.yli-carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.yli-carousel-slide {
+  flex: 0 0 100%;
+  position: relative;
+  height: 100%;
+}
+
+.yli-carousel-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.yli-carousel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(17,28,62,0.82) 40%, rgba(17,28,62,0.45) 100%);
+}
+
+.yli-carousel-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding-inline: var(--yli-gutter);
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  right: auto;
+  width: 100%;
+}
+
+.yli-carousel-text {
+  max-width: 560px;
+  color: var(--yli-white);
+}
+
+.yli-carousel-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yli-gold-light);
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s 0.1s, transform 0.5s 0.1s;
+}
+.yli-carousel-title {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+}
+.yli-carousel-desc {
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s 0.3s, transform 0.5s 0.3s;
+}
+.yli-carousel-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s 0.4s, transform 0.5s 0.4s;
+}
+
+.yli-carousel-slide.yli-slide-active .yli-carousel-eyebrow,
+.yli-carousel-slide.yli-slide-active .yli-carousel-title,
+.yli-carousel-slide.yli-slide-active .yli-carousel-desc,
+.yli-carousel-slide.yli-slide-active .yli-carousel-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.yli-carousel-btn-primary {
+  padding: 0.85rem 2rem;
+  background: var(--yli-white);
+  color: var(--yli-navy);
+  border-radius: var(--yli-radius-btn);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background 0.2s, transform 0.15s;
+}
+.yli-carousel-btn-primary:hover { background: var(--yli-cream); transform: translateY(-1px); }
+
+.yli-carousel-btn-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s, gap 0.2s;
+}
+.yli-carousel-btn-text:hover { color: var(--yli-white); gap: 0.7rem; }
+
+/* Carousel controls */
+.yli-carousel-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+  max-width: var(--yli-max-w);
+  width: 100%;
+  padding-inline: var(--yli-gutter);
+}
+
+.yli-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.35);
+  border: none;
+  cursor: pointer;
+  transition: width 0.3s, background 0.3s;
+  padding: 0;
+}
+.yli-carousel-dot.yli-dot-active {
+  width: 28px;
+  background: var(--yli-white);
+}
+
+.yli-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: var(--yli-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+}
+.yli-carousel-arrow:hover { background: rgba(255,255,255,0.22); }
+.yli-carousel-arrow--prev { left: clamp(1rem, 3vw, 2.5rem); }
+.yli-carousel-arrow--next { right: clamp(1rem, 3vw, 2.5rem); }
+
+@media (max-width: 640px) {
+  .yli-carousel-content { align-items: flex-end; padding-bottom: 5rem; }
+  .yli-carousel-overlay {
+    background: linear-gradient(to top, rgba(17,28,62,0.88) 50%, rgba(17,28,62,0.3) 100%);
+  }
+  .yli-carousel-arrow { display: none; }
+}
+
+/* =====================================================
+   SECTION 3: MISSION & VALUE PROPOSITION
+   ===================================================== */
+.yli-mission {
+  padding-block: var(--yli-gap-xxl);
+  background: var(--yli-off-white);
+}
+
+.yli-mission-inner {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.yli-mission-text {}
+
+.yli-mission-heading {
+  font-size: clamp(1.75rem, 3vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--yli-navy);
+  margin-bottom: 1.5rem;
+}
+
+.yli-mission-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--yli-text-muted);
+  margin-bottom: 1rem;
+}
+
+.yli-mission-body + .yli-mission-body { margin-top: 0; }
+
+.yli-mission-quote {
+  margin-top: 2rem;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--yli-gold);
+  font-size: 0.975rem;
+  font-style: italic;
+  color: var(--yli-text);
+  line-height: 1.65;
+}
+
+.yli-mission-actions { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.yli-mission-visual {
+  border-radius: var(--yli-radius-card);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  position: relative;
+}
+.yli-mission-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.yli-mission-badge {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: var(--yli-white);
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  box-shadow: 0 4px 20px rgba(27,43,94,0.12);
+}
+.yli-mission-badge-year {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--yli-navy);
+  line-height: 1;
+}
+.yli-mission-badge-text {
+  font-size: 0.72rem;
+  color: var(--yli-slate);
+  margin-top: 0.2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .yli-mission-inner { grid-template-columns: 1fr; }
+  .yli-mission-visual { aspect-ratio: 16/9; order: -1; }
+}
+
+/* =====================================================
+   SECTION 4: PRIMARY OFFERINGS / PROGRAMS
+   ===================================================== */
+.yli-programs {
+  padding-block: var(--yli-gap-xxl);
+  background: var(--yli-white);
+}
+
+.yli-programs-header {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.yli-programs-heading {
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--yli-navy);
+  max-width: 520px;
+}
+
+.yli-programs-grid {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.yli-prog-card {
+  border-radius: var(--yli-radius-card);
+  overflow: hidden;
+  background: var(--yli-cream);
+  border: 1px solid var(--yli-border);
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.yli-prog-card:hover { box-shadow: 0 8px 32px rgba(27,43,94,0.1); transform: translateY(-3px); }
+
+.yli-prog-card-img {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+.yli-prog-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.yli-prog-card:hover .yli-prog-card-img img { transform: scale(1.04); }
+
+.yli-prog-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.yli-prog-card-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--yli-sky);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--yli-navy);
+}
+
+.yli-prog-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--yli-navy);
+  margin-bottom: 0.6rem;
+}
+
+.yli-prog-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--yli-text-muted);
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+
+.yli-prog-card-link {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--yli-blue-mid);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap 0.2s;
+  margin-top: auto;
+}
+.yli-prog-card:hover .yli-prog-card-link { gap: 0.55rem; }
+
+@media (max-width: 900px) {
+  .yli-programs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .yli-programs-grid { grid-template-columns: 1fr; }
+}
+
+/* =====================================================
+   SECTION 5: IMPACT / SUCCESS STORIES
+   ===================================================== */
+.yli-stories {
+  padding-block: var(--yli-gap-xxl);
+  background: var(--yli-navy-deep);
+}
+
+.yli-stories-header {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  margin-bottom: 3rem;
+}
+
+.yli-stories-label { color: var(--yli-gold-light); }
+
+.yli-stories-heading {
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  font-weight: 700;
+  color: var(--yli-white);
+  letter-spacing: -0.02em;
+  max-width: 500px;
+}
+
+.yli-stories-grid {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.yli-story-card {
+  border-radius: var(--yli-radius-card);
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.2s, transform 0.2s;
+}
+.yli-story-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-3px); }
+
+.yli-story-card-img {
+  aspect-ratio: 3/2;
+  overflow: hidden;
+}
+.yli-story-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.yli-story-card:hover .yli-story-card-img img { transform: scale(1.04); }
+
+.yli-story-card-body { padding: 1.5rem; }
+
+.yli-story-card-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yli-gold-light);
+  margin-bottom: 0.75rem;
+}
+
+.yli-story-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--yli-white);
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+.yli-story-card-text {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.25rem;
+}
+
+.yli-story-card-person {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.yli-story-card-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--yli-blue-mid);
+  flex-shrink: 0;
+}
+.yli-story-card-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.yli-story-card-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--yli-white);
+}
+.yli-story-card-role {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+}
+
+@media (max-width: 900px) {
+  .yli-stories-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .yli-stories-grid { grid-template-columns: 1fr; }
+}
+
+/* =====================================================
+   SECTION 6: ACTION PANEL / WAYS TO ENGAGE
+   ===================================================== */
+.yli-engage {
+  padding-block: var(--yli-gap-xxl);
+  background: var(--yli-cream);
+}
+
+.yli-engage-header {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.yli-engage-heading {
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  font-weight: 700;
+  color: var(--yli-navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.yli-engage-sub {
+  font-size: 1rem;
+  color: var(--yli-text-muted);
+  max-width: 500px;
+  margin-inline: auto;
+  line-height: 1.6;
+}
+
+.yli-engage-grid {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.yli-engage-card {
+  background: var(--yli-white);
+  border-radius: var(--yli-radius-card);
+  border: 1px solid var(--yli-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.yli-engage-card:hover { box-shadow: 0 8px 32px rgba(27,43,94,0.1); transform: translateY(-3px); }
+
+.yli-engage-card-img {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.yli-engage-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.yli-engage-card:hover .yli-engage-card-img img { transform: scale(1.04); }
+
+.yli-engage-card-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.yli-engage-card-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yli-gold);
+  margin-bottom: 0.6rem;
+}
+
+.yli-engage-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--yli-navy);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.yli-engage-card-text {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--yli-text-muted);
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.yli-engage-card-cta {
+  padding: 0.7rem 1.5rem;
+  background: var(--yli-navy);
+  color: var(--yli-white);
+  border-radius: var(--yli-radius-btn);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.2s;
+  display: block;
+}
+.yli-engage-card-cta:hover { background: var(--yli-blue-mid); }
+
+@media (max-width: 900px) {
+  .yli-engage-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .yli-engage-grid { grid-template-columns: 1fr; }
+}
+
+/* =====================================================
+   SECTION 7: LATEST NEWS / UPDATES
+   ===================================================== */
+.yli-news {
+  padding-block: var(--yli-gap-xxl);
+  background: var(--yli-white);
+}
+
+.yli-news-header {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.yli-news-heading {
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  font-weight: 700;
+  color: var(--yli-navy);
+  letter-spacing: -0.02em;
+}
+
+.yli-news-grid {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.yli-news-card {
+  border-radius: var(--yli-radius-card);
+  border: 1px solid var(--yli-border);
+  overflow: hidden;
+  background: var(--yli-white);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.yli-news-card:hover { box-shadow: 0 6px 24px rgba(27,43,94,0.09); transform: translateY(-2px); }
+
+.yli-news-card-img {
+  overflow: hidden;
+}
+.yli-news-card--featured .yli-news-card-img { aspect-ratio: 16/9; }
+.yli-news-card:not(.yli-news-card--featured) .yli-news-card-img { aspect-ratio: 16/9; }
+
+.yli-news-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.yli-news-card:hover .yli-news-card-img img { transform: scale(1.04); }
+
+.yli-news-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.yli-news-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.yli-news-card-cat {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yli-gold);
+}
+
+.yli-news-card-date {
+  font-size: 0.75rem;
+  color: var(--yli-slate);
+  font-weight: 400;
+}
+
+.yli-news-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--yli-navy);
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+}
+.yli-news-card--featured .yli-news-card-title { font-size: 1.2rem; }
+
+.yli-news-card-excerpt {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--yli-text-muted);
+  flex: 1;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.yli-news-card-read {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--yli-blue-mid);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap 0.2s;
+  margin-top: auto;
+}
+.yli-news-card:hover .yli-news-card-read { gap: 0.55rem; }
+
+@media (max-width: 900px) {
+  .yli-news-grid { grid-template-columns: 1fr 1fr; }
+  .yli-news-card--featured { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .yli-news-grid { grid-template-columns: 1fr; }
+  .yli-news-card--featured { grid-column: auto; }
+}
+
+/* =====================================================
+   SECTION 8: FOOTER
+   ===================================================== */
+.yli-footer {
+  background: var(--yli-navy-deep);
+  color: rgba(255,255,255,0.7);
+  padding-top: 4rem;
+}
+
+.yli-footer-main {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.yli-footer-brand {}
+
+.yli-footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.yli-footer-logo-mark {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--yli-white);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.yli-footer-org-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--yli-white);
+  line-height: 1.2;
+}
+.yli-footer-org-sub {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.45);
+}
+
+.yli-footer-tagline {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 1.75rem;
+  max-width: 260px;
+}
+
+.yli-footer-socials {
+  display: flex;
+  gap: 0.75rem;
+}
+.yli-footer-social-link {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.6);
+  transition: background 0.2s, color 0.2s;
+}
+.yli-footer-social-link:hover { background: rgba(255,255,255,0.15); color: var(--yli-white); }
+
+.yli-footer-col {}
+.yli-footer-col-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.25rem;
+}
+.yli-footer-col-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.yli-footer-col-links li a {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.15s;
+}
+.yli-footer-col-links li a:hover { color: var(--yli-white); }
+
+.yli-footer-bottom {
+  max-width: var(--yli-max-w);
+  margin-inline: auto;
+  padding-inline: var(--yli-gutter);
+  padding-block: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.yli-footer-copy {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+}
+.yli-footer-legal {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.yli-footer-legal li a {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  transition: color 0.15s;
+}
+.yli-footer-legal li a:hover { color: rgba(255,255,255,0.65); }
+
+@media (max-width: 900px) {
+  .yli-footer-main { grid-template-columns: 1fr 1fr; }
+  .yli-footer-brand { grid-column: span 2; }
+}
+@media (max-width: 768px) {
+  .yli-footer-main { grid-template-columns: 1fr; }
+  .yli-footer-brand { grid-column: auto; }
+  .yli-navbar-name {
+    display: none;
+  }
+}
+
+/* =====================================================
+   SCROLL REVEAL
+   ===================================================== */
+.yli-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.yli-reveal.yli-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.yli-reveal-delay-1 { transition-delay: 0.1s; }
+.yli-reveal-delay-2 { transition-delay: 0.2s; }
+.yli-reveal-delay-3 { transition-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── DYNAMIC NAVBAR TOP OFFSET ─── */
+  body .sk-main-navbar,
+  body .tia-nav,
+  body .tws-nav-root,
+  body .pau-site-nav,
+  body .wgf-nav-bar,
+  body .yba-nav,
+  body .yli-navbar,
+  body .zna-main-nav {
+    top: 56px !important;
+    transition: top 0.3s ease !important;
+  }
+  body .sk-main-navbar.glad-hidden,
+  body .tia-nav.glad-hidden,
+  body .tws-nav-root.glad-hidden,
+  body .pau-site-nav.glad-hidden,
+  body .wgf-nav-bar.glad-hidden,
+  body .yba-nav.glad-hidden,
+  body .yli-navbar.glad-hidden,
+  body .zna-main-nav.glad-hidden {
+    top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+
+<!-- ===================================================
+     SECTION 1: STICKY NAVBAR
+     =================================================== -->
+<header class="yli-navbar" id="yli-navbar" role="banner">
+  <div class="yli-navbar-inner">
+    <a href="#" class="yli-navbar-brand" aria-label="Young Ladies' Grand Institute Home">
+      <div class="yli-navbar-logo-mark">YLI</div>
+      <div class="yli-navbar-name">
+        <span class="yli-navbar-name-main">Young Ladies' Grand Institute</span>
+        <span class="yli-navbar-name-sub">A Catholic Women's Organization</span>
+      </div>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul class="yli-navbar-links">
+        <li><a href="#" class="yli-active">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">New Members</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Documents</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="yli-navbar-actions">
+      <a href="#" class="yli-navbar-cta">Join YLI</a>
+      <button class="yli-navbar-burger" id="yli-burger" aria-label="Open menu" aria-expanded="false" aria-controls="yli-offcanvas">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Off-canvas overlay -->
+<div class="yli-offcanvas-overlay" id="yli-overlay" aria-hidden="true"></div>
+
+<!-- Off-canvas drawer -->
+<nav class="yli-offcanvas" id="yli-offcanvas" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="yli-offcanvas-head">
+    <div class="yli-navbar-logo-mark" style="background:var(--yli-navy)">YLI</div>
+    <button class="yli-offcanvas-close" id="yli-close" aria-label="Close menu">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <ul class="yli-offcanvas-nav">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Who We Are</a></li>
+    <li><a href="#">Where We Are</a></li>
+    <li><a href="#">What We Do</a></li>
+    <li><a href="#">New Member Info</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Documents & Forms</a></li>
+    <li><a href="#">Merchandise</a></li>
+    <li><a href="#">Training Videos</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+  <div class="yli-offcanvas-footer">
+    <a href="#" class="yli-btn-primary">Join YLI Today</a>
+  </div>
+</nav>
+
+<!-- ===================================================
+     SECTION 2: HERO CAROUSEL
+     =================================================== -->
+<section class="yli-carousel" aria-label="Featured highlights">
+  <div class="yli-carousel-track" id="yli-carousel-track">
+
+    <!-- Slide 1 -->
+    <div class="yli-carousel-slide yli-slide-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+      <img class="yli-carousel-slide-img"
+        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&auto=format&fit=crop&q=80"
+        alt="Women gathered in community prayer and fellowship"
+        loading="eager">
+      <div class="yli-carousel-overlay"></div>
+      <div class="yli-carousel-content">
+        <div class="yli-carousel-text">
+          <p class="yli-carousel-eyebrow">Founded 1887 · San Francisco</p>
+          <h1 class="yli-carousel-title">Faith, Sisterhood,<br>and Service</h1>
+          <p class="yli-carousel-desc">The Young Ladies' Grand Institute unites Catholic women across California, Oregon, Washington, and Hawaii in lives of charity and community. Over 5,000 members strong.</p>
+          <div class="yli-carousel-actions">
+            <a href="#" class="yli-carousel-btn-primary">Learn About YLI</a>
+            <a href="#" class="yli-carousel-btn-text">
+              Find an Institute
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="yli-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+      <img class="yli-carousel-slide-img"
+        src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?w=1600&auto=format&fit=crop&q=80"
+        alt="Women volunteering together in the community"
+        loading="lazy">
+      <div class="yli-carousel-overlay"></div>
+      <div class="yli-carousel-content">
+        <div class="yli-carousel-text">
+          <p class="yli-carousel-eyebrow">Community in Action</p>
+          <h2 class="yli-carousel-title">Serving Those<br>Around Us</h2>
+          <p class="yli-carousel-desc">Each YLI Institute chapter carries forward our founders' spirit—offering hands-on charity, material support, and genuine care to those in need in their local communities.</p>
+          <div class="yli-carousel-actions">
+            <a href="#" class="yli-carousel-btn-primary">What We Do</a>
+            <a href="#" class="yli-carousel-btn-text">
+              View Events
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="yli-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+      <img class="yli-carousel-slide-img"
+        src="https://images.unsplash.com/photo-1573164574472-797cdf4a583a?w=1600&auto=format&fit=crop&q=80"
+        alt="Women in a church ceremony"
+        loading="lazy">
+      <div class="yli-carousel-overlay"></div>
+      <div class="yli-carousel-content">
+        <div class="yli-carousel-text">
+          <p class="yli-carousel-eyebrow">Open to All Catholic Women</p>
+          <h2 class="yli-carousel-title">Become Part of<br>Something Enduring</h2>
+          <p class="yli-carousel-desc">YLI offers a community built on Christian principles, sisterly love, and over 135 years of faithful service. Membership is open to Catholic women 18 and older.</p>
+          <div class="yli-carousel-actions">
+            <a href="#" class="yli-carousel-btn-primary">Join YLI Today</a>
+            <a href="#" class="yli-carousel-btn-text">
+              New Member Info
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Prev/Next arrows -->
+  <button class="yli-carousel-arrow yli-carousel-arrow--prev" id="yli-prev" aria-label="Previous slide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 4L6 9L11 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <button class="yli-carousel-arrow yli-carousel-arrow--next" id="yli-next" aria-label="Next slide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 4L12 9L7 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Dot indicators -->
+  <div class="yli-carousel-controls" role="tablist" aria-label="Carousel navigation">
+    <button class="yli-carousel-dot yli-dot-active" role="tab" aria-selected="true" aria-label="Go to slide 1" data-index="0"></button>
+    <button class="yli-carousel-dot" role="tab" aria-selected="false" aria-label="Go to slide 2" data-index="1"></button>
+    <button class="yli-carousel-dot" role="tab" aria-selected="false" aria-label="Go to slide 3" data-index="2"></button>
+  </div>
+</section>
+
+<!-- ===================================================
+     SECTION 3: MISSION & VALUE PROPOSITION
+     =================================================== -->
+<section class="yli-mission" aria-labelledby="yli-mission-heading">
+  <div class="yli-mission-inner">
+    <div class="yli-mission-text">
+      <span class="yli-section-label yli-reveal">Our Mission</span>
+      <h2 class="yli-mission-heading yli-reveal yli-reveal-delay-1" id="yli-mission-heading">
+        United by Faith.<br>Strengthened by Sisterhood.
+      </h2>
+      <p class="yli-mission-body yli-reveal yli-reveal-delay-2">
+        The Young Ladies' Grand Institute (YLI) is a Catholic women's organization rooted in the Christian principles of charity and love. Founded on September 5, 1887 in San Francisco by Annie M. Sweeney, her sister Mary E. Richardson, and Emily Coogan, YLI began with a simple act of generosity—rallying to support a young woman in need.
+      </p>
+      <p class="yli-mission-body yli-reveal yli-reveal-delay-2">
+        Today, YLI continues that legacy across California, Oregon, Washington, and Hawaii, with over 5,000 members gathering in local Institutes to reflect the virtues of faith, hope, and charity at every meeting.
+      </p>
+      <blockquote class="yli-mission-quote yli-reveal yli-reveal-delay-3">
+        "The principles of unity, sisterly love and protection are the diamonds that give brilliance to our Order—they embody our love and concern for each other."
+      </blockquote>
+      <div class="yli-mission-actions yli-reveal yli-reveal-delay-3">
+        <a href="#" class="yli-btn-primary">Read Our Full History</a>
+        <a href="#" class="yli-btn-ghost">
+          Who We Are
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-mission-visual yli-reveal yli-reveal-delay-1">
+      <img
+        src="https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=800&auto=format&fit=crop&q=80"
+        alt="Catholic women gathered in fellowship and prayer"
+        loading="lazy">
+      <div class="yli-mission-badge">
+        <div class="yli-mission-badge-year">1887</div>
+        <div class="yli-mission-badge-text">Founded in San Francisco</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     SECTION 4: PRIMARY OFFERINGS / PROGRAMS
+     =================================================== -->
+<section class="yli-programs" aria-labelledby="yli-programs-heading">
+  <div class="yli-programs-header">
+    <div>
+      <span class="yli-section-label yli-reveal">What We Do</span>
+      <h2 class="yli-programs-heading yli-reveal yli-reveal-delay-1" id="yli-programs-heading">Our Core Focus Areas</h2>
+    </div>
+    <a href="#" class="yli-btn-ghost yli-reveal yli-reveal-delay-1">
+      View All Programs
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="yli-programs-grid">
+
+    <div class="yli-prog-card yli-reveal">
+      <div class="yli-prog-card-img">
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=700&auto=format&fit=crop&q=80" alt="Charity and community support" loading="lazy">
+      </div>
+      <div class="yli-prog-card-body">
+        <div class="yli-prog-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21C12 21 4 13.5 4 8.5C4 6 6 4 8.5 4C10 4 11.5 4.7 12 6C12.5 4.7 14 4 15.5 4C18 4 20 6 20 8.5C20 13.5 12 21 12 21Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="yli-prog-card-title">Charity & Service</h3>
+        <p class="yli-prog-card-desc">YLI chapters provide material support, prayer, and presence to women and families in need throughout our communities, reflecting the founders' original call to action.</p>
+        <a href="#" class="yli-prog-card-link">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-prog-card yli-reveal yli-reveal-delay-1">
+      <div class="yli-prog-card-img">
+        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=700&auto=format&fit=crop&q=80" alt="Faith formation and spiritual growth" loading="lazy">
+      </div>
+      <div class="yli-prog-card-body">
+        <div class="yli-prog-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="yli-prog-card-title">Faith Formation</h3>
+        <p class="yli-prog-card-desc">Members deepen their Catholic faith through shared prayer, sacramental life, and formation opportunities that anchor YLI's work in the Gospel call to love one another.</p>
+        <a href="#" class="yli-prog-card-link">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-prog-card yli-reveal yli-reveal-delay-2">
+      <div class="yli-prog-card-img">
+        <img src="https://images.unsplash.com/photo-1530099486328-e021101a494a?w=700&auto=format&fit=crop&q=80" alt="Women's fellowship and sisterhood events" loading="lazy">
+      </div>
+      <div class="yli-prog-card-body">
+        <div class="yli-prog-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M2 21C2 17 5 14 9 14C13 14 16 17 16 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M19 8L19 14M16 11H22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="yli-prog-card-title">Membership & Community</h3>
+        <p class="yli-prog-card-desc">YLI welcomes Catholic women 18 and older across the West Coast. Each local Institute chapter meets regularly to foster lasting bonds of sisterhood, mutual support, and shared purpose.</p>
+        <a href="#" class="yli-prog-card-link">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-prog-card yli-reveal yli-reveal-delay-1">
+      <div class="yli-prog-card-img">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&auto=format&fit=crop&q=80" alt="Leadership and organizational training" loading="lazy">
+      </div>
+      <div class="yli-prog-card-body">
+        <div class="yli-prog-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="yli-prog-card-title">Leadership Development</h3>
+        <p class="yli-prog-card-desc">From local Institute officers to Grand Lodge leadership, YLI cultivates servant leaders through training videos, meetings, conventions, and mentorship across our four-state network.</p>
+        <a href="#" class="yli-prog-card-link">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-prog-card yli-reveal yli-reveal-delay-2">
+      <div class="yli-prog-card-img">
+        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=700&auto=format&fit=crop&q=80" alt="Annual events and conventions" loading="lazy">
+      </div>
+      <div class="yli-prog-card-body">
+        <div class="yli-prog-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M3 10H21M8 2V6M16 2V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="yli-prog-card-title">Events & Conventions</h3>
+        <p class="yli-prog-card-desc">YLI hosts annual Grand Lodge conventions, regional gatherings, installation ceremonies, and spiritual retreats that connect members across states and deepen organizational unity.</p>
+        <a href="#" class="yli-prog-card-link">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-prog-card yli-reveal yli-reveal-delay-3">
+      <div class="yli-prog-card-img">
+        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=700&auto=format&fit=crop&q=80" alt="Documents, resources, and forms" loading="lazy">
+      </div>
+      <div class="yli-prog-card-body">
+        <div class="yli-prog-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2V8H20M8 13H16M8 17H13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="yli-prog-card-title">Documents & Resources</h3>
+        <p class="yli-prog-card-desc">Access official YLI forms, Grand President letters, initiation materials, bylaws, and member resources in our secure documents portal—organized for Institute officers and members.</p>
+        <a href="#" class="yli-prog-card-link">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================================================
+     SECTION 5: IMPACT / SUCCESS STORIES
+     =================================================== -->
+<section class="yli-stories" aria-labelledby="yli-stories-heading">
+  <div class="yli-stories-header">
+    <span class="yli-section-label yli-stories-label yli-reveal">Member Stories</span>
+    <h2 class="yli-stories-heading yli-reveal yli-reveal-delay-1" id="yli-stories-heading">Women Living the YLI Mission</h2>
+  </div>
+  <div class="yli-stories-grid">
+
+    <div class="yli-story-card yli-reveal">
+      <div class="yli-story-card-img">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&auto=format&fit=crop&q=80&face" alt="Member story from California" loading="lazy">
+      </div>
+      <div class="yli-story-card-body">
+        <span class="yli-story-card-tag">Charity in Action</span>
+        <h3 class="yli-story-card-title">How Our Chapter Came Together to Support a Member in Crisis</h3>
+        <p class="yli-story-card-text">When a longtime member of our Sacramento-area Institute faced a sudden medical emergency, her YLI sisters organized meals, transportation, and fundraising—living out exactly what our founders envisioned over 135 years ago.</p>
+        <div class="yli-story-card-person">
+          <div class="yli-story-card-avatar">
+            <img src="https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=100&auto=format&fit=crop&q=80" alt="Mary L." loading="lazy">
+          </div>
+          <div>
+            <div class="yli-story-card-name">Mary L.</div>
+            <div class="yli-story-card-role">Institute No. 3, California</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="yli-story-card yli-reveal yli-reveal-delay-1">
+      <div class="yli-story-card-img">
+        <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=700&auto=format&fit=crop&q=80" alt="New member experience" loading="lazy">
+      </div>
+      <div class="yli-story-card-body">
+        <span class="yli-story-card-tag">New Member</span>
+        <h3 class="yli-story-card-title">Finding Community After Moving to a New City</h3>
+        <p class="yli-story-card-text">I moved to Portland knowing almost no one. Within three months of joining YLI, I had a circle of sisters I could count on. The initiation ceremony moved me deeply—I knew I had found my community.</p>
+        <div class="yli-story-card-person">
+          <div class="yli-story-card-avatar">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" alt="Teresa M." loading="lazy">
+          </div>
+          <div>
+            <div class="yli-story-card-name">Teresa M.</div>
+            <div class="yli-story-card-role">Institute No. 14, Oregon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="yli-story-card yli-reveal yli-reveal-delay-2">
+      <div class="yli-story-card-img">
+        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=700&auto=format&fit=crop&q=80" alt="Leadership story" loading="lazy">
+      </div>
+      <div class="yli-story-card-body">
+        <span class="yli-story-card-tag">Leadership</span>
+        <h3 class="yli-story-card-title">From New Member to Grand President: A 30-Year Journey</h3>
+        <p class="yli-story-card-text">YLI has shaped every part of my life. Starting as a young woman who knew little about leadership, the organization gave me the tools, the confidence, and the sisters to grow into the role I now hold with deep gratitude.</p>
+        <div class="yli-story-card-person">
+          <div class="yli-story-card-avatar">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&auto=format&fit=crop&q=80" alt="Catherine R." loading="lazy">
+          </div>
+          <div>
+            <div class="yli-story-card-name">Catherine R.</div>
+            <div class="yli-story-card-role">Grand President, YLI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================================================
+     SECTION 6: ACTION PANEL / WAYS TO ENGAGE
+     =================================================== -->
+<section class="yli-engage" aria-labelledby="yli-engage-heading">
+  <div class="yli-engage-header">
+    <span class="yli-section-label yli-reveal">Get Involved</span>
+    <h2 class="yli-engage-heading yli-reveal yli-reveal-delay-1" id="yli-engage-heading">Ways to Connect with YLI</h2>
+    <p class="yli-engage-sub yli-reveal yli-reveal-delay-2">Whether you're ready to join, looking for your nearest Institute, or want to attend an upcoming event—we'd love to welcome you.</p>
+  </div>
+  <div class="yli-engage-grid">
+
+    <div class="yli-engage-card yli-reveal">
+      <div class="yli-engage-card-img">
+        <img src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=700&auto=format&fit=crop&q=80" alt="Join YLI as a new member" loading="lazy">
+      </div>
+      <div class="yli-engage-card-body">
+        <span class="yli-engage-card-label">Membership</span>
+        <h3 class="yli-engage-card-title">Become a Member</h3>
+        <p class="yli-engage-card-text">YLI membership is open to Catholic women 18 and older. Find an Institute near you and begin your journey of faith, sisterhood, and service. New members are always welcome.</p>
+        <a href="#" class="yli-engage-card-cta">New Member Info</a>
+      </div>
+    </div>
+
+    <div class="yli-engage-card yli-reveal yli-reveal-delay-1">
+      <div class="yli-engage-card-img">
+        <img src="https://images.unsplash.com/photo-1618004912476-29818d81ae2e?w=700&auto=format&fit=crop&q=80" alt="Find a local YLI institute near you" loading="lazy">
+      </div>
+      <div class="yli-engage-card-body">
+        <span class="yli-engage-card-label">Locate</span>
+        <h3 class="yli-engage-card-title">Find an Institute</h3>
+        <p class="yli-engage-card-text">YLI has active chapters across California, Oregon, Washington, and Hawaii. Use our Institute locator to find a chapter near you and connect with a community of sisters.</p>
+        <a href="#" class="yli-engage-card-cta">Find Your Institute</a>
+      </div>
+    </div>
+
+    <div class="yli-engage-card yli-reveal yli-reveal-delay-2">
+      <div class="yli-engage-card-img">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&auto=format&fit=crop&q=80" alt="Contact YLI" loading="lazy">
+      </div>
+      <div class="yli-engage-card-body">
+        <span class="yli-engage-card-label">Contact</span>
+        <h3 class="yli-engage-card-title">Reach Out to Us</h3>
+        <p class="yli-engage-card-text">Have a question about YLI, your Institute, or membership? Our Grand Lodge team is here to help. Reach out directly and we'll connect you with the right resources or contact.</p>
+        <a href="#" class="yli-engage-card-cta">Contact YLI</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================================================
+     SECTION 7: LATEST NEWS / UPDATES
+     =================================================== -->
+<section class="yli-news" aria-labelledby="yli-news-heading">
+  <div class="yli-news-header">
+    <div>
+      <span class="yli-section-label yli-reveal">News & Updates</span>
+      <h2 class="yli-news-heading yli-reveal yli-reveal-delay-1" id="yli-news-heading">Latest from YLI</h2>
+    </div>
+    <a href="#" class="yli-btn-ghost yli-reveal yli-reveal-delay-1">
+      All Updates
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="yli-news-grid">
+
+    <div class="yli-news-card yli-news-card--featured yli-reveal">
+      <div class="yli-news-card-img">
+        <img src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?w=900&auto=format&fit=crop&q=80" alt="Grand Lodge convention recap" loading="lazy">
+      </div>
+      <div class="yli-news-card-body">
+        <div class="yli-news-card-meta">
+          <span class="yli-news-card-cat">Convention</span>
+          <span class="yli-news-card-date">May 18, 2025</span>
+        </div>
+        <h3 class="yli-news-card-title">2025 Grand Lodge Convention: Highlights and Key Decisions</h3>
+        <p class="yli-news-card-excerpt">Delegates from chapters across California, Oregon, Washington, and Hawaii gathered this spring for YLI's annual Grand Lodge Convention. Members voted on several important organizational updates, elected new officers, and renewed commitments to the Order's founding mission of charity and sisterhood.</p>
+        <a href="#" class="yli-news-card-read">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-news-card yli-reveal yli-reveal-delay-1">
+      <div class="yli-news-card-img">
+        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=80" alt="Grand President letter" loading="lazy">
+      </div>
+      <div class="yli-news-card-body">
+        <div class="yli-news-card-meta">
+          <span class="yli-news-card-cat">Leadership</span>
+          <span class="yli-news-card-date">Apr 3, 2025</span>
+        </div>
+        <h3 class="yli-news-card-title">Grand President's Letter: Spring 2025</h3>
+        <p class="yli-news-card-excerpt">The latest letter from our Grand President has been published in Documents & Forms. Members are encouraged to read her message and share it at upcoming Institute meetings.</p>
+        <a href="#" class="yli-news-card-read">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-news-card yli-reveal yli-reveal-delay-2">
+      <div class="yli-news-card-img">
+        <img src="https://images.unsplash.com/photo-1459664018906-085c36f472af?w=600&auto=format&fit=crop&q=80" alt="Initiation ceremony resources updated" loading="lazy">
+      </div>
+      <div class="yli-news-card-body">
+        <div class="yli-news-card-meta">
+          <span class="yli-news-card-cat">Resources</span>
+          <span class="yli-news-card-date">Mar 12, 2025</span>
+        </div>
+        <h3 class="yli-news-card-title">Initiation Ode Music Now Available in Documents & Forms</h3>
+        <p class="yli-news-card-excerpt">The official Initiation Ode sheet music has been moved to the Documents & Forms section for easier access. Institute officers can download the updated files directly from the member portal.</p>
+        <a href="#" class="yli-news-card-read">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================================================
+     SECTION 8: FOOTER
+     =================================================== -->
+<footer class="yli-footer" role="contentinfo">
+  <div class="yli-footer-main">
+    <div class="yli-footer-brand">
+      <div class="yli-footer-logo">
+        <div class="yli-footer-logo-mark">YLI</div>
+        <div>
+          <div class="yli-footer-org-name">Young Ladies' Grand Institute</div>
+          <div class="yli-footer-org-sub">A Catholic Women's Organization</div>
+        </div>
+      </div>
+      <p class="yli-footer-tagline">
+        Uniting Catholic women in faith, sisterhood, and service since 1887. Active in California, Oregon, Washington, and Hawaii.
+      </p>
+      <div class="yli-footer-socials">
+        <a href="#" class="yli-footer-social-link" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.5 6.2C23.2 5.1 22.4 4.3 21.3 4C19.4 3.5 12 3.5 12 3.5S4.6 3.5 2.7 4C1.6 4.3 0.8 5.1 0.5 6.2 0 8.1 0 12 0 12S0 15.9 0.5 17.8C0.8 18.9 1.6 19.7 2.7 20 4.6 20.5 12 20.5 12 20.5S19.4 20.5 21.3 20C22.4 19.7 23.2 18.9 23.5 17.8 24 15.9 24 12 24 12S24 8.1 23.5 6.2ZM9.8 15.5V8.5L15.8 12 9.8 15.5Z"/>
+          </svg>
+        </a>
+        <a href="#" class="yli-footer-social-link" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2H15C13.7 2 12.4 2.5 11.5 3.4 10.5 4.3 10 5.6 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.7 14.1 6.4 14.3 6.2 14.5 6 14.7 5.9 15 5.9H18V2Z"/>
+          </svg>
+        </a>
+        <a href="#" class="yli-footer-social-link" aria-label="Twitter / X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.3 1.9H21.6L14.5 10.1 22.8 22.1H16.3L11.2 15 5.4 22.1H2.1L9.6 13.3 1.7 1.9H8.4L13 8.3 18.3 1.9ZM17.2 20.2H18.9L7.3 3.6H5.5L17.2 20.2Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="yli-footer-col">
+      <p class="yli-footer-col-title">Organization</p>
+      <ul class="yli-footer-col-links">
+        <li><a href="#">About YLI</a></li>
+        <li><a href="#">Who We Are</a></li>
+        <li><a href="#">Our History</a></li>
+        <li><a href="#">Leadership</a></li>
+        <li><a href="#">Grand Lodge</a></li>
+      </ul>
+    </div>
+
+    <div class="yli-footer-col">
+      <p class="yli-footer-col-title">Members</p>
+      <ul class="yli-footer-col-links">
+        <li><a href="#">New Member Info</a></li>
+        <li><a href="#">Find an Institute</a></li>
+        <li><a href="#">Documents & Forms</a></li>
+        <li><a href="#">Training Videos</a></li>
+        <li><a href="#">Merchandise</a></li>
+      </ul>
+    </div>
+
+    <div class="yli-footer-col">
+      <p class="yli-footer-col-title">Connect</p>
+      <ul class="yli-footer-col-links">
+        <li><a href="#">Events Calendar</a></li>
+        <li><a href="#">Photo Gallery</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Webmaster</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="yli-footer-bottom">
+    <p class="yli-footer-copy">© 2026 Young Ladies' Grand Institute. All Rights Reserved.</p>
+    <ul class="yli-footer-legal">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Accessibility</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+<script>
+(function () {
+  'use strict';
+
+  /* --------------------------------------------------
+     NAVBAR: scroll shadow + burger + off-canvas
+     -------------------------------------------------- */
+  const navbar  = document.getElementById('yli-navbar');
+  const burger  = document.getElementById('yli-burger');
+  const overlay = document.getElementById('yli-overlay');
+  const drawer  = document.getElementById('yli-offcanvas');
+  const closeBtn = document.getElementById('yli-close');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('yli-navbar--scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  function openMenu() {
+    burger.classList.add('yli-open');
+    burger.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('yli-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('yli-visible');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // focus trap — move focus to close button
+    closeBtn.focus();
+  }
+
+  function closeMenu() {
+    burger.classList.remove('yli-open');
+    burger.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('yli-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('yli-visible');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    burger.focus();
+  }
+
+  burger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('yli-open')) closeMenu();
+  });
+
+  // Focus trap inside drawer
+  drawer.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = drawer.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last  = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* --------------------------------------------------
+     CAROUSEL
+     -------------------------------------------------- */
+  const track  = document.getElementById('yli-carousel-track');
+  const slides  = track.querySelectorAll('.yli-carousel-slide');
+  const dots    = document.querySelectorAll('.yli-carousel-dot');
+  const prevBtn = document.getElementById('yli-prev');
+  const nextBtn = document.getElementById('yli-next');
+  let current = 0;
+  let autoplayTimer;
+
+  function goTo(index) {
+    slides[current].classList.remove('yli-slide-active');
+    dots[current].classList.remove('yli-dot-active');
+    dots[current].setAttribute('aria-selected', 'false');
+
+    current = (index + slides.length) % slides.length;
+
+    slides[current].classList.add('yli-slide-active');
+    dots[current].classList.add('yli-dot-active');
+    dots[current].setAttribute('aria-selected', 'true');
+    track.style.transform = `translateX(-${current * 100}%)`;
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAutoplay() {
+    autoplayTimer = setInterval(next, 5000);
+  }
+  function stopAutoplay() { clearInterval(autoplayTimer); }
+
+  prevBtn.addEventListener('click', () => { stopAutoplay(); prev(); startAutoplay(); });
+  nextBtn.addEventListener('click', () => { stopAutoplay(); next(); startAutoplay(); });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      stopAutoplay();
+      goTo(parseInt(dot.dataset.index, 10));
+      startAutoplay();
+    });
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { stopAutoplay(); diff > 0 ? next() : prev(); startAutoplay(); }
+  }, { passive: true });
+
+  startAutoplay();
+
+  /* --------------------------------------------------
+     SCROLL REVEAL
+     -------------------------------------------------- */
+  const revealEls = document.querySelectorAll('.yli-reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('yli-revealed');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('yli-revealed'));
+  }
+
+}());
+</script>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  const mainNav = document.querySelector(".sk-main-navbar, .tia-nav, .tws-nav-root, .pau-site-nav, .wgf-nav-bar, .yba-nav, .yli-navbar, .zna-main-nav");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+
+  // Initialize state based on current scroll position
+  if (lastScrollY > 80) {
+    gladHeader.classList.add("hidden");
+    if (mainNav) {
+      mainNav.classList.add("glad-hidden");
+    }
+    gladVisible = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          if (mainNav) {
+            mainNav.classList.add("glad-hidden");
+          }
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          if (mainNav) {
+            mainNav.classList.remove("glad-hidden");
+          }
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

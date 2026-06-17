@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YBA Dawgs | Youth Basketball Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --yba-black:       #0a0a0a;
+    --yba-charcoal:    #141414;
+    --yba-dark:        #1c1c1c;
+    --yba-mid:         #2a2a2a;
+    --yba-border:      #2e2e2e;
+    --yba-cyan:        #00b4d8;
+    --yba-cyan-hover:  #0096b7;
+    --yba-white:       #ffffff;
+    --yba-off-white:   #e8e8e8;
+    --yba-muted:       #8a8a8a;
+    --yba-light:       #b0b0b0;
+    --yba-section-bg:  #111111;
+    --yba-alt-bg:      #161616;
+    --ff:              'Inter', system-ui, sans-serif;
+    --nav-h:           68px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--ff); background: var(--yba-black); color: var(--yba-white); overflow-x: hidden; }
+
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ─── NAVBAR ─── */
+  .yba-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    background: var(--yba-black);
+    border-bottom: 1px solid var(--yba-border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    transition: background 0.3s;
+  }
+  .yba-nav.yba-nav--scrolled { background: rgba(10,10,10,0.97); backdrop-filter: blur(8px); }
+
+  .yba-nav-brand {
+    display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+  }
+  .yba-nav-logo-mark {
+    width: 40px; height: 40px;
+    background: var(--yba-cyan);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .yba-nav-logo-mark span {
+    font-size: 0.75rem; font-weight: 900; color: var(--yba-black); letter-spacing: -0.02em;
+  }
+  .yba-nav-brand-text { line-height: 1; }
+  .yba-nav-brand-text strong {
+    display: block; font-size: 1rem; font-weight: 800; color: var(--yba-white); letter-spacing: 0.04em;
+  }
+  .yba-nav-brand-text em {
+    font-style: normal; font-size: 0.6rem; font-weight: 500; color: var(--yba-cyan); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  .yba-nav-links {
+    display: none; list-style: none; gap: 0;
+  }
+  @media (min-width: 900px) { .yba-nav-links { display: flex; } }
+  .yba-nav-links a {
+    display: block; padding: 0 1.1rem; height: var(--nav-h); line-height: var(--nav-h);
+    font-size: 0.78rem; font-weight: 600; color: var(--yba-light); text-decoration: none;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  .yba-nav-links a:hover { color: var(--yba-white); border-bottom-color: var(--yba-cyan); }
+
+  .yba-nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .yba-nav-cta {
+    display: none;
+    padding: 0.5rem 1.25rem;
+    background: var(--yba-cyan);
+    color: var(--yba-black);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .yba-nav-cta:hover { background: var(--yba-cyan-hover); }
+  @media (min-width: 640px) { .yba-nav-cta { display: inline-block; } }
+
+  .yba-nav-burger {
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .yba-nav-burger span { display: block; height: 2px; background: var(--yba-white); transition: all 0.3s; }
+  .yba-nav-burger.yba-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .yba-nav-burger.yba-open span:nth-child(2) { opacity: 0; }
+  .yba-nav-burger.yba-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (min-width: 900px) { .yba-nav-burger { display: none; } }
+
+  /* Off-canvas */
+  .yba-offcanvas {
+    position: fixed; top: 0; right: -100%; width: min(320px, 85vw); height: 100vh;
+    background: var(--yba-charcoal); border-left: 1px solid var(--yba-border);
+    z-index: 999; padding: 5rem 2rem 2rem;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+  .yba-offcanvas.yba-open { right: 0; }
+  .yba-offcanvas-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 998;
+  }
+  .yba-offcanvas-overlay.yba-open { display: block; }
+  .yba-offcanvas-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .yba-offcanvas-list li { border-bottom: 1px solid var(--yba-border); }
+  .yba-offcanvas-list a {
+    display: block; padding: 1rem 0;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--yba-light); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .yba-offcanvas-list a:hover { color: var(--yba-cyan); }
+  .yba-offcanvas-cta {
+    display: block; margin-top: 2rem; padding: 0.9rem 1.5rem; text-align: center;
+    background: var(--yba-cyan); color: var(--yba-black);
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* ─── HERO CAROUSEL ─── */
+  .yba-hero {
+    position: relative; height: 100vh; min-height: 560px; overflow: hidden;
+    margin-top: 0;
+  }
+  .yba-hero-track {
+    display: flex; height: 100%;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .yba-hero-slide {
+    min-width: 100%; height: 100%; position: relative; flex-shrink: 0;
+  }
+  .yba-hero-slide-img {
+    position: absolute; inset: 0;
+  }
+  .yba-hero-slide-img img { object-fit: cover; }
+  .yba-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.82) 50%, rgba(0,0,0,0.35) 100%);
+  }
+  .yba-hero-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 2rem; padding-top: var(--nav-h);
+    max-width: 680px;
+  }
+  @media (min-width: 768px) {
+    .yba-hero-content { left: 50%; transform: translateX(-50%); max-width: 1200px; padding: 0 4rem; padding-top: var(--nav-h); }
+    .yba-hero-content { left: 0; transform: none; }
+  }
+  .yba-hero-eyecatch {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .yba-hero-eyecatch-line { width: 32px; height: 2px; background: var(--yba-cyan); }
+  .yba-hero-eyecatch-text {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yba-cyan);
+  }
+  .yba-hero-title {
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 900; line-height: 1.0;
+    letter-spacing: -0.02em; color: var(--yba-white);
+    margin-bottom: 1.25rem;
+    max-width: 600px;
+  }
+  .yba-hero-desc {
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    font-weight: 400; line-height: 1.65;
+    color: var(--yba-off-white); opacity: 0.85;
+    margin-bottom: 2.25rem;
+    max-width: 480px;
+  }
+  .yba-hero-btns { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .yba-hero-btn-primary {
+    padding: 0.85rem 2rem;
+    background: var(--yba-cyan); color: var(--yba-black);
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .yba-hero-btn-primary:hover { background: var(--yba-cyan-hover); transform: translateY(-1px); }
+  .yba-hero-btn-ghost {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--yba-white); text-decoration: none; opacity: 0.75;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: opacity 0.2s;
+  }
+  .yba-hero-btn-ghost:hover { opacity: 1; }
+  .yba-hero-btn-ghost svg { width: 14px; height: 14px; }
+
+  /* Carousel controls */
+  /* Bottom bar: dots left, arrows right — sits below content on mobile */
+  .yba-hero-bottom-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.5rem;
+    z-index: 10;
+  }
+  @media (min-width: 768px) {
+    .yba-hero-bottom-bar { padding: 0 4rem; }
+  }
+  .yba-hero-nav {
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .yba-hero-dot {
+    width: 28px; height: 3px; background: rgba(255,255,255,0.3);
+    border: none; cursor: pointer; padding: 0;
+    transition: background 0.2s, width 0.3s;
+  }
+  .yba-hero-dot.yba-active { background: var(--yba-cyan); width: 48px; }
+  .yba-hero-arrows {
+    display: flex; flex-direction: row; gap: 0.5rem;
+  }
+  .yba-hero-arrow {
+    width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+    color: var(--yba-white); cursor: pointer; transition: background 0.2s;
+  }
+  .yba-hero-arrow:hover { background: var(--yba-cyan); border-color: var(--yba-cyan); color: var(--yba-black); }
+  .yba-hero-arrow svg { width: 16px; height: 16px; }
+
+  /* Content must not overlap bottom bar */
+  .yba-hero-content {
+    padding-bottom: 72px !important;
+  }
+
+  /* ─── SHARED ─── */
+  .yba-section-label {
+    display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem;
+  }
+  .yba-section-label-line { width: 24px; height: 2px; background: var(--yba-cyan); flex-shrink: 0; }
+  .yba-section-label-text {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yba-cyan);
+  }
+  .yba-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+  @media (min-width: 768px) { .yba-inner { padding: 0 2.5rem; } }
+
+  /* ─── MISSION ─── */
+  .yba-mission { background: var(--yba-section-bg); padding: 6rem 0; }
+  .yba-mission-grid {
+    display: grid; gap: 3rem; align-items: center;
+  }
+  @media (min-width: 768px) {
+    .yba-mission-grid { grid-template-columns: 1fr 1fr; gap: 5rem; }
+  }
+  .yba-mission-heading {
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--yba-white); margin-bottom: 1.25rem;
+  }
+  .yba-mission-heading span { color: var(--yba-cyan); }
+  .yba-mission-body {
+    font-size: 1rem; line-height: 1.75; color: var(--yba-light); margin-bottom: 1.5rem;
+  }
+  .yba-mission-body + .yba-mission-body { margin-top: -0.5rem; }
+  .yba-mission-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--yba-cyan); text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .yba-mission-link:hover { gap: 0.75rem; }
+  .yba-mission-link svg { width: 14px; height: 14px; }
+  .yba-mission-img-frame {
+    position: relative; height: 420px; overflow: hidden;
+    border-left: 3px solid var(--yba-cyan);
+  }
+  @media (min-width: 768px) { .yba-mission-img-frame { height: 520px; } }
+  .yba-mission-img-badge {
+    position: absolute; bottom: 0; left: 0;
+    background: var(--yba-cyan); padding: 0.75rem 1.25rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .yba-mission-img-badge strong {
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yba-black);
+  }
+
+  /* ─── PROGRAMS ─── */
+  .yba-programs { background: var(--yba-black); padding: 6rem 0; }
+  .yba-programs-header { text-align: center; max-width: 560px; margin: 0 auto 3.5rem; }
+  .yba-programs-header .yba-section-label { justify-content: center; }
+  .yba-programs-heading {
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 800; letter-spacing: -0.02em; color: var(--yba-white); margin-bottom: 0.75rem;
+  }
+  .yba-programs-sub { font-size: 0.95rem; color: var(--yba-muted); line-height: 1.65; }
+  .yba-programs-grid {
+    display: grid; gap: 1px; background: var(--yba-border);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) { .yba-programs-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .yba-programs-grid { grid-template-columns: repeat(4, 1fr); } }
+  .yba-program-card {
+    position: relative; overflow: hidden;
+    height: 340px; background: var(--yba-dark);
+    cursor: pointer;
+  }
+  .yba-program-card-img { position: absolute; inset: 0; transition: transform 0.5s; }
+  .yba-program-card:hover .yba-program-card-img { transform: scale(1.04); }
+  .yba-program-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+  }
+  .yba-program-card-body {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem;
+  }
+  .yba-program-card-tag {
+    display: inline-block; margin-bottom: 0.5rem;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--yba-cyan);
+  }
+  .yba-program-card-title {
+    font-size: 1.05rem; font-weight: 700; color: var(--yba-white); line-height: 1.25; margin-bottom: 0.5rem;
+  }
+  .yba-program-card-desc {
+    font-size: 0.78rem; color: var(--yba-light); line-height: 1.55;
+    max-height: 0; overflow: hidden; transition: max-height 0.4s;
+  }
+  .yba-program-card:hover .yba-program-card-desc { max-height: 80px; }
+  .yba-program-card-arrow {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,180,216,0.15); border: 1px solid var(--yba-cyan);
+    color: var(--yba-cyan); opacity: 0; transition: opacity 0.3s;
+  }
+  .yba-program-card:hover .yba-program-card-arrow { opacity: 1; }
+  .yba-program-card-arrow svg { width: 14px; height: 14px; }
+
+  /* ─── STORIES ─── */
+  .yba-stories { background: var(--yba-alt-bg); padding: 6rem 0; }
+  .yba-stories-header { max-width: 560px; margin-bottom: 3rem; }
+  .yba-stories-heading {
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 800; letter-spacing: -0.02em; color: var(--yba-white); margin-bottom: 0.75rem;
+  }
+  .yba-stories-sub { font-size: 0.95rem; color: var(--yba-muted); line-height: 1.65; }
+  .yba-stories-grid {
+    display: grid; gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .yba-stories-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .yba-stories-grid { grid-template-columns: repeat(3, 1fr); } }
+  .yba-story-card {
+    background: var(--yba-dark); border: 1px solid var(--yba-border);
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .yba-story-card-media { height: 220px; position: relative; overflow: hidden; }
+  .yba-story-card-media img { transition: transform 0.5s; }
+  .yba-story-card:hover .yba-story-card-media img { transform: scale(1.04); }
+  .yba-story-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .yba-story-card-name {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--yba-cyan); margin-bottom: 0.5rem;
+  }
+  .yba-story-card-title {
+    font-size: 1rem; font-weight: 700; color: var(--yba-white); line-height: 1.3; margin-bottom: 0.75rem;
+  }
+  .yba-story-card-quote {
+    font-size: 0.83rem; line-height: 1.65; color: var(--yba-light); flex: 1;
+    font-style: italic; border-left: 2px solid var(--yba-border); padding-left: 0.875rem;
+  }
+  .yba-story-card-footer {
+    margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--yba-border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .yba-story-card-role { font-size: 0.72rem; color: var(--yba-muted); font-weight: 500; }
+  .yba-story-card-link {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--yba-cyan); text-decoration: none;
+  }
+
+  /* ─── ACTION PANEL ─── */
+  .yba-action { background: var(--yba-section-bg); padding: 6rem 0; }
+  .yba-action-header { text-align: center; max-width: 560px; margin: 0 auto 3.5rem; }
+  .yba-action-header .yba-section-label { justify-content: center; }
+  .yba-action-heading {
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 800; letter-spacing: -0.02em; color: var(--yba-white); margin-bottom: 0.75rem;
+  }
+  .yba-action-sub { font-size: 0.95rem; color: var(--yba-muted); line-height: 1.65; }
+  .yba-action-grid {
+    display: grid; gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .yba-action-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .yba-action-grid { grid-template-columns: repeat(3, 1fr); } }
+  .yba-action-card {
+    position: relative; overflow: hidden;
+    background: var(--yba-dark); border: 1px solid var(--yba-border);
+    padding: 2.25rem 2rem; display: flex; flex-direction: column;
+    transition: border-color 0.25s;
+  }
+  .yba-action-card:hover { border-color: var(--yba-cyan); }
+  .yba-action-card-icon {
+    width: 44px; height: 44px;
+    background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem; color: var(--yba-cyan);
+  }
+  .yba-action-card-icon svg { width: 20px; height: 20px; }
+  .yba-action-card-title {
+    font-size: 1.1rem; font-weight: 700; color: var(--yba-white); margin-bottom: 0.75rem;
+  }
+  .yba-action-card-desc {
+    font-size: 0.85rem; line-height: 1.65; color: var(--yba-light); flex: 1; margin-bottom: 1.75rem;
+  }
+  .yba-action-card-btn {
+    display: inline-block; align-self: flex-start;
+    padding: 0.65rem 1.4rem;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--yba-black); background: var(--yba-cyan); text-decoration: none;
+    border: none; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .yba-action-card-btn:hover { background: var(--yba-cyan-hover); }
+  .yba-action-card-btn.yba-ghost-btn {
+    background: transparent; border: 1px solid var(--yba-border); color: var(--yba-light);
+  }
+  .yba-action-card-btn.yba-ghost-btn:hover { border-color: var(--yba-cyan); color: var(--yba-cyan); }
+
+  /* ─── NEWS ─── */
+  .yba-news { background: var(--yba-black); padding: 6rem 0; }
+  .yba-news-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .yba-news-heading {
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 800; letter-spacing: -0.02em; color: var(--yba-white); margin-bottom: 0.5rem;
+  }
+  .yba-news-sub { font-size: 0.9rem; color: var(--yba-muted); }
+  .yba-news-view-all {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--yba-cyan); text-decoration: none; white-space: nowrap;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .yba-news-view-all:hover { gap: 0.65rem; }
+  .yba-news-view-all svg { width: 12px; height: 12px; }
+  .yba-news-grid {
+    display: grid; gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .yba-news-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .yba-news-grid { grid-template-columns: repeat(3, 1fr); } }
+  .yba-news-card {
+    background: var(--yba-dark); border: 1px solid var(--yba-border); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 0.25s;
+  }
+  .yba-news-card:hover { border-color: rgba(0,180,216,0.4); }
+  .yba-news-card-img { height: 200px; overflow: hidden; position: relative; }
+  .yba-news-card-img img { transition: transform 0.5s; }
+  .yba-news-card:hover .yba-news-card-img img { transform: scale(1.04); }
+  .yba-news-card-cat {
+    position: absolute; top: 0; left: 0;
+    background: var(--yba-cyan); padding: 0.3rem 0.75rem;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yba-black);
+  }
+  .yba-news-card-body { padding: 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .yba-news-card-date {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--yba-muted); margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.35rem;
+  }
+  .yba-news-card-date svg { width: 12px; height: 12px; }
+  .yba-news-card-title {
+    font-size: 0.95rem; font-weight: 700; color: var(--yba-white); line-height: 1.4; flex: 1; margin-bottom: 1rem;
+  }
+  .yba-news-card-link {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--yba-cyan); text-decoration: none; display: flex; align-items: center; gap: 0.35rem;
+    transition: gap 0.2s;
+  }
+  .yba-news-card-link:hover { gap: 0.6rem; }
+  .yba-news-card-link svg { width: 12px; height: 12px; }
+
+  /* ─── FOOTER ─── */
+  .yba-footer { background: var(--yba-charcoal); border-top: 1px solid var(--yba-border); }
+  .yba-footer-top { padding: 4rem 0 3rem; }
+  .yba-footer-grid {
+    display: grid; gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .yba-footer-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .yba-footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+  .yba-footer-brand {}
+  .yba-footer-brand-mark {
+    display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem;
+  }
+  .yba-footer-logo {
+    width: 36px; height: 36px; background: var(--yba-cyan);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .yba-footer-logo span { font-size: 0.65rem; font-weight: 900; color: var(--yba-black); }
+  .yba-footer-brand-name { font-size: 0.9rem; font-weight: 800; letter-spacing: 0.04em; }
+  .yba-footer-brand-tagline { font-size: 0.55rem; color: var(--yba-cyan); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .yba-footer-brand-desc { font-size: 0.82rem; color: var(--yba-muted); line-height: 1.65; margin-bottom: 1.5rem; }
+  .yba-footer-socials { display: flex; gap: 0.6rem; }
+  .yba-footer-social {
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    background: var(--yba-mid); border: 1px solid var(--yba-border); color: var(--yba-muted);
+    text-decoration: none; transition: background 0.2s, color 0.2s;
+  }
+  .yba-footer-social:hover { background: var(--yba-cyan); color: var(--yba-black); border-color: var(--yba-cyan); }
+  .yba-footer-social svg { width: 16px; height: 16px; }
+  .yba-footer-col-title {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--yba-white); margin-bottom: 1rem;
+  }
+  .yba-footer-col-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .yba-footer-col-list a {
+    font-size: 0.82rem; color: var(--yba-muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .yba-footer-col-list a:hover { color: var(--yba-cyan); }
+  .yba-footer-bottom {
+    border-top: 1px solid var(--yba-border); padding: 1.25rem 0;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.75rem;
+  }
+  .yba-footer-copy { font-size: 0.72rem; color: var(--yba-muted); }
+  .yba-footer-legal { display: flex; gap: 1.5rem; }
+  .yba-footer-legal a { font-size: 0.72rem; color: var(--yba-muted); text-decoration: none; }
+  .yba-footer-legal a:hover { color: var(--yba-light); }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .yba-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+  .yba-reveal.yba-visible { opacity: 1; transform: none; }
+  .yba-reveal-delay-1 { transition-delay: 0.1s; }
+  .yba-reveal-delay-2 { transition-delay: 0.2s; }
+  .yba-reveal-delay-3 { transition-delay: 0.3s; }
+  .yba-reveal-delay-4 { transition-delay: 0.4s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .yba-reveal { opacity: 1; transform: none; transition: none; }
+    .yba-hero-track { transition: none; }
+  }
+</style>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── DYNAMIC NAVBAR TOP OFFSET ─── */
+  body .sk-main-navbar,
+  body .tia-nav,
+  body .tws-nav-root,
+  body .pau-site-nav,
+  body .wgf-nav-bar,
+  body .yba-nav,
+  body .yli-navbar,
+  body .zna-main-nav {
+    top: 56px !important;
+    transition: top 0.3s ease !important;
+  }
+  body .sk-main-navbar.glad-hidden,
+  body .tia-nav.glad-hidden,
+  body .tws-nav-root.glad-hidden,
+  body .pau-site-nav.glad-hidden,
+  body .wgf-nav-bar.glad-hidden,
+  body .yba-nav.glad-hidden,
+  body .yli-navbar.glad-hidden,
+  body .zna-main-nav.glad-hidden {
+    top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+
+<!-- ─── SECTION 1: NAVBAR ─── -->
+<header class="yba-nav" id="yba-nav" role="banner">
+  <a href="#" class="yba-nav-brand" aria-label="YBA Dawgs Home">
+    <div class="yba-nav-logo-mark" aria-hidden="true"><span>YBA</span></div>
+    <div class="yba-nav-brand-text">
+      <strong>YBA DAWGS</strong>
+      <em>Nike Team Partner</em>
+    </div>
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <ul class="yba-nav-links" role="list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">AAU Teams</a></li>
+      <li><a href="#">YBA League</a></li>
+      <li><a href="#">Camps & Clinics</a></li>
+      <li><a href="#">The Academy</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="yba-nav-actions">
+    <a href="#" class="yba-nav-cta">Register Now</a>
+    <button class="yba-nav-burger" id="yba-burger" aria-label="Open menu" aria-expanded="false" aria-controls="yba-offcanvas">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Off-canvas overlay -->
+<div class="yba-offcanvas-overlay" id="yba-overlay" aria-hidden="true"></div>
+
+<!-- Off-canvas panel -->
+<nav class="yba-offcanvas" id="yba-offcanvas" aria-label="Mobile navigation" hidden>
+  <ul class="yba-offcanvas-list" role="list">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">AAU Team Memberships</a></li>
+    <li><a href="#">YBA League</a></li>
+    <li><a href="#">Camps & Clinics</a></li>
+    <li><a href="#">The Academy</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">YBA Swag</a></li>
+    <li><a href="#">Sponsors</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+  <a href="#" class="yba-offcanvas-cta">Register Now</a>
+</nav>
+
+<!-- ─── SECTION 2: HERO CAROUSEL ─── -->
+<section class="yba-hero" aria-label="Featured highlights">
+  <div class="yba-hero-track" id="yba-hero-track" role="list">
+
+    <!-- Slide 1 -->
+    <div class="yba-hero-slide" role="listitem" aria-label="Slide 1 of 3">
+      <div class="yba-hero-slide-img">
+        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600&q=80&fit=crop" alt="Basketball players in action" loading="eager">
+      </div>
+      <div class="yba-hero-overlay" aria-hidden="true"></div>
+      <div class="yba-hero-content">
+        <div class="yba-hero-eyecatch" aria-hidden="true">
+          <span class="yba-hero-eyecatch-line"></span>
+          <span class="yba-hero-eyecatch-text">Youth Basketball Academy</span>
+        </div>
+        <h1 class="yba-hero-title">Where Dawgs Are Built, Not Born</h1>
+        <p class="yba-hero-desc">YBA Dawgs is an elite youth basketball program developing the next generation of athletes through competitive AAU teams, structured leagues, and hands-on coaching.</p>
+        <div class="yba-hero-btns">
+          <a href="#" class="yba-hero-btn-primary">Join the Program</a>
+          <a href="#" class="yba-hero-btn-ghost">
+            View Schedule
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="yba-hero-slide" role="listitem" aria-label="Slide 2 of 3">
+      <div class="yba-hero-slide-img">
+        <img src="https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=1600&q=80&fit=crop" alt="Youth basketball training" loading="lazy">
+      </div>
+      <div class="yba-hero-overlay" aria-hidden="true"></div>
+      <div class="yba-hero-content">
+        <div class="yba-hero-eyecatch" aria-hidden="true">
+          <span class="yba-hero-eyecatch-line"></span>
+          <span class="yba-hero-eyecatch-text">AAU Competitive Teams</span>
+        </div>
+        <h1 class="yba-hero-title">Compete at the Highest Level</h1>
+        <p class="yba-hero-desc">Our AAU teams compete in top-tier regional and national tournaments, giving every player real exposure and a platform to grow their game.</p>
+        <div class="yba-hero-btns">
+          <a href="#" class="yba-hero-btn-primary">Explore AAU Teams</a>
+          <a href="#" class="yba-hero-btn-ghost">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="yba-hero-slide" role="listitem" aria-label="Slide 3 of 3">
+      <div class="yba-hero-slide-img">
+        <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=1600&q=80&fit=crop" alt="Basketball camp training" loading="lazy">
+      </div>
+      <div class="yba-hero-overlay" aria-hidden="true"></div>
+      <div class="yba-hero-content">
+        <div class="yba-hero-eyecatch" aria-hidden="true">
+          <span class="yba-hero-eyecatch-line"></span>
+          <span class="yba-hero-eyecatch-text">Camps & Clinics</span>
+        </div>
+        <h1 class="yba-hero-title">Train Smart. Play Hard. Rise.</h1>
+        <p class="yba-hero-desc">From summer camps to skill clinics, YBA provides structured development programs for players of all ages and experience levels.</p>
+        <div class="yba-hero-btns">
+          <a href="#" class="yba-hero-btn-primary">View Camps</a>
+          <a href="#" class="yba-hero-btn-ghost">
+            Register
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /track -->
+
+  <!-- Bottom bar: dots + arrows -->
+  <div class="yba-hero-bottom-bar">
+    <div class="yba-hero-nav" role="tablist" aria-label="Carousel navigation">
+      <button class="yba-hero-dot yba-active" data-index="0" role="tab" aria-label="Go to slide 1" aria-selected="true"></button>
+      <button class="yba-hero-dot" data-index="1" role="tab" aria-label="Go to slide 2" aria-selected="false"></button>
+      <button class="yba-hero-dot" data-index="2" role="tab" aria-label="Go to slide 3" aria-selected="false"></button>
+    </div>
+    <div class="yba-hero-arrows" aria-hidden="true">
+      <button class="yba-hero-arrow" id="yba-prev" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <button class="yba-hero-arrow" id="yba-next" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 3: MISSION ─── -->
+<section class="yba-mission" aria-labelledby="yba-mission-heading">
+  <div class="yba-inner">
+    <div class="yba-mission-grid">
+      <div>
+        <div class="yba-section-label yba-reveal">
+          <span class="yba-section-label-line" aria-hidden="true"></span>
+          <span class="yba-section-label-text">Our Mission</span>
+        </div>
+        <h2 class="yba-mission-heading yba-reveal yba-reveal-delay-1" id="yba-mission-heading">
+          More Than Basketball.<br><span>A Community.</span>
+        </h2>
+        <p class="yba-mission-body yba-reveal yba-reveal-delay-2">
+          Youth Basketball Academy — YBA Dawgs — is dedicated to developing young athletes on and off the court. As an official Nike Team Partner, we combine elite training with character-building to produce players who compete with integrity.
+        </p>
+        <p class="yba-mission-body yba-reveal yba-reveal-delay-2">
+          From AAU competitive circuits to structured in-house leagues and summer clinics, every YBA program is built around the idea that discipline, teamwork, and hard work are the foundation of lifelong success.
+        </p>
+        <a href="#" class="yba-mission-link yba-reveal yba-reveal-delay-3">
+          About the Academy
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="yba-mission-img-frame yba-reveal yba-reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=900&q=80&fit=crop" alt="YBA coach working with young players">
+        <div class="yba-mission-img-badge" aria-hidden="true">
+          <strong>Official Nike Team Partner</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 4: PROGRAMS ─── -->
+<section class="yba-programs" aria-labelledby="yba-programs-heading">
+  <div class="yba-inner">
+    <div class="yba-programs-header yba-reveal">
+      <div class="yba-section-label">
+        <span class="yba-section-label-line" aria-hidden="true"></span>
+        <span class="yba-section-label-text">What We Offer</span>
+      </div>
+      <h2 class="yba-programs-heading" id="yba-programs-heading">Programs Built for Every Player</h2>
+      <p class="yba-programs-sub">Select a program that matches your level of commitment and goals. YBA has a path for every serious athlete.</p>
+    </div>
+
+    <div class="yba-programs-grid">
+      <article class="yba-program-card yba-reveal">
+        <div class="yba-program-card-img">
+          <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80&fit=crop" alt="AAU Team Memberships">
+        </div>
+        <div class="yba-program-card-overlay" aria-hidden="true"></div>
+        <div class="yba-program-card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="yba-program-card-body">
+          <span class="yba-program-card-tag">Competitive</span>
+          <h3 class="yba-program-card-title">AAU Team Memberships</h3>
+          <p class="yba-program-card-desc">Join one of our competitive AAU rosters and travel to regional and national tournaments representing YBA Dawgs at the highest levels.</p>
+        </div>
+      </article>
+
+      <article class="yba-program-card yba-reveal yba-reveal-delay-1">
+        <div class="yba-program-card-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop" alt="YBA League">
+        </div>
+        <div class="yba-program-card-overlay" aria-hidden="true"></div>
+        <div class="yba-program-card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="yba-program-card-body">
+          <span class="yba-program-card-tag">In-House</span>
+          <h3 class="yba-program-card-title">YBA League</h3>
+          <p class="yba-program-card-desc">Our structured in-house league provides players consistent game reps in a competitive but supportive environment throughout the season.</p>
+        </div>
+      </article>
+
+      <article class="yba-program-card yba-reveal yba-reveal-delay-2">
+        <div class="yba-program-card-img">
+          <img src="https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=600&q=80&fit=crop" alt="Camps and Clinics">
+        </div>
+        <div class="yba-program-card-overlay" aria-hidden="true"></div>
+        <div class="yba-program-card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="yba-program-card-body">
+          <span class="yba-program-card-tag">Development</span>
+          <h3 class="yba-program-card-title">Camps & Clinics</h3>
+          <p class="yba-program-card-desc">Skill-specific camps and clinics for shooting, ball-handling, footwork, and IQ development, led by experienced YBA coaches.</p>
+        </div>
+      </article>
+
+      <article class="yba-program-card yba-reveal yba-reveal-delay-3">
+        <div class="yba-program-card-img">
+          <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600&q=80&fit=crop" alt="The Academy">
+        </div>
+        <div class="yba-program-card-overlay" aria-hidden="true"></div>
+        <div class="yba-program-card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="yba-program-card-body">
+          <span class="yba-program-card-tag">Elite</span>
+          <h3 class="yba-program-card-title">The Academy</h3>
+          <p class="yba-program-card-desc">A year-round elite pathway for players with serious aspirations — individualized training, recruiting support, and exposure to college scouts.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 5: STORIES ─── -->
+<section class="yba-stories" aria-labelledby="yba-stories-heading">
+  <div class="yba-inner">
+    <div class="yba-stories-header yba-reveal">
+      <div class="yba-section-label">
+        <span class="yba-section-label-line" aria-hidden="true"></span>
+        <span class="yba-section-label-text">Player Stories</span>
+      </div>
+      <h2 class="yba-stories-heading" id="yba-stories-heading">The People Behind the Program</h2>
+      <p class="yba-stories-sub">YBA alumni and families share what the program has meant for their development and future.</p>
+    </div>
+
+    <div class="yba-stories-grid">
+      <article class="yba-story-card yba-reveal">
+        <div class="yba-story-card-media">
+          <img src="https://images.unsplash.com/photo-1489571967053-4c0b9e2f2f08?w=600&q=80&fit=crop" alt="Marcus J., YBA Alumni">
+        </div>
+        <div class="yba-story-card-body">
+          <span class="yba-story-card-name">Marcus J. &mdash; Class of 2023</span>
+          <h3 class="yba-story-card-title">From Local Leagues to Division I Offer</h3>
+          <p class="yba-story-card-quote">"YBA gave me structure I never had. My coaches pushed me harder than anyone — but always with a purpose. I wouldn't have the opportunities I have today without this program."</p>
+          <div class="yba-story-card-footer">
+            <span class="yba-story-card-role">Guard &bull; AAU Team '19&ndash;'23</span>
+            <a href="#" class="yba-story-card-link">Read More</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="yba-story-card yba-reveal yba-reveal-delay-1">
+        <div class="yba-story-card-media">
+          <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=600&q=80&fit=crop" alt="Parent testimonial">
+        </div>
+        <div class="yba-story-card-body">
+          <span class="yba-story-card-name">Diane R. &mdash; Parent</span>
+          <h3 class="yba-story-card-title">A Program That Builds the Whole Child</h3>
+          <p class="yba-story-card-quote">"My son has grown so much — not just in basketball, but in confidence and responsibility. The coaches genuinely care about who these kids become."</p>
+          <div class="yba-story-card-footer">
+            <span class="yba-story-card-role">Parent &bull; YBA Family Since 2020</span>
+            <a href="#" class="yba-story-card-link">Read More</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="yba-story-card yba-reveal yba-reveal-delay-2">
+        <div class="yba-story-card-media">
+          <img src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600&q=80&fit=crop" alt="Tyrell W., YBA League Standout">
+        </div>
+        <div class="yba-story-card-body">
+          <span class="yba-story-card-name">Tyrell W. &mdash; YBA League</span>
+          <h3 class="yba-story-card-title">Finding a Team That Felt Like Family</h3>
+          <p class="yba-story-card-quote">"I joined the YBA League not knowing anyone. By the end of the first season, I had teammates who felt like brothers. That environment is rare."</p>
+          <div class="yba-story-card-footer">
+            <span class="yba-story-card-role">Forward &bull; YBA League 2022&ndash;Present</span>
+            <a href="#" class="yba-story-card-link">Read More</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 6: ACTION PANEL ─── -->
+<section class="yba-action" aria-labelledby="yba-action-heading">
+  <div class="yba-inner">
+    <div class="yba-action-header yba-reveal">
+      <div class="yba-section-label">
+        <span class="yba-section-label-line" aria-hidden="true"></span>
+        <span class="yba-section-label-text">Get Involved</span>
+      </div>
+      <h2 class="yba-action-heading" id="yba-action-heading">Your Next Step with YBA</h2>
+      <p class="yba-action-sub">Whether you're a player, parent, sponsor, or supporter — there's a place for you in the YBA community.</p>
+    </div>
+
+    <div class="yba-action-grid">
+      <div class="yba-action-card yba-reveal">
+        <div class="yba-action-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <h3 class="yba-action-card-title">Register as a Player</h3>
+        <p class="yba-action-card-desc">Ready to compete? Explore our AAU teams, YBA League, and Academy pathways and register for the upcoming season today.</p>
+        <a href="#" class="yba-action-card-btn">Register Now</a>
+      </div>
+
+      <div class="yba-action-card yba-reveal yba-reveal-delay-1">
+        <div class="yba-action-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="yba-action-card-title">Become a Sponsor</h3>
+        <p class="yba-action-card-desc">Support youth athletics and grow your brand. YBA sponsorships connect businesses directly with the local basketball community.</p>
+        <a href="#" class="yba-action-card-btn yba-ghost-btn">Partner With Us</a>
+      </div>
+
+      <div class="yba-action-card yba-reveal yba-reveal-delay-2">
+        <div class="yba-action-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.87a16 16 0 0 0 6.02 6.02l1.06-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3 class="yba-action-card-title">Contact the Academy</h3>
+        <p class="yba-action-card-desc">Questions about programs, tryouts, or scheduling? Reach out to our team and we'll get back to you promptly.</p>
+        <a href="#" class="yba-action-card-btn yba-ghost-btn">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 7: NEWS ─── -->
+<section class="yba-news" aria-labelledby="yba-news-heading">
+  <div class="yba-inner">
+    <div class="yba-news-header yba-reveal">
+      <div>
+        <div class="yba-section-label">
+          <span class="yba-section-label-line" aria-hidden="true"></span>
+          <span class="yba-section-label-text">Latest Updates</span>
+        </div>
+        <h2 class="yba-news-heading" id="yba-news-heading">News & Announcements</h2>
+        <p class="yba-news-sub">Stay up to date with tournament results, registration deadlines, and program news.</p>
+      </div>
+      <a href="#" class="yba-news-view-all">
+        All News
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="yba-news-grid">
+      <article class="yba-news-card yba-reveal">
+        <div class="yba-news-card-img">
+          <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80&fit=crop" alt="Summer Camp Registration Open">
+          <span class="yba-news-card-cat">Registration</span>
+        </div>
+        <div class="yba-news-card-body">
+          <div class="yba-news-card-date">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            June 10, 2025
+          </div>
+          <h3 class="yba-news-card-title">2025 Summer Camp Registration Now Open — Limited Spots Available</h3>
+          <a href="#" class="yba-news-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="yba-news-card yba-reveal yba-reveal-delay-1">
+        <div class="yba-news-card-img">
+          <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600&q=80&fit=crop" alt="YBA Tournament Win">
+          <span class="yba-news-card-cat">Tournament</span>
+        </div>
+        <div class="yba-news-card-body">
+          <div class="yba-news-card-date">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            May 28, 2025
+          </div>
+          <h3 class="yba-news-card-title">YBA 14U Dawgs Take 1st Place at Regional Spring Showcase Tournament</h3>
+          <a href="#" class="yba-news-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="yba-news-card yba-reveal yba-reveal-delay-2">
+        <div class="yba-news-card-img">
+          <img src="https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=600&q=80&fit=crop" alt="Fall League Announcement">
+          <span class="yba-news-card-cat">League</span>
+        </div>
+        <div class="yba-news-card-body">
+          <div class="yba-news-card-date">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            May 14, 2025
+          </div>
+          <h3 class="yba-news-card-title">YBA Fall League 2025 Division Structure and Age Groups Announced</h3>
+          <a href="#" class="yba-news-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 8: FOOTER ─── -->
+<footer class="yba-footer" role="contentinfo">
+  <div class="yba-footer-top">
+    <div class="yba-inner">
+      <div class="yba-footer-grid">
+        <!-- Brand col -->
+        <div class="yba-footer-brand">
+          <div class="yba-footer-brand-mark">
+            <div class="yba-footer-logo" aria-hidden="true"><span>YBA</span></div>
+            <div>
+              <div class="yba-footer-brand-name">YBA Dawgs</div>
+              <div class="yba-footer-brand-tagline">Nike Team Partner</div>
+            </div>
+          </div>
+          <p class="yba-footer-brand-desc">Youth Basketball Academy — developing elite players and principled individuals through structured competition, coaching, and community.</p>
+          <div class="yba-footer-socials" aria-label="Social media links">
+            <a href="#" class="yba-footer-social" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="yba-footer-social" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="yba-footer-social" aria-label="Twitter / X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="yba-footer-social" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#141414"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Programs col -->
+        <div>
+          <h3 class="yba-footer-col-title">Programs</h3>
+          <ul class="yba-footer-col-list" role="list">
+            <li><a href="#">AAU Team Memberships</a></li>
+            <li><a href="#">YBA League</a></li>
+            <li><a href="#">Camps &amp; Clinics</a></li>
+            <li><a href="#">The Academy</a></li>
+            <li><a href="#">Tryout Schedule</a></li>
+          </ul>
+        </div>
+
+        <!-- Organization col -->
+        <div>
+          <h3 class="yba-footer-col-title">Organization</h3>
+          <ul class="yba-footer-col-list" role="list">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Coaching Staff</a></li>
+            <li><a href="#">Sponsors</a></li>
+            <li><a href="#">YBA Swag</a></li>
+            <li><a href="#">GoFundMe</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact col -->
+        <div>
+          <h3 class="yba-footer-col-title">Contact</h3>
+          <ul class="yba-footer-col-list" role="list">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Register for a Program</a></li>
+            <li><a href="#">Sponsorship Inquiries</a></li>
+            <li><a href="#">Sign In / My Account</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="yba-footer-bottom">
+    <div class="yba-inner" style="width:100%; display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.75rem;">
+      <p class="yba-footer-copy">&copy; 2025 YBA Dawgs — Youth Basketball Academy. All rights reserved.</p>
+      <nav class="yba-footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Navbar scroll ── */
+  var nav = document.getElementById('yba-nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('yba-nav--scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* ── Off-canvas ── */
+  var burger  = document.getElementById('yba-burger');
+  var canvas  = document.getElementById('yba-offcanvas');
+  var overlay = document.getElementById('yba-overlay');
+
+  function openMenu() {
+    canvas.classList.add('yba-open');
+    overlay.classList.add('yba-open');
+    burger.classList.add('yba-open');
+    burger.setAttribute('aria-expanded', 'true');
+    canvas.removeAttribute('hidden');
+    overlay.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    canvas.classList.remove('yba-open');
+    overlay.classList.remove('yba-open');
+    burger.classList.remove('yba-open');
+    burger.setAttribute('aria-expanded', 'false');
+    canvas.setAttribute('hidden', '');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', function () {
+    canvas.classList.contains('yba-open') ? closeMenu() : openMenu();
+  });
+  overlay.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && canvas.classList.contains('yba-open')) closeMenu();
+  });
+
+  /* ── Hero Carousel ── */
+  var track  = document.getElementById('yba-hero-track');
+  var dots   = Array.from(document.querySelectorAll('.yba-hero-dot'));
+  var prev   = document.getElementById('yba-prev');
+  var next   = document.getElementById('yba-next');
+  var total  = dots.length;
+  var current = 0;
+  var timer;
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function (d, i) {
+      d.classList.toggle('yba-active', i === current);
+      d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+  }
+
+  function autoPlay() {
+    timer = setInterval(function () { goTo(current + 1); }, 6000);
+  }
+  function resetTimer() { clearInterval(timer); autoPlay(); }
+
+  prev.addEventListener('click', function () { goTo(current - 1); resetTimer(); });
+  next.addEventListener('click', function () { goTo(current + 1); resetTimer(); });
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () { goTo(parseInt(d.dataset.index)); resetTimer(); });
+  });
+
+  // Swipe support
+  var startX = 0;
+  track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); resetTimer(); }
+  }, { passive: true });
+
+  autoPlay();
+
+  /* ── Scroll reveal ── */
+  var reveals = Array.from(document.querySelectorAll('.yba-reveal'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('yba-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('yba-visible'); });
+  }
+
+})();
+</script>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  const mainNav = document.querySelector(".sk-main-navbar, .tia-nav, .tws-nav-root, .pau-site-nav, .wgf-nav-bar, .yba-nav, .yli-navbar, .zna-main-nav");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+
+  // Initialize state based on current scroll position
+  if (lastScrollY > 80) {
+    gladHeader.classList.add("hidden");
+    if (mainNav) {
+      mainNav.classList.add("glad-hidden");
+    }
+    gladVisible = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          if (mainNav) {
+            mainNav.classList.add("glad-hidden");
+          }
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          if (mainNav) {
+            mainNav.classList.remove("glad-hidden");
+          }
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

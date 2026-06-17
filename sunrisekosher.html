@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunrise Kosher — The Vaad of Northern California</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sk-navy:      #1A2744;
+      --sk-navy-deep: #111B33;
+      --sk-gold:      #C8860A;
+      --sk-gold-lt:   #E9A820;
+      --sk-cream:     #FAF8F3;
+      --sk-stone:     #F0EDE6;
+      --sk-charcoal:  #2D3748;
+      --sk-muted:     #6B7280;
+      --sk-white:     #FFFFFF;
+      --sk-border:    #E2DDD5;
+      --sk-radius-sm: 8px;
+      --sk-radius-md: 14px;
+      --sk-radius-pill: 999px;
+      --sk-font-display: 'Playfair Display', Georgia, serif;
+      --sk-font-body:    'DM Sans', system-ui, sans-serif;
+      --sk-transition: 0.3s ease;
+      --sk-shadow-card: 0 2px 16px rgba(26,39,68,0.10);
+      --sk-shadow-hover: 0 6px 28px rgba(26,39,68,0.16);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sk-font-body);
+      color: var(--sk-charcoal);
+      background: var(--sk-white);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── SKIP LINK ─── */
+    .sk-skip-link {
+      position: absolute;
+      top: -999px;
+      left: 0;
+      background: var(--sk-gold);
+      color: var(--sk-white);
+      padding: 10px 20px;
+      z-index: 10000;
+      font-weight: 600;
+    }
+    .sk-skip-link:focus { top: 0; }
+
+    /* ═══════════════════════════════════════════
+       SECTION 1 — STICKY NAVBAR
+    ═══════════════════════════════════════════ */
+    .sk-main-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--sk-navy);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      transition: background var(--sk-transition);
+    }
+
+    .sk-navbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .sk-brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .sk-brand-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--sk-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sk-brand-icon svg { width: 22px; height: 22px; }
+
+    .sk-brand-name {
+      font-family: var(--sk-font-display);
+      font-size: 1.2rem;
+      color: var(--sk-white);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+
+    .sk-brand-name span {
+      display: block;
+      font-family: var(--sk-font-body);
+      font-size: 0.62rem;
+      font-weight: 400;
+      color: var(--sk-gold-lt);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .sk-desktop-nav {
+      display: none;
+    }
+
+    .sk-desktop-nav-list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .sk-desktop-nav-list li a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.82);
+      padding: 8px 13px;
+      border-radius: var(--sk-radius-sm);
+      transition: color var(--sk-transition), background var(--sk-transition);
+      white-space: nowrap;
+    }
+
+    .sk-desktop-nav-list li a:hover,
+    .sk-desktop-nav-list li a:focus {
+      color: var(--sk-white);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .sk-navbar-cta-group {
+      display: none;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .sk-navbar-alert-btn {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--sk-navy);
+      background: var(--sk-gold);
+      padding: 8px 18px;
+      border-radius: var(--sk-radius-pill);
+      transition: background var(--sk-transition), transform var(--sk-transition);
+    }
+
+    .sk-navbar-alert-btn:hover { background: var(--sk-gold-lt); transform: translateY(-1px); }
+
+    .sk-hamburger-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: var(--sk-radius-sm);
+    }
+
+    .sk-hamburger-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--sk-white);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .sk-hamburger-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .sk-hamburger-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .sk-hamburger-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Off-canvas */
+    .sk-offcanvas-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .sk-offcanvas-overlay.sk-is-open { opacity: 1; pointer-events: all; }
+
+    .sk-offcanvas-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(320px, 85vw);
+      height: 100%;
+      background: var(--sk-navy-deep);
+      z-index: 1200;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 32px;
+      overflow-y: auto;
+    }
+
+    .sk-offcanvas-panel.sk-is-open { transform: translateX(0); }
+
+    .sk-offcanvas-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sk-offcanvas-brand {
+      font-family: var(--sk-font-display);
+      font-size: 1.1rem;
+      color: var(--sk-white);
+      font-weight: 700;
+    }
+
+    .sk-offcanvas-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,0.7);
+      padding: 6px;
+      border-radius: var(--sk-radius-sm);
+      display: flex;
+    }
+
+    .sk-offcanvas-close:hover { color: var(--sk-white); }
+
+    .sk-offcanvas-nav-list {
+      list-style: none;
+      padding: 16px 0;
+      flex: 1;
+    }
+
+    .sk-offcanvas-nav-list li a {
+      display: block;
+      padding: 13px 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color var(--sk-transition), padding-left var(--sk-transition);
+    }
+
+    .sk-offcanvas-nav-list li a:hover {
+      color: var(--sk-gold-lt);
+      padding-left: 30px;
+    }
+
+    .sk-offcanvas-footer-actions {
+      padding: 20px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sk-offcanvas-cta-primary {
+      display: block;
+      text-align: center;
+      background: var(--sk-gold);
+      color: var(--sk-navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 20px;
+      border-radius: var(--sk-radius-pill);
+      transition: background var(--sk-transition);
+    }
+
+    .sk-offcanvas-cta-primary:hover { background: var(--sk-gold-lt); }
+
+    .sk-offcanvas-cta-secondary {
+      display: block;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.25);
+      color: var(--sk-white);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 11px 20px;
+      border-radius: var(--sk-radius-pill);
+      transition: border-color var(--sk-transition), color var(--sk-transition);
+    }
+
+    .sk-offcanvas-cta-secondary:hover { border-color: var(--sk-gold); color: var(--sk-gold-lt); }
+
+    /* ═══════════════════════════════════════════
+       SECTION 2 — HERO
+    ═══════════════════════════════════════════ */
+    .sk-hero-section {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .sk-hero-bg-image {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    .sk-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17,27,51,0.62);
+      z-index: 1;
+    }
+
+    .sk-hero-content-wrap {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 28px;
+      text-align: left;
+    }
+
+    .sk-hero-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sk-gold-lt);
+      margin-bottom: 18px;
+    }
+
+    .sk-hero-headline {
+      font-family: var(--sk-font-display);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      color: var(--sk-white);
+      font-weight: 700;
+      line-height: 1.18;
+      max-width: 640px;
+      margin-bottom: 10px;
+    }
+
+    .sk-hero-headline-accent {
+      color: var(--sk-gold-lt);
+    }
+
+    .sk-hero-subline {
+      font-family: var(--sk-font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      color: rgba(255,255,255,0.88);
+      font-weight: 600;
+      margin-bottom: 16px;
+      max-width: 560px;
+    }
+
+    .sk-hero-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.76);
+      max-width: 500px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .sk-hero-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .sk-hero-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sk-gold);
+      color: var(--sk-navy);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 30px;
+      border-radius: var(--sk-radius-pill);
+      transition: background var(--sk-transition), transform var(--sk-transition), box-shadow var(--sk-transition);
+    }
+
+    .sk-hero-cta-primary:hover {
+      background: var(--sk-gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(200,134,10,0.35);
+    }
+
+    .sk-hero-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid rgba(255,255,255,0.5);
+      color: var(--sk-white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 28px;
+      border-radius: var(--sk-radius-pill);
+      transition: border-color var(--sk-transition), background var(--sk-transition);
+    }
+
+    .sk-hero-cta-secondary:hover {
+      border-color: var(--sk-gold);
+      background: rgba(200,134,10,0.15);
+    }
+
+    .sk-hero-scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .sk-hero-scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: sk-scroll-pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes sk-scroll-pulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION 3 — CORE MISSION
+    ═══════════════════════════════════════════ */
+    .sk-mission-section {
+      background: var(--sk-cream);
+      padding: 88px 28px;
+    }
+
+    .sk-mission-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    .sk-mission-text-col {
+      max-width: 640px;
+    }
+
+    .sk-section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sk-gold);
+      margin-bottom: 14px;
+    }
+
+    .sk-section-headline {
+      font-family: var(--sk-font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      color: var(--sk-navy);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .sk-mission-lead {
+      font-size: 1.05rem;
+      color: var(--sk-charcoal);
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .sk-mission-quote-block {
+      border-left: 4px solid var(--sk-gold);
+      padding: 20px 24px;
+      background: var(--sk-white);
+      border-radius: 0 var(--sk-radius-md) var(--sk-radius-md) 0;
+      margin-top: 28px;
+    }
+
+    .sk-mission-quote-text {
+      font-family: var(--sk-font-display);
+      font-size: 1.05rem;
+      color: var(--sk-navy);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .sk-mission-quote-attr {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--sk-gold);
+      letter-spacing: 0.05em;
+    }
+
+    .sk-mission-image-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .sk-mission-img-primary {
+      grid-column: 1 / -1;
+      height: 240px;
+      border-radius: var(--sk-radius-md);
+      overflow: hidden;
+    }
+
+    .sk-mission-img-secondary {
+      height: 180px;
+      border-radius: var(--sk-radius-md);
+      overflow: hidden;
+    }
+
+    .sk-mission-img-primary img,
+    .sk-mission-img-secondary img {
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+
+    .sk-mission-img-primary:hover img,
+    .sk-mission-img-secondary:hover img {
+      transform: scale(1.04);
+    }
+
+    .sk-mission-trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .sk-trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sk-white);
+      border: 1px solid var(--sk-border);
+      border-radius: var(--sk-radius-pill);
+      padding: 8px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--sk-navy);
+    }
+
+    .sk-trust-badge svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--sk-gold);
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION 4 — PRIMARY OFFERINGS
+    ═══════════════════════════════════════════ */
+    .sk-offerings-section {
+      background: var(--sk-white);
+      padding: 88px 28px;
+    }
+
+    .sk-offerings-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sk-section-header {
+      margin-bottom: 52px;
+      max-width: 540px;
+    }
+
+    .sk-section-desc {
+      font-size: 0.975rem;
+      color: var(--sk-muted);
+      line-height: 1.75;
+      margin-top: 12px;
+    }
+
+    .sk-offerings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .sk-offering-card {
+      background: var(--sk-cream);
+      border-radius: var(--sk-radius-md);
+      overflow: hidden;
+      box-shadow: var(--sk-shadow-card);
+      transition: box-shadow var(--sk-transition), transform var(--sk-transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sk-offering-card:hover {
+      box-shadow: var(--sk-shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .sk-offering-card-image {
+      height: 200px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .sk-offering-card-image img {
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+
+    .sk-offering-card:hover .sk-offering-card-image img { transform: scale(1.05); }
+
+    .sk-offering-card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sk-offering-card-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sk-gold);
+      margin-bottom: 10px;
+    }
+
+    .sk-offering-card-title {
+      font-family: var(--sk-font-display);
+      font-size: 1.15rem;
+      color: var(--sk-navy);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .sk-offering-card-desc {
+      font-size: 0.875rem;
+      color: var(--sk-muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .sk-offering-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--sk-gold);
+      transition: gap var(--sk-transition);
+    }
+
+    .sk-offering-card-link:hover { gap: 10px; }
+    .sk-offering-card-link svg { width: 16px; height: 16px; }
+
+    /* ═══════════════════════════════════════════
+       SECTION 5 — IMPACT / SUCCESS STORIES
+    ═══════════════════════════════════════════ */
+    .sk-impact-section {
+      background: var(--sk-navy);
+      padding: 88px 28px;
+    }
+
+    .sk-impact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sk-impact-section .sk-section-eyebrow { color: var(--sk-gold-lt); }
+
+    .sk-impact-section .sk-section-headline { color: var(--sk-white); }
+
+    .sk-impact-lead-text {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.975rem;
+      line-height: 1.75;
+      margin-top: 12px;
+      max-width: 500px;
+    }
+
+    .sk-impact-stories-grid {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .sk-story-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--sk-radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: background var(--sk-transition), border-color var(--sk-transition);
+    }
+
+    .sk-story-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(200,134,10,0.4);
+    }
+
+    .sk-story-card-image {
+      height: 200px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .sk-story-card-image img { height: 100%; transition: transform 0.5s ease; }
+    .sk-story-card:hover .sk-story-card-image img { transform: scale(1.05); }
+
+    .sk-story-card-body {
+      padding: 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sk-story-card-category {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sk-gold-lt);
+      margin-bottom: 10px;
+    }
+
+    .sk-story-card-title {
+      font-family: var(--sk-font-display);
+      font-size: 1.1rem;
+      color: var(--sk-white);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .sk-story-card-narrative {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.75;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+
+    .sk-story-card-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+
+    .sk-story-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sk-story-card-meta-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--sk-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sk-story-card-meta-icon svg { width: 18px; height: 18px; color: var(--sk-navy); }
+
+    .sk-story-card-meta-text {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+    }
+
+    .sk-story-card-meta-text strong {
+      display: block;
+      color: var(--sk-white);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION 6 — ACTION PANEL
+    ═══════════════════════════════════════════ */
+    .sk-action-section {
+      background: var(--sk-stone);
+      padding: 88px 28px;
+    }
+
+    .sk-action-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sk-action-intro {
+      max-width: 560px;
+      margin-bottom: 52px;
+    }
+
+    .sk-action-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .sk-action-card {
+      background: var(--sk-white);
+      border-radius: var(--sk-radius-md);
+      padding: 32px 28px;
+      box-shadow: var(--sk-shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: box-shadow var(--sk-transition), transform var(--sk-transition);
+      border-top: 4px solid transparent;
+    }
+
+    .sk-action-card:hover {
+      box-shadow: var(--sk-shadow-hover);
+      transform: translateY(-3px);
+      border-top-color: var(--sk-gold);
+    }
+
+    .sk-action-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--sk-radius-md);
+      background: var(--sk-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sk-action-card-icon svg { width: 24px; height: 24px; color: var(--sk-gold-lt); }
+
+    .sk-action-card-title {
+      font-family: var(--sk-font-display);
+      font-size: 1.15rem;
+      color: var(--sk-navy);
+      font-weight: 700;
+    }
+
+    .sk-action-card-desc {
+      font-size: 0.88rem;
+      color: var(--sk-muted);
+      line-height: 1.7;
+    }
+
+    .sk-action-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sk-navy);
+      color: var(--sk-white);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 11px 22px;
+      border-radius: var(--sk-radius-pill);
+      margin-top: 6px;
+      align-self: flex-start;
+      transition: background var(--sk-transition), transform var(--sk-transition);
+    }
+
+    .sk-action-card-cta:hover { background: var(--sk-gold); color: var(--sk-navy); transform: translateY(-1px); }
+    .sk-action-card-cta svg { width: 15px; height: 15px; }
+
+    .sk-action-contact-panel {
+      margin-top: 60px;
+      background: var(--sk-navy);
+      border-radius: var(--sk-radius-md);
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .sk-contact-panel-headline {
+      font-family: var(--sk-font-display);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      color: var(--sk-white);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .sk-contact-panel-headline span { color: var(--sk-gold-lt); }
+
+    .sk-contact-info-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sk-contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .sk-contact-info-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--sk-gold-lt);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .sk-contact-info-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 3px;
+    }
+
+    .sk-contact-info-value {
+      font-size: 0.95rem;
+      color: var(--sk-white);
+      font-weight: 500;
+    }
+
+    .sk-contact-panel-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sk-gold);
+      color: var(--sk-navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 26px;
+      border-radius: var(--sk-radius-pill);
+      align-self: flex-start;
+      transition: background var(--sk-transition), transform var(--sk-transition);
+    }
+
+    .sk-contact-panel-cta:hover { background: var(--sk-gold-lt); transform: translateY(-2px); }
+
+    /* ═══════════════════════════════════════════
+       SECTION 7 — LATEST NEWS
+    ═══════════════════════════════════════════ */
+    .sk-news-section {
+      background: var(--sk-white);
+      padding: 88px 28px;
+    }
+
+    .sk-news-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sk-news-header-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .sk-news-view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--sk-gold);
+      border: 2px solid var(--sk-gold);
+      padding: 9px 20px;
+      border-radius: var(--sk-radius-pill);
+      align-self: flex-start;
+      transition: background var(--sk-transition), color var(--sk-transition);
+    }
+
+    .sk-news-view-all:hover { background: var(--sk-gold); color: var(--sk-white); }
+    .sk-news-view-all svg { width: 14px; height: 14px; }
+
+    .sk-news-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .sk-article-card {
+      background: var(--sk-cream);
+      border-radius: var(--sk-radius-md);
+      overflow: hidden;
+      box-shadow: var(--sk-shadow-card);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow var(--sk-transition), transform var(--sk-transition);
+    }
+
+    .sk-article-card:hover {
+      box-shadow: var(--sk-shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .sk-article-card-image {
+      height: 190px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .sk-article-card-image img { height: 100%; transition: transform 0.5s ease; }
+    .sk-article-card:hover .sk-article-card-image img { transform: scale(1.05); }
+
+    .sk-article-card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+
+    .sk-article-card-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .sk-article-type-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--sk-navy);
+      color: var(--sk-gold-lt);
+      padding: 4px 10px;
+      border-radius: var(--sk-radius-pill);
+    }
+
+    .sk-article-date {
+      font-size: 0.78rem;
+      color: var(--sk-muted);
+    }
+
+    .sk-article-title {
+      font-family: var(--sk-font-display);
+      font-size: 1.05rem;
+      color: var(--sk-navy);
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .sk-article-excerpt {
+      font-size: 0.86rem;
+      color: var(--sk-muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .sk-article-read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--sk-gold);
+      transition: gap var(--sk-transition);
+    }
+
+    .sk-article-read-link:hover { gap: 10px; }
+    .sk-article-read-link svg { width: 14px; height: 14px; }
+
+    /* ═══════════════════════════════════════════
+       SECTION 8 — FOOTER
+    ═══════════════════════════════════════════ */
+    .sk-site-footer {
+      background: var(--sk-navy-deep);
+      color: rgba(255,255,255,0.72);
+      padding: 72px 28px 0;
+    }
+
+    .sk-footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
+
+    .sk-footer-brand-col {}
+
+    .sk-footer-brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .sk-footer-brand-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--sk-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sk-footer-brand-icon svg { width: 20px; height: 20px; }
+
+    .sk-footer-brand-name {
+      font-family: var(--sk-font-display);
+      font-size: 1.1rem;
+      color: var(--sk-white);
+      font-weight: 700;
+    }
+
+    .sk-footer-tagline {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 24px;
+      max-width: 300px;
+    }
+
+    .sk-footer-social-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .sk-social-icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--sk-transition), transform var(--sk-transition);
+    }
+
+    .sk-social-icon-btn:hover { background: var(--sk-gold); transform: translateY(-2px); }
+    .sk-social-icon-btn svg { width: 17px; height: 17px; color: var(--sk-white); }
+
+    .sk-footer-nav-col {}
+
+    .sk-footer-nav-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sk-gold-lt);
+      margin-bottom: 18px;
+    }
+
+    .sk-footer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sk-footer-nav-list li a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.62);
+      transition: color var(--sk-transition), padding-left var(--sk-transition);
+      display: block;
+    }
+
+    .sk-footer-nav-list li a:hover {
+      color: var(--sk-gold-lt);
+      padding-left: 6px;
+    }
+
+    .sk-footer-contact-col {}
+
+    .sk-footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .sk-footer-contact-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--sk-gold-lt);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .sk-footer-contact-item span {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    .sk-footer-bottom-bar {
+      margin-top: 60px;
+      padding: 22px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .sk-footer-copyright {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.38);
+    }
+
+    .sk-footer-legal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .sk-footer-legal-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      transition: color var(--sk-transition);
+    }
+
+    .sk-footer-legal-links a:hover { color: var(--sk-gold-lt); }
+
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════════════ */
+    .sk-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .sk-reveal.sk-is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sk-reveal-delay-1 { transition-delay: 0.1s; }
+    .sk-reveal-delay-2 { transition-delay: 0.2s; }
+    .sk-reveal-delay-3 { transition-delay: 0.3s; }
+    .sk-reveal-delay-4 { transition-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sk-reveal { opacity: 1; transform: none; transition: none; }
+      .sk-hero-scroll-line { animation: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — TABLET 768px
+    ═══════════════════════════════════════════ */
+    @media (min-width: 768px) {
+      .sk-hero-btn-group { flex-direction: row; }
+
+      .sk-mission-inner { flex-direction: row; align-items: flex-start; }
+      .sk-mission-text-col { flex: 1; max-width: none; }
+      .sk-mission-image-col { flex: 1; flex-shrink: 0; }
+
+      .sk-offerings-grid { grid-template-columns: 1fr 1fr; }
+
+      .sk-impact-stories-grid { grid-template-columns: 1fr 1fr; }
+
+      .sk-action-cards-grid { grid-template-columns: 1fr 1fr; }
+
+      .sk-news-grid { grid-template-columns: 1fr 1fr; }
+
+      .sk-footer-inner { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; }
+
+      .sk-footer-bottom-bar { flex-direction: row; justify-content: space-between; align-items: center; }
+
+      .sk-news-header-row { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+
+      .sk-contact-info-row { flex-direction: row; flex-wrap: wrap; }
+
+      .sk-contact-panel-cta { align-self: flex-start; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — DESKTOP 1024px
+    ═══════════════════════════════════════════ */
+    @media (min-width: 1024px) {
+      .sk-hamburger-btn { display: none; }
+      .sk-desktop-nav { display: flex; }
+      .sk-navbar-cta-group { display: flex; }
+
+      .sk-hero-content-wrap { text-align: center; }
+      .sk-hero-headline { max-width: 100%; margin-left: auto; margin-right: auto; }
+      .sk-hero-subline { max-width: 100%; margin-left: auto; margin-right: auto; }
+      .sk-hero-desc { max-width: 500px; margin-left: auto; margin-right: auto; }
+      .sk-hero-btn-group { justify-content: center; }
+
+      .sk-offerings-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .sk-impact-stories-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .sk-action-cards-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .sk-news-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .sk-action-contact-panel { flex-direction: row; align-items: center; }
+      .sk-contact-panel-cta { margin-top: 0; align-self: center; white-space: nowrap; }
+    }
+  </style>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── DYNAMIC NAVBAR TOP OFFSET ─── */
+  body .sk-main-navbar,
+  body .tia-nav,
+  body .tws-nav-root,
+  body .pau-site-nav,
+  body .wgf-nav-bar,
+  body .yba-nav,
+  body .yli-navbar,
+  body .zna-main-nav {
+    top: 56px !important;
+    transition: top 0.3s ease !important;
+  }
+  body .sk-main-navbar.glad-hidden,
+  body .tia-nav.glad-hidden,
+  body .tws-nav-root.glad-hidden,
+  body .pau-site-nav.glad-hidden,
+  body .wgf-nav-bar.glad-hidden,
+  body .yba-nav.glad-hidden,
+  body .yli-navbar.glad-hidden,
+  body .zna-main-nav.glad-hidden {
+    top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+
+<a class="sk-skip-link" href="#sk-main-content">Skip to main content</a>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1: NAVBAR
+═══════════════════════════════════════════ -->
+<header class="sk-main-navbar" role="banner">
+  <div class="sk-navbar-inner">
+
+    <a class="sk-brand-lockup" href="#" aria-label="Sunrise Kosher — Home">
+      <div class="sk-brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="5" fill="#1A2744"/>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M17.66 6.34l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="#1A2744" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sk-brand-name">
+        Sunrise Kosher
+        <span>The Vaad of Northern California</span>
+      </div>
+    </a>
+
+    <nav class="sk-desktop-nav" aria-label="Primary navigation">
+      <ul class="sk-desktop-nav-list">
+        <li><a href="#">Restaurants</a></li>
+        <li><a href="#">Caterers</a></li>
+        <li><a href="#">Markets</a></li>
+        <li><a href="#">Production</a></li>
+        <li><a href="#">Kosher Venues</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </nav>
+
+    <div class="sk-navbar-cta-group">
+      <a class="sk-navbar-alert-btn" href="#">Kosher Alerts</a>
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:2px solid rgba(255,255,255,0.3);color:var(--sk-white);font-weight:600;font-size:0.82rem;padding:8px 18px;border-radius:var(--sk-radius-pill);transition:border-color 0.3s,color 0.3s;" onmouseover="this.style.borderColor='var(--sk-gold)';this.style.color='var(--sk-gold-lt)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)';this.style.color='var(--sk-white)'">Get Certified</a>
+    </div>
+
+    <button class="sk-hamburger-btn" id="sk-menu-toggle" aria-expanded="false" aria-controls="sk-offcanvas-panel" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- Off-Canvas -->
+<div class="sk-offcanvas-overlay" id="sk-overlay" aria-hidden="true"></div>
+<div class="sk-offcanvas-panel" id="sk-offcanvas-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="sk-offcanvas-header">
+    <span class="sk-offcanvas-brand">Sunrise Kosher</span>
+    <button class="sk-offcanvas-close" id="sk-close-menu" aria-label="Close navigation menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+  <ul class="sk-offcanvas-nav-list">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Restaurants</a></li>
+    <li><a href="#">Caterers</a></li>
+    <li><a href="#">Markets</a></li>
+    <li><a href="#">Food Production</a></li>
+    <li><a href="#">Kosher Venues</a></li>
+    <li><a href="#">Get Certified</a></li>
+    <li><a href="#">FAQs</a></li>
+    <li><a href="#">Kosher Alerts</a></li>
+  </ul>
+  <div class="sk-offcanvas-footer-actions">
+    <a class="sk-offcanvas-cta-primary" href="#">Get Certified</a>
+    <a class="sk-offcanvas-cta-secondary" href="#">Contact Us</a>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2: HERO
+═══════════════════════════════════════════ -->
+<main id="sk-main-content">
+<section class="sk-hero-section" aria-label="Hero">
+  <div class="sk-hero-bg-image" aria-hidden="true"></div>
+  <div class="sk-hero-overlay" aria-hidden="true"></div>
+
+  <div class="sk-hero-content-wrap">
+    <span class="sk-hero-eyebrow">Northern California's Premier Kosher Agency</span>
+    <h1 class="sk-hero-headline">
+      Sunrise <span class="sk-hero-headline-accent">Kosher</span>
+    </h1>
+    <p class="sk-hero-subline">The Vaad of Northern California</p>
+    <p class="sk-hero-desc">
+      Setting the highest kosher standards — recognized and accepted by all major kosher organizations worldwide, serving restaurants, caterers, markets, and producers across the region.
+    </p>
+    <div class="sk-hero-btn-group">
+      <a class="sk-hero-cta-primary" href="#">
+        Get Certified
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a class="sk-hero-cta-secondary" href="#">
+        Contact Us
+      </a>
+    </div>
+  </div>
+
+  <div class="sk-hero-scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="sk-hero-scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3: CORE MISSION
+═══════════════════════════════════════════ -->
+<section class="sk-mission-section" aria-labelledby="sk-mission-heading">
+  <div class="sk-mission-inner">
+
+    <div class="sk-mission-text-col sk-reveal">
+      <p class="sk-section-eyebrow">Our Mission</p>
+      <h2 class="sk-section-headline" id="sk-mission-heading">
+        Upholding the Highest Standards of Kosher Integrity
+      </h2>
+      <p class="sk-mission-lead">
+        Sunrise Kosher, the Vaad of Northern California, is the region's most trusted kosher certification agency. We work directly with restaurants, caterers, markets, and food production facilities to verify and maintain standards that meet or exceed those set by leading kosher organizations worldwide.
+      </p>
+      <p class="sk-mission-lead">
+        Our certification is a guarantee — not just a label. When consumers see the Sunrise Kosher mark, they can trust that every ingredient, every process, and every facility has been rigorously reviewed and approved by our rabbinical team.
+      </p>
+
+      <div class="sk-mission-quote-block">
+        <p class="sk-mission-quote-text">
+          "Sunrise Kosher's standards equal, or exceed, those set for the kosher industry by the leading kosher certification agencies. Consumers can be assured of the highest kosher standards acceptable by all major kosher organizations around the world."
+        </p>
+        <p class="sk-mission-quote-attr">— Rabbi BenTzion Welton</p>
+      </div>
+
+      <div class="sk-mission-trust-row">
+        <div class="sk-trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          Rabbinical Certified
+        </div>
+        <div class="sk-trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+          Globally Recognized
+        </div>
+        <div class="sk-trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          Northern California
+        </div>
+      </div>
+    </div>
+
+    <div class="sk-mission-image-col sk-reveal sk-reveal-delay-2">
+      <div class="sk-mission-img-primary">
+        <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80" alt="Fresh kosher produce displayed at a certified market" loading="lazy" />
+      </div>
+      <div class="sk-mission-img-secondary">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Kosher certified restaurant dining" loading="lazy" />
+      </div>
+      <div class="sk-mission-img-secondary">
+        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=600&q=80" alt="Kosher food production facility" loading="lazy" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4: PRIMARY OFFERINGS
+═══════════════════════════════════════════ -->
+<section class="sk-offerings-section" aria-labelledby="sk-offerings-heading">
+  <div class="sk-offerings-inner">
+    <div class="sk-section-header sk-reveal">
+      <p class="sk-section-eyebrow">What We Certify</p>
+      <h2 class="sk-section-headline" id="sk-offerings-heading">
+        Kosher Certification Across Every Venue
+      </h2>
+      <p class="sk-section-desc">
+        From family-owned restaurants to large-scale food production facilities, Sunrise Kosher provides comprehensive oversight to ensure the highest standards are maintained.
+      </p>
+    </div>
+
+    <div class="sk-offerings-grid">
+
+      <article class="sk-offering-card sk-reveal">
+        <div class="sk-offering-card-image">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Kosher restaurant dining experience" loading="lazy" />
+        </div>
+        <div class="sk-offering-card-body">
+          <p class="sk-offering-card-tag">Dining</p>
+          <h3 class="sk-offering-card-title">Kosher Restaurants</h3>
+          <p class="sk-offering-card-desc">Find certified restaurants across Northern California where every dish meets rigorous kosher standards, verified by our rabbinical team.</p>
+          <a class="sk-offering-card-link" href="#">
+            Browse Restaurants
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="sk-offering-card sk-reveal sk-reveal-delay-1">
+        <div class="sk-offering-card-image">
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=700&q=80" alt="Kosher catering setup" loading="lazy" />
+        </div>
+        <div class="sk-offering-card-body">
+          <p class="sk-offering-card-tag">Events</p>
+          <h3 class="sk-offering-card-title">Kosher Caterers</h3>
+          <p class="sk-offering-card-desc">Plan your event with confidence. Our certified caterers deliver exceptional kosher cuisine for weddings, corporate events, and private gatherings.</p>
+          <a class="sk-offering-card-link" href="#">
+            Find Caterers
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="sk-offering-card sk-reveal sk-reveal-delay-2">
+        <div class="sk-offering-card-image">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&q=80" alt="Kosher grocery market" loading="lazy" />
+        </div>
+        <div class="sk-offering-card-body">
+          <p class="sk-offering-card-tag">Retail</p>
+          <h3 class="sk-offering-card-title">Kosher Markets</h3>
+          <p class="sk-offering-card-desc">Shop with confidence at our certified markets, where every product on the shelf has passed our rigorous kosher inspection and approval process.</p>
+          <a class="sk-offering-card-link" href="#">
+            View Markets
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="sk-offering-card sk-reveal sk-reveal-delay-3">
+        <div class="sk-offering-card-image">
+          <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=700&q=80" alt="Food production facility" loading="lazy" />
+        </div>
+        <div class="sk-offering-card-body">
+          <p class="sk-offering-card-tag">Manufacturing</p>
+          <h3 class="sk-offering-card-title">Food Production Facilities</h3>
+          <p class="sk-offering-card-desc">We certify large-scale food manufacturers and production facilities, ensuring kosher compliance from sourcing through packaging and distribution.</p>
+          <a class="sk-offering-card-link" href="#">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="sk-offering-card sk-reveal sk-reveal-delay-4">
+        <div class="sk-offering-card-image">
+          <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=700&q=80" alt="Kosher event venue" loading="lazy" />
+        </div>
+        <div class="sk-offering-card-body">
+          <p class="sk-offering-card-tag">Venue</p>
+          <h3 class="sk-offering-card-title">Kosher Venues</h3>
+          <p class="sk-offering-card-desc">Host your simcha or special occasion at a venue fully certified under Sunrise Kosher supervision, bringing peace of mind to every celebration.</p>
+          <a class="sk-offering-card-link" href="#">
+            Explore Venues
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="sk-offering-card sk-reveal sk-reveal-delay-1">
+        <div class="sk-offering-card-image">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=700&q=80" alt="Kosher product certification" loading="lazy" />
+        </div>
+        <div class="sk-offering-card-body">
+          <p class="sk-offering-card-tag">Certification</p>
+          <h3 class="sk-offering-card-title">Product Certification</h3>
+          <p class="sk-offering-card-desc">Search our database of Sunrise Kosher certified products and make informed purchasing decisions at any store, anywhere in the region.</p>
+          <a class="sk-offering-card-link" href="#">
+            Search Products
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 5: IMPACT / SUCCESS STORIES
+═══════════════════════════════════════════ -->
+<section class="sk-impact-section" aria-labelledby="sk-impact-heading">
+  <div class="sk-impact-inner">
+
+    <div class="sk-section-header sk-reveal">
+      <p class="sk-section-eyebrow">Community Impact</p>
+      <h2 class="sk-section-headline" id="sk-impact-heading">
+        Trust Built One Certification at a Time
+      </h2>
+      <p class="sk-impact-lead-text">
+        Behind every Sunrise Kosher seal is a relationship — with a business owner, a chef, a congregation, or a family. Here are a few of those stories.
+      </p>
+    </div>
+
+    <div class="sk-impact-stories-grid">
+
+      <article class="sk-story-card sk-reveal">
+        <div class="sk-story-card-image">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Family restaurant earning kosher certification" loading="lazy" />
+        </div>
+        <div class="sk-story-card-body">
+          <p class="sk-story-card-category">Restaurant Certification</p>
+          <h3 class="sk-story-card-title">A Family Restaurant Finds Its Footing with the Community</h3>
+          <p class="sk-story-card-narrative">
+            For the Goldstein family, opening a restaurant was a lifelong dream — but reaching Jewish customers in Sacramento meant earning their trust first. Working with Sunrise Kosher's team, they navigated the certification process and opened their doors to a community that had been waiting for a certified dining option close to home.
+          </p>
+          <div class="sk-story-card-divider"></div>
+          <div class="sk-story-card-meta">
+            <div class="sk-story-card-meta-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="sk-story-card-meta-text">
+              <strong>Sacramento, CA</strong>
+              Restaurant Certification
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="sk-story-card sk-reveal sk-reveal-delay-1">
+        <div class="sk-story-card-image">
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=700&q=80" alt="Caterer preparing for a kosher event" loading="lazy" />
+        </div>
+        <div class="sk-story-card-body">
+          <p class="sk-story-card-category">Event Catering</p>
+          <h3 class="sk-story-card-title">A Bay Area Caterer Expands to Serve Orthodox Celebrations</h3>
+          <p class="sk-story-card-narrative">
+            A well-established Bay Area catering company saw a growing demand for kosher event food but didn't know where to begin. Sunrise Kosher's step-by-step certification guidance helped them restructure their kitchen and source suppliers, enabling them to serve weddings and bar mitzvahs they couldn't previously take on.
+          </p>
+          <div class="sk-story-card-divider"></div>
+          <div class="sk-story-card-meta">
+            <div class="sk-story-card-meta-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="sk-story-card-meta-text">
+              <strong>San Francisco Bay Area</strong>
+              Catering Certification
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="sk-story-card sk-reveal sk-reveal-delay-2">
+        <div class="sk-story-card-image">
+          <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=700&q=80" alt="Food manufacturer achieving kosher status" loading="lazy" />
+        </div>
+        <div class="sk-story-card-body">
+          <p class="sk-story-card-category">Production Facility</p>
+          <h3 class="sk-story-card-title">A Regional Producer Unlocks a National Kosher Market</h3>
+          <p class="sk-story-card-narrative">
+            A Northern California specialty food company had been producing artisan products for years, but their distribution was limited. Achieving Sunrise Kosher certification opened doors to retailers and distributors nationwide who required kosher labeling — a turning point that transformed how they thought about their business.
+          </p>
+          <div class="sk-story-card-divider"></div>
+          <div class="sk-story-card-meta">
+            <div class="sk-story-card-meta-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="sk-story-card-meta-text">
+              <strong>Napa Valley, CA</strong>
+              Production Facility
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 6: ACTION PANEL
+═══════════════════════════════════════════ -->
+<section class="sk-action-section" aria-labelledby="sk-action-heading">
+  <div class="sk-action-inner">
+
+    <div class="sk-action-intro sk-reveal">
+      <p class="sk-section-eyebrow">Get Involved</p>
+      <h2 class="sk-section-headline" id="sk-action-heading">
+        Ready to Work with Sunrise Kosher?
+      </h2>
+      <p class="sk-section-desc">
+        Whether you're a business seeking certification, a consumer looking for reliable kosher information, or a community member wanting to stay informed — we're here to help.
+      </p>
+    </div>
+
+    <div class="sk-action-cards-grid">
+
+      <div class="sk-action-card sk-reveal">
+        <div class="sk-action-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3 class="sk-action-card-title">Get Your Business Certified</h3>
+        <p class="sk-action-card-desc">Start the certification process for your restaurant, catering company, market, or food production facility. Our team will guide you through every step.</p>
+        <a class="sk-action-card-cta" href="#">
+          Apply Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="sk-action-card sk-reveal sk-reveal-delay-1">
+        <div class="sk-action-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        </div>
+        <h3 class="sk-action-card-title">Subscribe to Kosher Alerts</h3>
+        <p class="sk-action-card-desc">Stay up to date with the latest kosher alerts, product recalls, and certification updates from Sunrise Kosher. Don't miss critical information.</p>
+        <a class="sk-action-card-cta" href="#">
+          Sign Up for Alerts
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="sk-action-card sk-reveal sk-reveal-delay-2">
+        <div class="sk-action-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <h3 class="sk-action-card-title">Search Certified Products</h3>
+        <p class="sk-action-card-desc">Use our product search tool to verify whether a specific product carries Sunrise Kosher certification before you buy — a trusted resource for consumers.</p>
+        <a class="sk-action-card-cta" href="#">
+          Search Products
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="sk-action-contact-panel sk-reveal" style="margin-top:60px;">
+      <div style="flex:1;">
+        <h3 class="sk-contact-panel-headline">
+          Questions? We're Just a <span>Phone Call Away</span>
+        </h3>
+        <div class="sk-contact-info-row" style="margin-top:20px;">
+          <div class="sk-contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <div>
+              <p class="sk-contact-info-label">Phone</p>
+              <p class="sk-contact-info-value">510-THE-VAAD (843-8223)</p>
+            </div>
+          </div>
+          <div class="sk-contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <div>
+              <p class="sk-contact-info-label">Email</p>
+              <p class="sk-contact-info-value">info@sunrisekosher.org</p>
+            </div>
+          </div>
+          <div class="sk-contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <div>
+              <p class="sk-contact-info-label">Region</p>
+              <p class="sk-contact-info-value">Northern California</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="sk-contact-panel-cta" href="#">
+        Send Us a Message
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 7: LATEST NEWS
+═══════════════════════════════════════════ -->
+<section class="sk-news-section" aria-labelledby="sk-news-heading">
+  <div class="sk-news-inner">
+
+    <div class="sk-news-header-row">
+      <div class="sk-reveal">
+        <p class="sk-section-eyebrow">News & Resources</p>
+        <h2 class="sk-section-headline" id="sk-news-heading">
+          Stay Informed on Kosher Standards
+        </h2>
+      </div>
+      <a class="sk-news-view-all sk-reveal" href="#">
+        View All Updates
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="sk-news-grid">
+
+      <article class="sk-article-card sk-reveal">
+        <div class="sk-article-card-image">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Kosher alert announcement" loading="lazy" />
+        </div>
+        <div class="sk-article-card-body">
+          <div class="sk-article-card-meta-row">
+            <span class="sk-article-type-badge">Kosher Alert</span>
+            <span class="sk-article-date">June 2026</span>
+          </div>
+          <h3 class="sk-article-title">Important Update: Certification Status Change for Two Northern California Manufacturers</h3>
+          <p class="sk-article-excerpt">Sunrise Kosher announces a revision in certification status for two food manufacturers effective this month. Consumers should review the updated product list before purchasing.</p>
+          <a class="sk-article-read-link" href="#">
+            Read Update
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="sk-article-card sk-reveal sk-reveal-delay-1">
+        <div class="sk-article-card-image">
+          <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=80" alt="Passover kosher preparation" loading="lazy" />
+        </div>
+        <div class="sk-article-card-body">
+          <div class="sk-article-card-meta-row">
+            <span class="sk-article-type-badge">Resource</span>
+            <span class="sk-article-date">May 2026</span>
+          </div>
+          <h3 class="sk-article-title">Preparing Your Home Kitchen for Passover: A Guide from Our Rabbinical Team</h3>
+          <p class="sk-article-excerpt">Our rabbinical team has published a detailed guide on preparing your kitchen for Passover, covering kashering utensils, checking for chametz, and common questions we receive every year.</p>
+          <a class="sk-article-read-link" href="#">
+            Read Guide
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="sk-article-card sk-reveal sk-reveal-delay-2">
+        <div class="sk-article-card-image">
+          <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=700&q=80" alt="New kosher restaurant opening" loading="lazy" />
+        </div>
+        <div class="sk-article-card-body">
+          <div class="sk-article-card-meta-row">
+            <span class="sk-article-type-badge">New Listing</span>
+            <span class="sk-article-date">April 2026</span>
+          </div>
+          <h3 class="sk-article-title">Three New Certified Restaurants Now Listed in the Sacramento Area</h3>
+          <p class="sk-article-excerpt">The Sunrise Kosher directory has expanded with three newly certified restaurants in Sacramento, bringing more dining options to the Northern California Jewish community.</p>
+          <a class="sk-article-read-link" href="#">
+            See Listings
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 8: FOOTER
+═══════════════════════════════════════════ -->
+<footer class="sk-site-footer" role="contentinfo">
+  <div class="sk-footer-inner">
+
+    <div class="sk-footer-brand-col">
+      <div class="sk-footer-brand-lockup">
+        <div class="sk-footer-brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" fill="#1A2744"/>
+            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M17.66 6.34l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="#1A2744" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="sk-footer-brand-name">Sunrise Kosher</span>
+      </div>
+      <p class="sk-footer-tagline">
+        The Vaad of Northern California — Northern California's premier kosher certification agency, setting the gold standard since our founding.
+      </p>
+      <div class="sk-footer-social-row">
+        <a class="sk-social-icon-btn" href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a class="sk-social-icon-btn" href="#" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a class="sk-social-icon-btn" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="sk-social-icon-btn" href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="sk-footer-nav-col">
+      <p class="sk-footer-nav-title">Kosher Nor-Cal</p>
+      <ul class="sk-footer-nav-list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Restaurants</a></li>
+        <li><a href="#">Caterers</a></li>
+        <li><a href="#">Markets</a></li>
+        <li><a href="#">Food Production Facilities</a></li>
+        <li><a href="#">Kosher Venues</a></li>
+        <li><a href="#">Kosher Alerts</a></li>
+      </ul>
+    </div>
+
+    <div class="sk-footer-nav-col">
+      <p class="sk-footer-nav-title">Getting Certified</p>
+      <ul class="sk-footer-nav-list">
+        <li><a href="#">Get Certified</a></li>
+        <li><a href="#">Certification Information</a></li>
+        <li><a href="#">Frequently Asked Questions</a></li>
+        <li><a href="#">Search Kosher Products</a></li>
+      </ul>
+    </div>
+
+    <div class="sk-footer-contact-col">
+      <p class="sk-footer-nav-title">About & Contact</p>
+      <ul class="sk-footer-nav-list" style="margin-bottom:24px;">
+        <li><a href="#">About Sunrise Kosher</a></li>
+        <li><a href="#">Meet Our Staff</a></li>
+        <li><a href="#">Employment Opportunities</a></li>
+      </ul>
+      <div class="sk-footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        <span>510-THE-VAAD (843-8223)</span>
+      </div>
+      <div class="sk-footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <span>info@sunrisekosher.org</span>
+      </div>
+      <div class="sk-footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <span>Northern California</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sk-footer-inner" style="border: none; padding-top: 0;">
+    <div class="sk-footer-bottom-bar" style="grid-column: 1 / -1; width: 100%;">
+      <p class="sk-footer-copyright">&copy; 2026 Sunrise Kosher — The Vaad of Northern California. All rights reserved.</p>
+      <div class="sk-footer-legal-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  (function () {
+    'use strict';
+
+    /* ─── OFF-CANVAS MENU ─── */
+    const skToggle   = document.getElementById('sk-menu-toggle');
+    const skPanel    = document.getElementById('sk-offcanvas-panel');
+    const skOverlay  = document.getElementById('sk-overlay');
+    const skClose    = document.getElementById('sk-close-menu');
+
+    function skOpenMenu() {
+      skPanel.classList.add('sk-is-open');
+      skOverlay.classList.add('sk-is-open');
+      skToggle.setAttribute('aria-expanded', 'true');
+      skOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      skClose.focus();
+    }
+
+    function skCloseMenu() {
+      skPanel.classList.remove('sk-is-open');
+      skOverlay.classList.remove('sk-is-open');
+      skToggle.setAttribute('aria-expanded', 'false');
+      skOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      skToggle.focus();
+    }
+
+    skToggle.addEventListener('click', skOpenMenu);
+    skClose.addEventListener('click', skCloseMenu);
+    skOverlay.addEventListener('click', skCloseMenu);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && skPanel.classList.contains('sk-is-open')) {
+        skCloseMenu();
+      }
+    });
+
+    /* ─── SCROLL REVEAL ─── */
+    const skRevealEls = document.querySelectorAll('.sk-reveal');
+
+    if ('IntersectionObserver' in window) {
+      const skRevealObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('sk-is-visible');
+            skRevealObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      skRevealEls.forEach(function (el) { skRevealObs.observe(el); });
+    } else {
+      skRevealEls.forEach(function (el) { el.classList.add('sk-is-visible'); });
+    }
+
+    /* ─── STICKY NAV SHADOW ENHANCEMENT ─── */
+    const skNavbar = document.querySelector('.sk-main-navbar');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 8) {
+        skNavbar.style.boxShadow = '0 4px 24px rgba(0,0,0,0.24)';
+      } else {
+        skNavbar.style.boxShadow = '0 2px 12px rgba(0,0,0,0.18)';
+      }
+    }, { passive: true });
+
+  }());
+</script>
+
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  const mainNav = document.querySelector(".sk-main-navbar, .tia-nav, .tws-nav-root, .pau-site-nav, .wgf-nav-bar, .yba-nav, .yli-navbar, .zna-main-nav");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+
+  // Initialize state based on current scroll position
+  if (lastScrollY > 80) {
+    gladHeader.classList.add("hidden");
+    if (mainNav) {
+      mainNav.classList.add("glad-hidden");
+    }
+    gladVisible = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          if (mainNav) {
+            mainNav.classList.add("glad-hidden");
+          }
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          if (mainNav) {
+            mainNav.classList.remove("glad-hidden");
+          }
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

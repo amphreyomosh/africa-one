@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Tradition In Action defends the perennial Magisterium of Holy Mother Church and works for the restoration of Christian Civilization." />
+<title>Tradition In Action — Defending Catholic Tradition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --tia-ink: #1a1a1a;
+    --tia-ink-soft: #3d3d3d;
+    --tia-ink-muted: #6b6b6b;
+    --tia-parchment: #f7f5f0;
+    --tia-parchment-dark: #ede9e1;
+    --tia-crimson: #8b1a1a;
+    --tia-crimson-deep: #6b1212;
+    --tia-gold: #b8860b;
+    --tia-white: #ffffff;
+    --tia-border: #ddd8cf;
+    --tia-shadow: 0 2px 16px rgba(26,26,26,0.09);
+    --tia-shadow-md: 0 6px 28px rgba(26,26,26,0.13);
+    --tia-radius-pill: 999px;
+    --tia-radius-card: 10px;
+    --tia-font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --tia-font: 'Poppins', system-ui, -apple-system, sans-serif;
+    --tia-nav-h: 68px;
+    --tia-transition: 0.22s ease;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--tia-font);
+    color: var(--tia-ink);
+    background: var(--tia-white);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* ─── SECTION 1: NAVBAR ─── */
+  .tia-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--tia-border);
+    backdrop-filter: blur(8px);
+    height: var(--tia-nav-h);
+    display: flex;
+    align-items: center;
+  }
+
+  .tia-nav-inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .tia-nav-brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 1px;
+  }
+
+  .tia-nav-brand-name {
+    font-family: var(--tia-font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--tia-crimson);
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+  }
+
+  .tia-nav-brand-sub {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--tia-ink-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tia-nav-links {
+    display: none;
+    list-style: none;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .tia-nav-links a {
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--tia-ink-soft);
+    padding: 6px 12px;
+    border-radius: var(--tia-radius-pill);
+    transition: background var(--tia-transition), color var(--tia-transition);
+  }
+
+  .tia-nav-links a:hover {
+    background: var(--tia-parchment);
+    color: var(--tia-crimson);
+  }
+
+  .tia-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tia-nav-cta {
+    display: none;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    background: var(--tia-crimson);
+    color: var(--tia-white);
+    padding: 8px 20px;
+    border-radius: var(--tia-radius-pill);
+    transition: background var(--tia-transition);
+  }
+
+  .tia-nav-cta:hover { background: var(--tia-crimson-deep); }
+
+  .tia-nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    transition: background var(--tia-transition);
+  }
+
+  .tia-nav-hamburger:hover { background: var(--tia-parchment); }
+
+  .tia-nav-hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--tia-ink);
+    border-radius: 2px;
+    transition: transform var(--tia-transition), opacity var(--tia-transition);
+  }
+
+  .tia-nav-hamburger.tia-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .tia-nav-hamburger.tia-open span:nth-child(2) { opacity: 0; }
+  .tia-nav-hamburger.tia-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Off-canvas panel */
+  .tia-offcanvas-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 890;
+    opacity: 0;
+    transition: opacity var(--tia-transition);
+  }
+
+  .tia-offcanvas-overlay.tia-visible {
+    display: block;
+  }
+
+  .tia-offcanvas-overlay.tia-active {
+    opacity: 1;
+  }
+
+  .tia-offcanvas {
+    position: fixed;
+    top: 0; right: -100%;
+    width: min(340px, 90vw);
+    height: 100%;
+    background: var(--tia-white);
+    z-index: 910;
+    padding: 0;
+    transition: right 0.32s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+    box-shadow: -4px 0 32px rgba(0,0,0,0.14);
+  }
+
+  .tia-offcanvas.tia-open { right: 0; }
+
+  .tia-offcanvas-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--tia-border);
+  }
+
+  .tia-offcanvas-close {
+    width: 34px;
+    height: 34px;
+    border: none;
+    background: var(--tia-parchment);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--tia-ink);
+    transition: background var(--tia-transition);
+  }
+
+  .tia-offcanvas-close:hover { background: var(--tia-parchment-dark); }
+
+  .tia-offcanvas-menu {
+    list-style: none;
+    padding: 16px 0;
+  }
+
+  .tia-offcanvas-menu li a {
+    display: block;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--tia-ink-soft);
+    padding: 12px 24px;
+    border-bottom: 1px solid transparent;
+    transition: background var(--tia-transition), color var(--tia-transition);
+  }
+
+  .tia-offcanvas-menu li a:hover {
+    background: var(--tia-parchment);
+    color: var(--tia-crimson);
+  }
+
+  .tia-offcanvas-footer {
+    padding: 24px;
+    border-top: 1px solid var(--tia-border);
+  }
+
+  .tia-offcanvas-footer a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--tia-crimson);
+    color: var(--tia-white);
+    padding: 12px 24px;
+    border-radius: var(--tia-radius-pill);
+    transition: background var(--tia-transition);
+  }
+
+  .tia-offcanvas-footer a:hover { background: var(--tia-crimson-deep); }
+
+  /* ─── SECTION 2: HERO ─── */
+  .tia-hero {
+    margin-top: var(--tia-nav-h);
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .tia-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.traditioninaction.org/bev/bevimages(300-349)/bev317_Leo.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    filter: brightness(0.55) saturate(0.8);
+  }
+
+  .tia-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(20,8,8,0.72) 0%, rgba(20,8,8,0.38) 100%);
+  }
+
+  .tia-hero-body {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 72px 24px;
+    text-align: left;
+  }
+
+  .tia-hero-eyeline {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 18px;
+  }
+
+  .tia-hero-title {
+    font-family: var(--tia-font-serif);
+    font-size: clamp(36px, 5.5vw, 66px);
+    font-weight: 700;
+    color: var(--tia-white);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    max-width: 640px;
+    margin-bottom: 22px;
+  }
+
+  .tia-hero-tagline {
+    font-size: clamp(14px, 1.8vw, 17px);
+    color: rgba(255,255,255,0.80);
+    max-width: 480px;
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+
+  .tia-hero-latin {
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(255,255,255,0.52);
+    margin-bottom: 38px;
+  }
+
+  .tia-hero-cta {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    background: var(--tia-crimson);
+    color: var(--tia-white);
+    padding: 14px 32px;
+    border-radius: var(--tia-radius-pill);
+    transition: background var(--tia-transition), transform var(--tia-transition);
+  }
+
+  .tia-hero-cta:hover {
+    background: var(--tia-crimson-deep);
+    transform: translateY(-1px);
+  }
+
+  /* ─── SECTION 3: MISSION ─── */
+  .tia-mission {
+    background: var(--tia-parchment);
+    padding: 80px 24px;
+  }
+
+  .tia-mission-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .tia-mission-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tia-crimson);
+    margin-bottom: 14px;
+  }
+
+  .tia-mission-title {
+    font-family: var(--tia-font-serif);
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--tia-ink);
+    margin-bottom: 20px;
+  }
+
+  .tia-mission-body {
+    font-size: 16px;
+    color: var(--tia-ink-soft);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .tia-mission-body:last-of-type { margin-bottom: 32px; }
+
+  .tia-mission-link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tia-crimson);
+    border: 1.5px solid var(--tia-crimson);
+    padding: 10px 24px;
+    border-radius: var(--tia-radius-pill);
+    transition: background var(--tia-transition), color var(--tia-transition);
+  }
+
+  .tia-mission-link:hover {
+    background: var(--tia-crimson);
+    color: var(--tia-white);
+  }
+
+  .tia-mission-image-wrap {
+    border-radius: var(--tia-radius-card);
+    overflow: hidden;
+    box-shadow: var(--tia-shadow-md);
+    aspect-ratio: 4/3;
+  }
+
+  .tia-mission-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ─── SECTION 4: OFFERINGS ─── */
+  .tia-offerings {
+    background: var(--tia-white);
+    padding: 80px 24px;
+  }
+
+  .tia-section-head {
+    max-width: 1200px;
+    margin: 0 auto 48px;
+  }
+
+  .tia-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tia-crimson);
+    margin-bottom: 12px;
+  }
+
+  .tia-section-title {
+    font-family: var(--tia-font-serif);
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    color: var(--tia-ink);
+    max-width: 560px;
+    line-height: 1.25;
+  }
+
+  .tia-offerings-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .tia-offering-card {
+    border-radius: var(--tia-radius-card);
+    overflow: hidden;
+    background: var(--tia-parchment);
+    box-shadow: var(--tia-shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--tia-transition), box-shadow var(--tia-transition);
+  }
+
+  .tia-offering-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--tia-shadow-md);
+  }
+
+  .tia-offering-card-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  .tia-offering-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .tia-offering-card:hover .tia-offering-card-img img {
+    transform: scale(1.04);
+  }
+
+  .tia-offering-card-body {
+    padding: 22px 24px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tia-offering-card-cat {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tia-crimson);
+    margin-bottom: 8px;
+  }
+
+  .tia-offering-card-title {
+    font-family: var(--tia-font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--tia-ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .tia-offering-card-desc {
+    font-size: 14px;
+    color: var(--tia-ink-muted);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 18px;
+  }
+
+  .tia-offering-card-link {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--tia-crimson);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap var(--tia-transition);
+  }
+
+  .tia-offering-card-link:hover { gap: 10px; }
+
+  .tia-offering-card-link svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION 5: IMPACT STORIES ─── */
+  .tia-impact {
+    background: var(--tia-parchment-dark);
+    padding: 80px 24px;
+  }
+
+  .tia-impact-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .tia-story-card {
+    background: var(--tia-white);
+    border-radius: var(--tia-radius-card);
+    overflow: hidden;
+    box-shadow: var(--tia-shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--tia-transition);
+  }
+
+  .tia-story-card:hover { transform: translateY(-3px); }
+
+  .tia-story-card-img {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+  }
+
+  .tia-story-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .tia-story-card:hover .tia-story-card-img img {
+    transform: scale(1.04);
+  }
+
+  .tia-story-card-body { padding: 26px 28px 28px; }
+
+  .tia-story-card-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tia-gold);
+    margin-bottom: 12px;
+  }
+
+  .tia-story-card-title {
+    font-family: var(--tia-font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--tia-ink);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .tia-story-card-excerpt {
+    font-size: 14.5px;
+    color: var(--tia-ink-soft);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .tia-story-card-link {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--tia-crimson);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap var(--tia-transition);
+  }
+
+  .tia-story-card-link:hover { gap: 10px; }
+
+  .tia-story-card-link svg { width: 14px; height: 14px; }
+
+  /* ─── SECTION 6: ENGAGE ─── */
+  .tia-engage {
+    background: var(--tia-ink);
+    padding: 80px 24px;
+  }
+
+  .tia-engage-head {
+    max-width: 1200px;
+    margin: 0 auto 48px;
+  }
+
+  .tia-engage-head .tia-section-label { color: rgba(255,255,255,0.5); }
+
+  .tia-engage-head .tia-section-title {
+    color: var(--tia-white);
+  }
+
+  .tia-engage-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tia-engage-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--tia-radius-card);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: background var(--tia-transition), border-color var(--tia-transition);
+  }
+
+  .tia-engage-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .tia-engage-card-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--tia-crimson);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tia-engage-card-icon svg { width: 22px; height: 22px; color: var(--tia-white); }
+
+  .tia-engage-card-title {
+    font-family: var(--tia-font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--tia-white);
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .tia-engage-card-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .tia-engage-card-link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--tia-white);
+    border: 1.5px solid rgba(255,255,255,0.28);
+    padding: 10px 22px;
+    border-radius: var(--tia-radius-pill);
+    align-self: flex-start;
+    transition: background var(--tia-transition), border-color var(--tia-transition);
+  }
+
+  .tia-engage-card-link:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  /* ─── SECTION 7: LATEST NEWS ─── */
+  .tia-news {
+    background: var(--tia-white);
+    padding: 80px 24px;
+  }
+
+  .tia-news-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .tia-news-card {
+    background: var(--tia-white);
+    border: 1px solid var(--tia-border);
+    border-radius: var(--tia-radius-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow var(--tia-transition), transform var(--tia-transition);
+  }
+
+  .tia-news-card:hover {
+    box-shadow: var(--tia-shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .tia-news-card-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  .tia-news-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .tia-news-card:hover .tia-news-card-img img { transform: scale(1.04); }
+
+  .tia-news-card-body {
+    padding: 22px 22px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tia-news-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .tia-news-card-cat {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tia-crimson);
+    background: rgba(139,26,26,0.09);
+    padding: 3px 10px;
+    border-radius: var(--tia-radius-pill);
+  }
+
+  .tia-news-card-date {
+    font-size: 11.5px;
+    color: var(--tia-ink-muted);
+  }
+
+  .tia-news-card-title {
+    font-family: var(--tia-font-serif);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--tia-ink);
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    margin-bottom: 10px;
+    flex: 1;
+  }
+
+  .tia-news-card-excerpt {
+    font-size: 13.5px;
+    color: var(--tia-ink-muted);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .tia-news-card-link {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--tia-crimson);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap var(--tia-transition);
+  }
+
+  .tia-news-card-link:hover { gap: 10px; }
+  .tia-news-card-link svg { width: 14px; height: 14px; }
+
+  .tia-news-view-all {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .tia-news-view-all a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tia-crimson);
+    border: 1.5px solid var(--tia-crimson);
+    padding: 12px 32px;
+    border-radius: var(--tia-radius-pill);
+    transition: background var(--tia-transition), color var(--tia-transition);
+  }
+
+  .tia-news-view-all a:hover {
+    background: var(--tia-crimson);
+    color: var(--tia-white);
+  }
+
+  /* ─── SECTION 8: FOOTER ─── */
+  .tia-footer {
+    background: #111010;
+    color: rgba(255,255,255,0.75);
+    padding: 64px 24px 32px;
+  }
+
+  .tia-footer-top {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .tia-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .tia-footer-brand-name {
+    font-family: var(--tia-font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--tia-white);
+    letter-spacing: -0.02em;
+  }
+
+  .tia-footer-tagline {
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  .tia-footer-desc {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    max-width: 300px;
+  }
+
+  .tia-footer-social {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .tia-footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+    transition: background var(--tia-transition), color var(--tia-transition), border-color var(--tia-transition);
+  }
+
+  .tia-footer-social a:hover {
+    background: var(--tia-crimson);
+    border-color: var(--tia-crimson);
+    color: var(--tia-white);
+  }
+
+  .tia-footer-social a svg { width: 16px; height: 16px; }
+
+  .tia-footer-col-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+
+  .tia-footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+  .tia-footer-col ul li a {
+    text-decoration: none;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+    transition: color var(--tia-transition);
+  }
+
+  .tia-footer-col ul li a:hover { color: var(--tia-white); }
+
+  .tia-footer-contact-item {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .tia-footer-contact-item a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color var(--tia-transition);
+  }
+
+  .tia-footer-contact-item a:hover { color: var(--tia-white); }
+
+  .tia-footer-bottom {
+    max-width: 1200px;
+    margin: 28px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .tia-footer-copy {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .tia-footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+  }
+
+  .tia-footer-legal li a {
+    text-decoration: none;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.35);
+    transition: color var(--tia-transition);
+  }
+
+  .tia-footer-legal li a:hover { color: rgba(255,255,255,0.65); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .tia-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .tia-reveal.tia-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (min-width: 640px) {
+    .tia-offerings-grid,
+    .tia-news-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .tia-impact-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .tia-engage-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .tia-footer-top { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 900px) {
+    .tia-nav-links { display: flex; }
+    .tia-nav-cta { display: inline-block; }
+    .tia-nav-hamburger { display: none; }
+
+    .tia-hero-body { text-align: center; }
+    .tia-hero-eyeline,
+    .tia-hero-tagline,
+    .tia-hero-latin { margin-left: auto; margin-right: auto; }
+    .tia-hero-title { max-width: 720px; margin-left: auto; margin-right: auto; }
+
+    .tia-mission-inner { grid-template-columns: 1fr 1fr; }
+
+    .tia-offerings-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .tia-impact-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .tia-engage-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .tia-news-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .tia-footer-top { grid-template-columns: 2fr 1fr 1fr 1.2fr; }
+
+    .tia-footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .tia-hero-body { text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tia-reveal { opacity: 1; transform: none; transition: none; }
+    .tia-offering-card,
+    .tia-story-card,
+    .tia-news-card { transition: none; }
+  }
+</style>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── DYNAMIC NAVBAR TOP OFFSET ─── */
+  body .sk-main-navbar,
+  body .tia-nav,
+  body .tws-nav-root,
+  body .pau-site-nav,
+  body .wgf-nav-bar,
+  body .yba-nav,
+  body .yli-navbar,
+  body .zna-main-nav {
+    top: 56px !important;
+    transition: top 0.3s ease !important;
+  }
+  body .sk-main-navbar.glad-hidden,
+  body .tia-nav.glad-hidden,
+  body .tws-nav-root.glad-hidden,
+  body .pau-site-nav.glad-hidden,
+  body .wgf-nav-bar.glad-hidden,
+  body .yba-nav.glad-hidden,
+  body .yli-navbar.glad-hidden,
+  body .zna-main-nav.glad-hidden {
+    top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 1: STICKY NAVBAR
+══════════════════════════════════════════ -->
+<header class="tia-nav" role="banner">
+  <div class="tia-nav-inner">
+    <a href="#" class="tia-nav-brand" aria-label="Tradition In Action Home">
+      <span class="tia-nav-brand-name">Tradition In Action</span>
+      <span class="tia-nav-brand-sub">TIA — Est. 2002</span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul class="tia-nav-links">
+        <li><a href="#">Latest Updates</a></li>
+        <li><a href="#">Spotlight</a></li>
+        <li><a href="#">History</a></li>
+        <li><a href="#">Religious Topics</a></li>
+        <li><a href="#">Bookstore</a></li>
+        <li><a href="#">Library</a></li>
+      </ul>
+    </nav>
+
+    <div class="tia-nav-actions">
+      <a href="#" class="tia-nav-cta">Donate to TIA</a>
+      <button class="tia-nav-hamburger" id="tiaMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="tiaOffcanvas">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Off-canvas overlay -->
+<div class="tia-offcanvas-overlay" id="tiaOverlay" aria-hidden="true"></div>
+
+<!-- Off-canvas menu -->
+<nav class="tia-offcanvas" id="tiaOffcanvas" aria-label="Mobile navigation" role="dialog" aria-modal="true" hidden>
+  <div class="tia-offcanvas-head">
+    <a href="#" class="tia-nav-brand" aria-label="Tradition In Action Home">
+      <span class="tia-nav-brand-name">Tradition In Action</span>
+      <span class="tia-nav-brand-sub">Est. 2002</span>
+    </a>
+    <button class="tia-offcanvas-close" id="tiaMenuClose" aria-label="Close menu">&#x2715;</button>
+  </div>
+  <ul class="tia-offcanvas-menu">
+    <li><a href="#">Latest Updates</a></li>
+    <li><a href="#">Spotlight</a></li>
+    <li><a href="#">View of the News</a></li>
+    <li><a href="#">Hot Topics</a></li>
+    <li><a href="#">Church Revolution in Pictures</a></li>
+    <li><a href="#">Progressivist Documents</a></li>
+    <li><a href="#">Religious Topics</a></li>
+    <li><a href="#">Cultural Page</a></li>
+    <li><a href="#">History Page</a></li>
+    <li><a href="#">Organic Society</a></li>
+    <li><a href="#">Polemics Page</a></li>
+    <li><a href="#">Book Reviews</a></li>
+    <li><a href="#">Movie Reviews</a></li>
+    <li><a href="#">Bookstore</a></li>
+    <li><a href="#">Library</a></li>
+    <li><a href="#">Archives</a></li>
+    <li><a href="#">Our Lady of Good Success</a></li>
+    <li><a href="#">Saint of the Day</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+  <div class="tia-offcanvas-footer">
+    <a href="#">Support Our Mission — Donate</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2: HERO
+══════════════════════════════════════════ -->
+<section class="tia-hero" aria-label="Hero">
+  <div class="tia-hero-bg" role="img" aria-label="Notre Dame Cathedral, Paris"></div>
+  <div class="tia-hero-overlay"></div>
+  <div class="tia-hero-body">
+    <p class="tia-hero-eyeline">Defending Catholic Tradition Since 2002</p>
+    <h1 class="tia-hero-title">The Most Beautiful Adventure in the World Is Ours</h1>
+    <p class="tia-hero-tagline">Tradition In Action defends the perennial Magisterium of Holy Mother Church and works for the restoration of Christian Civilization.</p>
+    <p class="tia-hero-latin">La plus belle aventure du monde, c'est la nôtre</p>
+    <a href="#" class="tia-hero-cta">Explore Our Mission</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3: MISSION & VALUE PROPOSITION
+══════════════════════════════════════════ -->
+<section class="tia-mission" aria-label="Our Mission">
+  <div class="tia-mission-inner">
+    <div class="tia-mission-text tia-reveal">
+      <p class="tia-mission-label">Who We Are</p>
+      <h2 class="tia-mission-title">Standing Firm on the Foundations of Catholic Tradition</h2>
+      <p class="tia-mission-body">Tradition In Action is committed to defending the perennial Magisterium of Holy Mother Church and its centuries-old Catholic traditions. We stand against progressivist currents that seek to erode the doctrinal and moral heritage of the Church.</p>
+      <p class="tia-mission-body">Our work reaches readers across the globe through in-depth analysis, historical scholarship, theological commentary, and cultural criticism — all grounded in fidelity to Catholic teaching as it has been handed down through the ages.</p>
+      <a href="#" class="tia-mission-link">Learn About Our History</a>
+    </div>
+    <div class="tia-mission-image-wrap tia-reveal">
+      <img
+        src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&q=80&auto=format&fit=crop"
+        alt="Notre Dame Cathedral — symbol of Catholic civilization"
+        loading="lazy"
+        width="800"
+        height="600"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4: PRIMARY OFFERINGS / FOCUS AREAS
+══════════════════════════════════════════ -->
+<section class="tia-offerings" aria-label="Focus Areas">
+  <div class="tia-section-head tia-reveal">
+    <p class="tia-section-label">What We Cover</p>
+    <h2 class="tia-section-title">Scholarship, Criticism, and Defense of the Faith</h2>
+  </div>
+  <div class="tia-offerings-grid">
+
+    <article class="tia-offering-card tia-reveal">
+      <div class="tia-offering-card-img">
+        <img src="https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=600&q=75&auto=format&fit=crop" alt="Religious Topics" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-offering-card-body">
+        <p class="tia-offering-card-cat">Faith &amp; Doctrine</p>
+        <h3 class="tia-offering-card-title">Religious Topics</h3>
+        <p class="tia-offering-card-desc">Deep doctrinal analysis, theological commentary, and defense of traditional Catholic teaching against modernist interpretations.</p>
+        <a href="#" class="tia-offering-card-link">Read articles <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-offering-card tia-reveal">
+      <div class="tia-offering-card-img">
+        <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=600&q=75&auto=format&fit=crop" alt="History Page" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-offering-card-body">
+        <p class="tia-offering-card-cat">Historical Scholarship</p>
+        <h3 class="tia-offering-card-title">History &amp; Civilization</h3>
+        <p class="tia-offering-card-desc">From Emperor Charlemagne to the Counter-Revolution — a treasury of Catholic history and the men who built Christian civilization.</p>
+        <a href="#" class="tia-offering-card-link">Explore history <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-offering-card tia-reveal">
+      <div class="tia-offering-card-img">
+        <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=600&q=75&auto=format&fit=crop" alt="Cultural Page" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-offering-card-body">
+        <p class="tia-offering-card-cat">Culture &amp; Society</p>
+        <h3 class="tia-offering-card-title">Cultural Commentary</h3>
+        <p class="tia-offering-card-desc">Critical analysis of art, music, philosophy, and social trends through the lens of a Catholic and counter-revolutionary worldview.</p>
+        <a href="#" class="tia-offering-card-link">Read commentary <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-offering-card tia-reveal">
+      <div class="tia-offering-card-img">
+        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=75&auto=format&fit=crop" alt="Book Reviews" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-offering-card-body">
+        <p class="tia-offering-card-cat">Books &amp; Media</p>
+        <h3 class="tia-offering-card-title">Book &amp; Movie Reviews</h3>
+        <p class="tia-offering-card-desc">Curated reviews of literature and cinema evaluated from a traditional Catholic moral and intellectual perspective.</p>
+        <a href="#" class="tia-offering-card-link">Browse reviews <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-offering-card tia-reveal">
+      <div class="tia-offering-card-img">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=75&auto=format&fit=crop" alt="Church Revolution in Pictures" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-offering-card-body">
+        <p class="tia-offering-card-cat">Polemics</p>
+        <h3 class="tia-offering-card-title">Church Revolution in Pictures</h3>
+        <p class="tia-offering-card-desc">A documented visual record of the revolutionary changes imposed on the Catholic Church since the Second Vatican Council.</p>
+        <a href="#" class="tia-offering-card-link">View the archive <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-offering-card tia-reveal">
+      <div class="tia-offering-card-img">
+        <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&q=75&auto=format&fit=crop" alt="Organic Society" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-offering-card-body">
+        <p class="tia-offering-card-cat">Social Order</p>
+        <h3 class="tia-offering-card-title">Organic Society</h3>
+        <p class="tia-offering-card-desc">Exploring the principles of an ordered, hierarchical society rooted in Catholic social doctrine and natural law.</p>
+        <a href="#" class="tia-offering-card-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5: IMPACT / SUCCESS STORIES
+══════════════════════════════════════════ -->
+<section class="tia-impact" aria-label="Voices and Stories">
+  <div class="tia-section-head tia-reveal" style="max-width:1200px;margin:0 auto 48px;">
+    <p class="tia-section-label">Reader Voices</p>
+    <h2 class="tia-section-title">Stories of Faith Renewed Through Tradition</h2>
+  </div>
+  <div class="tia-impact-grid">
+
+    <article class="tia-story-card tia-reveal">
+      <div class="tia-story-card-img">
+        <img src="https://images.unsplash.com/photo-1438032005730-c779502df39b?w=600&q=75&auto=format&fit=crop" alt="Rediscovering the Latin Mass" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="tia-story-card-body">
+        <span class="tia-story-card-tag">Faith Journey</span>
+        <h3 class="tia-story-card-title">Rediscovering the Latin Mass After Decades Away</h3>
+        <p class="tia-story-card-excerpt">A reader shares how TIA's resources on the Traditional Latin Mass drew him back to the sacraments and a life centered on liturgical prayer.</p>
+        <a href="#" class="tia-story-card-link">Read the story <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-story-card tia-reveal">
+      <div class="tia-story-card-img">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=75&auto=format&fit=crop" alt="History changed my understanding" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="tia-story-card-body">
+        <span class="tia-story-card-tag">Historical Awakening</span>
+        <h3 class="tia-story-card-title">How Charlemagne's Story Changed My Understanding of the Church</h3>
+        <p class="tia-story-card-excerpt">A university student describes how TIA's History section gave her the intellectual framework to understand the Church's civilizational role.</p>
+        <a href="#" class="tia-story-card-link">Read the story <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-story-card tia-reveal">
+      <div class="tia-story-card-img">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=75&auto=format&fit=crop" alt="Our Lady of Good Success devotion" loading="lazy" width="600" height="400" />
+      </div>
+      <div class="tia-story-card-body">
+        <span class="tia-story-card-tag">Marian Devotion</span>
+        <h3 class="tia-story-card-title">Our Lady of Good Success: A Devotion That Changed Our Family</h3>
+        <p class="tia-story-card-excerpt">A Catholic mother recounts how discovering TIA's resources on this forgotten Marian apparition transformed her household's prayer life.</p>
+        <a href="#" class="tia-story-card-link">Read the story <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6: WAYS TO ENGAGE
+══════════════════════════════════════════ -->
+<section class="tia-engage" aria-label="Ways to Engage">
+  <div class="tia-engage-head tia-reveal">
+    <p class="tia-section-label">Get Involved</p>
+    <h2 class="tia-section-title">Join the Tradition. Support the Mission.</h2>
+  </div>
+  <div class="tia-engage-grid">
+
+    <div class="tia-engage-card tia-reveal">
+      <div class="tia-engage-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <h3 class="tia-engage-card-title">Donate to TIA</h3>
+      <p class="tia-engage-card-desc">TIA is a 501(c)(3) non-profit. Your tax-deductible donation keeps this mission alive. A traditional Mass is offered monthly for all our supporters.</p>
+      <a href="#" class="tia-engage-card-link">Make a donation</a>
+    </div>
+
+    <div class="tia-engage-card tia-reveal">
+      <div class="tia-engage-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <h3 class="tia-engage-card-title">Sign Up for Daily Mail</h3>
+      <p class="tia-engage-card-desc">Receive TIA's curated daily updates directly in your inbox — articles, saints of the day, and breaking Catholic news.</p>
+      <a href="#" class="tia-engage-card-link">Subscribe now</a>
+    </div>
+
+    <div class="tia-engage-card tia-reveal">
+      <div class="tia-engage-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <h3 class="tia-engage-card-title">Visit the Bookstore</h3>
+      <p class="tia-engage-card-desc">Browse our curated collection of traditional Catholic books, literature, and resources carefully selected to support your faith.</p>
+      <a href="#" class="tia-engage-card-link">Shop the bookstore</a>
+    </div>
+
+    <div class="tia-engage-card tia-reveal">
+      <div class="tia-engage-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3 class="tia-engage-card-title">Send Us a Question</h3>
+      <p class="tia-engage-card-desc">Have a question about doctrine, history, or Church affairs? Submit your inquiry and our editors will do their best to respond.</p>
+      <a href="#" class="tia-engage-card-link">Ask a question</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7: LATEST NEWS / UPDATES
+══════════════════════════════════════════ -->
+<section class="tia-news" aria-label="Latest Updates">
+  <div class="tia-section-head tia-reveal">
+    <p class="tia-section-label">Latest Updates</p>
+    <h2 class="tia-section-title">News, Analysis &amp; Spotlights</h2>
+  </div>
+  <div class="tia-news-grid">
+
+    <article class="tia-news-card tia-reveal">
+      <div class="tia-news-card-img">
+        <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=600&q=75&auto=format&fit=crop" alt="Hot Topics article" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-news-card-body">
+        <div class="tia-news-card-meta">
+          <span class="tia-news-card-cat">Hot Topics</span>
+          <span class="tia-news-card-date">June 2025</span>
+        </div>
+        <h3 class="tia-news-card-title">The Crisis in the Church: A Counter-Revolutionary Perspective</h3>
+        <p class="tia-news-card-excerpt">An in-depth examination of the ongoing pastoral and doctrinal challenges facing Catholics who remain faithful to Tradition.</p>
+        <a href="#" class="tia-news-card-link">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-news-card tia-reveal">
+      <div class="tia-news-card-img">
+        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=75&auto=format&fit=crop" alt="Spotlight article" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-news-card-body">
+        <div class="tia-news-card-meta">
+          <span class="tia-news-card-cat">Spotlight</span>
+          <span class="tia-news-card-date">June 2025</span>
+        </div>
+        <h3 class="tia-news-card-title">Spotlight: The Forgotten Legacy of Pope St. Pius X</h3>
+        <p class="tia-news-card-excerpt">Revisiting the pontificate of a saint who condemned Modernism and defended the deposit of faith with uncompromising clarity.</p>
+        <a href="#" class="tia-news-card-link">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+    <article class="tia-news-card tia-reveal">
+      <div class="tia-news-card-img">
+        <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=600&q=75&auto=format&fit=crop" alt="Progressivist Documents" loading="lazy" width="600" height="338" />
+      </div>
+      <div class="tia-news-card-body">
+        <div class="tia-news-card-meta">
+          <span class="tia-news-card-cat">Progressivist Documents</span>
+          <span class="tia-news-card-date">May 2025</span>
+        </div>
+        <h3 class="tia-news-card-title">Analyzing the New Vatican Document on Synodality</h3>
+        <p class="tia-news-card-excerpt">A careful doctrinal critique of recent Vatican pronouncements and what they mean for the future of the Church's governance.</p>
+        <a href="#" class="tia-news-card-link">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </article>
+
+  </div>
+  <div class="tia-news-view-all tia-reveal">
+    <a href="#">View All Updates</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8: FOOTER
+══════════════════════════════════════════ -->
+<footer class="tia-footer" role="contentinfo">
+  <div class="tia-footer-top">
+
+    <div class="tia-footer-brand">
+      <p class="tia-footer-brand-name">Tradition In Action</p>
+      <p class="tia-footer-tagline">La plus belle aventure du monde, c'est la nôtre</p>
+      <p class="tia-footer-desc">Defending the perennial Magisterium of Holy Mother Church and Catholic traditions since 2002.</p>
+      <div class="tia-footer-social">
+        <!-- YouTube -->
+        <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+        </a>
+        <!-- Twitter / X -->
+        <a href="#" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.58-6.64 7.58H.5l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.4h2.04L6.54 3.24H4.36L17.61 20.55z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="tia-footer-col">
+      <p class="tia-footer-col-title">Topics</p>
+      <ul>
+        <li><a href="#">Religious Topics</a></li>
+        <li><a href="#">Cultural Page</a></li>
+        <li><a href="#">History Page</a></li>
+        <li><a href="#">Organic Society</a></li>
+        <li><a href="#">Polemics Page</a></li>
+        <li><a href="#">Hot Topics</a></li>
+        <li><a href="#">Spotlight</a></li>
+      </ul>
+    </div>
+
+    <div class="tia-footer-col">
+      <p class="tia-footer-col-title">Resources</p>
+      <ul>
+        <li><a href="#">Bookstore</a></li>
+        <li><a href="#">Library</a></li>
+        <li><a href="#">Video Archive</a></li>
+        <li><a href="#">Book Reviews</a></li>
+        <li><a href="#">Movie Reviews</a></li>
+        <li><a href="#">Archives</a></li>
+        <li><a href="#">The Best of TIA</a></li>
+      </ul>
+    </div>
+
+    <div class="tia-footer-col">
+      <p class="tia-footer-col-title">Contact</p>
+      <p class="tia-footer-contact-item">Editor: Atila Sinke Guimarães</p>
+      <p class="tia-footer-contact-item"><a href="#">Contact the editor</a></p>
+      <p class="tia-footer-contact-item"><a href="#">Submit a question</a></p>
+      <p class="tia-footer-contact-item" style="margin-top:16px;"><a href="#">Sign up for Daily Mail</a></p>
+      <p class="tia-footer-contact-item"><a href="#">Donate to TIA</a></p>
+    </div>
+
+  </div>
+
+  <div class="tia-footer-bottom">
+    <p class="tia-footer-copy">&copy; 2002&ndash;2025 Tradition In Action, Inc. All Rights Reserved.</p>
+    <ul class="tia-footer-legal">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Sitemap</a></li>
+      <li><a href="#">Links</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Navbar: off-canvas ── */
+  const menuBtn   = document.getElementById('tiaMenuBtn');
+  const menuClose = document.getElementById('tiaMenuClose');
+  const offcanvas = document.getElementById('tiaOffcanvas');
+  const overlay   = document.getElementById('tiaOverlay');
+
+  function openMenu() {
+    offcanvas.removeAttribute('hidden');
+    overlay.classList.add('tia-visible');
+    requestAnimationFrame(() => {
+      offcanvas.classList.add('tia-open');
+      overlay.classList.add('tia-active');
+      menuBtn.classList.add('tia-open');
+      menuBtn.setAttribute('aria-expanded', 'true');
+    });
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    offcanvas.classList.remove('tia-open');
+    overlay.classList.remove('tia-active');
+    menuBtn.classList.remove('tia-open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      offcanvas.setAttribute('hidden', '');
+      overlay.classList.remove('tia-visible');
+    }, 320);
+  }
+
+  menuBtn.addEventListener('click', openMenu);
+  menuClose.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && offcanvas.classList.contains('tia-open')) {
+      closeMenu();
+      menuBtn.focus();
+    }
+  });
+
+  /* ── Navbar: scroll shadow ── */
+  const nav = document.querySelector('.tia-nav');
+  window.addEventListener('scroll', function () {
+    nav.style.boxShadow = window.scrollY > 8
+      ? '0 2px 20px rgba(0,0,0,0.1)'
+      : 'none';
+  }, { passive: true });
+
+  /* ── Scroll reveal ── */
+  const reveals = document.querySelectorAll('.tia-reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('tia-in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(function (el) {
+      observer.observe(el);
+    });
+  } else {
+    reveals.forEach(function (el) {
+      el.classList.add('tia-in-view');
+    });
+  }
+})();
+</script>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  const mainNav = document.querySelector(".sk-main-navbar, .tia-nav, .tws-nav-root, .pau-site-nav, .wgf-nav-bar, .yba-nav, .yli-navbar, .zna-main-nav");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+
+  // Initialize state based on current scroll position
+  if (lastScrollY > 80) {
+    gladHeader.classList.add("hidden");
+    if (mainNav) {
+      mainNav.classList.add("glad-hidden");
+    }
+    gladVisible = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          if (mainNav) {
+            mainNav.classList.add("glad-hidden");
+          }
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          if (mainNav) {
+            mainNav.classList.remove("glad-hidden");
+          }
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

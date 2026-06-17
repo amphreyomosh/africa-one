@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>USATF Pacific — Track & Field in Northern California & Nevada</title>
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --pau-red: #C8102E;
+  --pau-navy: #1A2744;
+  --pau-navy-light: #243258;
+  --pau-white: #FFFFFF;
+  --pau-off-white: #F6F7F9;
+  --pau-light-gray: #EAECF0;
+  --pau-mid-gray: #8A92A0;
+  --pau-dark-text: #111827;
+  --pau-body-text: #374151;
+  --pau-card-bg: #FFFFFF;
+  --pau-border: #DDE1E8;
+  --pau-red-hover: #A50D24;
+  --pau-gutter: clamp(1rem, 4vw, 2rem);
+  --pau-max: 1180px;
+  --pau-radius-card: 12px;
+  --pau-radius-btn: 999px;
+  --pau-transition: 0.22s ease;
+  --pau-shadow-card: 0 2px 12px rgba(26,39,68,0.08);
+  --pau-shadow-card-hover: 0 6px 28px rgba(26,39,68,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+  color: var(--pau-dark-text);
+  background: var(--pau-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── UTILITY ─── */
+.pau-page-gutter {
+  width: 100%;
+  max-width: var(--pau-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--pau-gutter);
+  padding-right: var(--pau-gutter);
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 1 — NAVBAR
+═══════════════════════════════════════════ */
+.pau-site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--pau-navy);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+
+.pau-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  max-width: var(--pau-max);
+  margin: 0 auto;
+  padding: 0 var(--pau-gutter);
+}
+
+.pau-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.pau-nav-brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: var(--pau-white);
+  padding: 2px;
+}
+
+.pau-nav-brand-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.pau-nav-brand-name span:first-child {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--pau-red);
+  text-transform: uppercase;
+}
+
+.pau-nav-brand-name span:last-child {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.04em;
+}
+
+.pau-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+}
+
+.pau-nav-links > li {
+  position: relative;
+}
+
+.pau-nav-links > li > a,
+.pau-nav-links > li > button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 14px;
+  height: 68px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.88);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--pau-transition), background var(--pau-transition);
+}
+
+.pau-nav-links > li > a:hover,
+.pau-nav-links > li > button:hover,
+.pau-nav-links > li > a:focus-visible,
+.pau-nav-links > li > button:focus-visible {
+  color: var(--pau-white);
+  background: rgba(255,255,255,0.07);
+}
+
+.pau-nav-chevron {
+  width: 10px;
+  height: 10px;
+  opacity: 0.6;
+  transition: transform var(--pau-transition);
+}
+
+.pau-nav-links > li:hover .pau-nav-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+.pau-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  background: var(--pau-navy-light);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--pau-transition), visibility var(--pau-transition), transform var(--pau-transition);
+  list-style: none;
+  overflow: hidden;
+}
+
+.pau-nav-links > li:hover .pau-dropdown,
+.pau-nav-links > li:focus-within .pau-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.pau-dropdown li a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  transition: background var(--pau-transition), color var(--pau-transition);
+}
+
+.pau-dropdown li a:hover {
+  background: rgba(200,16,46,0.18);
+  color: #fff;
+}
+
+/* Nav right: socials + CTA */
+.pau-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.pau-nav-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: rgba(255,255,255,0.6);
+  transition: color var(--pau-transition);
+}
+
+.pau-nav-social-link:hover { color: #fff; }
+
+.pau-nav-social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.pau-nav-join-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: var(--pau-red);
+  color: var(--pau-white);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: var(--pau-radius-btn);
+  transition: background var(--pau-transition);
+  white-space: nowrap;
+}
+
+.pau-nav-join-btn:hover { background: var(--pau-red-hover); }
+
+/* Hamburger */
+.pau-nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background var(--pau-transition);
+}
+
+.pau-nav-hamburger:hover { background: rgba(255,255,255,0.1); }
+
+.pau-nav-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.pau-nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.pau-nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.pau-nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Off-canvas mobile panel */
+.pau-mobile-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(320px, 100vw);
+  height: 100%;
+  background: var(--pau-navy);
+  z-index: 1100;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  overflow-y: auto;
+  padding: 24px 0 48px;
+}
+
+.pau-mobile-panel.pau-panel-open {
+  transform: translateX(0);
+}
+
+.pau-mobile-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 8px;
+}
+
+.pau-mobile-panel-close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pau-mobile-nav-list {
+  list-style: none;
+  padding: 0 0 16px;
+}
+
+.pau-mobile-nav-list li { border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+.pau-mobile-nav-list li a,
+.pau-mobile-nav-list li button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.88);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pau-mobile-submenu {
+  list-style: none;
+  background: rgba(0,0,0,0.2);
+  display: none;
+}
+
+.pau-mobile-submenu.pau-submenu-open { display: block; }
+
+.pau-mobile-submenu li a {
+  display: block;
+  padding: 10px 20px 10px 32px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  border: none;
+}
+
+.pau-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1099;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.pau-mobile-overlay.pau-overlay-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pau-mobile-panel-socials {
+  display: flex;
+  gap: 12px;
+  padding: 20px 20px 0;
+}
+
+.pau-mobile-panel-socials a {
+  color: rgba(255,255,255,0.6);
+  transition: color var(--pau-transition);
+}
+
+.pau-mobile-panel-socials a:hover { color: #fff; }
+
+.pau-mobile-panel-socials svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.pau-mobile-panel-join {
+  display: block;
+  margin: 20px 20px 0;
+  padding: 12px 24px;
+  background: var(--pau-red);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: var(--pau-radius-btn);
+  text-align: center;
+  transition: background var(--pau-transition);
+}
+
+.pau-mobile-panel-join:hover { background: var(--pau-red-hover); }
+
+
+/* ═══════════════════════════════════════════
+   SECTION 2 — HERO
+═══════════════════════════════════════════ */
+.pau-hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pau-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1800&q=80&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center top;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+
+.pau-hero:hover .pau-hero-bg { transform: scale(1); }
+
+.pau-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,18,42,0.62) 0%,
+    rgba(10,18,42,0.55) 50%,
+    rgba(10,18,42,0.74) 100%
+  );
+}
+
+.pau-hero-body {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 760px;
+  padding: 40px var(--pau-gutter);
+}
+
+.pau-hero-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pau-red);
+  margin-bottom: 20px;
+}
+
+.pau-hero-title {
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--pau-white);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.pau-hero-title em {
+  font-style: normal;
+  color: var(--pau-red);
+}
+
+.pau-hero-desc {
+  font-size: clamp(0.98rem, 1.8vw, 1.15rem);
+  color: rgba(255,255,255,0.82);
+  max-width: 560px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+}
+
+.pau-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--pau-red);
+  color: var(--pau-white);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border-radius: var(--pau-radius-btn);
+  transition: background var(--pau-transition), transform var(--pau-transition);
+  box-shadow: 0 4px 24px rgba(200,16,46,0.38);
+}
+
+.pau-hero-cta:hover {
+  background: var(--pau-red-hover);
+  transform: translateY(-2px);
+}
+
+.pau-hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: pau-bounce 2s infinite;
+  color: rgba(255,255,255,0.5);
+}
+
+@keyframes pau-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION 3 — MISSION
+═══════════════════════════════════════════ */
+.pau-mission {
+  padding: 100px 0;
+  background: var(--pau-white);
+}
+
+.pau-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.pau-mission-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pau-red);
+  margin-bottom: 14px;
+}
+
+.pau-mission-headline {
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--pau-navy);
+  margin-bottom: 20px;
+}
+
+.pau-mission-body {
+  font-size: 1rem;
+  color: var(--pau-body-text);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.pau-mission-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--pau-red);
+  margin-top: 12px;
+  transition: gap var(--pau-transition);
+}
+
+.pau-mission-link:hover { gap: 10px; }
+
+.pau-mission-photo-wrap {
+  position: relative;
+}
+
+.pau-mission-photo {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: var(--pau-radius-card);
+}
+
+.pau-mission-accent {
+  position: absolute;
+  bottom: -18px;
+  left: -18px;
+  width: 160px;
+  height: 160px;
+  background: var(--pau-red);
+  border-radius: var(--pau-radius-card);
+  z-index: -1;
+  opacity: 0.12;
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION 4 — PROGRAMS
+═══════════════════════════════════════════ */
+.pau-programs {
+  padding: 100px 0;
+  background: var(--pau-off-white);
+}
+
+.pau-section-heading-group {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 52px;
+}
+
+.pau-section-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pau-red);
+  margin-bottom: 12px;
+}
+
+.pau-section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--pau-navy);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.pau-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.pau-program-card {
+  background: var(--pau-card-bg);
+  border-radius: var(--pau-radius-card);
+  overflow: hidden;
+  box-shadow: var(--pau-shadow-card);
+  transition: box-shadow var(--pau-transition), transform var(--pau-transition);
+  cursor: pointer;
+}
+
+.pau-program-card:hover {
+  box-shadow: var(--pau-shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+.pau-program-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.pau-program-card-body {
+  padding: 20px 22px 24px;
+}
+
+.pau-program-card-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pau-red);
+  margin-bottom: 8px;
+}
+
+.pau-program-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--pau-navy);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.pau-program-card-text {
+  font-size: 0.84rem;
+  color: var(--pau-body-text);
+  line-height: 1.6;
+}
+
+.pau-program-card-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pau-red);
+  margin-top: 14px;
+  transition: gap var(--pau-transition);
+}
+
+.pau-program-card:hover .pau-program-card-more { gap: 8px; }
+
+
+/* ═══════════════════════════════════════════
+   SECTION 5 — STORIES
+═══════════════════════════════════════════ */
+.pau-stories {
+  padding: 100px 0;
+  background: var(--pau-navy);
+}
+
+.pau-stories .pau-section-title { color: var(--pau-white); }
+.pau-stories .pau-section-label { color: #E57373; }
+
+.pau-stories-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.pau-story-card {
+  background: var(--pau-navy-light);
+  border-radius: var(--pau-radius-card);
+  overflow: hidden;
+  transition: transform var(--pau-transition), box-shadow var(--pau-transition);
+}
+
+.pau-story-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.pau-story-card-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.pau-story-card-body {
+  padding: 24px 26px 28px;
+}
+
+.pau-story-card-meta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #E57373;
+  margin-bottom: 10px;
+}
+
+.pau-story-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--pau-white);
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+.pau-story-card-text {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+}
+
+.pau-story-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #E57373;
+  margin-top: 16px;
+  transition: gap var(--pau-transition);
+}
+
+.pau-story-card:hover .pau-story-card-link { gap: 9px; }
+
+
+/* ═══════════════════════════════════════════
+   SECTION 6 — ACTION PANEL
+═══════════════════════════════════════════ */
+.pau-engage {
+  padding: 100px 0;
+  background: var(--pau-off-white);
+}
+
+.pau-engage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 52px;
+}
+
+.pau-engage-card {
+  background: var(--pau-card-bg);
+  border-radius: var(--pau-radius-card);
+  padding: 36px 28px 32px;
+  box-shadow: var(--pau-shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: box-shadow var(--pau-transition), transform var(--pau-transition);
+  border-top: 3px solid transparent;
+}
+
+.pau-engage-card:hover {
+  box-shadow: var(--pau-shadow-card-hover);
+  transform: translateY(-4px);
+  border-top-color: var(--pau-red);
+}
+
+.pau-engage-card-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(200,16,46,0.08);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--pau-red);
+}
+
+.pau-engage-card-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pau-engage-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pau-navy);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.pau-engage-card-text {
+  font-size: 0.87rem;
+  color: var(--pau-body-text);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+.pau-engage-card-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  border-radius: var(--pau-radius-btn);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: background var(--pau-transition), color var(--pau-transition), transform var(--pau-transition);
+}
+
+.pau-engage-card-btn-primary {
+  background: var(--pau-red);
+  color: var(--pau-white);
+}
+
+.pau-engage-card-btn-primary:hover {
+  background: var(--pau-red-hover);
+  transform: translateY(-1px);
+}
+
+.pau-engage-card-btn-outline {
+  background: transparent;
+  color: var(--pau-navy);
+  border: 2px solid var(--pau-navy);
+}
+
+.pau-engage-card-btn-outline:hover {
+  background: var(--pau-navy);
+  color: var(--pau-white);
+  transform: translateY(-1px);
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION 7 — NEWS
+═══════════════════════════════════════════ */
+.pau-news {
+  padding: 100px 0;
+  background: var(--pau-white);
+}
+
+.pau-news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 52px;
+}
+
+.pau-news-article-card {
+  border-radius: var(--pau-radius-card);
+  overflow: hidden;
+  background: var(--pau-card-bg);
+  box-shadow: var(--pau-shadow-card);
+  transition: box-shadow var(--pau-transition), transform var(--pau-transition);
+}
+
+.pau-news-article-card:hover {
+  box-shadow: var(--pau-shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+.pau-news-article-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.pau-news-article-body {
+  padding: 20px 20px 24px;
+}
+
+.pau-news-article-category {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pau-red);
+  background: rgba(200,16,46,0.07);
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.pau-news-article-title {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--pau-navy);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.pau-news-article-meta {
+  font-size: 0.75rem;
+  color: var(--pau-mid-gray);
+  margin-bottom: 10px;
+}
+
+.pau-news-article-excerpt {
+  font-size: 0.83rem;
+  color: var(--pau-body-text);
+  line-height: 1.6;
+}
+
+.pau-news-view-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 44px;
+}
+
+.pau-news-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 30px;
+  border: 2px solid var(--pau-navy);
+  color: var(--pau-navy);
+  font-size: 0.86rem;
+  font-weight: 700;
+  border-radius: var(--pau-radius-btn);
+  transition: background var(--pau-transition), color var(--pau-transition);
+}
+
+.pau-news-all-btn:hover {
+  background: var(--pau-navy);
+  color: var(--pau-white);
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION 8 — FOOTER
+═══════════════════════════════════════════ */
+.pau-site-footer {
+  background: var(--pau-navy);
+  color: rgba(255,255,255,0.7);
+  padding: 72px 0 0;
+}
+
+.pau-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.pau-footer-brand-logo {
+  width: 48px;
+  height: 48px;
+  background: var(--pau-white);
+  border-radius: 8px;
+  padding: 3px;
+  object-fit: contain;
+  margin-bottom: 16px;
+}
+
+.pau-footer-brand-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--pau-white);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.pau-footer-brand-tagline {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.pau-footer-contact-item {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.pau-footer-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pau-footer-social-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.6);
+  transition: background var(--pau-transition), color var(--pau-transition);
+}
+
+.pau-footer-social-icon:hover {
+  background: var(--pau-red);
+  color: var(--pau-white);
+}
+
+.pau-footer-social-icon svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+.pau-footer-col-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pau-white);
+  margin-bottom: 18px;
+}
+
+.pau-footer-col-list {
+  list-style: none;
+}
+
+.pau-footer-col-list li {
+  margin-bottom: 10px;
+}
+
+.pau-footer-col-list li a {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  transition: color var(--pau-transition);
+}
+
+.pau-footer-col-list li a:hover {
+  color: var(--pau-white);
+}
+
+.pau-footer-bottom {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pau-footer-copy {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.pau-footer-legal-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.pau-footer-legal-links li a {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.4);
+  transition: color var(--pau-transition);
+}
+
+.pau-footer-legal-links li a:hover {
+  color: rgba(255,255,255,0.75);
+}
+
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.pau-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.pau-reveal.pau-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pau-reveal-delay-1 { transition-delay: 0.08s; }
+.pau-reveal-delay-2 { transition-delay: 0.16s; }
+.pau-reveal-delay-3 { transition-delay: 0.24s; }
+.pau-reveal-delay-4 { transition-delay: 0.32s; }
+.pau-reveal-delay-5 { transition-delay: 0.40s; }
+.pau-reveal-delay-6 { transition-delay: 0.48s; }
+
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .pau-programs-grid { grid-template-columns: repeat(2, 1fr); }
+  .pau-footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+
+@media (max-width: 860px) {
+  .pau-mission-grid { grid-template-columns: 1fr; gap: 40px; }
+  .pau-mission-photo { height: 320px; }
+  .pau-stories-grid { grid-template-columns: 1fr; }
+  .pau-engage-grid { grid-template-columns: 1fr; }
+  .pau-news-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .pau-nav-links,
+  .pau-nav-right { display: none; }
+  .pau-nav-hamburger { display: flex; }
+  .pau-programs-grid { grid-template-columns: 1fr; }
+  .pau-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+
+  /* Hero left-align on mobile */
+  .pau-hero-body { text-align: left; }
+  .pau-hero-desc { margin: 0 0 32px; }
+  .pau-hero-kicker { display: block; }
+}
+
+@media (max-width: 480px) {
+  .pau-mission,
+  .pau-programs,
+  .pau-stories,
+  .pau-engage,
+  .pau-news { padding: 72px 0; }
+  .pau-site-footer { padding-top: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pau-reveal { opacity: 1; transform: none; transition: none; }
+  .pau-hero-bg { transition: none; }
+  .pau-hero-scroll { animation: none; }
+}
+</style>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── DYNAMIC NAVBAR TOP OFFSET ─── */
+  body .sk-main-navbar,
+  body .tia-nav,
+  body .tws-nav-root,
+  body .pau-site-nav,
+  body .wgf-nav-bar,
+  body .yba-nav,
+  body .yli-navbar,
+  body .zna-main-nav {
+    top: 56px !important;
+    transition: top 0.3s ease !important;
+  }
+  body .sk-main-navbar.glad-hidden,
+  body .tia-nav.glad-hidden,
+  body .tws-nav-root.glad-hidden,
+  body .pau-site-nav.glad-hidden,
+  body .wgf-nav-bar.glad-hidden,
+  body .yba-nav.glad-hidden,
+  body .yli-navbar.glad-hidden,
+  body .zna-main-nav.glad-hidden {
+    top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+
+<!-- ═══════════════ SECTION 1: NAVBAR ═══════════════ -->
+<nav class="pau-site-nav" role="navigation" aria-label="Main navigation">
+  <div class="pau-nav-inner">
+
+    <a href="#" class="pau-nav-brand" aria-label="USATF Pacific Home">
+      <img
+        src="https://www.pausatf.org/wp-content/uploads/2021/05/USATFPacificavatar-300x300.png"
+        alt="USATF Pacific Logo"
+        class="pau-nav-brand-logo"
+        width="40" height="40"
+      />
+      <div class="pau-nav-brand-name">
+        <span>USATF Pacific</span>
+        <span>Northern CA &amp; NV Association</span>
+      </div>
+    </a>
+
+    <ul class="pau-nav-links" role="list">
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <button aria-haspopup="true" aria-expanded="false">
+          Sports
+          <svg class="pau-nav-chevron" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="pau-dropdown" role="list">
+          <li><a href="#">Youth T&amp;F</a></li>
+          <li><a href="#">Road Racing</a></li>
+          <li><a href="#">Cross Country</a></li>
+          <li><a href="#">MUT Running</a></li>
+          <li><a href="#">Indoor T&amp;F</a></li>
+          <li><a href="#">Open T&amp;F</a></li>
+          <li><a href="#">Masters T&amp;F</a></li>
+          <li><a href="#">Race Walking</a></li>
+          <li><a href="#">Para Athletics</a></li>
+        </ul>
+      </li>
+      <li>
+        <button aria-haspopup="true" aria-expanded="false">
+          Membership
+          <svg class="pau-nav-chevron" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="pau-dropdown" role="list">
+          <li><a href="#">Join / Renew Now</a></li>
+          <li><a href="#">Members</a></li>
+          <li><a href="#">BofA Meetings</a></li>
+          <li><a href="#">Clubs &amp; Club Spotlights</a></li>
+        </ul>
+      </li>
+      <li>
+        <button aria-haspopup="true" aria-expanded="false">
+          Services
+          <svg class="pau-nav-chevron" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="pau-dropdown" role="list">
+          <li><a href="#">Elite Athletes</a></li>
+          <li><a href="#">Coaches</a></li>
+          <li><a href="#">Officials</a></li>
+          <li><a href="#">Sanctions &amp; Forms</a></li>
+          <li><a href="#">Awards</a></li>
+          <li><a href="#">Equipment</a></li>
+          <li><a href="#">Facilities</a></li>
+          <li><a href="#">Medical Supervision</a></li>
+        </ul>
+      </li>
+      <li>
+        <button aria-haspopup="true" aria-expanded="false">
+          Calendar
+          <svg class="pau-nav-chevron" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="pau-dropdown" role="list">
+          <li><a href="#">All Events</a></li>
+          <li><a href="#">Championship Events</a></li>
+          <li><a href="#">Youth T&amp;F Schedule</a></li>
+          <li><a href="#">Road Racing Events</a></li>
+          <li><a href="#">Cross Country Events</a></li>
+          <li><a href="#">MUT Running Events</a></li>
+          <li><a href="#">Submit an Event</a></li>
+        </ul>
+      </li>
+      <li><a href="#">PA Foundation</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="pau-nav-right">
+      <a href="#" aria-label="Instagram" class="pau-nav-social-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook" class="pau-nav-social-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="#" aria-label="YouTube" class="pau-nav-social-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </a>
+      <a href="#" class="pau-nav-join-btn">Join Now</a>
+    </div>
+
+    <button
+      class="pau-nav-hamburger"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="pau-mobile-panel"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</nav>
+
+<!-- Mobile overlay -->
+<div class="pau-mobile-overlay" id="pau-mobile-overlay" aria-hidden="true"></div>
+
+<!-- Mobile panel -->
+<div class="pau-mobile-panel" id="pau-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="pau-mobile-panel-header">
+    <div class="pau-nav-brand">
+      <img src="https://www.pausatf.org/wp-content/uploads/2021/05/USATFPacificavatar-300x300.png" alt="USATF Pacific" class="pau-nav-brand-logo" width="36" height="36" />
+      <div class="pau-nav-brand-name">
+        <span>USATF Pacific</span>
+        <span>Northern CA &amp; NV</span>
+      </div>
+    </div>
+    <button class="pau-mobile-panel-close" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <ul class="pau-mobile-nav-list" role="list">
+    <li><a href="#">About</a></li>
+    <li>
+      <button aria-expanded="false" aria-controls="pau-mob-sports">
+        Sports
+        <svg width="14" height="14" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3.5l3 3 3-3"/></svg>
+      </button>
+      <ul class="pau-mobile-submenu" id="pau-mob-sports" role="list">
+        <li><a href="#">Youth T&amp;F</a></li>
+        <li><a href="#">Road Racing</a></li>
+        <li><a href="#">Cross Country</a></li>
+        <li><a href="#">MUT Running</a></li>
+        <li><a href="#">Indoor T&amp;F</a></li>
+        <li><a href="#">Open T&amp;F</a></li>
+        <li><a href="#">Masters T&amp;F</a></li>
+        <li><a href="#">Race Walking</a></li>
+        <li><a href="#">Para Athletics</a></li>
+      </ul>
+    </li>
+    <li>
+      <button aria-expanded="false" aria-controls="pau-mob-membership">
+        Membership
+        <svg width="14" height="14" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3.5l3 3 3-3"/></svg>
+      </button>
+      <ul class="pau-mobile-submenu" id="pau-mob-membership" role="list">
+        <li><a href="#">Join / Renew Now</a></li>
+        <li><a href="#">Members</a></li>
+        <li><a href="#">BofA Meetings</a></li>
+        <li><a href="#">Clubs &amp; Spotlights</a></li>
+      </ul>
+    </li>
+    <li>
+      <button aria-expanded="false" aria-controls="pau-mob-services">
+        Services
+        <svg width="14" height="14" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3.5l3 3 3-3"/></svg>
+      </button>
+      <ul class="pau-mobile-submenu" id="pau-mob-services" role="list">
+        <li><a href="#">Elite Athletes</a></li>
+        <li><a href="#">Coaches</a></li>
+        <li><a href="#">Officials</a></li>
+        <li><a href="#">Sanctions &amp; Forms</a></li>
+        <li><a href="#">Awards</a></li>
+      </ul>
+    </li>
+    <li>
+      <button aria-expanded="false" aria-controls="pau-mob-calendar">
+        Calendar
+        <svg width="14" height="14" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3.5l3 3 3-3"/></svg>
+      </button>
+      <ul class="pau-mobile-submenu" id="pau-mob-calendar" role="list">
+        <li><a href="#">All Events</a></li>
+        <li><a href="#">Championship Events</a></li>
+        <li><a href="#">Youth T&amp;F Schedule</a></li>
+        <li><a href="#">Submit an Event</a></li>
+      </ul>
+    </li>
+    <li><a href="#">PA Foundation</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+
+  <a href="#" class="pau-mobile-panel-join">Join USATF Pacific</a>
+
+  <div class="pau-mobile-panel-socials">
+    <a href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="#" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+    </a>
+  </div>
+</div>
+
+
+<!-- ═══════════════ SECTION 2: HERO ═══════════════ -->
+<section class="pau-hero" aria-label="Hero">
+  <div class="pau-hero-bg" role="img" aria-label="Athletes competing on a track"></div>
+  <div class="pau-hero-overlay" aria-hidden="true"></div>
+  <div class="pau-hero-body">
+    <span class="pau-hero-kicker">USATF Pacific Association</span>
+    <h1 class="pau-hero-title">
+      Track &amp; Field for<br/><em>Every Athlete</em> in<br/>Northern California
+    </h1>
+    <p class="pau-hero-desc">
+      The official USATF association for Northern California and Northern Nevada — connecting youth runners, road racers, masters athletes, and champions through competition, community, and sport.
+    </p>
+    <a href="#" class="pau-hero-cta">
+      Become a Member
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="pau-hero-scroll" aria-hidden="true">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SECTION 3: MISSION ═══════════════ -->
+<section class="pau-mission" aria-labelledby="pau-mission-heading">
+  <div class="pau-page-gutter">
+    <div class="pau-mission-grid">
+      <div class="pau-reveal">
+        <span class="pau-mission-label">Our Mission</span>
+        <h2 class="pau-mission-headline" id="pau-mission-heading">Serving Athletes Across Nine Disciplines in the Pacific Region</h2>
+        <p class="pau-mission-body">
+          USATF Pacific — the Northern California and Northern Nevada association of USA Track &amp; Field — is the governing body for competitive track and field, road racing, cross country, and walking across the region. We sanction events, support clubs, certify officials, and develop the next generation of champions.
+        </p>
+        <p class="pau-mission-body">
+          From the youngest youth competitor stepping onto a track for the first time to masters athletes still pushing personal records in their 80s, our association exists to make competitive athletics accessible, fair, and fulfilling at every level.
+        </p>
+        <a href="#" class="pau-mission-link">
+          Learn about USATF Pacific
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="pau-mission-photo-wrap pau-reveal pau-reveal-delay-2">
+        <img
+          src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=800&q=80&auto=format&fit=crop"
+          alt="Runners competing in a track race"
+          class="pau-mission-photo"
+          loading="lazy"
+        />
+        <div class="pau-mission-accent" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SECTION 4: PROGRAMS ═══════════════ -->
+<section class="pau-programs" aria-labelledby="pau-programs-heading">
+  <div class="pau-page-gutter">
+    <div class="pau-section-heading-group pau-reveal">
+      <span class="pau-section-label">Disciplines</span>
+      <h2 class="pau-section-title" id="pau-programs-heading">Nine Ways to Compete Under USATF Pacific</h2>
+    </div>
+    <div class="pau-programs-grid">
+
+      <article class="pau-program-card pau-reveal pau-reveal-delay-1">
+        <img
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=75&auto=format&fit=crop"
+          alt="Youth track and field athletes"
+          class="pau-program-card-img"
+          loading="lazy"
+        />
+        <div class="pau-program-card-body">
+          <span class="pau-program-card-tag">Youth</span>
+          <h3 class="pau-program-card-title">Youth Track &amp; Field</h3>
+          <p class="pau-program-card-text">Competitive programs for young athletes aged 6–18, including the Junior Olympic Track &amp; Field series and cross country season.</p>
+          <a href="#" class="pau-program-card-more">
+            View schedule
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pau-program-card pau-reveal pau-reveal-delay-2">
+        <img
+          src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&q=75&auto=format&fit=crop"
+          alt="Road runners in a race"
+          class="pau-program-card-img"
+          loading="lazy"
+        />
+        <div class="pau-program-card-body">
+          <span class="pau-program-card-tag">Road Racing</span>
+          <h3 class="pau-program-card-title">Road Racing</h3>
+          <p class="pau-program-card-text">From local 5Ks to the California International Marathon, USATF Pacific sanctions and supports road race events across the region.</p>
+          <a href="#" class="pau-program-card-more">
+            Find road races
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pau-program-card pau-reveal pau-reveal-delay-3">
+        <img
+          src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=600&q=75&auto=format&fit=crop"
+          alt="Cross country runners through trails"
+          class="pau-program-card-img"
+          loading="lazy"
+        />
+        <div class="pau-program-card-body">
+          <span class="pau-program-card-tag">Cross Country</span>
+          <h3 class="pau-program-card-title">Cross Country</h3>
+          <p class="pau-program-card-text">Fall cross country season featuring the PA Grand Prix series across courses in Northern California and Nevada.</p>
+          <a href="#" class="pau-program-card-more">
+            XC schedule
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pau-program-card pau-reveal pau-reveal-delay-1">
+        <img
+          src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?w=600&q=75&auto=format&fit=crop"
+          alt="Mountain ultra trail runner"
+          class="pau-program-card-img"
+          loading="lazy"
+        />
+        <div class="pau-program-card-body">
+          <span class="pau-program-card-tag">MUT Running</span>
+          <h3 class="pau-program-card-title">Mountain, Ultra &amp; Trail</h3>
+          <p class="pau-program-card-text">Events spanning mountain runs, ultramarathons, and trail races across Northern California's spectacular terrain.</p>
+          <a href="#" class="pau-program-card-more">
+            Explore MUT events
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pau-program-card pau-reveal pau-reveal-delay-2">
+        <img
+          src="https://images.unsplash.com/photo-1559163499-413811fb2344?w=600&q=75&auto=format&fit=crop"
+          alt="Masters athletes competing on a track"
+          class="pau-program-card-img"
+          loading="lazy"
+        />
+        <div class="pau-program-card-body">
+          <span class="pau-program-card-tag">Masters T&amp;F</span>
+          <h3 class="pau-program-card-title">Masters Track &amp; Field</h3>
+          <p class="pau-program-card-text">The 3rd Annual 19-99 Masters Grand Prix series welcomes athletes of all ages to compete at the highest level in their age group.</p>
+          <a href="#" class="pau-program-card-more">
+            Masters Grand Prix
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pau-program-card pau-reveal pau-reveal-delay-3">
+        <img
+          src="https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?w=600&q=75&auto=format&fit=crop"
+          alt="Para athlete competing on track"
+          class="pau-program-card-img"
+          loading="lazy"
+        />
+        <div class="pau-program-card-body">
+          <span class="pau-program-card-tag">Para Athletics</span>
+          <h3 class="pau-program-card-title">Para Athletics</h3>
+          <p class="pau-program-card-body">Inclusive competitive opportunities for para athletes in track, field, and road racing events across the Pacific region.</p>
+          <a href="#" class="pau-program-card-more">
+            Para athletics info
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SECTION 5: STORIES ═══════════════ -->
+<section class="pau-stories" aria-labelledby="pau-stories-heading">
+  <div class="pau-page-gutter">
+    <div class="pau-section-heading-group pau-reveal">
+      <span class="pau-section-label">Athlete Stories</span>
+      <h2 class="pau-section-title" id="pau-stories-heading">Moments That Define Our Region</h2>
+    </div>
+    <div class="pau-stories-grid" style="margin-top:52px;">
+
+      <article class="pau-story-card pau-reveal pau-reveal-delay-1">
+        <img
+          src="https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=800&q=75&auto=format&fit=crop"
+          alt="Female runner breaking the tape at a finish line"
+          class="pau-story-card-img"
+          loading="lazy"
+        />
+        <div class="pau-story-card-body">
+          <p class="pau-story-card-meta">Road Racing · June 2026</p>
+          <h3 class="pau-story-card-title">Nur Sets Another National Mark at Steamboat Road Race</h3>
+          <p class="pau-story-card-text">USATF Pacific athlete Nur delivered a historic performance at Steamboat, setting yet another national record and cementing the Pacific region's reputation for producing elite road racing talent.</p>
+          <a href="#" class="pau-story-card-link">
+            Read the recap
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pau-story-card pau-reveal pau-reveal-delay-2">
+        <img
+          src="https://images.unsplash.com/photo-1541252260730-0412e8e2108e?w=800&q=75&auto=format&fit=crop"
+          alt="Older athlete competing on a track"
+          class="pau-story-card-img"
+          loading="lazy"
+        />
+        <div class="pau-story-card-body">
+          <p class="pau-story-card-meta">Masters T&amp;F · May 2026</p>
+          <h3 class="pau-story-card-title">Masters Grand Prix Draws Region's Best From Ages 19 to 99</h3>
+          <p class="pau-story-card-text">The 3rd Annual Masters Grand Prix series has drawn its largest field to date. Athletes from across Northern California describe how the series reignited their competitive fire and gave them a community to belong to.</p>
+          <a href="#" class="pau-story-card-link">
+            Read the story
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pau-story-card pau-reveal pau-reveal-delay-3">
+        <img
+          src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800&q=75&auto=format&fit=crop"
+          alt="Young athlete at a track meet"
+          class="pau-story-card-img"
+          loading="lazy"
+        />
+        <div class="pau-story-card-body">
+          <p class="pau-story-card-meta">Youth T&amp;F · May 2026</p>
+          <h3 class="pau-story-card-title">A Coach's Guide to Preparing Young Athletes for JOTF Competition</h3>
+          <p class="pau-story-card-text">As the 2026 Junior Olympic Track &amp; Field season heats up, experienced USATF Pacific coaches share what it actually takes to ready young athletes — physically and mentally — for high-level competition.</p>
+          <a href="#" class="pau-story-card-link">
+            Read the guide
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pau-story-card pau-reveal pau-reveal-delay-4">
+        <img
+          src="https://images.unsplash.com/photo-1619512710936-7c7e6eb18d68?w=800&q=75&auto=format&fit=crop"
+          alt="Officials at a track event"
+          class="pau-story-card-img"
+          loading="lazy"
+        />
+        <div class="pau-story-card-body">
+          <p class="pau-story-card-meta">Officials · May 2026</p>
+          <h3 class="pau-story-card-title">PA Officials Selected to Serve at 2026 National Meets</h3>
+          <p class="pau-story-card-body">A strong contingent of USATF Pacific officials has been chosen to work at national-level meets this season — a recognition of the association's deep officiating talent and commitment to standards.</p>
+          <a href="#" class="pau-story-card-link">
+            View the list
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SECTION 6: ENGAGE ═══════════════ -->
+<section class="pau-engage" aria-labelledby="pau-engage-heading">
+  <div class="pau-page-gutter">
+    <div class="pau-section-heading-group pau-reveal">
+      <span class="pau-section-label">Get Involved</span>
+      <h2 class="pau-section-title" id="pau-engage-heading">Join, Compete, Volunteer, or Shop</h2>
+    </div>
+    <div class="pau-engage-grid">
+
+      <div class="pau-engage-card pau-reveal pau-reveal-delay-1">
+        <div class="pau-engage-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="pau-engage-card-title">Join USATF Pacific</h3>
+        <p class="pau-engage-card-text">Membership opens the door to sanctioned competition, SafeSport compliance coverage, club affiliation, and the community of athletes across Northern California and Nevada.</p>
+        <a href="#" class="pau-engage-card-btn pau-engage-card-btn-primary">Become a Member</a>
+      </div>
+
+      <div class="pau-engage-card pau-reveal pau-reveal-delay-2">
+        <div class="pau-engage-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3 class="pau-engage-card-title">View the Events Calendar</h3>
+        <p class="pau-engage-card-text">Browse the full schedule of USATF Pacific–sanctioned meets, championship events, clinics, and meetings happening across the region this season.</p>
+        <a href="#" class="pau-engage-card-btn pau-engage-card-btn-outline">See All Events</a>
+      </div>
+
+      <div class="pau-engage-card pau-reveal pau-reveal-delay-3">
+        <div class="pau-engage-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h3 class="pau-engage-card-title">Shop USATF Merchandise</h3>
+        <p class="pau-engage-card-text">Represent the sport and the Pacific region with official USATF apparel and gear. Look the part on the track, on the road, and everywhere in between.</p>
+        <a href="#" class="pau-engage-card-btn pau-engage-card-btn-outline">Shop Now</a>
+      </div>
+
+      <div class="pau-engage-card pau-reveal pau-reveal-delay-1">
+        <div class="pau-engage-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3 class="pau-engage-card-title">Contact USATF Pacific</h3>
+        <p class="pau-engage-card-text">Questions about membership, event sanctions, officiating, or SafeSport compliance? Reach the right committee or staff member for your topic.</p>
+        <a href="#" class="pau-engage-card-btn pau-engage-card-btn-outline">Contact Us</a>
+      </div>
+
+      <div class="pau-engage-card pau-reveal pau-reveal-delay-2">
+        <div class="pau-engage-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="pau-engage-card-title">SafeSport Compliance</h3>
+        <p class="pau-engage-card-text">All coaches, officials, and volunteers working with youth athletes must complete SafeSport training. Access the compliance page for lists, policies, and training resources.</p>
+        <a href="#" class="pau-engage-card-btn pau-engage-card-btn-outline">Compliance Page</a>
+      </div>
+
+      <div class="pau-engage-card pau-reveal pau-reveal-delay-3">
+        <div class="pau-engage-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3 class="pau-engage-card-title">Submit a Sanction Request</h3>
+        <p class="pau-engage-card-text">Race directors and event organizers can submit sanction requests and access all the forms, links, and information needed to host a USATF Pacific–sanctioned event.</p>
+        <a href="#" class="pau-engage-card-btn pau-engage-card-btn-outline">Sanctions &amp; Forms</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SECTION 7: NEWS ═══════════════ -->
+<section class="pau-news" aria-labelledby="pau-news-heading">
+  <div class="pau-page-gutter">
+    <div class="pau-section-heading-group pau-reveal">
+      <span class="pau-section-label">Latest News</span>
+      <h2 class="pau-section-title" id="pau-news-heading">What's Happening in the Pacific Association</h2>
+    </div>
+    <div class="pau-news-grid">
+
+      <article class="pau-news-article-card pau-reveal pau-reveal-delay-1">
+        <img
+          src="https://images.unsplash.com/photo-1539794830467-1f1755804d13?w=600&q=75&auto=format&fit=crop"
+          alt="Cross country runners at start"
+          class="pau-news-article-img"
+          loading="lazy"
+        />
+        <div class="pau-news-article-body">
+          <span class="pau-news-article-category">Cross Country</span>
+          <h3 class="pau-news-article-title">2026 PA XC Grand Prix Detailed Schedule Posted</h3>
+          <p class="pau-news-article-meta">June 15, 2026</p>
+          <p class="pau-news-article-excerpt">The full detailed schedule for the 2026 PA Cross Country Grand Prix series has been posted. Clubs and athletes can now plan their season across all race dates and venues.</p>
+        </div>
+      </article>
+
+      <article class="pau-news-article-card pau-reveal pau-reveal-delay-2">
+        <img
+          src="https://images.unsplash.com/photo-1524646349956-1590eacafa57?w=600&q=75&auto=format&fit=crop"
+          alt="Track and field sprint race"
+          class="pau-news-article-img"
+          loading="lazy"
+        />
+        <div class="pau-news-article-body">
+          <span class="pau-news-article-category">Track &amp; Field</span>
+          <h3 class="pau-news-article-title">Big Grand Prix Meet Worth the Trip to SoCal</h3>
+          <p class="pau-news-article-meta">June 5, 2026</p>
+          <p class="pau-news-article-excerpt">This weekend's Grand Prix meet in Southern California drew strong field entries and produced outstanding performances across multiple events. Here's why this one was special.</p>
+        </div>
+      </article>
+
+      <article class="pau-news-article-card pau-reveal pau-reveal-delay-3">
+        <img
+          src="https://images.unsplash.com/photo-1580211887928-e92f53fcba3b?w=600&q=75&auto=format&fit=crop"
+          alt="Athletes during a half marathon race"
+          class="pau-news-article-img"
+          loading="lazy"
+        />
+        <div class="pau-news-article-body">
+          <span class="pau-news-article-category">Road Racing</span>
+          <h3 class="pau-news-article-title">San Jose Half Marathon Results Published</h3>
+          <p class="pau-news-article-meta">May 31, 2026</p>
+          <p class="pau-news-article-excerpt">Full results from the USATF Pacific–sanctioned San Jose Half Marathon are now available. Several athletes achieved personal bests under strong racing conditions.</p>
+        </div>
+      </article>
+
+      <article class="pau-news-article-card pau-reveal pau-reveal-delay-1">
+        <img
+          src="https://images.unsplash.com/photo-1606492953232-ebf9bbd0da53?w=600&q=75&auto=format&fit=crop"
+          alt="Governing board at a meeting"
+          class="pau-news-article-img"
+          loading="lazy"
+        />
+        <div class="pau-news-article-body">
+          <span class="pau-news-article-category">Association</span>
+          <h3 class="pau-news-article-title">PA Proposed Bylaw Changes Available for Review</h3>
+          <p class="pau-news-article-meta">May 21, 2026</p>
+          <p class="pau-news-article-excerpt">The USATF Pacific Board of Athletics has posted proposed bylaw amendments ahead of the upcoming member vote. All USATF Pacific members are encouraged to review the changes.</p>
+        </div>
+      </article>
+
+      <article class="pau-news-article-card pau-reveal pau-reveal-delay-2">
+        <img
+          src="https://images.unsplash.com/photo-1548101584-b88ab8856f72?w=600&q=75&auto=format&fit=crop"
+          alt="Older masters athletes racing on track"
+          class="pau-news-article-img"
+          loading="lazy"
+        />
+        <div class="pau-news-article-body">
+          <span class="pau-news-article-category">Masters T&amp;F</span>
+          <h3 class="pau-news-article-title">Masters Grand Prix Sign-Ups Now Open for Ages 19–99</h3>
+          <p class="pau-news-article-meta">May 12, 2026</p>
+          <p class="pau-news-article-excerpt">Registration is open for the 3rd Annual PA Masters Track &amp; Field Grand Prix. The series runs through the year and is open to all USATF Pacific members aged 19 and above.</p>
+        </div>
+      </article>
+
+      <article class="pau-news-article-card pau-reveal pau-reveal-delay-3">
+        <img
+          src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&q=75&auto=format&fit=crop"
+          alt="Indoor track athletics"
+          class="pau-news-article-img"
+          loading="lazy"
+        />
+        <div class="pau-news-article-body">
+          <span class="pau-news-article-category">Indoor T&amp;F</span>
+          <h3 class="pau-news-article-title">Reno Indoor Track Meets Scheduled for Late 2026 Into 2027</h3>
+          <p class="pau-news-article-meta">May 7, 2026</p>
+          <p class="pau-news-article-excerpt">The popular Reno indoor track series returns for another season. Dates for late 2026 and early 2027 are now posted on the indoor track and field page.</p>
+        </div>
+      </article>
+
+    </div>
+    <div class="pau-news-view-all pau-reveal">
+      <a href="#" class="pau-news-all-btn">
+        View All News
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SECTION 8: FOOTER ═══════════════ -->
+<footer class="pau-site-footer" aria-label="Site footer">
+  <div class="pau-page-gutter">
+    <div class="pau-footer-grid">
+
+      <div>
+        <img
+          src="https://www.pausatf.org/wp-content/uploads/2021/05/USATFPacificavatar-300x300.png"
+          alt="USATF Pacific Logo"
+          class="pau-footer-brand-logo"
+          width="48" height="48"
+          loading="lazy"
+        />
+        <p class="pau-footer-brand-name">USATF Pacific</p>
+        <p class="pau-footer-brand-tagline">The Northern California &amp; Northern Nevada Association<br/>of USA Track &amp; Field</p>
+        <p class="pau-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Sacramento Area, Northern California
+        </p>
+        <p class="pau-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          pausatf@pacific.usatf.org
+        </p>
+        <div class="pau-footer-socials">
+          <a href="#" class="pau-footer-social-icon" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="pau-footer-social-icon" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="pau-footer-social-icon" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="pau-footer-col-title">Sports</h3>
+        <ul class="pau-footer-col-list">
+          <li><a href="#">Youth T&amp;F</a></li>
+          <li><a href="#">Road Racing</a></li>
+          <li><a href="#">Cross Country</a></li>
+          <li><a href="#">MUT Running</a></li>
+          <li><a href="#">Indoor T&amp;F</a></li>
+          <li><a href="#">Open T&amp;F</a></li>
+          <li><a href="#">Masters T&amp;F</a></li>
+          <li><a href="#">Race Walking</a></li>
+          <li><a href="#">Para Athletics</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="pau-footer-col-title">Association</h3>
+        <ul class="pau-footer-col-list">
+          <li><a href="#">About USATF Pacific</a></li>
+          <li><a href="#">Board of Athletics</a></li>
+          <li><a href="#">Membership</a></li>
+          <li><a href="#">Clubs</a></li>
+          <li><a href="#">Elite Athletes</a></li>
+          <li><a href="#">Coaches</a></li>
+          <li><a href="#">Officials</a></li>
+          <li><a href="#">Awards</a></li>
+          <li><a href="#">PA Foundation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="pau-footer-col-title">Resources</h3>
+        <ul class="pau-footer-col-list">
+          <li><a href="#">All Events Calendar</a></li>
+          <li><a href="#">Championship Events</a></li>
+          <li><a href="#">Sanctions &amp; Forms</a></li>
+          <li><a href="#">SafeSport Compliance</a></li>
+          <li><a href="#">Equipment</a></li>
+          <li><a href="#">Facilities</a></li>
+          <li><a href="#">Medical Supervision</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pau-footer-bottom">
+      <p class="pau-footer-copy">&copy; 2026 USATF Pacific — Northern California &amp; Nevada Association of USA Track &amp; Field. All rights reserved.</p>
+      <ul class="pau-footer-legal-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">SafeSport Policy</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Hamburger / Mobile Panel ── */
+  const hamburger = document.querySelector('.pau-nav-hamburger');
+  const panel = document.getElementById('pau-mobile-panel');
+  const overlay = document.getElementById('pau-mobile-overlay');
+  const closeBtn = panel.querySelector('.pau-mobile-panel-close');
+
+  function openPanel() {
+    panel.classList.add('pau-panel-open');
+    overlay.classList.add('pau-overlay-show');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.setAttribute('aria-hidden', 'false');
+    panel.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closePanel() {
+    panel.classList.remove('pau-panel-open');
+    overlay.classList.remove('pau-overlay-show');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+    panel.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    hamburger.focus();
+  }
+
+  hamburger.addEventListener('click', openPanel);
+  closeBtn.addEventListener('click', closePanel);
+  overlay.addEventListener('click', closePanel);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && panel.classList.contains('pau-panel-open')) {
+      closePanel();
+    }
+  });
+
+  /* ── Mobile sub-menus ── */
+  panel.querySelectorAll('.pau-mobile-nav-list > li > button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const controlId = btn.getAttribute('aria-controls');
+      if (!controlId) return;
+      const submenu = document.getElementById(controlId);
+      if (!submenu) return;
+      const isOpen = submenu.classList.contains('pau-submenu-open');
+      // close all
+      panel.querySelectorAll('.pau-mobile-submenu').forEach(function (s) {
+        s.classList.remove('pau-submenu-open');
+      });
+      panel.querySelectorAll('.pau-mobile-nav-list > li > button').forEach(function (b) {
+        b.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        submenu.classList.add('pau-submenu-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── Trap focus in mobile panel ── */
+  panel.addEventListener('keydown', function (e) {
+    if (!panel.classList.contains('pau-panel-open')) return;
+    if (e.key !== 'Tab') return;
+    const focusable = panel.querySelectorAll(
+      'a, button, [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* ── Scroll Reveal ── */
+  const revealEls = document.querySelectorAll('.pau-reveal');
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('pau-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('pau-visible'); });
+  }
+
+  /* ── Prevent hero background slow zoom from blocking reveal on load ── */
+  setTimeout(function () {
+    document.querySelector('.pau-hero-body').style.opacity = '1';
+  }, 50);
+
+})();
+</script>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  const mainNav = document.querySelector(".sk-main-navbar, .tia-nav, .tws-nav-root, .pau-site-nav, .wgf-nav-bar, .yba-nav, .yli-navbar, .zna-main-nav");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+
+  // Initialize state based on current scroll position
+  if (lastScrollY > 80) {
+    gladHeader.classList.add("hidden");
+    if (mainNav) {
+      mainNav.classList.add("glad-hidden");
+    }
+    gladVisible = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          if (mainNav) {
+            mainNav.classList.add("glad-hidden");
+          }
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          if (mainNav) {
+            mainNav.classList.remove("glad-hidden");
+          }
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

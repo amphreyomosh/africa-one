@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZNE Alliance — Advancing Zero Net Energy Action</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* =============================================
+     ZNA — CSS DESIGN TOKENS
+  ============================================= */
+  :root {
+    --zna-navy:       #1A2B4A;
+    --zna-green:      #2E8B57;
+    --zna-green-mid:  #3DA86A;
+    --zna-green-light:#EAF6EE;
+    --zna-slate:      #4B5A6E;
+    --zna-mist:       #F4F7F5;
+    --zna-white:      #FFFFFF;
+    --zna-border:     #D9E4DC;
+    --zna-text:       #1E2D3D;
+    --zna-text-muted: #6B7A8D;
+
+    --zna-font-body:    'Inter', sans-serif;
+    --zna-font-display: 'DM Sans', sans-serif;
+
+    --zna-radius-pill: 100px;
+    --zna-radius-card: 12px;
+
+    --zna-section-pad: clamp(3rem, 6vw, 6rem);
+    --zna-inner-max:   1200px;
+
+    --zna-transition: 0.28s ease;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+
+  body {
+    font-family: var(--zna-font-body);
+    color: var(--zna-text);
+    background: var(--zna-white);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  a { color: inherit; text-decoration: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* =============================================
+     ZNA — UTILITY
+  ============================================= */
+  .zna-inner {
+    width: 100%;
+    max-width: var(--zna-inner-max);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .zna-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--zna-green);
+    color: var(--zna-white);
+    font-family: var(--zna-font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--zna-radius-pill);
+    border: 2px solid var(--zna-green);
+    cursor: pointer;
+    transition: background var(--zna-transition), border-color var(--zna-transition), transform var(--zna-transition);
+  }
+  .zna-btn-primary:hover { background: #236B44; border-color: #236B44; transform: translateY(-1px); }
+
+  .zna-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--zna-white);
+    font-family: var(--zna-font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--zna-radius-pill);
+    border: 2px solid rgba(255,255,255,0.65);
+    cursor: pointer;
+    transition: background var(--zna-transition), border-color var(--zna-transition);
+  }
+  .zna-btn-outline:hover { background: rgba(255,255,255,0.12); border-color: var(--zna-white); }
+
+  .zna-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    color: var(--zna-green);
+    font-family: var(--zna-font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.65rem 0;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    transition: color var(--zna-transition), gap var(--zna-transition);
+  }
+  .zna-btn-ghost:hover { color: #236B44; gap: 0.65rem; }
+
+  .zna-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--zna-green);
+    margin-bottom: 0.85rem;
+  }
+
+  .zna-section-title {
+    font-family: var(--zna-font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--zna-navy);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .zna-section-lead {
+    font-size: 1.05rem;
+    color: var(--zna-slate);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .zna-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .zna-reveal.zna-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* =============================================
+     SECTION 1 — NAVBAR
+  ============================================= */
+  .zna-main-nav {
+    position: fixed;
+    z-index: 1000;
+    top: auto;
+    background: var(--zna-white);
+    border-bottom: 1px solid var(--zna-border);
+    transition: box-shadow var(--zna-transition);
+    width: 100vw !important;
+    max-width: none;
+  }
+  .zna-main-nav.zna-nav-scrolled {
+    box-shadow: 0 2px 16px rgba(26,43,74,0.09);
+    top: 0;
+  }
+
+  .zna-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    width: 100%
+  }
+
+  .zna-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+  .zna-nav-logo-zne {
+    font-family: var(--zna-font-display);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--zna-navy);
+    letter-spacing: -0.01em;
+  }
+  .zna-nav-logo-slash {
+    color: var(--zna-green);
+    font-weight: 300;
+    font-size: 1.6rem;
+  }
+  .zna-nav-logo-alliance {
+    font-family: var(--zna-font-display);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--zna-green);
+    letter-spacing: -0.01em;
+  }
+
+  .zna-nav-links {
+    display: none;
+    list-style: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  @media (min-width: 900px) {
+    .zna-nav-links { display: flex; }
+  }
+
+  .zna-nav-item { position: relative; }
+
+  .zna-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--zna-slate);
+    padding: 0.5rem 0.85rem;
+    border-radius: 6px;
+    transition: color var(--zna-transition), background var(--zna-transition);
+    white-space: nowrap;
+  }
+  .zna-nav-link:hover, .zna-nav-link.zna-active { color: var(--zna-green); background: var(--zna-green-light); }
+  .zna-nav-link svg { transition: transform var(--zna-transition); }
+  .zna-nav-item:hover .zna-nav-link svg { transform: rotate(180deg); }
+
+  /* Dropdown */
+  .zna-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    min-width: 220px;
+    background: var(--zna-white);
+    border: 1px solid var(--zna-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(26,43,74,0.12);
+    padding: 0.5rem;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity var(--zna-transition), transform var(--zna-transition), visibility var(--zna-transition);
+    z-index: 100;
+  }
+  .zna-nav-item:hover .zna-nav-dropdown,
+  .zna-nav-item:focus-within .zna-nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .zna-nav-dropdown a {
+    display: block;
+    font-size: 0.855rem;
+    font-weight: 500;
+    color: var(--zna-slate);
+    padding: 0.55rem 0.9rem;
+    border-radius: 6px;
+    transition: background var(--zna-transition), color var(--zna-transition);
+  }
+  .zna-nav-dropdown a:hover { background: var(--zna-green-light); color: var(--zna-green); }
+
+  .zna-nav-cta { margin-left: 0.5rem; }
+
+  .zna-nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background var(--zna-transition);
+  }
+  .zna-nav-hamburger:hover { background: var(--zna-mist); }
+  .zna-nav-hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--zna-navy);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  }
+  .zna-nav-hamburger span:nth-child(2) { width: 70%; }
+  .zna-nav-hamburger.zna-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .zna-nav-hamburger.zna-open span:nth-child(2) { opacity: 0; width: 100%; }
+  .zna-nav-hamburger.zna-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (min-width: 900px) { .zna-nav-hamburger { display: none; } }
+
+  /* Off-canvas */
+  .zna-offcanvas-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,38,0.5);
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .zna-offcanvas-overlay.zna-open { opacity: 1; visibility: visible; }
+
+  .zna-offcanvas-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(340px, 90vw);
+    height: 100%;
+    background: var(--zna-white);
+    z-index: 1200;
+    padding: 1.5rem;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .zna-offcanvas-panel.zna-open { transform: translateX(0); }
+
+  .zna-offcanvas-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .zna-offcanvas-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--zna-slate);
+    padding: 0.4rem;
+    border-radius: 6px;
+    transition: background var(--zna-transition), color var(--zna-transition);
+  }
+  .zna-offcanvas-close:hover { background: var(--zna-mist); color: var(--zna-navy); }
+
+  .zna-offcanvas-list { list-style: none; }
+  .zna-offcanvas-list li { border-bottom: 1px solid var(--zna-border); }
+  .zna-offcanvas-list > li > a,
+  .zna-offcanvas-group-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--zna-navy);
+    padding: 0.95rem 0.25rem;
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    transition: color var(--zna-transition);
+  }
+  .zna-offcanvas-list > li > a:hover,
+  .zna-offcanvas-group-toggle:hover { color: var(--zna-green); }
+
+  .zna-offcanvas-sub {
+    list-style: none;
+    padding: 0 0 0.5rem 0.75rem;
+    display: none;
+  }
+  .zna-offcanvas-sub.zna-open { display: block; }
+  .zna-offcanvas-sub li a {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--zna-slate);
+    padding: 0.45rem 0.25rem;
+    transition: color var(--zna-transition);
+  }
+  .zna-offcanvas-sub li a:hover { color: var(--zna-green); }
+
+  .zna-offcanvas-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+  .zna-offcanvas-footer .zna-btn-primary { width: 100%; justify-content: center; }
+
+  /* =============================================
+     SECTION 2 — HERO CAROUSEL
+  ============================================= */
+  .zna-hero-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    /* Mobile-first: taller on mobile so content fits comfortably */
+    height: 560px;
+  }
+  @media (min-width: 600px) { .zna-hero-carousel { height: 620px; } }
+  @media (min-width: 900px) { .zna-hero-carousel { height: 700px; } }
+
+  .zna-hero-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* prevent track from creating horizontal scroll */
+    will-change: transform;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .zna-hero-slide {
+    /* must be exactly viewport/carousel width — never shrink */
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zna-hero-slide-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .zna-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 22, 42, 0.58);
+    z-index: 1;
+  }
+
+  /* Mobile-first: left-aligned, vertically centered */
+  .zna-hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .zna-hero-inner {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .zna-hero-label {
+    display: none; /* hidden on mobile */
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .zna-hero-title {
+    font-family: var(--zna-font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--zna-white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .zna-hero-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+    max-width: 100%;
+  }
+
+  .zna-hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .zna-hero-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    padding-bottom: 2px;
+    transition: color var(--zna-transition), border-color var(--zna-transition);
+  }
+  .zna-hero-link:hover { color: var(--zna-white); border-color: var(--zna-white); }
+
+  /* Tablet+ : centered layout */
+  @media (min-width: 600px) {
+    .zna-hero-content {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem clamp(1.5rem, 5vw, 3rem);
+    }
+    .zna-hero-inner { max-width: 680px; }
+    .zna-hero-label { display: inline-block; }
+    .zna-hero-title { font-size: clamp(2rem, 4.5vw, 3.4rem); }
+    .zna-hero-desc { font-size: clamp(0.95rem, 1.6vw, 1.05rem); max-width: 520px; margin-inline: auto; }
+    .zna-hero-actions { justify-content: center; }
+  }
+
+  /* Carousel controls */
+  .zna-hero-prev,
+  .zna-hero-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--zna-white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--zna-transition);
+    z-index: 10;
+  }
+  .zna-hero-prev:hover, .zna-hero-next:hover { background: rgba(255,255,255,0.28); }
+  .zna-hero-prev { left: 1.25rem; display: none; }
+  .zna-hero-next { right: 1.25rem; display: none; }
+  @media (min-width: 600px) {
+    .zna-hero-prev, .zna-hero-next { display: flex; width: 44px; height: 44px; }
+  }
+
+  .zna-hero-dots {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+  .zna-hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    border: none;
+    cursor: pointer;
+    transition: background var(--zna-transition), transform var(--zna-transition);
+    padding: 0;
+  }
+  .zna-hero-dot.zna-active { background: var(--zna-white); transform: scale(1.35); }
+
+  /* =============================================
+     SECTION 3 — CORE MISSION
+  ============================================= */
+  .zna-mission-section {
+    padding: var(--zna-section-pad) 0;
+    background: var(--zna-white);
+  }
+
+  .zna-mission-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .zna-mission-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+  }
+
+  .zna-mission-body p {
+    font-size: 1rem;
+    color: var(--zna-slate);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .zna-mission-body p:last-of-type { margin-bottom: 1.75rem; }
+
+  .zna-mission-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  @media (min-width: 480px) {
+    .zna-mission-pillars { grid-template-columns: 1fr 1fr; }
+  }
+
+  .zna-mission-pillar {
+    background: var(--zna-green-light);
+    border-left: 3px solid var(--zna-green);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--zna-navy);
+  }
+
+  .zna-mission-img-wrap {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+  .zna-mission-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .zna-mission-img-wrap:hover img { transform: scale(1.03); }
+
+  .zna-mission-img-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26,43,74,0.82);
+    color: rgba(255,255,255,0.88);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* =============================================
+     SECTION 4 — PRIMARY OFFERINGS
+  ============================================= */
+  .zna-offerings-section {
+    padding: var(--zna-section-pad) 0;
+    background: var(--zna-mist);
+  }
+
+  .zna-offerings-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 600px) { .zna-offerings-header { margin-bottom: 3.5rem; } }
+  .zna-offerings-header .zna-section-lead { margin-inline: auto; }
+
+  .zna-offerings-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 600px) {
+    .zna-offerings-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .zna-offerings-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .zna-offering-card {
+    background: var(--zna-white);
+    border-radius: var(--zna-radius-card);
+    overflow: hidden;
+    border: 1px solid var(--zna-border);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--zna-transition), box-shadow var(--zna-transition);
+  }
+  .zna-offering-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(26,43,74,0.1);
+  }
+
+  .zna-offering-img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+  }
+
+  .zna-offering-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .zna-offering-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--zna-green);
+    margin-bottom: 0.6rem;
+  }
+
+  .zna-offering-title {
+    font-family: var(--zna-font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--zna-navy);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .zna-offering-desc {
+    font-size: 0.875rem;
+    color: var(--zna-slate);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  /* =============================================
+     SECTION 5 — IMPACT / SUCCESS STORIES
+  ============================================= */
+  .zna-impact-section {
+    padding: var(--zna-section-pad) 0;
+    background: var(--zna-white);
+  }
+
+  .zna-impact-header {
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 600px) { .zna-impact-header { margin-bottom: 3.5rem; } }
+
+  .zna-impact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  @media (min-width: 600px) {
+    .zna-impact-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1000px) {
+    .zna-impact-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .zna-impact-card {
+    border-radius: var(--zna-radius-card);
+    overflow: hidden;
+    border: 1px solid var(--zna-border);
+    display: flex;
+    flex-direction: column;
+    background: var(--zna-white);
+    transition: box-shadow var(--zna-transition);
+  }
+  .zna-impact-card:hover { box-shadow: 0 8px 28px rgba(26,43,74,0.1); }
+
+  .zna-impact-img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+  }
+
+  .zna-impact-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .zna-impact-location {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--zna-green);
+    margin-bottom: 0.5rem;
+  }
+
+  .zna-impact-title {
+    font-family: var(--zna-font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--zna-navy);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  .zna-impact-narrative {
+    font-size: 0.875rem;
+    color: var(--zna-slate);
+    line-height: 1.68;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .zna-impact-read-link {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--zna-green);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    border-bottom: 1px solid var(--zna-green);
+    padding-bottom: 1px;
+    transition: opacity var(--zna-transition);
+    align-self: flex-start;
+  }
+  .zna-impact-read-link:hover { opacity: 0.72; }
+
+  /* =============================================
+     SECTION 6 — ACTION PANEL
+  ============================================= */
+  .zna-action-section {
+    padding: var(--zna-section-pad) 0;
+    background: var(--zna-navy);
+  }
+
+  .zna-action-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 600px) { .zna-action-header { margin-bottom: 3.5rem; } }
+  .zna-action-header .zna-eyebrow { color: var(--zna-green-mid); }
+  .zna-action-header .zna-section-title { color: var(--zna-white); }
+  .zna-action-header .zna-section-lead { color: rgba(255,255,255,0.7); margin-inline: auto; }
+
+  .zna-action-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 600px) { .zna-action-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .zna-action-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .zna-action-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--zna-radius-card);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: background var(--zna-transition), border-color var(--zna-transition);
+  }
+  .zna-action-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.22);
+  }
+
+  .zna-action-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(46,139,87,0.22);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--zna-green-mid);
+  }
+
+  .zna-action-card-title {
+    font-family: var(--zna-font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--zna-white);
+    line-height: 1.3;
+  }
+
+  .zna-action-card-desc {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .zna-action-card-link {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--zna-green-mid);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: gap var(--zna-transition);
+  }
+  .zna-action-card-link:hover { gap: 0.6rem; }
+
+  /* =============================================
+     SECTION 7 — NEWS / UPDATES
+  ============================================= */
+  .zna-news-section {
+    padding: var(--zna-section-pad) 0;
+    background: var(--zna-mist);
+  }
+
+  .zna-news-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 760px) {
+    .zna-news-header {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .zna-news-header-text {}
+
+  .zna-news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 600px) { .zna-news-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+  @media (min-width: 900px) { .zna-news-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .zna-news-card {
+    background: var(--zna-white);
+    border: 1px solid var(--zna-border);
+    border-radius: var(--zna-radius-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--zna-transition), box-shadow var(--zna-transition);
+  }
+  .zna-news-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,43,74,0.08); }
+
+  .zna-news-img {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+  }
+
+  .zna-news-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--zna-border);
+  }
+
+  .zna-news-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .zna-news-date {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--zna-text-muted);
+    text-transform: uppercase;
+  }
+
+  .zna-news-category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zna-green);
+  }
+
+  .zna-news-title {
+    font-family: var(--zna-font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--zna-navy);
+    line-height: 1.35;
+    margin-bottom: 0.65rem;
+    flex: 1;
+  }
+
+  .zna-news-excerpt {
+    font-size: 0.855rem;
+    color: var(--zna-slate);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .zna-news-cta {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--zna-green);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: gap var(--zna-transition);
+    align-self: flex-start;
+  }
+  .zna-news-cta:hover { gap: 0.55rem; }
+
+  /* =============================================
+     SECTION 8 — FOOTER
+  ============================================= */
+  .zna-ecosystem-footer {
+    background: #0F1C30;
+    padding: 3rem 0 0;
+  }
+  @media (min-width: 900px) { .zna-ecosystem-footer { padding: 4rem 0 0; } }
+
+  .zna-footer-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  @media (min-width: 600px) { .zna-footer-main { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .zna-footer-main { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+
+  .zna-footer-brand {}
+
+  .zna-footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+  }
+  .zna-footer-logo-zne { font-family: var(--zna-font-display); font-size: 1.3rem; font-weight: 700; color: var(--zna-white); }
+  .zna-footer-logo-slash { color: var(--zna-green); font-size: 1.4rem; font-weight: 300; }
+  .zna-footer-logo-alliance { font-family: var(--zna-font-display); font-size: 1.3rem; font-weight: 700; color: var(--zna-green); }
+
+  .zna-footer-tagline {
+    font-size: 0.825rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    max-width: 280px;
+  }
+
+  .zna-footer-socials {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .zna-footer-social-link {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.65);
+    transition: background var(--zna-transition), color var(--zna-transition);
+  }
+  .zna-footer-social-link:hover { background: var(--zna-green); color: var(--zna-white); border-color: var(--zna-green); }
+
+  .zna-footer-col-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 1.1rem;
+  }
+
+  .zna-footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .zna-footer-links li a {
+    font-size: 0.855rem;
+    color: rgba(255,255,255,0.65);
+    transition: color var(--zna-transition);
+  }
+  .zna-footer-links li a:hover { color: var(--zna-white); }
+
+  .zna-footer-contact-line {
+    font-size: 0.855rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+  }
+  .zna-footer-contact-line a { color: var(--zna-green-mid); transition: opacity var(--zna-transition); }
+  .zna-footer-contact-line a:hover { opacity: 0.75; }
+
+  .zna-footer-bottom {
+    padding: 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+  }
+  @media (min-width: 760px) {
+    .zna-footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  .zna-footer-legal {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .zna-footer-legal-links {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .zna-footer-legal-links a {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    transition: color var(--zna-transition);
+  }
+  .zna-footer-legal-links a:hover { color: rgba(255,255,255,0.7); }
+
+  /* Accessibility */
+  .zna-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 1rem;
+    background: var(--zna-green);
+    color: var(--zna-white);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--zna-radius-pill);
+    font-weight: 600;
+    z-index: 9999;
+    font-size: 0.875rem;
+  }
+  .zna-skip-link:focus { left: 1rem; }
+</style>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── DYNAMIC NAVBAR TOP OFFSET ─── */
+  body .sk-main-navbar,
+  body .tia-nav,
+  body .tws-nav-root,
+  body .pau-site-nav,
+  body .wgf-nav-bar,
+  body .yba-nav,
+  body .yli-navbar {
+    top: 56px !important;
+    transition: top 0.3s ease !important;
+  }
+  body .sk-main-navbar.glad-hidden,
+  body .tia-nav.glad-hidden,
+  body .tws-nav-root.glad-hidden,
+  body .pau-site-nav.glad-hidden,
+  body .wgf-nav-bar.glad-hidden,
+  body .yba-nav.glad-hidden,
+  body .yli-navbar.glad-hidden {
+    top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+
+<a href="#zna-main-content" class="zna-skip-link">Skip to main content</a>
+
+<!-- =============================================
+     SECTION 1 — NAVBAR
+============================================= -->
+<nav class="zna-main-nav" id="zna-nav" role="navigation" aria-label="Main navigation">
+  <div class="zna-inner">
+    <div class="zna-nav-inner">
+
+      <a href="javascript:void(0)" class="zna-nav-logo" aria-label="ZNE Alliance — Home">
+        <span class="zna-nav-logo-zne">ZNE</span>
+        <span class="zna-nav-logo-slash">/</span>
+        <span class="zna-nav-logo-alliance">Alliance</span>
+      </a>
+
+      <ul class="zna-nav-links" role="list">
+        <li class="zna-nav-item">
+          <a href="javascript:void(0)" class="zna-nav-link zna-active">Home</a>
+        </li>
+        <li class="zna-nav-item">
+          <a href="javascript:void(0)" class="zna-nav-link" aria-haspopup="true">
+            Initiatives
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="zna-nav-dropdown" role="list">
+            <li><a href="javascript:void(0)">EV Alliance</a></li>
+            <li><a href="javascript:void(0)">Advanced Energy Communities</a></li>
+            <li><a href="javascript:void(0)">Cal-OP / ACE</a></li>
+            <li><a href="javascript:void(0)">School Bus Electrification</a></li>
+            <li><a href="javascript:void(0)">ZNE Buildings</a></li>
+          </ul>
+        </li>
+        <li class="zna-nav-item">
+          <a href="javascript:void(0)" class="zna-nav-link" aria-haspopup="true">
+            Services
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="zna-nav-dropdown" role="list">
+            <li><a href="javascript:void(0)">Planning and Strategy</a></li>
+            <li><a href="javascript:void(0)">Grant Funding & Administration</a></li>
+            <li><a href="javascript:void(0)">Public-Private Partnerships</a></li>
+            <li><a href="javascript:void(0)">Go To Market Strategy</a></li>
+          </ul>
+        </li>
+        <li class="zna-nav-item">
+          <a href="javascript:void(0)" class="zna-nav-link">About</a>
+        </li>
+        <li class="zna-nav-item">
+          <a href="javascript:void(0)" class="zna-nav-link">Contact</a>
+        </li>
+        <li class="zna-nav-item zna-nav-cta">
+          <a href="javascript:void(0)" class="zna-btn-primary">Get Involved</a>
+        </li>
+      </ul>
+
+      <button class="zna-nav-hamburger" id="zna-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="zna-offcanvas-panel">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Off-canvas overlay & panel -->
+<div class="zna-offcanvas-overlay" id="zna-offcanvas-overlay" aria-hidden="true"></div>
+<div class="zna-offcanvas-panel" id="zna-offcanvas-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="zna-offcanvas-head">
+    <a href="javascript:void(0)" class="zna-nav-logo">
+      <span class="zna-nav-logo-zne">ZNE</span>
+      <span class="zna-nav-logo-slash">/</span>
+      <span class="zna-nav-logo-alliance">Alliance</span>
+    </a>
+    <button class="zna-offcanvas-close" id="zna-offcanvas-close" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <ul class="zna-offcanvas-list" role="list">
+    <li><a href="javascript:void(0)">Home</a></li>
+    <li>
+      <button class="zna-offcanvas-group-toggle" aria-expanded="false">
+        Initiatives
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <ul class="zna-offcanvas-sub" role="list">
+        <li><a href="javascript:void(0)">EV Alliance</a></li>
+        <li><a href="javascript:void(0)">Advanced Energy Communities</a></li>
+        <li><a href="javascript:void(0)">Cal-OP / ACE</a></li>
+        <li><a href="javascript:void(0)">School Bus Electrification</a></li>
+        <li><a href="javascript:void(0)">ZNE Buildings</a></li>
+      </ul>
+    </li>
+    <li>
+      <button class="zna-offcanvas-group-toggle" aria-expanded="false">
+        Services
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <ul class="zna-offcanvas-sub" role="list">
+        <li><a href="javascript:void(0)">Planning and Strategy</a></li>
+        <li><a href="javascript:void(0)">Grant Funding & Administration</a></li>
+        <li><a href="javascript:void(0)">Public-Private Partnerships</a></li>
+        <li><a href="javascript:void(0)">Go To Market Strategy</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0)">About</a></li>
+    <li><a href="javascript:void(0)">Contact</a></li>
+  </ul>
+  <div class="zna-offcanvas-footer">
+    <a href="javascript:void(0)" class="zna-btn-primary">Get Involved</a>
+  </div>
+</div>
+
+<main id="zna-main-content">
+
+<!-- =============================================
+     SECTION 2 — HERO CAROUSEL
+============================================= -->
+<section class="zna-hero-carousel" aria-label="Hero carousel" id="zna-hero">
+  <div class="zna-hero-track" id="zna-hero-track">
+
+    <!-- Slide 1 -->
+    <div class="zna-hero-slide" aria-hidden="false">
+      <img class="zna-hero-slide-img" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80" alt="Solar panels on an urban rooftop" loading="eager" />
+      <div class="zna-hero-overlay" aria-hidden="true"></div>
+      <div class="zna-hero-content">
+        <div class="zna-hero-inner">
+          <span class="zna-hero-label">Clean Energy Leadership</span>
+          <h1 class="zna-hero-title">Advancing Zero Net Energy Action</h1>
+          <p class="zna-hero-desc">ZNE Alliance partners with leading communities and organizations to drive rapid decarbonization — across clean energy, the built environment, and sustainable mobility.</p>
+          <div class="zna-hero-actions">
+            <a href="javascript:void(0)" class="zna-btn-primary">Explore Our Initiatives</a>
+            <a href="javascript:void(0)" class="zna-hero-link">Learn About Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="zna-hero-slide" aria-hidden="true">
+      <img class="zna-hero-slide-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80" alt="Electric vehicle charging infrastructure" loading="lazy" />
+      <div class="zna-hero-overlay" aria-hidden="true"></div>
+      <div class="zna-hero-content">
+        <div class="zna-hero-inner">
+          <span class="zna-hero-label">Transportation Electrification</span>
+          <h2 class="zna-hero-title">Scaling EV Adoption Across California</h2>
+          <p class="zna-hero-desc">Through the EV Alliance, we're building the infrastructure, policies, and partnerships needed to accelerate clean transportation for all communities.</p>
+          <div class="zna-hero-actions">
+            <a href="javascript:void(0)" class="zna-btn-primary">EV Alliance</a>
+            <a href="javascript:void(0)" class="zna-hero-link">Our Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="zna-hero-slide" aria-hidden="true">
+      <img class="zna-hero-slide-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80" alt="Modern sustainable community buildings" loading="lazy" />
+      <div class="zna-hero-overlay" aria-hidden="true"></div>
+      <div class="zna-hero-content">
+        <div class="zna-hero-inner">
+          <span class="zna-hero-label">Advanced Energy Communities</span>
+          <h2 class="zna-hero-title">Building Net-Zero Communities Together</h2>
+          <p class="zna-hero-desc">In partnership with cities like Richmond and Lancaster, we're creating communities powered by 100% renewable energy and accessible clean transportation.</p>
+          <div class="zna-hero-actions">
+            <a href="javascript:void(0)" class="zna-btn-primary">View Projects</a>
+            <a href="javascript:void(0)" class="zna-hero-link">Partner With Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <button class="zna-hero-prev" id="zna-hero-prev" aria-label="Previous slide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M11 14L6 9l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <button class="zna-hero-next" id="zna-hero-next" aria-label="Next slide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="zna-hero-dots" role="tablist" aria-label="Carousel slides">
+    <button class="zna-hero-dot zna-active" role="tab" aria-selected="true" aria-label="Slide 1" data-index="0"></button>
+    <button class="zna-hero-dot" role="tab" aria-selected="false" aria-label="Slide 2" data-index="1"></button>
+    <button class="zna-hero-dot" role="tab" aria-selected="false" aria-label="Slide 3" data-index="2"></button>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 3 — CORE MISSION
+============================================= -->
+<section class="zna-mission-section" id="zna-mission" aria-label="Our mission">
+  <div class="zna-inner">
+    <div class="zna-mission-grid">
+      <div class="zna-mission-body zna-reveal">
+        <span class="zna-eyebrow">Who We Are</span>
+        <h2 class="zna-section-title">An Alliance Built for the Climate Challenge</h2>
+        <p>ZNE Alliance is a nonprofit organization partnering with leading communities and organizations to advance a zero net emissions future. We deploy integrative approaches to rapid decarbonization at city and regional scales — working across the domains of clean energy, the built environment, sustainable mobility, and climate finance.</p>
+        <p>Our current projects span Advanced Energy Community initiatives in Richmond and Lancaster, California, fleet electrification and EV planning programs throughout the state, and regional climate finance strategies in the greater San Francisco Bay Area and beyond.</p>
+        <a href="javascript:void(0)" class="zna-btn-ghost">About ZNE Alliance</a>
+        <div class="zna-mission-pillars">
+          <div class="zna-mission-pillar">Clean Energy</div>
+          <div class="zna-mission-pillar">Built Environment</div>
+          <div class="zna-mission-pillar">Sustainable Mobility</div>
+          <div class="zna-mission-pillar">Climate Finance</div>
+        </div>
+      </div>
+
+      <div class="zna-mission-img-wrap zna-reveal">
+        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80" alt="Renewable energy infrastructure — wind turbines in a field" loading="lazy" />
+        <div class="zna-mission-img-caption">ZNE Alliance operates across California and the greater Bay Area</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 4 — PRIMARY OFFERINGS
+============================================= -->
+<section class="zna-offerings-section" id="zna-offerings" aria-label="Our initiatives">
+  <div class="zna-inner">
+    <div class="zna-offerings-header zna-reveal">
+      <span class="zna-eyebrow">Our Initiatives</span>
+      <h2 class="zna-section-title">Comprehensive Clean Energy Programs</h2>
+      <p class="zna-section-lead">From transportation electrification to zero net energy buildings, our initiatives drive measurable change at the community and regional level.</p>
+    </div>
+
+    <div class="zna-offerings-grid">
+
+      <article class="zna-offering-card zna-reveal">
+        <img class="zna-offering-img" src="https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?w=700&q=80" alt="Electric vehicle charging station" loading="lazy" />
+        <div class="zna-offering-body">
+          <div class="zna-offering-tag">Transportation</div>
+          <h3 class="zna-offering-title">EV Alliance</h3>
+          <p class="zna-offering-desc">Scaling best practices in transportation electrification through EV action planning, consumer awareness, fleet adoption, smart charging, and Vehicle-Grid Integration — in partnership with governments, utilities, and manufacturers.</p>
+          <a href="javascript:void(0)" class="zna-btn-ghost">Learn More</a>
+        </div>
+      </article>
+
+      <article class="zna-offering-card zna-reveal">
+        <img class="zna-offering-img" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=80" alt="Electric school buses parked at a district depot" loading="lazy" />
+        <div class="zna-offering-body">
+          <div class="zna-offering-tag">K–12 Education</div>
+          <h3 class="zna-offering-title">School Bus Electrification</h3>
+          <p class="zna-offering-desc">Working with school districts to accelerate the adoption of electric school buses — identifying vehicles, building sustainable procurement practices, securing grants, and connecting districts with public and private allies.</p>
+          <a href="javascript:void(0)" class="zna-btn-ghost">Learn More</a>
+        </div>
+      </article>
+
+      <article class="zna-offering-card zna-reveal">
+        <img class="zna-offering-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80" alt="Modern zero net energy residential community" loading="lazy" />
+        <div class="zna-offering-body">
+          <div class="zna-offering-tag">Communities</div>
+          <h3 class="zna-offering-title">Advanced Energy Communities</h3>
+          <p class="zna-offering-desc">Partnering with diverse California cities to build Zero Net Carbon Advanced Energy Communities — where residents enjoy near-ZNE buildings, 100% renewable energy, and accessible clean transportation.</p>
+          <a href="javascript:void(0)" class="zna-btn-ghost">Learn More</a>
+        </div>
+      </article>
+
+      <article class="zna-offering-card zna-reveal">
+        <img class="zna-offering-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80" alt="Business procurement meeting" loading="lazy" />
+        <div class="zna-offering-body">
+          <div class="zna-offering-tag">Procurement</div>
+          <h3 class="zna-offering-title">Cal-OP / Accelerating Clean Energy</h3>
+          <p class="zna-offering-desc">Bringing together best-in-class Energy Efficiency and Distributed Energy Resource providers with California's largest institutional buyers to scale emission reductions and deliver cost savings at scale.</p>
+          <a href="javascript:void(0)" class="zna-btn-ghost">Learn More</a>
+        </div>
+      </article>
+
+      <article class="zna-offering-card zna-reveal">
+        <img class="zna-offering-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80" alt="Modern net zero energy office building" loading="lazy" />
+        <div class="zna-offering-body">
+          <div class="zna-offering-tag">Built Environment</div>
+          <h3 class="zna-offering-title">ZNE Buildings</h3>
+          <p class="zna-offering-desc">Promoting technological, financial, and community innovations in the built environment to reduce costs, cut emissions, and create healthier Zero Net Energy Buildings for all occupants.</p>
+          <a href="javascript:void(0)" class="zna-btn-ghost">Learn More</a>
+        </div>
+      </article>
+
+      <article class="zna-offering-card zna-reveal">
+        <img class="zna-offering-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80" alt="Strategic planning and advisory session" loading="lazy" />
+        <div class="zna-offering-body">
+          <div class="zna-offering-tag">Advisory Services</div>
+          <h3 class="zna-offering-title">Planning, Strategy & Finance</h3>
+          <p class="zna-offering-desc">From grant funding and administration to public-private partnerships and go-to-market strategy, our advisory services help organizations move faster toward clean energy goals.</p>
+          <a href="javascript:void(0)" class="zna-btn-ghost">View Services</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 5 — IMPACT
+============================================= -->
+<section class="zna-impact-section" id="zna-impact" aria-label="Real-world impact">
+  <div class="zna-inner">
+    <div class="zna-impact-header zna-reveal">
+      <span class="zna-eyebrow">Real-World Impact</span>
+      <h2 class="zna-section-title">Where Our Work Takes Root</h2>
+      <p class="zna-section-lead">From Bay Area climate finance to rural school bus electrification, ZNE Alliance's initiatives are changing how communities experience clean energy.</p>
+    </div>
+
+    <div class="zna-impact-grid">
+
+      <article class="zna-impact-card zna-reveal">
+        <img class="zna-impact-img" src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=700&q=80" alt="Richmond California community center" loading="lazy" />
+        <div class="zna-impact-body">
+          <div class="zna-impact-location">Richmond, CA</div>
+          <h3 class="zna-impact-title">An Energy Community Where Residents Drive the Vision</h3>
+          <p class="zna-impact-narrative">In Richmond, ZNE Alliance worked alongside community leaders to build an Advanced Energy Community plan rooted in equity — bringing renewable energy access and clean transportation to a historically underserved neighborhood.</p>
+          <a href="javascript:void(0)" class="zna-impact-read-link">Read story <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="zna-impact-card zna-reveal">
+        <img class="zna-impact-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=700&q=80" alt="School district transportation fleet planning" loading="lazy" />
+        <div class="zna-impact-body">
+          <div class="zna-impact-location">Statewide, CA</div>
+          <h3 class="zna-impact-title">School Districts Turning to Electric Buses — and Finding a Path</h3>
+          <p class="zna-impact-narrative">Working directly with district transportation directors, ZNE Alliance helped school systems identify vehicles, navigate grant programs, and develop phased electrification plans that fit real budget constraints.</p>
+          <a href="javascript:void(0)" class="zna-impact-read-link">Read story <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="zna-impact-card zna-reveal">
+        <img class="zna-impact-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80" alt="Bay Area regional climate strategy" loading="lazy" />
+        <div class="zna-impact-body">
+          <div class="zna-impact-location">San Francisco Bay Area</div>
+          <h3 class="zna-impact-title">Regional Climate Finance That Connects Capital to Action</h3>
+          <p class="zna-impact-narrative">ZNE Alliance convened public agencies, utilities, and private investors in the Bay Area to align climate finance strategies — building the infrastructure needed to move capital into high-impact decarbonization projects.</p>
+          <a href="javascript:void(0)" class="zna-impact-read-link">Read story <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 6 — ACTION PANEL
+============================================= -->
+<section class="zna-action-section" id="zna-action" aria-label="Ways to engage">
+  <div class="zna-inner">
+    <div class="zna-action-header zna-reveal">
+      <span class="zna-eyebrow">Get Involved</span>
+      <h2 class="zna-section-title">Join the Movement Toward Zero Emissions</h2>
+      <p class="zna-section-lead">Whether you represent a city, a school district, a utility, or a private organization, there is a role for you in building a cleaner future.</p>
+    </div>
+
+    <div class="zna-action-grid">
+
+      <div class="zna-action-card zna-reveal">
+        <div class="zna-action-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 2a9 9 0 100 18A9 9 0 0011 2zm0 0v9l5 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="zna-action-card-title">Partner With Us</h3>
+        <p class="zna-action-card-desc">We work with cities, counties, utilities, school districts, fleet operators, and technology providers. If you are ready to advance clean energy goals, let's build a plan together.</p>
+        <a href="javascript:void(0)" class="zna-action-card-link">
+          Start a conversation
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="zna-action-card zna-reveal">
+        <div class="zna-action-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="3" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M7 7V5a4 4 0 018 0v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="zna-action-card-title">Explore Our Services</h3>
+        <p class="zna-action-card-desc">From strategic planning and grant administration to public-private partnership development, our team brings deep expertise to every engagement — at the pace your goals require.</p>
+        <a href="javascript:void(0)" class="zna-action-card-link">
+          View all services
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="zna-action-card zna-reveal">
+        <div class="zna-action-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M4 4h14v10H4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M8 18h6M11 14v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="zna-action-card-title">Stay Informed</h3>
+        <p class="zna-action-card-desc">Follow the latest developments in California clean energy policy, procurement opportunities, and ZNE Alliance initiatives. Subscribe to our updates to stay ahead of the curve.</p>
+        <a href="javascript:void(0)" class="zna-action-card-link">
+          Subscribe to updates
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="zna-action-card zna-reveal">
+        <div class="zna-action-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M4 19c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="zna-action-card-title">Join Our Team</h3>
+        <p class="zna-action-card-desc">ZNE Alliance brings together mission-driven professionals with expertise in energy, policy, finance, and community engagement. When openings arise, we look for people ready to make a real difference.</p>
+        <a href="javascript:void(0)" class="zna-action-card-link">
+          View opportunities
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="zna-action-card zna-reveal">
+        <div class="zna-action-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 2l2.5 6h6.5l-5.5 4 2 6.5L11 15l-5.5 3.5 2-6.5L2 8h6.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="zna-action-card-title">Support Our Work</h3>
+        <p class="zna-action-card-desc">As a nonprofit, ZNE Alliance relies on foundation support and partnerships to sustain our mission. Contributions of all kinds help us expand the reach and impact of clean energy access.</p>
+        <a href="javascript:void(0)" class="zna-action-card-link">
+          Learn about giving
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="zna-action-card zna-reveal">
+        <div class="zna-action-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M3 8l8-5 8 5v10a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M9 21V12h4v9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="zna-action-card-title">Contact Our Team</h3>
+        <p class="zna-action-card-desc">Have a question about a specific initiative, service, or partnership? Our team is ready to connect. Reach out directly and we'll follow up promptly.</p>
+        <a href="javascript:void(0)" class="zna-action-card-link">
+          Contact us
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 7 — NEWS / UPDATES
+============================================= -->
+<section class="zna-news-section" id="zna-news" aria-label="Latest news and updates">
+  <div class="zna-inner">
+    <div class="zna-news-header">
+      <div class="zna-news-header-text zna-reveal">
+        <span class="zna-eyebrow">News & Resources</span>
+        <h2 class="zna-section-title">Latest Updates from ZNE Alliance</h2>
+      </div>
+      <a href="javascript:void(0)" class="zna-btn-ghost zna-reveal">View All News</a>
+    </div>
+
+    <div class="zna-news-grid">
+
+      <article class="zna-news-card zna-reveal">
+        <img class="zna-news-img" src="https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?w=700&q=80" alt="Electric vehicle charging infrastructure expansion" loading="lazy" />
+        <div class="zna-news-body">
+          <div class="zna-news-meta">
+            <span class="zna-news-date">May 14, 2025</span>
+            <span class="zna-news-category">EV Alliance</span>
+          </div>
+          <h3 class="zna-news-title">California Strengthens EV Charging Access Requirements for Multi-Family Housing</h3>
+          <p class="zna-news-excerpt">New regulations signal a significant step toward equitable EV access — and ZNE Alliance's policy team has been closely engaged in the process.</p>
+          <a href="javascript:void(0)" class="zna-news-cta">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="zna-news-card zna-reveal">
+        <img class="zna-news-img" src="https://images.unsplash.com/photo-1491336477066-31156b5e4f35?w=700&q=80" alt="Solar installation on a school rooftop" loading="lazy" />
+        <div class="zna-news-body">
+          <div class="zna-news-meta">
+            <span class="zna-news-date">Apr 03, 2025</span>
+            <span class="zna-news-category">School Bus</span>
+          </div>
+          <h3 class="zna-news-title">EPA Clean School Bus Program Opens New Round — What Districts Need to Know</h3>
+          <p class="zna-news-excerpt">A new funding window creates fresh opportunity for California school districts pursuing electric bus adoption. Here is what the timeline looks like.</p>
+          <a href="javascript:void(0)" class="zna-news-cta">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="zna-news-card zna-reveal">
+        <img class="zna-news-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80" alt="Advanced energy community planning meeting" loading="lazy" />
+        <div class="zna-news-body">
+          <div class="zna-news-meta">
+            <span class="zna-news-date">Mar 18, 2025</span>
+            <span class="zna-news-category">Communities</span>
+          </div>
+          <h3 class="zna-news-title">Lancaster AEC Update: Community Phase Two Enters Implementation</h3>
+          <p class="zna-news-excerpt">The Advanced Energy Community in Lancaster, California has moved from planning into active implementation — a milestone that reflects years of coalition-building and technical groundwork.</p>
+          <a href="javascript:void(0)" class="zna-news-cta">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =============================================
+     SECTION 8 — FOOTER
+============================================= -->
+<footer class="zna-ecosystem-footer" aria-label="Site footer">
+  <div class="zna-inner">
+    <div class="zna-footer-main">
+
+      <div class="zna-footer-brand">
+        <div class="zna-footer-logo">
+          <span class="zna-footer-logo-zne">ZNE</span>
+          <span class="zna-footer-logo-slash">/</span>
+          <span class="zna-footer-logo-alliance">Alliance</span>
+        </div>
+        <p class="zna-footer-tagline">Advancing zero net emissions across clean energy, the built environment, and sustainable mobility in California and beyond.</p>
+        <div class="zna-footer-socials" aria-label="Social media links">
+          <!-- Twitter/X -->
+          <a href="javascript:void(0)" class="zna-footer-social-link" aria-label="Twitter">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M12.6 1H15l-4.9 5.6L15.6 15h-4.3l-3.1-4-3.6 4H2.3L7.5 9 1.3 1h4.4l2.8 3.7L12.6 1zm-.9 12.5h1.2L4.4 2.2H3.1l8.6 11.3z"/>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="javascript:void(0)" class="zna-footer-social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M2.3 5.5H5v8H2.3v-8zm1.35-1.2a1.6 1.6 0 110-3.2 1.6 1.6 0 010 3.2zM11 5.3c-1.6 0-2 .9-2 .9V5.5H6.5v8H9.2V9.4c0-1.1.2-2.1 1.5-2.1 1.3 0 1.3 1.2 1.3 2.2v4h2.7V9.1C14.7 6.6 14.2 5.3 11 5.3z"/>
+            </svg>
+          </a>
+          <!-- Email -->
+          <a href="javascript:void(0)" class="zna-footer-social-link" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="10" rx="1.5"/>
+              <path d="M1 4l7 5 7-5"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="zna-footer-col">
+        <h4 class="zna-footer-col-title">Initiatives</h4>
+        <ul class="zna-footer-links">
+          <li><a href="javascript:void(0)">EV Alliance</a></li>
+          <li><a href="javascript:void(0)">School Bus Electrification</a></li>
+          <li><a href="javascript:void(0)">Advanced Energy Communities</a></li>
+          <li><a href="javascript:void(0)">Cal-OP / ACE</a></li>
+          <li><a href="javascript:void(0)">ZNE Buildings</a></li>
+        </ul>
+      </div>
+
+      <div class="zna-footer-col">
+        <h4 class="zna-footer-col-title">Services</h4>
+        <ul class="zna-footer-links">
+          <li><a href="javascript:void(0)">Planning & Strategy</a></li>
+          <li><a href="javascript:void(0)">Grant Administration</a></li>
+          <li><a href="javascript:void(0)">Public-Private Partnerships</a></li>
+          <li><a href="javascript:void(0)">Go To Market Strategy</a></li>
+        </ul>
+      </div>
+
+      <div class="zna-footer-col">
+        <h4 class="zna-footer-col-title">Contact</h4>
+        <div class="zna-footer-contact-line">
+          <p>ZNE Alliance</p>
+          <p>San Francisco Bay Area, CA</p>
+          <br />
+          <p>Email: <a href="javascript:void(0)">info@znealliance.net</a></p>
+        </div>
+        <br />
+        <h4 class="zna-footer-col-title">Organization</h4>
+        <ul class="zna-footer-links">
+          <li><a href="javascript:void(0)">About</a></li>
+          <li><a href="javascript:void(0)">Leadership Team</a></li>
+          <li><a href="javascript:void(0)">Careers</a></li>
+          <li><a href="javascript:void(0)">News</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="zna-footer-bottom">
+      <span class="zna-footer-legal">&copy; 2025 ZNE Alliance. All rights reserved. ZNE Alliance is a 501(c)(3) nonprofit organization.</span>
+      <div class="zna-footer-legal-links">
+        <a href="javascript:void(0)">Privacy Policy</a>
+        <a href="javascript:void(0)">Terms of Use</a>
+        <a href="javascript:void(0)">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // =============================================
+  // ZNA — NAVBAR: scroll shadow
+  // =============================================
+  const znaNav = document.getElementById('zna-nav');
+  window.addEventListener('scroll', () => {
+    znaNav.classList.toggle('zna-nav-scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // =============================================
+  // ZNA — OFF-CANVAS MENU
+  // =============================================
+  const znaHamburger = document.getElementById('zna-hamburger');
+  const znaOverlay = document.getElementById('zna-offcanvas-overlay');
+  const znaPanel = document.getElementById('zna-offcanvas-panel');
+  const znaClose = document.getElementById('zna-offcanvas-close');
+
+  function znaOpenMenu() {
+    znaHamburger.classList.add('zna-open');
+    znaHamburger.setAttribute('aria-expanded', 'true');
+    znaOverlay.classList.add('zna-open');
+    znaPanel.classList.add('zna-open');
+    znaOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    znaClose.focus();
+  }
+
+  function znaCloseMenu() {
+    znaHamburger.classList.remove('zna-open');
+    znaHamburger.setAttribute('aria-expanded', 'false');
+    znaOverlay.classList.remove('zna-open');
+    znaPanel.classList.remove('zna-open');
+    znaOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    znaHamburger.focus();
+  }
+
+  znaHamburger.addEventListener('click', znaOpenMenu);
+  znaClose.addEventListener('click', znaCloseMenu);
+  znaOverlay.addEventListener('click', znaCloseMenu);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') znaCloseMenu(); });
+
+  // Accordion toggles in off-canvas
+  document.querySelectorAll('.zna-offcanvas-group-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sub = btn.nextElementSibling;
+      const isOpen = sub.classList.toggle('zna-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      const icon = btn.querySelector('svg');
+      if (icon) icon.style.transform = isOpen ? 'rotate(180deg)' : '';
+    });
+  });
+
+  // =============================================
+  // ZNA — HERO CAROUSEL
+  // =============================================
+  const znaTrack = document.getElementById('zna-hero-track');
+  const znaSlides = document.querySelectorAll('.zna-hero-slide');
+  const znaDots = document.querySelectorAll('.zna-hero-dot');
+  let znaCurrent = 0;
+  let znaAutoplay;
+
+  function znaGoToSlide(index) {
+    znaSlides[znaCurrent].setAttribute('aria-hidden', 'true');
+    znaDots[znaCurrent].classList.remove('zna-active');
+    znaDots[znaCurrent].setAttribute('aria-selected', 'false');
+
+    znaCurrent = (index + znaSlides.length) % znaSlides.length;
+
+    znaTrack.style.transform = `translateX(-${znaCurrent * 100}%)`;
+    znaSlides[znaCurrent].setAttribute('aria-hidden', 'false');
+    znaDots[znaCurrent].classList.add('zna-active');
+    znaDots[znaCurrent].setAttribute('aria-selected', 'true');
+  }
+
+  document.getElementById('zna-hero-prev').addEventListener('click', () => { znaGoToSlide(znaCurrent - 1); znaResetAuto(); });
+  document.getElementById('zna-hero-next').addEventListener('click', () => { znaGoToSlide(znaCurrent + 1); znaResetAuto(); });
+  znaDots.forEach(dot => {
+    dot.addEventListener('click', () => { znaGoToSlide(parseInt(dot.dataset.index)); znaResetAuto(); });
+  });
+
+  function znaStartAuto() { znaAutoplay = setInterval(() => znaGoToSlide(znaCurrent + 1), 5000); }
+  function znaResetAuto() { clearInterval(znaAutoplay); znaStartAuto(); }
+
+  // Pause on hover
+  document.querySelector('.zna-hero-carousel').addEventListener('mouseenter', () => clearInterval(znaAutoplay));
+  document.querySelector('.zna-hero-carousel').addEventListener('mouseleave', znaStartAuto);
+
+  // Touch swipe
+  let znaTouchStart = 0;
+  znaTrack.addEventListener('touchstart', e => { znaTouchStart = e.touches[0].clientX; }, { passive: true });
+  znaTrack.addEventListener('touchend', e => {
+    const diff = znaTouchStart - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { znaGoToSlide(diff > 0 ? znaCurrent + 1 : znaCurrent - 1); znaResetAuto(); }
+  });
+
+  znaStartAuto();
+
+  // =============================================
+  // ZNA — SCROLL REVEAL
+  // =============================================
+  const znaRevealEls = document.querySelectorAll('.zna-reveal');
+  const znaObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('zna-visible'), i * 80);
+        znaObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  znaRevealEls.forEach(el => znaObserver.observe(el));
+</script>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  const mainNav = document.querySelector(".sk-main-navbar, .tia-nav, .tws-nav-root, .pau-site-nav, .wgf-nav-bar, .yba-nav, .yli-navbar");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+
+  // Initialize state based on current scroll position
+  if (lastScrollY > 80) {
+    gladHeader.classList.add("hidden");
+    if (mainNav) {
+      mainNav.classList.add("glad-hidden");
+    }
+    gladVisible = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          if (mainNav) {
+            mainNav.classList.add("glad-hidden");
+          }
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          if (mainNav) {
+            mainNav.classList.remove("glad-hidden");
+          }
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Woodland Girls Fastpitch Softball Association</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { font-family: 'Inter', sans-serif; color: #1C1C1E; background: #FAFAFA; -webkit-font-smoothing: antialiased; }
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  /* ===== CSS VARIABLES ===== */
+  :root {
+    --wgf-green: #1B5E20;
+    --wgf-green-mid: #2E7D32;
+    --wgf-green-light: #4CAF50;
+    --wgf-gold: #F9A825;
+    --wgf-charcoal: #1C1C1E;
+    --wgf-white: #FAFAFA;
+    --wgf-sand: #F5F0E8;
+    --wgf-muted: #6B7280;
+    --wgf-border: #E5E7EB;
+    --wgf-overlay: rgba(13, 40, 14, 0.62);
+    --wgf-radius-pill: 9999px;
+    --wgf-radius-card: 12px;
+    --wgf-space-section: 5rem;
+    --wgf-transition: 0.25s ease;
+  }
+
+  /* ===== SKIP LINK ===== */
+  .wgf-skip-link {
+    position: absolute; top: -100%; left: 1rem; background: var(--wgf-green);
+    color: #fff; padding: 0.5rem 1rem; border-radius: var(--wgf-radius-pill);
+    font-weight: 600; z-index: 10000; transition: top 0.2s;
+  }
+  .wgf-skip-link:focus { top: 0.75rem; }
+
+  /* =============================================
+     SECTION 1: NAVBAR
+  ============================================= */
+  .wgf-nav-bar {
+    position: sticky; top: 0; z-index: 900;
+    background: #fff; border-bottom: 2px solid var(--wgf-green);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .wgf-nav-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .wgf-nav-brand { display: flex; align-items: center; gap: 0.75rem; }
+  .wgf-nav-brand-icon {
+    width: 44px; height: 44px; background: var(--wgf-green);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .wgf-nav-brand-icon svg { width: 24px; height: 24px; fill: #fff; }
+  .wgf-nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .wgf-nav-brand-name { font-size: 0.95rem; font-weight: 800; color: var(--wgf-green); letter-spacing: -0.02em; }
+  .wgf-nav-brand-sub { font-size: 0.68rem; font-weight: 500; color: var(--wgf-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .wgf-nav-links { display: none; align-items: center; gap: 0.25rem; }
+  .wgf-nav-link {
+    font-size: 0.88rem; font-weight: 600; color: var(--wgf-charcoal);
+    padding: 0.45rem 0.75rem; border-radius: 6px;
+    transition: background var(--wgf-transition), color var(--wgf-transition);
+    white-space: nowrap;
+  }
+  .wgf-nav-link:hover { background: var(--wgf-sand); color: var(--wgf-green); }
+  .wgf-nav-cta {
+    font-size: 0.85rem; font-weight: 700; color: #fff;
+    background: var(--wgf-green); padding: 0.5rem 1.2rem;
+    border-radius: var(--wgf-radius-pill);
+    transition: background var(--wgf-transition);
+  }
+  .wgf-nav-cta:hover { background: var(--wgf-green-mid); }
+
+  .wgf-nav-hamburger {
+    display: flex; flex-direction: column; gap: 5px; padding: 8px; cursor: pointer;
+  }
+  .wgf-nav-hamburger span {
+    display: block; width: 24px; height: 2px; background: var(--wgf-charcoal);
+    border-radius: 2px; transition: all 0.3s;
+  }
+  .wgf-nav-hamburger.wgf-is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .wgf-nav-hamburger.wgf-is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .wgf-nav-hamburger.wgf-is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Off-canvas panel */
+  .wgf-nav-offcanvas {
+    position: fixed; top: 0; right: -320px; width: 300px; height: 100vh;
+    background: var(--wgf-charcoal); z-index: 950;
+    transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+    padding: 2rem 1.5rem; overflow-y: auto;
+    display: flex; flex-direction: column;
+  }
+  .wgf-nav-offcanvas.wgf-panel-open { right: 0; }
+  .wgf-nav-offcanvas-close {
+    align-self: flex-end; color: #fff; padding: 0.25rem; margin-bottom: 2rem;
+  }
+  .wgf-nav-offcanvas-close svg { width: 28px; height: 28px; stroke: #fff; fill: none; }
+  .wgf-nav-offcanvas-link {
+    display: block; color: #fff; font-size: 1rem; font-weight: 600;
+    padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: color var(--wgf-transition);
+  }
+  .wgf-nav-offcanvas-link:hover { color: var(--wgf-gold); }
+  .wgf-nav-offcanvas-cta {
+    display: block; margin-top: 2rem; text-align: center;
+    background: var(--wgf-green-light); color: #fff;
+    font-weight: 700; padding: 0.85rem 1.5rem;
+    border-radius: var(--wgf-radius-pill); font-size: 0.95rem;
+  }
+  .wgf-nav-backdrop {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 940;
+  }
+  .wgf-nav-backdrop.wgf-backdrop-active { display: block; }
+
+  @media (min-width: 1024px) {
+    .wgf-nav-links { display: flex; }
+    .wgf-nav-hamburger { display: none; }
+  }
+
+  /* =============================================
+     SECTION 2: HERO CAROUSEL
+  ============================================= */
+  .wgf-hero-carousel {
+    position: relative; overflow: hidden;
+    height: 560px;
+  }
+  @media (min-width: 768px) { .wgf-hero-carousel { height: 680px; } }
+  @media (min-width: 1200px) { .wgf-hero-carousel { height: 760px; } }
+
+  .wgf-hero-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+  .wgf-hero-slide {
+    flex: 0 0 100%; height: 100%; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .wgf-hero-slide-img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .wgf-hero-overlay {
+    position: absolute; inset: 0; background: var(--wgf-overlay);
+  }
+  .wgf-hero-content {
+    position: relative; z-index: 2; color: #fff;
+    padding: 2rem 1.5rem; max-width: 720px;
+    text-align: left;
+  }
+  @media (min-width: 768px) { .wgf-hero-content { text-align: center; align-items: center; display: flex; flex-direction: column; } }
+
+  .wgf-hero-eyebrow {
+    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wgf-gold);
+    margin-bottom: 0.75rem;
+  }
+  .wgf-hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
+    line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem;
+  }
+  .wgf-hero-desc {
+    font-size: clamp(1rem, 2vw, 1.18rem); font-weight: 400;
+    line-height: 1.65; opacity: 0.92; margin-bottom: 2rem; max-width: 520px;
+  }
+  .wgf-hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+  @media (min-width: 768px) { .wgf-hero-actions { justify-content: center; } }
+
+  .wgf-hero-btn-primary {
+    background: var(--wgf-green-light); color: #fff;
+    font-size: 1rem; font-weight: 700; padding: 0.85rem 2rem;
+    border-radius: var(--wgf-radius-pill);
+    transition: background var(--wgf-transition), transform var(--wgf-transition);
+    display: inline-block;
+  }
+  .wgf-hero-btn-primary:hover { background: var(--wgf-gold); color: var(--wgf-charcoal); transform: translateY(-2px); }
+  .wgf-hero-btn-text {
+    color: rgba(255,255,255,0.85); font-size: 0.95rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.35rem;
+    transition: color var(--wgf-transition);
+  }
+  .wgf-hero-btn-text:hover { color: #fff; }
+  .wgf-hero-btn-text svg { width: 16px; height: 16px; stroke: currentColor; fill: none; transition: transform var(--wgf-transition); }
+  .wgf-hero-btn-text:hover svg { transform: translateX(4px); }
+
+  /* Carousel controls */
+  .wgf-hero-prev, .wgf-hero-next {
+    position: absolute; top: 50%; z-index: 3;
+    transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--wgf-transition);
+  }
+  .wgf-hero-prev { left: 1rem; }
+  .wgf-hero-next { right: 1rem; }
+  .wgf-hero-prev:hover, .wgf-hero-next:hover { background: rgba(255,255,255,0.35); }
+  .wgf-hero-prev svg, .wgf-hero-next svg { width: 20px; height: 20px; stroke: #fff; fill: none; }
+
+  .wgf-hero-dots {
+    position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    z-index: 3; display: flex; gap: 0.5rem;
+  }
+  .wgf-hero-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.4); border: none; cursor: pointer;
+    transition: background var(--wgf-transition), transform var(--wgf-transition);
+  }
+  .wgf-hero-dot.wgf-dot-active { background: var(--wgf-gold); transform: scale(1.4); }
+
+  /* =============================================
+     SECTION 3: MISSION
+  ============================================= */
+  .wgf-mission {
+    background: var(--wgf-white); padding: var(--wgf-space-section) 1.5rem;
+  }
+  .wgf-mission-inner {
+    max-width: 1180px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr; gap: 3.5rem; align-items: center;
+  }
+  @media (min-width: 900px) { .wgf-mission-inner { grid-template-columns: 1fr 1fr; } }
+
+  .wgf-mission-text-block {}
+  .wgf-section-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--wgf-green); margin-bottom: 1rem;
+  }
+  .wgf-section-eyebrow::before {
+    content: ''; display: block; width: 24px; height: 3px;
+    background: var(--wgf-green-light); border-radius: 2px;
+  }
+  .wgf-section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1.25rem; color: var(--wgf-charcoal);
+  }
+  .wgf-mission-body {
+    font-size: 1.05rem; line-height: 1.8; color: #374151; margin-bottom: 1.5rem;
+  }
+  .wgf-mission-pillars { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+  .wgf-mission-pillar {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.95rem; font-weight: 500; color: var(--wgf-charcoal);
+  }
+  .wgf-mission-pillar-icon {
+    flex-shrink: 0; width: 22px; height: 22px; margin-top: 1px;
+    background: var(--wgf-green-light); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .wgf-mission-pillar-icon svg { width: 12px; height: 12px; stroke: #fff; fill: none; }
+  .wgf-mission-btn {
+    display: inline-block; background: var(--wgf-green); color: #fff;
+    font-size: 0.95rem; font-weight: 700; padding: 0.8rem 1.8rem;
+    border-radius: var(--wgf-radius-pill); transition: background var(--wgf-transition), transform var(--wgf-transition);
+  }
+  .wgf-mission-btn:hover { background: var(--wgf-green-mid); transform: translateY(-2px); }
+
+  .wgf-mission-image-wrap { position: relative; }
+  .wgf-mission-image {
+    width: 100%; height: 420px; border-radius: 16px; object-fit: cover;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.14);
+  }
+  .wgf-mission-badge {
+    position: absolute; bottom: -1.25rem; left: 1.5rem;
+    background: var(--wgf-gold); color: var(--wgf-charcoal);
+    border-radius: 10px; padding: 0.85rem 1.25rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .wgf-mission-badge-year { font-size: 1.5rem; font-weight: 900; line-height: 1; }
+  .wgf-mission-badge-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.8; }
+
+  /* =============================================
+     SECTION 4: PROGRAMS / OFFERINGS
+  ============================================= */
+  .wgf-programs {
+    background: var(--wgf-sand); padding: var(--wgf-space-section) 1.5rem;
+  }
+  .wgf-programs-inner { max-width: 1180px; margin: 0 auto; }
+  .wgf-section-header { text-align: center; margin-bottom: 3rem; }
+  .wgf-section-subtitle {
+    font-size: 1rem; color: var(--wgf-muted); max-width: 540px;
+    margin: 0.75rem auto 0; line-height: 1.7;
+  }
+  .wgf-programs-grid {
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  }
+  @media (min-width: 600px) { .wgf-programs-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .wgf-programs-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .wgf-program-card {
+    background: #fff; border-radius: var(--wgf-radius-card);
+    overflow: hidden; border: 1px solid var(--wgf-border);
+    transition: box-shadow var(--wgf-transition), transform var(--wgf-transition);
+  }
+  .wgf-program-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+  .wgf-program-card-img { width: 100%; height: 200px; object-fit: cover; }
+  .wgf-program-card-body { padding: 1.5rem; }
+  .wgf-program-card-tag {
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--wgf-green); margin-bottom: 0.5rem;
+  }
+  .wgf-program-card-title {
+    font-size: 1.1rem; font-weight: 700; color: var(--wgf-charcoal);
+    margin-bottom: 0.6rem; letter-spacing: -0.01em;
+  }
+  .wgf-program-card-desc { font-size: 0.9rem; color: var(--wgf-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+  .wgf-program-card-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.88rem; font-weight: 700; color: var(--wgf-green);
+    transition: gap var(--wgf-transition);
+  }
+  .wgf-program-card-link:hover { gap: 0.6rem; }
+  .wgf-program-card-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+
+  /* =============================================
+     SECTION 5: IMPACT / SUCCESS STORIES
+  ============================================= */
+  .wgf-stories {
+    background: var(--wgf-white); padding: var(--wgf-space-section) 1.5rem;
+  }
+  .wgf-stories-inner { max-width: 1180px; margin: 0 auto; }
+  .wgf-stories-grid {
+    display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem;
+  }
+  @media (min-width: 768px) { .wgf-stories-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .wgf-stories-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .wgf-story-card {
+    border-radius: var(--wgf-radius-card); overflow: hidden;
+    border: 1px solid var(--wgf-border); background: #fff;
+    transition: box-shadow var(--wgf-transition), transform var(--wgf-transition);
+  }
+  .wgf-story-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+  .wgf-story-card-img { width: 100%; height: 240px; object-fit: cover; }
+  .wgf-story-card-body { padding: 1.5rem; }
+  .wgf-story-card-quote {
+    font-size: 1.05rem; font-weight: 600; line-height: 1.6;
+    color: var(--wgf-charcoal); margin-bottom: 1.25rem;
+    border-left: 3px solid var(--wgf-green-light); padding-left: 1rem;
+  }
+  .wgf-story-card-meta { display: flex; align-items: center; gap: 0.75rem; }
+  .wgf-story-card-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .wgf-story-card-name { font-size: 0.88rem; font-weight: 700; color: var(--wgf-charcoal); }
+  .wgf-story-card-role { font-size: 0.78rem; color: var(--wgf-muted); }
+
+  /* Featured story */
+  .wgf-story-featured {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr;
+    border-radius: var(--wgf-radius-card); overflow: hidden;
+    border: 1px solid var(--wgf-border); background: var(--wgf-sand);
+  }
+  @media (min-width: 768px) { .wgf-story-featured { grid-template-columns: 1fr 1fr; } }
+  .wgf-story-featured-img { width: 100%; height: 320px; object-fit: cover; }
+  @media (min-width: 768px) { .wgf-story-featured-img { height: 100%; } }
+  .wgf-story-featured-body {
+    padding: 2.5rem; display: flex; flex-direction: column; justify-content: center;
+  }
+  .wgf-story-featured-label {
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wgf-green); margin-bottom: 1rem;
+  }
+  .wgf-story-featured-quote {
+    font-size: 1.2rem; font-weight: 600; line-height: 1.65;
+    color: var(--wgf-charcoal); margin-bottom: 1.5rem;
+  }
+  .wgf-story-featured-name { font-size: 0.95rem; font-weight: 700; color: var(--wgf-charcoal); }
+  .wgf-story-featured-role { font-size: 0.82rem; color: var(--wgf-muted); }
+
+  /* =============================================
+     SECTION 6: ACTION PANEL
+  ============================================= */
+  .wgf-action-panel {
+    background: var(--wgf-green); padding: var(--wgf-space-section) 1.5rem;
+  }
+  .wgf-action-panel-inner { max-width: 1180px; margin: 0 auto; }
+  .wgf-action-panel .wgf-section-eyebrow { color: var(--wgf-gold); }
+  .wgf-action-panel .wgf-section-eyebrow::before { background: var(--wgf-gold); }
+  .wgf-action-panel .wgf-section-title { color: #fff; }
+  .wgf-action-panel .wgf-section-subtitle { color: rgba(255,255,255,0.75); }
+  .wgf-action-panel .wgf-section-header { text-align: center; }
+
+  .wgf-action-grid {
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem;
+  }
+  @media (min-width: 600px) { .wgf-action-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .wgf-action-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .wgf-action-card {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+    border-radius: var(--wgf-radius-card); padding: 2rem 1.5rem;
+    text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    transition: background var(--wgf-transition), transform var(--wgf-transition);
+  }
+  .wgf-action-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-4px); }
+  .wgf-action-card-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center;
+  }
+  .wgf-action-card-icon svg { width: 28px; height: 28px; stroke: var(--wgf-gold); fill: none; }
+  .wgf-action-card-title { font-size: 1.05rem; font-weight: 700; color: #fff; }
+  .wgf-action-card-desc { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.65; }
+  .wgf-action-card-btn {
+    display: inline-block; background: #fff; color: var(--wgf-green);
+    font-size: 0.85rem; font-weight: 700; padding: 0.6rem 1.4rem;
+    border-radius: var(--wgf-radius-pill); margin-top: auto;
+    transition: background var(--wgf-transition), color var(--wgf-transition);
+  }
+  .wgf-action-card-btn:hover { background: var(--wgf-gold); color: var(--wgf-charcoal); }
+
+  /* =============================================
+     SECTION 7: NEWS / UPDATES
+  ============================================= */
+  .wgf-news {
+    background: var(--wgf-sand); padding: var(--wgf-space-section) 1.5rem;
+  }
+  .wgf-news-inner { max-width: 1180px; margin: 0 auto; }
+  .wgf-news-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+  .wgf-news-header-right { display: flex; align-items: center; }
+  .wgf-news-view-all {
+    font-size: 0.88rem; font-weight: 700; color: var(--wgf-green);
+    display: flex; align-items: center; gap: 0.35rem;
+    transition: gap var(--wgf-transition);
+  }
+  .wgf-news-view-all:hover { gap: 0.6rem; }
+  .wgf-news-view-all svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+
+  .wgf-news-grid {
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  }
+  @media (min-width: 600px) { .wgf-news-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .wgf-news-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .wgf-news-card {
+    background: #fff; border-radius: var(--wgf-radius-card);
+    border: 1px solid var(--wgf-border); overflow: hidden;
+    transition: box-shadow var(--wgf-transition), transform var(--wgf-transition);
+  }
+  .wgf-news-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.1); transform: translateY(-3px); }
+  .wgf-news-card-img { width: 100%; height: 188px; object-fit: cover; }
+  .wgf-news-card-body { padding: 1.25rem; }
+  .wgf-news-card-meta {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;
+  }
+  .wgf-news-card-date { font-size: 0.75rem; font-weight: 600; color: var(--wgf-muted); }
+  .wgf-news-card-cat {
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--wgf-green);
+  }
+  .wgf-news-card-title {
+    font-size: 1rem; font-weight: 700; color: var(--wgf-charcoal);
+    line-height: 1.4; margin-bottom: 0.6rem;
+  }
+  .wgf-news-card-excerpt { font-size: 0.875rem; color: var(--wgf-muted); line-height: 1.7; margin-bottom: 1rem; }
+  .wgf-news-card-link {
+    font-size: 0.85rem; font-weight: 700; color: var(--wgf-green);
+    display: flex; align-items: center; gap: 0.3rem;
+    transition: gap var(--wgf-transition);
+  }
+  .wgf-news-card-link:hover { gap: 0.55rem; }
+  .wgf-news-card-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+
+  /* =============================================
+     SECTION 8: FOOTER
+  ============================================= */
+  .wgf-footer {
+    background: var(--wgf-charcoal); padding: 4rem 1.5rem 0;
+  }
+  .wgf-footer-inner {
+    max-width: 1180px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 768px) { .wgf-footer-inner { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+
+  .wgf-footer-brand-col {}
+  .wgf-footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .wgf-footer-logo-icon {
+    width: 44px; height: 44px; background: var(--wgf-green-light);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .wgf-footer-logo-icon svg { width: 22px; height: 22px; fill: #fff; }
+  .wgf-footer-logo-name { font-size: 0.95rem; font-weight: 800; color: #fff; line-height: 1.2; }
+  .wgf-footer-logo-sub { font-size: 0.68rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+  .wgf-footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 1.5rem; }
+  .wgf-footer-socials { display: flex; gap: 0.75rem; }
+  .wgf-footer-social {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+    transition: background var(--wgf-transition);
+  }
+  .wgf-footer-social:hover { background: var(--wgf-green-light); }
+  .wgf-footer-social svg { width: 18px; height: 18px; stroke: rgba(255,255,255,0.8); fill: none; }
+
+  .wgf-footer-col-title {
+    font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem;
+  }
+  .wgf-footer-col-links { display: flex; flex-direction: column; gap: 0.65rem; }
+  .wgf-footer-col-link {
+    font-size: 0.9rem; color: rgba(255,255,255,0.65);
+    transition: color var(--wgf-transition);
+  }
+  .wgf-footer-col-link:hover { color: #fff; }
+
+  .wgf-footer-divider {
+    max-width: 1180px; margin: 3rem auto 0;
+    border: none; border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .wgf-footer-bottom {
+    max-width: 1180px; margin: 0 auto;
+    padding: 1.5rem 0;
+    display: flex; flex-wrap: wrap; align-items: center;
+    justify-content: space-between; gap: 1rem;
+  }
+  .wgf-footer-copyright { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+  .wgf-footer-legal { display: flex; gap: 1.5rem; }
+  .wgf-footer-legal-link {
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+    transition: color var(--wgf-transition);
+  }
+  .wgf-footer-legal-link:hover { color: rgba(255,255,255,0.8); }
+
+  /* ===== SCROLL REVEAL ===== */
+  .wgf-reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .wgf-reveal.wgf-revealed { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .wgf-reveal { opacity: 1; transform: none; }
+  }
+</style>
+
+<style>
+  #glad-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 3200;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+  #glad-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .calbcc-header.glad-hidden {
+    top: 0;
+  }
+  .glad-inner {
+    position: relative;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* PERFECT CENTER */
+  .glad-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .glad-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+  .glad-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: #1e3a6e;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1.5px solid #1e3a6e;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    white-space: nowrap;
+    margin-right: 40px !important;
+  }
+  .glad-back-btn:hover {
+    background: #142d57;
+    border-color: #142d57;
+    transform: translateX(-2px);
+  }
+  @media (max-width: 480px) {
+    .btn-label {
+      display: none;
+    }
+    .glad-back-btn {
+      padding: 7px 10px;
+    }
+  }
+
+  /* ─── MOBILE: glad-header responsive fix (≤640px) ──────────── */
+  @media (max-width: 640px) {
+    .glad-inner {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .glad-logo img {
+      margin-left: 0 !important;
+    }
+    .glad-back-btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  /* ─── MOBILE: glad-header logo size fix (≤640px) ─── */
+  @media (max-width: 640px) {
+    .glad-logo img { height: 28px !important; width: auto !important; }
+  }
+
+  /* ─── DYNAMIC NAVBAR TOP OFFSET ─── */
+  body .sk-main-navbar,
+  body .tia-nav,
+  body .tws-nav-root,
+  body .pau-site-nav,
+  body .wgf-nav-bar,
+  body .yba-nav,
+  body .yli-navbar,
+  body .zna-main-nav {
+    top: 56px !important;
+    transition: top 0.3s ease !important;
+  }
+  body .sk-main-navbar.glad-hidden,
+  body .tia-nav.glad-hidden,
+  body .tws-nav-root.glad-hidden,
+  body .pau-site-nav.glad-hidden,
+  body .wgf-nav-bar.glad-hidden,
+  body .yba-nav.glad-hidden,
+  body .yli-navbar.glad-hidden,
+  body .zna-main-nav.glad-hidden {
+    top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<header id="glad-header">
+  <div class="glad-inner">
+    <a
+      href="https://www.gladtech.io/"
+      class="glad-logo"
+      aria-label="GLAD Technology"
+    >
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/67703dfc1c33ac649aba3b8e/80cf8bc9-38fb-4d52-84ab-95fb7bb5629e/GLAD+Digital+Services+Logo.png?format=1500w"
+        alt="GLAD Technology Digital Services"
+      />
+    </a>
+    <a href="https://www.gladtech.io/" class="glad-back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        stroke="#fff"
+        stroke-width="2.2"
+        width="14"
+        height="14"
+      >
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      <span class="btn-label">Back to Main Site</span>
+    </a>
+  </div>
+</header>
+
+
+<a href="#wgf-main" class="wgf-skip-link">Skip to main content</a>
+
+<!-- BACKDROP -->
+<div class="wgf-nav-backdrop" id="wgfBackdrop" aria-hidden="true"></div>
+
+<!-- =============================================
+     SECTION 1: NAVBAR
+============================================= -->
+<header class="wgf-nav-bar" role="banner">
+  <div class="wgf-nav-inner">
+    <a href="#" class="wgf-nav-brand" aria-label="Woodland Girls Fastpitch Softball Association Home">
+      <div class="wgf-nav-brand-icon" aria-hidden="true">
+        <!-- Softball icon -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#fff"/><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 2c.55 0 1.09.05 1.61.14C13.23 5.6 12.9 7.3 12 9.1c-.9-1.8-1.23-3.5-1.61-4.96C10.91 4.05 11.45 4 12 4zM4.02 12.39C5.7 11.7 7.4 11.5 9.2 12c-1.8.9-3.5 1.23-4.96 1.61A8.03 8.03 0 0 1 4.02 12.39zM7 19.07A8.07 8.07 0 0 1 4.67 15c1.48.38 3.18.71 4.96 1.61-1.8.5-3.5.7-2.63 2.46zm5 .93c-.55 0-1.09-.05-1.61-.14.38-1.48.71-3.18 1.61-4.96.9 1.78 1.23 3.48 1.61 4.96-.52.09-1.06.14-1.61.14zm5-1.93c.87-1.76-.83-1.96-2.63-2.46 1.78-.9 3.48-1.23 4.96-1.61A8.07 8.07 0 0 1 17 19.07zm2.97-5.46C18.5 13.23 16.8 12.9 15 12c1.8-.5 3.5-.7 5.14-.39-.12.67-.07 1.33-.17 2z" fill="#1B5E20"/></svg>
+      </div>
+      <div class="wgf-nav-brand-text">
+        <span class="wgf-nav-brand-name">Woodland Girls<br>Fastpitch</span>
+        <span class="wgf-nav-brand-sub">Est. 1985 · Woodland, CA</span>
+      </div>
+    </a>
+
+    <nav class="wgf-nav-links" aria-label="Primary navigation">
+      <a href="#" class="wgf-nav-link">About</a>
+      <a href="#" class="wgf-nav-link">Programs</a>
+      <a href="#" class="wgf-nav-link">Registration</a>
+      <a href="#" class="wgf-nav-link">Schedules</a>
+      <a href="#" class="wgf-nav-link">Coaches</a>
+      <a href="#" class="wgf-nav-link">Sponsors</a>
+      <a href="#" class="wgf-nav-cta">Register Now</a>
+    </nav>
+
+    <button class="wgf-nav-hamburger" id="wgfHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="wgfOffcanvas">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Off-canvas panel -->
+<nav class="wgf-nav-offcanvas" id="wgfOffcanvas" aria-label="Mobile navigation" aria-hidden="true">
+  <button class="wgf-nav-offcanvas-close" id="wgfPanelClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <a href="#" class="wgf-nav-offcanvas-link">About</a>
+  <a href="#" class="wgf-nav-offcanvas-link">Programs</a>
+  <a href="#" class="wgf-nav-offcanvas-link">Registration</a>
+  <a href="#" class="wgf-nav-offcanvas-link">Schedules</a>
+  <a href="#" class="wgf-nav-offcanvas-link">Coaches</a>
+  <a href="#" class="wgf-nav-offcanvas-link">Sponsors</a>
+  <a href="#" class="wgf-nav-offcanvas-link">Umpires</a>
+  <a href="#" class="wgf-nav-offcanvas-link">Donations</a>
+  <a href="#" class="wgf-nav-offcanvas-link">Merch Store</a>
+  <a href="#" class="wgf-nav-offcanvas-cta">Register Now</a>
+</nav>
+
+<main id="wgf-main">
+
+<!-- =============================================
+     SECTION 2: HERO CAROUSEL
+============================================= -->
+<section class="wgf-hero-carousel" aria-label="Featured highlights">
+  <div class="wgf-hero-track" id="wgfHeroTrack">
+
+    <!-- Slide 1 -->
+    <div class="wgf-hero-slide">
+      <img src="https://images.unsplash.com/photo-1556906781-9a414e2a7735?w=1600&q=80" alt="Girls playing fastpitch softball on green field" class="wgf-hero-slide-img" />
+      <div class="wgf-hero-overlay"></div>
+      <div class="wgf-hero-content">
+        <span class="wgf-hero-eyebrow">Woodland Girls Fastpitch Softball</span>
+        <h1 class="wgf-hero-title">Empowering Girls Through the Game Since 1985</h1>
+        <p class="wgf-hero-desc">Building champions on and off the field — WGFSA provides competitive fastpitch softball programs for girls ages 6–16 across the Woodland community.</p>
+        <div class="wgf-hero-actions">
+          <a href="#" class="wgf-hero-btn-primary">Register for Fall Ball 2026</a>
+          <a href="#" class="wgf-hero-btn-text">Learn about programs <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="wgf-hero-slide">
+      <img src="https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=1600&q=80" alt="Young softball player batting at the plate" class="wgf-hero-slide-img" />
+      <div class="wgf-hero-overlay"></div>
+      <div class="wgf-hero-content">
+        <span class="wgf-hero-eyebrow">Fall Ball 2026 — Now Open</span>
+        <h1 class="wgf-hero-title">Inter-League Play for Girls Ages 6 to 16</h1>
+        <p class="wgf-hero-desc">Fall Ball kicks off with the Seeding Tournament over Labor Day Weekend and runs through October. All divisions play double headers every Sunday.</p>
+        <div class="wgf-hero-actions">
+          <a href="#" class="wgf-hero-btn-primary">View Registration Details</a>
+          <a href="#" class="wgf-hero-btn-text">Check age brackets <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="wgf-hero-slide">
+      <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=1600&q=80" alt="Softball team celebrating a win together" class="wgf-hero-slide-img" />
+      <div class="wgf-hero-overlay"></div>
+      <div class="wgf-hero-content">
+        <span class="wgf-hero-eyebrow">Community · Competition · Character</span>
+        <h1 class="wgf-hero-title">Where Woodland's Future Leaders Learn to Lead</h1>
+        <p class="wgf-hero-desc">From your daughter's first pitch to her final tournament, WGFSA provides expert coaching, a welcoming community, and a lifelong love of the game.</p>
+        <div class="wgf-hero-actions">
+          <a href="#" class="wgf-hero-btn-primary">Get Involved Today</a>
+          <a href="#" class="wgf-hero-btn-text">Volunteer with us <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Prev / Next -->
+  <button class="wgf-hero-prev" id="wgfHeroPrev" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+  </button>
+  <button class="wgf-hero-next" id="wgfHeroNext" aria-label="Next slide">
+    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+  </button>
+
+  <!-- Dots -->
+  <div class="wgf-hero-dots" role="tablist" aria-label="Carousel slides">
+    <button class="wgf-hero-dot wgf-dot-active" aria-label="Slide 1" role="tab" aria-selected="true"></button>
+    <button class="wgf-hero-dot" aria-label="Slide 2" role="tab" aria-selected="false"></button>
+    <button class="wgf-hero-dot" aria-label="Slide 3" role="tab" aria-selected="false"></button>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 3: MISSION
+============================================= -->
+<section class="wgf-mission" aria-labelledby="wgf-mission-heading">
+  <div class="wgf-mission-inner">
+    <div class="wgf-mission-text-block wgf-reveal">
+      <span class="wgf-section-eyebrow">Our Mission</span>
+      <h2 id="wgf-mission-heading" class="wgf-section-title">More Than a League — A Community Built on the Diamond</h2>
+      <p class="wgf-mission-body">
+        Since 1985, Woodland Girls Fastpitch Softball Association has been the home of competitive youth fastpitch softball in Yolo County. We partner with NORCAL Girls Softball to provide inter-league play that challenges young athletes while building the confidence, discipline, and teamwork they carry far beyond the field.
+      </p>
+      <ul class="wgf-mission-pillars">
+        <li class="wgf-mission-pillar">
+          <span class="wgf-mission-pillar-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></span>
+          Expert coaching from certified, background-checked volunteers
+        </li>
+        <li class="wgf-mission-pillar">
+          <span class="wgf-mission-pillar-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></span>
+          Divisions for every skill level, from 6U through 16U
+        </li>
+        <li class="wgf-mission-pillar">
+          <span class="wgf-mission-pillar-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></span>
+          Affiliated with NORCAL Girls Softball for regional competition
+        </li>
+        <li class="wgf-mission-pillar">
+          <span class="wgf-mission-pillar-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></span>
+          A welcoming, family-first environment for every player
+        </li>
+      </ul>
+      <a href="#" class="wgf-mission-btn">Learn Our History</a>
+    </div>
+    <div class="wgf-mission-image-wrap wgf-reveal">
+      <img src="https://images.unsplash.com/photo-1508098682722-e99c643e9c5e?w=800&q=80" alt="Coach working with young softball players at practice" class="wgf-mission-image" />
+      <div class="wgf-mission-badge">
+        <div class="wgf-mission-badge-year">40+</div>
+        <div class="wgf-mission-badge-label">Years of Play</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 4: PROGRAMS
+============================================= -->
+<section class="wgf-programs" aria-labelledby="wgf-programs-heading">
+  <div class="wgf-programs-inner">
+    <div class="wgf-section-header wgf-reveal">
+      <span class="wgf-section-eyebrow">What We Offer</span>
+      <h2 id="wgf-programs-heading" class="wgf-section-title">Programs for Every Stage of the Game</h2>
+      <p class="wgf-section-subtitle">From learning to catch a fly ball to competing across Northern California, WGFSA has a program built for your athlete.</p>
+    </div>
+    <div class="wgf-programs-grid">
+
+      <article class="wgf-program-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80" alt="Young girls at softball practice learning the basics" class="wgf-program-card-img" />
+        <div class="wgf-program-card-body">
+          <div class="wgf-program-card-tag">Spring Season</div>
+          <h3 class="wgf-program-card-title">Spring Ball — Instructional League</h3>
+          <p class="wgf-program-card-desc">Our Spring season focuses on skill development and fun for younger players. Girls ages 6–10 get hands-on coaching in a supportive, low-pressure environment.</p>
+          <a href="#" class="wgf-program-card-link">Learn more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+      <article class="wgf-program-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1556906781-9a414e2a7735?w=600&q=80" alt="Competitive girls softball game in action" class="wgf-program-card-img" />
+        <div class="wgf-program-card-body">
+          <div class="wgf-program-card-tag">Fall Season</div>
+          <h3 class="wgf-program-card-title">Fall Ball — Inter-League Play</h3>
+          <p class="wgf-program-card-desc">Open to girls ages 6–16, Fall Ball is NORCAL-affiliated inter-league competition running Labor Day through October. Every Sunday features double headers.</p>
+          <a href="#" class="wgf-program-card-link">Learn more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+      <article class="wgf-program-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Coach holding clipboard at practice" class="wgf-program-card-img" />
+        <div class="wgf-program-card-body">
+          <div class="wgf-program-card-tag">Coaching & Clinics</div>
+          <h3 class="wgf-program-card-title">Skills Clinics & Coaching Resources</h3>
+          <p class="wgf-program-card-desc">WGFSA hosts specialized pitching, hitting, and fielding clinics throughout the year led by experienced fastpitch coaches committed to player growth.</p>
+          <a href="#" class="wgf-program-card-link">Learn more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+      <article class="wgf-program-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=600&q=80" alt="Umpire officiating a softball game" class="wgf-program-card-img" />
+        <div class="wgf-program-card-body">
+          <div class="wgf-program-card-tag">Officials</div>
+          <h3 class="wgf-program-card-title">Umpire Program</h3>
+          <p class="wgf-program-card-desc">Become a certified umpire with WGFSA. We train and certify local officials to maintain high-quality, consistent gameplay across all divisions.</p>
+          <a href="#" class="wgf-program-card-link">Learn more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+      <article class="wgf-program-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="Athletes receiving awards at an end-of-season banquet" class="wgf-program-card-img" />
+        <div class="wgf-program-card-body">
+          <div class="wgf-program-card-tag">Tournaments</div>
+          <h3 class="wgf-program-card-title">Seeding & Championship Tournaments</h3>
+          <p class="wgf-program-card-desc">The season opens with our Seeding Tournament and closes with the Down &amp; Dirty Tournament in late October. Competitive play in a community-first atmosphere.</p>
+          <a href="#" class="wgf-program-card-link">Learn more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+      <article class="wgf-program-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1607453998774-d533f65dac99?w=600&q=80" alt="Volunteers working at a community sports event" class="wgf-program-card-img" />
+        <div class="wgf-program-card-body">
+          <div class="wgf-program-card-tag">Community</div>
+          <h3 class="wgf-program-card-title">Volunteer & Sponsor Opportunities</h3>
+          <p class="wgf-program-card-desc">WGFSA runs on community. Whether you want to coach, volunteer, or sponsor a team, there's a meaningful role for every supporter in our organization.</p>
+          <a href="#" class="wgf-program-card-link">Learn more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 5: IMPACT / STORIES
+============================================= -->
+<section class="wgf-stories" aria-labelledby="wgf-stories-heading">
+  <div class="wgf-stories-inner">
+    <div class="wgf-section-header wgf-reveal">
+      <span class="wgf-section-eyebrow">Real Impact</span>
+      <h2 id="wgf-stories-heading" class="wgf-section-title">From First Pitch to Lifelong Memories</h2>
+      <p class="wgf-section-subtitle">The field is where skills are built. The relationships forged here last a lifetime.</p>
+    </div>
+    <div class="wgf-stories-grid">
+
+      <!-- Featured story (wide) -->
+      <div class="wgf-story-featured wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c643e9c5e?w=800&q=80" alt="Softball player making a catch in the outfield" class="wgf-story-featured-img" />
+        <div class="wgf-story-featured-body">
+          <div class="wgf-story-featured-label">Coach Spotlight</div>
+          <p class="wgf-story-featured-quote">"I came to WGFSA as a parent volunteer and stayed as a coach for fifteen years. The girls who come through this program don't just learn to play — they learn how to compete, collaborate, and carry themselves with pride. That's what keeps me showing up every season."</p>
+          <div class="wgf-story-featured-name">Coach Maria Espinoza</div>
+          <div class="wgf-story-featured-role">Head Coach, 14U Division · 15 Seasons with WGFSA</div>
+        </div>
+      </div>
+
+      <!-- Story cards -->
+      <article class="wgf-story-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=600&q=80" alt="Young athlete in softball uniform smiling after a win" class="wgf-story-card-img" />
+        <div class="wgf-story-card-body">
+          <p class="wgf-story-card-quote">"My daughter started in the 8U division not knowing how to hold a bat. Two seasons in, she's leading her team in RBIs and asking to practice every weekend."</p>
+          <div class="wgf-story-card-meta">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&q=80" alt="Portrait of Jennifer Nakamura" class="wgf-story-card-avatar" />
+            <div>
+              <div class="wgf-story-card-name">Jennifer Nakamura</div>
+              <div class="wgf-story-card-role">Parent · 8U Division</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="wgf-story-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=600&q=80" alt="Team huddle before a softball game" class="wgf-story-card-img" />
+        <div class="wgf-story-card-body">
+          <p class="wgf-story-card-quote">"Playing in WGFSA gave me the confidence to try out for my high school varsity team as a freshman. The competition in Fall Ball prepared me more than anything else could have."</p>
+          <div class="wgf-story-card-meta">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Portrait of Aaliyah Torres" class="wgf-story-card-avatar" />
+            <div>
+              <div class="wgf-story-card-name">Aaliyah Torres</div>
+              <div class="wgf-story-card-role">Alumni Player · 16U Alum</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="wgf-story-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1607453998774-d533f65dac99?w=600&q=80" alt="Volunteer coaches at a WGFSA event" class="wgf-story-card-img" />
+        <div class="wgf-story-card-body">
+          <p class="wgf-story-card-quote">"Sponsoring WGFSA is the most direct investment we make in the Woodland community. You see the impact every Sunday at the fields — it's real, it's tangible, and it matters."</p>
+          <div class="wgf-story-card-meta">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&q=80" alt="Portrait of David Chen" class="wgf-story-card-avatar" />
+            <div>
+              <div class="wgf-story-card-name">David Chen</div>
+              <div class="wgf-story-card-role">Business Sponsor · 4 Seasons</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 6: ACTION PANEL
+============================================= -->
+<section class="wgf-action-panel" aria-labelledby="wgf-action-heading">
+  <div class="wgf-action-panel-inner">
+    <div class="wgf-section-header wgf-reveal">
+      <span class="wgf-section-eyebrow">Get Involved</span>
+      <h2 id="wgf-action-heading" class="wgf-section-title">There's a Role for Everyone at WGFSA</h2>
+      <p class="wgf-section-subtitle">Whether you're a first-time parent, a returning coach, or a local business — we have a place for you in our community.</p>
+    </div>
+    <div class="wgf-action-grid">
+
+      <div class="wgf-action-card wgf-reveal">
+        <div class="wgf-action-card-icon">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <h3 class="wgf-action-card-title">Register to Play</h3>
+        <p class="wgf-action-card-desc">Enroll your daughter in Fall Ball 2026. Open to girls ages 6–16 with placement based on age as of August 31, 2026.</p>
+        <a href="#" class="wgf-action-card-btn">Register Now</a>
+      </div>
+
+      <div class="wgf-action-card wgf-reveal">
+        <div class="wgf-action-card-icon">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <h3 class="wgf-action-card-title">Volunteer & Coach</h3>
+        <p class="wgf-action-card-desc">WGFSA depends on volunteers. Help out as a coach, team parent, or game-day volunteer — no prior coaching experience required.</p>
+        <a href="#" class="wgf-action-card-btn">Volunteer</a>
+      </div>
+
+      <div class="wgf-action-card wgf-reveal">
+        <div class="wgf-action-card-icon">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <h3 class="wgf-action-card-title">Donate to WGFSA</h3>
+        <p class="wgf-action-card-desc">Your donation helps keep fees low, fields maintained, and equipment accessible for every player — regardless of family income.</p>
+        <a href="#" class="wgf-action-card-btn">Donate</a>
+      </div>
+
+      <div class="wgf-action-card wgf-reveal">
+        <div class="wgf-action-card-icon">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="wgf-action-card-title">Contact the League</h3>
+        <p class="wgf-action-card-desc">Have a question about registration, schedules, or sponsorship? Share your game photos with us at wgfsaphotos@gmail.com.</p>
+        <a href="#" class="wgf-action-card-btn">Contact Us</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 7: NEWS & UPDATES
+============================================= -->
+<section class="wgf-news" aria-labelledby="wgf-news-heading">
+  <div class="wgf-news-inner">
+    <div class="wgf-news-header wgf-reveal">
+      <div>
+        <span class="wgf-section-eyebrow">News & Updates</span>
+        <h2 id="wgf-news-heading" class="wgf-section-title">Latest from the Diamond</h2>
+      </div>
+      <div class="wgf-news-header-right">
+        <a href="#" class="wgf-news-view-all">All updates <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </div>
+    </div>
+    <div class="wgf-news-grid">
+
+      <article class="wgf-news-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80" alt="Registration forms and softball equipment" class="wgf-news-card-img" />
+        <div class="wgf-news-card-body">
+          <div class="wgf-news-card-meta">
+            <span class="wgf-news-card-date">June 10, 2026</span>
+            <span class="wgf-news-card-cat">Registration</span>
+          </div>
+          <h3 class="wgf-news-card-title">Fall Ball 2026 Registration Is Now Open for All Divisions</h3>
+          <p class="wgf-news-card-excerpt">Enrollment for Fall Ball 2026 is underway. Players are placed by age as of August 31 — don't wait to secure your daughter's spot in her division.</p>
+          <a href="#" class="wgf-news-card-link">Read more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+      <article class="wgf-news-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=600&q=80" alt="Girls softball tournament action photo" class="wgf-news-card-img" />
+        <div class="wgf-news-card-body">
+          <div class="wgf-news-card-meta">
+            <span class="wgf-news-card-date">May 28, 2026</span>
+            <span class="wgf-news-card-cat">Tournament</span>
+          </div>
+          <h3 class="wgf-news-card-title">Down &amp; Dirty Tournament Dates Confirmed for Late October</h3>
+          <p class="wgf-news-card-excerpt">Mark your calendars — the Down &amp; Dirty Tournament will close out the Fall Ball season in the last weekend of October. Full bracket and schedule coming soon.</p>
+          <a href="#" class="wgf-news-card-link">Read more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+      <article class="wgf-news-card wgf-reveal">
+        <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=600&q=80" alt="Coaches being recognized at a league banquet" class="wgf-news-card-img" />
+        <div class="wgf-news-card-body">
+          <div class="wgf-news-card-meta">
+            <span class="wgf-news-card-date">May 14, 2026</span>
+            <span class="wgf-news-card-cat">Community</span>
+          </div>
+          <h3 class="wgf-news-card-title">WGFSA Recognizes Outstanding Volunteer Coaches from Spring Season</h3>
+          <p class="wgf-news-card-excerpt">At our Spring closing ceremony, WGFSA honored eight coaches whose dedication made the 2026 Spring season an exceptional experience for over 200 young players.</p>
+          <a href="#" class="wgf-news-card-link">Read more <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =============================================
+     SECTION 8: FOOTER
+============================================= -->
+<footer class="wgf-footer" role="contentinfo">
+  <div class="wgf-footer-inner">
+
+    <div class="wgf-footer-brand-col">
+      <div class="wgf-footer-logo">
+        <div class="wgf-footer-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#fff"/><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 2c.55 0 1.09.05 1.61.14C13.23 5.6 12.9 7.3 12 9.1c-.9-1.8-1.23-3.5-1.61-4.96C10.91 4.05 11.45 4 12 4zM4.02 12.39C5.7 11.7 7.4 11.5 9.2 12c-1.8.9-3.5 1.23-4.96 1.61A8.03 8.03 0 0 1 4.02 12.39zM7 19.07A8.07 8.07 0 0 1 4.67 15c1.48.38 3.18.71 4.96 1.61-1.8.5-3.5.7-2.63 2.46zm5 .93c-.55 0-1.09-.05-1.61-.14.38-1.48.71-3.18 1.61-4.96.9 1.78 1.23 3.48 1.61 4.96-.52.09-1.06.14-1.61.14zm5-1.93c.87-1.76-.83-1.96-2.63-2.46 1.78-.9 3.48-1.23 4.96-1.61A8.07 8.07 0 0 1 17 19.07zm2.97-5.46C18.5 13.23 16.8 12.9 15 12c1.8-.5 3.5-.7 5.14-.39-.12.67-.07 1.33-.17 2z" fill="#4CAF50"/></svg>
+        </div>
+        <div>
+          <div class="wgf-footer-logo-name">Woodland Girls<br>Fastpitch Softball</div>
+          <div class="wgf-footer-logo-sub">Est. 1985 · Woodland, CA</div>
+        </div>
+      </div>
+      <p class="wgf-footer-tagline">Empowering girls through the game of fastpitch since 1985. A proud member of the NORCAL Girls Softball Association.</p>
+      <div class="wgf-footer-socials">
+        <!-- Facebook -->
+        <a href="#" class="wgf-footer-social" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="#" class="wgf-footer-social" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+        </a>
+        <!-- Twitter/X -->
+        <a href="#" class="wgf-footer-social" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="#" class="wgf-footer-social" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="wgf-footer-col-title">Programs</div>
+      <ul class="wgf-footer-col-links">
+        <li><a href="#" class="wgf-footer-col-link">Spring Ball</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Fall Ball</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Skills Clinics</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Umpire Program</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Tournaments</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="wgf-footer-col-title">Organization</div>
+      <ul class="wgf-footer-col-links">
+        <li><a href="#" class="wgf-footer-col-link">About WGFSA</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Board of Directors</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Coaches</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Sponsors</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Merch Store</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Donate</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="wgf-footer-col-title">Contact</div>
+      <ul class="wgf-footer-col-links">
+        <li><a href="#" class="wgf-footer-col-link">wgfsaphotos@gmail.com</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Woodland, CA 95695</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Sign Up for Text Alerts</a></li>
+        <li><a href="#" class="wgf-footer-col-link">Contact Us</a></li>
+      </ul>
+      <div class="wgf-footer-col-title" style="margin-top:2rem;">Affiliations</div>
+      <ul class="wgf-footer-col-links">
+        <li><a href="#" class="wgf-footer-col-link">NORCAL Girls Softball</a></li>
+        <li><a href="#" class="wgf-footer-col-link">ASA / USA Softball</a></li>
+      </ul>
+    </div>
+
+  </div>
+  <hr class="wgf-footer-divider" />
+  <div class="wgf-footer-bottom">
+    <span class="wgf-footer-copyright">&copy; 2026 Woodland Girls Fastpitch Softball Association. All rights reserved.</span>
+    <div class="wgf-footer-legal">
+      <a href="#" class="wgf-footer-legal-link">Privacy Policy</a>
+      <a href="#" class="wgf-footer-legal-link">Terms of Use</a>
+      <a href="#" class="wgf-footer-legal-link">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== NAVBAR OFF-CANVAS ===== */
+  const hamburger  = document.getElementById('wgfHamburger');
+  const offcanvas  = document.getElementById('wgfOffcanvas');
+  const panelClose = document.getElementById('wgfPanelClose');
+  const backdrop   = document.getElementById('wgfBackdrop');
+
+  function openMenu() {
+    hamburger.classList.add('wgf-is-open');
+    offcanvas.classList.add('wgf-panel-open');
+    backdrop.classList.add('wgf-backdrop-active');
+    offcanvas.setAttribute('aria-hidden', 'false');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    hamburger.classList.remove('wgf-is-open');
+    offcanvas.classList.remove('wgf-panel-open');
+    backdrop.classList.remove('wgf-backdrop-active');
+    offcanvas.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', openMenu);
+  panelClose.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+  /* ===== HERO CAROUSEL ===== */
+  const track  = document.getElementById('wgfHeroTrack');
+  const slides = track.querySelectorAll('.wgf-hero-slide');
+  const dots   = document.querySelectorAll('.wgf-hero-dot');
+  const prev   = document.getElementById('wgfHeroPrev');
+  const next   = document.getElementById('wgfHeroNext');
+  let current  = 0;
+  let autoTimer;
+
+  function goTo(index) {
+    slides[current].setAttribute('aria-hidden', 'true');
+    dots[current].classList.remove('wgf-dot-active');
+    dots[current].setAttribute('aria-selected', 'false');
+    current = (index + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots[current].classList.add('wgf-dot-active');
+    dots[current].setAttribute('aria-selected', 'true');
+    slides[current].removeAttribute('aria-hidden');
+  }
+
+  function startAuto() { autoTimer = setInterval(function () { goTo(current + 1); }, 5500); }
+  function stopAuto()  { clearInterval(autoTimer); }
+
+  prev.addEventListener('click', function () { stopAuto(); goTo(current - 1); startAuto(); });
+  next.addEventListener('click', function () { stopAuto(); goTo(current + 1); startAuto(); });
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { stopAuto(); goTo(i); startAuto(); });
+  });
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  track.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    const delta = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) { stopAuto(); goTo(current + (delta > 0 ? 1 : -1)); startAuto(); }
+  }, { passive: true });
+
+  startAuto();
+
+  /* ===== SCROLL REVEAL ===== */
+  if ('IntersectionObserver' in window) {
+    const revealItems = document.querySelectorAll('.wgf-reveal');
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('wgf-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealItems.forEach(function (el) { observer.observe(el); });
+  } else {
+    document.querySelectorAll('.wgf-reveal').forEach(function (el) { el.classList.add('wgf-revealed'); });
+  }
+
+})();
+</script>
+
+<script>
+  //glad header
+  const gladHeader = document.getElementById("glad-header");
+  const calbccHeader = document.querySelector(".calbcc-header");
+  const mainNav = document.querySelector(".sk-main-navbar, .tia-nav, .tws-nav-root, .pau-site-nav, .wgf-nav-bar, .yba-nav, .yli-navbar, .zna-main-nav");
+  let lastScrollY = window.scrollY,
+    gladVisible = true;
+
+  // Initialize state based on current scroll position
+  if (lastScrollY > 80) {
+    gladHeader.classList.add("hidden");
+    if (mainNav) {
+      mainNav.classList.add("glad-hidden");
+    }
+    gladVisible = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y > 80 && y > lastScrollY) {
+        if (gladVisible) {
+          gladHeader.classList.add("hidden");
+          if (mainNav) {
+            mainNav.classList.add("glad-hidden");
+          }
+          gladVisible = false;
+        }
+      } else if (y < lastScrollY && y < 40) {
+        if (!gladVisible) {
+          gladHeader.classList.remove("hidden");
+          if (mainNav) {
+            mainNav.classList.remove("glad-hidden");
+          }
+          gladVisible = true;
+        }
+      }
+      lastScrollY = y;
+    },
+    { passive: true },
+  );
+  //
+</script>
+
+</body>
+</html>
